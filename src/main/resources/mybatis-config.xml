@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <configuration>
+ 	<!-- root-context.xml에서 잡아주기 때문에 설정하지 않다고 됨 -->
+     <!-- <typeAliases>
+     	<package name="com.yi.domain"/>
+     </typeAliases> -->
+ </configuration>
