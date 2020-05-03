@@ -14,6 +14,19 @@ body, nav {
 	font-size: 18px;
 }
 
+.tCenter {
+	text-align: center;
+}
+
+/* 스타일 */
+.tableWrap {
+	width: 99%;
+    margin: 0 auto;
+    overflow: auto;
+    max-height: 300px;
+    margin-top: 10px;
+}
+
 /* 템플릿 커스터마이징 */
 #user {
 	line-height: 60px;
