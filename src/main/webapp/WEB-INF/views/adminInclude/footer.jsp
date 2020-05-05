@@ -339,6 +339,17 @@
 		$(".auto-update-year").html(new Date().getFullYear());
 	</script> 
 	
+	<!--detail page table data expand collapse javascript-->
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$(".direct-expand").click(function(){
+			$(".direct-child-table").slideToggle(300);
+			$(this).toggleClass( "child-table-collapse" );
+		});
+	});
+	</script>
+	<!-- Scripts Ends -->
+	
 	<!-- 메뉴 수정 -->
 	<script>
 		$(window).resize(function(){

@@ -19,9 +19,17 @@ body, nav {
 }
 
 /******* 스타일 *******/
-/* userName 폰트 */
-.material-icons {
+/* text */
+#user .material-icons {
 	font-family: 'Roboto', sans-serif;
+}
+
+.subPageTitle {
+	font-weight: 700;
+}
+
+.taCenter {
+	text-align: center;
 }
 
 /* 테이블 */

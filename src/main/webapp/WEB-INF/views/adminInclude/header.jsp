@@ -25,14 +25,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/assets/css/propeller.min.css">
 <!-- /build -->
 
-<!-- DataTables css-->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
-
-<!-- Propeller dataTables css-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/components/data-table/css/pmd-datatable.css">
-
 <!-- Propeller date time picker css-->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/components/datetimepicker/css/bootstrap-datetimepicker.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/components/datetimepicker/css/pmd-datetimepicker.css" />
@@ -165,7 +157,6 @@
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a class="userMgrSub menu" href="#">신규 점주 가입 승인</a></li>
 					<li><a class="userMgrSub menu" href="#">카페 점주 관리</a></li>
 					<li><a class="userMgrSub menu" href="#">회원 관리</a></li>
 					<li><a class="userMgrSub menu" href="#">관리자 관리</a></li>
