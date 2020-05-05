@@ -14,6 +14,9 @@
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/6f2f0f2d95.js"></script>
 
+<!-- Google icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <!-- Bootstrap css -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -38,6 +41,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<!-- 메뉴 포커스 -->
+<script>
+	$(function(){
+		var url = location.href.split("/");
+		$(".menu").removeClass("active");
+		
+		// 서브메뉴 url 판단
+		console.log(url[5]);
+		
+		// 서브메뉴 포커스 
+		if(url[5] == "") {
+			$("#Dashboard").addClass("active");
+		}
+		
+		if(url[5] == "newCafe"){
+			$("#cafeMgr").addClass("active");
+			$("#cafeMgr").parent().addClass("open");
+			$(".cafeMgrSub").eq(0).addClass("active");
+		}
+	})
+</script>
 </head>
 <body>
 	<!-- Header Starts -->
@@ -50,9 +74,9 @@
 	            <div class="dropdown notification icons pmd-dropdown">
 				
 					<a id="user" href="javascript:void(0)" title="Notification" class="dropdown-toggle pmd-ripple-effect"  data-toggle="dropdown" role="button" aria-expanded="true">
-						<div class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">
+						<div class="material-icons md-light pmd-sm pmd-badge pmd-badge-overlap">
 							<img src="${pageContext.request.contextPath }/resources/themes/images/user-icon.png" alt="New User" />
-							<span id="userName">userName</span>
+							<span id="userName">user Id</span>
 						</div>
 					</a>
 				
@@ -108,59 +132,58 @@
 			</li><!-- End user info -->
 			
 			<li> 
-				<a class="pmd-ripple-effect" href="${pageContext.request.contextPath }/admin/">	
+				<a id="Dashboard" class="pmd-ripple-effect menu" href="${pageContext.request.contextPath }/admin/">	
 				<i class="fas fa-tachometer-alt fs18 media-left media-middle" ></i>
 				<span class="media-body">Dashboard</span>
 				</a> 
 			</li>
 			
 			<li class="dropdown pmd-dropdown"> 
-				<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">	
+				<a id="cafeMgr" aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media menu" data-sidebar="true" href="javascript:void(0);">	
 					<i class="fas fa-store fs18 media-left media-middle"></i>
 					<span class="media-body">카페 관리</span>
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a href="${pageContext.request.contextPath}/admin/newCafe">신규 등록 카페 승인</a></li>
-					<li><a href="#">카페 관리</a></li>
-					<li><a href="#">월간 카페 등록 및 관리</a></li>
+					<li><a class="cafeMgrSub menu" href="${pageContext.request.contextPath}/admin/newCafe">신규 등록 카페 승인</a></li>
+					<li><a class="cafeMgrSub menu" href="#">카페 관리</a></li>
+					<li><a class="cafeMgrSub menu" href="#">월간 카페 등록 및 관리</a></li>
 				</ul>
 			</li>
 			<li class="dropdown pmd-dropdown"> 
-				<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">	
+				<a id="userMgr" aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media menu" data-sidebar="true" href="javascript:void(0);">	
 					<i class="fas fa-users fs18 media-left media-middle"></i>
 					<span class="media-body">회원 관리</span>
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a href="#">신규 점주 가입 승인</a></li>
-					<li><a href="#">카페 점주 관리</a></li>
-					<li><a href="#">회원 관리</a></li>
-					<li><a href="#">관리자 관리</a></li>
+					<li><a class="userMgrSub menu" href="#">카페 점주 관리</a></li>
+					<li><a class="userMgrSub menu" href="#">회원 관리</a></li>
+					<li><a class="userMgrSub menu" href="#">관리자 관리</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown pmd-dropdown"> 
-				<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">	
+				<a id="pointShop" aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media menu" data-sidebar="true" href="javascript:void(0);">	
 					<i class="fas fa-gifts fs18 media-left media-middle"></i>
 					<span class="media-body">포인트샵 관리</span>
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a href="#">상품 관리</a></li>
+					<li><a class="pointShopSub menu" href="#">상품 관리</a></li>
 				</ul>
 			</li>
 			<li class="dropdown pmd-dropdown"> 
-				<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">	
+				<a id="noticeMgr" aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media menu" data-sidebar="true" href="javascript:void(0);">	
 					<i class="fas fa-bullhorn fs18 media-left media-middle"></i>
 					<span class="media-body">공지사항</span>
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a href="#">공지사항 관리</a></li>
-					<li><a href="#">이벤트 관리</a></li>
-					<li><a href="#">FAQ 관리</a></li>
-					<li><a href="#">Q&A 관리</a></li>
+					<li><a class="noticeMgrSub menu" href="#">공지사항 관리</a></li>
+					<li><a class="noticeMgrSub menu" href="#">이벤트 관리</a></li>
+					<li><a class="noticeMgrSub menu" href="#">FAQ 관리</a></li>
+					<li><a class="noticeMgrSub menu" href="#">Q&A 관리</a></li>
 				</ul>
 			</li>
 			<li> 

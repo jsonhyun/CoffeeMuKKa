@@ -47,33 +47,35 @@
 			 
 			 <!-- Q&A 답변대기 start -->
 			 <div class="col-xs-12 col-sm-12 col-md-12">
-			 	<div class="pmd-card pmd-z-depth">
-			 		<div class="pmd-card-title">Q&A 답변대기</div>
-			 		<div class="table-responsive tableWrap">
-			 			<table class="table pmd-table table-striped table-mc-red">
-			 				<tr>
-			 					<th>no</th>
-			 					<th>제목</th>
-			 					<th>작성자</th>
-			 					<th>등록인</th>
-			 					<th>답변</th>
-			 				</tr>
-			 				<tr>
-			 					<td>1</td>
-			 					<td>test</td>
-			 					<td>user</td>
-			 					<td>2020/05/02</td>
-			 					<td><button type="button" class="btn pmd-ripple-effect btn-primary">답변달기</button></td>
-			 				</tr>
-			 				<tr>
-			 					<td>2</td>
-			 					<td>test</td>
-			 					<td>user</td>
-			 					<td>2020/05/02</td>
-			 					<td><button type="button" class="btn pmd-ripple-effect btn-primary">답변달기</button></td>
-			 				</tr>
-			 			</table>
-			 		</div>	
+			 	<div class="component-box">
+				 	<div class="pmd-card pmd-z-depth pmd-card-custom-view">
+				 		<div class="pmd-card-title">Q&A 답변대기</div>
+				 		<div class="table-responsive tableWrap">
+				 			<table class="table pmd-table table-striped table-mc-red">
+				 				<tr>
+				 					<th>no</th>
+				 					<th>제목</th>
+				 					<th>작성자</th>
+				 					<th>등록인</th>
+				 					<th>답변</th>
+				 				</tr>
+				 				<tr>
+				 					<td>1</td>
+				 					<td>test</td>
+				 					<td>user</td>
+				 					<td>2020/05/02</td>
+				 					<td><button type="button" class="btn pmd-ripple-effect btn-primary">답변달기</button></td>
+				 				</tr>
+				 				<tr>
+				 					<td>2</td>
+				 					<td>test</td>
+				 					<td>user</td>
+				 					<td>2020/05/02</td>
+				 					<td><button type="button" class="btn pmd-ripple-effect btn-primary">답변달기</button></td>
+				 				</tr>
+				 			</table>
+				 		</div>	
+				 	</div>
 			 	</div>
 			 </div>
 			 <!-- Q&A 답변대기 end -->
