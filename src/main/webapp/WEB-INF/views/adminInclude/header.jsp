@@ -78,7 +78,7 @@
 			</div>
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a href="javascript:void(0);" data-target="basicSidebar" data-placement="left" data-position="slidepush" is-open="true" is-open-width="1200" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle"><i class="fas fa-bars fs25"></i></a>	
+				<a href="javascript:void(0);" id="navIcon" data-target="basicSidebar" data-placement="left" data-position="slidepush" is-open="true" is-open-width="1200" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle"><i class="fas fa-bars fs25"></i></a>	
 				<a href="${pageContext.request.contextPath }/admin/" class="navbar-brand">Coffee Mukka</a>
 			</div>
 		</div>
@@ -121,7 +121,7 @@
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a href="#">신규 등록 카페 승인</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/newCafe">신규 등록 카페 승인</a></li>
 					<li><a href="#">카페 관리</a></li>
 					<li><a href="#">월간 카페 등록 및 관리</a></li>
 				</ul>

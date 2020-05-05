@@ -14,7 +14,5 @@
 	</div>
 	
 	</div><!--end content area-->
-<script>
 	
-</script>
 <%@ include file="../adminInclude/footer.jsp"%>

@@ -11,9 +11,15 @@ public class AdminController {
 	// 서비스 
 	
 	
-	// home
+	// admin home
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String home() {
 		return "/admin/adminHome";
+	}
+	
+	//신규 등록 카페 승인
+	@RequestMapping(value = "newCafe", method = RequestMethod.GET)
+	public String newCafe() {
+		return "/admin/adminNewCafeMgr";
 	}
 }

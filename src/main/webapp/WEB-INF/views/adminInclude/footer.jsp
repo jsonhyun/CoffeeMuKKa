@@ -86,7 +86,7 @@
 				}));
 			}
 	  <!-- javascript for total sales chart-->
-		</script>
+	</script>
 	
 	<!--staked column chart for payment-->
 	<script src="${pageContext.request.contextPath }/resources/themes/js/highcharts.js"></script>
@@ -338,5 +338,32 @@
 		$('#datepicker-default').datetimepicker();
 		$(".auto-update-year").html(new Date().getFullYear());
 	</script> 
+	
+	<!-- 메뉴 수정 -->
+	<script>
+		$(window).resize(function(){
+			var w = $(window).width();
+			if(w > 1217){
+				$("#navIcon").click(function(){
+					if($("#basicSidebar").width() > 64){
+						$("#navIcon").addClass("menuShow");
+					} else {
+						$("#navIcon").removeClass("menuShow");
+					}
+					
+					if($("#navIcon").hasClass("menuShow")){
+						$("#basicSidebar").mouseover(function(){
+							$("#basicSidebar").addClass("pmd-sidebar-open");
+						})
+						$("#basicSidebar").mouseout(function(){
+							$("#basicSidebar").removeClass("pmd-sidebar-open");
+						}) 
+					} else {
+						$("#basicSidebar").off('mouseout');
+					}
+				})
+			}
+		})
+	</script>
 </body>
 </html>
