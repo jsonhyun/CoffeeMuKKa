@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#topMenu {
+	width: 1130px;
+	margin: 10px auto;
+}
+
+.logoWrap {
+	width: 400px;
+	float: left;
+}
+
+.logoWrap img {
+	width: 100%;
+}
+
+.rankWrap {
+	float: left;
+	margin-top: 10px;
+}
+
+#rankUl {
+	display: none;
+}
+
+.topMenuWrap {
+	float: right;
+	margin-top: 34px;
+}
+
+.topMenuWrap ul li {
+	float: left;
+	margin-left: 15px;
+}
+
+.topMenuWrap ul li a {
+	font-size: 14px;
+}
