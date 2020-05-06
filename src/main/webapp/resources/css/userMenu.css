@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* topMenu */
 #topMenu {
 	width: 1130px;
 	margin: 10px auto;
@@ -35,4 +36,40 @@
 
 .topMenuWrap ul li a {
 	font-size: 14px;
+}
+
+/* mainManu */
+#mainMenuWrap {
+	background-color: #303A50;
+}
+
+.menuBox {
+	width: 1130px;
+	margin: 0 auto;
+}
+
+.mainMenu ul {
+	width: 70%;
+	float: left;
+}
+
+.mainMenu ul li {
+	float: left;
+	width: 25%;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.mainMenu ul li a {
+	color: #fff;
+}
+
+.mainSearchBtn {
+	float: right;
+	line-height: 52px;
+}
+
+.mainSearchBtn a {
+	color: #fff;
+	font-size: 20px;
 }

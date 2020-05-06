@@ -65,7 +65,20 @@
 			</div>
 		</div>
 		
-		<div id="MainMenu"></div>
+		<div id="mainMenuWrap">
+			<div class="menuBox">
+				<div class="mainMenu clearfix">
+					<ul class="clearfix">
+						<li><a href="#">커피무까</a></li>
+						<li><a href="#">커뮤니티</a></li>
+						<li><a href="#">포인트샵</a></li>
+						<li><a href="#">공지사항</a></li>
+					</ul>
+					<div class="mainSearchBtn"><a href="#"><i class="fas fa-angle-down"></i></a></div>
+				</div>
+				<div class="mainSearchBox"></div>
+			</div>
+		</div>
 	</header>
 </body>
 </html>
