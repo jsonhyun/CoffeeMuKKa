@@ -2,7 +2,7 @@
 
 /* topMenu */
 #topMenu {
-	width: 1130px;
+	width: 1024px;
 	margin: 10px auto;
 }
 
@@ -18,10 +18,17 @@
 .rankWrap {
 	float: left;
 	margin-top: 10px;
+	position: relative;
+	padding: 0 5px;
 }
 
 #rankUl {
-	display: none;
+	display: none; 
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	padding: 5px;
+	padding-top: 0;
 }
 
 .topMenuWrap {
@@ -44,7 +51,7 @@
 }
 
 .menuBox {
-	width: 1130px;
+	width: 1024px;
 	margin: 0 auto;
 }
 
@@ -55,13 +62,17 @@
 
 .mainMenu ul li {
 	float: left;
-	width: 25%;
+	margin-right: 85px;
 	text-align: center;
 	padding: 15px 0;
 }
 
 .mainMenu ul li a {
 	color: #fff;
+}
+
+.menuIcon {
+	width: 20px;
 }
 
 .mainSearchBtn {
@@ -73,3 +84,167 @@
 	color: #fff;
 	font-size: 20px;
 }
+
+/* mainSearch - keyword */
+.mainSearchBox {
+	border-top: 1px solid #fff;
+}
+
+.mainSearch {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.keysWrap {
+	position: relative;
+	padding: 30px 0;
+	z-index: 1;
+}
+
+.line {
+	width: 100%;
+	height: 3px;
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 80px;
+	z-index: -1
+}
+
+.keys {
+	overflow: hidden;
+}
+
+.keys li {
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	width: 16.6%;
+}
+
+.keyIcon {
+	width: 90px;
+	height: 90px;
+	background-color: #f2f2f2;
+	text-align: center;
+	border-radius: 100px;
+	position: relative;
+	margin: 0 auto;
+}
+.keyIcon img {
+	width: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.spot {
+	width: 20px;
+	height: 20px;
+	border-radius: 30px;
+	background-color: #f2f2f2;
+	margin: 30px auto;
+	margin-bottom: 15px;
+	z-index: 1;
+}
+
+.keyText {
+	font-size: 16px;
+	color: #fff;
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+
+.keyword {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+
+/* mainSearch - searchBar */
+.searchBarWrap {
+	padding-bottom: 30px;
+}
+
+.zoneBar {
+	float: left;
+	width: 25%;
+	font-size: 25px;
+	border-radius: 5px 0 0 5px;
+	border-right: 1px solid #A2A1A1;
+	background-color: #fff;
+	position: relative;
+}
+
+.zoneBarBox {
+	padding: 10px;
+	position: relative;
+	padding-left: 50px;
+	color: #A2A1A1;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.zoneBarBox img{
+	position: absolute;
+	width: 30px;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+}
+
+.zoneList {
+	position: absolute;
+	left: 0;
+	background-color: #fff;
+	width: 100%;
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.zoneList li {
+	position: relative;
+	padding: 10px;
+	padding-left: 50px;
+	font-size: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.zoneList li:first-child{
+	border-top: 1px solid #A2A1A1;
+}
+
+.zoneList img {
+	position: absolute;
+	width: 20px;
+	top: 50%;
+	left: 15px;
+	transform: translateY(-50%);
+}
+
+.themeBar {
+	float: left;
+	background-color: #fff;
+}
+
+.searchBtn {
+	float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

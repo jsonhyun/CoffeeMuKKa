@@ -1,4 +1,9 @@
 @charset "UTF-8";
+/* 
+ * width 기준
+ * pc : 1024px / t : 768px / m : 320px
+ */
+
 /* 구글웹폰트 - Noto Sans KR */
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
 
@@ -28,6 +33,10 @@ a {
 /* color */
 .red {
 	color: #BE1622;
+}
+
+.blue {
+	color: #00a4de;
 }
 
 /* weight */
