@@ -18,8 +18,10 @@
 
 <script>
 	$(function(){
+		/* 카페순위 리스트 width */
 		$("#rankUl").width($(".rankWrap").width());
 		
+		/* 카페순위 리스트 */
 		$(".rankOne").hover(function(){
 			$("#rankUl").stop().slideDown();
 			$(".rankIcon").html('<i class="fas fa-angle-up"></i>');
@@ -36,6 +38,51 @@
 			$(".rankIcon").html('<i class="fas fa-angle-down"></i>');
 		})
 		
+		
+		/* 지역 리스트 */
+		$(".zoneBarBox").click(function() {
+			$(".zoneList").slideToggle();
+		})
+		
+		$(".zoneList li").click(function(){
+			var zone = $(this).attr("data-zone");
+			
+			$(".zoneTitle").text(zone).css("color", "black");
+			$(".zoneBar input[name='zoneName']").val(zone);
+			$(".zoneList").slideUp(300);
+		})
+		
+		/* 테마 */
+		var keywords = "";
+		
+		$(".keys li").click(function(){
+			var keyword = $(this).attr("data-keyword");
+			var $spanThemeKey = $("<span>").addClass("themeKey").addClass(keyword).text("#" + keyword);
+			
+			var onImg = $(this).attr("data-onImg");
+			var img = $(this).attr("data-img")
+			var imgPath = "${pageContext.request.contextPath }/resources/images/";
+			
+			if($(this).hasClass("on")){
+				$(this).removeClass("on");
+				$(this).find(".keyIcon img").attr("src", imgPath+img);
+				
+				keywords = keywords.replace(keyword+",", "");
+				$("."+keyword).remove();
+			} else {				
+				$(this).addClass("on");
+				$(this).find(".keyIcon img").attr("src", imgPath+onImg);
+				keywords += keyword + ",";
+				$(".themeBarBox").append($spanThemeKey);
+			}
+			
+			if($(".themeBarBox").find(".themeKey").length == 0) {
+				$(".themeSapn").show();
+			} else {
+				$(".themeSapn").hide();
+			}
+			$(".themeBar input[name='themeName']").val(keywords);
+		})
 	})
 </script>
 </head>
@@ -83,56 +130,56 @@
 				<div class="mainSearch">
 					<div class="keysWrap">
 						<ul class="keys">
-							<li>
-								<div class="keyIcon">
+							<li data-keyword="데이트" data-key="date" data-onImg="key1_1.png" data-Img="key1.png">
+								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key1.png" alt="keyIcon" />
 								</div>
-								<div class="spot"></div>
+								<div class="spot keyItem"></div>
 								<div class="keyText">
 									<span class="keyword blue">#데이트</span>하기좋은
 								</div>
 							</li>
-							<li>
-								<div class="keyIcon">
+							<li data-keyword="뷰" data-key="view" data-onImg="key2_2.png" data-Img="key2.png">
+								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key2.png" alt="keyIcon" />
 								</div>
-								<div class="spot"></div>
+								<div class="spot keyItem"></div>
 								<div class="keyText">
 									<span class="keyword blue">#뷰</span>가 끝내주는
 								</div>
 							</li>
-							<li>
-								<div class="keyIcon">
+							<li data-keyword="착한아메" data-key="ame" data-onImg="key3_3.png" data-Img="key3.png">
+								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key3.png" alt="keyIcon" />
 								</div>
-								<div class="spot"></div>
+								<div class="spot keyItem"></div>
 								<div class="keyText">
 									<span class="keyword blue">#착한아메</span>
 								</div>
 							</li>
-							<li>
-								<div class="keyIcon">
+							<li data-keyword="디저트" data-key="dessert" data-onImg="key4_4.png" data-Img="key4.png">
+								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key4.png" alt="keyIcon" />
 								</div>
 								<div class="spot"></div>
-								<div class="keyText">
+								<div class="keyText ">
 									나는야<span class="keyword blue">#디저트</span>파
 								</div>
 							</li>
-							<li>
-								<div class="keyIcon">
+							<li data-keyword="댕댕이" data-key="dag" data-onImg="key5_5.png" data-Img="key5.png">
+								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key5.png" alt="keyIcon" />
 								</div>
-								<div class="spot"></div>
+								<div class="spot keyItem"></div>
 								<div class="keyText">
 									<span class="keyword blue">#댕댕이</span>와 함께
 								</div>
 							</li>
-							<li>
-								<div class="keyIcon">
+							<li data-keyword="작업" data-key="work" data-onImg="key6_6.png" data-Img="key6.png">
+								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key6.png" alt="keyIcon" />
 								</div>
-								<div class="spot"></div>
+								<div class="spot keyItem"></div>
 								<div class="keyText">
 									<span class="keyword blue">#작업</span>하기 안성맞춤
 								</div>
@@ -141,36 +188,38 @@
 						<div class="line"></div>
 					</div>
 					<div class="searchBarWrap clearfix">
-						<div class="zoneBar">
+						<div class="zoneBar bar">
 							<input type="hidden" name="zoneName" id="zone"/>
-							<div class="zoneBarBox">
+							<div class="zoneBarBox barBox">
 								<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
-								<span>어디에서</span>
+								<span class="zoneTitle">어디에서</span>
 							</div>							
 							<div class="zoneList">
 								<ul>
 									<!-- 데이터 만들어지면 c:foreach문으로 데이터 넣어서 구현 -->
-									<li>
+									<li class="zoneItem" data-zone="동성로">
 										<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
 										<span>동성로</span>	
 									</li>
-									<li>
+									<li class="zoneItem" data-zone="수성못 들안길">
 										<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
 										<span>수성못 들안길</span>
 									</li>
 								</ul>
 							</div>
 						</div>
-						<div class="themeBar">
+						<div class="themeBar bar">
 							<input type="hidden" name="themeName"/>
-							<div class="zoneBarBox">
+							<div class="themeBarBox barBox">
 								<img src="${pageContext.request.contextPath }/resources/images/bar_search.png" alt="icon" />
-								<span>커.피.무.까 ?</span>
+								<span class="themeSapn">커.피.무.까 ?</span>
 							</div>	
 						</div>
-						<a class="searchBtn" href="#">
-							<img src="${pageContext.request.contextPath }/resources/images/main_search.png" alt="searchIcon" />
-						</a>
+						<div class="searchBtn">
+							<a href="#">
+								<img src="${pageContext.request.contextPath }/resources/images/main_search.png" alt="searchIcon" />
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
