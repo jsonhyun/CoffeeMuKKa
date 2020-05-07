@@ -2,12 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../userInclude/header.jsp" %>
-<style>
-	
-</style>
 
 	<div class="content">
 	
 	</div>
-	<div class="banerArea"></div>
+
 <%@ include file="../userInclude/footer.jsp" %>
