@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
+/* topMenu */
 #topMenu {
-	width: 1130px;
+	width: 1024px;
 	margin: 10px auto;
 }
 
@@ -17,10 +18,17 @@
 .rankWrap {
 	float: left;
 	margin-top: 10px;
+	position: relative;
+	padding: 0 5px;
 }
 
 #rankUl {
-	display: none;
+	display: none; 
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	padding: 5px;
+	padding-top: 0;
 }
 
 .topMenuWrap {
@@ -36,3 +44,255 @@
 .topMenuWrap ul li a {
 	font-size: 14px;
 }
+
+/* mainManu */
+#mainMenuWrap {
+	background-color: #303A50;
+}
+
+.menuBox {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.mainMenu ul {
+	width: 70%;
+	float: left;
+}
+
+.mainMenu ul li {
+	float: left;
+	margin-right: 85px;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.mainMenu ul li a {
+	color: #fff;
+}
+
+.menuIcon {
+	width: 20px;
+}
+
+.mainSearchBtn {
+	float: right;
+	line-height: 52px;
+}
+
+.mainSearchBtn a {
+	color: #fff;
+	font-size: 20px;
+}
+
+/* mainSearch - keyword */
+.mainSearchBox {
+	border-top: 1px solid #fff;
+}
+
+.mainSearch {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.keysWrap {
+	position: relative;
+	padding: 30px 0;
+	z-index: 1;
+}
+
+.line {
+	width: 100%;
+	height: 3px;
+	background-color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 80px;
+	z-index: -1
+}
+
+.keys {
+	overflow: hidden;
+}
+
+.keys li {
+	float: left;
+	text-align: center;
+	width: 16.6%;
+}
+
+.keyIcon {
+	width: 90px;
+	height: 90px;
+	background-color: #f2f2f2;
+	text-align: center;
+	border-radius: 100px;
+	position: relative;
+	margin: 0 auto;
+	cursor: pointer;
+}
+.keyIcon img {
+	width: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.spot {
+	width: 20px;
+	height: 20px;
+	border-radius: 30px;
+	background-color: #f2f2f2;
+	margin: 30px auto;
+	margin-bottom: 15px;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.keyText {
+	font-size: 16px;
+	color: #fff;
+	font-weight: 400;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+
+.keyword {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+
+/* mainSearch - searchBar */
+.searchBarWrap {
+	padding-bottom: 30px;
+}
+
+.bar {
+	float: left;
+	font-size: 25px;
+	background-color: #fff;
+	position: relative;
+}
+
+.barBox {
+	padding: 10px;
+	position: relative;
+	padding-left: 50px;
+	color: #A2A1A1;
+	font-weight: 700;
+}
+
+.barBox img {
+	position: absolute;
+	width: 30px;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+}
+
+.zoneBar {
+	width: 25%;
+	border-radius: 5px 0 0 5px;
+	border-right: 1px solid #A2A1A1;
+}
+
+.zoneBarBox {
+	cursor: pointer;
+}
+
+.zoneList {
+	position: absolute;
+	left: 0;
+	background-color: #fff;
+	width: 100%;
+	box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none;
+}
+
+.zoneList li {
+	position: relative;
+	padding: 10px;
+	padding-left: 50px;
+	font-size: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.zoneList li:hover span {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.zoneList li:first-child{
+	border-top: 1px solid #A2A1A1;
+}
+
+.zoneList img {
+	position: absolute;
+	width: 20px;
+	top: 50%;
+	left: 15px;
+	transform: translateY(-50%);
+}
+
+.themeBar {
+	width: 65%;
+	border-radius: 0 5px 5px 0;
+	border-right: 1px solid #A2A1A1;
+	margin-right: 20px;
+}
+
+.searchBtn {
+	float: right;
+	width: 80px;
+	height: 57px;
+	border-radius: 5px;
+	background-color: #f46b45;
+	position: relative;
+}
+
+.searchBtn a {
+	display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.searchBtn img {
+	width: 35px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.themeKey {
+	display: inline-block;
+	padding: 0 5px;
+	background-color: #F46B45;
+	border-radius: 5px;
+	color: #fff;
+	margin-right: 5px;
+}
+
+.on .keyItem{
+	background-color: #F46B45;
+}
+
+.on .keyword {
+	color: #F46B45;
+}
+
+
+
+
+
+
+
+
+
+
+
+
