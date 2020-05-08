@@ -356,5 +356,13 @@ footer {
 
 
 
+/****** 기능 *******/
+/* header search box open */
+.open {
+	display: block;
+}
 
+.close {
+	display: none;
+}
 

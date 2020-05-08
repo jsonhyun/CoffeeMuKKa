@@ -18,6 +18,32 @@
 
 <script>
 	$(function(){
+		/* main 페이지 searchBox 오픈 */
+		var url = location.href.split("/");
+		
+		if(url[5] == "") {
+			$(".mainSearchBox").addClass("open");
+			$(".mainSearchBtn a").html('<i class="fas fa-angle-up"></i>');
+		} else {
+			$(".mainSearchBox").addClass("close");
+			$(".mainSearchBtn a").html('<i class="fas fa-angle-down"></i>');
+		}
+		
+		/* searchBox 슬라이드 */
+		$(".mainSearchBtn a").click(function(e){
+			e.preventDefault();
+			
+			if($(".mainSearchBox").hasClass("open")) {
+				$(".mainSearchBox").slideUp();
+				$(".mainSearchBox").removeClass("open");
+				$(this).html('<i class="fas fa-angle-down"></i>');
+			} else {
+				$(".mainSearchBox").slideDown();
+				$(".mainSearchBox").addClass("open");
+				$(this).html('<i class="fas fa-angle-up"></i>');
+			}
+		})
+		
 		/* 카페순위 리스트 width */
 		$("#rankUl").width($(".rankWrap").width());
 		
@@ -124,7 +150,7 @@
 						<li><a href="#"><img src="${pageContext.request.contextPath }/resources/images/menu3.png" alt="menu" class="menuIcon"/> 포인트샵</a></li>
 						<li><a href="#"><img src="${pageContext.request.contextPath }/resources/images/menu4.png" alt="menu" class="menuIcon"/> 공지사항</a></li>
 					</ul>
-					<div class="mainSearchBtn"><a href="#"><i class="fas fa-angle-down"></i></a></div>
+					<div class="mainSearchBtn"><a href="#"></a></div>
 				</div>
 			</div>
 			<div class="mainSearchBox">
