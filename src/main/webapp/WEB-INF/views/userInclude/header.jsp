@@ -150,26 +150,26 @@
 				<div class="mainMenu clearfix">
 					<ul class="clearfix">
 						<li>
-							<a href="${pageContext.request.contextPath }/user/mukkaCafe">
-								<img src="${pageContext.request.contextPath }/resources/images/menu1.png" alt="menu" class="menuIcon"/>
+							<a href="${pageContext.request.contextPath }/user/mukkaCafe" class="menuName">
+								<img src="${pageContext.request.contextPath }/resources/images/menu1.png" alt="menu" id="mukkCafe" class="menuIcon"/>
 								<span>커피무까</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
-								<img src="${pageContext.request.contextPath }/resources/images/menu2.png" alt="menu" class="menuIcon"/>
+							<a href="${pageContext.request.contextPath }/user/community" class="menuName">
+								<img src="${pageContext.request.contextPath }/resources/images/menu2.png" alt="menu" id="community" class="menuIcon"/>
 								<span>커뮤니티</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
-								<img src="${pageContext.request.contextPath }/resources/images/menu3.png" alt="menu" class="menuIcon"/>
+							<a href="#" class="menuName">
+								<img src="${pageContext.request.contextPath }/resources/images/menu3.png" alt="menu" id="pointShop" class="menuIcon"/>
 								<span>포인트샵</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
-								<img src="${pageContext.request.contextPath }/resources/images/menu4.png" alt="menu" class="menuIcon"/>
+							<a href="#" class="menuName">
+								<img src="${pageContext.request.contextPath }/resources/images/menu4.png" alt="menu" id="board" class="menuIcon"/>
 								<span>공지사항</span>
 							</a>
 						</li>

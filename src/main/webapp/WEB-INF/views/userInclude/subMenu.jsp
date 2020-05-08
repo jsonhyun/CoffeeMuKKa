@@ -110,6 +110,19 @@
 			/* subMenu end */
 			
 			/* menu 포커스 */
+			$("#mukkCafe").attr("src", imgPath+"menu1.png");
+			$("#community").attr("src", imgPath+"menu2.png");
+			$("#pointShop").attr("src", imgPath+"menu3.png");
+			$("#board").attr("src", imgPath+"menu4.png");
+			$(".menuName span").css("color", "#fff");
 			
+			if(pageUrl.indexOf("mukkaCafe") > -1){
+				$("#mukkCafe").attr("src", imgPath+"menu1_1.png");
+				$(".menuName span").eq(0).css("color", "#ED7D31");
+			}
+			if(pageUrl.indexOf("community") > -1){
+				$("#community").attr("src", imgPath+"menu2_2.png");
+				$(".menuName span").eq(1).css("color", "#ED7D31");
+			}
 		})
 	</script>

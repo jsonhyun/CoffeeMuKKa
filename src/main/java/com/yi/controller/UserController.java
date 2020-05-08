@@ -16,7 +16,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/mukkaCafe", method = RequestMethod.GET)
-	public String cafeList() {
-		return "/user/mukkaCafeMain";
+	public String cafeHome() {
+		return "/user/userMukkaCafeHome";
+	}
+	
+	@RequestMapping(value = "/community", method = RequestMethod.GET)
+	public String communityHome() {
+		return "/user/userCommunityHome";
 	}
 }

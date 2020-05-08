@@ -3,8 +3,12 @@
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
 		
-		<div class="content">
-		</div>
+	<div class="content">
 	</div>
-	<!-- container end -->
+	
+
+<%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
+</div>
+<!-- container end -->
+
 <%@ include file="../userInclude/footer.jsp" %>
