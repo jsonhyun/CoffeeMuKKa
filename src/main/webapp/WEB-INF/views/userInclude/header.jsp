@@ -162,7 +162,7 @@
 								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key4.png" alt="keyIcon" />
 								</div>
-								<div class="spot"></div>
+								<div class="spot keyItem"></div>
 								<div class="keyText ">
 									나는야<span class="keyword blue">#디저트</span>파
 								</div>
@@ -217,7 +217,7 @@
 							</div>	
 						</div>
 						<div class="searchBtn">
-							<a href="#">
+							<a id="sendBtn" href="#">
 								<img src="${pageContext.request.contextPath }/resources/images/main_search.png" alt="searchIcon" />
 							</a>
 						</div>

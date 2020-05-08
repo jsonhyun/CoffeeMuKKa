@@ -43,6 +43,13 @@ a {
 	color: #00a4de;
 }
 
+.Freepik, 
+.Freepik a {
+	font-size: 12px;
+	font-weight: 300;
+	color: #ddd;
+}
+
 /* weight */
 .bold {
 	font-weight: 700;
