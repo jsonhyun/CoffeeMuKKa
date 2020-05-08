@@ -9,7 +9,7 @@
 <title>Coffee Mukka</title>
 <!-- user css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/userCommon.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/userHeaderFooter.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/userHeaderFooterMenu.css" />
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -24,9 +24,11 @@
 		if(url[5] == "") {
 			$(".mainSearchBox").addClass("open");
 			$(".mainSearchBtn a").html('<i class="fas fa-angle-up"></i>');
+			$(".activeTotalCnt").html('현재 <span class="actTotal">500</span>개의 <b>카페정보</b>와 <span class="actTotal">300</span>개의 <b>카페 탐방기</b>가 있습니다.');
 		} else {
 			$(".mainSearchBox").addClass("close");
 			$(".mainSearchBtn a").html('<i class="fas fa-angle-down"></i>');
+			$(".activeTotalCnt").empty();
 		}
 		
 		/* searchBox 슬라이드 */
@@ -115,6 +117,7 @@
 </head>
 <body>
 	<header>
+		<!-- topMenu start -->
 		<div id="topMenu" class="clearfix">
 			<div class="logoWrap">
 				<a href="${pageContext.request.contextPath }/user/"><img src="${pageContext.request.contextPath }/resources/images/logo.png" alt="logo" /></a>
@@ -131,8 +134,7 @@
 			</div>
 			<div class="topMenuWrap">
 				<ul>
-					<li><a href="#">ABOUT</a></li>
-					<li><a href="#">CMukka</a></li>
+					<li><a href="#">ABOUT CMukka</a></li>
 					<li><a href="#">LOGIN</a></li>
 					<li><a href="#">JOIN</a></li>
 					<li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
@@ -140,19 +142,43 @@
 				</ul>
 			</div>
 		</div>
+		<!-- topMenu end -->
 		
+		<!-- mainMenu start -->
 		<div id="mainMenuWrap">
 			<div class="menuBox">
 				<div class="mainMenu clearfix">
 					<ul class="clearfix">
-						<li><a href="#"><img src="${pageContext.request.contextPath }/resources/images/menu1.png" alt="menu" class="menuIcon"/> 커피무까</a></li>
-						<li><a href="#"><img src="${pageContext.request.contextPath }/resources/images/menu2.png" alt="menu" class="menuIcon"/> 커뮤니티</a></li>
-						<li><a href="#"><img src="${pageContext.request.contextPath }/resources/images/menu3.png" alt="menu" class="menuIcon"/> 포인트샵</a></li>
-						<li><a href="#"><img src="${pageContext.request.contextPath }/resources/images/menu4.png" alt="menu" class="menuIcon"/> 공지사항</a></li>
+						<li>
+							<a href="${pageContext.request.contextPath }/user/mukkaCafe">
+								<img src="${pageContext.request.contextPath }/resources/images/menu1.png" alt="menu" class="menuIcon"/>
+								<span>커피무까</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="${pageContext.request.contextPath }/resources/images/menu2.png" alt="menu" class="menuIcon"/>
+								<span>커뮤니티</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="${pageContext.request.contextPath }/resources/images/menu3.png" alt="menu" class="menuIcon"/>
+								<span>포인트샵</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="${pageContext.request.contextPath }/resources/images/menu4.png" alt="menu" class="menuIcon"/>
+								<span>공지사항</span>
+							</a>
+						</li>
 					</ul>
 					<div class="mainSearchBtn"><a href="#"></a></div>
 				</div>
 			</div>
+			
+			<!-- searchBox start -->
 			<div class="mainSearchBox">
 				<div class="mainSearch">
 					<div class="keysWrap">
@@ -250,5 +276,17 @@
 					</div>
 				</div>
 			</div>
+			<!-- searchBox end -->
+			
 		</div>
+		<!-- mainMenu end -->
+		
 	</header>
+	
+	<!-- container start -->
+	<div class="container">
+		<div class="activeMenus">
+			<p class="activeMenu">Coffee MuKKa <span class="activeTitle"></span></p>
+			<p class="activeTotalCnt"></p>
+		</div>
+	</div>

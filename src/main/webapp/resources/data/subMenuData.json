@@ -1,0 +1,30 @@
+{
+	"subItem" : [	
+		{
+			"url" : "mukkaCafe",
+			"title" : "커피무까",
+			"text" : "상세한 카페 데이터로,<br> 행복을 담은 커피한잔을",
+			"menuImg" : "sub_img1_b.png",
+			"subMenu" : [
+				{"name" : "커피무까"},
+				{"name" : "위치별"}, 
+				{"name" : "테마별"}, 
+				{"name" : "MuKKa 베스트"}, 
+				{"name" : "月間 카페"}
+			]
+		},
+		{
+			"url" : "community",
+			"title" : "커뮤니티",
+			"text" : "Mukka人들의<br>슬기로운 카페 사랑기",
+			"menuImg" : "sub_img2_b.png",
+			"subMenu" : [
+				{"name" : "MuKKa의 전당"},
+				{"name" : "생생 카페 탐방기"},
+				{"name" : "MuKKa人 추천 카페"},
+				{"name" : "사장님 고민 나눔"},
+				{"name" : "자유게시판"}
+			]
+		}
+	]
+}

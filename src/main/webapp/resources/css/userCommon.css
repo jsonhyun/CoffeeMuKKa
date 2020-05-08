@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* 
  * width 기준
- * pc : 1024px / t : 768px / m : 320px
+ * pc : 1200px / t : 768px / m : 320px
  */
 
 /* 구글웹폰트 - Noto Sans KR */
@@ -31,6 +31,11 @@ a {
 
 .content {
 	min-height: 200px;
+}
+
+.container {
+	width: 1200px;
+	margin: 0 auto;
 }
 
 /***** text *****/
