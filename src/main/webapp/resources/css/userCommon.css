@@ -38,6 +38,11 @@ a {
 	margin: 0 auto;
 }
 
+.orangeBorder {
+	border-bottom: 3px solid #ED7D31;
+}
+
+
 /***** text *****/
 /* color */
 .red {
@@ -46,6 +51,10 @@ a {
 
 .blue {
 	color: #00a4de;
+}
+
+.orange {
+	color: #ED7D31;
 }
 
 .Freepik, 

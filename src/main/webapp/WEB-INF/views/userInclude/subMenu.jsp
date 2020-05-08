@@ -95,7 +95,7 @@
 							/* subMenu a태그 */
 							$(obj.subMenu).each(function(j, item){
 								//<li><a href="#"><span>submenu</span></a></li>
-								var $span = $("<span>").text(item.name);
+								var $span = $("<span>").addClass("subMenuName").text(item.name);
 								/* 서브메뉴 각 페이지가 존재한다면 수정해야함. #은 임시 */
 								/* ${pageContext.request.contextPath}/user/mukkaCafe/서브페이지 */
 								var $a = $("<a>").attr("href", "#").append($span);
@@ -104,7 +104,19 @@
 								$(".subMenus").append($li);
 							})	
 						}
-					})				
+					})		
+					
+					/* subMenu 포커스 */
+					$(".subMenuName").removeClass("orange");
+					$(".subMenuName").removeClass("orangeBorder");
+					
+					// 서브페이지 첫 화면 포커스
+					if(pageUrl != ""){
+						$(".subMenus li").eq(0).find(".subMenuName").addClass("orange").addClass("orangeBorder");
+						$(document).on("mouseover", ".subMenus li:eq(0)", function(){
+							$(this).find(".subMenuName").css("border-color", "#ED7D31");
+						})
+					}
 				}
 			})
 			/* subMenu end */
