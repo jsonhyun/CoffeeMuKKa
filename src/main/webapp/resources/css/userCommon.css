@@ -42,6 +42,41 @@ a {
 	border-bottom: 3px solid #ED7D31;
 }
 
+.bottomLine {
+	padding: 10px 5px;
+	color: #545454;
+	border-bottom: 2px solid #545454;
+	margin-bottom: 15px;
+}
+
+.zoneOrangeIcon {
+	background: url("../images/point.png") no-repeat;
+	background-size: 25px;
+	background-position: 5px center;
+	background-color: #ED7D31;
+	padding: 5px 10px;
+	padding-left: 35px;
+	color: #fff;
+	font-weight: 700;
+	float: left;
+	border-radius: 5px;
+}
+
+.w30 {
+	width: 30px;
+}
+
+.w50 {
+	width: 50px;
+}
+
+.w100 {
+	width: 100px;
+}
+
+.w150 {
+	width: 150px;
+}
 
 /***** text *****/
 /* color */
