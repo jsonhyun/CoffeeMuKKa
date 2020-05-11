@@ -93,6 +93,26 @@ a {
 	width: 150px;
 }
 
+.left {
+	float: left;
+	width: 48%;
+}
+
+.right {
+	float: right;
+	width: 48%;
+}
+
+.textOverEll {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mb30 {
+	margin-bottom: 30px;
+}
+
 /***** text *****/
 /* color */
 .red {
@@ -114,10 +134,22 @@ a {
 /* background color */
 .bgRed {
 	background-color: red;
+	color: #fff;
 }
 
 .bgPink {
 	background-color: pink;
+	color: #fff;
+}
+
+.bgOrange {
+	background-color: #ED7D31;
+	color: #fff;
+}
+
+.bgBlack {
+	background-color: #000;
+	color: #fff;
 }
 
 

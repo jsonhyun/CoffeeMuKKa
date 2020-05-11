@@ -100,8 +100,6 @@
 							$(".subTitle").text(obj.title);
 							$(".subText").html(obj.text);
 							
-							$(".subPageTitle .title").text(obj.title);
-							
 							/* subMenu a태그 */
 							$(obj.subMenu).each(function(j, item){
 								//<li><a href="#"><span>submenu</span></a></li>
@@ -111,6 +109,7 @@
 								var $li = $("<li>").append($a);
 								
 								$(".subMenus").append($li);
+								//$(".subPageTitle .title").text(item.name);
 							})	
 							
 							/* subMenu 포커스 */
