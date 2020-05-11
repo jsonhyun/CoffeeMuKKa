@@ -19,6 +19,11 @@
 	clear: both;
 }
 
+/* 임시 적용 */
+.temp {
+	background-color: #aaa;
+}
+
 /***** style *****/
 li {
 	list-style: none;
@@ -103,11 +108,21 @@ a {
 	width: 48%;
 }
 
-.textOverEll {
+/* 한줄 */
+.classOne {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+/* 여러줄 */
+.classSec {
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;}
 
 .mb30 {
 	margin-bottom: 30px;
@@ -158,7 +173,10 @@ a {
 	font-weight: 700;
 }
 
-
+/* size */
+.fs16 {
+	font-size: 16px;
+}
 
 /**** sub page content ****/
 .subPageTitle {

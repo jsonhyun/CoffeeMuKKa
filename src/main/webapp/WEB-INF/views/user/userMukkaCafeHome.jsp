@@ -4,11 +4,6 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 
 <style>
-	/* 임시 적용 */
-	.temp {
-		background-color: #aaa;
-	}
-
 	/* 파워링크 */
 	.contentArea .powerLink {
 		height: 300px;
@@ -89,7 +84,7 @@
 				<div class="img temp"></div>
 				<div class="info bgBlack">
 					<h3>카페 카일라</h3>
-					<p class="textOverEll">'공간이 지나는 특별함을 누구나 testtest'</p>
+					<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
 				</div>
 			</div>
 			<div class="box">
@@ -97,7 +92,7 @@
 				<div class="img temp"></div>
 				<div class="info bgBlack">
 					<h3>카페 카일라</h3>
-					<p class="textOverEll">'공간이 지나는 특별함을 누구나 testtest'</p>
+					<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
 				</div>
 			</div>
 			<div class="box">
@@ -105,7 +100,7 @@
 				<div class="img temp"></div>
 				<div class="info bgBlack">
 					<h3>카페 카일라</h3>
-					<p class="textOverEll ">'공간이 지나는 특별함을 누구나 testtest'</p>
+					<p class="classOne ">'공간이 지나는 특별함을 누구나 testtest'</p>
 				</div>
 			</div>
 		</div>
