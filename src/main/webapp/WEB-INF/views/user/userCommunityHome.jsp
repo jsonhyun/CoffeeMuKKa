@@ -3,6 +3,10 @@
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
 <style>
+	.contentArea .cafeReviewBest {
+		overflow: hidden;
+	}
+
 	.contentArea .cafeReviewBest .best1 {
 		float: left;
 		width: 38%;	
@@ -28,7 +32,8 @@
 		box-sizing: border-box;
 	}
 	
-	.contentArea .cafeReviewBest h3 {
+	.contentArea .cafeReviewBest .best1 h3,
+	.contentArea .cafeReviewBest .bests h3 {
 		height: 56px;
 	}
 	
@@ -78,6 +83,9 @@
 		padding: 15px;
 	}
 	
+	/* 추천카페 베스트 */
+	
+	
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -89,7 +97,7 @@
 		</h2>
 		
 		<!-- 카페탐방기 베스트 -->
-		<div class="cafeReviewBest">
+		<div class="cafeReviewBest mb30">
 			<h3 class="bottomLine">생생 카페 탐방기 <span class="fs16">| 베스트</span></h3>
 			<div class="best1">
 				<div class="bgOrange">BEST</div>
@@ -139,7 +147,27 @@
 		
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest">
-			<h3 class="bottomLine">생생 카페 탐방기 <span class="fs16">| 베스트</span></h3>
+			<h3 class="bottomLine">MuKKa人 추천 카페 <span class="fs16">| 베스트</span></h3>
+			<div class="recomWrap">
+				<ul>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+				</ul>
+			</div>
+			
 		</div>
 		
 		
