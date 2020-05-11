@@ -108,6 +108,13 @@ a {
 	width: 48%;
 }
 
+.navyBtn {
+	background-color: #303A50;
+	border: none;
+	color: #fff;
+	padding: 3px 10px;
+}
+
 /* 한줄 */
 .classOne {
 	white-space: nowrap;

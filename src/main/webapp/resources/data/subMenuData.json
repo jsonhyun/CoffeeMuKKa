@@ -34,10 +34,10 @@
 			],
 			"subUrl" : [
 				{"url" : ""},
-				{"url" : "/cafeReview"},
-				{"url" : "/cafeRecommend"},
-				{"url" : "/"},
-				{"url" : "/"}
+				{"url" : "/cafeReviewList"},
+				{"url" : "/cafeRecommendList"},
+				{"url" : "/#"},
+				{"url" : "/#"}
 			]
 		}
 	]

@@ -42,5 +42,8 @@ public class UserController {
 		return "/user/userCommunityHome";
 	}
 	
-	
+	@RequestMapping(value = "/community/cafeReviewList", method = RequestMethod.GET)
+	public String communityReviewList() {
+		return "/user/userCommunityReviewList";
+	}
 }
