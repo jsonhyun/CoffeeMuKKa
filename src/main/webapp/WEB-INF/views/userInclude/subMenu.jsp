@@ -71,8 +71,16 @@
 		
 	</aside>
 	<script>
+		function subMenuFocus(num){
+			$(".subMenus li").eq(num).find(".subMenuName").addClass("orange").addClass("orangeBorder");
+			$(document).on("mouseover", ".subMenus li:eq("+num+")", function(){
+				$(this).find(".subMenuName").css("border-color", "#ED7D31");
+			})
+		}
+	
 		$(function(){
 			var imgPath = "${pageContext.request.contextPath }/resources/images/";
+			var pageUrlPath = "${pageContext.request.contextPath}/user/";
 			var pageUrl = location.href.split("/");
 			
 			/* subMenu */
@@ -92,31 +100,33 @@
 							$(".subTitle").text(obj.title);
 							$(".subText").html(obj.text);
 							
+							$(".subPageTitle .title").text(obj.title);
+							
 							/* subMenu a태그 */
 							$(obj.subMenu).each(function(j, item){
 								//<li><a href="#"><span>submenu</span></a></li>
 								var $span = $("<span>").addClass("subMenuName").text(item.name);
-								/* 서브메뉴 각 페이지가 존재한다면 수정해야함. #은 임시 */
-								/* ${pageContext.request.contextPath}/user/mukkaCafe/서브페이지 */
-								var $a = $("<a>").attr("href", "#").append($span);
+								
+								var $a = $("<a>").attr("href", pageUrlPath+(obj.url)+(obj.subUrl[j].url)).append($span);
 								var $li = $("<li>").append($a);
 								
 								$(".subMenus").append($li);
 							})	
+							
+							/* subMenu 포커스 */
+							$(".subMenuName").removeClass("orange");
+							$(".subMenuName").removeClass("orangeBorder");
+							var subUrl = pageUrl[6] == null ? "" : "/"+pageUrl[6];
+							$(obj.subUrl).each(function(j, item){
+								//console.log(item.url);
+								//console.log(subUrl.lastIndexOf(item.url)+ ", " + j + ", ");
+								if(subUrl.lastIndexOf(item.url) == 0)  {
+									subMenuFocus(j);
+								}
+							})
 						}
 					})		
 					
-					/* subMenu 포커스 */
-					$(".subMenuName").removeClass("orange");
-					$(".subMenuName").removeClass("orangeBorder");
-					
-					// 서브페이지 첫 화면 포커스
-					if(pageUrl != ""){
-						$(".subMenus li").eq(0).find(".subMenuName").addClass("orange").addClass("orangeBorder");
-						$(document).on("mouseover", ".subMenus li:eq(0)", function(){
-							$(this).find(".subMenuName").css("border-color", "#ED7D31");
-						})
-					}
 				}
 			})
 			/* subMenu end */
@@ -136,5 +146,5 @@
 				$("#community").attr("src", imgPath+"menu2_2.png");
 				$(".menuName span").eq(1).css("color", "#ED7D31");
 			}
-		})
+		}) 
 	</script>

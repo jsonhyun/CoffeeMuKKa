@@ -38,6 +38,16 @@ a {
 	margin: 0 auto;
 }
 
+.subPageContent {
+	float:left;
+	width: 940px;
+}
+
+.subPageContent .contentArea {
+	padding: 20px 0;
+	padding-left: 20px;
+}
+
 .orangeBorder {
 	border-bottom: 3px solid #ED7D31;
 }
@@ -49,8 +59,13 @@ a {
 	margin-bottom: 15px;
 }
 
+.bottomLine2 {
+	border-bottom: 1px solid #545454;
+	margin-bottom: 5px;
+}
+
 .zoneOrangeIcon {
-	background: url("../images/point.png") no-repeat;
+	background: url("../images/point_w.png") no-repeat;
 	background-size: 25px;
 	background-position: 5px center;
 	background-color: #ED7D31;
@@ -92,14 +107,98 @@ a {
 	color: #ED7D31;
 }
 
+.grayB {
+	color: #bbb;
+}
+
+/* background color */
+.bgRed {
+	background-color: red;
+}
+
+.bgPink {
+	background-color: pink;
+}
+
+
+/* weight */
+.bold {
+	font-weight: 700;
+}
+
+
+
+/**** sub page content ****/
+.subPageTitle {
+	margin-bottom: 30px;
+}
+
+.subPageTitle .subTit {
+	font-weight: 400;
+	font-size: 16px;
+}
+
+/* sub board style */
+.bestBoardBox {
+	border: 1px solid #545454;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.bestBoardBox .boardTitle {
+	overflow: hidden;
+}
+
+.bestBoardBox .boardTitle p {
+	font-size: 18px;
+	font-weight: 700;
+	padding: 10px;
+}
+
+.bestBoardBox .boardTitle p:first-child {
+	float: left;
+}
+
+.bestBoardBox .boardTitle p:last-child {
+	float: right;
+}
+
+
+.bestBoardBox table{
+	float: left;
+	width: 48.5%;
+}
+
+.bestBoardBox table td {
+	padding: 5px;
+	overflow: hidden;
+}
+
+.bestBoardBox table .no > p{
+	width: 30px;
+	text-align: center;
+	color: #fff;
+}
+
+.bestBoardBox table .title {
+	display: block;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 80%;
+}
+
+.bestBoardBox table .review {
+	display: block;
+	float: left;
+	margin-left: 10px;
+}
+
+/* 로고 아이콘 제작자 */
 .Freepik, 
 .Freepik a {
 	font-size: 12px;
 	font-weight: 300;
 	color: #ddd;
-}
-
-/* weight */
-.bold {
-	font-weight: 700;
 }
