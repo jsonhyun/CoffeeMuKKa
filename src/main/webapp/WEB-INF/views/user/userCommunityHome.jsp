@@ -84,6 +84,16 @@
 	}
 	
 	/* 추천카페 베스트 */
+	.recommendBest .recomWrap ul{
+		overflow: hidden;
+	}
+	
+	.recommendBest .recomWrap li {
+		float: left;
+		width: 164px;
+		height: 160px;
+		margin: 10px;
+	}
 	
 	
 </style>
@@ -146,7 +156,7 @@
 		</div>
 		
 		<!-- 추천 카페 베스트 -->
-		<div class="recommendBest">
+		<div class="recommendBest mb30">
 			<h3 class="bottomLine">MuKKa人 추천 카페 <span class="fs16">| 베스트</span></h3>
 			<div class="recomWrap">
 				<ul>
@@ -167,10 +177,7 @@
 					<li class="temp"><a href="#"></a></li>
 				</ul>
 			</div>
-			
 		</div>
-		
-		
 	</div>
 </div>
 	
