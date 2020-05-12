@@ -124,13 +124,23 @@
 					<option value="">제목</option>
 				</select>
 				<input type="text" name="" placeholder="검색어를 입력하세요." />
-				<input type="submit" value="검색" class="navyBtn"/>
+				<input type="submit" value="검색" class="navyBtn" style="cursor: pointer"/>
 			</div>
 		</div>
+		
+		<!-- 리스트  -->
+		오늘의 추천카페  | #개
+		<a href="#">베스트 글 전체 보기</a><br>
+		리스트<br>
+		<button class="navyBtn" id="RC_Register" style="cursor: pointer">글쓰기</button>
 	</div>
 </div>
 	
 <script>
+	$("#RC_Register").click(function(){
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
+		//alert("test");
+	})
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
