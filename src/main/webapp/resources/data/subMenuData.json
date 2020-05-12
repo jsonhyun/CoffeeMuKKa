@@ -11,6 +11,13 @@
 				{"name" : "테마별"}, 
 				{"name" : "MuKKa 베스트"}, 
 				{"name" : "月刊 카페"}
+			], 
+			"subUrl" : [
+				{"url" : ""},
+				{"url" : "/zoneList"},
+				{"url" : "/themeList"},
+				{"url" : "/mukkaBestList"},
+				{"url" : "/monthCafeList"}
 			]
 		},
 		{
@@ -24,6 +31,13 @@
 				{"name" : "MuKKa人 추천 카페"},
 				{"name" : "사장님 고민 나눔"},
 				{"name" : "자유게시판"}
+			],
+			"subUrl" : [
+				{"url" : ""},
+				{"url" : "/cafeReviewList"},
+				{"url" : "/cafeRecommendList"},
+				{"url" : "/#"},
+				{"url" : "/#"}
 			]
 		}
 	]
