@@ -82,6 +82,27 @@ a {
 	border-radius: 5px;
 }
 
+.zoneOrangeIconSmall {
+	background: url("../images/point_w.png") no-repeat;
+	background-size: 18px;
+	background-position: 5px center;
+	background-color: #ED7D31;
+	padding: 3px 10px;
+	padding-left: 27px;
+	color: #fff;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.themeKeySmall {
+	display: inline-block;
+    padding: 3px 10px;
+    background-color: #F46B45;
+    border-radius: 5px;
+    color: #fff;
+    margin-right: 5px;
+}
+
 .w30 {
 	width: 30px;
 }
@@ -115,6 +136,13 @@ a {
 	padding: 3px 10px;
 }
 
+.grayLineBtn {
+	border: 2px solid #aaa;
+	padding: 5px 10px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
 /* 한줄 */
 .classOne {
 	white-space: nowrap;
@@ -129,7 +157,8 @@ a {
 	display: -webkit-box;
 	-webkit-line-clamp: 2; /* 라인수 */
 	-webkit-box-orient: vertical;
-	word-wrap: break-word;}
+	word-wrap: break-word;
+}
 
 .mb30 {
 	margin-bottom: 30px;
