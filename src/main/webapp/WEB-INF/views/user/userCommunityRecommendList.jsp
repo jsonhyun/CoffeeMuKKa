@@ -16,6 +16,20 @@
 		float: right;
 	}
 	
+	div#testBox{
+		width: 100%;
+		border: 1px solid red;
+	}
+	.recommendBest .recomWrap ul{
+		overflow: hidden;
+	}
+	
+	.recommendBest .recomWrap li {
+		float: left;
+		width: 164px;
+		height: 160px;
+		margin: 10px;
+	}
 </style>
 	
 <div class="content subPageContent">
@@ -129,10 +143,31 @@
 		</div>
 		
 		<!-- 리스트  -->
-		오늘의 추천카페  | #개
-		<a href="#">베스트 글 전체 보기</a><br>
-		리스트<br>
-		<button class="navyBtn" id="RC_Register" style="cursor: pointer">글쓰기</button>
+		<div id="testBox">
+			오늘의 추천카페  | #개 <a href="#">베스트 글 전체 보기</a>
+			<button class="navyBtn" id="RC_Register" style="cursor: pointer">추천 카페 쓰기</button>
+		</div>
+		<div class="recommendBest mb30">
+			<div class="recomWrap">
+				<ul>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+					<li class="temp"><a href="#"></a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 	

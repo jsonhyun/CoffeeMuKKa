@@ -4,18 +4,63 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 
 <style>
-	.cafeReviewSearch {
-		padding: 10px 0;
+	h3#RC_line{
+		color: #545454;
+		border-bottom: 2px solid #545454;
+		margin-bottom: 20px;		
 	}
-
-	.cafeReviewSearch .selectLeft {
+	.RC_Rg_groub{
+		width: 98%;
+		padding: 10px;
+	}
+	select.cate{
+		width: 10%;
+		height: 30px;
+	}
+	label{
+		font-weight: bold;
+		width: 15%;
 		float: left;
 	}
-	
-	.cafeReviewSearch .selectRight {
-		float: right;
+	input#point{
+		width: 84%;
+		height: 30px;
+		background-color: #FAFAFA;		
 	}
-	
+	input#title{
+		width: 84%;
+		height: 30px;
+		background-color: #FAFAFA;
+	}
+	textarea#text{
+		width: 100%;
+	}
+	input#file{
+		width: 98%;
+		border: 1px solid #BDBDBD;
+		padding: 10px;		
+	}
+	div#imagesBox{
+		width: 100%;
+		height: 200px;
+		border: 1px solid #BDBDBD;
+		background-color: #FAFAFA;
+	}
+	button{
+	   padding: 3px 10px;
+	   border: 1px solid #303A50;
+	}
+	button#RC_list,button#RC_cancel{
+		background-color: #FAFAFA;	
+	}
+	button#RC_cancel,button#RC_rgister{
+		float: right;
+		margin-left: 10px;
+	}
+	button#RC_rgister{
+		background-color: #303A50;
+		color: #fff;
+	}	
 </style>
 	
 <div class="content subPageContent">
@@ -23,13 +68,61 @@
 	<div class="contentArea">
 		<!-- 서브페이지 공통적인 타이틀 -->
 		<h2 class="subPageTitle">
-			<span class="title">MuKKa人 추천 카페</span>
-			<span class="subTit grayB"> | 세 상 에! 이런 카페가 있는지 몰랐지?</span>
+			<span class="title">MuKKa人 추천 카페  > </span>
+			<span class="red">수정</span>				
 		</h2>
+		<h3 id="RC_line"></h3>
+		<form>
+			<div class="RC_Rg_groub">	
+				<label>카테고리</label>
+				<select class="cate">
+					<option>대구</option>
+					<option>대구</option>
+					<option>대구</option>
+					<option>대구</option>
+				</select>
+				<select class="cate">
+					<option>#데이트</option>
+					<option>#뷰</option>
+					<option>#착한아메</option>
+					<option>#디저트</option>
+					<option>#댕댕이</option>
+					<option>#작업</option>
+				</select>
+			</div>	
+			<div class="RC_Rg_groub">	
+				<label>위치</label>
+				<input type="text" name="point" id="point">
+			</div>					
+			<div class="RC_Rg_groub">		
+				<label>제목</label>
+				<input type="text" name="title" id="title">
+			</div>		
+			<div class="RC_Rg_groub">	
+				<textarea rows="15" cols="100" name="text" id="text"></textarea>
+			</div>
+			<div class="RC_Rg_groub">	
+				<label>이미지 첨부</label>
+				<input type="file" name="imgfiles" multiple="multiple" id="file" style="cursor: pointer">
+				<!-- 미리보기박스 -->
+				<div id="imagesBox"></div>
+			</div>
+			<div class="RC_Rg_groub">	
+				<div id="RC_Rg_btns">
+					<button id="RC_list" style="cursor: pointer">목록</button>
+					<button id="RC_rgister" type="submit">수정</button>
+					<button id="RC_cancel" style="cursor: pointer">취소</button>
+				</div>
+			</div>
+		</form>
+		
 	</div>
 </div>
 	
 <script>
+	$("#RC_list").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
