@@ -3,6 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
  <configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings> 
  	<!-- root-context.xml에서 잡아주기 때문에 설정하지 않다고 됨 -->
      <typeAliases>
      	<package name="com.yi.domain"/>

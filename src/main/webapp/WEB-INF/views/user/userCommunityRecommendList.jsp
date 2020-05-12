@@ -16,10 +16,41 @@
 		float: right;
 	}
 	
-	div#testBox{
-		width: 100%;
-		border: 1px solid red;
+	/* 추천카페 : 타이틀 */
+	.RC_Area .cafeRCnt {
+		font-weight: 400;
+		font-size: 16px;
+	}	
+	.RC_Area .RC_titleWrap {
+		padding: 10px 0;
 	}
+	.RC_Area .RC_title{
+		float: left;
+	}
+	.RC_Area .RC_topBtns{
+		float: right;
+	}
+	.RC_topBtns{
+		font-size: 14px;
+	}
+	.RC_topBtns .RC_Best{
+		float: left;
+		margin-right: 10px;
+	}
+	.RC_topBtns .RC_Best:hover{
+		border-color: #ED7D31;	
+	}
+	.RC_topBtns #RC_Register{
+		height: 34px;
+		float: right;
+		border-radius: 10px;
+		outline: none;
+	}
+	.RC_topBtns #RC_Register:hover{
+		background-color: #F46B45;	
+	}
+	
+	/* 추천카페 : 리스트 */
 	.recommendBest .recomWrap ul{
 		overflow: hidden;
 	}
@@ -27,7 +58,7 @@
 	.recommendBest .recomWrap li {
 		float: left;
 		width: 164px;
-		height: 160px;
+		height: 180px;
 		margin: 10px;
 	}
 </style>
@@ -124,6 +155,7 @@
 		</div>
 		<!-- 게시판 베스트 end -->
 		
+		<!-- 카테고리 & 검색창 -->
 		<div class="cafeReviewSearch bottomLine2 clearfix">
 			<div class="selectLeft">
 				<select name="" id="">
@@ -141,34 +173,53 @@
 				<input type="submit" value="검색" class="navyBtn" style="cursor: pointer"/>
 			</div>
 		</div>
+		<!-- 카테고리 & 검색창 end -->
 		
-		<!-- 리스트  -->
-		<div id="testBox">
-			오늘의 추천카페  | #개 <a href="#">베스트 글 전체 보기</a>
-			<button class="navyBtn" id="RC_Register" style="cursor: pointer">추천 카페 쓰기</button>
-		</div>
-		<div class="recommendBest mb30">
-			<div class="recomWrap">
-				<ul>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-				</ul>
+
+		<!-- 추천카페 : 타이틀 -->
+		<div class="RC_Area">
+			<div class="RC_titleWrap clearfix">
+				<h3 class="RC_title">오늘의 카페 추천 | <span class="red cafeRCnt">N개</span></h3>
+				<div class="RC_topBtns">
+					<div class="RC_Best grayLineBtn"><a href="#"><span class="red bold">베스트 글</span> 전체 보기</a></div>
+					<button class="navyBtn" id="RC_Register" style="cursor: pointer">추천 카페 쓰기</button>
+				</div>
 			</div>
-		</div>
-	</div>
+		
+		<!-- 추천카페 : 리스트  -->
+			<div class="recommendBest mb30">
+				<div class="recomWrap">
+					<ul>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>
+						<li class="temp"><a href="#"></a></li>						
+					</ul>
+				</div>
+			</div>
+		</div>				
+	</div> 
 </div>
 	
 <script>

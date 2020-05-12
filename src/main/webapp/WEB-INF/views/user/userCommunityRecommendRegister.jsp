@@ -72,7 +72,7 @@
 			<span class="red">글쓰기</span>				
 		</h2>
 		<h3 id="RC_line"></h3>
-		<form>
+		<form action="regisert" method="post" enctype="multipart/form-data">
 			<div class="RC_Rg_groub">	
 				<label>카테고리</label>
 				<select class="cate">

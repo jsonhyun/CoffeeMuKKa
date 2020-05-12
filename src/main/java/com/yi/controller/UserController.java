@@ -69,10 +69,10 @@ public class UserController {
 		return "/user/userCommunityRecommendRegister";
 	}
 	
-//	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.POST)
-//	public String communityRecommendRegisterPOST() {
-//		return "redirect:/user/community/cafeRecommend";
-//	}
+	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.POST)
+	public String communityRecommendRegisterPOST() {
+		return "redirect:/user/community/cafeRecommend";
+	}
 	//read
 	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
 	public String communityRecommendRead() {
