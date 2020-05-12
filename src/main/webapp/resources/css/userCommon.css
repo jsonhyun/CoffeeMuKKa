@@ -19,6 +19,11 @@
 	clear: both;
 }
 
+/* 임시 적용 */
+.temp {
+	background-color: #aaa;
+}
+
 /***** style *****/
 li {
 	list-style: none;
@@ -38,6 +43,16 @@ a {
 	margin: 0 auto;
 }
 
+.subPageContent {
+	float:left;
+	width: 940px;
+}
+
+.subPageContent .contentArea {
+	padding: 20px 0;
+	padding-left: 20px;
+}
+
 .orangeBorder {
 	border-bottom: 3px solid #ED7D31;
 }
@@ -49,8 +64,13 @@ a {
 	margin-bottom: 15px;
 }
 
+.bottomLine2 {
+	border-bottom: 1px solid #545454;
+	margin-bottom: 5px;
+}
+
 .zoneOrangeIcon {
-	background: url("../images/point.png") no-repeat;
+	background: url("../images/point_w.png") no-repeat;
 	background-size: 25px;
 	background-position: 5px center;
 	background-color: #ED7D31;
@@ -78,6 +98,43 @@ a {
 	width: 150px;
 }
 
+.left {
+	float: left;
+	width: 48%;
+}
+
+.right {
+	float: right;
+	width: 48%;
+}
+
+.navyBtn {
+	background-color: #303A50;
+	border: none;
+	color: #fff;
+	padding: 3px 10px;
+}
+
+/* 한줄 */
+.classOne {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* 여러줄 */
+.classSec {
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;}
+
+.mb30 {
+	margin-bottom: 30px;
+}
+
 /***** text *****/
 /* color */
 .red {
@@ -92,14 +149,113 @@ a {
 	color: #ED7D31;
 }
 
+.grayB {
+	color: #bbb;
+}
+
+/* background color */
+.bgRed {
+	background-color: red;
+	color: #fff;
+}
+
+.bgPink {
+	background-color: pink;
+	color: #fff;
+}
+
+.bgOrange {
+	background-color: #ED7D31;
+	color: #fff;
+}
+
+.bgBlack {
+	background-color: #000;
+	color: #fff;
+}
+
+
+/* weight */
+.bold {
+	font-weight: 700;
+}
+
+/* size */
+.fs16 {
+	font-size: 16px;
+}
+
+/**** sub page content ****/
+.subPageTitle {
+	margin-bottom: 30px;
+}
+
+.subPageTitle .subTit {
+	font-weight: 400;
+	font-size: 16px;
+}
+
+/* sub board style */
+.bestBoardBox {
+	border: 1px solid #545454;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.bestBoardBox .boardTitle {
+	overflow: hidden;
+}
+
+.bestBoardBox .boardTitle p {
+	font-size: 18px;
+	font-weight: 700;
+	padding: 10px;
+}
+
+.bestBoardBox .boardTitle p:first-child {
+	float: left;
+}
+
+.bestBoardBox .boardTitle p:last-child {
+	float: right;
+}
+
+
+.bestBoardBox table{
+	float: left;
+	width: 48.5%;
+}
+
+.bestBoardBox table td {
+	padding: 5px;
+	overflow: hidden;
+}
+
+.bestBoardBox table .no > p{
+	width: 30px;
+	text-align: center;
+	color: #fff;
+}
+
+.bestBoardBox table .title {
+	display: block;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 80%;
+}
+
+.bestBoardBox table .review {
+	display: block;
+	float: left;
+	margin-left: 10px;
+}
+
+/* 로고 아이콘 제작자 */
 .Freepik, 
 .Freepik a {
 	font-size: 12px;
 	font-weight: 300;
 	color: #ddd;
-}
-
-/* weight */
-.bold {
-	font-weight: 700;
 }

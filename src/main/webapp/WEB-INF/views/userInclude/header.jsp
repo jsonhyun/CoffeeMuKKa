@@ -112,7 +112,7 @@
 			}
 			$(".themeBar input[name='themeName']").val(keywords);
 		})
-	})
+	}) 
 </script>
 </head>
 <body>

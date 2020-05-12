@@ -3,16 +3,6 @@
 
 <%@ include file="../userInclude/header.jsp" %>
 <style>
-	.left {
-		float: left;
-		width: 48%;
-	}
-	
-	.right {
-		float: right;
-		width: 48%;
-	}
-
 	/* 파워링크 */
 	.powerLinkArea {
 		margin-top: 30px;
