@@ -1,745 +1,745 @@
--- Ä¿ÇÇ¹«±î
+-- ì»¤í”¼ë¬´ê¹Œ
 DROP SCHEMA IF EXISTS CoffeeMuKKa;
 
--- Ä¿ÇÇ¹«±î
+-- ì»¤í”¼ë¬´ê¹Œ
 CREATE SCHEMA CoffeeMuKKa;
 
--- Ä«Æä
+-- ì¹´í˜
 CREATE TABLE CoffeeMuKKa.Cafe (
-	cafe_no           INT          NOT NULL COMMENT 'Ä«Æä¹øÈ£', -- Ä«Æä¹øÈ£
-	cafe_name         VARCHAR(100) NOT NULL COMMENT 'Ä«ÆäÀÌ¸§', -- Ä«ÆäÀÌ¸§
-	theme_no          INT          NOT NULL COMMENT 'Å×¸¶¹øÈ£', -- Å×¸¶¹øÈ£
-	zone_no           INT          NOT NULL COMMENT 'Áö¿ª¹øÈ£', -- Áö¿ª¹øÈ£
-	user_no           INT          NOT NULL COMMENT 'È¸¿ø¹øÈ£', -- È¸¿ø¹øÈ£
-	address           VARCHAR(255) NOT NULL COMMENT 'ÁÖ¼Ò', -- ÁÖ¼Ò
-	detail_address    VARCHAR(255) NULL     COMMENT '»ó¼¼ÁÖ¼Ò', -- »ó¼¼ÁÖ¼Ò
-	tel               VARCHAR(30)  NULL     COMMENT 'ÀüÈ­¹øÈ£', -- ÀüÈ­¹øÈ£
-	opentime          VARCHAR(255) NOT NULL COMMENT '¿µ¾÷½Ã°£', -- ¿µ¾÷½Ã°£
-	closed_day        VARCHAR(255) NULL     COMMENT 'ÈŞ¹«ÀÏ', -- ÈŞ¹«ÀÏ
-	sns               VARCHAR(255) NULL     COMMENT 'SNS°èÁ¤', -- SNS°èÁ¤
-	table_number      INTEGER      NULL     COMMENT 'Å×ÀÌºí¼ö', -- Å×ÀÌºí¼ö
-	socket_number     INTEGER      NULL     COMMENT 'ÄÜ¼¾Æ®¼ö', -- ÄÜ¼¾Æ®¼ö
-	toilet_cdt        TINYINT      NULL     COMMENT 'È­Àå½Ç ¿©ºÎ', -- È­Àå½Ç ¿©ºÎ
-	mkdessert_cdt     TINYINT      NULL     COMMENT 'µğÀúÆ® Á¦ÀÛ ¿©ºÎ', -- µğÀúÆ® Á¦ÀÛ ¿©ºÎ
-	terras_cdt        TINYINT      NULL     COMMENT 'Å×¶ó½º ¿©ºÎ', -- Å×¶ó½º ¿©ºÎ
-	reservation_cdt   TINYINT      NULL     COMMENT '¿¹¾à·ë ¿©ºÎ', -- ¿¹¾à·ë ¿©ºÎ
-	wondoo_buy_cdt    TINYINT      NULL     COMMENT '¿øµÎ±¸¸Å °¡´É ¿©ºÎ', -- ¿øµÎ±¸¸Å °¡´É ¿©ºÎ
-	book_cdt          TINYINT      NULL     COMMENT 'µµ¼­º¸À¯¿©ºÎ', -- µµ¼­º¸À¯¿©ºÎ
-	beer_cdt          TINYINT      NULL     COMMENT '¼ú ÆÇ¸Å ¿©ºÎ', -- ¼ú ÆÇ¸Å ¿©ºÎ
-	goods_cdt         TINYINT      NULL     COMMENT '±ÂÁî ÆÇ¸Å ¿©ºÎ', -- ±ÂÁî ÆÇ¸Å ¿©ºÎ
-	wifi_cdt          TINYINT      NULL     COMMENT '¿ÍÀÌÆÄÀÌ ¼³Ä¡ ¿©ºÎ', -- ¿ÍÀÌÆÄÀÌ ¼³Ä¡ ¿©ºÎ
-	puppy_cdt         TINYINT      NULL     COMMENT '¹İ·Á°ß µ¿¹İ °¡´É ¿©ºÎ', -- ¹İ·Á°ß µ¿¹İ °¡´É ¿©ºÎ
-	reserveok_cdt     TINYINT      NULL     COMMENT '¿¹¾à °¡´É ¿©ºÎ', -- ¿¹¾à °¡´É ¿©ºÎ
-	parking_cdt       TINYINT      NULL     COMMENT 'ÁÖÂ÷ °ø°£ ¿©ºÎ', -- ÁÖÂ÷ °ø°£ ¿©ºÎ
-	nokids_cdt        TINYINT      NULL     COMMENT '³ëÅ°ÁîÁ¸ ¿©ºÎ', -- ³ëÅ°ÁîÁ¸ ¿©ºÎ
-	registration_date TIMESTAMP    NOT NULL COMMENT 'µî·ÏÀÏÀÚ', -- µî·ÏÀÏÀÚ
-	update_date       TIMESTAMP    NULL     COMMENT '¼öÁ¤ÀÏÀÚ', -- ¼öÁ¤ÀÏÀÚ
-	view_number       INT          NOT NULL COMMENT 'Á¶È¸¼ö', -- Á¶È¸¼ö
-	content           TEXT         NULL     COMMENT '³»¿ë', -- ³»¿ë
-	oneline           VARCHAR(255) NOT NULL COMMENT 'ÇÑÁÙ¼Ò°³', -- ÇÑÁÙ¼Ò°³
-	vote_number       INT          NOT NULL COMMENT 'ÃßÃµ¼ö', -- ÃßÃµ¼ö
-	powerlink_cdt     TINYINT      NOT NULL COMMENT 'ÆÄ¿ö¸µÅ©¿©ºÎ', -- ÆÄ¿ö¸µÅ©¿©ºÎ
-	cafe_cdt          TINYINT      NOT NULL COMMENT 'Ä«Æä»óÅÂ' -- Ä«Æä»óÅÂ
+	cafe_no           INT          NOT NULL COMMENT 'ì¹´í˜ë²ˆí˜¸', -- ì¹´í˜ë²ˆí˜¸
+	cafe_name         VARCHAR(100) NOT NULL COMMENT 'ì¹´í˜ì´ë¦„', -- ì¹´í˜ì´ë¦„
+	theme_no          INT          NOT NULL COMMENT 'í…Œë§ˆë²ˆí˜¸', -- í…Œë§ˆë²ˆí˜¸
+	zone_no           INT          NOT NULL COMMENT 'ì§€ì—­ë²ˆí˜¸', -- ì§€ì—­ë²ˆí˜¸
+	user_no           INT          NOT NULL COMMENT 'íšŒì›ë²ˆí˜¸', -- íšŒì›ë²ˆí˜¸
+	address           VARCHAR(255) NOT NULL COMMENT 'ì£¼ì†Œ', -- ì£¼ì†Œ
+	detail_address    VARCHAR(255) NULL     COMMENT 'ìƒì„¸ì£¼ì†Œ', -- ìƒì„¸ì£¼ì†Œ
+	tel               VARCHAR(30)  NULL     COMMENT 'ì „í™”ë²ˆí˜¸', -- ì „í™”ë²ˆí˜¸
+	opentime          VARCHAR(255) NOT NULL COMMENT 'ì˜ì—…ì‹œê°„', -- ì˜ì—…ì‹œê°„
+	closed_day        VARCHAR(255) NULL     COMMENT 'íœ´ë¬´ì¼', -- íœ´ë¬´ì¼
+	sns               VARCHAR(255) NULL     COMMENT 'SNSê³„ì •', -- SNSê³„ì •
+	table_number      INTEGER      NULL     COMMENT 'í…Œì´ë¸”ìˆ˜', -- í…Œì´ë¸”ìˆ˜
+	socket_number     INTEGER      NULL     COMMENT 'ì½˜ì„¼íŠ¸ìˆ˜', -- ì½˜ì„¼íŠ¸ìˆ˜
+	toilet_cdt        TINYINT      NULL     COMMENT 'í™”ì¥ì‹¤ ì—¬ë¶€', -- í™”ì¥ì‹¤ ì—¬ë¶€
+	mkdessert_cdt     TINYINT      NULL     COMMENT 'ë””ì €íŠ¸ ì œì‘ ì—¬ë¶€', -- ë””ì €íŠ¸ ì œì‘ ì—¬ë¶€
+	terras_cdt        TINYINT      NULL     COMMENT 'í…Œë¼ìŠ¤ ì—¬ë¶€', -- í…Œë¼ìŠ¤ ì—¬ë¶€
+	reservation_cdt   TINYINT      NULL     COMMENT 'ì˜ˆì•½ë£¸ ì—¬ë¶€', -- ì˜ˆì•½ë£¸ ì—¬ë¶€
+	wondoo_buy_cdt    TINYINT      NULL     COMMENT 'ì›ë‘êµ¬ë§¤ ê°€ëŠ¥ ì—¬ë¶€', -- ì›ë‘êµ¬ë§¤ ê°€ëŠ¥ ì—¬ë¶€
+	book_cdt          TINYINT      NULL     COMMENT 'ë„ì„œë³´ìœ ì—¬ë¶€', -- ë„ì„œë³´ìœ ì—¬ë¶€
+	beer_cdt          TINYINT      NULL     COMMENT 'ìˆ  íŒë§¤ ì—¬ë¶€', -- ìˆ  íŒë§¤ ì—¬ë¶€
+	goods_cdt         TINYINT      NULL     COMMENT 'êµ¿ì¦ˆ íŒë§¤ ì—¬ë¶€', -- êµ¿ì¦ˆ íŒë§¤ ì—¬ë¶€
+	wifi_cdt          TINYINT      NULL     COMMENT 'ì™€ì´íŒŒì´ ì„¤ì¹˜ ì—¬ë¶€', -- ì™€ì´íŒŒì´ ì„¤ì¹˜ ì—¬ë¶€
+	puppy_cdt         TINYINT      NULL     COMMENT 'ë°˜ë ¤ê²¬ ë™ë°˜ ê°€ëŠ¥ ì—¬ë¶€', -- ë°˜ë ¤ê²¬ ë™ë°˜ ê°€ëŠ¥ ì—¬ë¶€
+	reserveok_cdt     TINYINT      NULL     COMMENT 'ì˜ˆì•½ ê°€ëŠ¥ ì—¬ë¶€', -- ì˜ˆì•½ ê°€ëŠ¥ ì—¬ë¶€
+	parking_cdt       TINYINT      NULL     COMMENT 'ì£¼ì°¨ ê³µê°„ ì—¬ë¶€', -- ì£¼ì°¨ ê³µê°„ ì—¬ë¶€
+	nokids_cdt        TINYINT      NULL     COMMENT 'ë…¸í‚¤ì¦ˆì¡´ ì—¬ë¶€', -- ë…¸í‚¤ì¦ˆì¡´ ì—¬ë¶€
+	registration_date TIMESTAMP    NOT NULL COMMENT 'ë“±ë¡ì¼ì', -- ë“±ë¡ì¼ì
+	update_date       TIMESTAMP    NULL     COMMENT 'ìˆ˜ì •ì¼ì', -- ìˆ˜ì •ì¼ì
+	view_number       INT          NOT NULL COMMENT 'ì¡°íšŒìˆ˜', -- ì¡°íšŒìˆ˜
+	content           TEXT         NULL     COMMENT 'ë‚´ìš©', -- ë‚´ìš©
+	oneline           VARCHAR(255) NOT NULL COMMENT 'í•œì¤„ì†Œê°œ', -- í•œì¤„ì†Œê°œ
+	vote_number       INT          NOT NULL COMMENT 'ì¶”ì²œìˆ˜', -- ì¶”ì²œìˆ˜
+	powerlink_cdt     TINYINT      NOT NULL COMMENT 'íŒŒì›Œë§í¬ì—¬ë¶€', -- íŒŒì›Œë§í¬ì—¬ë¶€
+	cafe_cdt          TINYINT      NOT NULL COMMENT 'ì¹´í˜ìƒíƒœ' -- ì¹´í˜ìƒíƒœ
 )
-COMMENT 'Ä«Æä';
+COMMENT 'ì¹´í˜';
 
--- Ä«Æä
+-- ì¹´í˜
 ALTER TABLE CoffeeMuKKa.Cafe
-	ADD CONSTRAINT PK_Cafe -- Ä«Æä ±âº»Å°
+	ADD CONSTRAINT PK_Cafe -- ì¹´í˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			cafe_no -- Ä«Æä¹øÈ£
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Cafe
-	MODIFY COLUMN cafe_no INT NOT NULL AUTO_INCREMENT COMMENT 'Ä«Æä¹øÈ£';
+	MODIFY COLUMN cafe_no INT NOT NULL AUTO_INCREMENT COMMENT 'ì¹´í˜ë²ˆí˜¸';
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 CREATE TABLE CoffeeMuKKa.Board (
-	board_no               INT          NOT NULL COMMENT '°Ô½Ã±Û¹øÈ£', -- °Ô½Ã±Û¹øÈ£
-	board_no2              INT          NOT NULL COMMENT '°Ô½ÃÆÇ¹øÈ£', -- °Ô½ÃÆÇ¹øÈ£
-	key_sort_no            INT          NOT NULL COMMENT 'Å°¿öµåºĞ·ù¹øÈ£', -- Å°¿öµåºĞ·ù¹øÈ£
-	user_no                INT          NOT NULL COMMENT 'È¸¿ø¹øÈ£', -- È¸¿ø¹øÈ£
-	zone_no                INT          NULL     COMMENT 'Áö¿ª¹øÈ£', -- Áö¿ª¹øÈ£
-	theme_no               INT          NULL     COMMENT 'Å×¸¶¹øÈ£', -- Å×¸¶¹øÈ£
-	writing_lock_condition TINYINT      NULL     COMMENT '±ÛÀá±İ¿©ºÎ', -- ±ÛÀá±İ¿©ºÎ
-	writing_title          VARCHAR(255) NOT NULL COMMENT '±ÛÁ¦¸ñ', -- ±ÛÁ¦¸ñ
-	registration_date      TIMESTAMP    NOT NULL COMMENT 'ÀÛ¼ºÀÏ', -- ÀÛ¼ºÀÏ
-	update_date            TIMESTAMP    NOT NULL COMMENT '¼öÁ¤ÀÏ', -- ¼öÁ¤ÀÏ
-	view_number            INTEGER      NOT NULL COMMENT 'Á¶È¸¼ö', -- Á¶È¸¼ö
-	vote_number            INTEGER      NOT NULL COMMENT 'ÃßÃµ¼ö', -- ÃßÃµ¼ö
-	writing_content        LONGTEXT     NOT NULL COMMENT '±Û³»¿ë' -- ±Û³»¿ë
+	board_no               INT          NOT NULL COMMENT 'ê²Œì‹œê¸€ë²ˆí˜¸', -- ê²Œì‹œê¸€ë²ˆí˜¸
+	board_no2              INT          NOT NULL COMMENT 'ê²Œì‹œíŒë²ˆí˜¸', -- ê²Œì‹œíŒë²ˆí˜¸
+	key_sort_no            INT          NOT NULL COMMENT 'í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸', -- í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸
+	user_no                INT          NOT NULL COMMENT 'íšŒì›ë²ˆí˜¸', -- íšŒì›ë²ˆí˜¸
+	zone_no                INT          NULL     COMMENT 'ì§€ì—­ë²ˆí˜¸', -- ì§€ì—­ë²ˆí˜¸
+	theme_no               INT          NULL     COMMENT 'í…Œë§ˆë²ˆí˜¸', -- í…Œë§ˆë²ˆí˜¸
+	writing_lock_condition TINYINT      NULL     COMMENT 'ê¸€ì ê¸ˆì—¬ë¶€', -- ê¸€ì ê¸ˆì—¬ë¶€
+	writing_title          VARCHAR(255) NOT NULL COMMENT 'ê¸€ì œëª©', -- ê¸€ì œëª©
+	registration_date      TIMESTAMP    NOT NULL COMMENT 'ì‘ì„±ì¼', -- ì‘ì„±ì¼
+	update_date            TIMESTAMP    NOT NULL COMMENT 'ìˆ˜ì •ì¼', -- ìˆ˜ì •ì¼
+	view_number            INTEGER      NOT NULL COMMENT 'ì¡°íšŒìˆ˜', -- ì¡°íšŒìˆ˜
+	vote_number            INTEGER      NOT NULL COMMENT 'ì¶”ì²œìˆ˜', -- ì¶”ì²œìˆ˜
+	writing_content        LONGTEXT     NOT NULL COMMENT 'ê¸€ë‚´ìš©' -- ê¸€ë‚´ìš©
 )
-COMMENT '°Ô½ÃÆÇ';
+COMMENT 'ê²Œì‹œíŒ';
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE CoffeeMuKKa.Board
-	ADD CONSTRAINT PK_Board -- °Ô½ÃÆÇ ±âº»Å°
+	ADD CONSTRAINT PK_Board -- ê²Œì‹œíŒ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			board_no -- °Ô½Ã±Û¹øÈ£
+			board_no -- ê²Œì‹œê¸€ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Board
-	MODIFY COLUMN board_no INT NOT NULL AUTO_INCREMENT COMMENT '°Ô½Ã±Û¹øÈ£';
+	MODIFY COLUMN board_no INT NOT NULL AUTO_INCREMENT COMMENT 'ê²Œì‹œê¸€ë²ˆí˜¸';
 
--- »óÇ°Á¤º¸
+-- ìƒí’ˆì •ë³´
 CREATE TABLE CoffeeMuKKa.Product (
-	product_no      INT          NOT NULL COMMENT '»óÇ°ÄÚµå', -- »óÇ°ÄÚµå
-	product_sort    INT          NOT NULL COMMENT '»óÇ°ºĞ·ù', -- »óÇ°ºĞ·ù
-	product_name    VARCHAR(50)  NOT NULL COMMENT '»óÇ°¸í', -- »óÇ°¸í
-	product_price   INTEGER      NOT NULL COMMENT '»óÇ°°¡°İ', -- »óÇ°°¡°İ
-	supplier        INT          NOT NULL COMMENT '°ø±Ş¾÷Ã¼', -- °ø±Ş¾÷Ã¼
-	product_content LONGTEXT     NOT NULL COMMENT '»óÇ°¼³¸í', -- »óÇ°¼³¸í
-	product_image   VARCHAR(255) NOT NULL COMMENT '»óÇ°ÀÌ¹ÌÁö', -- »óÇ°ÀÌ¹ÌÁö
-	valid           TIMESTAMP    NOT NULL COMMENT '»óÇ°À¯È¿±â°£', -- »óÇ°À¯È¿±â°£
-	order_count     INTEGER      NOT NULL COMMENT 'ÆÇ¸ÅÈ½¼ö' -- ÆÇ¸ÅÈ½¼ö
+	product_no      INT          NOT NULL COMMENT 'ìƒí’ˆì½”ë“œ', -- ìƒí’ˆì½”ë“œ
+	product_sort    INT          NOT NULL COMMENT 'ìƒí’ˆë¶„ë¥˜', -- ìƒí’ˆë¶„ë¥˜
+	product_name    VARCHAR(50)  NOT NULL COMMENT 'ìƒí’ˆëª…', -- ìƒí’ˆëª…
+	product_price   INTEGER      NOT NULL COMMENT 'ìƒí’ˆê°€ê²©', -- ìƒí’ˆê°€ê²©
+	supplier        INT          NOT NULL COMMENT 'ê³µê¸‰ì—…ì²´', -- ê³µê¸‰ì—…ì²´
+	product_content LONGTEXT     NOT NULL COMMENT 'ìƒí’ˆì„¤ëª…', -- ìƒí’ˆì„¤ëª…
+	product_image   VARCHAR(255) NOT NULL COMMENT 'ìƒí’ˆì´ë¯¸ì§€', -- ìƒí’ˆì´ë¯¸ì§€
+	valid           TIMESTAMP    NOT NULL COMMENT 'ìƒí’ˆìœ íš¨ê¸°ê°„', -- ìƒí’ˆìœ íš¨ê¸°ê°„
+	order_count     INTEGER      NOT NULL COMMENT 'íŒë§¤íšŸìˆ˜' -- íŒë§¤íšŸìˆ˜
 )
-COMMENT '»óÇ°Á¤º¸';
+COMMENT 'ìƒí’ˆì •ë³´';
 
--- »óÇ°Á¤º¸
+-- ìƒí’ˆì •ë³´
 ALTER TABLE CoffeeMuKKa.Product
-	ADD CONSTRAINT PK_Product -- »óÇ°Á¤º¸ ±âº»Å°
+	ADD CONSTRAINT PK_Product -- ìƒí’ˆì •ë³´ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			product_no -- »óÇ°ÄÚµå
+			product_no -- ìƒí’ˆì½”ë“œ
 		);
 
 ALTER TABLE CoffeeMuKKa.Product
-	MODIFY COLUMN product_no INT NOT NULL AUTO_INCREMENT COMMENT '»óÇ°ÄÚµå';
+	MODIFY COLUMN product_no INT NOT NULL AUTO_INCREMENT COMMENT 'ìƒí’ˆì½”ë“œ';
 
--- ÄíÆù±¸¸Å
+-- ì¿ í°êµ¬ë§¤
 CREATE TABLE CoffeeMuKKa.BuyCoupon (
-	buy_no      INT       NOT NULL COMMENT '±¸¸ÅÄÚµå', -- ±¸¸ÅÄÚµå
-	buy_product INT       NOT NULL COMMENT '±¸¸Å»óÇ°', -- ±¸¸Å»óÇ°
-	user_no     INT       NOT NULL COMMENT 'È¸¿ø¹øÈ£', -- È¸¿ø¹øÈ£
-	buy_date    TIMESTAMP NOT NULL COMMENT '±¸¸ÅÀÏÀÚ', -- ±¸¸ÅÀÏÀÚ
-	validity    TIMESTAMP NOT NULL COMMENT 'À¯È¿ÀÏÀÚ', -- À¯È¿ÀÏÀÚ
-	use_cdt     TINYINT   NOT NULL COMMENT '»ç¿ë¿©ºÎ' -- »ç¿ë¿©ºÎ
+	buy_no      INT       NOT NULL COMMENT 'êµ¬ë§¤ì½”ë“œ', -- êµ¬ë§¤ì½”ë“œ
+	buy_product INT       NOT NULL COMMENT 'êµ¬ë§¤ìƒí’ˆ', -- êµ¬ë§¤ìƒí’ˆ
+	user_no     INT       NOT NULL COMMENT 'íšŒì›ë²ˆí˜¸', -- íšŒì›ë²ˆí˜¸
+	buy_date    TIMESTAMP NOT NULL COMMENT 'êµ¬ë§¤ì¼ì', -- êµ¬ë§¤ì¼ì
+	validity    TIMESTAMP NOT NULL COMMENT 'ìœ íš¨ì¼ì', -- ìœ íš¨ì¼ì
+	use_cdt     TINYINT   NOT NULL COMMENT 'ì‚¬ìš©ì—¬ë¶€' -- ì‚¬ìš©ì—¬ë¶€
 )
-COMMENT 'ÄíÆù±¸¸Å';
+COMMENT 'ì¿ í°êµ¬ë§¤';
 
--- ÄíÆù±¸¸Å
+-- ì¿ í°êµ¬ë§¤
 ALTER TABLE CoffeeMuKKa.BuyCoupon
-	ADD CONSTRAINT PK_BuyCoupon -- ÄíÆù±¸¸Å ±âº»Å°
+	ADD CONSTRAINT PK_BuyCoupon -- ì¿ í°êµ¬ë§¤ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			buy_no -- ±¸¸ÅÄÚµå
+			buy_no -- êµ¬ë§¤ì½”ë“œ
 		);
 
 ALTER TABLE CoffeeMuKKa.BuyCoupon
-	MODIFY COLUMN buy_no INT NOT NULL AUTO_INCREMENT COMMENT '±¸¸ÅÄÚµå';
+	MODIFY COLUMN buy_no INT NOT NULL AUTO_INCREMENT COMMENT 'êµ¬ë§¤ì½”ë“œ';
 
--- È¸¿øÇöÈ²
+-- íšŒì›í˜„í™©
 CREATE TABLE CoffeeMuKKa.Users (
-	user_no              INT          NOT NULL COMMENT 'È¸¿ø¹øÈ£', -- È¸¿ø¹øÈ£
-	user_id              VARCHAR(30)  NOT NULL COMMENT 'È¸¿ø¾ÆÀÌµğ', -- È¸¿ø¾ÆÀÌµğ
-	password             VARCHAR(30)  NOT NULL COMMENT 'ºñ¹Ğ¹øÈ£', -- ºñ¹Ğ¹øÈ£
-	name                 VARCHAR(50)  NOT NULL COMMENT 'ÀÌ¸§', -- ÀÌ¸§
-	nick                 VARCHAR(50)  NOT NULL COMMENT '´Ğ³×ÀÓ', -- ´Ğ³×ÀÓ
-	gender               TINYINT      NULL     COMMENT '¼ºº°', -- ¼ºº°
-	birthday             TIMESTAMP    NOT NULL COMMENT '»ı³â¿ùÀÏ', -- »ı³â¿ùÀÏ
-	user_join_date       TIMESTAMP    NOT NULL COMMENT 'È¸¿ø°¡ÀÔÀÏÀÚ', -- È¸¿ø°¡ÀÔÀÏÀÚ
-	user_leave_condition TINYINT      NULL     COMMENT 'È¸¿ø Å»ÅğÀ¯¹«', -- È¸¿ø Å»ÅğÀ¯¹«
-	point                INTEGER      NULL     COMMENT 'Æ÷ÀÎÆ®', -- Æ÷ÀÎÆ®
-	tel                  VARCHAR(30)  NOT NULL COMMENT 'ÀüÈ­¹øÈ£', -- ÀüÈ­¹øÈ£
-	address              VARCHAR(255) NOT NULL COMMENT 'ÁÖ¼Ò', -- ÁÖ¼Ò
-	detail_address       VARCHAR(255) NULL     COMMENT '»ó¼¼ÁÖ¼Ò', -- »ó¼¼ÁÖ¼Ò
-	email                VARCHAR(255) NOT NULL COMMENT 'ÀÌ¸ŞÀÏ', -- ÀÌ¸ŞÀÏ
-	user_type            INT          NOT NULL COMMENT 'È¸¿øÅ¸ÀÔ', -- È¸¿øÅ¸ÀÔ
-	user_grade           INT          NOT NULL COMMENT 'È¸¿øµî±Ş' -- È¸¿øµî±Ş
+	user_no              INT          NOT NULL COMMENT 'íšŒì›ë²ˆí˜¸', -- íšŒì›ë²ˆí˜¸
+	user_id              VARCHAR(30)  NOT NULL COMMENT 'íšŒì›ì•„ì´ë””', -- íšŒì›ì•„ì´ë””
+	password             VARCHAR(30)  NOT NULL COMMENT 'ë¹„ë°€ë²ˆí˜¸', -- ë¹„ë°€ë²ˆí˜¸
+	name                 VARCHAR(50)  NOT NULL COMMENT 'ì´ë¦„', -- ì´ë¦„
+	nick                 VARCHAR(50)  NOT NULL COMMENT 'ë‹‰ë„¤ì„', -- ë‹‰ë„¤ì„
+	gender               TINYINT      NULL     COMMENT 'ì„±ë³„', -- ì„±ë³„
+	birthday             TIMESTAMP    NOT NULL COMMENT 'ìƒë…„ì›”ì¼', -- ìƒë…„ì›”ì¼
+	user_join_date       TIMESTAMP    NOT NULL COMMENT 'íšŒì›ê°€ì…ì¼ì', -- íšŒì›ê°€ì…ì¼ì
+	user_leave_condition TINYINT      NULL     COMMENT 'íšŒì› íƒˆí‡´ìœ ë¬´', -- íšŒì› íƒˆí‡´ìœ ë¬´
+	point                INTEGER      NULL     COMMENT 'í¬ì¸íŠ¸', -- í¬ì¸íŠ¸
+	tel                  VARCHAR(30)  NOT NULL COMMENT 'ì „í™”ë²ˆí˜¸', -- ì „í™”ë²ˆí˜¸
+	address              VARCHAR(255) NOT NULL COMMENT 'ì£¼ì†Œ', -- ì£¼ì†Œ
+	detail_address       VARCHAR(255) NULL     COMMENT 'ìƒì„¸ì£¼ì†Œ', -- ìƒì„¸ì£¼ì†Œ
+	email                VARCHAR(255) NOT NULL COMMENT 'ì´ë©”ì¼', -- ì´ë©”ì¼
+	user_type            INT          NOT NULL COMMENT 'íšŒì›íƒ€ì…', -- íšŒì›íƒ€ì…
+	user_grade           INT          NOT NULL COMMENT 'íšŒì›ë“±ê¸‰' -- íšŒì›ë“±ê¸‰
 )
-COMMENT 'È¸¿øÇöÈ²';
+COMMENT 'íšŒì›í˜„í™©';
 
--- È¸¿øÇöÈ²
+-- íšŒì›í˜„í™©
 ALTER TABLE CoffeeMuKKa.Users
-	ADD CONSTRAINT PK_Users -- È¸¿øÇöÈ² ±âº»Å°
+	ADD CONSTRAINT PK_Users -- íšŒì›í˜„í™© ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			user_no -- È¸¿ø¹øÈ£
+			user_no -- íšŒì›ë²ˆí˜¸
 		);
 
--- °ü¸®ÀÚÇöÈ²
+-- ê´€ë¦¬ìí˜„í™©
 CREATE TABLE CoffeeMuKKa.Admin (
-	ano_no           INT          NOT NULL COMMENT '°ü¸®ÀÚ¹øÈ£', -- °ü¸®ÀÚ¹øÈ£
-	ano_id           VARCHAR(30)  NOT NULL COMMENT '°ü¸®ÀÚ¾ÆÀÌµğ', -- °ü¸®ÀÚ¾ÆÀÌµğ
-	ano_password     VARCHAR(30)  NOT NULL COMMENT '°ü¸®ÀÚºñ¹Ğ¹øÈ£', -- °ü¸®ÀÚºñ¹Ğ¹øÈ£
-	ano_image        VARCHAR(255) NOT NULL COMMENT '°ü¸®ÀÚÀÌ¹ÌÁö', -- °ü¸®ÀÚÀÌ¹ÌÁö
-	ano_authority_no INT          NOT NULL COMMENT '°ü¸®ÀÚ±ÇÇÑ¹øÈ£' -- °ü¸®ÀÚ±ÇÇÑ¹øÈ£
+	ano_no           INT          NOT NULL COMMENT 'ê´€ë¦¬ìë²ˆí˜¸', -- ê´€ë¦¬ìë²ˆí˜¸
+	ano_id           VARCHAR(30)  NOT NULL COMMENT 'ê´€ë¦¬ìì•„ì´ë””', -- ê´€ë¦¬ìì•„ì´ë””
+	ano_password     VARCHAR(30)  NOT NULL COMMENT 'ê´€ë¦¬ìë¹„ë°€ë²ˆí˜¸', -- ê´€ë¦¬ìë¹„ë°€ë²ˆí˜¸
+	ano_image        VARCHAR(255) NOT NULL COMMENT 'ê´€ë¦¬ìì´ë¯¸ì§€', -- ê´€ë¦¬ìì´ë¯¸ì§€
+	ano_authority_no INT          NOT NULL COMMENT 'ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸' -- ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸
 )
-COMMENT '°ü¸®ÀÚÇöÈ²';
+COMMENT 'ê´€ë¦¬ìí˜„í™©';
 
--- °ü¸®ÀÚÇöÈ²
+-- ê´€ë¦¬ìí˜„í™©
 ALTER TABLE CoffeeMuKKa.Admin
-	ADD CONSTRAINT PK_Admin -- °ü¸®ÀÚÇöÈ² ±âº»Å°
+	ADD CONSTRAINT PK_Admin -- ê´€ë¦¬ìí˜„í™© ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			ano_no -- °ü¸®ÀÚ¹øÈ£
+			ano_no -- ê´€ë¦¬ìë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Admin
-	MODIFY COLUMN ano_no INT NOT NULL AUTO_INCREMENT COMMENT '°ü¸®ÀÚ¹øÈ£';
+	MODIFY COLUMN ano_no INT NOT NULL AUTO_INCREMENT COMMENT 'ê´€ë¦¬ìë²ˆí˜¸';
 
--- »óÇ°ºĞ·ù
+-- ìƒí’ˆë¶„ë¥˜
 CREATE TABLE CoffeeMuKKa.Category (
-	sort_no   INT         NOT NULL COMMENT 'ºĞ·ù¹øÈ£', -- ºĞ·ù¹øÈ£
-	sort_name VARCHAR(50) NOT NULL COMMENT 'ºĞ·ùÀÌ¸§' -- ºĞ·ùÀÌ¸§
+	sort_no   INT         NOT NULL COMMENT 'ë¶„ë¥˜ë²ˆí˜¸', -- ë¶„ë¥˜ë²ˆí˜¸
+	sort_name VARCHAR(50) NOT NULL COMMENT 'ë¶„ë¥˜ì´ë¦„' -- ë¶„ë¥˜ì´ë¦„
 )
-COMMENT '»óÇ°ºĞ·ù';
+COMMENT 'ìƒí’ˆë¶„ë¥˜';
 
--- »óÇ°ºĞ·ù
+-- ìƒí’ˆë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.Category
-	ADD CONSTRAINT PK_Category -- »óÇ°ºĞ·ù ±âº»Å°
+	ADD CONSTRAINT PK_Category -- ìƒí’ˆë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			sort_no -- ºĞ·ù¹øÈ£
+			sort_no -- ë¶„ë¥˜ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Category
-	MODIFY COLUMN sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'ºĞ·ù¹øÈ£';
+	MODIFY COLUMN sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'ë¶„ë¥˜ë²ˆí˜¸';
 
--- °ø±Ş¾÷Ã¼
+-- ê³µê¸‰ì—…ì²´
 CREATE TABLE CoffeeMuKKa.Supplier (
-	supplier_no    INT          NOT NULL COMMENT '°ø±Ş¾÷Ã¼¹øÈ£', -- °ø±Ş¾÷Ã¼¹øÈ£
-	supplier_name  VARCHAR(50)  NOT NULL COMMENT '°ø±Ş¾÷Ã¼ÀÌ¸§', -- °ø±Ş¾÷Ã¼ÀÌ¸§
-	supplier_image VARCHAR(255) NOT NULL COMMENT '°ø±Ş¾÷Ã¼ÀÌ¹ÌÁö' -- °ø±Ş¾÷Ã¼ÀÌ¹ÌÁö
+	supplier_no    INT          NOT NULL COMMENT 'ê³µê¸‰ì—…ì²´ë²ˆí˜¸', -- ê³µê¸‰ì—…ì²´ë²ˆí˜¸
+	supplier_name  VARCHAR(50)  NOT NULL COMMENT 'ê³µê¸‰ì—…ì²´ì´ë¦„', -- ê³µê¸‰ì—…ì²´ì´ë¦„
+	supplier_image VARCHAR(255) NOT NULL COMMENT 'ê³µê¸‰ì—…ì²´ì´ë¯¸ì§€' -- ê³µê¸‰ì—…ì²´ì´ë¯¸ì§€
 )
-COMMENT '°ø±Ş¾÷Ã¼';
+COMMENT 'ê³µê¸‰ì—…ì²´';
 
--- °ø±Ş¾÷Ã¼
+-- ê³µê¸‰ì—…ì²´
 ALTER TABLE CoffeeMuKKa.Supplier
-	ADD CONSTRAINT PK_Supplier -- °ø±Ş¾÷Ã¼ ±âº»Å°
+	ADD CONSTRAINT PK_Supplier -- ê³µê¸‰ì—…ì²´ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			supplier_no -- °ø±Ş¾÷Ã¼¹øÈ£
+			supplier_no -- ê³µê¸‰ì—…ì²´ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Supplier
-	MODIFY COLUMN supplier_no INT NOT NULL AUTO_INCREMENT COMMENT '°ø±Ş¾÷Ã¼¹øÈ£';
+	MODIFY COLUMN supplier_no INT NOT NULL AUTO_INCREMENT COMMENT 'ê³µê¸‰ì—…ì²´ë²ˆí˜¸';
 
--- Å×¸¶ºĞ·ù
+-- í…Œë§ˆë¶„ë¥˜
 CREATE TABLE CoffeeMuKKa.Theme (
-	theme_no   INT         NOT NULL COMMENT 'Å×¸¶¹øÈ£', -- Å×¸¶¹øÈ£
-	theme_name VARCHAR(50) NOT NULL COMMENT 'Å×¸¶ÀÌ¸§' -- Å×¸¶ÀÌ¸§
+	theme_no   INT         NOT NULL COMMENT 'í…Œë§ˆë²ˆí˜¸', -- í…Œë§ˆë²ˆí˜¸
+	theme_name VARCHAR(50) NOT NULL COMMENT 'í…Œë§ˆì´ë¦„' -- í…Œë§ˆì´ë¦„
 )
-COMMENT 'Å×¸¶ºĞ·ù';
+COMMENT 'í…Œë§ˆë¶„ë¥˜';
 
--- Å×¸¶ºĞ·ù
+-- í…Œë§ˆë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.Theme
-	ADD CONSTRAINT PK_Theme -- Å×¸¶ºĞ·ù ±âº»Å°
+	ADD CONSTRAINT PK_Theme -- í…Œë§ˆë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			theme_no -- Å×¸¶¹øÈ£
+			theme_no -- í…Œë§ˆë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Theme
-	MODIFY COLUMN theme_no INT NOT NULL AUTO_INCREMENT COMMENT 'Å×¸¶¹øÈ£';
+	MODIFY COLUMN theme_no INT NOT NULL AUTO_INCREMENT COMMENT 'í…Œë§ˆë²ˆí˜¸';
 
--- Áö¿ªºĞ·ù
+-- ì§€ì—­ë¶„ë¥˜
 CREATE TABLE CoffeeMuKKa.Zone (
-	zone_no   INT         NOT NULL COMMENT 'Áö¿ª¹øÈ£', -- Áö¿ª¹øÈ£
-	zone_name VARCHAR(50) NOT NULL COMMENT 'Áö¿ªÀÌ¸§' -- Áö¿ªÀÌ¸§
+	zone_no   INT         NOT NULL COMMENT 'ì§€ì—­ë²ˆí˜¸', -- ì§€ì—­ë²ˆí˜¸
+	zone_name VARCHAR(50) NOT NULL COMMENT 'ì§€ì—­ì´ë¦„' -- ì§€ì—­ì´ë¦„
 )
-COMMENT 'Áö¿ªºĞ·ù';
+COMMENT 'ì§€ì—­ë¶„ë¥˜';
 
--- Áö¿ªºĞ·ù
+-- ì§€ì—­ë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.Zone
-	ADD CONSTRAINT PK_Zone -- Áö¿ªºĞ·ù ±âº»Å°
+	ADD CONSTRAINT PK_Zone -- ì§€ì—­ë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			zone_no -- Áö¿ª¹øÈ£
+			zone_no -- ì§€ì—­ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Zone
-	MODIFY COLUMN zone_no INT NOT NULL AUTO_INCREMENT COMMENT 'Áö¿ª¹øÈ£';
+	MODIFY COLUMN zone_no INT NOT NULL AUTO_INCREMENT COMMENT 'ì§€ì—­ë²ˆí˜¸';
 
 -- FAQ
 CREATE TABLE CoffeeMuKKa.FAQ (
-	faq_no            INT          NOT NULL COMMENT 'FAQ¹øÈ£', -- FAQ¹øÈ£
-	writing_title     VARCHAR(255) NOT NULL COMMENT '±ÛÁ¦¸ñ', -- ±ÛÁ¦¸ñ
-	registration_date TIMESTAMP    NOT NULL COMMENT 'ÀÛ¼ºÀÏ', -- ÀÛ¼ºÀÏ
-	update_date       TIMESTAMP    NOT NULL COMMENT '¼öÁ¤ÀÏ', -- ¼öÁ¤ÀÏ
-	view_number       INTEGER      NOT NULL COMMENT 'Á¶È¸¼ö', -- Á¶È¸¼ö
-	questian          LONGTEXT     NOT NULL COMMENT 'Áú¹®', -- Áú¹®
-	answer            LONGTEXT     NOT NULL COMMENT '´äº¯', -- ´äº¯
-	faq_sort_no       INT          NOT NULL COMMENT 'FAQºĞ·ù¹øÈ£' -- FAQºĞ·ù¹øÈ£
+	faq_no            INT          NOT NULL COMMENT 'FAQë²ˆí˜¸', -- FAQë²ˆí˜¸
+	writing_title     VARCHAR(255) NOT NULL COMMENT 'ê¸€ì œëª©', -- ê¸€ì œëª©
+	registration_date TIMESTAMP    NOT NULL COMMENT 'ì‘ì„±ì¼', -- ì‘ì„±ì¼
+	update_date       TIMESTAMP    NOT NULL COMMENT 'ìˆ˜ì •ì¼', -- ìˆ˜ì •ì¼
+	view_number       INTEGER      NOT NULL COMMENT 'ì¡°íšŒìˆ˜', -- ì¡°íšŒìˆ˜
+	questian          LONGTEXT     NOT NULL COMMENT 'ì§ˆë¬¸', -- ì§ˆë¬¸
+	answer            LONGTEXT     NOT NULL COMMENT 'ë‹µë³€', -- ë‹µë³€
+	faq_sort_no       INT          NOT NULL COMMENT 'FAQë¶„ë¥˜ë²ˆí˜¸' -- FAQë¶„ë¥˜ë²ˆí˜¸
 )
 COMMENT 'FAQ';
 
 -- FAQ
 ALTER TABLE CoffeeMuKKa.FAQ
-	ADD CONSTRAINT PK_FAQ -- FAQ ±âº»Å°
+	ADD CONSTRAINT PK_FAQ -- FAQ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			faq_no -- FAQ¹øÈ£
+			faq_no -- FAQë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.FAQ
-	MODIFY COLUMN faq_no INT NOT NULL AUTO_INCREMENT COMMENT 'FAQ¹øÈ£';
+	MODIFY COLUMN faq_no INT NOT NULL AUTO_INCREMENT COMMENT 'FAQë²ˆí˜¸';
 
--- FAQºĞ·ù
+-- FAQë¶„ë¥˜
 CREATE TABLE CoffeeMuKKa.FAQCate (
-	sort_no   INT         NOT NULL COMMENT 'ºĞ·ù¹øÈ£', -- ºĞ·ù¹øÈ£
-	sort_name VARCHAR(50) NOT NULL COMMENT 'ºĞ·ùÀÌ¸§' -- ºĞ·ùÀÌ¸§
+	sort_no   INT         NOT NULL COMMENT 'ë¶„ë¥˜ë²ˆí˜¸', -- ë¶„ë¥˜ë²ˆí˜¸
+	sort_name VARCHAR(50) NOT NULL COMMENT 'ë¶„ë¥˜ì´ë¦„' -- ë¶„ë¥˜ì´ë¦„
 )
-COMMENT 'FAQºĞ·ù';
+COMMENT 'FAQë¶„ë¥˜';
 
--- FAQºĞ·ù
+-- FAQë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.FAQCate
-	ADD CONSTRAINT PK_FAQCate -- FAQºĞ·ù ±âº»Å°
+	ADD CONSTRAINT PK_FAQCate -- FAQë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			sort_no -- ºĞ·ù¹øÈ£
+			sort_no -- ë¶„ë¥˜ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.FAQCate
-	MODIFY COLUMN sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'ºĞ·ù¹øÈ£';
+	MODIFY COLUMN sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'ë¶„ë¥˜ë²ˆí˜¸';
 
--- ´ñ±Û Å×ÀÌºí
+-- ëŒ“ê¸€ í…Œì´ë¸”
 CREATE TABLE CoffeeMuKKa.Reply (
-	comment_no        INT         NOT NULL COMMENT '´ñ±Û¹øÈ£', -- ´ñ±Û¹øÈ£
-	board_no          INT         NOT NULL COMMENT '°Ô½Ã±Û¹øÈ£', -- °Ô½Ã±Û¹øÈ£
-	user_no           INT         NOT NULL COMMENT 'È¸¿ø¹øÈ£', -- È¸¿ø¹øÈ£
-	comment_content   TEXT        NOT NULL COMMENT '´ñ±Û³»¿ë', -- ´ñ±Û³»¿ë
-	writer            VARCHAR(50) NOT NULL COMMENT 'ÀÛ¼ºÀÚ', -- ÀÛ¼ºÀÚ
-	registration_date TIMESTAMP   NOT NULL COMMENT 'ÀÛ¼ºÀÏ', -- ÀÛ¼ºÀÏ
-	update_date       TIMESTAMP   NOT NULL COMMENT '¼öÁ¤ÀÏ' -- ¼öÁ¤ÀÏ
+	comment_no        INT         NOT NULL COMMENT 'ëŒ“ê¸€ë²ˆí˜¸', -- ëŒ“ê¸€ë²ˆí˜¸
+	board_no          INT         NOT NULL COMMENT 'ê²Œì‹œê¸€ë²ˆí˜¸', -- ê²Œì‹œê¸€ë²ˆí˜¸
+	user_no           INT         NOT NULL COMMENT 'íšŒì›ë²ˆí˜¸', -- íšŒì›ë²ˆí˜¸
+	comment_content   TEXT        NOT NULL COMMENT 'ëŒ“ê¸€ë‚´ìš©', -- ëŒ“ê¸€ë‚´ìš©
+	writer            VARCHAR(50) NOT NULL COMMENT 'ì‘ì„±ì', -- ì‘ì„±ì
+	registration_date TIMESTAMP   NOT NULL COMMENT 'ì‘ì„±ì¼', -- ì‘ì„±ì¼
+	update_date       TIMESTAMP   NOT NULL COMMENT 'ìˆ˜ì •ì¼' -- ìˆ˜ì •ì¼
 )
-COMMENT '´ñ±Û Å×ÀÌºí';
+COMMENT 'ëŒ“ê¸€ í…Œì´ë¸”';
 
--- ´ñ±Û Å×ÀÌºí
+-- ëŒ“ê¸€ í…Œì´ë¸”
 ALTER TABLE CoffeeMuKKa.Reply
-	ADD CONSTRAINT PK_Reply -- ´ñ±Û Å×ÀÌºí ±âº»Å°
+	ADD CONSTRAINT PK_Reply -- ëŒ“ê¸€ í…Œì´ë¸” ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			comment_no -- ´ñ±Û¹øÈ£
+			comment_no -- ëŒ“ê¸€ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Reply
-	MODIFY COLUMN comment_no INT NOT NULL AUTO_INCREMENT COMMENT '´ñ±Û¹øÈ£';
+	MODIFY COLUMN comment_no INT NOT NULL AUTO_INCREMENT COMMENT 'ëŒ“ê¸€ë²ˆí˜¸';
 
--- °Ô½ÃÆÇ ºĞ·ù
+-- ê²Œì‹œíŒ ë¶„ë¥˜
 CREATE TABLE CoffeeMuKKa.BoardKinds (
-	board_no   INT         NOT NULL COMMENT '°Ô½ÃÆÇ¹øÈ£', -- °Ô½ÃÆÇ¹øÈ£
-	board_name VARCHAR(50) NOT NULL COMMENT '°Ô½ÃÆÇÀÌ¸§' -- °Ô½ÃÆÇÀÌ¸§
+	board_no   INT         NOT NULL COMMENT 'ê²Œì‹œíŒë²ˆí˜¸', -- ê²Œì‹œíŒë²ˆí˜¸
+	board_name VARCHAR(50) NOT NULL COMMENT 'ê²Œì‹œíŒì´ë¦„' -- ê²Œì‹œíŒì´ë¦„
 )
-COMMENT '°Ô½ÃÆÇ ºĞ·ù';
+COMMENT 'ê²Œì‹œíŒ ë¶„ë¥˜';
 
--- °Ô½ÃÆÇ ºĞ·ù
+-- ê²Œì‹œíŒ ë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.BoardKinds
-	ADD CONSTRAINT PK_BoardKinds -- °Ô½ÃÆÇ ºĞ·ù ±âº»Å°
+	ADD CONSTRAINT PK_BoardKinds -- ê²Œì‹œíŒ ë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			board_no -- °Ô½ÃÆÇ¹øÈ£
+			board_no -- ê²Œì‹œíŒë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.BoardKinds
-	MODIFY COLUMN board_no INT NOT NULL AUTO_INCREMENT COMMENT '°Ô½ÃÆÇ¹øÈ£';
+	MODIFY COLUMN board_no INT NOT NULL AUTO_INCREMENT COMMENT 'ê²Œì‹œíŒë²ˆí˜¸';
 
--- ¸Ş´º ºĞ·ù
+-- ë©”ë‰´ ë¶„ë¥˜
 CREATE TABLE CoffeeMuKKa.MenuKinds (
-	sort_no   INT         NOT NULL COMMENT 'ºĞ·ù¹øÈ£', -- ºĞ·ù¹øÈ£
-	sort_name VARCHAR(50) NOT NULL COMMENT 'ºĞ·ùÀÌ¸§' -- ºĞ·ùÀÌ¸§
+	sort_no   INT         NOT NULL COMMENT 'ë¶„ë¥˜ë²ˆí˜¸', -- ë¶„ë¥˜ë²ˆí˜¸
+	sort_name VARCHAR(50) NOT NULL COMMENT 'ë¶„ë¥˜ì´ë¦„' -- ë¶„ë¥˜ì´ë¦„
 )
-COMMENT '¸Ş´º ºĞ·ù';
+COMMENT 'ë©”ë‰´ ë¶„ë¥˜';
 
--- ¸Ş´º ºĞ·ù
+-- ë©”ë‰´ ë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.MenuKinds
-	ADD CONSTRAINT PK_MenuKinds -- ¸Ş´º ºĞ·ù ±âº»Å°
+	ADD CONSTRAINT PK_MenuKinds -- ë©”ë‰´ ë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			sort_no -- ºĞ·ù¹øÈ£
+			sort_no -- ë¶„ë¥˜ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.MenuKinds
-	MODIFY COLUMN sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'ºĞ·ù¹øÈ£';
+	MODIFY COLUMN sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'ë¶„ë¥˜ë²ˆí˜¸';
 
--- ¸Ş´º
+-- ë©”ë‰´
 CREATE TABLE CoffeeMuKKa.Menu (
-	menu_no         INT         NOT NULL COMMENT '¸Ş´º¹øÈ£', -- ¸Ş´º¹øÈ£
-	cafe_no         INT         NOT NULL COMMENT 'Ä«Æä¹øÈ£', -- Ä«Æä¹øÈ£
-	menukinds       INT         NOT NULL COMMENT '¸Ş´ººĞ·ù', -- ¸Ş´ººĞ·ù
-	menu_name       VARCHAR(50) NOT NULL COMMENT '¸Ş´ºÀÌ¸§', -- ¸Ş´ºÀÌ¸§
-	h_i             TINYINT     NOT NULL COMMENT 'Hot&Iced °¡°İ Â÷ÀÌ', -- Hot&Iced °¡°İ Â÷ÀÌ
-	price           INTEGER     NOT NULL COMMENT '°¡°İ', -- °¡°İ
-	iced_menu_price INTEGER     NULL     COMMENT '¾ÆÀÌ½º¸Ş´º°¡°İ' -- ¾ÆÀÌ½º¸Ş´º°¡°İ
+	menu_no         INT         NOT NULL COMMENT 'ë©”ë‰´ë²ˆí˜¸', -- ë©”ë‰´ë²ˆí˜¸
+	cafe_no         INT         NOT NULL COMMENT 'ì¹´í˜ë²ˆí˜¸', -- ì¹´í˜ë²ˆí˜¸
+	menukinds       INT         NOT NULL COMMENT 'ë©”ë‰´ë¶„ë¥˜', -- ë©”ë‰´ë¶„ë¥˜
+	menu_name       VARCHAR(50) NOT NULL COMMENT 'ë©”ë‰´ì´ë¦„', -- ë©”ë‰´ì´ë¦„
+	h_i             TINYINT     NOT NULL COMMENT 'Hot&Iced ê°€ê²© ì°¨ì´', -- Hot&Iced ê°€ê²© ì°¨ì´
+	price           INTEGER     NOT NULL COMMENT 'ê°€ê²©', -- ê°€ê²©
+	iced_menu_price INTEGER     NULL     COMMENT 'ì•„ì´ìŠ¤ë©”ë‰´ê°€ê²©' -- ì•„ì´ìŠ¤ë©”ë‰´ê°€ê²©
 )
-COMMENT '¸Ş´º';
+COMMENT 'ë©”ë‰´';
 
--- ¸Ş´º
+-- ë©”ë‰´
 ALTER TABLE CoffeeMuKKa.Menu
-	ADD CONSTRAINT PK_Menu -- ¸Ş´º ±âº»Å°
+	ADD CONSTRAINT PK_Menu -- ë©”ë‰´ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			menu_no -- ¸Ş´º¹øÈ£
+			menu_no -- ë©”ë‰´ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Menu
-	MODIFY COLUMN menu_no INT NOT NULL AUTO_INCREMENT COMMENT '¸Ş´º¹øÈ£';
+	MODIFY COLUMN menu_no INT NOT NULL AUTO_INCREMENT COMMENT 'ë©”ë‰´ë²ˆí˜¸';
 
--- º°Á¡
+-- ë³„ì 
 CREATE TABLE CoffeeMuKKa.Starpoint (
-	star_point_no      INT     NOT NULL COMMENT 'º°Á¡¹øÈ£', -- º°Á¡¹øÈ£
-	cafe_no            INT     NOT NULL COMMENT 'Ä«Æä¹øÈ£', -- Ä«Æä¹øÈ£
-	star_point         INTEGER NOT NULL COMMENT 'º°Á¡', -- º°Á¡
-	star_point_comment TEXT    NULL     COMMENT 'º°Á¡´ñ±Û' -- º°Á¡´ñ±Û
+	star_point_no      INT     NOT NULL COMMENT 'ë³„ì ë²ˆí˜¸', -- ë³„ì ë²ˆí˜¸
+	cafe_no            INT     NOT NULL COMMENT 'ì¹´í˜ë²ˆí˜¸', -- ì¹´í˜ë²ˆí˜¸
+	star_point         INTEGER NOT NULL COMMENT 'ë³„ì ', -- ë³„ì 
+	star_point_comment TEXT    NULL     COMMENT 'ë³„ì ëŒ“ê¸€' -- ë³„ì ëŒ“ê¸€
 )
-COMMENT 'º°Á¡';
+COMMENT 'ë³„ì ';
 
--- º°Á¡
+-- ë³„ì 
 ALTER TABLE CoffeeMuKKa.Starpoint
-	ADD CONSTRAINT PK_Starpoint -- º°Á¡ ±âº»Å°
+	ADD CONSTRAINT PK_Starpoint -- ë³„ì  ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			star_point_no -- º°Á¡¹øÈ£
+			star_point_no -- ë³„ì ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Starpoint
-	MODIFY COLUMN star_point_no INT NOT NULL AUTO_INCREMENT COMMENT 'º°Á¡¹øÈ£';
+	MODIFY COLUMN star_point_no INT NOT NULL AUTO_INCREMENT COMMENT 'ë³„ì ë²ˆí˜¸';
 
--- È¸¿øÅ¸ÀÔ
+-- íšŒì›íƒ€ì…
 CREATE TABLE CoffeeMuKKa.Type (
-	user_type      INT         NOT NULL COMMENT 'È¸¿øÅ¸ÀÔ', -- È¸¿øÅ¸ÀÔ
-	user_type_name VARCHAR(50) NOT NULL COMMENT 'È¸¿øÅ¸ÀÔÀÌ¸§' -- È¸¿øÅ¸ÀÔÀÌ¸§
+	user_type      INT         NOT NULL COMMENT 'íšŒì›íƒ€ì…', -- íšŒì›íƒ€ì…
+	user_type_name VARCHAR(50) NOT NULL COMMENT 'íšŒì›íƒ€ì…ì´ë¦„' -- íšŒì›íƒ€ì…ì´ë¦„
 )
-COMMENT 'È¸¿øÅ¸ÀÔ';
+COMMENT 'íšŒì›íƒ€ì…';
 
--- È¸¿øÅ¸ÀÔ
+-- íšŒì›íƒ€ì…
 ALTER TABLE CoffeeMuKKa.Type
-	ADD CONSTRAINT PK_Type -- È¸¿øÅ¸ÀÔ ±âº»Å°
+	ADD CONSTRAINT PK_Type -- íšŒì›íƒ€ì… ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			user_type -- È¸¿øÅ¸ÀÔ
+			user_type -- íšŒì›íƒ€ì…
 		);
 
 ALTER TABLE CoffeeMuKKa.Type
-	MODIFY COLUMN user_type INT NOT NULL AUTO_INCREMENT COMMENT 'È¸¿øÅ¸ÀÔ';
+	MODIFY COLUMN user_type INT NOT NULL AUTO_INCREMENT COMMENT 'íšŒì›íƒ€ì…';
 
--- È¸¿øµî±Ş
+-- íšŒì›ë“±ê¸‰
 CREATE TABLE CoffeeMuKKa.Grade (
-	user_grade       INT          NOT NULL COMMENT 'È¸¿øµî±Ş', -- È¸¿øµî±Ş
-	user_grade_name  VARCHAR(50)  NOT NULL COMMENT 'È¸¿øµî±ŞÀÌ¸§', -- È¸¿øµî±ŞÀÌ¸§
-	user_grade_image VARCHAR(255) NOT NULL COMMENT 'È¸¿øµî±ŞÀÌ¹ÌÁö' -- È¸¿øµî±ŞÀÌ¹ÌÁö
+	user_grade       INT          NOT NULL COMMENT 'íšŒì›ë“±ê¸‰', -- íšŒì›ë“±ê¸‰
+	user_grade_name  VARCHAR(50)  NOT NULL COMMENT 'íšŒì›ë“±ê¸‰ì´ë¦„', -- íšŒì›ë“±ê¸‰ì´ë¦„
+	user_grade_image VARCHAR(255) NOT NULL COMMENT 'íšŒì›ë“±ê¸‰ì´ë¯¸ì§€' -- íšŒì›ë“±ê¸‰ì´ë¯¸ì§€
 )
-COMMENT 'È¸¿øµî±Ş';
+COMMENT 'íšŒì›ë“±ê¸‰';
 
--- È¸¿øµî±Ş
+-- íšŒì›ë“±ê¸‰
 ALTER TABLE CoffeeMuKKa.Grade
-	ADD CONSTRAINT PK_Grade -- È¸¿øµî±Ş ±âº»Å°
+	ADD CONSTRAINT PK_Grade -- íšŒì›ë“±ê¸‰ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			user_grade -- È¸¿øµî±Ş
+			user_grade -- íšŒì›ë“±ê¸‰
 		);
 
 ALTER TABLE CoffeeMuKKa.Grade
-	MODIFY COLUMN user_grade INT NOT NULL AUTO_INCREMENT COMMENT 'È¸¿øµî±Ş';
+	MODIFY COLUMN user_grade INT NOT NULL AUTO_INCREMENT COMMENT 'íšŒì›ë“±ê¸‰';
 
--- °ü¸®ÀÚ±ÇÇÑ
+-- ê´€ë¦¬ìê¶Œí•œ
 CREATE TABLE CoffeeMuKKa.Authority (
-	ano_authority_no   INT         NOT NULL COMMENT '°ü¸®ÀÚ±ÇÇÑ¹øÈ£', -- °ü¸®ÀÚ±ÇÇÑ¹øÈ£
-	ano_authority_name VARCHAR(50) NOT NULL COMMENT '°ü¸®ÀÚ±ÇÇÑÀÌ¸§' -- °ü¸®ÀÚ±ÇÇÑÀÌ¸§
+	ano_authority_no   INT         NOT NULL COMMENT 'ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸', -- ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸
+	ano_authority_name VARCHAR(50) NOT NULL COMMENT 'ê´€ë¦¬ìê¶Œí•œì´ë¦„' -- ê´€ë¦¬ìê¶Œí•œì´ë¦„
 )
-COMMENT '°ü¸®ÀÚ±ÇÇÑ';
+COMMENT 'ê´€ë¦¬ìê¶Œí•œ';
 
--- °ü¸®ÀÚ±ÇÇÑ
+-- ê´€ë¦¬ìê¶Œí•œ
 ALTER TABLE CoffeeMuKKa.Authority
-	ADD CONSTRAINT PK_Authority -- °ü¸®ÀÚ±ÇÇÑ ±âº»Å°
+	ADD CONSTRAINT PK_Authority -- ê´€ë¦¬ìê¶Œí•œ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			ano_authority_no -- °ü¸®ÀÚ±ÇÇÑ¹øÈ£
+			ano_authority_no -- ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Authority
-	MODIFY COLUMN ano_authority_no INT NOT NULL AUTO_INCREMENT COMMENT '°ü¸®ÀÚ±ÇÇÑ¹øÈ£';
+	MODIFY COLUMN ano_authority_no INT NOT NULL AUTO_INCREMENT COMMENT 'ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸';
 
--- Å°¿öµåºĞ·ù
+-- í‚¤ì›Œë“œë¶„ë¥˜
 CREATE TABLE CoffeeMuKKa.Keywordcate (
-	key_sort_no INT         NOT NULL COMMENT 'Å°¿öµåºĞ·ù¹øÈ£', -- Å°¿öµåºĞ·ù¹øÈ£
-	board_no    INT         NOT NULL COMMENT '°Ô½ÃÆÇ¹øÈ£', -- °Ô½ÃÆÇ¹øÈ£
-	key_name    VARCHAR(50) NOT NULL COMMENT 'Å°¿öµåÀÌ¸§' -- Å°¿öµåÀÌ¸§
+	key_sort_no INT         NOT NULL COMMENT 'í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸', -- í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸
+	board_no    INT         NOT NULL COMMENT 'ê²Œì‹œíŒë²ˆí˜¸', -- ê²Œì‹œíŒë²ˆí˜¸
+	key_name    VARCHAR(50) NOT NULL COMMENT 'í‚¤ì›Œë“œì´ë¦„' -- í‚¤ì›Œë“œì´ë¦„
 )
-COMMENT 'Å°¿öµåºĞ·ù';
+COMMENT 'í‚¤ì›Œë“œë¶„ë¥˜';
 
--- Å°¿öµåºĞ·ù
+-- í‚¤ì›Œë“œë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.Keywordcate
-	ADD CONSTRAINT PK_Keywordcate -- Å°¿öµåºĞ·ù ±âº»Å°
+	ADD CONSTRAINT PK_Keywordcate -- í‚¤ì›Œë“œë¶„ë¥˜ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			key_sort_no -- Å°¿öµåºĞ·ù¹øÈ£
+			key_sort_no -- í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Keywordcate
-	MODIFY COLUMN key_sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'Å°¿öµåºĞ·ù¹øÈ£';
+	MODIFY COLUMN key_sort_no INT NOT NULL AUTO_INCREMENT COMMENT 'í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸';
 
--- À§½Ã¸®½ºÆ®
+-- ìœ„ì‹œë¦¬ìŠ¤íŠ¸
 CREATE TABLE CoffeeMuKKa.Wishlist (
-	wish_no INT NOT NULL COMMENT 'À§½Ã¹øÈ£', -- À§½Ã¹øÈ£
-	cafe_no INT NOT NULL COMMENT 'Ä«Æä¹øÈ£', -- Ä«Æä¹øÈ£
-	user_no INT NOT NULL COMMENT 'È¸¿ø¹øÈ£' -- È¸¿ø¹øÈ£
+	wish_no INT NOT NULL COMMENT 'ìœ„ì‹œë²ˆí˜¸', -- ìœ„ì‹œë²ˆí˜¸
+	cafe_no INT NOT NULL COMMENT 'ì¹´í˜ë²ˆí˜¸', -- ì¹´í˜ë²ˆí˜¸
+	user_no INT NOT NULL COMMENT 'íšŒì›ë²ˆí˜¸' -- íšŒì›ë²ˆí˜¸
 )
-COMMENT 'À§½Ã¸®½ºÆ®';
+COMMENT 'ìœ„ì‹œë¦¬ìŠ¤íŠ¸';
 
--- À§½Ã¸®½ºÆ®
+-- ìœ„ì‹œë¦¬ìŠ¤íŠ¸
 ALTER TABLE CoffeeMuKKa.Wishlist
-	ADD CONSTRAINT PK_Wishlist -- À§½Ã¸®½ºÆ® ±âº»Å°
+	ADD CONSTRAINT PK_Wishlist -- ìœ„ì‹œë¦¬ìŠ¤íŠ¸ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			wish_no -- À§½Ã¹øÈ£
+			wish_no -- ìœ„ì‹œë²ˆí˜¸
 		);
 
 ALTER TABLE CoffeeMuKKa.Wishlist
-	MODIFY COLUMN wish_no INT NOT NULL AUTO_INCREMENT COMMENT 'À§½Ã¹øÈ£';
+	MODIFY COLUMN wish_no INT NOT NULL AUTO_INCREMENT COMMENT 'ìœ„ì‹œë²ˆí˜¸';
 
--- ÀÌ¹ÌÁö
+-- ì´ë¯¸ì§€
 CREATE TABLE CoffeeMuKKa.Image (
-	image_no   INT          NOT NULL COMMENT 'ÀÌ¹ÌÁö¹øÈ£', -- ÀÌ¹ÌÁö¹øÈ£
-	image_name VARCHAR(255) NOT NULL COMMENT 'ÀÌ¹ÌÁöÀÌ¸§', -- ÀÌ¹ÌÁöÀÌ¸§
-	cafe_no    INT          NULL     COMMENT 'Ä«Æä¹øÈ£', -- Ä«Æä¹øÈ£
-	board_no   INT          NULL     COMMENT '°Ô½Ã±Û¹øÈ£' -- °Ô½Ã±Û¹øÈ£
+	image_no   INT          NOT NULL COMMENT 'ì´ë¯¸ì§€ë²ˆí˜¸', -- ì´ë¯¸ì§€ë²ˆí˜¸
+	image_name VARCHAR(255) NOT NULL COMMENT 'ì´ë¯¸ì§€ì´ë¦„', -- ì´ë¯¸ì§€ì´ë¦„
+	cafe_no    INT          NULL     COMMENT 'ì¹´í˜ë²ˆí˜¸', -- ì¹´í˜ë²ˆí˜¸
+	board_no   INT          NULL     COMMENT 'ê²Œì‹œê¸€ë²ˆí˜¸' -- ê²Œì‹œê¸€ë²ˆí˜¸
 )
-COMMENT 'ÀÌ¹ÌÁö';
+COMMENT 'ì´ë¯¸ì§€';
 
--- ÀÌ¹ÌÁö
+-- ì´ë¯¸ì§€
 ALTER TABLE CoffeeMuKKa.Image
-	ADD CONSTRAINT PK_Image -- ÀÌ¹ÌÁö ±âº»Å°
+	ADD CONSTRAINT PK_Image -- ì´ë¯¸ì§€ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			image_no -- ÀÌ¹ÌÁö¹øÈ£
+			image_no -- ì´ë¯¸ì§€ë²ˆí˜¸
 		);
 
--- Ä«Æä
+-- ì¹´í˜
 ALTER TABLE CoffeeMuKKa.Cafe
-	ADD CONSTRAINT FK_Theme_TO_Cafe -- Å×¸¶ºĞ·ù -> Ä«Æä
+	ADD CONSTRAINT FK_Theme_TO_Cafe -- í…Œë§ˆë¶„ë¥˜ -> ì¹´í˜
 		FOREIGN KEY (
-			theme_no -- Å×¸¶¹øÈ£
+			theme_no -- í…Œë§ˆë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Theme ( -- Å×¸¶ºĞ·ù
-			theme_no -- Å×¸¶¹øÈ£
+		REFERENCES CoffeeMuKKa.Theme ( -- í…Œë§ˆë¶„ë¥˜
+			theme_no -- í…Œë§ˆë²ˆí˜¸
 		);
 
--- Ä«Æä
+-- ì¹´í˜
 ALTER TABLE CoffeeMuKKa.Cafe
-	ADD CONSTRAINT FK_Zone_TO_Cafe -- Áö¿ªºĞ·ù -> Ä«Æä
+	ADD CONSTRAINT FK_Zone_TO_Cafe -- ì§€ì—­ë¶„ë¥˜ -> ì¹´í˜
 		FOREIGN KEY (
-			zone_no -- Áö¿ª¹øÈ£
+			zone_no -- ì§€ì—­ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Zone ( -- Áö¿ªºĞ·ù
-			zone_no -- Áö¿ª¹øÈ£
+		REFERENCES CoffeeMuKKa.Zone ( -- ì§€ì—­ë¶„ë¥˜
+			zone_no -- ì§€ì—­ë²ˆí˜¸
 		);
 
--- Ä«Æä
+-- ì¹´í˜
 ALTER TABLE CoffeeMuKKa.Cafe
-	ADD CONSTRAINT FK_Users_TO_Cafe -- È¸¿øÇöÈ² -> Ä«Æä
+	ADD CONSTRAINT FK_Users_TO_Cafe -- íšŒì›í˜„í™© -> ì¹´í˜
 		FOREIGN KEY (
-			user_no -- È¸¿ø¹øÈ£
+			user_no -- íšŒì›ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Users ( -- È¸¿øÇöÈ²
-			user_no -- È¸¿ø¹øÈ£
+		REFERENCES CoffeeMuKKa.Users ( -- íšŒì›í˜„í™©
+			user_no -- íšŒì›ë²ˆí˜¸
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE CoffeeMuKKa.Board
-	ADD CONSTRAINT FK_BoardKinds_TO_Board -- °Ô½ÃÆÇ ºĞ·ù -> °Ô½ÃÆÇ
+	ADD CONSTRAINT FK_BoardKinds_TO_Board -- ê²Œì‹œíŒ ë¶„ë¥˜ -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			board_no2 -- °Ô½ÃÆÇ¹øÈ£
+			board_no2 -- ê²Œì‹œíŒë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.BoardKinds ( -- °Ô½ÃÆÇ ºĞ·ù
-			board_no -- °Ô½ÃÆÇ¹øÈ£
+		REFERENCES CoffeeMuKKa.BoardKinds ( -- ê²Œì‹œíŒ ë¶„ë¥˜
+			board_no -- ê²Œì‹œíŒë²ˆí˜¸
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE CoffeeMuKKa.Board
-	ADD CONSTRAINT FK_Zone_TO_Board -- Áö¿ªºĞ·ù -> °Ô½ÃÆÇ
+	ADD CONSTRAINT FK_Zone_TO_Board -- ì§€ì—­ë¶„ë¥˜ -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			zone_no -- Áö¿ª¹øÈ£
+			zone_no -- ì§€ì—­ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Zone ( -- Áö¿ªºĞ·ù
-			zone_no -- Áö¿ª¹øÈ£
+		REFERENCES CoffeeMuKKa.Zone ( -- ì§€ì—­ë¶„ë¥˜
+			zone_no -- ì§€ì—­ë²ˆí˜¸
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE CoffeeMuKKa.Board
-	ADD CONSTRAINT FK_Theme_TO_Board -- Å×¸¶ºĞ·ù -> °Ô½ÃÆÇ
+	ADD CONSTRAINT FK_Theme_TO_Board -- í…Œë§ˆë¶„ë¥˜ -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			theme_no -- Å×¸¶¹øÈ£
+			theme_no -- í…Œë§ˆë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Theme ( -- Å×¸¶ºĞ·ù
-			theme_no -- Å×¸¶¹øÈ£
+		REFERENCES CoffeeMuKKa.Theme ( -- í…Œë§ˆë¶„ë¥˜
+			theme_no -- í…Œë§ˆë²ˆí˜¸
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE CoffeeMuKKa.Board
-	ADD CONSTRAINT FK_Users_TO_Board -- È¸¿øÇöÈ² -> °Ô½ÃÆÇ
+	ADD CONSTRAINT FK_Users_TO_Board -- íšŒì›í˜„í™© -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			user_no -- È¸¿ø¹øÈ£
+			user_no -- íšŒì›ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Users ( -- È¸¿øÇöÈ²
-			user_no -- È¸¿ø¹øÈ£
+		REFERENCES CoffeeMuKKa.Users ( -- íšŒì›í˜„í™©
+			user_no -- íšŒì›ë²ˆí˜¸
 		);
 
--- °Ô½ÃÆÇ
+-- ê²Œì‹œíŒ
 ALTER TABLE CoffeeMuKKa.Board
-	ADD CONSTRAINT FK_Keywordcate_TO_Board -- Å°¿öµåºĞ·ù -> °Ô½ÃÆÇ
+	ADD CONSTRAINT FK_Keywordcate_TO_Board -- í‚¤ì›Œë“œë¶„ë¥˜ -> ê²Œì‹œíŒ
 		FOREIGN KEY (
-			key_sort_no -- Å°¿öµåºĞ·ù¹øÈ£
+			key_sort_no -- í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Keywordcate ( -- Å°¿öµåºĞ·ù
-			key_sort_no -- Å°¿öµåºĞ·ù¹øÈ£
+		REFERENCES CoffeeMuKKa.Keywordcate ( -- í‚¤ì›Œë“œë¶„ë¥˜
+			key_sort_no -- í‚¤ì›Œë“œë¶„ë¥˜ë²ˆí˜¸
 		);
 
--- »óÇ°Á¤º¸
+-- ìƒí’ˆì •ë³´
 ALTER TABLE CoffeeMuKKa.Product
-	ADD CONSTRAINT FK_Category_TO_Product -- »óÇ°ºĞ·ù -> »óÇ°Á¤º¸
+	ADD CONSTRAINT FK_Category_TO_Product -- ìƒí’ˆë¶„ë¥˜ -> ìƒí’ˆì •ë³´
 		FOREIGN KEY (
-			product_sort -- »óÇ°ºĞ·ù
+			product_sort -- ìƒí’ˆë¶„ë¥˜
 		)
-		REFERENCES CoffeeMuKKa.Category ( -- »óÇ°ºĞ·ù
-			sort_no -- ºĞ·ù¹øÈ£
+		REFERENCES CoffeeMuKKa.Category ( -- ìƒí’ˆë¶„ë¥˜
+			sort_no -- ë¶„ë¥˜ë²ˆí˜¸
 		);
 
--- »óÇ°Á¤º¸
+-- ìƒí’ˆì •ë³´
 ALTER TABLE CoffeeMuKKa.Product
-	ADD CONSTRAINT FK_Supplier_TO_Product -- °ø±Ş¾÷Ã¼ -> »óÇ°Á¤º¸
+	ADD CONSTRAINT FK_Supplier_TO_Product -- ê³µê¸‰ì—…ì²´ -> ìƒí’ˆì •ë³´
 		FOREIGN KEY (
-			supplier -- °ø±Ş¾÷Ã¼
+			supplier -- ê³µê¸‰ì—…ì²´
 		)
-		REFERENCES CoffeeMuKKa.Supplier ( -- °ø±Ş¾÷Ã¼
-			supplier_no -- °ø±Ş¾÷Ã¼¹øÈ£
+		REFERENCES CoffeeMuKKa.Supplier ( -- ê³µê¸‰ì—…ì²´
+			supplier_no -- ê³µê¸‰ì—…ì²´ë²ˆí˜¸
 		);
 
--- ÄíÆù±¸¸Å
+-- ì¿ í°êµ¬ë§¤
 ALTER TABLE CoffeeMuKKa.BuyCoupon
-	ADD CONSTRAINT FK_Product_TO_BuyCoupon -- »óÇ°Á¤º¸ -> ÄíÆù±¸¸Å
+	ADD CONSTRAINT FK_Product_TO_BuyCoupon -- ìƒí’ˆì •ë³´ -> ì¿ í°êµ¬ë§¤
 		FOREIGN KEY (
-			buy_product -- ±¸¸Å»óÇ°
+			buy_product -- êµ¬ë§¤ìƒí’ˆ
 		)
-		REFERENCES CoffeeMuKKa.Product ( -- »óÇ°Á¤º¸
-			product_no -- »óÇ°ÄÚµå
+		REFERENCES CoffeeMuKKa.Product ( -- ìƒí’ˆì •ë³´
+			product_no -- ìƒí’ˆì½”ë“œ
 		);
 
--- ÄíÆù±¸¸Å
+-- ì¿ í°êµ¬ë§¤
 ALTER TABLE CoffeeMuKKa.BuyCoupon
-	ADD CONSTRAINT FK_Users_TO_BuyCoupon -- È¸¿øÇöÈ² -> ÄíÆù±¸¸Å
+	ADD CONSTRAINT FK_Users_TO_BuyCoupon -- íšŒì›í˜„í™© -> ì¿ í°êµ¬ë§¤
 		FOREIGN KEY (
-			user_no -- È¸¿ø¹øÈ£
+			user_no -- íšŒì›ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Users ( -- È¸¿øÇöÈ²
-			user_no -- È¸¿ø¹øÈ£
+		REFERENCES CoffeeMuKKa.Users ( -- íšŒì›í˜„í™©
+			user_no -- íšŒì›ë²ˆí˜¸
 		);
 
--- È¸¿øÇöÈ²
+-- íšŒì›í˜„í™©
 ALTER TABLE CoffeeMuKKa.Users
-	ADD CONSTRAINT FK_Type_TO_Users -- È¸¿øÅ¸ÀÔ -> È¸¿øÇöÈ²
+	ADD CONSTRAINT FK_Type_TO_Users -- íšŒì›íƒ€ì… -> íšŒì›í˜„í™©
 		FOREIGN KEY (
-			user_type -- È¸¿øÅ¸ÀÔ
+			user_type -- íšŒì›íƒ€ì…
 		)
-		REFERENCES CoffeeMuKKa.Type ( -- È¸¿øÅ¸ÀÔ
-			user_type -- È¸¿øÅ¸ÀÔ
+		REFERENCES CoffeeMuKKa.Type ( -- íšŒì›íƒ€ì…
+			user_type -- íšŒì›íƒ€ì…
 		);
 
--- È¸¿øÇöÈ²
+-- íšŒì›í˜„í™©
 ALTER TABLE CoffeeMuKKa.Users
-	ADD CONSTRAINT FK_Grade_TO_Users -- È¸¿øµî±Ş -> È¸¿øÇöÈ²
+	ADD CONSTRAINT FK_Grade_TO_Users -- íšŒì›ë“±ê¸‰ -> íšŒì›í˜„í™©
 		FOREIGN KEY (
-			user_grade -- È¸¿øµî±Ş
+			user_grade -- íšŒì›ë“±ê¸‰
 		)
-		REFERENCES CoffeeMuKKa.Grade ( -- È¸¿øµî±Ş
-			user_grade -- È¸¿øµî±Ş
+		REFERENCES CoffeeMuKKa.Grade ( -- íšŒì›ë“±ê¸‰
+			user_grade -- íšŒì›ë“±ê¸‰
 		);
 
--- °ü¸®ÀÚÇöÈ²
+-- ê´€ë¦¬ìí˜„í™©
 ALTER TABLE CoffeeMuKKa.Admin
-	ADD CONSTRAINT FK_Authority_TO_Admin -- °ü¸®ÀÚ±ÇÇÑ -> °ü¸®ÀÚÇöÈ²
+	ADD CONSTRAINT FK_Authority_TO_Admin -- ê´€ë¦¬ìê¶Œí•œ -> ê´€ë¦¬ìí˜„í™©
 		FOREIGN KEY (
-			ano_authority_no -- °ü¸®ÀÚ±ÇÇÑ¹øÈ£
+			ano_authority_no -- ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Authority ( -- °ü¸®ÀÚ±ÇÇÑ
-			ano_authority_no -- °ü¸®ÀÚ±ÇÇÑ¹øÈ£
+		REFERENCES CoffeeMuKKa.Authority ( -- ê´€ë¦¬ìê¶Œí•œ
+			ano_authority_no -- ê´€ë¦¬ìê¶Œí•œë²ˆí˜¸
 		);
 
 -- FAQ
 ALTER TABLE CoffeeMuKKa.FAQ
-	ADD CONSTRAINT FK_FAQCate_TO_FAQ -- FAQºĞ·ù -> FAQ
+	ADD CONSTRAINT FK_FAQCate_TO_FAQ -- FAQë¶„ë¥˜ -> FAQ
 		FOREIGN KEY (
-			faq_sort_no -- FAQºĞ·ù¹øÈ£
+			faq_sort_no -- FAQë¶„ë¥˜ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.FAQCate ( -- FAQºĞ·ù
-			sort_no -- ºĞ·ù¹øÈ£
+		REFERENCES CoffeeMuKKa.FAQCate ( -- FAQë¶„ë¥˜
+			sort_no -- ë¶„ë¥˜ë²ˆí˜¸
 		);
 
--- ´ñ±Û Å×ÀÌºí
+-- ëŒ“ê¸€ í…Œì´ë¸”
 ALTER TABLE CoffeeMuKKa.Reply
-	ADD CONSTRAINT FK_Board_TO_Reply -- °Ô½ÃÆÇ -> ´ñ±Û Å×ÀÌºí
+	ADD CONSTRAINT FK_Board_TO_Reply -- ê²Œì‹œíŒ -> ëŒ“ê¸€ í…Œì´ë¸”
 		FOREIGN KEY (
-			board_no -- °Ô½Ã±Û¹øÈ£
+			board_no -- ê²Œì‹œê¸€ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Board ( -- °Ô½ÃÆÇ
-			board_no -- °Ô½Ã±Û¹øÈ£
+		REFERENCES CoffeeMuKKa.Board ( -- ê²Œì‹œíŒ
+			board_no -- ê²Œì‹œê¸€ë²ˆí˜¸
 		);
 
--- ´ñ±Û Å×ÀÌºí
+-- ëŒ“ê¸€ í…Œì´ë¸”
 ALTER TABLE CoffeeMuKKa.Reply
-	ADD CONSTRAINT FK_Users_TO_Reply -- È¸¿øÇöÈ² -> ´ñ±Û Å×ÀÌºí
+	ADD CONSTRAINT FK_Users_TO_Reply -- íšŒì›í˜„í™© -> ëŒ“ê¸€ í…Œì´ë¸”
 		FOREIGN KEY (
-			user_no -- È¸¿ø¹øÈ£
+			user_no -- íšŒì›ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Users ( -- È¸¿øÇöÈ²
-			user_no -- È¸¿ø¹øÈ£
+		REFERENCES CoffeeMuKKa.Users ( -- íšŒì›í˜„í™©
+			user_no -- íšŒì›ë²ˆí˜¸
 		);
 
--- ¸Ş´º
+-- ë©”ë‰´
 ALTER TABLE CoffeeMuKKa.Menu
-	ADD CONSTRAINT FK_MenuKinds_TO_Menu -- ¸Ş´º ºĞ·ù -> ¸Ş´º
+	ADD CONSTRAINT FK_MenuKinds_TO_Menu -- ë©”ë‰´ ë¶„ë¥˜ -> ë©”ë‰´
 		FOREIGN KEY (
-			menukinds -- ¸Ş´ººĞ·ù
+			menukinds -- ë©”ë‰´ë¶„ë¥˜
 		)
-		REFERENCES CoffeeMuKKa.MenuKinds ( -- ¸Ş´º ºĞ·ù
-			sort_no -- ºĞ·ù¹øÈ£
+		REFERENCES CoffeeMuKKa.MenuKinds ( -- ë©”ë‰´ ë¶„ë¥˜
+			sort_no -- ë¶„ë¥˜ë²ˆí˜¸
 		);
 
--- ¸Ş´º
+-- ë©”ë‰´
 ALTER TABLE CoffeeMuKKa.Menu
-	ADD CONSTRAINT FK_Cafe_TO_Menu -- Ä«Æä -> ¸Ş´º
+	ADD CONSTRAINT FK_Cafe_TO_Menu -- ì¹´í˜ -> ë©”ë‰´
 		FOREIGN KEY (
-			cafe_no -- Ä«Æä¹øÈ£
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Cafe ( -- Ä«Æä
-			cafe_no -- Ä«Æä¹øÈ£
+		REFERENCES CoffeeMuKKa.Cafe ( -- ì¹´í˜
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		);
 
--- º°Á¡
+-- ë³„ì 
 ALTER TABLE CoffeeMuKKa.Starpoint
-	ADD CONSTRAINT FK_Cafe_TO_Starpoint -- Ä«Æä -> º°Á¡
+	ADD CONSTRAINT FK_Cafe_TO_Starpoint -- ì¹´í˜ -> ë³„ì 
 		FOREIGN KEY (
-			cafe_no -- Ä«Æä¹øÈ£
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Cafe ( -- Ä«Æä
-			cafe_no -- Ä«Æä¹øÈ£
+		REFERENCES CoffeeMuKKa.Cafe ( -- ì¹´í˜
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		);
 
--- Å°¿öµåºĞ·ù
+-- í‚¤ì›Œë“œë¶„ë¥˜
 ALTER TABLE CoffeeMuKKa.Keywordcate
-	ADD CONSTRAINT FK_BoardKinds_TO_Keywordcate -- °Ô½ÃÆÇ ºĞ·ù -> Å°¿öµåºĞ·ù
+	ADD CONSTRAINT FK_BoardKinds_TO_Keywordcate -- ê²Œì‹œíŒ ë¶„ë¥˜ -> í‚¤ì›Œë“œë¶„ë¥˜
 		FOREIGN KEY (
-			board_no -- °Ô½ÃÆÇ¹øÈ£
+			board_no -- ê²Œì‹œíŒë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.BoardKinds ( -- °Ô½ÃÆÇ ºĞ·ù
-			board_no -- °Ô½ÃÆÇ¹øÈ£
+		REFERENCES CoffeeMuKKa.BoardKinds ( -- ê²Œì‹œíŒ ë¶„ë¥˜
+			board_no -- ê²Œì‹œíŒë²ˆí˜¸
 		);
 
--- À§½Ã¸®½ºÆ®
+-- ìœ„ì‹œë¦¬ìŠ¤íŠ¸
 ALTER TABLE CoffeeMuKKa.Wishlist
-	ADD CONSTRAINT FK_Users_TO_Wishlist -- È¸¿øÇöÈ² -> À§½Ã¸®½ºÆ®
+	ADD CONSTRAINT FK_Users_TO_Wishlist -- íšŒì›í˜„í™© -> ìœ„ì‹œë¦¬ìŠ¤íŠ¸
 		FOREIGN KEY (
-			user_no -- È¸¿ø¹øÈ£
+			user_no -- íšŒì›ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Users ( -- È¸¿øÇöÈ²
-			user_no -- È¸¿ø¹øÈ£
+		REFERENCES CoffeeMuKKa.Users ( -- íšŒì›í˜„í™©
+			user_no -- íšŒì›ë²ˆí˜¸
 		);
 
--- À§½Ã¸®½ºÆ®
+-- ìœ„ì‹œë¦¬ìŠ¤íŠ¸
 ALTER TABLE CoffeeMuKKa.Wishlist
-	ADD CONSTRAINT FK_Cafe_TO_Wishlist -- Ä«Æä -> À§½Ã¸®½ºÆ®
+	ADD CONSTRAINT FK_Cafe_TO_Wishlist -- ì¹´í˜ -> ìœ„ì‹œë¦¬ìŠ¤íŠ¸
 		FOREIGN KEY (
-			cafe_no -- Ä«Æä¹øÈ£
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Cafe ( -- Ä«Æä
-			cafe_no -- Ä«Æä¹øÈ£
+		REFERENCES CoffeeMuKKa.Cafe ( -- ì¹´í˜
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		);
 
--- ÀÌ¹ÌÁö
+-- ì´ë¯¸ì§€
 ALTER TABLE CoffeeMuKKa.Image
-	ADD CONSTRAINT FK_Board_TO_Image -- °Ô½ÃÆÇ -> ÀÌ¹ÌÁö
+	ADD CONSTRAINT FK_Board_TO_Image -- ê²Œì‹œíŒ -> ì´ë¯¸ì§€
 		FOREIGN KEY (
-			board_no -- °Ô½Ã±Û¹øÈ£
+			board_no -- ê²Œì‹œê¸€ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Board ( -- °Ô½ÃÆÇ
-			board_no -- °Ô½Ã±Û¹øÈ£
+		REFERENCES CoffeeMuKKa.Board ( -- ê²Œì‹œíŒ
+			board_no -- ê²Œì‹œê¸€ë²ˆí˜¸
 		);
 
--- ÀÌ¹ÌÁö
+-- ì´ë¯¸ì§€
 ALTER TABLE CoffeeMuKKa.Image
-	ADD CONSTRAINT FK_Cafe_TO_Image -- Ä«Æä -> ÀÌ¹ÌÁö
+	ADD CONSTRAINT FK_Cafe_TO_Image -- ì¹´í˜ -> ì´ë¯¸ì§€
 		FOREIGN KEY (
-			cafe_no -- Ä«Æä¹øÈ£
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		)
-		REFERENCES CoffeeMuKKa.Cafe ( -- Ä«Æä
-			cafe_no -- Ä«Æä¹øÈ£
+		REFERENCES CoffeeMuKKa.Cafe ( -- ì¹´í˜
+			cafe_no -- ì¹´í˜ë²ˆí˜¸
 		);
