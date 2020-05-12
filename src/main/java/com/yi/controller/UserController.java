@@ -36,7 +36,7 @@ public class UserController {
 	
 	
 	
-	// 커뮤니티
+	// 커뮤니티 : 경진
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
 	public String communityHome() {
 		return "/user/userCommunityHome";
@@ -47,7 +47,16 @@ public class UserController {
 		return "/user/userCommunityReviewList";
 	}
 	
+	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.GET)
+	public String communityReviewRegister() {
+		return "/user/userCommunityReviewForm";
+	}
 	
+	//register/read/modify/remove/list
+	
+	
+	
+	// 커뮤니티 : 아름
 	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
 	//list
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
@@ -74,6 +83,4 @@ public class UserController {
 	public String communityRecommendModify() {
 		return "/user/userCommunityRecommendModify";
 	}
-	
-	
 }
