@@ -46,4 +46,29 @@ public class UserController {
 	public String communityReviewList() {
 		return "/user/userCommunityReviewList";
 	}
+	
+	
+	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
+	//list
+	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
+	public String communityRecommendList() {
+		return "/user/userCommunityRecommendList";
+	}
+	//register
+	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.GET)
+	public String communityRecommendRegister() {
+		return "/user/userCommunityRecommendRegister";
+	}
+	//read
+	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
+	public String communityRecommendRead() {
+		return "/user/userCommunityRecommendRead";
+	}
+	//modify
+	@RequestMapping(value = "/community/cafeRecommend/modify", method = RequestMethod.GET)
+	public String communityRecommendModify() {
+		return "/user/userCommunityRecommendModify";
+	}
+	
+	
 }
