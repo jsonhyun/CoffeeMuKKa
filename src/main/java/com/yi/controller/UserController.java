@@ -46,4 +46,11 @@ public class UserController {
 	public String communityReviewList() {
 		return "/user/userCommunityReviewList";
 	}
+	
+	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.GET)
+	public String communityReviewRegister() {
+		return "/user/userCommunityReviewForm";
+	}
+	
+	//register/read/modify/remove/list
 }
