@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
+
 <style>
 	.cafeLocationSearch {
 		padding: 10px 0 20px;
@@ -27,6 +28,7 @@
 	    float: left;
 	    border-top: 1px solid black;
 	    border-bottom: 1px solid black;
+	    position: relative;
 	}
 	
 	.locationListLeft img{
@@ -142,7 +144,48 @@
 	    height: 40px;
 	    line-height: 40px;
 	}
+	
+	.cafeVoteNum{
+		float: right;
+	    width: 25px;
+	    height: 25px;
+	    border-radius: 40px;
+	    margin: 10px;
+	    text-align: center;
+	    line-height: 25px;
+	    font-weight: 700;
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	}
+	
+	.star{
+		position: absolute;
+	    top: 11px;
+    	left: 5px;
+	}
 </style>
+
+<!-- bar-rating -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
+
+<script type="text/javascript"> 
+	$(function() {
+		/* $('#example').barrating({
+			theme: 'fontawesome-stars' 
+		}); */ 
+		
+		$('.starPoint').barrating({
+			theme: 'fontawesome-stars' , initialRating: 5, readonly: true
+		});
+		
+		/* $('#example').barrating({
+			theme: 'fontawesome-stars' , readonly: true 
+		}); */
+	}); 
+</script>
 
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -176,12 +219,22 @@
 			<div class="locationCafe">
 				<div class="locationListLeft">
 					<img src="${pageContext.request.contextPath }/resources/images/mansion-1.jpg">
+					<div class="star">
+						<select class="starPoint"> 
+							<option value="1">1</option> 
+							<option value="2">2</option> 
+							<option value="3">3</option> 
+							<option value="4">4</option> 
+							<option value="5">5</option> 
+						</select>
+					</div>
+					<div class="cafeVoteNum bgRed">8</div>
 				</div>
 				<div class="locationListCenter">
 					<div class="daeguIcon">대구</div>
 					<div class="themeIcon">#데이트</div>
-					<h2 class="cafeTitle">한시십일분카페 AM 1:11</h2>
-					<p class="oneline">'공간이 지니는 특별함을 누구보다 잘 알기에 준비했어요'</p>
+					<h2 class="cafeTitle">MANSION 5</h2>
+					<p class="oneline">'대구 동성로 한옥카페 MANSION 5 한옥갬성 충만한 한옥카페입니다.'</p>
 					<div>
 						<div class="visit">
 							<div class="visitAndLocation">
@@ -224,13 +277,23 @@
 			
 			<div class="locationCafe">
 				<div class="locationListLeft">
-					<img src="${pageContext.request.contextPath }/resources/images/mansion-1.jpg">
+					<img src="${pageContext.request.contextPath }/resources/images/lucid-1.jpg">
+					<div class="star">
+						<select class="starPoint"> 
+							<option value="1">1</option> 
+							<option value="2">2</option> 
+							<option value="3">3</option> 
+							<option value="4">4</option> 
+							<option value="5">5</option> 
+						</select>
+					</div>
+					<div class="cafeVoteNum bgRed">8</div>
 				</div>
 				<div class="locationListCenter">
 					<div class="daeguIcon">대구</div>
 					<div class="themeIcon">#데이트</div>
-					<h2 class="cafeTitle">한시십일분카페 AM 1:11</h2>
-					<p class="oneline">'공간이 지니는 특별함을 누구보다 잘 알기에 준비했어요'</p>
+					<h2 class="cafeTitle">카페 루시드</h2>
+					<p class="oneline">'빈티지 풍의 인테리어와 푸짐한 양의 녹차 빙수가 인기인 카페입니다.'</p>
 					<div>
 						<div class="visit">
 							<div class="visitAndLocation">
