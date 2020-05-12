@@ -14,10 +14,10 @@
 			], 
 			"subUrl" : [
 				{"url" : ""},
-				{"url" : "/zoneList"},
-				{"url" : "/themeList"},
-				{"url" : "/mukkaBestList"},
-				{"url" : "/monthCafeList"}
+				{"url" : "/zone"},
+				{"url" : "/theme"},
+				{"url" : "/mukkaBest"},
+				{"url" : "/monthCafe"}
 			]
 		},
 		{
@@ -34,8 +34,8 @@
 			],
 			"subUrl" : [
 				{"url" : ""},
-				{"url" : "/cafeReviewList"},
-				{"url" : "/cafeRecommendList"},
+				{"url" : "/cafeReview"},
+				{"url" : "/cafeRecommend"},
 				{"url" : "/#"},
 				{"url" : "/#"}
 			]

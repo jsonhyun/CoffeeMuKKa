@@ -28,7 +28,7 @@ public class UserController {
 		return "/user/userMukkaCafeHome";
 	}
 	
-	@RequestMapping(value = "/mukkaCafe/zoneList", method = RequestMethod.GET)
+	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)
 	public String cafeZoneList() {
 		return "/user/userMukkaCafeZoneList";
 	}
@@ -42,7 +42,7 @@ public class UserController {
 		return "/user/userCommunityHome";
 	}
 	
-	@RequestMapping(value = "/community/cafeReviewList", method = RequestMethod.GET)
+	@RequestMapping(value = "/community/cafeReview", method = RequestMethod.GET)
 	public String communityReviewList() {
 		return "/user/userCommunityReviewList";
 	}
