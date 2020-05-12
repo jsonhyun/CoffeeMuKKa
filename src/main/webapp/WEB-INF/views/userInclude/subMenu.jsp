@@ -117,8 +117,8 @@
 							$(".subMenuName").removeClass("orangeBorder");
 							var subUrl = pageUrl[6] == null ? "" : "/"+pageUrl[6];
 							$(obj.subUrl).each(function(j, item){
-								//console.log(item.url);
-								//console.log(subUrl.lastIndexOf(item.url)+ ", " + j + ", ");
+								console.log(item.url);
+								console.log(subUrl.lastIndexOf(item.url)+ ", " + j + ", ");
 								if(subUrl.lastIndexOf(item.url) == 0)  {
 									subMenuFocus(j);
 								}

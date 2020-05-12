@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class MySQLConnectionTest {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://127.0.0.1:3306/book_spring";
+	private static final String URL = "jdbc:mysql://127.0.0.1:3306/coffeemukka";
 	private static final String USER = "root";
 	private static final String PASSWORD = "rootroot";
 	
