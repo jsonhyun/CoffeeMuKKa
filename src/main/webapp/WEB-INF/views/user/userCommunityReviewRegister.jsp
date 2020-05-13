@@ -12,6 +12,29 @@
 		border-bottom: 2px solid #545454;
 		margin-bottom: 20px;
 	}
+	
+	.cafeRForm .cafeR_groub {
+		padding: 10px;
+	}
+	
+	.cafeRForm input[type="text"] {
+		padding: 3px 5px;
+	}
+	
+	.cafeRForm .cafeR_groub label {
+		float: left;
+		width: 15%;
+		font-weight: 700;
+	}
+	
+	.cafeRForm .cafeSearchBtn {
+		margin-right: 10px;
+		padding: 5px 10px;
+	} 
+	
+	.cafeRForm input[name="writingTitle"] {
+		width: 80%;
+	}
 </style>
 		
 	<div class="content subPageContent">
@@ -24,22 +47,26 @@
 			</h2>
 			<div class="cafeRForm">
 				<form action="">
-					<div class="cafeR_search">
+					<div class="cafeR_search cafeR_groub">
 						<label>카페</label>
-						<button class="cafeSearchBtn">카페찾기</button>
-						<input type="text" placeholder="카페를 찾아주세요." readonly="readonly"/>
+						<button class="cafeSearchBtn orangeBtn">카페찾기</button>
+						<input type="text" placeholder=" ☜ 카페를 찾아주세요." readonly="readonly"/>
 						<input type="hidden" name="cafeNo"/>
 					</div>
-					<div class="cafeR_TitleForm">
-						<label></label>
+					<div class="cafeR_TitleForm cafeR_groub">
+						<label>제목</label>
+						<input type="text" name="writingTitle" placeholder="탐방기 제목을 작성해주세요."/>
 					</div>
-					<textarea name="" id="p_content" class="form-control"></textarea>
-					<script type="text/javascript">
-						CKEDITOR.replace("p_content", 
-										{height: 500});
-					</script>
+					<div class="cafeR_textForm cafeR_groub">
+						<textarea name="" id="p_content" class="form-control"></textarea>
+						<script type="text/javascript">
+							CKEDITOR.replace("p_content", 
+											{height: 500});
+						</script>
+					</div>
 				</form>
 			</div>
+			
 		</div>
 	</div>
 	
