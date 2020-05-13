@@ -1,5 +1,7 @@
 package com.yi.persistence;
 
-public interface BoardDAO {
+import com.yi.domain.BoardVO;
 
+public interface BoardDAO {
+	public void insert(BoardVO vo) throws Exception;
 }
