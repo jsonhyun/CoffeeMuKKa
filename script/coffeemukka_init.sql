@@ -32,12 +32,12 @@ CREATE TABLE CoffeeMuKKa.Cafe (
 	reserveok_cdt     TINYINT      NULL     COMMENT '예약 가능 여부', -- 예약 가능 여부
 	parking_cdt       TINYINT      NULL     COMMENT '주차 공간 여부', -- 주차 공간 여부
 	nokids_cdt        TINYINT      NULL     COMMENT '노키즈존 여부', -- 노키즈존 여부
-	registration_date TIMESTAMP    NOT NULL COMMENT '등록일자', -- 등록일자
-	update_date       TIMESTAMP    NULL     COMMENT '수정일자', -- 수정일자
-	view_number       INT          NOT NULL COMMENT '조회수', -- 조회수
+	registration_date TIMESTAMP    NOT NULL DEFAULT now() COMMENT '등록일자', -- 등록일자
+	update_date       TIMESTAMP    NOT NULL DEFAULT now() COMMENT '수정일자', -- 수정일자
+	view_number       INT          NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
 	content           TEXT         NULL     COMMENT '내용', -- 내용
 	oneline           VARCHAR(255) NOT NULL COMMENT '한줄소개', -- 한줄소개
-	vote_number       INT          NOT NULL COMMENT '추천수', -- 추천수
+	vote_number       INT          NOT NULL DEFAULT 0 COMMENT '추천수', -- 추천수
 	powerlink_cdt     TINYINT      NOT NULL COMMENT '파워링크여부', -- 파워링크여부
 	cafe_cdt          TINYINT      NOT NULL COMMENT '카페상태' -- 카페상태
 )
@@ -57,17 +57,19 @@ ALTER TABLE CoffeeMuKKa.Cafe
 CREATE TABLE CoffeeMuKKa.Board (
 	board_no               INT          NOT NULL COMMENT '게시글번호', -- 게시글번호
 	board_no2              INT          NOT NULL COMMENT '게시판번호', -- 게시판번호
-	key_sort_no            INT          NOT NULL COMMENT '키워드분류번호', -- 키워드분류번호
+	key_sort_no            INT          NULL     COMMENT '키워드분류번호', -- 키워드분류번호
 	user_no                INT          NOT NULL COMMENT '회원번호', -- 회원번호
 	zone_no                INT          NULL     COMMENT '지역번호', -- 지역번호
 	theme_no               INT          NULL     COMMENT '테마번호', -- 테마번호
+	cafe_no                INT          NULL     COMMENT '카페번호', -- 카페번호
 	writing_lock_condition TINYINT      NULL     COMMENT '글잠금여부', -- 글잠금여부
 	writing_title          VARCHAR(255) NOT NULL COMMENT '글제목', -- 글제목
-	registration_date      TIMESTAMP    NOT NULL COMMENT '작성일', -- 작성일
-	update_date            TIMESTAMP    NOT NULL COMMENT '수정일', -- 수정일
-	view_number            INTEGER      NOT NULL COMMENT '조회수', -- 조회수
-	vote_number            INTEGER      NOT NULL COMMENT '추천수', -- 추천수
-	writing_content        LONGTEXT     NOT NULL COMMENT '글내용' -- 글내용
+	registration_date      TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
+	update_date            TIMESTAMP    NOT NULL DEFAULT now() COMMENT '수정일', -- 수정일
+	view_number            INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
+	vote_number            INTEGER      NOT NULL DEFAULT 0 COMMENT '추천수', -- 추천수
+	writing_content        LONGTEXT     NULL     COMMENT '글내용', -- 글내용
+	address                VARCHAR(255) NULL     COMMENT '주소' -- 주소
 )
 COMMENT '게시판';
 
@@ -110,7 +112,7 @@ CREATE TABLE CoffeeMuKKa.BuyCoupon (
 	buy_no      INT       NOT NULL COMMENT '구매코드', -- 구매코드
 	buy_product INT       NOT NULL COMMENT '구매상품', -- 구매상품
 	user_no     INT       NOT NULL COMMENT '회원번호', -- 회원번호
-	buy_date    TIMESTAMP NOT NULL COMMENT '구매일자', -- 구매일자
+	buy_date    TIMESTAMP NOT NULL DEFAULT now() COMMENT '구매일자', -- 구매일자
 	validity    TIMESTAMP NOT NULL COMMENT '유효일자', -- 유효일자
 	use_cdt     TINYINT   NOT NULL COMMENT '사용여부' -- 사용여부
 )
@@ -135,9 +137,9 @@ CREATE TABLE CoffeeMuKKa.Users (
 	nick                 VARCHAR(50)  NOT NULL COMMENT '닉네임', -- 닉네임
 	gender               TINYINT      NULL     COMMENT '성별', -- 성별
 	birthday             TIMESTAMP    NOT NULL COMMENT '생년월일', -- 생년월일
-	user_join_date       TIMESTAMP    NOT NULL COMMENT '회원가입일자', -- 회원가입일자
+	user_join_date       TIMESTAMP    NOT NULL DEFAULT now() COMMENT '회원가입일자', -- 회원가입일자
 	user_leave_condition TINYINT      NULL     COMMENT '회원 탈퇴유무', -- 회원 탈퇴유무
-	point                INTEGER      NULL     COMMENT '포인트', -- 포인트
+	point                INTEGER      NULL     DEFAULT 0 COMMENT '포인트', -- 포인트
 	tel                  VARCHAR(30)  NOT NULL COMMENT '전화번호', -- 전화번호
 	address              VARCHAR(255) NOT NULL COMMENT '주소', -- 주소
 	detail_address       VARCHAR(255) NULL     COMMENT '상세주소', -- 상세주소
@@ -247,9 +249,9 @@ ALTER TABLE CoffeeMuKKa.Zone
 CREATE TABLE CoffeeMuKKa.FAQ (
 	faq_no            INT          NOT NULL COMMENT 'FAQ번호', -- FAQ번호
 	writing_title     VARCHAR(255) NOT NULL COMMENT '글제목', -- 글제목
-	registration_date TIMESTAMP    NOT NULL COMMENT '작성일', -- 작성일
-	update_date       TIMESTAMP    NOT NULL COMMENT '수정일', -- 수정일
-	view_number       INTEGER      NOT NULL COMMENT '조회수', -- 조회수
+	registration_date TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
+	update_date       TIMESTAMP    NOT NULL DEFAULT now() COMMENT '수정일', -- 수정일
+	view_number       INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
 	questian          LONGTEXT     NOT NULL COMMENT '질문', -- 질문
 	answer            LONGTEXT     NOT NULL COMMENT '답변', -- 답변
 	faq_sort_no       INT          NOT NULL COMMENT 'FAQ분류번호' -- FAQ분류번호
@@ -290,8 +292,8 @@ CREATE TABLE CoffeeMuKKa.Reply (
 	user_no           INT         NOT NULL COMMENT '회원번호', -- 회원번호
 	comment_content   TEXT        NOT NULL COMMENT '댓글내용', -- 댓글내용
 	writer            VARCHAR(50) NOT NULL COMMENT '작성자', -- 작성자
-	registration_date TIMESTAMP   NOT NULL COMMENT '작성일', -- 작성일
-	update_date       TIMESTAMP   NOT NULL COMMENT '수정일' -- 수정일
+	registration_date TIMESTAMP   NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
+	update_date       TIMESTAMP   NOT NULL DEFAULT now() COMMENT '수정일' -- 수정일
 )
 COMMENT '댓글 테이블';
 
@@ -562,6 +564,16 @@ ALTER TABLE CoffeeMuKKa.Board
 		)
 		REFERENCES CoffeeMuKKa.Keywordcate ( -- 키워드분류
 			key_sort_no -- 키워드분류번호
+		);
+
+-- 게시판
+ALTER TABLE CoffeeMuKKa.Board
+	ADD CONSTRAINT FK_Cafe_TO_Board -- 카페 -> 게시판
+		FOREIGN KEY (
+			cafe_no -- 카페번호
+		)
+		REFERENCES CoffeeMuKKa.Cafe ( -- 카페
+			cafe_no -- 카페번호
 		);
 
 -- 상품정보
