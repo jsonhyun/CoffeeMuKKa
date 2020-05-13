@@ -164,6 +164,16 @@
 	    top: 11px;
     	left: 5px;
 	}
+	
+	.blackOpacity{
+		background-color: rgba(0,0,0,.2);
+		position: absolute;
+		width: 160px;
+		height: 160px;
+		top: 0;
+		left: 0;
+		
+	}
 </style>
 
 <!-- bar-rating -->
@@ -219,6 +229,7 @@
 			<div class="locationCafe">
 				<div class="locationListLeft">
 					<img src="${pageContext.request.contextPath }/resources/images/mansion-1.jpg">
+					<div class="blackOpacity"></div>
 					<div class="star">
 						<select class="starPoint"> 
 							<option value="1">1</option> 
@@ -278,6 +289,7 @@
 			<div class="locationCafe">
 				<div class="locationListLeft">
 					<img src="${pageContext.request.contextPath }/resources/images/lucid-1.jpg">
+					<div class="blackOpacity"></div>
 					<div class="star">
 						<select class="starPoint"> 
 							<option value="1">1</option> 
