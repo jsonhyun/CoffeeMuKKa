@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.yi.domain.CafeVO;
 
 @Repository
-public class UserCafeDAOImpl implements UserCafeDAO {
+public class CafeDAOImpl implements CafeDAO {
 
 	private SqlSession sqlSession;
 	

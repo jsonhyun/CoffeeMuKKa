@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.yi.domain.CafeVO;
 
-public interface UserCafeDAO {
+public interface CafeDAO {
 	public void createCafe(CafeVO vo) throws Exception;
 	public CafeVO readCafe(int cafeNo) throws Exception;
 	public List<CafeVO> list() throws Exception;
