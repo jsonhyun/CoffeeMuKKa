@@ -71,7 +71,7 @@
 		text-align: center;
 	}
 	
-	.cafeSearchWrap .cafeSearch form {
+	.cafeSearchWrap .cafeSearch .inputWrap {
 		padding: 10px;
 	}
 	
@@ -86,12 +86,25 @@
 		margin-right: 5px;
 	}
 	
-	.cafeSearchWrap .cafeSearchBox table {
-		width: 100%;
-		table-layout: fixed; 
+	.cafeSearchWrap .cafeResultWrap {
+		max-height: 300px;
+		overflow: auto;
+		border-bottom: 1px solid #aaa;
 		display: none;
 	}
 	
+	.cafeSearchWrap .cafeSearchBox table {
+		width: 100%;
+		table-layout: fixed; 
+	}
+	
+	.cafeSearchWrap .resCafe {
+		cursor: pointer;
+	}
+	
+	.cafeSearchWrap .resCafe:hover .resCafeName{
+		text-decoration: underline;
+	}
 </style>
 		
 	<div class="content subPageContent">
@@ -126,29 +139,15 @@
 					<div class="cafeSearchBox">
 						<div class="closeBtn"><i class="fas fa-times"></i></div>
 						<div class="cafeSearch">	
-							<h3>카페 검색</h3>					
-							<form action="">
+							<h3>카페 검색</h3>		
+							<div class="inputWrap">
 								<label>카페이름</label>
 								<input type="text" name="cafeName"/>
-								<input class="orangeBtn" type="submit" value="검색"/>
-							</form>
-							<table class="cafeResult">
-								<tr>
-									<th class="w20pc">카페 번호</th>
-									<th class="w20pc">카페 이름</th>
-									<th class="w60pc">카페 주소</th>
-								</tr>
-								<tr>
-									<td>aa</td>
-									<td>aa</td>
-									<td class="classOne">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-								</tr>
-								<tr>
-									<td>aa</td>
-									<td>aa</td>
-									<td class="classOne">aaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-								</tr>
-							</table>
+								<button id="cafeSchBtn" class="orangeBtn" type="button">검색</button>
+							</div>			
+							<div class="cafeResultWrap">
+								<table class="cafeResult"></table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -157,12 +156,64 @@
 		</div>
 	</div>
 	
+<script id="cafeRes" type="text/x-handlebars-tamplate">
+	{{#each.}}
+		<tr class="resCafe" data-cafeName="{{cafeName}}" data-cafeNo="{{cafeNo}}">
+			<td>{{cafeNo}}</td>
+			<td class="resCafeName">{{cafeName}}</td>
+			<td>{{address}}</td>
+		</tr>
+	{{/each}}
+</script>
 <script>
 	$(".cafeSearchBtn").click(function() {
 		$(".cafeSearchWrap").show();
 	})
 	
 	$(".cafeSearchWrap .closeBtn").click(function(){
+		$(".cafeSearchWrap").hide();
+	})
+	
+	$("#cafeSchBtn").click(function() {
+		var cafeName = $("input[name='cafeName']").val();
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/",
+			type:"get",
+			data: {"cafeName" : cafeName},
+			datatype : "json",
+			success:function(res){
+				//console.log(res);
+				$(".cafeResult").empty();
+				$(".cafeResultWrap").hide();
+				
+				var $thNo = $("<th>").addClass("w10pc").text("카페 번호");
+				var $thName = $("<th>").addClass("w25pc").text("카페 이름");
+				var $thAddr = $("<th>").addClass("w60pc").text("카페 이름");
+				var $tr = $("<tr>").append($thNo).append($thName).append($thAddr);
+				
+				$(".cafeResult").append($tr);
+				
+				if(res.length == 0) {
+					var $tdNone = $("<td>").attr("colspan", "3").text("등록된 카페가 없습니다.");
+					var $tr = $("<tr>").append($tdNone);
+					$(".cafeResult").append($tr);
+				} else {					
+					var source = $("#cafeRes").html();
+					var func = Handlebars.compile(source);
+					$(".cafeResult").append(func(res));
+				}
+				
+				$(".cafeResultWrap").show();
+			}
+		})
+	})
+	
+	$(document).on("click", ".resCafe", function(){
+		var name = $(this).attr("data-cafeName");
+		var no = $(this).attr("data-cafeNo");
+		
+		$(".cafeName").val(name);
+		$(".cafeNo").val(no);
 		$(".cafeSearchWrap").hide();
 	})
 </script>

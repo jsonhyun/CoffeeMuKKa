@@ -15,6 +15,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/6f2f0f2d95.js"></script>
+<!-- handlebars -->
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 <script>
 	$(function(){
