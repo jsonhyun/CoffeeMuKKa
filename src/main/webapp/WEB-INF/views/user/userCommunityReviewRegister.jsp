@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
+
+<!-- CKEditor -->
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
 <style>
 	.cafeRTitle {
 		padding-bottom: 30px;
@@ -18,9 +22,24 @@
 				<span class="title">생생 카페 탐방기 > </span>
 				<span class="red">글쓰기</span>
 			</h2>
-				
-			
-
+			<div class="cafeRForm">
+				<form action="">
+					<div class="cafeR_search">
+						<label>카페</label>
+						<button class="cafeSearchBtn">카페찾기</button>
+						<input type="text" placeholder="카페를 찾아주세요." readonly="readonly"/>
+						<input type="hidden" name="cafeNo"/>
+					</div>
+					<div class="cafeR_TitleForm">
+						<label></label>
+					</div>
+					<textarea name="" id="p_content" class="form-control"></textarea>
+					<script type="text/javascript">
+						CKEDITOR.replace("p_content", 
+										{height: 500});
+					</script>
+				</form>
+			</div>
 		</div>
 	</div>
 	
