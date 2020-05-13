@@ -134,6 +134,15 @@ a {
 	border: none;
 	color: #fff;
 	padding: 3px 10px;
+	cursor: pointer;
+}
+
+.orangeBtn {
+	background-color: #ED7D31;
+	border: none;
+	color: #fff;
+	padding: 3px 10px;
+	cursor: pointer;
 }
 
 .grayLineBtn {
@@ -141,6 +150,7 @@ a {
 	padding: 5px 10px;
 	background-color: #fff;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 /* 한줄 */
