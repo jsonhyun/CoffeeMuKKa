@@ -367,6 +367,7 @@ ALTER TABLE CoffeeMuKKa.Menu
 CREATE TABLE CoffeeMuKKa.Starpoint (
 	star_point_no      INT     NOT NULL COMMENT '별점번호', -- 별점번호
 	cafe_no            INT     NOT NULL COMMENT '카페번호', -- 카페번호
+	theme_no           INT     NOT NULL COMMENT '테마번호', -- 테마번호
 	star_point         INTEGER NOT NULL COMMENT '별점', -- 별점
 	star_point_comment TEXT    NULL     COMMENT '별점댓글' -- 별점댓글
 )
@@ -704,6 +705,16 @@ ALTER TABLE CoffeeMuKKa.Starpoint
 		)
 		REFERENCES CoffeeMuKKa.Cafe ( -- 카페
 			cafe_no -- 카페번호
+		);
+
+-- 별점
+ALTER TABLE CoffeeMuKKa.Starpoint
+	ADD CONSTRAINT FK_Theme_TO_Starpoint -- 테마분류 -> 별점
+		FOREIGN KEY (
+			theme_no -- 테마번호
+		)
+		REFERENCES CoffeeMuKKa.Theme ( -- 테마분류
+			theme_no -- 테마번호
 		);
 
 -- 키워드분류
