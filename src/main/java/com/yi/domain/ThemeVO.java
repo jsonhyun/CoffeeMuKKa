@@ -3,6 +3,11 @@ package com.yi.domain;
 public class ThemeVO {
 	private int themeNo; //테마번호
 	private String themeName; //테마이름
+
+	
+	public ThemeVO(int themeNo) {
+		this.themeNo = themeNo;
+	}
 	
 	public int getThemeNo() {
 		return themeNo;

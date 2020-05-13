@@ -4,6 +4,12 @@ public class ZoneVO {
 	private int zoneNo; //지역번호
 	private String zoneName; //지역이름
 	
+	
+	
+	public ZoneVO(int zoneNo) {
+		this.zoneNo = zoneNo;
+	}
+	
 	public int getZoneNo() {
 		return zoneNo;
 	}
