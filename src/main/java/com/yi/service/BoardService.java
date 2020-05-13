@@ -1,5 +1,7 @@
 package com.yi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,9 @@ public class BoardService {
 	
 	public void rcInsert(BoardVO vo) throws Exception{
 		dao.rcInsert(vo);
+	}
+	
+	public List<BoardVO> listBoard(BoardVO vo) throws Exception{
+		return dao.listBoard(vo);
 	}
 }

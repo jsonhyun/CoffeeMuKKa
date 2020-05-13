@@ -1,7 +1,5 @@
 package com.yi.coffeemukka;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,7 @@ public class BoardDAOTest {
 		System.out.println("BoardDAO값 "+dao);
 	}
 	
-	@Test
+	//@Test
 	public void testRcInsert() throws Exception{
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo2(new BoardKindsVO(2));
@@ -40,5 +38,11 @@ public class BoardDAOTest {
 		dao.rcInsert(vo);
 	}
 	
+	@Test
+	public void testListBoard() throws Exception{
+		BoardVO vo = new BoardVO();
+		vo.setBoardNo2(new BoardKindsVO(2));
+		dao.listBoard(vo);
+	}
 	
 }

@@ -1,14 +1,24 @@
 package com.yi.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.yi.domain.BoardVO;
+import com.yi.service.BoardService;
 
 @Controller
 @RequestMapping("/user/*")
 public class UserBoardController {
 
 	// 서비스 
+	@Autowired
+	BoardService service;
+	
 	
 	// 커뮤니티 - 탐방기 : 경진
 	//register/read/modify/remove/list
@@ -24,10 +34,14 @@ public class UserBoardController {
 	
 	
 	// 커뮤니티 - 무까추천 : 아름
-	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
+	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) 
+	 * @throws Exception **/
 	//list
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
-	public String communityRecommendList() {
+	public String communityRecommendList(BoardVO vo, Model model) throws Exception {
+		System.out.println(vo);
+		List<BoardVO> list = service.listBoard(vo);
+		model.addAttribute("list", list);
 		return "/user/userCommunityRecommendList";
 	}
 	//register

@@ -22,6 +22,11 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.insert(namespace+"rcInsert", vo);		
 	}
 
+	@Override
+	public List<BoardVO> listBoard(BoardVO vo) throws Exception {
+		return sqlSession.selectList(namespace+"listBoard", vo);
+	}
+
 
 
 

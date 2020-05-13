@@ -6,7 +6,7 @@
 		insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo2}, #{userNo}, #{zoneNo}, #{themeNo}, #{writingTitle}, #{writingContent}, #{address})
 	</insert>
 	
-	<select id="list" resultType="BoardVO">
-		select * from board
+	<select id="listBoard" resultType="BoardVO">
+		select * from board where board_no2 = #{boardNo2} order by board_no desc
 	</select>	
 </mapper>
