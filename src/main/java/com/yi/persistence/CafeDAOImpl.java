@@ -76,4 +76,8 @@ public class CafeDAOImpl implements CafeDAO {
 //		return sqlSession.selectOne(namespace+"totalSearchCount", cri);
 //	}
 
+	@Override
+	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
+		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
+	}
 }

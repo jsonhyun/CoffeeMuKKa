@@ -20,4 +20,7 @@ public interface CafeDAO {
 	
 //	public List<CafeVO> listSearchCriteria(SearchCriteria cri) throws Exception;
 //	public int totalSearchCount(SearchCriteria cri) throws Exception;
+	
+	// 카페 이름 검색
+	public List<CafeVO> searchCafeByName(String cafeName) throws Exception;
 }

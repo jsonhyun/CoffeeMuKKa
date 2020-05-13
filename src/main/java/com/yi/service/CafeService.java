@@ -52,4 +52,8 @@ public class CafeService {
 	public void delete(int cafeNo) throws Exception {
 		dao.deleteCafe(cafeNo);
 	}
+	
+	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
+		return dao.searchCafeByName(cafeName);
+	}
 }
