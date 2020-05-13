@@ -226,9 +226,10 @@
 			</div>
 			
 			<!-- 위치별 카페 리스트 -->
+			<c:forEach var="cafe" items="${list }">
 			<div class="locationCafe">
 				<div class="locationListLeft">
-					<img src="${pageContext.request.contextPath }/resources/images/mansion-1.jpg">
+					<img src="${pageContext.request.contextPath }/resources/images/lucid-1.jpg">
 					<div class="blackOpacity"></div>
 					<div class="star">
 						<select class="starPoint"> 
@@ -239,13 +240,13 @@
 							<option value="5">5</option> 
 						</select>
 					</div>
-					<div class="cafeVoteNum bgRed">8</div>
+					<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
 				</div>
 				<div class="locationListCenter">
 					<div class="daeguIcon">대구</div>
 					<div class="themeIcon">#데이트</div>
-					<h2 class="cafeTitle">MANSION 5</h2>
-					<p class="oneline">'대구 동성로 한옥카페 MANSION 5 한옥갬성 충만한 한옥카페입니다.'</p>
+					<h2 class="cafeTitle">${cafe.cafeName }</h2>
+					<p class="oneline">'${cafe.oneline }'</p>
 					<div>
 						<div class="visit">
 							<div class="visitAndLocation">
@@ -260,14 +261,14 @@
 								<img src="${pageContext.request.contextPath }/resources/images/menu5.png">
 							</div>
 							<div>
-								<p>대구 달서구 용산동 44길 14</p>
+								<p>${cafe.address }, ${cafe.detailAddress }</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="locationListRight">
 					<div>
-						<p class="cafeRegiDate">2020/05/11 12:30</p>
+						<p class="cafeRegiDate">${cafe.registrationDate }</p>
 						<img class="cafeZzim" src="${pageContext.request.contextPath }/resources/images/key1.png">
 					</div>
 					<div>
@@ -277,7 +278,7 @@
 						</div>
 						<div class="replyAndView">
 							<img src="${pageContext.request.contextPath }/resources/images/view.png">
-							<span>200</span>
+							<span>${cafe.viewNumber }</span>
 						</div>
 					</div>
 					<div class="more">
@@ -285,8 +286,8 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="locationCafe">
+			</c:forEach>
+			<%-- <div class="locationCafe">
 				<div class="locationListLeft">
 					<img src="${pageContext.request.contextPath }/resources/images/lucid-1.jpg">
 					<div class="blackOpacity"></div>
@@ -344,7 +345,7 @@
 						<p><span>카페정보</span> 더보기 ></p>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 		</div>
 	</div>
 	

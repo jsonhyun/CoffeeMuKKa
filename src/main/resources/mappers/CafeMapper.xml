@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.UserCafeMapper">
+<mapper namespace="mappers.CafeMapper">
 	<insert id="createCafe" parameterType="CafeVO">
 		insert into cafe (cafe_name,
 		                  theme_no, 
@@ -119,4 +119,50 @@
 	<delete id="deleteCafe" parameterType="CafeVO">
 		delete from cafe where cafe_no=#{cafeNo}
 	</delete>
+	
+	<!-- 페이징 처리 sql문 -->
+	<select id="listPage" resultType="CafeVO">
+		select * from cafe order by cafe_no desc limit #{page}, 10
+	</select>
+	
+	<select id="listCriteria" resultType="CafeVO">
+		select * from cafe order by cafe_no desc limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		select count(cafe_no) from cafe
+	</select>
+	
+<!-- 키워드 이용 검색시 페이징 처리 매퍼 	
+	<sql id="search">
+		<if test="searchType=='t'.toString()">
+			where title like CONCAT('%','${keyword}','%')
+		</if>
+		<if test="searchType=='c'.toString()">
+			where content like CONCAT('%','${keyword}','%')
+		</if>
+		<if test="searchType=='w'.toString()">
+			where writer like CONCAT('%','${keyword}','%')
+		</if>
+		<if test="searchType=='tc'.toString()">
+				where title like CONCAT('%','${keyword}','%') OR content like CONCAT('%','${keyword}','%')
+		</if>
+		<if test="searchType=='cw'.toString()">
+			where content like CONCAT('%','${keyword}','%') OR writer like CONCAT('%','${keyword}','%')
+		</if>
+		<if test="searchType=='tcw'.toString()">
+			where title like CONCAT('%','${keyword}','%') OR content like CONCAT('%','${keyword}','%') OR writer like CONCAT('%','${keyword}','%')
+		</if>
+	</sql>
+	
+	<select id="listSearchCriteria" resultType="BoardVO">
+		select * from tbl_board
+			<include refid="search"></include>
+			order by bno desc limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="totalSearchCount" resultType="int">
+		select count(bno) from tbl_board
+			<include refid="search"></include>
+	</select> -->
 </mapper>
