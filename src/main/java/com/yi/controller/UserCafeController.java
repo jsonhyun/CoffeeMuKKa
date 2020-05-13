@@ -14,4 +14,6 @@ public class UserCafeController {
 	public String cafeZoneList() {
 		return "/user/userMukkaCafeZoneList";
 	}
+	
+	
 }
