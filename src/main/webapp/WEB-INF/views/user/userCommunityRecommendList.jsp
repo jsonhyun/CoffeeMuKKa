@@ -236,14 +236,12 @@
 				<ul>
 					<c:forEach var="board" items="${list}">
 						<li>
-						<div class="RC_listImg">
-						</div>
-						<div class="RC_listTitle">
-							<div class="zoneBtn zoneOrangeIconSmall">위치</div>
-							<div class="ame themeKeySmall">#착한아메</div>
-							<h3 class="RC_titleName">${board.writingTitle}</h3>						
-						</div>
-
+								<div class="RC_listImg"></div>
+								<div class="RC_listTitle">
+									<div class="zoneBtn zoneOrangeIconSmall">위치</div>
+									<div class="ame themeKeySmall">#착한아메</div>
+									<h3 class="RC_titleName">${board.writingTitle}</h3>						
+								</div>
 						</li>
 					</c:forEach>
 				</ul>

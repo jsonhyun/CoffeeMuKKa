@@ -16,18 +16,20 @@
 	select.cate{
 		width: 10%;
 		height: 30px;
+		margin-right: 12px;
 	}
 	label{
 		font-weight: bold;
 		width: 15%;
 		float: left;
 	}
-	button#searchPoint{
+	button.searchPoint{
+		width: 10%;
 		height: 33px;
-		margin-right: 5px;
+		margin-right: 12px;
 	}
 	input#point{
-		width: 75%;
+		width: 72%;
 		height: 30px;
 		background-color: #FAFAFA;		
 	}
@@ -96,7 +98,7 @@
 			</div>	
 			<div class="RC_Rg_groub">	
 				<label>카페 위치</label>
-				<button id="searchPoint">위치찾기</button>
+				<button class="searchPoint orangeBtn">위치찾기</button>
 				<input type="text" name="point" id="point" readonly>
 			</div>					
 			<div class="RC_Rg_groub">		
