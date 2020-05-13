@@ -22,8 +22,12 @@
 		width: 15%;
 		float: left;
 	}
+	button#searchPoint{
+		height: 33px;
+		margin-right: 5px;
+	}
 	input#point{
-		width: 84%;
+		width: 75%;
 		height: 30px;
 		background-color: #FAFAFA;		
 	}
@@ -74,7 +78,7 @@
 		<h3 id="RC_line"></h3>
 		<form action="register" method="post" enctype="multipart/form-data">
 			<div class="RC_Rg_groub">	
-				<label>카테고리</label>
+				<label>카 테 고 리</label>
 				<select class="cate">
 					<option>대구</option>
 					<option>대구</option>
@@ -91,12 +95,13 @@
 				</select>
 			</div>	
 			<div class="RC_Rg_groub">	
-				<label>위치</label>
-				<input type="text" name="point" id="point">
+				<label>카페 위치</label>
+				<button id="searchPoint">위치찾기</button>
+				<input type="text" name="point" id="point" readonly>
 			</div>					
 			<div class="RC_Rg_groub">		
-				<label>제목</label>
-				<input type="text" name="title" id="title">
+				<label>카페 상호명</label>
+				<input type="text" name="title" id="title" placeholder=" >> 위치 검색후 없을시 직접입력">
 			</div>		
 			<div class="RC_Rg_groub">	
 				<textarea rows="15" cols="100" name="text" id="text"></textarea>

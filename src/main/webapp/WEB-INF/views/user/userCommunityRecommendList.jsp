@@ -57,10 +57,27 @@
 	
 	.recommendBest .recomWrap li {
 		float: left;
-		width: 164px;
-		height: 180px;
+		width: 162px;
+		height: 220px;
 		margin: 10px;
+		border: 1px solid #545454;
 	}
+	.recommendBest .recomWrap li div.RC_listImg{
+		width: 100%;
+		height: 140px;
+		background-color: gray;
+	}
+	.recommendBest .recomWrap li div.RC_listTitle{
+		width: 90%;
+		height: 80px;
+		padding: 8px;
+	}
+	.recommendBest .recomWrap li div.RC_listTitle div.zoneBtn,div.themeKeySmall{
+		font-size: 13px;
+	}
+	.recommendBest .recomWrap li div.RC_listTitle h3.RC_titleName{
+		padding-top: 7px;
+	}				
 </style>
 	
 <div class="content subPageContent">
@@ -189,7 +206,7 @@
 		<!-- 추천카페 : 리스트  -->
 			<div class="recommendBest mb30">
 				<div class="recomWrap">
-					<ul>
+<!-- 					<ul>
 						<li class="temp"><a href="#"></a></li>
 						<li class="temp"><a href="#"></a></li>
 						<li class="temp"><a href="#"></a></li>
@@ -215,15 +232,23 @@
 						<li class="temp"><a href="#"></a></li>
 						<li class="temp"><a href="#"></a></li>
 						<li class="temp"><a href="#"></a></li>						
-					</ul>
+					</ul> -->
+				<ul>
+					<c:forEach var="board" items="${list}">
+						<li>
+						<div class="RC_listImg">
+						</div>
+						<div class="RC_listTitle">
+							<div class="zoneBtn zoneOrangeIconSmall">위치</div>
+							<div class="ame themeKeySmall">#착한아메</div>
+							<h3 class="RC_titleName">${board.writingTitle}</h3>						
+						</div>
+
+						</li>
+					</c:forEach>
+				</ul>
 				</div>
 			</div>
-			
-			<ul>
-				<c:forEach var="board" items="${list}">
-					<li>${board.title}</li>
-				</c:forEach>
-			</ul>
 		</div>				
 	</div> 
 </div>
