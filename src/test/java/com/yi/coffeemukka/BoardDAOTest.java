@@ -25,11 +25,11 @@ public class BoardDAOTest {
 		System.out.println("BoardDAO값 "+dao);
 	}
 	
-	//@Test
+	@Test
 	public void testRcInsert() throws Exception{
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo2(new BoardKindsVO(2));
-		vo.setUserNo(new UsersVO(0));
+		vo.setUserNo(new UsersVO(1));
 		vo.setZoneNo(new ZoneVO(1));
 		vo.setThemeNo(new ThemeVO(1));
 		vo.setWritingTitle("테스트제목");
@@ -40,9 +40,9 @@ public class BoardDAOTest {
 		dao.rcInsert(vo);
 	}
 	
-	//@Test
-//	public void testListBoard() throws Exception{
-//		dao.boardList();
-//	}
+	@Test
+	public void testListBoard() throws Exception{
+		dao.boardList();
+	}
 	
 }
