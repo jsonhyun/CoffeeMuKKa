@@ -40,12 +40,17 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<!-- 베이스패키지안에 있는 impl클래스를 다 빈으로 등록하겠다 -->
+	
+<!-- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<tx:annotation-driven/>
+	<tx:annotation-driven/> -->
 	
 	<context:component-scan base-package="com.yi.persistence"></context:component-scan>
-	<context:component-scan base-package="com.yi.service"></context:component-scan>
+	
+	<context:component-scan base-package="com.yi.service"></context:component-scan>	
+	
+	<context:component-scan base-package="com.yi.aop"></context:component-scan>
 	
 </beans>

@@ -9,6 +9,7 @@ public class BoardVO {
 	private UsersVO userNo; //회원번호
 	private ZoneVO zoneNo; //지역번호
 	private ThemeVO themeNo; //테마번호
+	private CafeVO cafeNo; // 카페번호
 	private int writingLockCondition;//글 잠금여부
 	private String writingTitle;//글제목
 	private Date registrationDate;//작성일
@@ -16,6 +17,8 @@ public class BoardVO {
 	private int viewNumber;//조회수
 	private int voteNumber;//추천수
 	private String writingContent;//글내용
+	private String address; // 추가된주소(무까인 추천 -> 새로운 카페 주소)
+	
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -94,13 +97,31 @@ public class BoardVO {
 	public void setWritingContent(String writingContent) {
 		this.writingContent = writingContent;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public CafeVO getCafeNo() {
+		return cafeNo;
+	}
+	public void setCafeNo(CafeVO cafeNo) {
+		this.cafeNo = cafeNo;
+	}
+	
 	@Override
 	public String toString() {
 		return "BoardVO [boardNo=" + boardNo + ", boardNo2=" + boardNo2 + ", KeySortNo=" + KeySortNo + ", userNo="
-				+ userNo + ", zoneNo=" + zoneNo + ", themeNo=" + themeNo + ", writingLockCondition="
-				+ writingLockCondition + ", writingTitle=" + writingTitle + ", registrationDate=" + registrationDate
-				+ ", updateDate=" + updateDate + ", viewNumber=" + viewNumber + ", voteNumber=" + voteNumber
-				+ ", writingContent=" + writingContent + "]";
+				+ userNo + ", zoneNo=" + zoneNo + ", themeNo=" + themeNo + ", cafeNo=" + cafeNo
+				+ ", writingLockCondition=" + writingLockCondition + ", writingTitle=" + writingTitle
+				+ ", registrationDate=" + registrationDate + ", updateDate=" + updateDate + ", viewNumber=" + viewNumber
+				+ ", voteNumber=" + voteNumber + ", writingContent=" + writingContent + ", address=" + address + "]";
 	}
+
+	
+	
+	
+	
 		
 }
