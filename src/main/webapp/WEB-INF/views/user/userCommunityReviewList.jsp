@@ -284,7 +284,9 @@
 				<h3 class="cafeR_title">오늘의 탐방기 | <span class="red cafeRCnt">N개</span></h3>
 				<div class="cafeR_topBtns">
 					<div class="cafeR_topBtn cafeR_totalBtn grayLineBtn"><a href="#"><span class="red bold">베스트 글</span> 전체 보기</a></div>
-					<div class="cafeR_topBtn cafeR_add navyBtn"><a href="#" class="cafeR_addBtn">탐방기 쓰기</a></div>
+					<div class="cafeR_topBtn cafeR_add navyBtn">
+						<a href="${pageContext.request.contextPath }/user/community/cafeReview/register" class="cafeR_addBtn">탐방기 쓰기</a>
+					</div>
 				</div>
 			</div>
 			<div class="cafeR_list clearfix mb30">

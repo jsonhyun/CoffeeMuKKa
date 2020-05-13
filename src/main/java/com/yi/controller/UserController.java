@@ -49,7 +49,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.GET)
 	public String communityReviewRegister() {
-		return "/user/userCommunityReviewForm";
+		return "/user/userCommunityReviewRegister";
 	}
 	
 	//register/read/modify/remove/list
