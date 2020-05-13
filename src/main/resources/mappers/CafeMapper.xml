@@ -165,4 +165,8 @@
 		select count(bno) from tbl_board
 			<include refid="search"></include>
 	</select> -->
+	
+	<select id="searchCafeByName" resultType="CafeVO">
+		select * from cafe where cafe_name #{cafeName};
+	</select>
 </mapper>
