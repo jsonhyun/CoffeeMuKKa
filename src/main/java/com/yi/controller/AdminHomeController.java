@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/*")
-public class AdminController {
+public class AdminHomeController {
 	
 	// 서비스 
 	
