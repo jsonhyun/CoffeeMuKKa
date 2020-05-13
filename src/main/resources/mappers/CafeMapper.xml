@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.UserCafeMapper">
+	<insert id="createCafe" parameterType="CafeVO">
+		insert into cafe (cafe_name,
+		                  theme_no, 
+		                  zone_no, 
+		                  user_no, 
+		                  address, 
+		                  detail_address, 
+		                  tel, 
+		                  opentime, 
+		                  closed_day, 
+		                  sns, 
+		                  table_number, 
+		                  socket_number, 
+		                  toilet_cdt, 
+		                  mkdessert_cdt, 
+		                  terras_cdt, 
+		                  reservation_cdt, 
+		                  wondoo_buy_cdt, 
+		                  book_cdt, 
+		                  beer_cdt, 
+		                  goods_cdt, 
+		                  wifi_cdt, 
+		                  puppy_cdt,
+		                  reserveok_cdt, 
+		                  parking_cdt, 
+		                  nokids_cdt, 
+		                  registration_date, 
+		                  update_date, 
+		                  view_number, 
+		                  content, 
+		                  oneline, 
+		                  vote_number, 
+		                  powerlink_cdt, 
+		                  cafe_cdt)
+		values (#{cafeName}, 
+		        #{themeNo}, 
+		        #{zoneNo}, 
+		        #{userNo}, 
+		        #{address}, 
+		        #{detailAddress}, 
+		        #{tel}, 
+		        #{opentime}, 
+		        #{closedDay}, 
+		        #{sns}, 
+		        #{tableNumber},
+		        #{socketNumber}, 
+		        #{toiletCdt}, 
+		        #{mkdessertCdt}, 
+		        #{terrasCdt}, 
+		        #{reservationCdt}, 
+		        #{wondooBuyCdt}, 
+		        #{bookCdt}, 
+		        #{beerCdt}, 
+		        #{goodsCdt},
+		        #{wifiCdt}, 
+		        #{puppyCdt}, 
+		        #{reserveokCdt}, 
+		        #{parkingCdt}, 
+		        #{nokidsCdt}, 
+		        #{registrationDate}, 
+		        #{updateDate}, 
+		        #{viewNumber}, 
+		        #{content},
+		        #{oneline}, 
+		        #{voteNumber}, 
+		        #{powerlinkCdt}, 
+		        #{cafeCdt})
+	</insert>
+	
+	<select id="readCafe" resultType="CafeVO">
+		select * from cafe
+		where cafe_no = #{cafeNo}
+	</select>
+	
+	<select id="list" resultType="CafeVO">
+		select * from cafe
+	</select>
+	
+	<update id="updateCafe" parameterType="CafeVO">
+		update cafe set cafe_name=#{cafeName}, 
+		                theme_no=#{themeNo}, 
+		                zone_no=#{zoneNo}, 
+		                user_no=#{userNo}, 
+		                address=#{address}, 
+		                detail_address=#{detailAddress}, 
+		                tel=#{tel}, 
+		                opentime=#{opentime}, 
+		                closed_day=#{closedDay}, 
+		                sns=#{sns}, 
+		                table_number=#{tableNumber}, 
+		                socket_number=#{socketNumber}, 
+		                toilet_cdt=#{toiletCdt},
+		                mkdessert_cdt=#{mkdessertCdt}, 
+		                terras_cdt=#{terrasCdt}, 
+		                reservation_cdt=#{reservationCdt}, 
+		                wondoo_buy_cdt=#{wondooBuyCdt}, 
+		                book_cdt=#{bookCdt},
+		                beer_cdt=#{beerCdt}, 
+		                goods_cdt=#{goodsCdt}, 
+		                wifi_cdt=#{wifiCdt}, 
+		                puppy_cdt=#{puppyCdt}, 
+		                reserveok_cdt=#{reserveokCdt}, 
+		                parking_cdt=#{parkingCdt},
+		                nokids_cdt=#{nokidsCdt}, 
+		                registration_date=#{registrationDate}, 
+		                update_date=#{updateDate}, 
+		                view_number=#{viewNumber}, 
+		                content=#{content},
+		                oneline=#{oneline}, 
+		                vote_number=#{voteNumber}, 
+		                powerlink_cdt=#{powerlinkCdt}, 
+		                cafe_cdt=#{cafeCdt} 
+		where cafe_no=#{cafeNo}
+	</update>
+	
+	<delete id="deleteCafe" parameterType="CafeVO">
+		delete from cafe where cafe_no=#{cafeNo}
+	</delete>
+</mapper>
