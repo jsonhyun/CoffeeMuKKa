@@ -5,7 +5,7 @@ import java.util.Date;
 public class BoardVO {
 	private int boardNo; //게시글번호
 	private BoardKindsVO boardNo2; //게시판번호
-	private KeywordcateVO KeySortNo; // 키워드분류번호
+	private KeywordcateVO keySortNo; // 키워드분류번호
 	private UsersVO userNo; //회원번호
 	private ZoneVO zoneNo; //지역번호
 	private ThemeVO themeNo; //테마번호
@@ -32,10 +32,10 @@ public class BoardVO {
 		this.boardNo2 = boardNo2;
 	}
 	public KeywordcateVO getKeySortNo() {
-		return KeySortNo;
+		return keySortNo;
 	}
 	public void setKeySortNo(KeywordcateVO keySortNo) {
-		KeySortNo = keySortNo;
+		this.keySortNo = keySortNo;
 	}
 	public UsersVO getUserNo() {
 		return userNo;
@@ -112,7 +112,7 @@ public class BoardVO {
 	
 	@Override
 	public String toString() {
-		return "BoardVO [boardNo=" + boardNo + ", boardNo2=" + boardNo2 + ", KeySortNo=" + KeySortNo + ", userNo="
+		return "BoardVO [boardNo=" + boardNo + ", boardNo2=" + boardNo2 + ", KeySortNo=" + keySortNo + ", userNo="
 				+ userNo + ", zoneNo=" + zoneNo + ", themeNo=" + themeNo + ", cafeNo=" + cafeNo
 				+ ", writingLockCondition=" + writingLockCondition + ", writingTitle=" + writingTitle
 				+ ", registrationDate=" + registrationDate + ", updateDate=" + updateDate + ", viewNumber=" + viewNumber

@@ -34,14 +34,17 @@ public class UserBoardController {
 	
 	
 	// 커뮤니티 - 무까추천 : 아름
-	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) 
-	 * @throws Exception **/
+	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
 	//list
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
-	public String communityRecommendList(BoardVO vo, Model model) throws Exception {
-		System.out.println(vo);
-		List<BoardVO> list = service.listBoard(vo);
-		model.addAttribute("list", list);
+	public String communityRecommendList(Model model) throws Exception {
+		System.out.println("------------------test");
+		//List<BoardVO> list = service.boardList();
+		
+		//System.out.println("test값"+list.toString());
+		//List<BoardVO> list = service.boardList();
+		//System.out.println(list.toString());
+		//model.addAttribute("list",list);
 		return "/user/userCommunityRecommendList";
 	}
 	//register

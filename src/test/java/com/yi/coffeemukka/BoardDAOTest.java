@@ -35,14 +35,14 @@ public class BoardDAOTest {
 		vo.setWritingTitle("테스트제목");
 		vo.setWritingContent("테스트 글내용");
 		vo.setAddress("대구광역시");
+		System.out.println(vo.toString());
+		System.out.println(vo.getBoardNo2().getBoardNo());
 		dao.rcInsert(vo);
 	}
 	
-	@Test
-	public void testListBoard() throws Exception{
-		BoardVO vo = new BoardVO();
-		vo.setBoardNo2(new BoardKindsVO(2));
-		dao.listBoard(vo);
-	}
+	//@Test
+//	public void testListBoard() throws Exception{
+//		dao.boardList();
+//	}
 	
 }

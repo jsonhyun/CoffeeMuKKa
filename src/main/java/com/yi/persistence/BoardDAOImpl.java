@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
 
 @Repository
@@ -23,9 +22,11 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public List<BoardVO> listBoard(BoardVO vo) throws Exception {
-		return sqlSession.selectList(namespace+"listBoard", vo);
+	public List<BoardVO> boardList() throws Exception {
+		return sqlSession.selectList(namespace+"boardList");
 	}
+	
+
 
 
 

@@ -218,6 +218,12 @@
 					</ul>
 				</div>
 			</div>
+			
+			<ul>
+				<c:forEach var="board" items="${list}">
+					<li>${board.title}</li>
+				</c:forEach>
+			</ul>
 		</div>				
 	</div> 
 </div>

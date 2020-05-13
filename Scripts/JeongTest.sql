@@ -15,3 +15,5 @@ select * from users;
 insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (2,0,1,1,'추천카페 테스트글','테스트내용','대구광역시');
 
 select * from board where board_no2 = 2 order by  board_no desc;
+
+select * from board order by board_no desc;

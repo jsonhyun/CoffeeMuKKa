@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardMapper">
-	<!-- 추천카페 : 글등록 -->
-	<insert id="rcInsert" parameterType="BoardVO">
-		insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo2}, #{userNo}, #{zoneNo}, #{themeNo}, #{writingTitle}, #{writingContent}, #{address})
+ <!--  	<resultMap type="BoardKindsVO" id="boardKindsResult">
+ 		<id property="boardNo" column="board_no"/>
+ 		<id property="boardName" column="board_name"/> 		
+ 	</resultMap>
+ 	
+	<resultMap type="KeywordcateVO" id="keywordcateResult">
+ 		<id property="keySortNo" column=""/>
+ 		<id property="keyName" column="key_name"/>
+ 		<association property="boardNo" column="board_no"/>			 			
+	</resultMap>
+	
+	<resultMap type="UsersVO" id="usersResult">
+ 		<id property="" column=""/>
+ 		<id property="" column=""/>
+ 		<id property="" column=""/> 	
+	</resultMap>
+	<resultMap type="ZoneVO" id="zoneResult">
+ 		<id property="" column=""/>
+ 		<id property="" column=""/>
+ 		<id property="" column=""/> 	
+	</resultMap>
+	<resultMap type="ThemeVO" id="themeResult">
+ 		<id property="" column=""/>
+ 		<id property="" column=""/>
+ 		<id property="" column=""/> 	
+	</resultMap>
+	<resultMap type="CafeVO" id="cafeResult">
+ 		<id property="" column=""/>
+ 		<id property="" column=""/>
+ 		<id property="" column=""/> 	
+	</resultMap>
+						
+     <resultMap type="BoardVO" id="boardResult">
+		<id property="boardNo" column="board_no"/>
+		<id property="writingLockCondition" column="writing_lock_condition"/>
+		<id property="writingTitle" column="writing_title"/>
+		<id property="registrationDate" column="registration_date"/>
+		<id property="updateDate" column="update_date"/>
+		<id property="viewNumber" column="view_number"/>
+		<id property="voteNumber" column="vote_umber"/>
+		<id property="writingContent" column="writing_content"/>
+		<id property="address" column="address"/>
+		<association property="boardNo2" column="board_no2"/>
+		<association property="keySortNo" column="key_sort_no"/>
+		<association property="userNo" column="user_no"/>
+		<association property="zoneNo" column="zone_no"/>
+		<association property="themeNo" column="theme_no"/>
+		<association property="cafeNo" column="cafe_no"/>					
+	</resultMap> -->
+	
+	<!-- 추천카페 : 글등록	 -->
+ 	<insert id="rcInsert">
+		insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
 	</insert>
 	
-	<select id="listBoard" resultType="BoardVO">
-		select * from board where board_no2 = #{boardNo2} order by board_no desc
-	</select>	
+	<select id="boardList" resultType="BoardVO"> <!-- select * from board where board_no2 = #{boardNo2} order by board_no desc -->
+		select * from board order by board_no desc
+	</select>
 </mapper>
