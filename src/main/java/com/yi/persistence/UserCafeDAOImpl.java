@@ -45,4 +45,10 @@ public class UserCafeDAOImpl implements UserCafeDAO {
 		sqlSession.delete(namespace+"deleteCafe", cafeNo);
 	}
 
+	@Override
+	public CafeVO searchCafeByName(String cafeName) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

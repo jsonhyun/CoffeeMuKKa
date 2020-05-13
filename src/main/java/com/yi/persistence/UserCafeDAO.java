@@ -10,4 +10,7 @@ public interface UserCafeDAO {
 	public List<CafeVO> list() throws Exception;
 	public void updateCafe(CafeVO vo) throws Exception;
 	public void deleteCafe(int cafeNo) throws Exception;
+	
+	// 카페 이름 검색
+	public CafeVO searchCafeByName(String cafeName) throws Exception;
 }
