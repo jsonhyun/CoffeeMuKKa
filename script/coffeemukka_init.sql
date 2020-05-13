@@ -61,6 +61,7 @@ CREATE TABLE CoffeeMuKKa.Board (
 	user_no                INT          NOT NULL COMMENT '회원번호', -- 회원번호
 	zone_no                INT          NULL     COMMENT '지역번호', -- 지역번호
 	theme_no               INT          NULL     COMMENT '테마번호', -- 테마번호
+	cafe_no                INT          NULL     COMMENT '카페번호', -- 카페번호
 	writing_lock_condition TINYINT      NULL     COMMENT '글잠금여부', -- 글잠금여부
 	writing_title          VARCHAR(255) NOT NULL COMMENT '글제목', -- 글제목
 	registration_date      TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
@@ -563,6 +564,16 @@ ALTER TABLE CoffeeMuKKa.Board
 		)
 		REFERENCES CoffeeMuKKa.Keywordcate ( -- 키워드분류
 			key_sort_no -- 키워드분류번호
+		);
+
+-- 게시판
+ALTER TABLE CoffeeMuKKa.Board
+	ADD CONSTRAINT FK_Cafe_TO_Board -- 카페 -> 게시판
+		FOREIGN KEY (
+			cafe_no -- 카페번호
+		)
+		REFERENCES CoffeeMuKKa.Cafe ( -- 카페
+			cafe_no -- 카페번호
 		);
 
 -- 상품정보
