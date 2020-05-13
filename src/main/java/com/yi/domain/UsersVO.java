@@ -21,6 +21,10 @@ public class UsersVO {
 	private GradeVO userGrade; //회원등급
 	
 	
+	public UsersVO(int userNo) {
+		this.userNo = userNo;
+	}
+	
 	public int getUserNo() {
 		return userNo;
 	}
