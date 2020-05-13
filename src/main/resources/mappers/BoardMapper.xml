@@ -50,9 +50,8 @@
 		<association property="themeNo" column="theme_no"/>
 		<association property="cafeNo" column="cafe_no"/>					
 	</resultMap> -->
-	
-	<!-- 추천카페 : 글등록	 -->
- 	<insert id="rcInsert">
+	<!-- 추천카페 : 글등록 -->
+	<insert id="rcInsert" parameterType="BoardVO">
 		insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
 	</insert>
 	

@@ -5,7 +5,7 @@ public class Criteria {
 	private int perPageNum; //한 페이지 display될 게시글의 갯수
 
 	public Criteria() { //default 값을 먼저 설정
-		this.page = 0;
+		this.page = 1;
 		this.perPageNum = 10;
 	}
 

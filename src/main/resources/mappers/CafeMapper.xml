@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.CafeMapper">
+<mapper namespace="mapper.CafeMapper">
+<!-- 	<resultMap type="CafeVO" id="CafeResult">
+		<id property="cafeNo" column="cafe_no"/>
+		<result property="themeNo.themeNo" column="theme_no"/>
+		<result property="themeNo.themeName" column="theme_name"/>
+	</resultMap> -->
 	<insert id="createCafe" parameterType="CafeVO">
 		insert into cafe (cafe_name,
 		                  theme_no, 
@@ -36,9 +41,9 @@
 		                  powerlink_cdt, 
 		                  cafe_cdt)
 		values (#{cafeName}, 
-		        #{themeNo}, 
-		        #{zoneNo}, 
-		        #{userNo}, 
+		        #{themeNo.themeNo}, 
+		        #{zoneNo.zoneNo}, 
+		        #{userNo.userNo}, 
 		        #{address}, 
 		        #{detailAddress}, 
 		        #{tel}, 
@@ -81,9 +86,9 @@
 	
 	<update id="updateCafe" parameterType="CafeVO">
 		update cafe set cafe_name=#{cafeName}, 
-		                theme_no=#{themeNo}, 
-		                zone_no=#{zoneNo}, 
-		                user_no=#{userNo}, 
+		                theme_no=#{themeNo.themeNo}, 
+		                zone_no=#{zoneNo.zoneNo}, 
+		                user_no=#{userNo.userNo}, 
 		                address=#{address}, 
 		                detail_address=#{detailAddress}, 
 		                tel=#{tel}, 

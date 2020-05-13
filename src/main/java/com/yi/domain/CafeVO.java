@@ -38,6 +38,55 @@ public class CafeVO {
 	private int powerlinkCdt;
 	private int cafeCdt;
 
+	public CafeVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	public CafeVO(int cafeNo, String cafeName, ThemeVO themeNo, ZoneVO zoneNo, UsersVO userNo, String address,
+			String detailAddress, String tel, String opentime, String closedDay, String sns, int tableNumber,
+			int socketNumber, int toiletCdt, int mkdessertCdt, int terrasCdt, int reservationCdt, int wondooBuyCdt,
+			int bookCdt, int beerCdt, int goodsCdt, int wifiCdt, int puppyCdt, int reserveokCdt, int parkingCdt,
+			int nokidsCdt, Date registrationDate, Date updateDate, int viewNumber, String content, String oneline,
+			int voteNumber, int powerlinkCdt, int cafeCdt) {
+		super();
+		this.cafeNo = cafeNo;
+		this.cafeName = cafeName;
+		this.themeNo = themeNo;
+		this.zoneNo = zoneNo;
+		this.userNo = userNo;
+		this.address = address;
+		this.detailAddress = detailAddress;
+		this.tel = tel;
+		this.opentime = opentime;
+		this.closedDay = closedDay;
+		this.sns = sns;
+		this.tableNumber = tableNumber;
+		this.socketNumber = socketNumber;
+		this.toiletCdt = toiletCdt;
+		this.mkdessertCdt = mkdessertCdt;
+		this.terrasCdt = terrasCdt;
+		this.reservationCdt = reservationCdt;
+		this.wondooBuyCdt = wondooBuyCdt;
+		this.bookCdt = bookCdt;
+		this.beerCdt = beerCdt;
+		this.goodsCdt = goodsCdt;
+		this.wifiCdt = wifiCdt;
+		this.puppyCdt = puppyCdt;
+		this.reserveokCdt = reserveokCdt;
+		this.parkingCdt = parkingCdt;
+		this.nokidsCdt = nokidsCdt;
+		this.registrationDate = registrationDate;
+		this.updateDate = updateDate;
+		this.viewNumber = viewNumber;
+		this.content = content;
+		this.oneline = oneline;
+		this.voteNumber = voteNumber;
+		this.powerlinkCdt = powerlinkCdt;
+		this.cafeCdt = cafeCdt;
+	}
+
 	public int getCafeNo() {
 		return cafeNo;
 	}
