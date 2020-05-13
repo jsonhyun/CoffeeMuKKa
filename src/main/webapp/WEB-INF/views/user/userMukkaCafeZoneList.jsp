@@ -26,8 +26,8 @@
 	    height: 160px;
 	    display: inline;
 	    float: left;
-	    border-top: 1px solid black;
-	    border-bottom: 1px solid black;
+	    border-top: 1px solid #545454;
+	    border-bottom: 1px solid #545454;
 	    position: relative;
 	}
 	
@@ -40,8 +40,8 @@
 		line-height: 40px;
 	    float: left;
 	    width: 530px;
-	    border-top: 1px solid black;
-	    border-bottom: 1px solid black;
+	    border-top: 1px solid #545454;
+	    border-bottom: 1px solid #545454;
 	    height: 160px;
 	    padding-left: 22px;
 	}
@@ -83,8 +83,8 @@
 	}
 	
 	.locationListRight{
-		border-top: 1px solid black;
-		border-bottom: 1px solid black;
+		border-top: 1px solid #545454;
+		border-bottom: 1px solid #545454;
 	    float: left;
 	    height: 160px;
 	}
@@ -118,6 +118,10 @@
 		height: 70px;
 	    line-height: 70px;
 	    margin-left: 10px;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+	    padding-right: 30px;
+	    white-space:nowrap;
 	}
 	
 	.replyAndView{
@@ -157,6 +161,7 @@
 	    position: absolute;
 	    top: 0px;
 	    right: 0px;
+	    font-size: 12px;
 	}
 	
 	.star{
@@ -174,6 +179,99 @@
 		left: 0;
 		
 	}
+	.pagination {
+		display: inline-block;
+	  	padding-left: 0;
+	  	margin: 20px 0;
+	  	border-radius: 4px;
+}
+	.pagination > li {
+  		display: inline;
+}
+	.pagination > li > a,
+	.pagination > li > span {
+		position: relative;
+		float: left;
+		padding: 6px 12px;
+		margin-left: -1px;
+		line-height: 1.42857143;
+		color: #303A50;
+		text-decoration: none;
+		background-color: #fff;
+		border: 1px solid #ddd;
+}
+	.pagination > li:first-child > a,
+	.pagination > li:first-child > span {
+		margin-left: 0;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+}
+	.pagination > li:last-child > a,
+	.pagination > li:last-child > span {
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+}
+	.pagination > li > a:hover,
+	.pagination > li > span:hover,
+	.pagination > li > a:focus,
+	.pagination > li > span:focus {
+		color: #23527c;
+		background-color: #eee;
+		border-color: #ddd;
+}
+	.pagination > .active > a,
+	.pagination > .active > span,
+	.pagination > .active > a:hover,
+	.pagination > .active > span:hover,
+	.pagination > .active > a:focus,
+	.pagination > .active > span:focus {
+		z-index: 2;
+		color: #fff;
+		cursor: default;
+		background-color: #303A50;
+		border-color: #303A50;
+}
+	.pagination > .disabled > span,
+	.pagination > .disabled > span:hover,
+	.pagination > .disabled > span:focus,
+	.pagination > .disabled > a,
+	.pagination > .disabled > a:hover,
+	.pagination > .disabled > a:focus {
+		color: #777;
+		cursor: not-allowed;
+		background-color: #fff;
+		border-color: #ddd;
+}
+	.pagination-lg > li > a,
+	.pagination-lg > li > span {
+		padding: 10px 16px;
+		font-size: 18px;
+}
+	.pagination-lg > li:first-child > a,
+	.pagination-lg > li:first-child > span {
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+}
+	.pagination-lg > li:last-child > a,
+	.pagination-lg > li:last-child > span {
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+}
+	.pagination-sm > li > a,
+	.pagination-sm > li > span {
+		padding: 5px 10px;
+		font-size: 12px;
+}
+	.pagination-sm > li:first-child > a,
+	.pagination-sm > li:first-child > span {
+       border-top-left-radius: 3px;
+	   border-bottom-left-radius: 3px;
+}
+	.pagination-sm > li:last-child > a,
+	.pagination-sm > li:last-child > span {
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+}
 </style>
 
 <!-- bar-rating -->
@@ -194,7 +292,8 @@
 		/* $('#example').barrating({
 			theme: 'fontawesome-stars' , readonly: true 
 		}); */
-	}); 
+		
+	})
 </script>
 
 	<div class="content subPageContent">
@@ -206,6 +305,7 @@
 			</h2>
 			
 			<!-- 서브콘텐츠 시작 -->
+			
 			<!-- 위치, 테마 선택 및 검색란 -->
 			<div class="cafeLocationSearch clearfix">
 				<div class="selectLeft">
@@ -261,14 +361,16 @@
 								<img src="${pageContext.request.contextPath }/resources/images/menu5.png">
 							</div>
 							<div>
-								<p>${cafe.address }, ${cafe.detailAddress }</p>
+								<p>${cafe.address } ${cafe.detailAddress }</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="locationListRight">
 					<div>
-						<p class="cafeRegiDate">${cafe.registrationDate }</p>
+						<p class="cafeRegiDate">
+							<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${cafe.registrationDate}"/>						
+						</p>
 						<img class="cafeZzim" src="${pageContext.request.contextPath }/resources/images/key1.png">
 					</div>
 					<div>
@@ -287,65 +389,19 @@
 				</div>
 			</div>
 			</c:forEach>
-			<%-- <div class="locationCafe">
-				<div class="locationListLeft">
-					<img src="${pageContext.request.contextPath }/resources/images/lucid-1.jpg">
-					<div class="blackOpacity"></div>
-					<div class="star">
-						<select class="starPoint"> 
-							<option value="1">1</option> 
-							<option value="2">2</option> 
-							<option value="3">3</option> 
-							<option value="4">4</option> 
-							<option value="5">5</option> 
-						</select>
-					</div>
-					<div class="cafeVoteNum bgRed">8</div>
-				</div>
-				<div class="locationListCenter">
-					<div class="daeguIcon">대구</div>
-					<div class="themeIcon">#데이트</div>
-					<h2 class="cafeTitle">카페 루시드</h2>
-					<p class="oneline">'빈티지 풍의 인테리어와 푸짐한 양의 녹차 빙수가 인기인 카페입니다.'</p>
-					<div>
-						<div class="visit">
-							<div class="visitAndLocation">
-								<img src="${pageContext.request.contextPath }/resources/images/menu2_1.png">
-							</div>
-							<div>
-								<span>100</span>개의 탐방기
-							</div>
-						</div>
-						<div class="location">
-							<div class="visitAndLocation">
-								<img src="${pageContext.request.contextPath }/resources/images/menu5.png">
-							</div>
-							<div>
-								<p>대구 달서구 용산동 44길 14</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="locationListRight">
-					<div>
-						<p class="cafeRegiDate">2020/05/11 12:30</p>
-						<img class="cafeZzim" src="${pageContext.request.contextPath }/resources/images/key1.png">
-					</div>
-					<div>
-						<div class="replyAndView">
-							<img src="${pageContext.request.contextPath }/resources/images/reply.png">
-							<span>20</span>
-						</div>
-						<div class="replyAndView">
-							<img src="${pageContext.request.contextPath }/resources/images/view.png">
-							<span>200</span>
-						</div>
-					</div>
-					<div class="more">
-						<p><span>카페정보</span> 더보기 ></p>
-					</div>
-				</div>
-			</div> --%>
+			<div style="text-align: center;">
+				<ul class="pagination">
+					<c:if test="${pageMaker.prev == true }">
+						<li><a href="zone?page=${pageMaker.startPage-1 }">&laquo;</a></li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="zone?page=${idx }">${idx }</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next == true }">
+						<li><a href="zone?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</div>
 	</div>
 	

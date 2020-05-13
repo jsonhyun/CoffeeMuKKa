@@ -131,6 +131,9 @@
 	</select>
 	
 	<select id="listCriteria" resultType="CafeVO">
+		<!-- select t.theme_no, t.theme_name from cafe c left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no 
+		left join users u on c.user_no = u.user_no order by cafe_no desc limit #{pageStart}, #{perPageNum} -->
 		select * from cafe order by cafe_no desc limit #{pageStart}, #{perPageNum}
 	</select>
 	

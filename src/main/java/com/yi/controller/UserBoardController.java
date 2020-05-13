@@ -1,12 +1,15 @@
 package com.yi.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yi.domain.BoardVO;
 import com.yi.service.BoardService;
 
 @Controller
@@ -37,12 +40,13 @@ public class UserBoardController {
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
 	public String communityRecommendList(Model model) throws Exception {
 		System.out.println("------------------test");
-		//List<BoardVO> list = service.boardList();
+		List<BoardVO> list = service.boardList();
 		
-		//System.out.println("test값"+list.toString());
-		//List<BoardVO> list = service.boardList();
-		//System.out.println(list.toString());
-		//model.addAttribute("list",list);
+		for(BoardVO ll : list) {
+			System.out.println(ll);
+			System.out.println(ll.getWritingTitle());
+		}
+		model.addAttribute("list",list);
 		return "/user/userCommunityRecommendList";
 	}
 	//register
