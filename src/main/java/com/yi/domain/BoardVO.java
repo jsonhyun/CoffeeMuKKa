@@ -9,6 +9,7 @@ public class BoardVO {
 	private UsersVO userNo; //회원번호
 	private ZoneVO zoneNo; //지역번호
 	private ThemeVO themeNo; //테마번호
+	private CafeVO cafeNo; // 카페번호
 	private int writingLockCondition;//글 잠금여부
 	private String writingTitle;//글제목
 	private Date registrationDate;//작성일
@@ -102,14 +103,23 @@ public class BoardVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public CafeVO getCafeNo() {
+		return cafeNo;
+	}
+	public void setCafeNo(CafeVO cafeNo) {
+		this.cafeNo = cafeNo;
+	}
+	
 	@Override
 	public String toString() {
 		return "BoardVO [boardNo=" + boardNo + ", boardNo2=" + boardNo2 + ", KeySortNo=" + KeySortNo + ", userNo="
-				+ userNo + ", zoneNo=" + zoneNo + ", themeNo=" + themeNo + ", writingLockCondition="
-				+ writingLockCondition + ", writingTitle=" + writingTitle + ", registrationDate=" + registrationDate
-				+ ", updateDate=" + updateDate + ", viewNumber=" + viewNumber + ", voteNumber=" + voteNumber
-				+ ", writingContent=" + writingContent + ", address=" + address + "]";
+				+ userNo + ", zoneNo=" + zoneNo + ", themeNo=" + themeNo + ", cafeNo=" + cafeNo
+				+ ", writingLockCondition=" + writingLockCondition + ", writingTitle=" + writingTitle
+				+ ", registrationDate=" + registrationDate + ", updateDate=" + updateDate + ", viewNumber=" + viewNumber
+				+ ", voteNumber=" + voteNumber + ", writingContent=" + writingContent + ", address=" + address + "]";
 	}
+
+	
 	
 	
 	

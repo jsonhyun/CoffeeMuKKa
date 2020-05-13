@@ -3,5 +3,6 @@ package com.yi.persistence;
 import com.yi.domain.BoardVO;
 
 public interface BoardDAO {
-	public void insert(BoardVO vo) throws Exception;
+	//추천카페
+	public void rcInsert(BoardVO vo) throws Exception;
 }

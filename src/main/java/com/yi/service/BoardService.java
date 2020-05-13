@@ -11,7 +11,7 @@ public class BoardService {
 	@Autowired
 	BoardDAO dao;
 	
-	public void insert(BoardVO vo) throws Exception{
-		dao.insert(vo);
+	public void rcInsert(BoardVO vo) throws Exception{
+		dao.rcInsert(vo);
 	}
 }

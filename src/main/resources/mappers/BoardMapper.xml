@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardMapper">
-	<insert id="insert" parameterType="BoardVO">
-		
+	<!-- 추천카페 : 글등록 -->
+	<insert id="rcInsert" parameterType="BoardVO">
+		insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo2},#{userNo},#{zoneNo},#{themeNo},#{writingTitle},#{writingContent},#{address})
 	</insert>
 </mapper>

@@ -15,8 +15,8 @@ public class BoardDAOImpl implements BoardDAO{
 	private static final String namespace = "mappers.BoardMapper.";
 	
 	@Override
-	public void insert(BoardVO vo) throws Exception {
-		sqlSession.insert(namespace+"insert", vo);		
+	public void rcInsert(BoardVO vo) throws Exception {
+		sqlSession.insert(namespace+"rcInsert", vo);		
 	}
 
 }
