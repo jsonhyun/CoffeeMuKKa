@@ -17,4 +17,6 @@ select * from authority; -- 관리자 권한
 select * from wishlist; -- 위시리스트
 select * from image; -- 이미지
 
+-- test
+select * from cafe where cafe_name like '%슬%';
 

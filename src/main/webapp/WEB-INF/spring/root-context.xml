@@ -32,7 +32,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
-		<property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"></property> <!-- mappers 폴더안에 또다른 mapper파일을 만들더라고 연결됨 -->
+		<property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"></property><!-- mappers 폴더안에 또다른 mapper파일을 만들더라고 연결됨 -->
 	</bean>
 		
 	<!-- destroy-method="clearCache" : 캐쉬를 알아서 처리함, open, close 처리 -->
@@ -40,12 +40,10 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
-	<!-- 베이스패키지안에 있는 impl클래스를 다 빈으로 등록하겠다 -->
-	
-<!-- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<tx:annotation-driven/> -->
+	<tx:annotation-driven/>
 	
 	<context:component-scan base-package="com.yi.persistence"></context:component-scan>
 	
