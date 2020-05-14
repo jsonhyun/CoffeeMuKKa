@@ -147,7 +147,7 @@ public class UserBoardController {
 		
 		List<BoardVO> list = service.recommendboardList();
 		for(BoardVO ll : list) {
-			System.out.println(ll.getBoardNo2());
+			//System.out.println(ll.getBoardNo2());
 		}
 		int todayCnt = service.todayBoardCount(cBoardNo);
 		model.addAttribute("list",list);
