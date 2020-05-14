@@ -48,8 +48,7 @@ public class UserBoardController {
 		List<BoardVO> list = service.recommendboardList();
 		
 		for(BoardVO ll : list) {
-//			System.out.println(ll);
-//			System.out.println(ll.getWritingTitle());
+			System.out.println(ll);
 		}
 		model.addAttribute("list",list);
 		return "/user/userCommunityRecommendList";

@@ -9,14 +9,10 @@
 		<id property="boardNo" column="board_no"/>
 		<result property="writingTitle" column="writing_title"/>
 		<result property="viewNumber" column="view_number"/>
-		<association javaType="ZoneVO" property="zoneNo"> <!--BoardVO의 ZoneVO zoneNo  -->
-			<id property="zoneNo" column="zone_no"/>
-			<result column="zone_Name" property="zoneName"/>
-		</association>
-		<association javaType="ThemeVO" property="themeNo"> <!--BoardVO의 ThemeVO zoneNo  -->
-			<id property="themeNo" column="theme_no"/>
-			<result column="theme_Name" property="themeName"/>
-		</association>						
+		<result property="zoneNo.zoneNo" column="zone_no"/>
+		<result property="zoneNo.zoneName" column="zone_name"/>		
+		<result property="themeNo.themeNo" column="theme_no"/>
+		<result property="themeNo.themeName" column="theme_name"/>						
 	</resultMap>
 	 
 	 <!-- 추천카페:상세보기 resultMap JOIN테이블[board + zone + theme + users + grade] -->
@@ -28,29 +24,28 @@
 		<result property="viewNumber" column="view_number"/>
 		<result property="voteNumber" column="vote_number"/>
 		<result property="writingContent" column="writing_content"/>
-		<result property="address" column="address"/>						
-		<association javaType="ZoneVO" property="zoneNo"> <!--BoardVO의 ZoneVO zoneNo  -->
-			<id property="zoneNo" column="zone_no"/>
-			<result column="zone_Name" property="zoneName"/>
-		</association>
-		<association javaType="ThemeVO" property="themeNo"> <!--BoardVO의 ThemeVO zoneNo  -->
-			<id property="themeNo" column="theme_no"/>
-			<result column="theme_Name" property="themeName"/>
-		</association>
-		<association javaType="UsersVO" property="userNo"> <!--UsersVO의 UsersVO userNo  -->
-			<id property="userNo" column="user_no"/>
-			<result column="user_Id" property="userId"/>
-			<result column="password" property="password"/>			
-			<result column="nick" property="nick"/>
-			<association column="user_grade" property="userGrade" resultMap="userGradeInfo"/>			
-		</association>								
+		<result property="address" column="address"/>
+		<result property="zoneNo.zoneNo" column="zone_no"/>
+		<result property="zoneNo.zoneName" column="zone_name"/>		
+		<result property="themeNo.themeNo" column="theme_no"/>
+		<result property="themeNo.themeName" column="theme_name"/>
+		<result property="userNo.userNo" column="user_no"/>
+		<result property="userNo.userId" column="user_id"/>
+		<result property="userNo.password" column="password"/>
+		<result property="userNo.nick" column="nick"/>
+		<result property="userNo.userGrade.userGradeImage" column="user_grade_image"/>
 	</resultMap>
+						
+		<!-- <association javaType="UsersVO" property="userNo">
+			<association column="user_grade" property="userGrade" resultMap="userGradeInfo"/>			
+		</association>	 -->							
 	
-	<resultMap type="GradeVO" id="userGradeInfo">
+	
+	<!-- <resultMap type="GradeVO" id="userGradeInfo">
 		<id property="userGrede" column="user_grade"/>
 		<result property="userGradeImage" column="user_grade_image"/>
 		<result property="userGradeName" column="user_grade_name"/>
-	</resultMap>	
+	</resultMap>	 -->
 	
 	 <!-- **********************************************************************      QUERY     ***************************************************************************** -->	
 	<!-- 추천카페 : 리스트 -->

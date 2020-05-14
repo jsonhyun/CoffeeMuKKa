@@ -59,3 +59,7 @@ left join grade g on u.user_grade = g.user_grade
 where b.board_no2 = 2 and b.board_no =25;
 
 select * from users u left join grade g on u.user_grade = g.user_grade;
+
+select registration_date from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = 2;
+
+select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = 2;
