@@ -20,3 +20,6 @@ select * from image; -- 이미지
 -- test
 select * from cafe where cafe_name like '%슬%';
 
+select * 
+	from cafe c left join image i on c.cafe_no = i.cafe_no
+	where c.cafe_no = 1;
