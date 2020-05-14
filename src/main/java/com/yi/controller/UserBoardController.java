@@ -51,7 +51,10 @@ public class UserBoardController {
 	// 커뮤니티 - 탐방기 : 경진
 	//register/read/modify/remove/list
 	@RequestMapping(value = "/community/cafeReview", method = RequestMethod.GET)
-	public String communityReviewList() {
+	public String communityReviewList(Model model) throws Exception {
+		int cBoardNo = 1;
+		int todayCnt = service.todayBoardCount(cBoardNo);
+		model.addAttribute("todayCnt", todayCnt);
 		return "/user/userCommunityReviewList";
 	}
 	

@@ -281,7 +281,7 @@
 		<!-- 탐방기 -->
 		<div class="cafeReviewArea">
 			<div class="cafeR_titleWrap clearfix">				
-				<h3 class="cafeR_title">오늘의 탐방기 | <span class="red cafeRCnt">N개</span></h3>
+				<h3 class="cafeR_title">오늘의 탐방기 | <span class="red cafeRCnt">${todayCnt}개</span></h3>
 				<div class="cafeR_topBtns">
 					<div class="cafeR_topBtn cafeR_totalBtn grayLineBtn"><a href="#"><span class="red bold">베스트 글</span> 전체 보기</a></div>
 					<div class="cafeR_topBtn cafeR_add navyBtn">
