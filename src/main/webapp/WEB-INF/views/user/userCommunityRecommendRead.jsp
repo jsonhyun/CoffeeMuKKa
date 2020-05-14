@@ -28,7 +28,16 @@
 		</h2>
 	</div>
 </div>
-	
+	<!-- 상세페이지 : 지역, 키워드 / 등록날짜 , 수정날짜 / 제목, 주소, 조회수  / 등급, 닉네임, 아이디  / 첨부사진 / 글내용  / 추천수 -->
+	<ul>
+		<li>지역 : ${board.zoneNo.zoneNo}, ${board.zoneNo.zoneName}</li>
+		<li>키워드 : ${board.themeNo.themeNo}, ${board.themeNo.themeName}</li>
+		<li>등록날짜 , 수정날짜 : ${board.registrationDate}, ${board.updateDate}</li>
+		<li>제목, 주소, 조회수 : ${board.writingTitle}, ${board.address}, ${board.viewNumber}</li>
+		<li>글내용 : ${board.writingContent}</li>
+		<li>추천수 : ${board.voteNumber}</li>
+		<li>등급 : ${board.userNo.userId}, ${board.userNo.nick}, <img src = "${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}"></li>												
+	</ul>
 <script>
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>

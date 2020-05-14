@@ -69,6 +69,7 @@ public class UserBoardController {
 	public String communityRecommendRead(int boardNo, Model model) throws Exception{
 		System.out.println(boardNo);
 		BoardVO vo = service.recommendReadByNo(boardNo);
+		System.out.println(vo.toString());
 		model.addAttribute("board", vo);
 		return "/user/userCommunityRecommendRead";
 	}
