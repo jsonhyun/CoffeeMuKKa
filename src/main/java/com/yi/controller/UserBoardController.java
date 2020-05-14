@@ -52,6 +52,7 @@ public class UserBoardController {
 	//register/read/modify/remove/list
 	@RequestMapping(value = "/community/cafeReview", method = RequestMethod.GET)
 	public String communityReviewList(Model model) throws Exception {
+		//탐방기 오늘의 글 갯수
 		int cBoardNo = 1;
 		int todayCnt = service.todayBoardCount(cBoardNo);
 		model.addAttribute("todayCnt", todayCnt);
