@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
 import com.mysql.jdbc.StringUtils;
+import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
 import com.yi.service.BoardService;
 import com.yi.util.UploadFileUtils;
@@ -138,13 +139,15 @@ public class UserBoardController {
 	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
 	public String communityRecommendList(Model model) throws Exception {
-//		System.out.println("------------------test");
-		List<BoardVO> list = service.recommendboardList();
+		int cBoardNo = 2;
 		
+		List<BoardVO> list = service.recommendboardList();
 		for(BoardVO ll : list) {
-			System.out.println(ll);
+			System.out.println(ll.getBoardNo2());
 		}
+		int todayCnt = service.todayBoardCount(cBoardNo);
 		model.addAttribute("list",list);
+		model.addAttribute("todayCnt", todayCnt);
 		return "/user/userCommunityRecommendList";
 	}
 	//register -- 글등록
