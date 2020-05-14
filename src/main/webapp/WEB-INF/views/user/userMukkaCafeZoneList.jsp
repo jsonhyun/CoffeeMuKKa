@@ -287,7 +287,7 @@
 		}); */ 
 		
 		$('.starPoint').barrating({
-			theme: 'fontawesome-stars' , initialRating: 5, readonly: true
+			theme: 'fontawesome-stars' , initialRating: 3, readonly: true
 		});
 		
 		/* $('#example').barrating({
@@ -324,12 +324,15 @@
 					<input type="submit" value="검색" class="navyBtn"/>
 				</div>
 			</div>
-			
 			<!-- 위치별 카페 리스트 -->
 			<c:forEach var="cafe" items="${list }">
 			<div class="locationCafe">
 				<div class="locationListLeft">
-					<img src="${pageContext.request.contextPath }/resources/images/lucid-1.jpg">
+					<c:forEach var="img" items="${imgList }">
+						<c:if test="${img.cafeNo.cafeNo == cafe.cafeNo }">
+							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${img.imageName}">
+						</c:if>
+					</c:forEach>
 					<div class="blackOpacity"></div>
 					<div class="star">
 						<select class="starPoint"> 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 import com.yi.persistence.CafeDAO;
 
 @Service
@@ -21,6 +22,9 @@ public class CafeService {
 	
 	public void insert(CafeVO vo) throws Exception {
 		dao.createCafe(vo);
+	}
+	public ImageVO imgSelect(int cafeNo) throws Exception {
+		return dao.imgSelect(cafeNo);
 	}
 	
 	public List<CafeVO> list() throws Exception {
