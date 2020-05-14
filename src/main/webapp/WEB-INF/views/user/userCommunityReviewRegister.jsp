@@ -105,6 +105,16 @@
 	.cafeSearchWrap .resCafe:hover .resCafeName{
 		text-decoration: underline;
 	}
+	
+	.cafeRForm .cafeR_submit {
+		text-align: center;
+	}
+	
+	.cafeRForm .cafeR_submit button,
+	.cafeRForm .cafeR_submit input[type="submit"] {
+		font-size: 18px;
+		margin: 5px;
+	}
 </style>
 		
 	<div class="content subPageContent">
@@ -133,6 +143,10 @@
 							CKEDITOR.replace("p_content", 
 											{height: 500});
 						</script>
+					</div>
+					<div class="cafeR_submit">
+						<button type="button" class="blueBtn">등록 취소</button>
+						<input type="submit" value="탐방기 등록" class="orangeBtn"/>
 					</div>
 				</form>
 				<div class="cafeSearchWrap">
