@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardMapper">
-
-  	<resultMap type="BoardKindsVO" id="boardKindsResult">
- 		<id property="boardNo" column="board_no"/>
- 		<id property="boardName" column="board_name"/> 		
- 	</resultMap>
- 	
-	<resultMap type="KeywordcateVO" id="keywordcateResult">
- 		<id property="keySortNo" column=""/>
- 		<id property="keyName" column="key_name"/>
- 		<association property="boardNo" column="board_no"/>			 			
-	</resultMap>																						
+						
+     <resultMap type="BoardVO" id="recommendBoardResult">
+		<id property="boardNo" column="board_no"/>
+		<result property="writingTitle" column="writing_title"/>
+		<result property="registrationDate" column="registration_date"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="viewNumber" column="view_number"/>
+		<result property="voteNumber" column="vote_umber"/>
+		<result property="writingContent" column="writing_content"/>
+		<result property="address" column="address"/>
+		<association javaType="ZoneVO" property="zoneNo"> <!--BoardVO의 ZoneVO zoneNo  -->
+			<id property="zoneNo" column="zone_no"/>
+			<result column="zone_Name" property="zoneName"/>
+		</association>				
+	</resultMap>
 	
 	<!-- 추천카페 : 글등록 -->
 	<insert id="recommendInsert" parameterType="BoardVO">
