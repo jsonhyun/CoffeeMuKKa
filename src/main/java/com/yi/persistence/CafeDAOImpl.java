@@ -58,7 +58,6 @@ public class CafeDAOImpl implements CafeDAO {
 
 	@Override
 	public List<CafeVO> listCriteria(Criteria cri) throws Exception {
-		System.out.println(cri);
 		return sqlSession.selectList(namespace+"listCriteria", cri);
 	}
 

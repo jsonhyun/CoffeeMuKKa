@@ -30,7 +30,6 @@ public class UserCafeController {
 		List<ImageVO> imgList = new ArrayList<ImageVO>();
 		for(int i=0; i<list.size();i++) {
 			int cafeNo = list.get(i).getCafeNo();
-			System.out.println(service.imgSelect(cafeNo));
 			imgList.add(service.imgSelect(cafeNo));
 		}
 		
