@@ -282,17 +282,9 @@
 
 <script type="text/javascript"> 
 	$(function() {
-		/* $('#example').barrating({
-			theme: 'fontawesome-stars' 
-		}); */ 
-		
 		$('.starPoint').barrating({
 			theme: 'fontawesome-stars' , initialRating: 3, readonly: true
 		});
-		
-		/* $('#example').barrating({
-			theme: 'fontawesome-stars' , readonly: true 
-		}); */
 	})
 </script>
 
@@ -311,14 +303,33 @@
 				<div class="selectLeft">
 					<select name="" id="">
 						<option value="all">전체</option>
+						<option value="동성로">동성로</option>
+						<option value="수성못 들안길">수성못 들안길</option>
+						<option value="두류공원 이월드">두류공원 이월드</option>
+						<option value="달서구">달서구</option>
+						<option value="수성구">수성구</option>
+						<option value="서구-북구">서구-북구</option>
+						<option value="중구">중구</option>
+						<option value="동구">동구</option>
+						<option value="남구">남구</option>
+						<option value="달성군">달성군</option>
+						<option value="팔공산">팔공산</option>
 					</select>
 					<select name="" id="">
 						<option value="all">전체</option>
+						<option value="데이트">데이트</option>
+						<option value="뷰">뷰</option>
+						<option value="착한아메">착한아메</option>
+						<option value="디저트">디저트</option>
+						<option value="댕댕이">댕댕이</option>
+						<option value="작업">작업</option>
 					</select>
 				</div>
 				<div class="selectRight">
 					<select name="" id="">
-						<option value="">제목</option>
+						<option value="">카페명</option>
+						<option value="">한줄소개</option>
+						<option value="">주소</option>
 					</select>
 					<input type="text" name="" placeholder="검색어를 입력하세요." />
 					<input type="submit" value="검색" class="navyBtn"/>

@@ -72,7 +72,17 @@ fields terminated by ',';
 select * from wishlist;
 
 load data local infile 'D:/workspace/workspace_mukka/CoffeeMuKKa/document/sample_data/image.txt'
-into table coffeemukka.image
+into table coffeemukka.image 
 character set 'utf8'
 fields terminated by ',';
 select * from image;
+
+
+-- 데이터 번호 0 -> 1로 수정
+update image 
+	set image_no = 1
+	where image_no = 0;
+
+update users
+	set user_no = 1
+	where user_no = 0;
