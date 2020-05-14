@@ -180,7 +180,9 @@
 						height: 500,
 						filebrowserImageUploadUrl : "${pageContext.request.contextPath}/user/ckdFileUpload"
 					});
-
+	
+	
+	
 	// 검색 박스
 	$(".cafeSearchBtn").click(function() {
 		$(".cafeSearchWrap").show();
@@ -240,7 +242,7 @@
 		
 		console.log(name == "");
 		console.log(title == "");
-		console.log(content == "");
+		console.log(content);
 		
 		if(name == "") {
 			alert("카페를 찾아주세요.");
