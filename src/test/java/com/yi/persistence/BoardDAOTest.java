@@ -40,9 +40,9 @@ public class BoardDAOTest {
 		dao.recommendInsert(vo);
 	}
 	
-	@Test
-	public void testListBoard() throws Exception{
-		dao.recommendboardList();
-	}
-	
+//	@Test
+//	public void testListBoard() throws Exception{
+//		dao.recommendboardList();
+//	}
+//	
 }

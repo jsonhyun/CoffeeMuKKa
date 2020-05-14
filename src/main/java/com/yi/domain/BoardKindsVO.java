@@ -4,6 +4,11 @@ public class BoardKindsVO {
 	private int boardNo; //게시판번호
 	private String boardName; //게시판이름
 	
+	
+
+	public BoardKindsVO() {
+		
+	}
 
 	public BoardKindsVO(int boardNo) {
 		this.boardNo = boardNo;
