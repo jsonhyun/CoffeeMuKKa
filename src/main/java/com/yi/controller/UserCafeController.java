@@ -1,5 +1,6 @@
 package com.yi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 import com.yi.domain.PageMaker;
 import com.yi.service.CafeService;
 
@@ -25,6 +27,12 @@ public class UserCafeController {
 	public String cafeZoneList(Criteria cri, Model model) throws Exception {
 		
 		List<CafeVO> list = service.listCriteria(cri);
+		List<ImageVO> imgList = new ArrayList<ImageVO>();
+		for(int i=0; i<list.size();i++) {
+			int cafeNo = list.get(i).getCafeNo();
+			System.out.println(service.imgSelect(cafeNo));
+			imgList.add(service.imgSelect(cafeNo));
+		}
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -32,6 +40,7 @@ public class UserCafeController {
 		
 		model.addAttribute("cri", cri);
 		model.addAttribute("list", list);
+		model.addAttribute("imgList", imgList);
 		model.addAttribute("pageMaker", pageMaker);
 		
 		return "/user/userMukkaCafeZoneList";

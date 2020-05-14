@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 
 public interface CafeDAO {
 	public void createCafe(CafeVO vo) throws Exception;
@@ -11,6 +12,7 @@ public interface CafeDAO {
 	public List<CafeVO> list() throws Exception;
 	public void updateCafe(CafeVO vo) throws Exception;
 	public void deleteCafe(int cafeNo) throws Exception;
+	public ImageVO imgSelect(int cafeNo) throws Exception;
 	
 	public List<CafeVO> listPage(int page) throws Exception;
 	public List<CafeVO> listCriteria(Criteria cri) throws Exception;

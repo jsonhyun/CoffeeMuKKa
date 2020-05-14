@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 
 @Repository
 public class CafeDAOImpl implements CafeDAO {
@@ -65,7 +66,12 @@ public class CafeDAOImpl implements CafeDAO {
 	public int totalCount() throws Exception {
 		return sqlSession.selectOne(namespace+"totalCount");
 	}
-
+	
+	@Override
+	public ImageVO imgSelect(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace+"sumnailImg", cafeNo);
+	}
+	
 // 검색시 페이징 처리 DAOImpl
 	
 //	@Override
@@ -82,4 +88,6 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
 	}
+
+	
 }
