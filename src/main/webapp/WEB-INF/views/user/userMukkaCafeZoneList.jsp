@@ -56,7 +56,8 @@
 	    line-height: 25px;
 	    text-align: right;
 	    padding: 0 30px;
-	    padding-right: 10px;
+	    padding-right: 5px;
+	    margin-right: 5px;
 	    border-radius: 5px;
 	    color: white;
 	    display: inline;
@@ -292,7 +293,6 @@
 		/* $('#example').barrating({
 			theme: 'fontawesome-stars' , readonly: true 
 		}); */
-		
 	})
 </script>
 
@@ -343,8 +343,29 @@
 					<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
 				</div>
 				<div class="locationListCenter">
-					<div class="daeguIcon">대구</div>
-					<div class="themeIcon">#데이트</div>
+					<div class="daeguIcon">${cafe.zoneNo.zoneName }</div>
+					<c:set var="theme" value="${cafe.themeNo.themeNo }"/>
+					<c:choose>
+						<c:when test="${theme == 1 }">
+							<div class="themeIcon" style="background-color: #b038fa;">#${cafe.themeNo.themeName }</div>
+						</c:when>
+						<c:when test="${theme == 2 }">
+							<div class="themeIcon" style="background-color: #528236;">#${cafe.themeNo.themeName }</div>
+						</c:when>
+						<c:when test="${theme == 3 }">
+							<div class="themeIcon" style="background-color: #96814c;">#${cafe.themeNo.themeName }</div>
+						</c:when>
+						<c:when test="${theme == 4 }">
+							<div class="themeIcon" style="background-color: #f2486f;">#${cafe.themeNo.themeName }</div>
+						</c:when>
+						<c:when test="${theme == 5 }">
+							<div class="themeIcon" style="background-color: #FFB232;">#${cafe.themeNo.themeName }</div>
+						</c:when>
+						<c:when test="${theme == 6 }">
+							<div class="themeIcon" style="background-color: #0170c2;">#${cafe.themeNo.themeName }</div>
+						</c:when>
+					</c:choose>
+					
 					<h2 class="cafeTitle">${cafe.cafeName }</h2>
 					<p class="oneline">'${cafe.oneline }'</p>
 					<div>
@@ -404,9 +425,10 @@
 			</div>
 		</div>
 	</div>
-	
+
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
+
 <!-- container end -->
 
 <%@ include file="../userInclude/footer.jsp" %>

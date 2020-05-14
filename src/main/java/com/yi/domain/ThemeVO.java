@@ -4,7 +4,10 @@ public class ThemeVO {
 	private int themeNo; //테마번호
 	private String themeName; //테마이름
 
-	
+	public ThemeVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public ThemeVO(int themeNo) {
 		this.themeNo = themeNo;
 	}
