@@ -132,8 +132,12 @@ th {
 	width: 150px;
 }
 
-.w20pc {
-	width: 20%;
+.w10pc {
+	width: 10%;
+}
+
+.w25pc {
+	width: 25%;
 }
 
 .w60pc {
