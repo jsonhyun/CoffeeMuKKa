@@ -29,7 +29,12 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.GET)
-	public String communityReviewRegister() {
+	public String communityReviewRegisterGet() {
+		return "/user/userCommunityReviewRegister";
+	}
+	
+	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.POST)
+	public String communityReviewRegisterPost() {
 		return "/user/userCommunityReviewRegister";
 	}
 	

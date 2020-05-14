@@ -10,4 +10,7 @@ public interface BoardDAO {
 	
 	//테스트
 	public List<BoardVO> boardList() throws Exception;
+	
+	
+	
 }
