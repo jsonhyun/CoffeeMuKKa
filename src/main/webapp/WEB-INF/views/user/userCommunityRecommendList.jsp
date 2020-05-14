@@ -206,39 +206,12 @@
 		<!-- 추천카페 : 리스트  -->
 			<div class="recommendBest mb30">
 				<div class="recomWrap">
-<!-- 					<ul>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>
-						<li class="temp"><a href="#"></a></li>						
-					</ul> -->
 				<ul>
 					<c:forEach var="board" items="${list}">
 						<li>
 								<div class="RC_listImg"></div>
 								<div class="RC_listTitle">
-									<div class="zoneBtn zoneOrangeIconSmall">위치</div>
+									<div class="zoneBtn zoneOrangeIconSmall">${board.zoneNo.zoneName}</div>
 									<div class="ame themeKeySmall">#착한아메</div>
 									<h3 class="RC_titleName">${board.writingTitle}</h3>						
 								</div>

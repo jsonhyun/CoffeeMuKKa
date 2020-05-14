@@ -13,15 +13,13 @@ public class BoardService {
 	@Autowired
 	BoardDAO dao;
 	
-//	public void rcInsert(BoardVO vo) throws Exception{
-//		dao.rcInsert(vo);
-//	}
-//	
-//	public List<BoardVO> listBoard(BoardVO vo) throws Exception{
-//		return dao.listBoard(vo);
-//	}
+	//탐방기
 	
+	//카페추천
+	public void recommendInsert(BoardVO vo) throws Exception{
+		dao.recommendInsert(vo);
+	}	
 	public List<BoardVO> boardList() throws Exception{
-		return dao.boardList();
+		return dao.recommendboardList();
 	}
 }

@@ -1,4 +1,4 @@
-package com.yi.coffeemukka;
+package com.yi.persistence;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,12 +37,12 @@ public class BoardDAOTest {
 		vo.setAddress("대구광역시");
 		System.out.println(vo.toString());
 		System.out.println(vo.getBoardNo2().getBoardNo());
-		dao.rcInsert(vo);
+		dao.recommendInsert(vo);
 	}
 	
 	@Test
 	public void testListBoard() throws Exception{
-		dao.boardList();
+		dao.recommendboardList();
 	}
 	
 }
