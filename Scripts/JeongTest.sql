@@ -32,3 +32,10 @@ order by b.board_no desc;
 select b.board_no, b.zone_no, b.theme_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name from board b
 left join zone z on b.zone_no = z.zone_no
 order by b.board_no desc;
+
+select * from board b2 ;
+
+select b.board_no, b.writing_title, b.view_number,  z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
+left join zone z on b.zone_no = z.zone_no
+left join theme t on b.theme_no = t.theme_no
+order by b.board_no desc;

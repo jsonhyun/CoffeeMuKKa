@@ -5,6 +5,10 @@ public class ThemeVO {
 	private String themeName; //테마이름
 
 	
+	public ThemeVO() {
+		
+	}
+
 	public ThemeVO(int themeNo) {
 		this.themeNo = themeNo;
 	}

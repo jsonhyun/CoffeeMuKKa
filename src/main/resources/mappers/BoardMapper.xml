@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardMapper">
-						
+	<!-- 아름 -->				
      <resultMap type="BoardVO" id="recommendBoardResult">
 		<id property="boardNo" column="board_no"/>
 		<result property="writingTitle" column="writing_title"/>
-		<result property="registrationDate" column="registration_date"/>
-		<result property="updateDate" column="update_date"/>
 		<result property="viewNumber" column="view_number"/>
-		<result property="voteNumber" column="vote_umber"/>
-		<result property="writingContent" column="writing_content"/>
-		<result property="address" column="address"/>
 		<association javaType="ZoneVO" property="zoneNo"> <!--BoardVO의 ZoneVO zoneNo  -->
 			<id property="zoneNo" column="zone_no"/>
 			<result column="zone_Name" property="zoneName"/>
-		</association>				
+		</association>
+		<association javaType="ThemeVO" property="themeNo"> <!--BoardVO의 ZoneVO zoneNo  -->
+			<id property="themeNo" column="theme_no"/>
+			<result column="theme_Name" property="themeName"/>
+		</association>						
 	</resultMap>
 	
 	<!-- 추천카페 : 글등록 -->
@@ -24,15 +23,13 @@
 	
 	<!-- 추천카페 : 리스트 -->
 	<select id="recommendboardList" resultMap="recommendBoardResult">
-		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name from board b
+		select b.board_no, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
 		left join zone z on b.zone_no = z.zone_no
-		order by b.board_no desc
-<!-- 		select * from board b
-		left join boardkinds bk on b.board_no2 = bk.board_no
-		left join users u on b.user_no = u.user_no 
-		left join `zone` z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no
-		where b.board_no2 = 2
-		order by b.board_no desc -->
+		order by b.board_no desc
 	</select>
+	
+	
+	
+	<!-- 경진  -->
 </mapper>

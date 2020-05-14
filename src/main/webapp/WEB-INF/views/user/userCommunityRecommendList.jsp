@@ -58,7 +58,7 @@
 	.recommendBest .recomWrap li {
 		float: left;
 		width: 162px;
-		height: 220px;
+		height: 250px;
 		margin: 10px;
 		border: 1px solid #545454;
 	}
@@ -74,6 +74,7 @@
 	}
 	.recommendBest .recomWrap li div.RC_listTitle div.zoneBtn,div.themeKeySmall{
 		font-size: 13px;
+		margin-top: 5px;
 	}
 	.recommendBest .recomWrap li div.RC_listTitle h3.RC_titleName{
 		padding-top: 7px;
@@ -211,8 +212,29 @@
 						<li>
 								<div class="RC_listImg"></div>
 								<div class="RC_listTitle">
+									<!-- 위치 -->
 									<div class="zoneBtn zoneOrangeIconSmall">${board.zoneNo.zoneName}</div>
-									<div class="ame themeKeySmall">#착한아메</div>
+									<!-- 키워드 -->
+									<c:choose>
+										<c:when test="${board.themeNo.themeNo == 1}">
+											<div class="date themeKeySmall">#${board.themeNo.themeName}</div>
+										</c:when>
+										<c:when test="${board.themeNo.themeNo == 2}">
+											<div class="view themeKeySmall">#${board.themeNo.themeName}</div>
+										</c:when>
+										<c:when test="${board.themeNo.themeNo == 3}">
+											<div class="ame themeKeySmall">#${board.themeNo.themeName}</div>
+										</c:when>
+										<c:when test="${board.themeNo.themeNo == 4}">
+											<div class="dessert themeKeySmall">#${board.themeNo.themeName}</div>
+										</c:when>
+										<c:when test="${board.themeNo.themeNo == 5}">
+											<div class="dog themeKeySmall">#${board.themeNo.themeName}</div>
+										</c:when>																																								
+										<c:otherwise>
+											<div class="work themeKeySmall">#${board.themeNo.themeName}</div>		
+										</c:otherwise>
+									</c:choose>																																			
 									<h3 class="RC_titleName">${board.writingTitle}</h3>						
 								</div>
 						</li>
