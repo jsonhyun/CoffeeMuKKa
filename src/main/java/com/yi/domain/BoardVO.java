@@ -11,7 +11,7 @@ public class BoardVO {
 	private ZoneVO zoneNo; // 지역번호
 	private ThemeVO themeNo; // 테마번호
 	private CafeVO cafeNo; // 카페번호
-	private int writingLockCondition;// 글 잠금여부
+	private Condition writingLockCondition;// 글 잠금여부
 	private String writingTitle;// 글제목
 	private Date registrationDate;// 작성일
 	private Date updateDate;// 수정일
@@ -69,11 +69,11 @@ public class BoardVO {
 		this.themeNo = themeNo;
 	}
 
-	public int getWritingLockCondition() {
+	public Condition getWritingLockCondition() {
 		return writingLockCondition;
 	}
 
-	public void setWritingLockCondition(int writingLockCondition) {
+	public void setWritingLockCondition(Condition writingLockCondition) {
 		this.writingLockCondition = writingLockCondition;
 	}
 

@@ -116,7 +116,6 @@
 		margin: 5px;
 	}
 </style>
-		
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
 		<div class="contentArea">
@@ -138,11 +137,7 @@
 						<input type="text" name="writingTitle" placeholder="탐방기 제목을 작성해주세요."/>
 					</div>
 					<div class="cafeR_textForm cafeR_groub">
-						<textarea name="" id="p_content" class="form-control"></textarea>
-						<script type="text/javascript">
-							CKEDITOR.replace("p_content", 
-											{height: 500});
-						</script>
+						<textarea name="writingContent" id="p_content" class="form-control"></textarea>
 					</div>
 					<div class="cafeR_submit">
 						<button type="button" class="blueBtn">등록 취소</button>
@@ -180,6 +175,13 @@
 	{{/each}}
 </script>
 <script>
+	//에디터
+	CKEDITOR.replace("p_content",{
+						height: 500,
+						filebrowserImageUploadUrl : "${pageContext.request.contextPath}/user/ckdFileUpload"
+					});
+
+	// 검색 박스
 	$(".cafeSearchBtn").click(function() {
 		$(".cafeSearchWrap").show();
 	})
@@ -230,6 +232,30 @@
 		$(".cafeNo").val(no);
 		$(".cafeSearchWrap").hide();
 	})
+	
+	$("form").submit(function() {
+		var name = $(".cafeName").val();
+		var title = $("input[name='writingTitle']").val();
+		var content = CKEDITOR.instances.p_content.getData();
+		
+		console.log(name == "");
+		console.log(title == "");
+		console.log(content == "");
+		
+		if(name == "") {
+			alert("카페를 찾아주세요.");
+			return false;
+		} else if(title == "") {
+			alert("제목을 작성해주세요.");
+			return false;
+		} else if(content == ""){
+			alert("탐방기를 작성해주세요.");
+			return false;
+		}
+		
+		return false;
+	})
+	
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
