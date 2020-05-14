@@ -10,7 +10,7 @@
  		<id property="keySortNo" column=""/>
  		<id property="keyName" column="key_name"/>
  		<association property="boardNo" column="board_no"/>			 			
-	</resultMap>
+	</resultMap>																						
 	
 	<resultMap type="UsersVO" id="usersResult">
  		<id property="" column=""/>
