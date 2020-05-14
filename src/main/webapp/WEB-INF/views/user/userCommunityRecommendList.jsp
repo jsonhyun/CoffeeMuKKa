@@ -57,7 +57,7 @@
 	
 	.recommendBest .recomWrap li {
 		float: left;
-		width: 162px;
+		width: 208px;
 		height: 250px;
 		margin: 10px;
 		border: 1px solid #545454;
@@ -67,18 +67,20 @@
 		height: 140px;
 		background-color: gray;
 	}
-	.recommendBest .recomWrap li div.RC_listTitle{
+	.recommendBest .recomWrap li div.RC_listTitle1{
 		width: 90%;
-		height: 80px;
+		height: 33px;
 		padding: 8px;
 	}
-	.recommendBest .recomWrap li div.RC_listTitle div.zoneBtn,div.themeKeySmall{
-		font-size: 13px;
+	.recommendBest .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
+		font-size: 11px;
 		margin-top: 5px;
 	}
-	.recommendBest .recomWrap li div.RC_listTitle h3.RC_titleName{
-		padding-top: 7px;
-	}				
+ 	.recommendBest .recomWrap li div.RC_listTitle2{
+		width: 90%;
+		height: 45px;
+		padding: 8px;
+	}		
 </style>
 	
 <div class="content subPageContent">
@@ -211,7 +213,7 @@
 					<c:forEach var="board" items="${list}">
 						<li>
 								<div class="RC_listImg"></div>
-								<div class="RC_listTitle">
+								<div class="RC_listTitle1">
 									<!-- 위치 -->
 									<div class="zoneBtn zoneOrangeIconSmall">${board.zoneNo.zoneName}</div>
 									<!-- 키워드 -->
@@ -234,9 +236,12 @@
 										<c:otherwise>
 											<div class="work themeKeySmall">#${board.themeNo.themeName}</div>		
 										</c:otherwise>
-									</c:choose>																																			
-									<h3 class="RC_titleName">${board.writingTitle}</h3>						
-								</div>
+									</c:choose>
+									</div>
+									<div class="RC_listTitle2">																																			
+										<h3 class="RC_titleName">${board.writingTitle}</h3>
+									</div>
+								
 						</li>
 					</c:forEach>
 				</ul>
