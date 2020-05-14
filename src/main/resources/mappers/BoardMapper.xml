@@ -35,4 +35,8 @@
 		where b.board_no2 = 2
 		order by b.board_no desc -->
 	</select>
+	
+	
+	
+	
 </mapper>

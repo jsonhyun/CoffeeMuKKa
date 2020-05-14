@@ -170,6 +170,14 @@ th {
 	cursor: pointer;
 }
 
+.blueBtn {
+	background-color: #0170c2;
+	border: none;
+	color: #fff;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
 .grayLineBtn {
 	border: 2px solid #aaa;
 	padding: 5px 10px;
