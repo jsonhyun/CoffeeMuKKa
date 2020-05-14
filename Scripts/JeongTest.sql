@@ -39,3 +39,11 @@ select b.board_no, b.writing_title, b.view_number,  z.zone_no, z.zone_name, t.th
 left join zone z on b.zone_no = z.zone_no
 left join theme t on b.theme_no = t.theme_no
 order by b.board_no desc;
+
+
+select * from board where board_no = 1;
+
+select b.board_no, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
+left join zone z on b.zone_no = z.zone_no
+left join theme t on b.theme_no = t.theme_no
+where b.board_no2 = 2 and b.board_no =25;

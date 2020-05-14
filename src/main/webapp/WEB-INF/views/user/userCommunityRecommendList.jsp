@@ -57,14 +57,14 @@
 	
 	.recommendBest .recomWrap li {
 		float: left;
-		width: 208px;
-		height: 250px;
-		margin: 10px;
+		width: 222px;
+		height: 260px;
+		margin: 3px;
 		border: 1px solid #545454;
 	}
 	.recommendBest .recomWrap li div.RC_listImg{
 		width: 100%;
-		height: 140px;
+		height: 160px;
 		background-color: gray;
 	}
 	.recommendBest .recomWrap li div.RC_listTitle1{
@@ -73,7 +73,7 @@
 		padding: 8px;
 	}
 	.recommendBest .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
-		font-size: 11px;
+		font-size: 12px;
 		margin-top: 5px;
 	}
  	.recommendBest .recomWrap li div.RC_listTitle2{
@@ -238,8 +238,9 @@
 										</c:otherwise>
 									</c:choose>
 									</div>
-									<div class="RC_listTitle2">																																			
-										<h3 class="RC_titleName">${board.writingTitle}</h3>
+									<div class="RC_listTitle2">
+										<!-- 상세페이지로 가기 -->																																			
+										<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}"><h3 class="RC_titleName">${board.writingTitle}</h3></a>
 									</div>
 								
 						</li>

@@ -19,7 +19,10 @@ public class BoardService {
 	public void recommendInsert(BoardVO vo) throws Exception{
 		dao.recommendInsert(vo);
 	}	
-	public List<BoardVO> boardList() throws Exception{
+	public List<BoardVO> recommendboardList() throws Exception{
 		return dao.recommendboardList();
+	}
+	public BoardVO recommendReadByNo(int boardNo) throws Exception{
+		return dao.recommendReadByNo(boardNo);
 	}
 }

@@ -41,20 +41,20 @@ public class UserBoardController {
 	
 	// 커뮤니티 - 무까추천 : 아름
 	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
-	//list
+	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
 	public String communityRecommendList(Model model) throws Exception {
-		System.out.println("------------------test");
-		List<BoardVO> list = service.boardList();
+//		System.out.println("------------------test");
+		List<BoardVO> list = service.recommendboardList();
 		
 		for(BoardVO ll : list) {
-			System.out.println(ll);
-			System.out.println(ll.getWritingTitle());
+//			System.out.println(ll);
+//			System.out.println(ll.getWritingTitle());
 		}
 		model.addAttribute("list",list);
 		return "/user/userCommunityRecommendList";
 	}
-	//register
+	//register -- 글등록
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.GET)
 	public String communityRecommendRegister() {
 		return "/user/userCommunityRecommendRegister";
@@ -64,12 +64,15 @@ public class UserBoardController {
 	public String communityRecommendRegisterPOST() {
 		return "redirect:/user/community/cafeRecommend";
 	}
-	//read
+	//read -- 상세보기
 	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
-	public String communityRecommendRead() {
+	public String communityRecommendRead(int boardNo, Model model) throws Exception{
+		System.out.println(boardNo);
+		BoardVO vo = service.recommendReadByNo(boardNo);
+		model.addAttribute("board", vo);
 		return "/user/userCommunityRecommendRead";
 	}
-	//modify
+	//modify -- 수정
 	@RequestMapping(value = "/community/cafeRecommend/modify", method = RequestMethod.GET)
 	public String communityRecommendModify() {
 		return "/user/userCommunityRecommendModify";
