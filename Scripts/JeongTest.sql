@@ -17,3 +17,18 @@ insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing
 select * from board where board_no2 = 2 order by  board_no desc;
 
 select * from board order by board_no desc;
+
+-- 사진, 위치, 키워드, 제목, 번호
+
+select b.board_no, b.board_no2, b.user_no, b.zone_no, b.theme_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, bk.board_no, bk.board_name, u.user_no, u.user_id, u.password, u.name, u.nick, u.user_grade, z.zone_no, z.zone_name, t.theme_no, t.theme_name 
+from board b
+left join boardkinds bk on b.board_no2 = bk.board_no
+left join users u on b.user_no = u.user_no 
+left join `zone` z on b.zone_no = z.zone_no
+left join theme t on b.theme_no = t.theme_no
+where b.board_no2 = 2
+order by b.board_no desc;
+
+select b.board_no, b.zone_no, b.theme_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name from board b
+left join zone z on b.zone_no = z.zone_no
+order by b.board_no desc;

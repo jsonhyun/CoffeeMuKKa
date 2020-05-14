@@ -6,6 +6,10 @@ public class ZoneVO {
 	
 	
 	
+	public ZoneVO() {
+		
+	}
+
 	public ZoneVO(int zoneNo) {
 		this.zoneNo = zoneNo;
 	}
