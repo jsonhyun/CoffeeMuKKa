@@ -74,7 +74,10 @@
 	
 
 	
-	
+	<!-- 경진 -->
+	<resultMap type="BoardVO" id="cafeReviewBoardResult">
+		<id property="boardNo" column="board_no"/>
+	</resultMap>	
 	
 
 	<!-- 경진  -->

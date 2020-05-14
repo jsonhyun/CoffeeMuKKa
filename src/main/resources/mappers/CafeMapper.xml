@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.CafeMapper">
-<!-- 	<resultMap type="CafeVO" id="CafeResult">
+	
+	<resultMap type="CafeVO" id="CafeListSelectResult">
 		<id property="cafeNo" column="cafe_no"/>
-		<result property="themeNo.themeNo" column="theme_no"/>
-		<result property="themeNo.themeName" column="theme_name"/>
-	</resultMap> -->
+		<result property="cafeName" column="cafe_name"/>
+		<result property="address" column="address"/>
+		<result property="detailAddress" column="detail_address"/>
+		<result property="tel" column="tel"/>
+		<result property="opentime" column="opentime"/>
+		<result property="closedDay" column="closed_day"/>
+		<result property="sns" column="sns"/>
+		<result property="tableNumber" column="table_number"/>
+		<result property="socketNumber" column="socket_number"/>
+		<result property="toiletCdt" column="toilet_cdt"/>
+		<result property="mkdessertCdt" column="mkdessert_cdt"/>
+		<result property="terrasCdt" column="terras_cdt"/>
+		<result property="reservationCdt" column="reservation_cdt"/>
+		<result property="wondooBuyCdt" column="wondoo_buy_cdt"/>
+		<result property="bookCdt" column="book_cdt"/>
+		<result property="beerCdt" column="beer_cdt"/>
+		<result property="goodsCdt" column="goods_cdt"/>
+		<result property="wifiCdt" column="wifi_cdt"/>
+		<result property="puppyCdt" column="puppy_cdt"/>
+		<result property="reserveokCdt" column="reserveok_cdt"/>
+		<result property="parkingCdt" column="parking_cdt"/>
+		<result property="nokidsCdt" column="nokids_cdt"/>
+		<result property="registrationDate" column="registration_date"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="viewNumber" column="view_number"/>
+		<result property="content" column="content"/>
+		<result property="oneline" column="oneline"/>
+		<result property="voteNumber" column="vote_number"/>
+		<result property="powerlinkCdt" column="powerlink_cdt"/>
+		<result property="cafeCdt" column="cafe_cdt"/>
+		
+		<association javaType="ThemeVO" property="themeNo">
+			<id property="themeNo" column="theme_no"/>
+			<result property="themeName" column="theme_name"/>
+		</association>
+		
+		<association javaType="ZoneVO" property="zoneNo">
+			<id property="zoneNo" column="zone_no"/>
+			<result property="zoneName" column="zone_name"/>
+		</association>
+		
+	</resultMap>
+	
+	<resultMap type="ImageVO" id="selectImgResult">
+		<id property="imageNo" column="image_no"/>
+		<result property="imageName" column="image_name"/>
+		<result property="cafeNo.cafeNo" column="cafe_no"/>
+		<result property="boardNo.boardNo" column="board_no"/>		
+	</resultMap>
+	
 	<insert id="createCafe" parameterType="CafeVO">
 		insert into cafe (cafe_name,
 		                  theme_no, 
@@ -121,6 +169,10 @@
 		where cafe_no=#{cafeNo}
 	</update>
 	
+	<select id="sumnailImg" resultMap="selectImgResult">
+		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
+	</select>
+	
 	<delete id="deleteCafe" parameterType="CafeVO">
 		delete from cafe where cafe_no=#{cafeNo}
 	</delete>
@@ -130,11 +182,10 @@
 		select * from cafe order by cafe_no desc limit #{page}, 10
 	</select>
 	
-	<select id="listCriteria" resultType="CafeVO">
-		<!-- select t.theme_no, t.theme_name from cafe c left join theme t on c.theme_no = t.theme_no 
-		left join `zone` z on c.zone_no = z.zone_no 
-		left join users u on c.user_no = u.user_no order by cafe_no desc limit #{pageStart}, #{perPageNum} -->
-		select * from cafe order by cafe_no desc limit #{pageStart}, #{perPageNum}
+	<select id="listCriteria" resultMap="CafeListSelectResult">
+		select c.cafe_no, c.cafe_name, z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, c.oneline, c.address, c.detail_address from cafe c left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no order by cafe_no asc limit #{pageStart}, #{perPageNum}
+		<!-- select * from cafe order by cafe_no desc limit #{pageStart}, #{perPageNum} -->
 	</select>
 	
 	<select id="totalCount" resultType="int">
