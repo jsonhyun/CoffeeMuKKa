@@ -80,12 +80,17 @@
 	
 
 	
-	<!-- 경진 -->
+	<!-- 경진 : 탐방기 -->
+	
 	<resultMap type="BoardVO" id="cafeReviewBoardResult">
 		<id property="boardNo" column="board_no"/>
+		<result property="boardNo2.boardNo" column="board_no2"/>
+		<result property="userNo.userNo" column="user_no"/>
+		<result property="cafeNo.cafeNo" column="cafe_no"/>
+		<result property="writingTitle" column="writing_title"/>
+		<result property="registrationDate" column="registration_date"/>
+		<result property="updateDate" column="update_date"/>
 	</resultMap>	
 	
-
-	<!-- 경진  -->
 
 </mapper>
