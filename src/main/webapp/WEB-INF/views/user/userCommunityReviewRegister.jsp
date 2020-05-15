@@ -115,6 +115,52 @@
 		font-size: 18px;
 		margin: 5px;
 	}
+	
+	.cafeRForm .cafe_titleImgForm .fileBoxInput {
+		float: left;
+		width: 50%;
+	}
+	
+	.cafeRForm .cafe_titleImgForm .fileBoxInput label{
+		width: 35%;
+	}
+	
+	.cafeRForm .cafe_titleImgForm .fileBox {
+		min-width: 200px;
+		height: 200px;
+		padding: 10px;
+		float: right;
+		border: 1px solid #ddd;
+		text-align: center;
+	    line-height: 200px;
+	    color: #aaa;
+	    margin-right: 20px;
+	}
+	
+	.cafeRForm .cafe_titleImgForm .fileBox .fileImgBox {
+		position: relative;
+		display: inline-block;
+	}
+	
+	.cafeRForm .cafe_titleImgForm .fileBox .fileImgBox img {
+		height: 200px;
+		
+	}
+	
+	.cafeRForm .cafe_titleImgForm .fileBox .fileImgBox button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0 5px;
+		cursor: pointer;
+	}
+	
+	.cafeRForm .cafeR_submit {
+		border-top: 1px solid #ccc;
+	    padding-top: 30px;
+	    margin: 10px
+	}
+	
 </style>
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -125,19 +171,26 @@
 				<span class="red">글쓰기</span>
 			</h2>
 			<div class="cafeRForm">
-				<form action="">
-					<div class="cafeR_search cafeR_groub">
+				<form action="" method="post" enctype="multipart/form-data">
+					<div class="cafeR_search cafeR_groub clearfix">
 						<label>카페</label>
 						<button type="button" class="cafeSearchBtn orangeBtn">카페찾기</button>
 						<input class="cafeName" type="text" placeholder=" ☜ 카페를 찾아주세요." readonly="readonly"/>
 						<input class="cafeNo" type="hidden" name="cafeNo"/>
 					</div>
-					<div class="cafeR_TitleForm cafeR_groub">
+					<div class="cafeR_TitleForm cafeR_groub clearfix">
 						<label>제목</label>
 						<input type="text" name="writingTitle" placeholder="탐방기 제목을 작성해주세요."/>
 					</div>
-					<div class="cafeR_textForm cafeR_groub">
+					<div class="cafeR_textForm cafeR_groub clearfix">
 						<textarea name="writingContent" id="p_content" class="form-control"></textarea>
+					</div>
+					<div class="cafe_titleImgForm cafeR_groub clearfix">
+						<div class="fileBoxInput clearfix">
+							<label>대표 이미지(1개)</label>
+							<input type="file" name="imgFile" id="file"/>
+						</div>
+						<div class="fileBox"><p>대표이미지</p></div>
 					</div>
 					<div class="cafeR_submit">
 						<button type="button" class="blueBtn">등록 취소</button>
@@ -181,7 +234,31 @@
 						filebrowserImageUploadUrl : "${pageContext.request.contextPath}/user/ckdFileUpload"
 					});
 	
+	// 대표이미지
+	$("#file").change(function(){
+		var file = $(this)[0].files;
+		
+		$(".fileBox").empty();
+		
+		$(file).each(function(i, obj) {
+			var reader = new FileReader(); //javascript 객체
+			reader.readAsDataURL(file[i]);
+			reader.onload = function(e){
+				var $div = $("<div>").addClass("fileImgBox");
+				var $img = $("<img>").attr("src", e.target.result); //e.target.result == reader.result -> 똑같은 값이 가져옴
+				var $close = $("<button>").attr("type", "button").text("X").addClass("imgCloseBtn");
+				
+				$div.append($img).append($close);
+				$(".fileBox").append($div);
+			} 
+		});
+	})
 	
+	$(document).on("click", ".imgCloseBtn", function(){
+		$(".fileBox").empty();
+		$(".fileBox").append("<p>대표이미지</p>");
+		$("input[name='imgFile']").val("");
+	})
 	
 	// 검색 박스
 	$(".cafeSearchBtn").click(function() {
@@ -239,10 +316,13 @@
 		var name = $(".cafeName").val();
 		var title = $("input[name='writingTitle']").val();
 		var content = CKEDITOR.instances.p_content.getData();
+		var titleImg = $("input[name='imgFile']").val();
 		
 		console.log(name == "");
 		console.log(title == "");
 		console.log(content);
+		console.log(titleImg);
+		
 		
 		if(name == "") {
 			alert("카페를 찾아주세요.");
@@ -252,6 +332,9 @@
 			return false;
 		} else if(content == ""){
 			alert("탐방기를 작성해주세요.");
+			return false;
+		} else if (titleImg == "") {
+			alert("대표이미지를 설정해주세요.");
 			return false;
 		}
 		

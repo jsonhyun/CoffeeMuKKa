@@ -69,3 +69,7 @@ select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zon
 		left join theme t on b.theme_no = t.theme_no
 		where b.board_no2 = 2
 		order by b.board_no desc;
+	
+select * from board where board_no2 = 2 order by board_no desc limit 0, 16;
+
+select count(board_no) from board where board_no2 = 2;
