@@ -176,7 +176,7 @@
 					<div class="cafeR_search cafeR_groub clearfix">
 						<label>카페</label>
 						<button type="button" class="cafeSearchBtn orangeBtn">카페찾기</button>
-						<input class="cafeName" type="text" placeholder=" ☜ 카페를 찾아주세요." readonly="readonly"/>
+						<input class="cafeName" type="text" placeholder="　☜　카페를 찾아주세요." readonly="readonly"/>
 						<input class="cafeNo" type="hidden" name="cafeNo.cafeNo"/>
 					</div>
 					<div class="cafeR_TitleForm cafeR_groub clearfix">

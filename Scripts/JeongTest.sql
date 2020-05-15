@@ -88,3 +88,4 @@ select * from cafe where cafe_name like CONCAT('%', '스테이55', '%');
 
 
 select * from cafe c left join zone z on c.zone_no = z.zone_no;
+

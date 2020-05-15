@@ -29,12 +29,12 @@
 		float: left;
 	}
 	button.searchPoint{
-		width: 10%;
+		width: 11%;
 		height: 33px;
 		margin-right: 12px;
 	}
 	input#point{
-		width: 72%;
+		width: 71%;
 		height: 30px;
 		background-color: #FAFAFA;		
 	}
@@ -145,16 +145,22 @@
 	}
 	
 	/* cafeSearchBox2 */
-	.cafeSearchWrap .cafeSearchBox2 {
+	/* 추천카페검색 */
+	.cafeSearchWrap .goCageInfo_reiview {
 		width: 800px;
 		margin: 0 auto;
 		background-color: #fff;
 		padding: 10px;
+		text-align: center;
 	}
-	.cafeSearchWrap .cafeSearchBox2 h3{
+	.cafeSearchWrap .goCageInfo_reiview button#btnCafeInfo:hover,button#btnCafeReview:hover{
+		border: 2px solid orange;
+		background-color: white;
+	}
+	.cafeSearchWrap .goCageInfo_reiview h3{
 		text-align: center;
 	}	
-	.cafeSearchWrap .cafeSearchBox2 div#map{
+	.cafeSearchWrap .goCageInfo_reiview div#map{
 		width: 100%;
 		height: 350px;
 		margin-top: 15px;
@@ -191,12 +197,12 @@
 			</div>	
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카페 위치</label>
-				<button type="button" class="searchPoint orangeBtn">카페찾기</button>
-				<input type="text" name="point" id="point" readonly>
+				<button type="button" class="searchPoint orangeBtn">등록카페 확인</button>
+				<input type="text" name="point" id="point" readonly placeholder="　☜　카페를 찾아주세요.">
 			</div>					
 			<div class="RC_Rg_groub">		
 				<label class="RC_label">카페 상호명</label>
-				<input type="text" name="title" id="title" placeholder=" >> 위치 검색후 없을시 직접입력">
+				<input type="text" name="title" id="title" readonly>
 			</div>		
 			<div class="RC_Rg_groub">	
 				<textarea rows="15" cols="100" name="text" id="text"></textarea>
@@ -231,19 +237,19 @@
 							</div>
 						</div>
 					</div>
-					<div class="cafeSearchBox2">
-						<h3>추천 카페 검색</h3>
-						<div id="map"></div>
+					<div class="goCageInfo_reiview">
+<!-- 						<button type="button">{{cafeName}} 상세정보 보기</button>
+						<button type="button">생생 카페 탐방기 작성하기</button> -->
 					</div>
 				</div>
 		<!-- /검색박스 -->			
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d971f9b03ec09e4b77e1231e78cc625c"></script>
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d971f9b03ec09e4b77e1231e78cc625c"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> -->
 <!-- 틀1 : 등록된 모든카페 리스트 -->
 <script id="cafeAll" type="text/x-handlebars-tamplate">
 	{{#each.}}
@@ -263,7 +269,14 @@
 			<td>{{address}}</td>
 		</tr>
 	{{/each}}
-</script>		
+</script>
+<!-- 틀3 : 등록된 카페가 있는경우 -> 해당카페 상세보기 or 탐방기작성으로 유도 -->
+<script id="goCafeInfo" type="text/x-handlebars-tamplate">
+	{{#each.}}
+		<button type="button" id="btnCafeInfo"><span class="red"><b>{{cafeName}}</b></span> 상세정보 보기 <i class="fas fa-greater-than"></i></button>
+		<button type="button" id="btnCafeReview">생생 카페 <span class="blue"><b>탐방기</b></span> 작성하기 <i class="fas fa-greater-than"></i></button>
+	{{/each}}	
+</script>
 <script>
 	//목록 버튼
 	$("#RC_list").click(function() {
@@ -273,13 +286,13 @@
 	//등록 폼 버튼
 	
 	//지도 테스트
- 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+/*   	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
 		level: 3 //지도의 레벨(확대, 축소 정도)
 	};
 	
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴 
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴  */
 	
 	/*** 검색박스 ***/
 	
@@ -341,7 +354,8 @@
 				if(res.length == 0) { // 등록된카페X -> 추천 글을 쓸수 있음
 					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:orange'><b>등록된 카페가 없습니다</b></span>");
 					var $tr = $("<tr>").append($tdNone);
-					$(".cafeResult").append($tr);					
+					$(".cafeResult").append($tr);
+					
 				}else if(cafeName == ""){
 					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:red'><b>카페 이름을 입력하세요</b></span>");
 					var $tr = $("<tr>").append($tdNone);
@@ -350,6 +364,10 @@
 					var source = $("#cafeRes").html();
 					var func = Handlebars.compile(source);
 					$(".cafeResult").append(func(res));
+					
+					var source2 = $("#goCafeInfo").html();
+					var func2 = Handlebars.compile(source2);
+					$(".goCageInfo_reiview").append(func2(res));
 					
 				}
 				

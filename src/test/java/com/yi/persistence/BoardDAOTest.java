@@ -26,7 +26,7 @@ public class BoardDAOTest {
 		System.out.println("BoardDAO값 "+dao);
 	}
 	
-	//@Test
+	@Test
 	public void testRcInsert() throws Exception{
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo2(new BoardKindsVO(2));
@@ -47,7 +47,7 @@ public class BoardDAOTest {
 //	}
 //	
 	
-	@Test
+	//@Test
 	public void testCafeReviewInsert() throws Exception {
 		BoardKindsVO boardNo2 = new BoardKindsVO();
 		boardNo2.setBoardNo(1);
