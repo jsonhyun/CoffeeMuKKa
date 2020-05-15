@@ -284,7 +284,15 @@
 	$(function() {
 		$('.starPoint').barrating({
 			theme: 'fontawesome-stars' , initialRating: 3, readonly: true
-		});
+		})
+		
+		$("#btnSearch").click(function () {
+			var searchZone = $("#searchZone").val();
+			var searchTheme = $("#searchTheme").val();
+			var searchType = $("#searchType").val();
+			var keyword = $("#keyword").val();
+			location.href = "zone?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
+		})
 	})
 </script>
 
@@ -301,38 +309,37 @@
 			<!-- 위치, 테마 선택 및 검색란 -->
 			<div class="cafeLocationSearch clearfix">
 				<div class="selectLeft">
-					<select name="" id="">
-						<option value="all">전체</option>
-						<option value="동성로">동성로</option>
-						<option value="수성못 들안길">수성못 들안길</option>
-						<option value="두류공원 이월드">두류공원 이월드</option>
-						<option value="달서구">달서구</option>
-						<option value="수성구">수성구</option>
-						<option value="서구-북구">서구-북구</option>
-						<option value="중구">중구</option>
-						<option value="동구">동구</option>
-						<option value="남구">남구</option>
-						<option value="달성군">달성군</option>
-						<option value="팔공산">팔공산</option>
+					<select name="searchZone" id="searchZone">
+						<option value="all" ${cri.searchZone=='all'? 'selected':'' }>전체</option>
+						<option value="1" ${cri.searchZone=='1'? 'selected':'' }>동성로</option>
+						<option value="2" ${cri.searchZone=='2'? 'selected':'' }>수성못 들안길</option>
+						<option value="3" ${cri.searchZone=='3'? 'selected':'' }>두류공원 이월드</option>
+						<option value="4" ${cri.searchZone=='4'? 'selected':'' }>달서구</option>
+						<option value="5" ${cri.searchZone=='5'? 'selected':'' }>수성구</option>
+						<option value="6" ${cri.searchZone=='6'? 'selected':'' }>서구-북구</option>
+						<option value="7" ${cri.searchZone=='7'? 'selected':'' }>중구</option>
+						<option value="8" ${cri.searchZone=='8'? 'selected':'' }>동구</option>
+						<option value="9" ${cri.searchZone=='9'? 'selected':'' }>남구</option>
+						<option value="10" ${cri.searchZone=='10'? 'selected':'' }>달성군</option>
+						<option value="11" ${cri.searchZone=='11'? 'selected':'' }>팔공산</option>
 					</select>
-					<select name="" id="">
-						<option value="all">전체</option>
-						<option value="데이트">데이트</option>
-						<option value="뷰">뷰</option>
-						<option value="착한아메">착한아메</option>
-						<option value="디저트">디저트</option>
-						<option value="댕댕이">댕댕이</option>
-						<option value="작업">작업</option>
+					<select name="searchTheme" id="searchTheme">
+						<option value="all" ${cri.searchTheme=='all'? 'selected':'' }>전체</option>
+						<option value="1" ${cri.searchTheme=='1'? 'selected':'' }>데이트</option>
+						<option value="2" ${cri.searchTheme=='2'? 'selected':'' }>뷰</option>
+						<option value="3" ${cri.searchTheme=='3'? 'selected':'' }>착한아메</option>
+						<option value="4" ${cri.searchTheme=='4'? 'selected':'' }>디저트</option>
+						<option value="5" ${cri.searchTheme=='5'? 'selected':'' }>댕댕이</option>
+						<option value="6" ${cri.searchTheme=='6'? 'selected':'' }>작업</option>
 					</select>
 				</div>
 				<div class="selectRight">
-					<select name="" id="">
-						<option value="">카페명</option>
-						<option value="">한줄소개</option>
-						<option value="">주소</option>
+					<select name="searchType" id="searchType">
+						<option value="n" ${cri.searchType==null? 'selected':'' }>----</option>
+						<option value="cafeName" ${cri.searchType=='cafeName'? 'selected':'' }>카페명</option>
 					</select>
-					<input type="text" name="" placeholder="검색어를 입력하세요." />
-					<input type="submit" value="검색" class="navyBtn"/>
+					<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
+					<input type="submit" id="btnSearch" value="검색" class="navyBtn"/>
 				</div>
 			</div>
 			<!-- 위치별 카페 리스트 -->
@@ -424,16 +431,18 @@
 				</div>
 			</div>
 			</c:forEach>
+			
+			<!-- 페이징 처리 부분 -->
 			<div style="text-align: center;">
 				<ul class="pagination">
 					<c:if test="${pageMaker.prev == true }">
-						<li><a href="zone?page=${pageMaker.startPage-1 }">&laquo;</a></li>
+						<li><a href="zone?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="zone?page=${idx }">${idx }</a></li>
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="zone?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true }">
-						<li><a href="zone?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+						<li><a href="zone?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 				</ul>
 			</div>
