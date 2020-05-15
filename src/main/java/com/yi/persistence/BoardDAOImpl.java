@@ -51,11 +51,14 @@ public class BoardDAOImpl implements BoardDAO{
 	public int totalSearchCount(int cBoardNo) throws Exception {
 		return sqlSession.selectOne(namespace+"totalSearchCount", cBoardNo);
 	}
+	
 
 	
 	/*** 탐방기 ***/
-	
-
+	@Override
+	public void cafeReviewInsert(BoardVO vo) throws Exception {
+		sqlSession.insert(namespace + "cafeReviewInsert", vo);
+	}
 
 
 

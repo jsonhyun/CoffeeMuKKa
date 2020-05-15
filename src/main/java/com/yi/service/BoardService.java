@@ -4,15 +4,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 import com.yi.persistence.BoardDAO;
+import com.yi.persistence.ImageDAO;
 
 @Service
 public class BoardService {
 	@Autowired
 	BoardDAO dao;
+	@Autowired
+	ImageDAO imgDao;
 	
 	
 	/*** 카페추천 ***/
@@ -46,4 +51,9 @@ public class BoardService {
 
 	
 	/*** 탐방기 ***/
+	@Transactional
+	public void cafeReviewInsert(BoardVO vo, ImageVO imgVO) throws Exception {
+		dao.cafeReviewInsert(vo);
+		imgDao.insertImageByBoardNo(imgVO);
+	}
 }

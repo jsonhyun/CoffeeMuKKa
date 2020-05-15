@@ -90,6 +90,8 @@ public class CafeDAOImpl implements CafeDAO {
 
 	@Override
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
+		List<CafeVO> list = sqlSession.selectList(namespace + "searchCafeByName", cafeName);
+		System.out.println("list------------------------"+list);
 		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
 	}
 
