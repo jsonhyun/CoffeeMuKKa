@@ -68,6 +68,7 @@ CREATE TABLE CoffeeMuKKa.Board (
 	update_date            TIMESTAMP    NOT NULL DEFAULT now() COMMENT '수정일', -- 수정일
 	view_number            INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
 	vote_number            INTEGER      NOT NULL DEFAULT 0 COMMENT '추천수', -- 추천수
+	board_del_cdt          TINYINT      NOT NULL DEFAULT 1 COMMENT '삭제여부 판단', -- 삭제여부 판단
 	writing_content        LONGTEXT     NULL     COMMENT '글내용', -- 글내용
 	address                VARCHAR(255) NULL     COMMENT '주소' -- 주소
 )
