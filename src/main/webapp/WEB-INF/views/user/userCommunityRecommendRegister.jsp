@@ -150,8 +150,15 @@
 		margin: 0 auto;
 		background-color: #fff;
 		padding: 10px;
-		margin-top: 30px;
-	}				
+	}
+	.cafeSearchWrap .cafeSearchBox2 h3{
+		text-align: center;
+	}	
+	.cafeSearchWrap .cafeSearchBox2 div#map{
+		width: 100%;
+		height: 350px;
+		margin-top: 15px;
+	}					
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -225,18 +232,18 @@
 						</div>
 					</div>
 					<div class="cafeSearchBox2">
+						<h3>추천 카페 검색</h3>
+						<div id="map"></div>
 					</div>
 				</div>
 		<!-- /검색박스 -->			
 		</div>
-		<!-- /등록폼 -->
-			<div id="map" style="width:500px;height:400px;"></div>
 	</div>
 </div>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d971f9b03ec09e4b77e1231e78cc625c"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d971f9b03ec09e4b77e1231e78cc625c"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>	 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 <!-- 틀1 : 등록된 모든카페 리스트 -->
 <script id="cafeAll" type="text/x-handlebars-tamplate">
 	{{#each.}}
@@ -266,13 +273,13 @@
 	//등록 폼 버튼
 	
 	//지도 테스트
-/* 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+ 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
 		level: 3 //지도의 레벨(확대, 축소 정도)
 	};
 	
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴 */
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴 
 	
 	/*** 검색박스 ***/
 	
