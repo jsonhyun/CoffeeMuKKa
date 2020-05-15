@@ -68,7 +68,7 @@
 		color: #fff;
 	}	
 </style>
-	
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d971f9b03ec09e4b77e1231e78cc625c"></script>		
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
 	<div class="contentArea">
@@ -122,14 +122,21 @@
 				</div>
 			</div>
 		</form>
-		
+			<div id="map" style="width:500px;height:400px;"></div>	
 	</div>
 </div>
-	
 <script>
 	$("#RC_list").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
 	})
+	
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+	
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴	
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
