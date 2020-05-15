@@ -28,4 +28,13 @@ select *
 
 select * from users where user_id = 'hceo1004';
 	
-desc board;
+select * from board;
+select * from boardkinds;
+select * from image;
+select * from cafe;
+
+insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content) values
+(1, 2, 2, '카페 루시드 탐방기', '<p>카페 루시드 탐방기~~~</p>');
+insert into image(image_no , image_name , board_no ) values(59, '/2020/05/15/s_f62c7cca-3f04-4a51-b540-911512f55698_23g-1.jpg', 1);
+
+
