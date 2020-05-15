@@ -26,6 +26,6 @@ select *
 	from cafe c left join image i on c.cafe_no = i.cafe_no
 	where c.cafe_no = 4 limit 1;
 
-
+select * from users where user_id = 'hceo1004';
 	
 desc board;
