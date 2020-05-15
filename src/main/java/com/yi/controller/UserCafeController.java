@@ -28,9 +28,11 @@ public class UserCafeController {
 		
 		List<CafeVO> list = service.listSearchCriteria(cri);
 		List<ImageVO> imgList = new ArrayList<ImageVO>();
+		List<Integer> starpointList = new ArrayList<Integer>();
 		for(int i=0; i<list.size();i++) {
 			int cafeNo = list.get(i).getCafeNo();
 			imgList.add(service.imgSelect(cafeNo));
+			starpointList.add(service.starpointSelect(cafeNo));
 		}
 		
 		PageMaker pageMaker = new PageMaker();
@@ -41,9 +43,15 @@ public class UserCafeController {
 		model.addAttribute("list", list);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("starpoint", starpointList);
 		
 		return "/user/userMukkaCafeZoneList";
 	}
 	
+	@RequestMapping(value = "/mukkaCafe/read", method = RequestMethod.GET)
+	public String cafeZoneRead() throws Exception {
+		
+		return "/user/userMukkaCafeZoneRead";
+	}
 	
 }

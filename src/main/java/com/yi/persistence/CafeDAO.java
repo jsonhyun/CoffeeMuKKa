@@ -13,6 +13,7 @@ public interface CafeDAO {
 	public void updateCafe(CafeVO vo) throws Exception;
 	public void deleteCafe(int cafeNo) throws Exception;
 	public ImageVO imgSelect(int cafeNo) throws Exception;
+	public int starpointSelect(int cafeNo) throws Exception;
 
 //	public List<CafeVO> listCriteria(Criteria cri) throws Exception;
 //	public int totalCount() throws Exception;

@@ -282,9 +282,12 @@
 
 <script type="text/javascript"> 
 	$(function() {
-		$('.starPoint').barrating({
-			theme: 'fontawesome-stars' , initialRating: 3, readonly: true
-		})
+		
+		<c:forEach var="starpoint" items="${starpoint }" varStatus="status">
+			$('.starPoint').eq(${status.index }).barrating({
+					theme: 'fontawesome-stars' , initialRating: ${starpoint}, readonly: true
+				})
+		</c:forEach>
 		
 		$("#btnSearch").click(function () {
 			var searchZone = $("#searchZone").val();
@@ -387,7 +390,7 @@
 						</c:when>
 					</c:choose>
 					
-					<h2 class="cafeTitle">${cafe.cafeName }</h2>
+					<h2 class="cafeTitle"><a href="#">${cafe.cafeName }</a></h2>
 					<p class="oneline">'${cafe.oneline }'</p>
 					<div>
 						<div class="visit">
@@ -426,7 +429,7 @@
 						</div>
 					</div>
 					<div class="more">
-						<p><span>카페정보</span> 더보기 ></p>
+						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/read"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
 					</div>
 				</div>
 			</div>

@@ -27,6 +27,10 @@ public class CafeService {
 		return dao.imgSelect(cafeNo);
 	}
 	
+	public int starpointSelect(int cafeNo) throws Exception {
+		return dao.starpointSelect(cafeNo);
+	}
+	
 	public List<CafeVO> list() throws Exception {
 		return dao.list();
 	}

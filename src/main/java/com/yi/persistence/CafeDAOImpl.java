@@ -71,6 +71,11 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectOne(namespace+"sumnailImg", cafeNo);
 	}
 	
+	@Override
+	public int starpointSelect(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace+"pointSelect", cafeNo);
+	}
+	
 // 검색시 페이징 처리 DAOImpl
 	
 	@Override
@@ -87,6 +92,8 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
 	}
+
+	
 
 	
 }

@@ -173,6 +173,10 @@
 		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
 	</select>
 	
+	<select id="pointSelect" resultType="int">
+		select floor(sum(star_point)/count(*)) from starpoint where cafe_no =#{cafeNo} 
+	</select>
+	
 	<delete id="deleteCafe" parameterType="CafeVO">
 		delete from cafe where cafe_no=#{cafeNo}
 	</delete>
