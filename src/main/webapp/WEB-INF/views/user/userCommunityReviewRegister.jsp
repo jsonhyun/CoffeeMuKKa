@@ -283,7 +283,7 @@
 				
 				var $thNo = $("<th>").addClass("w10pc").text("카페 번호");
 				var $thName = $("<th>").addClass("w25pc").text("카페 이름");
-				var $thAddr = $("<th>").addClass("w60pc").text("카페 이름");
+				var $thAddr = $("<th>").addClass("w60pc").text("카페 주소");
 				var $tr = $("<tr>").append($thNo).append($thName).append($thAddr);
 				
 				$(".cafeResult").append($tr);

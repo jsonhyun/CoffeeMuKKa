@@ -73,3 +73,18 @@ select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zon
 select * from board where board_no2 = 2 order by board_no desc limit 0, 16;
 
 select count(board_no) from board where board_no2 = 2;
+
+
+select * from cafe where cafe_name like CONCAT('%', '슬로', '%');
+select * from cafe where cafe_name like CONCAT('%', '', '%');
+
+select * from cafe c left join zone z on c.zone_no  = z.zone_no where c.cafe_name like CONCAT('%', '', '%');
+select * from cafe where cafe_name like CONCAT('%', '#{cafeName}', '%');
+
+select * from cafe where cafe_name like CONCAT('%', '슬로', '%')
+
+
+select * from cafe where cafe_name like CONCAT('%', '스테이55', '%');
+
+
+select * from cafe c left join zone z on c.zone_no = z.zone_no;

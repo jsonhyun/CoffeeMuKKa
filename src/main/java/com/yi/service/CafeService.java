@@ -60,4 +60,9 @@ public class CafeService {
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
 		return dao.searchCafeByName(cafeName);
 	}
+	
+	//아름추가
+	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
+		return dao.rcSearchCafeByName(cafeName);
+	}
 }

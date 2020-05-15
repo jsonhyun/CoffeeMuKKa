@@ -25,4 +25,8 @@ public interface CafeDAO {
 	
 	// 카페 이름 검색
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception;
+	
+	
+	//아름추가
+	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;
 }

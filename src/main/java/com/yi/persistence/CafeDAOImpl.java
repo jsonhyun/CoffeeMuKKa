@@ -88,5 +88,11 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
 	}
 
+	//아름추가
+	@Override
+	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
+		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
+	}
+
 	
 }

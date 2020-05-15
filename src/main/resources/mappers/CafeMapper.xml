@@ -228,4 +228,9 @@
 	<select id="searchCafeByName" resultType="CafeVO">
 		select * from cafe where cafe_name like CONCAT('%', #{cafeName}, '%');
 	</select>
+	
+	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->
+	<select id="rcSearchCafeByName" resultMap="CafeListSelectResult">
+		select * from cafe c left join zone z on c.zone_no  = z.zone_no where c.cafe_name like CONCAT('%', #{cafeName}, '%');
+	</select>	
 </mapper>

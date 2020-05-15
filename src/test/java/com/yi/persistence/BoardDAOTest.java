@@ -29,7 +29,7 @@ public class BoardDAOTest {
 	public void testRcInsert() throws Exception{
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo2(new BoardKindsVO(2));
-		vo.setUserNo(new UsersVO(2));
+		vo.setUserNo(new UsersVO(1));
 		vo.setZoneNo(new ZoneVO(1));
 		vo.setThemeNo(new ThemeVO(1));
 		vo.setWritingTitle("테스트제목");

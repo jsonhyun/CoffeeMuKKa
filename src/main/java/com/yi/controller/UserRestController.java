@@ -34,4 +34,21 @@ public class UserRestController {
 		
 		return entity;
 	}
+	
+	
+	
+	//카페 리스트 : 카페테이블 + 지역테이블
+	@RequestMapping(value = "/cafeZone", method = RequestMethod.GET)
+	public ResponseEntity<List<CafeVO>> cafeAllList(String cafeName){
+		ResponseEntity<List<CafeVO>> entity = null;
+		
+		try {
+			List<CafeVO> list = cafeService.rcSearchCafeByName(cafeName);
+			entity = new ResponseEntity<List<CafeVO>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<CafeVO>>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
+	}	
 }
