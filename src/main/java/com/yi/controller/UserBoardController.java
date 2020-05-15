@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -96,57 +98,30 @@ public class UserBoardController {
 
 		if(file != null && file.getSize() > 0) {
 			try {
-				String root = req.getSession().getServletContext().getRealPath("/");
-				File dir = new File(root + innerUploadPath);
-				if(dir.exists() == false) {
-					dir.mkdir();
-				}
-				
-				System.out.println(dir);
-				
-				UUID uid = UUID.randomUUID();
-				String saveName = uid.toString() + "_" + file.getOriginalFilename();
-				File target = new File(root + innerUploadPath +"/"+ saveName);
-				FileCopyUtils.copy(file.getBytes(), target);
-				
+	
 				printWriter = resp.getWriter();
 				resp.setContentType("text/html");
-				String fileUrl = root+saveName;
+				
+				String fileUploadName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				String fileD = fileUploadName.substring(0, fileUploadName.lastIndexOf("/")+1);
+				String fileN = fileUploadName.substring(fileUploadName.lastIndexOf("/")+3, fileUploadName.length());
+				String saveName = fileD+fileN;
+				
+				// 파일 한글 이름 디코딩
+				//String fileName = URLDecoder.decode(saveName, "utf-8");
+				// 파일 한글 이름 인코딩
+				String fileName = URLEncoder.encode(fileN, "utf-8");
 				
 				json.addProperty("uploaded", 1);
-				json.addProperty("fileName", saveName);
-				json.addProperty("url", "http://localhost:8080/coffeemukka/resources/upload/" + saveName);
+				json.addProperty("fileName", fileN);
+				json.addProperty("url", "http://localhost:8080/coffeemukka/user/displayFile?filename="+fileD+fileName);
 				
+
 				printWriter.println(json);
-				//System.out.println(fileUrl);
-				System.out.println(fileUrl);
-				System.out.println(json);
-				
-//					String fileUploadName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-//					String fileD = fileUploadName.substring(0, fileUploadName.lastIndexOf("/")+1);
-//					String fileN = fileUploadName.substring(fileUploadName.lastIndexOf("/")+3, fileUploadName.length());
-//					String fileName = fileD+fileN;
-//					in = new FileInputStream(uploadPath+"/" + fileName);
-//					String format = fileName.substring(fileName.lastIndexOf(".") + 1); //확장자
-//					MediaType mType = null;
-//					if(format.equalsIgnoreCase("png")) {
-//						mType = MediaType.IMAGE_PNG;
-//					} else if(format.equalsIgnoreCase("jpg") || format.equalsIgnoreCase("jpeg")) {
-//						mType = MediaType.IMAGE_JPEG;
-//					} else if(format.equalsIgnoreCase("gif")) {
-//						mType = MediaType.IMAGE_GIF;
-//					}
-//					HttpHeaders headers = new HttpHeaders();
-//					headers.setContentType(mType);
-//					System.out.println("headers : "+headers);
-//					
-//					//IOUtils.toByteArray(in) : byte while 처리 대신 함
-//					// 이미지 확장자 마다 디코딩하는 방법이 따로 있기 때문에 headers와 같은 처리를 해줘야 함
-//					entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK);
-//					in.close();
-//					
-//					System.out.println("entity : " + entity);
-//					json.addProperty("url", "http://localhost:8080/coffeemukka/resources/images/admin.png");
+//				System.out.println("url : " + fileUploadName);
+//				System.out.println("saveName : " + saveName);
+//				System.out.println("file : " + fileD + fileName);
+//				System.out.println(json);
 				
 			} catch (Exception e) {
 				// TODO: handle exception
