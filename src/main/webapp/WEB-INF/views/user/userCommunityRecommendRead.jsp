@@ -70,14 +70,35 @@
 		height: 30px;
 		padding: 5px;
 	}
-	div#RC_readTitle div#RC_readTitle3 span.blue{
+	div#RC_readTitle div#RC_readTitle3 img#rc_point{
 		margin-left: 10px;
-	}
-	
+		width: 20px;
+		height: 20px;
+	}	
+	div#RC_readTitle div#RC_readTitle3 span.blue{
+	}	
 	div#RC_readTitle div#RC_readTitle3 span#RC_viewCnt{
 		float: right;
 		margin-right: 10px;		
-	}			
+	}
+	/* 글내용 */
+	div#RC_content{
+		width: 100%;
+		height: 600px;
+		border: 1px solid red;
+	}
+	div#RC_content div.temp{
+		width: 100%;
+		height: 250px;
+		margin-top: 10px;
+	}
+	div#RC_content div#RC_btns{
+		width: 100%;
+		background-color: #f7f7f7;
+		color: #545454;
+		border-top: 2px solid #545454;		
+		border-bottom: 2px solid #545454;
+	}					
 
 	
 </style>
@@ -124,9 +145,23 @@
 				</div>
 			</div>
 			<div id="RC_readTitle3">
+				<img id= "rc_point" src ="${pageContext.request.contextPath }/resources/images/rc_point.png">
 				<span class="blue">${board.address}</span>
 				<span id="RC_viewCnt">조회수 ${board.viewNumber}</span>
-			</div>			
+			</div>		
+		</div>
+		<!-- 게시글내용 : 사진, 글 -->
+		<div id="RC_content">
+			<div class="temp">이미지사진</div>
+			<div class="temp">이미지사진</div>
+			<p id="RC_contentText">${board.writingContent}</p>
+			<div id="RC_btns">
+				좋아요
+				댓글
+				<button>수정</button>
+				<button>삭제</button>
+				<button>목록</button>
+			</div>
 		</div>
 	</div>
 </div>

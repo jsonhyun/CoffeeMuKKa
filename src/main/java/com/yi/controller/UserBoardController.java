@@ -1,25 +1,18 @@
 package com.yi.controller;
 
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.multi.MultiProgressBarUI;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,27 +22,22 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
-import com.mysql.jdbc.StringUtils;
-import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
-import com.yi.domain.ImageVO;
+import com.yi.domain.Criteria;
+import com.yi.domain.PageMaker;
 import com.yi.service.BoardService;
 import com.yi.util.UploadFileUtils;
 
 @Controller
 @RequestMapping("/user/*")
 public class UserBoardController {
-
-	private String innerUploadPath = "/resources/upload";
 	
 	// 서비스 
 	@Autowired
@@ -82,19 +70,11 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/ckdFileUpload", method = RequestMethod.POST)
-	public String ckeditorFileUpload(HttpServletRequest req, HttpServletResponse resp, 
-            MultipartHttpServletRequest multiFile) throws IOException {
-		Calendar cal = Calendar.getInstance();
-		String yearPath = "/" + cal.get(Calendar.YEAR); // /2020
-		String monthPath = String.format("%s/%02d", yearPath, cal.get(Calendar.MONTH)+1); // /2020/04
-		String datePath = String.format("%s/%02d", monthPath, cal.get(Calendar.DATE)); // /2020/04/29
-		
+	public String ckeditorFileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws IOException {		
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
-		ResponseEntity<byte[]> entity = null;
-		InputStream in = null;
 
 		if(file != null && file.getSize() > 0) {
 			try {
@@ -105,7 +85,7 @@ public class UserBoardController {
 				String fileUploadName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 				String fileD = fileUploadName.substring(0, fileUploadName.lastIndexOf("/")+1);
 				String fileN = fileUploadName.substring(fileUploadName.lastIndexOf("/")+3, fileUploadName.length());
-				String saveName = fileD+fileN;
+				//String saveName = fileD+fileN;
 				
 				// 파일 한글 이름 디코딩
 				//String fileName = URLDecoder.decode(saveName, "utf-8");
@@ -180,16 +160,27 @@ public class UserBoardController {
 	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
 	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
-	public String communityRecommendList(Model model) throws Exception {
+	public String communityRecommendList(Criteria cri, Model model) throws Exception {
+		//카페추천 게시판번호 - 2번
 		int cBoardNo = 2;
 		
-		List<BoardVO> list = service.recommendboardList();
-		for(BoardVO ll : list) {
-			//System.out.println(ll.getBoardNo2());
-		}
-		int todayCnt = service.todayBoardCount(cBoardNo);
+		//System.out.println(cri); // [searchType=null, keyword=null, getPage()=1]
+		
+		List<BoardVO> list = service.recommendboardListCriteria(cri);	
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
+		
+		
 		model.addAttribute("list",list);
+		model.addAttribute("cri",cri);
+		model.addAttribute("pageMaker",pageMaker);
+		
+		//오늘의 글 등록 갯수
+		int todayCnt = service.todayBoardCount(cBoardNo);
 		model.addAttribute("todayCnt", todayCnt);
+	
+
 		return "/user/userCommunityRecommendList";
 	}
 	//register -- 글등록
