@@ -153,9 +153,21 @@
 		padding: 10px;
 		text-align: center;
 	}
-	.cafeSearchWrap .goCageInfo_reiview button#btnCafeInfo:hover,button#btnCafeReview:hover{
-		border: 2px solid orange;
+	button#btnCafeInfo,button#btnCafeReview{
+		height: 50px;
+		margin: 5px;
 		background-color: white;
+		color: #5D5D5D;
+		border: 2px solid #BDBDBD;
+	}
+	.fa-greater-than{
+		color: #ED7D31;
+	}	
+	.cafeSearchWrap .goCageInfo_reiview button#btnCafeInfo:hover,button#btnCafeReview:hover{
+		border: 2px solid #ED7D31;
+		background-color: white;
+		cursor: pointer;
+		background-color: #FCFCFC;
 	}
 	.cafeSearchWrap .goCageInfo_reiview h3{
 		text-align: center;
@@ -181,10 +193,10 @@
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카 테 고 리</label>
 				<select class="cate">
-					<option>대구</option>
-					<option>대구</option>
-					<option>대구</option>
-					<option>대구</option>
+					<option value="1">대구</option>
+					<option value="2">대구</option>
+					<option value="3">대구</option>
+					<option value="4">대구</option>
 				</select>
 				<select class="cate">
 					<option>#데이트</option>
@@ -198,7 +210,7 @@
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카페 위치</label>
 				<button type="button" class="searchPoint orangeBtn">등록카페 확인</button>
-				<input type="text" name="point" id="point" readonly placeholder="　☜　카페를 찾아주세요.">
+				<input type="text" name="point" id="point" readonly placeholder="　☜　추천할 카페를 찾아주세요.">
 			</div>					
 			<div class="RC_Rg_groub">		
 				<label class="RC_label">카페 상호명</label>
@@ -226,7 +238,7 @@
 					<div class="cafeSearchBox">
 						<div class="closeBtn"><i class="fas fa-times"></i></div>
 						<div class="cafeSearch">	
-							<h3>카페 검색</h3>		
+							<h3>등록카페 검색</h3>		
 							<div class="inputWrap">
 								<label>카페이름</label>
 								<input type="text" name="cafeName"/>
@@ -299,7 +311,8 @@
 	//검색창, 전체리스트 다 보이게 구현 : 지역이름+카페이름+카페주소
  	$("button.searchPoint").click(function() {
 		$(".cafeSearchWrap").show();
-		$(".cafeResultWrap").show();
+		$("input[name='cafeName']").val(""); // 버튼만 누르면 input 초기화 -> 모든 카페리스트 다 보임
+		
 		var cafeName = $("input[name='cafeName']").val();
 		$.ajax({
 			url:"${pageContext.request.contextPath}/rest/cafeZone",
@@ -320,7 +333,10 @@
 				// 등록된 모든 카페 보여주기  				
 				var source = $("#cafeAll").html();
 				var func = Handlebars.compile(source);
-				$(".cafeResult").append(func(res));				
+				$(".cafeResult").append(func(res));		
+				
+				$(".cafeResultWrap").show();
+				$(".goCageInfo_reiview").hide();
 			}
 		})	
 		
@@ -355,20 +371,24 @@
 					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:orange'><b>등록된 카페가 없습니다</b></span>");
 					var $tr = $("<tr>").append($tdNone);
 					$(".cafeResult").append($tr);
+					$(".goCageInfo_reiview").hide();
 					
 				}else if(cafeName == ""){
-					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:red'><b>카페 이름을 입력하세요</b></span>");
+					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:red'><b>카페 이름을 정확히 입력하세요</b></span>");
 					var $tr = $("<tr>").append($tdNone);
-					$(".cafeResult").append($tr);							
-			   }else { // 등록된카페O -> 핸들바즈 삽입(검색결과)				
+					$(".cafeResult").append($tr);
+					$(".goCageInfo_reiview").hide();
+			   }else { // 등록된카페O -> 핸들바즈 삽입(검색결과)
+					$(".goCageInfo_reiview").show();
 					var source = $("#cafeRes").html();
 					var func = Handlebars.compile(source);
 					$(".cafeResult").append(func(res));
-					
+									
 					var source2 = $("#goCafeInfo").html();
 					var func2 = Handlebars.compile(source2);
 					$(".goCageInfo_reiview").append(func2(res));
 					
+					$("#goCafeInfo").empty(); // 버튼 자가증식 막기
 				}
 				
 				$(".cafeResultWrap").show();

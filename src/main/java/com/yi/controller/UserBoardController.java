@@ -209,7 +209,8 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.POST)
-	public String communityRecommendRegisterPOST() {
+	public String communityRecommendRegisterPOST(BoardVO vo, List<MultipartFile> imgfiles) {
+		System.out.println(vo);
 		return "redirect:/user/community/cafeRecommend";
 	}
 	//read -- 상세보기
