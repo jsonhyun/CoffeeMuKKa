@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
+import com.yi.domain.CafeVO;
 import com.yi.domain.ThemeVO;
 import com.yi.domain.UsersVO;
 import com.yi.domain.ZoneVO;
@@ -25,7 +26,7 @@ public class BoardDAOTest {
 		System.out.println("BoardDAO값 "+dao);
 	}
 	
-	@Test
+	//@Test
 	public void testRcInsert() throws Exception{
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo2(new BoardKindsVO(2));
@@ -45,4 +46,22 @@ public class BoardDAOTest {
 //		dao.recommendboardList();
 //	}
 //	
+	
+	@Test
+	public void testCafeReviewInsert() throws Exception {
+		BoardKindsVO boardNo2 = new BoardKindsVO();
+		boardNo2.setBoardNo(1);
+		UsersVO userNo = new UsersVO();
+		userNo.setUserNo(2);
+		CafeVO cafeNo = new CafeVO();
+		cafeNo.setCafeNo(2);
+		
+		BoardVO vo = new BoardVO();
+		vo.setBoardNo2(boardNo2);
+		vo.setUserNo(userNo);
+		vo.setCafeNo(cafeNo);
+		vo.setWritingTitle("탐방기 테스트");
+		vo.setWritingContent("<p>탐방기 테스트</p>");
+		dao.cafeReviewInsert(vo);
+	}
 }
