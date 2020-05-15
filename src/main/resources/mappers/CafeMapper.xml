@@ -173,58 +173,75 @@
 		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
 	</select>
 	
+	<select id="pointSelect" resultType="int">
+		select floor(sum(star_point)/count(*)) from starpoint where cafe_no =#{cafeNo} 
+	</select>
+	
 	<delete id="deleteCafe" parameterType="CafeVO">
 		delete from cafe where cafe_no=#{cafeNo}
 	</delete>
 	
-	<!-- 페이징 처리 sql문 -->
-	<select id="listPage" resultType="CafeVO">
+<!-- 페이징 처리 sql문 -->
+<!-- 	<select id="listPage" resultType="CafeVO">
 		select * from cafe order by cafe_no desc limit #{page}, 10
 	</select>
 	
 	<select id="listCriteria" resultMap="CafeListSelectResult">
 		select c.cafe_no, c.cafe_name, z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, c.oneline, c.address, c.detail_address from cafe c left join theme t on c.theme_no = t.theme_no 
 		left join `zone` z on c.zone_no = z.zone_no order by cafe_no asc limit #{pageStart}, #{perPageNum}
-		<!-- select * from cafe order by cafe_no desc limit #{pageStart}, #{perPageNum} -->
+		select * from cafe order by cafe_no desc limit #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="totalCount" resultType="int">
 		select count(cafe_no) from cafe
-	</select>
-	
-<!-- 키워드 이용 검색시 페이징 처리 매퍼 	
+	</select> -->
+		
+<!-- 키워드 이용 검색 가능한 페이징 처리 매퍼 --> 	
 	<sql id="search">
-		<if test="searchType=='t'.toString()">
-			where title like CONCAT('%','${keyword}','%')
+		<if test="searchType=='n'.toString()">
+			<choose>
+				<when test="searchZone=='all'.toString() and searchTheme!='all'.toString()">
+					where c.theme_no=${searchTheme}
+				</when>
+				<when test="searchZone!='all'.toString() and searchTheme=='all'.toString()">
+					where c.zone_no=${searchZone}
+				</when>
+				<when test="searchZone!='all'.toString() and searchTheme!='all'.toString()">
+					where c.zone_no=${searchZone} and c.theme_no=${searchTheme}
+				</when>
+			</choose>
 		</if>
-		<if test="searchType=='c'.toString()">
-			where content like CONCAT('%','${keyword}','%')
-		</if>
-		<if test="searchType=='w'.toString()">
-			where writer like CONCAT('%','${keyword}','%')
-		</if>
-		<if test="searchType=='tc'.toString()">
-				where title like CONCAT('%','${keyword}','%') OR content like CONCAT('%','${keyword}','%')
-		</if>
-		<if test="searchType=='cw'.toString()">
-			where content like CONCAT('%','${keyword}','%') OR writer like CONCAT('%','${keyword}','%')
-		</if>
-		<if test="searchType=='tcw'.toString()">
-			where title like CONCAT('%','${keyword}','%') OR content like CONCAT('%','${keyword}','%') OR writer like CONCAT('%','${keyword}','%')
+		<if test="searchType=='cafeName'.toString()">
+			<choose>
+				<when test="searchZone=='all'.toString() and searchTheme!='all'.toString()">
+					where c.theme_no=${searchTheme} and cafe_name like CONCAT('%','${keyword}','%')
+				</when>
+				<when test="searchZone!='all'.toString() and searchTheme=='all'.toString()">
+					where c.zone_no=${searchZone} and cafe_name like CONCAT('%','${keyword}','%')
+				</when>
+				<when test="searchZone!='all'.toString() and searchTheme!='all'.toString()">
+					where c.zone_no=${searchZone} and c.theme_no=${searchTheme} and cafe_name like CONCAT('%','${keyword}','%')
+				</when>
+				<when test="searchZone=='all'.toString() and searchTheme=='all'.toString()">
+					where cafe_name like CONCAT('%','${keyword}','%')
+				</when>
+			</choose>
 		</if>
 	</sql>
 	
-	<select id="listSearchCriteria" resultType="BoardVO">
-		select * from tbl_board
-			<include refid="search"></include>
-			order by bno desc limit #{pageStart}, #{perPageNum}
+	<select id="listSearchCriteria" resultMap="CafeListSelectResult">
+		select c.cafe_no, c.cafe_name, z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, c.oneline, c.address, c.detail_address from cafe c left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no
+		<include refid="search"></include>
+		order by cafe_no asc limit #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="totalSearchCount" resultType="int">
-		select count(bno) from tbl_board
-			<include refid="search"></include>
-	</select> -->
+		select count(cafe_no) from cafe c 
+		<include refid="search"></include>
+	</select>
 	
+<!-- 이름에 의한 카페 검색 -->
 	<select id="searchCafeByName" resultType="CafeVO">
 		select * from cafe where cafe_name like CONCAT('%', #{cafeName}, '%');
 	</select>

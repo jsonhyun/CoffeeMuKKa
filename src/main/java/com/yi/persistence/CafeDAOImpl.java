@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
+import com.yi.domain.SearchCriteria;
 
 @Repository
 public class CafeDAOImpl implements CafeDAO {
@@ -56,35 +56,42 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace+"listPage", page);
 	}
 
-	@Override
-	public List<CafeVO> listCriteria(Criteria cri) throws Exception {
-		return sqlSession.selectList(namespace+"listCriteria", cri);
-	}
-
-	@Override
-	public int totalCount() throws Exception {
-		return sqlSession.selectOne(namespace+"totalCount");
-	}
+//	@Override
+//	public List<CafeVO> listCriteria(Criteria cri) throws Exception {
+//		return sqlSession.selectList(namespace+"listCriteria", cri);
+//	}
+//
+//	@Override
+//	public int totalCount() throws Exception {
+//		return sqlSession.selectOne(namespace+"totalCount");
+//	}
 	
 	@Override
 	public ImageVO imgSelect(int cafeNo) throws Exception {
 		return sqlSession.selectOne(namespace+"sumnailImg", cafeNo);
 	}
 	
+	@Override
+	public int starpointSelect(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace+"pointSelect", cafeNo);
+	}
+	
 // 검색시 페이징 처리 DAOImpl
 	
-//	@Override
-//	public List<CafeVO> listSearchCriteria(SearchCriteria cri) throws Exception {
-//		return sqlSession.selectList(namespace+"listSearchCriteria", cri);
-//	}
-//
-//	@Override
-//	public int totalSearchCount(SearchCriteria cri) throws Exception {
-//		return sqlSession.selectOne(namespace+"totalSearchCount", cri);
-//	}
+	@Override
+	public List<CafeVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+		return sqlSession.selectList(namespace+"listSearchCriteria", cri);
+	}
+
+	@Override
+	public int totalSearchCount(SearchCriteria cri) throws Exception {
+		return sqlSession.selectOne(namespace+"totalSearchCount", cri);
+	}
 
 	@Override
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
+		List<CafeVO> list = sqlSession.selectList(namespace + "searchCafeByName", cafeName);
+		System.out.println("list------------------------"+list);
 		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
 	}
 
@@ -93,6 +100,8 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
 	}
+
+	
 
 	
 }

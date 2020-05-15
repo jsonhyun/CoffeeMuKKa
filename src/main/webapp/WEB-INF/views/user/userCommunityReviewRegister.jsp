@@ -171,12 +171,13 @@
 				<span class="red">글쓰기</span>
 			</h2>
 			<div class="cafeRForm">
-				<form action="" method="post" enctype="multipart/form-data">
+				<form action="register" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="boardNo2.boardNo" value="1"/>
 					<div class="cafeR_search cafeR_groub clearfix">
 						<label>카페</label>
 						<button type="button" class="cafeSearchBtn orangeBtn">카페찾기</button>
 						<input class="cafeName" type="text" placeholder=" ☜ 카페를 찾아주세요." readonly="readonly"/>
-						<input class="cafeNo" type="hidden" name="cafeNo"/>
+						<input class="cafeNo" type="hidden" name="cafeNo.cafeNo"/>
 					</div>
 					<div class="cafeR_TitleForm cafeR_groub clearfix">
 						<label>제목</label>
@@ -312,16 +313,28 @@
 		$(".cafeSearchWrap").hide();
 	})
 	
+	//등록 취소
+	$(".cafeR_submit > button").click(function() {
+		var res = confirm("탐방기 작성을 취소하시겠습니까?");
+		console.log(res);
+		
+		if(res) {
+			location.href = "${pageContext.request.contextPath}/user/community/cafeReview";
+		}
+	})
+	
+	// 등록 시 input 검사 후 등록
 	$("form").submit(function() {
 		var name = $(".cafeName").val();
 		var title = $("input[name='writingTitle']").val();
 		var content = CKEDITOR.instances.p_content.getData();
-		var titleImg = $("input[name='imgFile']").val();
-		
-		console.log(name == "");
-		console.log(title == "");
+		var titleImg = $("input[name='files']").val();
+		var cafeNo = $("input[name='cafeNo']").val();
+		console.log(name);
+		console.log(title);
 		console.log(content);
 		console.log(titleImg);
+		console.log("cafeNo ---- "+cafeNo);
 		
 		
 		if(name == "") {
@@ -337,8 +350,6 @@
 			alert("대표이미지를 설정해주세요.");
 			return false;
 		}
-		
-		return false;
 	})
 	
 </script>

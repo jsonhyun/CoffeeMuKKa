@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.ImageMapper">
+
+	<!-- RESULTMAP -->
+	<resultMap type="ImageVO" id="imageResult">
+		<id property="imageNo" column="image_no"/>
+		<result property="imageName" column="image_name"/>
+		<result property="cafeNo.cafeNo" column="cafe_no"/>
+		<result property="boardNo.boardNo" column="board_no"/>
+	</resultMap>
+
+	<!-- 게시판 이미지 등록 -->
+	<insert id="insertImageByBoardNo">
+		insert into image(image_name , board_no) 
+			values(#{imageName}, LAST_INSERT_ID())
+	</insert>
+	
+	<!-- 게시판 이미지 찾기 -->
+	<select id="imageListByBoardNo" resultMap="imageResult">
+		select * from image where board_no = #{boardNo}
+	</select>
+
+</mapper>

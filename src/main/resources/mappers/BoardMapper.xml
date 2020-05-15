@@ -123,6 +123,10 @@
 		<result property="address" column="address"/>
 	</resultMap>	
 	
-	
+	<!-- 탐방기 : 글등록 -->
+	<insert id="cafeReviewInsert" parameterType="BoardVO">
+		insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content) 
+			values (#{boardNo2.boardNo}, #{userNo.userNo}, #{cafeNo.cafeNo}, #{writingTitle}, #{writingContent});
+	</insert>
 
 </mapper>

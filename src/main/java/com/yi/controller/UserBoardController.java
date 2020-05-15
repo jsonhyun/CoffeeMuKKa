@@ -29,9 +29,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
+import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 import com.yi.domain.PageMaker;
+import com.yi.domain.UsersVO;
 import com.yi.service.BoardService;
 import com.yi.util.UploadFileUtils;
 
@@ -64,9 +67,25 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.POST)
-	public String communityReviewRegisterPost() {
+	public String communityReviewRegisterPost(BoardVO vo,  MultipartFile imgFile) throws Exception {
+		System.out.println("register POST ----------------- " + vo);
+		System.out.println("register POST ----------------- " + imgFile);
 		
-		return "/user/userCommunityReviewRegister";
+		String imageName = UploadFileUtils.uploadFile(uploadPath, imgFile.getOriginalFilename(), imgFile.getBytes());
+
+		ImageVO imgVO = new ImageVO();
+		imgVO.setImageName(imageName);
+
+		// 회원 no 임시 설정 - login 기능 만들어지면 삭제 후 테스트 해봐야 함
+		UsersVO userNo = new UsersVO();
+		userNo.setUserNo(3);
+		vo.setUserNo(userNo);
+		
+		System.out.println(imgVO);
+		
+		service.cafeReviewInsert(vo, imgVO);
+		
+		return "redirect:/user/community/cafeReview";
 	}
 	
 	@RequestMapping(value = "/ckdFileUpload", method = RequestMethod.POST)

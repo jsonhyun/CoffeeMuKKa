@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yi.domain.CafeVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
+import com.yi.domain.SearchCriteria;
 import com.yi.persistence.CafeDAO;
 
 @Service
@@ -27,27 +27,31 @@ public class CafeService {
 		return dao.imgSelect(cafeNo);
 	}
 	
+	public int starpointSelect(int cafeNo) throws Exception {
+		return dao.starpointSelect(cafeNo);
+	}
+	
 	public List<CafeVO> list() throws Exception {
 		return dao.list();
 	}
 	
-	public List<CafeVO> listCriteria(Criteria cri) throws Exception{
-		return dao.listCriteria(cri);
-	}
-	
-	public int totalCount() throws Exception {
-		return dao.totalCount();
-	}
+//	public List<CafeVO> listCriteria(Criteria cri) throws Exception{
+//		return dao.listCriteria(cri);
+//	}
+//	
+//	public int totalCount() throws Exception {
+//		return dao.totalCount();
+//	}
 
 // 검색시 페이징 처리 service
 	
-//	public List<CafeVO> listSearchCriteria(SearchCriteria cri) throws Exception{
-//		return dao.listSearchCriteria(cri);
-//	}
-//	
-//	public int totalSearchCount(SearchCriteria cri) throws Exception {
-//		return dao.totalSearchCount(cri);
-//	}
+	public List<CafeVO> listSearchCriteria(SearchCriteria cri) throws Exception{
+		return dao.listSearchCriteria(cri);
+	}
+	
+	public int totalSearchCount(SearchCriteria cri) throws Exception {
+		return dao.totalSearchCount(cri);
+	}
 	
 	public void update(CafeVO vo) throws Exception {
 		dao.updateCafe(vo);
