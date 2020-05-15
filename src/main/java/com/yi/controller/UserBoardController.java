@@ -3,21 +3,17 @@ package com.yi.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.multi.MultiProgressBarUI;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +26,16 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
-import com.mysql.jdbc.StringUtils;
-import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
-import com.yi.domain.ImageVO;
+import com.yi.domain.Criteria;
+import com.yi.domain.PageMaker;
+import com.yi.domain.SearchCriteria;
 import com.yi.service.BoardService;
-import com.yi.util.UploadFileUtils;
 
 @Controller
 @RequestMapping("/user/*")
@@ -205,16 +199,25 @@ public class UserBoardController {
 	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
 	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
-	public String communityRecommendList(Model model) throws Exception {
+	public String communityRecommendList(Criteria cri, Model model) throws Exception {
 		int cBoardNo = 2;
+		System.out.println(cri); // [searchType=null, keyword=null, getPage()=1]
+		List<BoardVO> list = service.recommendboardListCriteria(cri);
 		
-		List<BoardVO> list = service.recommendboardList();
-		for(BoardVO ll : list) {
-			//System.out.println(ll.getBoardNo2());
-		}
-		int todayCnt = service.todayBoardCount(cBoardNo);
+	
+	    PageMaker pageMaker = new PageMaker(); pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
+		
+		
 		model.addAttribute("list",list);
+		model.addAttribute("cri",cri);
+		model.addAttribute("pageMaker",pageMaker);
+		
+		//오늘의 글 등록 갯수
+		int todayCnt = service.todayBoardCount(cBoardNo);
 		model.addAttribute("todayCnt", todayCnt);
+	
+
 		return "/user/userCommunityRecommendList";
 	}
 	//register -- 글등록
