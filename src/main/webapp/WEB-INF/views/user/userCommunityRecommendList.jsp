@@ -343,6 +343,7 @@
 				</div>
 			</div>
 		</div>
+			<!-- 페이징 -->
 			<div style="text-align: center;">
 				<ul class="pagination">
 					<c:if test="${pageMaker.prev == true }">

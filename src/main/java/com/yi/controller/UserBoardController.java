@@ -34,7 +34,6 @@ import com.google.gson.JsonObject;
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.PageMaker;
-import com.yi.domain.SearchCriteria;
 import com.yi.service.BoardService;
 
 @Controller
@@ -200,12 +199,14 @@ public class UserBoardController {
 	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
 	public String communityRecommendList(Criteria cri, Model model) throws Exception {
+		//카페추천 게시판번호 - 2번
 		int cBoardNo = 2;
-		System.out.println(cri); // [searchType=null, keyword=null, getPage()=1]
-		List<BoardVO> list = service.recommendboardListCriteria(cri);
 		
-	
-	    PageMaker pageMaker = new PageMaker(); pageMaker.setCri(cri);
+		//System.out.println(cri); // [searchType=null, keyword=null, getPage()=1]
+		
+		List<BoardVO> list = service.recommendboardListCriteria(cri);	
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
 		
 		
