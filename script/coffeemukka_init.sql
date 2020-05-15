@@ -487,6 +487,9 @@ ALTER TABLE CoffeeMuKKa.Image
 			image_no -- 이미지번호
 		);
 
+ALTER TABLE CoffeeMuKKa.Image
+	MODIFY COLUMN image_no INT NOT NULL AUTO_INCREMENT COMMENT '이미지번호';
+
 -- 카페
 ALTER TABLE CoffeeMuKKa.Cafe
 	ADD CONSTRAINT FK_Theme_TO_Cafe -- 테마분류 -> 카페
