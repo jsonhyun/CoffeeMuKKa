@@ -10,6 +10,7 @@ select * from zone;
 select * from image;
 select * from users;
 select * from grade;
+select * from image;
 
 -- 게시글번호(오토) / 게시판번호(2:추천) / 키워드분류번호(????) / 회원번호(0) / 지역번호(1) / 테마번호(1) / 글잠금여부() / 글제목 / 작성일 / 수정일 / 조회수 / 추천수 / 글내용
 
@@ -88,4 +89,11 @@ select * from cafe where cafe_name like CONCAT('%', '스테이55', '%');
 
 
 select * from cafe c left join zone z on c.zone_no = z.zone_no;
+select * from board LAST_INSERT_ID();
 
+insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (2,1,1,1,'추천카페 테스트글','테스트내용','대구광역시');
+insert into image (image_name, board_no) values ('/2020/05/05/s_850c7f97-489d-482c-8dcf-1ed35e6e5d94_데이트.png', LAST_INSERT_ID());
+
+select * from image;
+
+select * from board;

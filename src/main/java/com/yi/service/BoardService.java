@@ -31,6 +31,7 @@ public class BoardService {
 	}	
 	
 	//추천카페 -- 등록
+	@Transactional
 	public void recommendInsert(BoardVO vo) throws Exception{
 		dao.recommendInsert(vo);
 	}	

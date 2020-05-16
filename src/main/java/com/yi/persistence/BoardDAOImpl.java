@@ -32,7 +32,7 @@ public class BoardDAOImpl implements BoardDAO{
 	//추천카페 -- 등록		
 	@Override
 	public void recommendInsert(BoardVO vo) throws Exception {
-		sqlSession.insert(namespace+"recommendInsert", vo);		
+		sqlSession.insert(namespace+"recommendInsert", vo);
 	}
 	//추천카페 -- 상세보기
 	@Override
@@ -59,6 +59,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewInsert(BoardVO vo) throws Exception {
 		sqlSession.insert(namespace + "cafeReviewInsert", vo);
 	}
+
 
 
 

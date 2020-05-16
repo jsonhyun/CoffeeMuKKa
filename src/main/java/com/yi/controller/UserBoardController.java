@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
-import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
@@ -209,8 +208,11 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.POST)
-	public String communityRecommendRegisterPOST(BoardVO vo, List<MultipartFile> imgfiles) {
-		System.out.println(vo);
+	public String communityRecommendRegisterPOST(BoardVO vo, List<MultipartFile> imgfiles) throws Exception {
+		System.out.println("테스트 POST ==============="+vo);
+		System.out.println("테스트 POST ==============="+imgfiles);
+		
+		service.recommendInsert(vo);
 		return "redirect:/user/community/cafeRecommend";
 	}
 	//read -- 상세보기
