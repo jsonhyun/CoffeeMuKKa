@@ -125,6 +125,11 @@
 		<result property="writingContent" column="writing_content"/>
 		<result property="address" column="address"/>
 		<result property="boardDelCdt" column="board_del_cdt"/>
+		
+		<!-- 이미지 -->
+		<collection property="files" javaType="ImageVO">
+			<result column="image_name"/>
+		</collection>
 	</resultMap>	
 	
 	<!-- 탐방기 : 글등록 -->
@@ -132,5 +137,13 @@
 		insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content) 
 			values (#{boardNo2.boardNo}, #{userNo.userNo}, #{cafeNo.cafeNo}, #{writingTitle}, #{writingContent});
 	</insert>
+	
+	<!-- 탐방기 : 탐방기 list -->
+	<select id="cafeReviesList" resultMap="BoardResult">
+		select * 
+			from board b left join image i on b.board_no = i.board_no 
+			where board_no2 = 1
+			order by b.board_no desc limit #{pageStart}, 5
+	</select>
 
 </mapper>

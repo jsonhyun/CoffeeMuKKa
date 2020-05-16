@@ -29,6 +29,7 @@ public interface BoardDAO {
 	/*** 탐방기 ***/
 	// 탐방기 -- 등록
 	public void cafeReviewInsert(BoardVO vo) throws Exception;
-	
+	// 탐방기 -- list
+	public List<BoardVO> cafeReviesList(Criteria cri) throws Exception;
 	
 }

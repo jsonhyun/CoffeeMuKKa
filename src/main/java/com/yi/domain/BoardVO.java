@@ -19,7 +19,7 @@ public class BoardVO {
 	private int voteNumber;// 추천수
 	private String writingContent;// 글내용
 	private String address; // 추가된주소(무까인 추천 -> 새로운 카페 주소)
-	private ArrayList<String> files; // 이미지, Image 테이블에서 파일 이름을 가져옴
+	private ArrayList<ImageVO> files; // 이미지, Image 테이블에서 파일 이름을 가져옴
 	private Condition boardDelCdt; // 삭제여부판단
 
 	public int getBoardNo() {
@@ -142,11 +142,11 @@ public class BoardVO {
 		this.cafeNo = cafeNo;
 	}
 
-	public ArrayList<String> getFiles() {
+	public ArrayList<ImageVO> getFiles() {
 		return files;
 	}
 
-	public void setFiles(ArrayList<String> files) {
+	public void setFiles(ArrayList<ImageVO> files) {
 		this.files = files;
 	}
 
