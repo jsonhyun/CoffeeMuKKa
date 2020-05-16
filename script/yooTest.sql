@@ -50,3 +50,14 @@ select last_insert_id();
 
 insert into image(image_name , board_no ) values('/2020/05/15/s_f62c7cca-3f04-4a51-b540-911512f55698_23g-1.jpg', );
 
+select u.user_no , u.user_id , u.name , u.user_grade , g.user_grade_name 
+	from users u left join grade g on u.user_grade = g.user_grade;
+
+update users 
+	set user_grade = 1
+	where user_no = 3;
+
+
+select * from users;
+
+select count(*), b.user_no, u.name , u.user_grade from board b left join users u on b.user_no = u.user_no where b.user_no = 3;

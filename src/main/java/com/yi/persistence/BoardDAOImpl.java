@@ -52,6 +52,12 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne(namespace+"totalSearchCount", cBoardNo);
 	}
 	
+	// 유저가 등록한 게시글 갯수
+	@Override
+	public int totalUserBoardCount(int userNo) throws Exception {
+		return sqlSession.selectOne(namespace + "totalUserBoardCount", userNo);
+	}
+	
 
 	
 	/*** 탐방기 ***/
@@ -59,6 +65,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewInsert(BoardVO vo) throws Exception {
 		sqlSession.insert(namespace + "cafeReviewInsert", vo);
 	}
+	
 
 
 

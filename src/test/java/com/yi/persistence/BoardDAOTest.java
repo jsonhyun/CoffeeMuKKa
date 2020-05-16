@@ -26,7 +26,7 @@ public class BoardDAOTest {
 		System.out.println("BoardDAO값 "+dao);
 	}
 	
-	@Test
+	//@Test
 	public void testRcInsert() throws Exception{
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo2(new BoardKindsVO(2));
@@ -63,5 +63,10 @@ public class BoardDAOTest {
 		vo.setWritingTitle("탐방기 테스트");
 		vo.setWritingContent("<p>탐방기 테스트</p>");
 		dao.cafeReviewInsert(vo);
+	}
+	
+	@Test
+	public void testTotalUserBoardCount() throws Exception {
+		dao.totalUserBoardCount(3);
 	}
 }

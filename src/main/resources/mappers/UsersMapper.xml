@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.UsersMapper">
+	<resultMap type="UsersVO" id="usersResult">
+		<id property="userNo" column="user_no"/>
+		<result property="userId" column="user_id"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="nick" column="nick"/>
+		<result property="gender" column="gender"/>
+		<result property="birthday" column="birthday"/>
+		<result property="userJoinDate" column="user_join_date"/>
+		<result property="userLeaveCondition" column="user_leave_condition"/>
+		<result property="point" column="point"/>
+		<result property="tel" column="tel"/>
+		<result property="addredd" column="address"/>
+		<result property="detailAddress" column="detail_address"/>
+		<result property="email" column="email"/>
+		<result property="userType.userType" column="user_type"/>
+		<result property="userGrade.userGrede" column="user_grade"/>
+	</resultMap>
+	
+	<!-- 게시글 등록시 회원 등급 판단 및 수정 -->
+	<update id="updateUsersGrade">
+		update users 
+			set user_grade = #{gredeNo}
+			where user_no = #{userNo};
+	</update>
+</mapper>

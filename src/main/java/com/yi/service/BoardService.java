@@ -11,14 +11,18 @@ import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.persistence.BoardDAO;
 import com.yi.persistence.ImageDAO;
+import com.yi.persistence.UsersDAO;
 
 @Service
 public class BoardService {
 	@Autowired
 	BoardDAO dao;
+	
 	@Autowired
 	ImageDAO imgDao;
 	
+	@Autowired
+	UsersDAO userDao;
 	
 	/*** 카페추천 ***/
 	//추천카페 -- 리스트	(테스트용)
@@ -56,5 +60,19 @@ public class BoardService {
 	public void cafeReviewInsert(BoardVO vo, ImageVO imgVO) throws Exception {
 		dao.cafeReviewInsert(vo);
 		imgDao.insertImageByBoardNo(imgVO);
+		
+		userGradeUpdate(vo);
+	}
+	
+	
+	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
+	private void userGradeUpdate(BoardVO vo) throws Exception {
+		int userNo = vo.getUserNo().getUserNo();
+		int boardTotalCnt = dao.totalUserBoardCount(userNo);
+		if(boardTotalCnt >= 20) {
+			userDao.updateUsersGrade(2, userNo);
+		} else if (boardTotalCnt >= 100) {
+			userDao.updateUsersGrade(3, userNo);
+		}
 	}
 }
