@@ -23,7 +23,8 @@ public interface BoardDAO {
 	public int todayBoardCount(int cBoardNo) throws Exception;
 	//각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용)
 	public int totalSearchCount(int cBoardNo) throws Exception; // 공통
-
+	// 유저가 등록한 게시글 갯수
+	public int totalUserBoardCount(int userNo) throws Exception;
 	
 	/*** 탐방기 ***/
 	// 탐방기 -- 등록

@@ -82,7 +82,10 @@
 		select count(board_no) from board where board_no2 = #{cBoardNo}
 	</select>
 	
-
+	<!-- 공통 : 유저가 등록한 게시글 갯수 -->
+	<select id="totalUserBoardCount" resultType="int">
+		select count(*) from board where user_no = #{user_no};
+	</select>
 
 <!-- 경진 : 탐방기 -->
 <!-- **********************************************************************      RESULTMAP     ***************************************************************************** -->
@@ -121,6 +124,7 @@
 		<result property="voteNumber" column="vote_number"/>
 		<result property="writingContent" column="writing_content"/>
 		<result property="address" column="address"/>
+		<result property="boardDelCdt" column="board_del_cdt"/>
 	</resultMap>	
 	
 	<!-- 탐방기 : 글등록 -->
