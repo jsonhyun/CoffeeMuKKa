@@ -19,7 +19,7 @@
 		padding: 10px;
 	}	
 	select.cate{
-		width: 10%;
+		width: 11%;
 		height: 30px;
 		margin-right: 12px;
 	}
@@ -57,6 +57,11 @@
 		border: 1px solid #BDBDBD;
 		background-color: #FAFAFA;
 	}
+	div#imagesBox img{
+		width: 150px;
+		height: 150px;
+		margin: 10px;
+	}	
 	button{
 	   padding: 3px 10px;
 	   border: 1px solid #303A50;
@@ -190,34 +195,45 @@
 		<!-- 등록폼 -->
 		<div id="RC_regiForm">
 		<form action="register" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="boardNo2.boardNo" value="2">
+			<input type="hidden" name="userNo.userNo" value="1"><!-- 임시 -->			
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카 테 고 리</label>
-				<select class="cate">
-					<option value="1">대구</option>
-					<option value="2">대구</option>
-					<option value="3">대구</option>
-					<option value="4">대구</option>
+				<select class="cate" name="zoneNo.zoneNo">
+					<option selected="selected" value="위치">위치</option>
+					<option value="1">동성로</option>
+					<option value="2">수성못 들안길</option>
+					<option value="3">두류공원 이월드</option>
+					<option value="4">달서구</option>
+					<option value="5">수성구</option>
+					<option value="6">서구-북구</option>
+					<option value="7">중구</option>
+					<option value="8">동구</option>
+					<option value="9">남구</option>
+					<option value="10">달성군</option>
+					<option value="11">팔공산</option>
 				</select>
-				<select class="cate">
-					<option>#데이트</option>
-					<option>#뷰</option>
-					<option>#착한아메</option>
-					<option>#디저트</option>
-					<option>#댕댕이</option>
-					<option>#작업</option>
+				<select class="cate" name="themeNo.themeNo">
+					<option selected="selected" value="키워드">#키워드</option>				
+					<option value="1">#데이트</option>
+					<option value="2">#뷰</option>
+					<option value="3">#착한아메</option>
+					<option value="4">#디저트</option>
+					<option value="5">#댕댕이</option>
+					<option value="6">#작업</option>
 				</select>
 			</div>	
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카페 위치</label>
 				<button type="button" class="searchPoint orangeBtn">등록카페 확인</button>
-				<input type="text" name="point" id="point" readonly placeholder="　☜　추천할 카페를 찾아주세요.">
+				<input type="text" name="address" id="point" placeholder="　☜　추천할 카페를 찾아주세요.">
 			</div>					
 			<div class="RC_Rg_groub">		
 				<label class="RC_label">카페 상호명</label>
-				<input type="text" name="title" id="title" readonly>
+				<input type="text" name="writingTitle" id="title">
 			</div>		
 			<div class="RC_Rg_groub">	
-				<textarea rows="15" cols="100" name="text" id="text"></textarea>
+				<textarea rows="15" cols="100" name="writingContent" id="text"></textarea>
 			</div>
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">이미지 첨부</label>
@@ -249,10 +265,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="goCageInfo_reiview">
-<!-- 						<button type="button">{{cafeName}} 상세정보 보기</button>
-						<button type="button">생생 카페 탐방기 작성하기</button> -->
-					</div>
+					<div class="goCageInfo_reiview"></div>
 				</div>
 		<!-- /검색박스 -->			
 		</div>
@@ -285,6 +298,7 @@
 <!-- 틀3 : 등록된 카페가 있는경우 -> 해당카페 상세보기 or 탐방기작성으로 유도 -->
 <script id="goCafeInfo" type="text/x-handlebars-tamplate">
 	{{#each.}}
+		<h3>이미 <span class='red'>Coffee MuKKa</span> 에 등록된 카페입니다</h3>
 		<button type="button" id="btnCafeInfo"><span class="red"><b>{{cafeName}}</b></span> 상세정보 보기 <i class="fas fa-greater-than"></i></button>
 		<button type="button" id="btnCafeReview">생생 카페 <span class="blue"><b>탐방기</b></span> 작성하기 <i class="fas fa-greater-than"></i></button>
 	{{/each}}	
@@ -368,7 +382,7 @@
 				$(".cafeResult").append($tr);
 				
 				if(res.length == 0) { // 등록된카페X -> 추천 글을 쓸수 있음
-					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:orange'><b>등록된 카페가 없습니다</b></span>");
+					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:orange'><b><span class='red'>Coffee MuKKa</span> 에 등록된 카페가 없습니다</b></span>");
 					var $tr = $("<tr>").append($tdNone);
 					$(".cafeResult").append($tr);
 					$(".goCageInfo_reiview").hide();
@@ -405,6 +419,23 @@
 		$(".cafeNo").val(no);
 		$(".cafeSearchWrap").hide();
 	})
+	
+	$("#file").change(function() {
+		//var file = $(this)[0].files[0]; // $(this)[0] : javascript 객체
+		
+		var files = $(this)[0].files;
+		//var file = e.target.files;        https://greatps1215.tistory.com/5
+		console.log(files);
+		$("#imagesBox").empty();
+			for(var i = 0; i<files.length;i++){
+			var reader = new FileReader(); //javascript 객체
+			reader.readAsDataURL(files[i]);
+			reader.onload = function(e){
+				var $img = $("<img>").attr("src", e.target.result);
+				$("#imagesBox").append($img);
+			}
+			}
+	})	
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>

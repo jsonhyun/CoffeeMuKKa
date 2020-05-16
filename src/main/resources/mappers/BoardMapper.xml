@@ -13,7 +13,7 @@
 		<result property="zoneNo.zoneNo" column="zone_no"/>
 		<result property="zoneNo.zoneName" column="zone_name"/>		
 		<result property="themeNo.themeNo" column="theme_no"/>
-		<result property="themeNo.themeName" column="theme_name"/>						
+		<result property="themeNo.themeName" column="theme_name"/>				
 	</resultMap>
 	 
 	 <!-- 추천카페:상세보기 resultMap JOIN테이블[board + zone + theme + users + grade] -->
@@ -34,7 +34,7 @@
 		<result property="userNo.userId" column="user_id"/>
 		<result property="userNo.password" column="password"/>
 		<result property="userNo.nick" column="nick"/>
-		<result property="userNo.userGrade.userGradeImage" column="user_grade_image"/>
+		<result property="userNo.userGrade.userGradeImage" column="user_grade_image"/>	
 	</resultMap>
 	
 	 <!-- **********************************************************************      QUERY     ***************************************************************************** -->	
@@ -55,11 +55,14 @@
 		where b.board_no2 = 2
 		order by b.board_no desc limit #{pageStart}, 16 <!-- 카페추천 : 한페이지당 16개씩 보여줌 -->
 	</select>
-	
+	<!-- 이미지 -->
 	<!-- 추천카페 : 글등록 -->
-	<insert id="recommendInsert" parameterType="BoardVO">
-		insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
+	<insert id="recommendInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo"> <!-- LAST_INSERT_ID()가 인식되지 않음 -->
+		insert into board (board_no, board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo}, #{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
 	</insert>
+	<insert id="recommendInsertImages">
+		insert into image (image_name,board_no) values (#{imageName},#{boardNo})
+	</insert>	
 	
 	<!-- 추천카페 상세보기 -->
 	<select id="recommendReadByNo" resultMap="BoardResult">

@@ -10,6 +10,7 @@ select * from zone;
 select * from image;
 select * from users;
 select * from grade;
+select * from image;
 
 -- 게시글번호(오토) / 게시판번호(2:추천) / 키워드분류번호(????) / 회원번호(0) / 지역번호(1) / 테마번호(1) / 글잠금여부() / 글제목 / 작성일 / 수정일 / 조회수 / 추천수 / 글내용
 
@@ -88,4 +89,28 @@ select * from cafe where cafe_name like CONCAT('%', '스테이55', '%');
 
 
 select * from cafe c left join zone z on c.zone_no = z.zone_no;
+select ;
 
+insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (2,1,1,1,'추천카페 테스트글','테스트내용','대구광역시');
+insert into image (image_name, board_no) values ('/2020/05/05/s_850c7f97-489d-482c-8dcf-1ed35e6e5d94_데이트.png', LAST_INSERT_ID());
+
+select * from image;
+delete from board;
+select * from board; 
+truncate table board;
+select last_insert_id(); 
+
+insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) 
+values (2, 1, 1, 1, '테스트입니다', '121212', '테스트입니다');
+
+-- 검색결과 1개
+select b.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.board_no2 = 2 limit 1;
+
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
+
+select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, i.image_name from board b
+left join zone z on b.zone_no = z.zone_no
+left join theme t on b.theme_no = t.theme_no
+left join image i on b.board_no = i.board_no
+where b.board_no2 = 2
+order by b.board_no desc limit 1,16;

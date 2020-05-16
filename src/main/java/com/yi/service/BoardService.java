@@ -32,11 +32,17 @@ public class BoardService {
 	//추천카페 -- 페이징된 리스트	
 	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception{
 		return dao.recommendboardListCriteria(cri);
-	}	
+	}
 	
 	//추천카페 -- 등록
+	@Transactional
 	public void recommendInsert(BoardVO vo) throws Exception{
 		dao.recommendInsert(vo);
+		int boardNo = vo.getBoardNo();
+		System.out.println("service=============================="+ vo.getFiles());
+		for(String file : vo.getStringFiles()) {
+			dao.recommendInsertImages(file,boardNo);
+		}	
 	}	
 	//추천카페 -- 상세보기
 	public BoardVO recommendReadByNo(int boardNo) throws Exception{

@@ -15,6 +15,7 @@ public interface BoardDAO {
 
 	//추천카페 -- 등록
 	public void recommendInsert(BoardVO vo) throws Exception;
+	public void recommendInsertImages(String imageName, int boardNo) throws Exception;	
 	//추천카페 -- 상세보기
 	public BoardVO recommendReadByNo(int boardNo);
 	

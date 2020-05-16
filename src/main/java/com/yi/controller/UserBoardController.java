@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
-import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
@@ -207,7 +206,7 @@ public class UserBoardController {
 	    pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
 		
-		
+		System.out.println("TEST============================================="+list.toString());
 		model.addAttribute("list",list);
 		model.addAttribute("cri",cri);
 		model.addAttribute("pageMaker",pageMaker);
@@ -216,7 +215,9 @@ public class UserBoardController {
 		int todayCnt = service.todayBoardCount(cBoardNo);
 		model.addAttribute("todayCnt", todayCnt);
 	
-
+		//대표이미지 가져오기
+		
+		
 		return "/user/userCommunityRecommendList";
 	}
 	//register -- 글등록
@@ -226,8 +227,29 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.POST)
-	public String communityRecommendRegisterPOST(BoardVO vo, List<MultipartFile> imgfiles) {
-		System.out.println(vo);
+	public String communityRecommendRegisterPOST(BoardVO vo, List<MultipartFile> imgfiles) throws Exception {
+		//System.out.println("테스트 POST ==============="+vo); // ok
+		//System.out.println("테스트 POST ==============="+imgfiles);  // ok
+		
+		ArrayList<String> fullName = new ArrayList<String>();
+		
+		for(MultipartFile file : imgfiles) {
+			//System.out.println("파일이름 : "+file.getOriginalFilename());  // ok
+			//System.out.println("파일사이즈 : "+file.getSize());  // ok
+			
+			if(file.getSize() != 0) {			
+				//upload처리
+				String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				//System.out.println("저장이름"+savedName);				
+				fullName.add(savedName);
+				//System.out.println("찍어라"+fullName.toString());
+			}
+		}
+		
+		vo.setStringFiles(fullName); // -- 여기서 왜 오류났는지... 다시
+		//System.out.println("찍어라2"+vo);
+		
+		service.recommendInsert(vo);
 		return "redirect:/user/community/cafeRecommend";
 	}
 	//read -- 상세보기
