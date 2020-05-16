@@ -74,11 +74,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewInsert(BoardVO vo) throws Exception {
 		sqlSession.insert(namespace + "cafeReviewInsert", vo);
 	}
-
+	@Override
+	public List<BoardVO> cafeReviesList(Criteria cri) throws Exception {
+		return sqlSession.selectList(namespace + "cafeReviesList", cri);
+	}
 	
-
-
-
-
 
 }

@@ -39,7 +39,8 @@ public class BoardService {
 	public void recommendInsert(BoardVO vo) throws Exception{
 		dao.recommendInsert(vo);
 		int boardNo = vo.getBoardNo();
-		for(String file : vo.getFiles()) {
+		System.out.println("service=============================="+ vo.getFiles());
+		for(String file : vo.getStringFiles()) {
 			dao.recommendInsertImages(file,boardNo);
 		}	
 	}	

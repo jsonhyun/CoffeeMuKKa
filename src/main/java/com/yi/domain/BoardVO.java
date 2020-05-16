@@ -19,8 +19,14 @@ public class BoardVO {
 	private int voteNumber;// 추천수
 	private String writingContent;// 글내용
 	private String address; // 추가된주소(무까인 추천 -> 새로운 카페 주소)
-	private ArrayList<String> files; // 이미지, Image 테이블에서 파일 이름을 가져옴
+	private ArrayList<ImageVO> files; // 이미지, Image 테이블에서 파일 이름을 가져옴
+	private ArrayList<String> stringFiles; // -- 임시로 생성
 	private Condition boardDelCdt; // 삭제여부판단
+
+	
+	public BoardVO() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getBoardNo() {
 		return boardNo;
@@ -142,11 +148,11 @@ public class BoardVO {
 		this.cafeNo = cafeNo;
 	}
 
-	public ArrayList<String> getFiles() {
+	public ArrayList<ImageVO> getFiles() {
 		return files;
 	}
 
-	public void setFiles(ArrayList<String> files) {
+	public void setFiles(ArrayList<ImageVO> files) {
 		this.files = files;
 	}
 
@@ -157,13 +163,25 @@ public class BoardVO {
 	public void setBoardDelCdt(Condition boardDelCdt) {
 		this.boardDelCdt = boardDelCdt;
 	}
+	
+
+	public ArrayList<String> getStringFiles() {
+		return stringFiles;
+	}
+
+	public void setStringFiles(ArrayList<String> stringFiles) {
+		this.stringFiles = stringFiles;
+	}
 
 	@Override
 	public String toString() {
-		return String.format(
-				"BoardVO [boardNo=%s, boardNo2=%s, keySortNo=%s, userNo=%s, zoneNo=%s, themeNo=%s, cafeNo=%s, writingLockCondition=%s, writingTitle=%s, registrationDate=%s, updateDate=%s, viewNumber=%s, voteNumber=%s, writingContent=%s, address=%s, files=%s, boardDelCdt=%s]",
-				boardNo, boardNo2, keySortNo, userNo, zoneNo, themeNo, cafeNo, writingLockCondition, writingTitle,
-				registrationDate, updateDate, viewNumber, voteNumber, writingContent, address, files, boardDelCdt);
+		return "BoardVO [boardNo=" + boardNo + ", boardNo2=" + boardNo2 + ", keySortNo=" + keySortNo + ", userNo="
+				+ userNo + ", zoneNo=" + zoneNo + ", themeNo=" + themeNo + ", cafeNo=" + cafeNo
+				+ ", writingLockCondition=" + writingLockCondition + ", writingTitle=" + writingTitle
+				+ ", registrationDate=" + registrationDate + ", updateDate=" + updateDate + ", viewNumber=" + viewNumber
+				+ ", voteNumber=" + voteNumber + ", writingContent=" + writingContent + ", address=" + address
+				+ ", files=" + files + ", stringFiles=" + stringFiles + ", boardDelCdt=" + boardDelCdt + "]";
 	}
+
 
 }

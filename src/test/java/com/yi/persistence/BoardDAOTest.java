@@ -1,5 +1,7 @@
 package com.yi.persistence;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.ThemeVO;
 import com.yi.domain.UsersVO;
 import com.yi.domain.ZoneVO;
@@ -65,8 +68,17 @@ public class BoardDAOTest {
 		dao.cafeReviewInsert(vo);
 	}
 	
-	@Test
+	//@Test
 	public void testTotalUserBoardCount() throws Exception {
 		dao.totalUserBoardCount(3);
+	}
+	
+	@Test
+	public void testCafeReviesList() throws Exception {
+		Criteria cri = new Criteria();
+		List<BoardVO> list = dao.cafeReviesList(cri);
+		for(BoardVO b : list) {
+			System.out.println(b);
+		}
 	}
 }

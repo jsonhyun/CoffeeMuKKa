@@ -61,3 +61,29 @@ update users
 select * from users;
 
 select count(*), b.user_no, u.name , u.user_grade from board b left join users u on b.user_no = u.user_no where b.user_no = 3;
+
+select * 
+	from board b left join image i on b.board_no = i.board_no 
+	where board_no2 = 1
+	order by b.board_no desc limit 0, 20;
+
+select * from board;
+select count(*) as reply_cnt
+	from reply
+	where board_no = 1;
+
+
+select u.nick , u.user_id , u.user_grade , g.user_grade_image , 
+	   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number ,
+	   z.zone_name , t.theme_name , c.cafe_name , r.reply_cnt
+	from board b left join image i on b.board_no = i.board_no 
+				left join users u on b.user_no = u.user_no 
+				left join grade g on u.user_grade = g.user_grade 
+				left join cafe c on b.cafe_no = c.cafe_no 
+				left join zone z on c.zone_no = z.zone_no 
+				left join theme t on c.theme_no = t.theme_no, 
+				(select count(*) as reply_cnt from reply where board_no = 1) r
+	where b.board_no2 = 1 
+	order by b.board_no desc limit 0, 20;
+
+select * from board b where board_no2 = 1 order by b.board_no desc limit 0, 20;

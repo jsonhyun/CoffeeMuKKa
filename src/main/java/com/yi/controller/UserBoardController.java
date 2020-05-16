@@ -228,7 +228,8 @@ public class UserBoardController {
 				//System.out.println("찍어라"+fullName.toString());
 			}
 		}
-		vo.setFiles(fullName);
+		
+		vo.setStringFiles(fullName); // -- 여기서 왜 오류났는지... 다시
 		//System.out.println("찍어라2"+vo);
 		
 		service.recommendInsert(vo);
