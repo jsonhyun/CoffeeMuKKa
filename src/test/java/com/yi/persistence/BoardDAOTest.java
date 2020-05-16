@@ -76,6 +76,7 @@ public class BoardDAOTest {
 	@Test
 	public void testCafeReviesList() throws Exception {
 		Criteria cri = new Criteria();
+		cri.setPage(1);
 		List<BoardVO> list = dao.cafeReviesList(cri);
 		for(BoardVO b : list) {
 			System.out.println(b);

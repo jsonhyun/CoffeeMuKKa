@@ -52,15 +52,30 @@ public class UserBoardController {
 	
 	// 커뮤니티 - 탐방기 : 경진
 	//register/read/modify/remove/list
+	
+	// 탐방기 리스트
 	@RequestMapping(value = "/community/cafeReview", method = RequestMethod.GET)
-	public String communityReviewList(Model model) throws Exception {
-		//탐방기 오늘의 글 갯수
+	public String communityReviewList(Criteria cri, Model model) throws Exception {
+		System.out.println("cri------------------" + cri);
 		int cBoardNo = 1;
+		
+		List<BoardVO> list = service.cafeReviesList(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.todayBoardCount(cBoardNo));
+		
+		//탐방기 오늘의 글 갯수
 		int todayCnt = service.todayBoardCount(cBoardNo);
+		
 		model.addAttribute("todayCnt", todayCnt);
+		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("cri", cri);
 		return "/user/userCommunityReviewList";
 	}
 	
+	//탐방기 등록
 	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.GET)
 	public String communityReviewRegisterGet() {
 		return "/user/userCommunityReviewRegister";
@@ -88,6 +103,7 @@ public class UserBoardController {
 		return "redirect:/user/community/cafeReview";
 	}
 	
+	// ckd에디터 이미지 등록
 	@RequestMapping(value = "/ckdFileUpload", method = RequestMethod.POST)
 	public String ckeditorFileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws IOException {		
 		JsonObject json = new JsonObject();
@@ -139,6 +155,7 @@ public class UserBoardController {
 		return null;
 	}
 	
+	// 외부에 저장된 이미지 데이터 불러와 전달
 	@ResponseBody
 	@RequestMapping(value = "displayFile", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> displayFile(String filename){

@@ -63,6 +63,10 @@ public class BoardService {
 		userGradeUpdate(vo);
 	}
 	
+	public List<BoardVO> cafeReviesList(Criteria cri) throws Exception {
+		return dao.cafeReviesList(cri);
+	}
+	
 	
 	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
 	private void userGradeUpdate(BoardVO vo) throws Exception {

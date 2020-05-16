@@ -67,6 +67,12 @@
 		float: left;
 		width: 48.6%;
 		border: 1px solid #545454;
+		margin-bottom: 20px;
+		cursor: pointer;
+	}
+	
+	.cafeReviewArea .cafeR_box:hover .cafe_title{
+		text-decoration: underline;
 	}
 	
 	.cafeReviewArea .cafeR_box:nth-of-type(odd) {
@@ -78,6 +84,30 @@
 		padding: 15px 10px;
 		position: relative;
 		color: #fff;
+	}
+	
+	.cafeReviewArea .cafeR_titleBox .cafeR_titleImg {
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: -1;
+	    overflow: hidden;
+	}
+	
+	.cafeReviewArea .cafeR_titleBox .cafeR_titleImg .bg {
+		width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    background: rgba(0,0,0,0.4);
+	}
+	
+	.cafeReviewArea .cafeR_titleBox .cafeR_titleImg img {
+		width: 100%;
+    	min-height: 100%;
 	}
 	
 	.cafeReviewArea .cafeR_writer {
@@ -283,7 +313,11 @@
 			<div class="cafeR_titleWrap clearfix">				
 				<h3 class="cafeR_title">오늘의 탐방기 | <span class="red cafeRCnt">${todayCnt}개</span></h3>
 				<div class="cafeR_topBtns">
-					<div class="cafeR_topBtn cafeR_totalBtn grayLineBtn"><a href="#"><span class="red bold">베스트 글</span> 전체 보기</a></div>
+					<div class="cafeR_topBtn cafeR_totalBtn grayLineBtn">
+						<a href="#">
+							<span class="red bold">베스트 글</span> 전체 보기
+						</a>
+					</div>
 					<div class="cafeR_topBtn cafeR_add navyBtn">
 						<a href="${pageContext.request.contextPath }/user/community/cafeReview/register" class="cafeR_addBtn">탐방기 쓰기</a>
 					</div>
@@ -291,54 +325,80 @@
 			</div>
 			<div class="cafeR_list clearfix mb30">
 				<!-- 탐방기 글 박스 -->
-				<div class="cafeR_box">
-					<div class="cafeR_titleBox temp">
-						<div class="cafeR_titleTop clearfix" >
-							<div class="cafeR_writer clearfix">
-								<img src="${pageContext.request.contextPath }/resources/images/Lv03_w2.png" alt="" />
-								<span class="cafeR_name bold">민수는 커피</span>
-								<span class="cafeR_id bold">(minsuong)</span>
+				<c:forEach var="item" items="${list }">
+					<div class="cafeR_box">
+						<div class="cafeR_titleBox">
+							<div class="cafeR_titleImg">	
+								<div class="bg"></div>						
+								<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" />
 							</div>
-							<div class="cafeR_recomCnt bgRed">8</div>						
-						</div>
-						<h2 class="classSec">갓 구운 촉촉한 식빵과 꿀의 결합</h2>
-						<div class="cafeR_date bold">2020/05/02</div>
-					</div>
-					<div class="cafeR_infoBox">
-						<div class="cafeR_infoTop clearfix">
-							<div class="zoneBtn zoneOrangeIconSmall">위치</div>
-							<div class="dessert themeKeySmall">#디저트</div>
-							<h2>러브패리사</h2>
-						</div>
-						<p class="cafeR_text">
-							포스트 글내용이 적힙니다 포스트 글내용이 적힙니다 포스트 글내용이 적힙니다 포스트 글내용이 적힙니다 포스트
-							글내용이 적힙니다 포스트 글내용이 적힙니다 포스트 글내용이 적힙니다 포스트 글내용이 적힙니다 포스트 글내용이 적힙니다
-							포스트 글내용이 적힙니다 포스트 글내용이 적힙니다 포스트 글내용이 적힙니다 포스트 글내용이 적힙니다
-						</p>
-					</div>
-					<div class="cafeR_replyCdt clearfix">
-						<div class="cafeR_replyCdtWrap">
-							<div class="cafeR_btns">
-								<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
-								<span class="cafeR_replyCnt">000</span>
+							<div class="cafeR_titleTop clearfix" >
+								<div class="cafeR_writer clearfix">
+									<img src="${pageContext.request.contextPath }/resources/images/${item.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
+									<span class="cafeR_name bold">${item.userNo.nick }</span>
+									<span class="cafeR_id bold">(${item.userNo.userId })</span>
+								</div>
+								<div class="cafeR_recomCnt bgRed">${item.voteNumber }</div>						
 							</div>
-							<div class="cafeR_btns">
-								<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
-								<span class="cafeR_viewCnt">000</span>
+							<h2 class="classSec cafe_title">${item.writingTitle }</h2>
+							<div class="cafeR_date bold"><fmt:formatDate value="${item.registrationDate }" pattern="yyyy/MM/dd"/></div>
+						</div>
+						<div class="cafeR_infoBox">
+							<div class="cafeR_infoTop clearfix">
+								<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
+								<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
+								<h2>러브패리사</h2>
+							</div>
+							<%-- <p class="cafeR_text">
+								${item.writingContent }
+							</p> --%>
+						</div>
+						<div class="cafeR_replyCdt clearfix">
+							<div class="cafeR_replyCdtWrap">
+								<div class="cafeR_btns">
+									<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
+									<span class="cafeR_replyCnt">000</span>
+								</div>
+								<div class="cafeR_btns">
+									<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
+									<span class="cafeR_viewCnt">${item.viewNumber }</span>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</c:forEach>
 				<!-- 탐방기 글 end -->
 			</div>
 		</div>
 	</div>
 </div>
 	
-<script>
-</script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
+<script>
+	// 타이틀 이미지 원본 넣기
+	$(".titleImg").each(function(i, obj) {
+		var file = $(this).attr("src");
+		var s = file.indexOf("s_");
+		var dir = file.substring(0, s);
+		var fileName = file.substring(s+2, file.length);
+		$(this).attr("src", dir+fileName);
+	})
+	
+	// 테마분류 색상 설정
+	$(".themeName").each(function(i, obj){
+		var name = $(this).text();
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+		
+	})
+</script>
 
 <%@ include file="../userInclude/footer.jsp" %>
