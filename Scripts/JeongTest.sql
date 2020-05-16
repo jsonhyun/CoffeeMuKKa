@@ -89,11 +89,16 @@ select * from cafe where cafe_name like CONCAT('%', '스테이55', '%');
 
 
 select * from cafe c left join zone z on c.zone_no = z.zone_no;
-select * from board LAST_INSERT_ID();
+select ;
 
 insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (2,1,1,1,'추천카페 테스트글','테스트내용','대구광역시');
 insert into image (image_name, board_no) values ('/2020/05/05/s_850c7f97-489d-482c-8dcf-1ed35e6e5d94_데이트.png', LAST_INSERT_ID());
 
 select * from image;
+delete from board;
+select * from board; 
+truncate table board;
+select last_insert_id(); 
 
-select * from board;
+insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) 
+values (2, 1, 1, 1, '테스트입니다', '121212', '테스트입니다');

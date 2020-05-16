@@ -1,6 +1,8 @@
 package com.yi.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,13 @@ public class BoardDAOImpl implements BoardDAO{
 	public void recommendInsert(BoardVO vo) throws Exception {
 		sqlSession.insert(namespace+"recommendInsert", vo);
 	}
+	@Override
+	public void recommendInsertImages(String imageName, int boardNo) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("imageName", imageName);
+		map.put("boardNo", boardNo);
+		sqlSession.insert(namespace+"recommendInsertImages",map);		
+	}	
 	//추천카페 -- 상세보기
 	@Override
 	public BoardVO recommendReadByNo(int boardNo) {

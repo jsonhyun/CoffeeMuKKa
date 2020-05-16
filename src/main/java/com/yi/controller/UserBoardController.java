@@ -209,8 +209,25 @@ public class UserBoardController {
 	
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.POST)
 	public String communityRecommendRegisterPOST(BoardVO vo, List<MultipartFile> imgfiles) throws Exception {
-		System.out.println("테스트 POST ==============="+vo);
-		System.out.println("테스트 POST ==============="+imgfiles);
+		System.out.println("테스트 POST ==============="+vo); // ok
+		System.out.println("테스트 POST ==============="+imgfiles);  // ok
+		
+		ArrayList<String> fullName = new ArrayList<String>();
+		
+		for(MultipartFile file : imgfiles) {
+			System.out.println("파일이름 : "+file.getOriginalFilename());  // ok
+			System.out.println("파일사이즈 : "+file.getSize());  // ok
+			
+			if(file.getSize() != 0) {			
+				//upload처리
+				String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				System.out.println("저장이름"+savedName);				
+				fullName.add(savedName);
+				System.out.println("찍어라"+fullName.toString());
+			}
+		}
+		vo.setFiles(fullName);
+		System.out.println("찍어라2"+vo);
 		
 		service.recommendInsert(vo);
 		return "redirect:/user/community/cafeRecommend";

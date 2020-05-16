@@ -57,9 +57,12 @@
 	</select>
 	
 	<!-- 추천카페 : 글등록 -->
-	<insert id="recommendInsert" parameterType="BoardVO">
-		insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
+	<insert id="recommendInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo">
+		insert into board (board_no, board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo}, #{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
 	</insert>
+	<insert id="recommendInsertImages">
+		insert into image (image_name,board_no) values (#{imageName},#{boardNo})
+	</insert>	
 	
 	<!-- 추천카페 상세보기 -->
 	<select id="recommendReadByNo" resultMap="BoardResult">

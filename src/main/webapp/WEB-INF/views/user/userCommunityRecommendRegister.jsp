@@ -265,10 +265,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="goCageInfo_reiview">
-<!-- 						<button type="button">{{cafeName}} 상세정보 보기</button>
-						<button type="button">생생 카페 탐방기 작성하기</button> -->
-					</div>
+					<div class="goCageInfo_reiview"></div>
 				</div>
 		<!-- /검색박스 -->			
 		</div>

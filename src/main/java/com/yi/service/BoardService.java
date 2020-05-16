@@ -38,6 +38,10 @@ public class BoardService {
 	@Transactional
 	public void recommendInsert(BoardVO vo) throws Exception{
 		dao.recommendInsert(vo);
+		int boardNo = vo.getBoardNo();
+		for(String file : vo.getFiles()) {
+			dao.recommendInsertImages(file,boardNo);
+		}	
 	}	
 	//추천카페 -- 상세보기
 	public BoardVO recommendReadByNo(int boardNo) throws Exception{
