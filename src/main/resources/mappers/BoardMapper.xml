@@ -151,7 +151,7 @@
 						left join zone z on c.zone_no = z.zone_no 
 						left join theme t on c.theme_no = t.theme_no
 			where b.board_no2 = 1 
-			order by b.board_no desc limit #{pageStart}, 20
+			order by b.board_no desc limit #{pageStart}, #{perPageNum}
 	</select>
 
 </mapper>

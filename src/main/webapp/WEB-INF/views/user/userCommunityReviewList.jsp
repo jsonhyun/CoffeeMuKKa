@@ -68,7 +68,6 @@
 		width: 48.6%;
 		border: 1px solid #545454;
 		margin-bottom: 20px;
-		cursor: pointer;
 	}
 	
 	.cafeReviewArea .cafeR_box:hover .cafe_title{
@@ -194,6 +193,100 @@
 		float: left;
 		margin-right: 10px;
 	}
+	
+	/* 페이징 */
+	.pagination {
+		display: inline-block;
+	  	padding-left: 0;
+	  	margin: 20px 0;
+	  	border-radius: 4px;
+	}
+	.pagination > li {
+  		display: inline;
+	}
+	.pagination > li > a,
+	.pagination > li > span {
+		position: relative;
+		float: left;
+		padding: 6px 12px;
+		margin-left: -1px;
+		line-height: 1.42857143;
+		color: #303A50;
+		text-decoration: none;
+		background-color: #fff;
+		border: 1px solid #ddd;
+	}
+	.pagination > li:first-child > a,
+	.pagination > li:first-child > span {
+		margin-left: 0;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+	}
+	.pagination > li:last-child > a,
+	.pagination > li:last-child > span {
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+	.pagination > li > a:hover,
+	.pagination > li > span:hover,
+	.pagination > li > a:focus,
+	.pagination > li > span:focus {
+		color: #23527c;
+		background-color: #eee;
+		border-color: #ddd;
+	}
+	.pagination > .active > a,
+	.pagination > .active > span,
+	.pagination > .active > a:hover,
+	.pagination > .active > span:hover,
+	.pagination > .active > a:focus,
+	.pagination > .active > span:focus {
+		z-index: 2;
+		color: #fff;
+		cursor: default;
+		background-color: #303A50;
+		border-color: #303A50;
+	}
+	.pagination > .disabled > span,
+	.pagination > .disabled > span:hover,
+	.pagination > .disabled > span:focus,
+	.pagination > .disabled > a,
+	.pagination > .disabled > a:hover,
+	.pagination > .disabled > a:focus {
+		color: #777;
+		cursor: not-allowed;
+		background-color: #fff;
+		border-color: #ddd;
+	}
+	.pagination-lg > li > a,
+	.pagination-lg > li > span {
+		padding: 10px 16px;
+		font-size: 18px;
+	}
+	.pagination-lg > li:first-child > a,
+	.pagination-lg > li:first-child > span {
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+	.pagination-lg > li:last-child > a,
+	.pagination-lg > li:last-child > span {
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+	.pagination-sm > li > a,
+	.pagination-sm > li > span {
+		padding: 5px 10px;
+		font-size: 12px;
+	}
+	.pagination-sm > li:first-child > a,
+	.pagination-sm > li:first-child > span {
+       border-top-left-radius: 3px;
+	   border-bottom-left-radius: 3px;
+	}
+	.pagination-sm > li:last-child > a,
+	.pagination-sm > li:last-child > span {
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
 	
 </style>
 	
@@ -325,51 +418,68 @@
 			</div>
 			<div class="cafeR_list clearfix mb30">
 				<!-- 탐방기 글 박스 -->
-				<c:forEach var="item" items="${list }">
-					<div class="cafeR_box">
-						<div class="cafeR_titleBox">
-							<div class="cafeR_titleImg">	
-								<div class="bg"></div>						
-								<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" />
-							</div>
-							<div class="cafeR_titleTop clearfix" >
-								<div class="cafeR_writer clearfix">
-									<img src="${pageContext.request.contextPath }/resources/images/${item.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
-									<span class="cafeR_name bold">${item.userNo.nick }</span>
-									<span class="cafeR_id bold">(${item.userNo.userId })</span>
+				<a href="#">
+					<c:forEach var="item" items="${list }">
+						<div class="cafeR_box">
+							<div class="cafeR_titleBox">
+								<div class="cafeR_titleImg">	
+									<div class="bg"></div>						
+									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" />
 								</div>
-								<div class="cafeR_recomCnt bgRed">${item.voteNumber }</div>						
-							</div>
-							<h2 class="classSec cafe_title">${item.writingTitle }</h2>
-							<div class="cafeR_date bold"><fmt:formatDate value="${item.registrationDate }" pattern="yyyy/MM/dd"/></div>
-						</div>
-						<div class="cafeR_infoBox">
-							<div class="cafeR_infoTop clearfix">
-								<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
-								<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
-								<h2>러브패리사</h2>
-							</div>
-							<%-- <p class="cafeR_text">
-								${item.writingContent }
-							</p> --%>
-						</div>
-						<div class="cafeR_replyCdt clearfix">
-							<div class="cafeR_replyCdtWrap">
-								<div class="cafeR_btns">
-									<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
-									<span class="cafeR_replyCnt">000</span>
+								<div class="cafeR_titleTop clearfix" >
+									<div class="cafeR_writer clearfix">
+										<img src="${pageContext.request.contextPath }/resources/images/${item.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
+										<span class="cafeR_name bold">${item.userNo.nick }</span>
+										<span class="cafeR_id bold">(${item.userNo.userId })</span>
+									</div>
+									<div class="cafeR_recomCnt bgRed">${item.voteNumber }</div>						
 								</div>
-								<div class="cafeR_btns">
-									<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
-									<span class="cafeR_viewCnt">${item.viewNumber }</span>
+								<h2 class="classSec cafe_title">${item.writingTitle }</h2>
+								<div class="cafeR_date bold"><fmt:formatDate value="${item.registrationDate }" pattern="yyyy/MM/dd"/></div>
+							</div>
+							<div class="cafeR_infoBox">
+								<div class="cafeR_infoTop clearfix">
+									<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
+									<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
+									<h2>러브패리사</h2>
+								</div>
+								<%-- <p class="cafeR_text">
+									${item.writingContent }
+								</p> --%>
+							</div>
+							<div class="cafeR_replyCdt clearfix">
+								<div class="cafeR_replyCdtWrap">
+									<div class="cafeR_btns">
+										<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
+										<span class="cafeR_replyCnt">000</span>
+									</div>
+									<div class="cafeR_btns">
+										<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
+										<span class="cafeR_viewCnt">${item.viewNumber }</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</a>
 				<!-- 탐방기 글 end -->
 			</div>
 		</div>
+		<!-- 페이징 -->
+		<div style="text-align: center;">
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev == true }">
+					<li><a href="cafeRecommend?page=${pageMaker.startPage-1 }">&laquo;</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }">${idx }</a></li>
+				</c:forEach>
+				<c:if test="${pageMaker.next == true }">
+					<li><a href="cafeRecommend?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+				</c:if>
+			</ul>
+		</div>	
+		
 	</div>
 </div>
 	
@@ -384,6 +494,7 @@
 		var dir = file.substring(0, s);
 		var fileName = file.substring(s+2, file.length);
 		$(this).attr("src", dir+fileName);
+		console.log(fileName);
 	})
 	
 	// 테마분류 색상 설정
