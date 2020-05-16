@@ -189,7 +189,7 @@ public class UserBoardController {
 	    pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
 		
-		
+		System.out.println("TEST============================================="+list.toString());
 		model.addAttribute("list",list);
 		model.addAttribute("cri",cri);
 		model.addAttribute("pageMaker",pageMaker);
@@ -198,7 +198,9 @@ public class UserBoardController {
 		int todayCnt = service.todayBoardCount(cBoardNo);
 		model.addAttribute("todayCnt", todayCnt);
 	
-
+		//대표이미지 가져오기
+		
+		
 		return "/user/userCommunityRecommendList";
 	}
 	//register -- 글등록
@@ -209,25 +211,25 @@ public class UserBoardController {
 	
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.POST)
 	public String communityRecommendRegisterPOST(BoardVO vo, List<MultipartFile> imgfiles) throws Exception {
-		System.out.println("테스트 POST ==============="+vo); // ok
-		System.out.println("테스트 POST ==============="+imgfiles);  // ok
+		//System.out.println("테스트 POST ==============="+vo); // ok
+		//System.out.println("테스트 POST ==============="+imgfiles);  // ok
 		
 		ArrayList<String> fullName = new ArrayList<String>();
 		
 		for(MultipartFile file : imgfiles) {
-			System.out.println("파일이름 : "+file.getOriginalFilename());  // ok
-			System.out.println("파일사이즈 : "+file.getSize());  // ok
+			//System.out.println("파일이름 : "+file.getOriginalFilename());  // ok
+			//System.out.println("파일사이즈 : "+file.getSize());  // ok
 			
 			if(file.getSize() != 0) {			
 				//upload처리
 				String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-				System.out.println("저장이름"+savedName);				
+				//System.out.println("저장이름"+savedName);				
 				fullName.add(savedName);
-				System.out.println("찍어라"+fullName.toString());
+				//System.out.println("찍어라"+fullName.toString());
 			}
 		}
 		vo.setFiles(fullName);
-		System.out.println("찍어라2"+vo);
+		//System.out.println("찍어라2"+vo);
 		
 		service.recommendInsert(vo);
 		return "redirect:/user/community/cafeRecommend";

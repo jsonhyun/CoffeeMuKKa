@@ -102,3 +102,15 @@ select last_insert_id();
 
 insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) 
 values (2, 1, 1, 1, '테스트입니다', '121212', '테스트입니다');
+
+-- 검색결과 1개
+select b.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.board_no2 = 2 limit 1;
+
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
+
+select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, i.image_name from board b
+left join zone z on b.zone_no = z.zone_no
+left join theme t on b.theme_no = t.theme_no
+left join image i on b.board_no = i.board_no
+where b.board_no2 = 2
+order by b.board_no desc limit 1,16;
