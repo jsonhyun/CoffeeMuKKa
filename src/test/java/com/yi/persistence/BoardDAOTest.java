@@ -12,6 +12,7 @@ import com.yi.domain.BoardKindsVO;
 import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.SearchCriteria;
 import com.yi.domain.ThemeVO;
 import com.yi.domain.UsersVO;
 import com.yi.domain.ZoneVO;
@@ -75,7 +76,7 @@ public class BoardDAOTest {
 	
 	@Test
 	public void testCafeReviesList() throws Exception {
-		Criteria cri = new Criteria();
+		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
 		List<BoardVO> list = dao.cafeReviesList(cri);
 		for(BoardVO b : list) {

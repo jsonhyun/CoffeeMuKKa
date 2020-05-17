@@ -33,7 +33,10 @@ import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.PageMaker;
+import com.yi.domain.SearchCriteria;
+import com.yi.domain.ThemeVO;
 import com.yi.domain.UsersVO;
+import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
 import com.yi.util.UploadFileUtils;
 
@@ -54,7 +57,7 @@ public class UserBoardController {
 	
 	// 탐방기 리스트
 	@RequestMapping(value = "/community/cafeReview", method = RequestMethod.GET)
-	public String communityReviewList(Criteria cri, Model model) throws Exception {
+	public String communityReviewList(SearchCriteria cri, Model model) throws Exception {
 		//System.out.println("cri------------------" + cri);
 		int cBoardNo = 1;
 		cri.setPerPageNum(20);
@@ -69,11 +72,23 @@ public class UserBoardController {
 		//탐방기 오늘의 글 갯수
 		int todayCnt = service.todayBoardCount(cBoardNo);
 		
+		//테마 리스트
+		List<ThemeVO> themeList = service.themeList();
+		//지역리스트
+		List<ZoneVO> zoneList = service.zoneList();
+		
 		model.addAttribute("todayCnt", todayCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
+		model.addAttribute("themeList", themeList);
+		model.addAttribute("zoneList", zoneList);
 		return "/user/userCommunityReviewList";
+	}
+	
+	@RequestMapping(value = "/community/cafeReview/read", method = RequestMethod.GET)
+	public String communityReviewRead(int boardNo, Model model) {
+		return null;
 	}
 	
 	//탐방기 등록

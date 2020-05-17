@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.SearchCriteria;
 
 public interface BoardDAO {
 	
@@ -31,6 +32,6 @@ public interface BoardDAO {
 	// 탐방기 -- 등록
 	public void cafeReviewInsert(BoardVO vo) throws Exception;
 	// 탐방기 -- list
-	public List<BoardVO> cafeReviesList(Criteria cri) throws Exception;
-	
+	public List<BoardVO> cafeReviesList(SearchCriteria cri) throws Exception;
+	//탐방기 -- 키워드 이용 검색 가능한 페이징 처리 
 }

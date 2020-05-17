@@ -9,9 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
+import com.yi.domain.SearchCriteria;
+import com.yi.domain.ThemeVO;
+import com.yi.domain.ZoneVO;
 import com.yi.persistence.BoardDAO;
 import com.yi.persistence.ImageDAO;
+import com.yi.persistence.ThemeDAO;
 import com.yi.persistence.UsersDAO;
+import com.yi.persistence.ZoneDAO;
 
 @Service
 public class BoardService {
@@ -23,6 +28,12 @@ public class BoardService {
 	
 	@Autowired
 	UsersDAO userDao;
+	
+	@Autowired
+	ThemeDAO themeDao;
+	
+	@Autowired
+	ZoneDAO zoneDao;
 	
 	/*** 카페추천 ***/
 	//추천카페 -- 리스트	(테스트용)
@@ -59,6 +70,14 @@ public class BoardService {
 		return dao.totalSearchCount(cBoardNo);
 	}
 
+	// 테마 리스트
+	public List<ThemeVO> themeList() throws Exception{
+		return themeDao.themeList();
+	}
+	// 지역 리스트
+	public List<ZoneVO> zoneList() throws Exception {
+		return zoneDao.zoneList();
+	}
 	
 	/*** 탐방기 ***/
 	@Transactional
@@ -69,7 +88,7 @@ public class BoardService {
 		userGradeUpdate(vo);
 	}
 	
-	public List<BoardVO> cafeReviesList(Criteria cri) throws Exception {
+	public List<BoardVO> cafeReviesList(SearchCriteria cri) throws Exception {
 		return dao.cafeReviesList(cri);
 	}
 	

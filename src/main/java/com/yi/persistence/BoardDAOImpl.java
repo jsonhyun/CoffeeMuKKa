@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -75,7 +76,7 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.insert(namespace + "cafeReviewInsert", vo);
 	}
 	@Override
-	public List<BoardVO> cafeReviesList(Criteria cri) throws Exception {
+	public List<BoardVO> cafeReviesList(SearchCriteria cri) throws Exception {
 		return sqlSession.selectList(namespace + "cafeReviesList", cri);
 	}
 	

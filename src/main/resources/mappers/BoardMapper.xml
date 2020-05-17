@@ -74,24 +74,8 @@
 		where b.board_no2 = 2 and b.board_no = #{boardNo}
 	</select>
 	
-	 <!-- **********************************************************************   공통 QUERY     ***************************************************************************** -->	
-		
-	<!-- 공통 : 오늘 등록된 글 갯수 -->
-	<select id="todayBoardCount" resultType="int">
-		select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = #{cBoardNo} <!-- 커뮤니티 게시판 번호 -->
-	</select>
-	<!-- 공통 : 각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용) -->
-	<select id="totalSearchCount" resultType="int">
-		select count(board_no) from board where board_no2 = #{cBoardNo}
-	</select>
 	
-	<!-- 공통 : 유저가 등록한 게시글 갯수 -->
-	<select id="totalUserBoardCount" resultType="int">
-		select count(*) from board where user_no = #{user_no};
-	</select>
-
-<!-- 경진 : 탐방기 -->
-<!-- **********************************************************************      RESULTMAP     ***************************************************************************** -->
+<!-- **********************************************************************      공통 RESULTMAP     ***************************************************************************** -->
 	<!-- BoardResultMap JOIN테이블[boardKinds + keySortNo + users + grade + zone + theme + cafe ] -->
 	<resultMap type="BoardVO" id="BoardResult">
 		<id property="boardNo" column="board_no"/>
@@ -132,7 +116,68 @@
 		
 		<!-- 이미지 -->
 		<collection property="files" resultMap="mappers.ImageMapper.imageResult"/>
-	</resultMap>	
+	</resultMap>
+	
+<!-- **********************************************************************   공통 QUERY     ***************************************************************************** -->	
+		
+	<!-- 공통 : 오늘 등록된 글 갯수 -->
+	<select id="todayBoardCount" resultType="int">
+		select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = #{cBoardNo} <!-- 커뮤니티 게시판 번호 -->
+	</select>
+	<!-- 공통 : 각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용) -->
+	<select id="totalSearchCount" resultType="int">
+		select count(board_no) from board where board_no2 = #{cBoardNo}
+	</select>
+	
+	<!-- 공통 : 유저가 등록한 게시글 갯수 -->
+	<select id="totalUserBoardCount" resultType="int">
+		select count(*) from board where user_no = #{user_no};
+	</select>
+
+<!-- 경진 : 탐방기 -->
+	<!-- 탐방기 : 키워드 이용 검색 가능한 페이징 처리 매퍼 -->
+	<sql id="search">
+		<where>
+			b.board_no2 = 1 
+			<if test="searchZone != '' and searchZone != null">			
+				AND z.zone_no = #{searchZone}
+			</if>
+			<if test="searchTheme != '' and searchTheme != null">
+				AND t.theme_no = #{searchTheme}
+			</if>
+			<if test="searchType == 't'.toString()">
+				AND b.writing_title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				AND b.writing_content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				AND b.writing_title like CONCAT('%', #{keyword}, '%') OR b.writing_content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'uId'.toString()">
+				AND u.user_id = #{keyword}
+			</if>
+			<if test="searchType == 'uName'.toString()">
+				AND u.nick = #{keyword} OR u.name = #{keyword}
+			</if>
+		</where>
+		
+	</sql>
+	
+	<!-- 탐방기 : 탐방기 list -->
+	<select id="cafeReviesList" resultMap="BoardResult">
+		select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
+			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
+			   z.zone_no , z.zone_name , t.theme_no , t.theme_name , c.cafe_name , i.image_name 
+			from board b left join image i on b.board_no = i.board_no 
+						left join users u on b.user_no = u.user_no 
+						left join grade g on u.user_grade = g.user_grade 
+						left join cafe c on b.cafe_no = c.cafe_no 
+						left join zone z on c.zone_no = z.zone_no 
+						left join theme t on c.theme_no = t.theme_no
+			<include refid="search"/>
+			order by b.board_no desc limit #{pageStart}, #{perPageNum}
+	</select>
 	
 	<!-- 탐방기 : 글등록 -->
 	<insert id="cafeReviewInsert" parameterType="BoardVO">
@@ -140,19 +185,5 @@
 			values (#{boardNo2.boardNo}, #{userNo.userNo}, #{cafeNo.cafeNo}, #{writingTitle}, #{writingContent});
 	</insert>
 	
-	<!-- 탐방기 : 탐방기 list -->
-	<select id="cafeReviesList" resultMap="BoardResult">
-		select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
-			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
-			   z.zone_name , t.theme_name , c.cafe_name , i.image_name 
-			from board b left join image i on b.board_no = i.board_no 
-						left join users u on b.user_no = u.user_no 
-						left join grade g on u.user_grade = g.user_grade 
-						left join cafe c on b.cafe_no = c.cafe_no 
-						left join zone z on c.zone_no = z.zone_no 
-						left join theme t on c.theme_no = t.theme_no
-			where b.board_no2 = 1 
-			order by b.board_no desc limit #{pageStart}, #{perPageNum}
-	</select>
 
 </mapper>

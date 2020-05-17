@@ -385,19 +385,30 @@
 		<!-- 선택 검색 -->
 		<div class="cafeReviewSearch bottomLine2 clearfix">
 			<div class="selectLeft">
-				<select name="" id="">
-					<option value="all">전체</option>
+				<select name="searchZone" id="searchZone">
+					<option value="" ${cri.searchZone == '' ? 'selected' : '' }>전체(위치별)</option>
+					<c:forEach var="zone" items="${zoneList }">
+						<option value="${zone.zoneNo }" ${cri.searchZone == zone.zoneNo ? 'selected' : '' }>${zone.zoneName }</option>
+					</c:forEach>
 				</select>
-				<select name="" id="">
-					<option value="all">전체</option>
+				<select name="searchTheme" id="searchTheme">
+					<option value="" ${cri.searchTheme == '' ? 'selected' : '' }>전체(테마별)</option>
+					<c:forEach var="theme" items="${themeList }">					
+						<option value="${theme.themeNo}" ${cri.searchTheme == theme.themeNo ? 'selected' : '' }>#${theme.themeName}</option>
+					</c:forEach>
 				</select>
 			</div>
 			<div class="selectRight">
-				<select name="" id="">
-					<option value="">제목</option>
+				<select name="searchType" id="searchType">
+					<option value="n" ${cri.searchType == null ? 'selected' : '' }>----</option>
+					<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>제목</option>
+					<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>내용</option>
+					<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>제목+내용</option>
+					<option value="uId" ${cri.searchType == 'uId' ? 'selected' : '' }>회원아이디</option>
+					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option>
 				</select>
-				<input type="text" name="" placeholder="검색어를 입력하세요." />
-				<input type="submit" value="검색" class="navyBtn"/>
+				<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
+				<button type="button" class="navyBtn" id="btnSearch">검색</button>
 			</div>
 		</div>
 		
@@ -418,7 +429,7 @@
 			</div>
 			<div class="cafeR_list clearfix mb30">
 				<!-- 탐방기 글 박스 -->
-				<a href="#">
+				<a href="${pageContext.request.contextPath }/user/community/cafeReview">
 					<c:forEach var="item" items="${list }">
 						<div class="cafeR_box">
 							<div class="cafeR_titleBox">
@@ -509,6 +520,15 @@
 			}
 		}
 		
+	})
+	
+	// 검색
+	$("#btnSearch").click(function () {
+		var searchZone = $("#searchZone").val();
+		var searchTheme = $("#searchTheme").val();
+		var searchType = $("#searchType").val();
+		var keyword = $("#keyword").val();
+		location.href = "cafeReview?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
 	})
 </script>
 
