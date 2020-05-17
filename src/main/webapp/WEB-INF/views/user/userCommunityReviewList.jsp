@@ -160,7 +160,7 @@
 	
 	.cafeReviewArea .cafeR_infoBox {
 		padding: 10px;
-		border-bottom: 1px solid #545454;
+		padding-bottom: 0;
 	}
 	
 	.cafeReviewArea .cafeR_infoTop {
@@ -168,7 +168,8 @@
 	}
 	
 	.cafeReviewArea .cafeR_infoTop h2{
-		display: inline-block;
+		text-align: right;
+		padding: 10px 0;
 	}
 	
 	.cafeReviewArea .cafeR_text {
@@ -452,7 +453,7 @@
 								<div class="cafeR_infoTop clearfix">
 									<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
 									<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
-									<h2>러브패리사</h2>
+									<h2>${item.cafeNo.cafeName }</h2>
 								</div>
 								<%-- <p class="cafeR_text">
 									${item.writingContent }
