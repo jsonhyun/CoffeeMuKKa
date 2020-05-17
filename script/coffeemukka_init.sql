@@ -71,7 +71,8 @@ CREATE TABLE CoffeeMuKKa.Board (
 	vote_number            INTEGER      NOT NULL DEFAULT 0 COMMENT '추천수', -- 추천수
 	board_del_cdt          TINYINT      NOT NULL DEFAULT 1 COMMENT '삭제여부 판단', -- 삭제여부 판단
 	writing_content        LONGTEXT     NULL     COMMENT '글내용', -- 글내용
-	address                VARCHAR(255) NULL     COMMENT '주소' -- 주소
+	address                VARCHAR(255) NULL     COMMENT '주소', -- 주소
+	reply_cnt              INTEGER      NULL     DEFAULT 0 COMMENT '댓글수' -- 댓글수
 )
 COMMENT '게시판';
 
