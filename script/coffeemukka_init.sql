@@ -14,7 +14,8 @@ CREATE TABLE CoffeeMuKKa.Cafe (
 	address           VARCHAR(255) NOT NULL COMMENT '주소', -- 주소
 	detail_address    VARCHAR(255) NULL     COMMENT '상세주소', -- 상세주소
 	tel               VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
-	opentime          VARCHAR(255) NOT NULL COMMENT '영업시간', -- 영업시간
+	wkd_opentime      VARCHAR(255) NOT NULL COMMENT '평일영업시간', -- 평일영업시간
+	wknd_opentime     VARCHAR(255) NOT NULL COMMENT '주말영업시간', -- 주말영업시간
 	closed_day        VARCHAR(255) NULL     COMMENT '휴무일', -- 휴무일
 	sns               VARCHAR(255) NULL     COMMENT 'SNS계정', -- SNS계정
 	table_number      INTEGER      NULL     COMMENT '테이블수', -- 테이블수
@@ -366,11 +367,12 @@ ALTER TABLE CoffeeMuKKa.Menu
 
 -- 별점
 CREATE TABLE CoffeeMuKKa.Starpoint (
-	star_point_no      INT     NOT NULL COMMENT '별점번호', -- 별점번호
-	cafe_no            INT     NOT NULL COMMENT '카페번호', -- 카페번호
-	theme_no           INT     NOT NULL COMMENT '테마번호', -- 테마번호
-	star_point         INTEGER NOT NULL COMMENT '별점', -- 별점
-	star_point_comment TEXT    NULL     COMMENT '별점댓글' -- 별점댓글
+	star_point_no      INT       NOT NULL COMMENT '별점번호', -- 별점번호
+	cafe_no            INT       NOT NULL COMMENT '카페번호', -- 카페번호
+	theme_no           INT       NOT NULL COMMENT '테마번호', -- 테마번호
+	star_point         INTEGER   NOT NULL COMMENT '별점', -- 별점
+	star_point_comment TEXT      NULL     COMMENT '별점댓글', -- 별점댓글
+	registration_date  TIMESTAMP NOT NULL DEFAULT now() COMMENT '등록일자' -- 등록일자
 )
 COMMENT '별점';
 
