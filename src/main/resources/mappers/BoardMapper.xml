@@ -128,6 +128,7 @@
 		<result property="writingContent" column="writing_content"/>
 		<result property="address" column="address"/>
 		<result property="boardDelCdt" column="board_del_cdt"/>
+		<result property="replyCnt" column="reply_cnt"/>
 		
 		<!-- 이미지 -->
 		<collection property="files" resultMap="mappers.ImageMapper.imageResult"/>
@@ -142,7 +143,7 @@
 	<!-- 탐방기 : 탐방기 list -->
 	<select id="cafeReviesList" resultMap="BoardResult">
 		select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
-			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number ,
+			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
 			   z.zone_name , t.theme_name , c.cafe_name , i.image_name 
 			from board b left join image i on b.board_no = i.board_no 
 						left join users u on b.user_no = u.user_no 

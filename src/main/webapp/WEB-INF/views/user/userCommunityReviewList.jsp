@@ -451,7 +451,7 @@
 								<div class="cafeR_replyCdtWrap">
 									<div class="cafeR_btns">
 										<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
-										<span class="cafeR_replyCnt">000</span>
+										<span class="cafeR_replyCnt">${item.replyCnt }</span>
 									</div>
 									<div class="cafeR_btns">
 										<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
