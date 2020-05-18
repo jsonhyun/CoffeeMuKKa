@@ -13,7 +13,8 @@
 		<result property="zoneNo.zoneNo" column="zone_no"/>
 		<result property="zoneNo.zoneName" column="zone_name"/>		
 		<result property="themeNo.themeNo" column="theme_no"/>
-		<result property="themeNo.themeName" column="theme_name"/>				
+		<result property="themeNo.themeName" column="theme_name"/>
+		<collection property="files" resultMap="mappers.ImageMapper.imageResult"/>				
 	</resultMap>
 	 
 	 <!-- 추천카페:상세보기 resultMap JOIN테이블[board + zone + theme + users + grade] -->
@@ -37,6 +38,13 @@
 		<result property="userNo.userGrade.userGradeImage" column="user_grade_image"/>	
 	</resultMap>
 	
+	<resultMap type="ImageVO" id="selectImgResult">
+		<id property="imageNo" column="image_no"/>
+		<result property="imageName" column="image_name"/>
+		<result property="cafeNo.cafeNo" column="cafe_no"/>
+		<result property="boardNo.boardNo" column="board_no"/>		
+	</resultMap>	
+	
 	 <!-- **********************************************************************      QUERY     ***************************************************************************** -->	
 	<!-- 추천카페 : 리스트 : 테스트용-->
 	<select id="recommendboardList" resultMap="recommendBoardList">
@@ -56,6 +64,9 @@
 		order by b.board_no desc limit #{pageStart}, 16 <!-- 카페추천 : 한페이지당 16개씩 보여줌 -->
 	</select>
 	<!-- 이미지 -->
+	<select id="recommendboardImgList" resultMap="selectImgResult">
+		select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = #{boardNo} limit 2;
+	</select>	
 	<!-- 추천카페 : 글등록 -->
 	<insert id="recommendInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo"> <!-- LAST_INSERT_ID()가 인식되지 않음 -->
 		insert into board (board_no, board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo}, #{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
@@ -66,11 +77,12 @@
 	
 	<!-- 추천카페 상세보기 -->
 	<select id="recommendReadByNo" resultMap="BoardResult">
-		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
 		left join zone z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no
 		left join users u on b.user_no = u.user_no 
-		left join grade g on u.user_grade = g.user_grade 
+		left join grade g on u.user_grade = g.user_grade
+		left join image i on b.board_no = i.board_no
 		where b.board_no2 = 2 and b.board_no = #{boardNo}
 	</select>
 	

@@ -6,6 +6,7 @@
 <style>
 	.cafeReviewSearch {
 		padding: 10px 0;
+		padding-top: 20px;
 	}
 
 	.cafeReviewSearch .selectLeft {
@@ -62,11 +63,19 @@
 		margin: 3px;
 		border: 1px solid #545454;
 	}
-	.recommendBest .recomWrap li div.RC_listImg{
+	.recommendBest .recomWrap li div.RC_listImgWrap{
 		width: 100%;
 		height: 160px;
-		background-color: gray;
+		position: relative;
 	}
+	.recommendBest .recomWrap li div.RC_listImgContainer img{
+		width: 100%;
+		height: 160px;
+		position: absolute;
+	}
+	.recommendBest .recomWrap li div.RC_listImgContainer .active{
+		z-index: 1;
+	}		
 	.recommendBest .recomWrap li div.RC_listTitle1{
 		width: 90%;
 		height: 33px;
@@ -274,15 +283,36 @@
 		<div class="cafeReviewSearch bottomLine2 clearfix">
 			<div class="selectLeft">
 				<select name="" id="">
-					<option value="all">전체</option>
+					<option selected="selected" value="위치">전체(위치별)</option>
+					<option value="1">동성로</option>
+					<option value="2">수성못 들안길</option>
+					<option value="3">두류공원 이월드</option>
+					<option value="4">달서구</option>
+					<option value="5">수성구</option>
+					<option value="6">서구-북구</option>
+					<option value="7">중구</option>
+					<option value="8">동구</option>
+					<option value="9">남구</option>
+					<option value="10">달성군</option>
 				</select>
 				<select name="" id="">
-					<option value="all">전체</option>
+					<option selected="selected" value="키워드">전체(테마별)</option>				
+					<option value="1">#데이트</option>
+					<option value="2">#뷰</option>
+					<option value="3">#착한아메</option>
+					<option value="4">#디저트</option>
+					<option value="5">#댕댕이</option>
+					<option value="6">#작업</option>
 				</select>
 			</div>
 			<div class="selectRight">
 				<select name="" id="">
-					<option value="">제목</option>
+					<%-- <option value="n" ${cri.searchType == null ? 'selected' : '' }>----</option>
+					<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>제목</option>
+					<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>내용</option>
+					<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>제목+내용</option>
+					<option value="uId" ${cri.searchType == 'uId' ? 'selected' : '' }>회원아이디</option>
+					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option> --%>
 				</select>
 				<input type="text" name="" placeholder="검색어를 입력하세요." />
 				<input type="submit" value="검색" class="navyBtn" style="cursor: pointer"/>
@@ -303,11 +333,25 @@
 		
 		<!-- 추천카페 : 리스트  -->
 			<div class="recommendBest mb30">
+				
 				<div class="recomWrap">
+				
 				<ul>
 					<c:forEach var="board" items="${list}">
+					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}">
 						<li>
-								<div class="RC_listImg"></div>
+								<div class="RC_listImgWrap">
+									<div class="RC_listImgContainer">
+										<c:forEach var="img" items="${listImg}">
+											  <c:if test="${board.boardNo == 33}">
+												<img src ="${pageContext.request.contextPath }/resources/images/rc_noImg.png">
+											</c:if> 
+											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg"> 												
+											</c:if>
+										</c:forEach>								
+									</div>							
+								</div>
 								<div class="RC_listTitle1">
 									<!-- 위치 -->
 									<div class="zoneBtn zoneOrangeIconSmall">${board.zoneNo.zoneName}</div>
@@ -335,12 +379,14 @@
 									</div>
 									<div class="RC_listTitle2">
 										<!-- 상세페이지로 가기 -->																																			
-										<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}"><h3 class="RC_titleName">${board.writingTitle}</h3></a>
+										<h3 class="RC_titleName">${board.writingTitle}</h3>
 									</div>							
 						</li>
+										</a>
 					</c:forEach>
 				</ul>
 				</div>
+
 			</div>
 		</div>
 			<!-- 페이징 -->
@@ -359,12 +405,55 @@
 			</div>					
 	</div> 
 </div>
-	
+<!-- 자바스크립트 & 제이쿼리 -->
 <script>
+	//추천카페쓰기 버튼(게시물등록버튼)
 	$("#RC_Register").click(function(){
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
-		//alert("test");
 	})
+	
+	
+	// 기본이미지(이미지 추가 없이 글 등록시)
+		
+/* 		var $test = $("<img>").attr("src","${pageContext.request.contextPath }/resources/images/rc_noImg.png");
+		
+		var isChild = $(".RC_listImgContainer").children().is(".thumbNailImg"); //자식요소
+		
+		 if(isChild){
+			
+		}else{
+			var img = new Image();
+			$(".RC_listImgContainer").append($test);
+		} */
+		
+		
+		
+		/* $(".RC_listImgContainer").append(img);
+		 img.onerror = function(e){
+			this.src = "${pageContext.request.contextPath }/resources/images/rc_noImg.png";
+		}  */
+	  
+	// 이미지 로테이션 
+	 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
+	 
+	 var next_img = $(".RC_listImgContainer img:nth-child(2)"); // 두번째 이미지 : nth-child(2)  --> 요소 무리 둥 2번째 요소 (사진을 1개만 넣을 경우)
+ 
+	 function fade_change(){
+		     next_img.addClass("active").css("opacity",0).animate({"opacity":1},1500, function(){
+		    	 next_img.removeClass("active").animate({"opacity":0},1500);
+		    	// $(".RC_listImgContainer").append(now_img);           //콜백
+		    	// next_img.removeClass("active"); 
+		     });
+	 }
+	 
+	 var timer = setInterval("fade_change()", 2000);
+	 
+	 $("div.RC_listImgContainer").hover(function(){ // mouse enter 시 
+	     clearInterval(timer);
+	 }, function(){                                  // mouse leave 시
+		 //now_img.animate({"opacity":0},1500);
+	     timer = setInterval("fade_change()",2000);
+	 });
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>

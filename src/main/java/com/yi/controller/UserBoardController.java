@@ -190,7 +190,7 @@ public class UserBoardController {
 		//서버에 있는 데이터가 아닌 외부 데이터를 들고오는 것이기 때문에 서버에서 전달할 수 없음 직접 전달할 수 있도록 데이터를 까서 전달
 		
 		ResponseEntity<byte[]> entity = null;
-		System.out.println("displayFile -----" + filename);
+		//System.out.println("displayFile -----" + filename);
 		
 		InputStream in = null;
 		try {
@@ -235,7 +235,7 @@ public class UserBoardController {
 	    pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
 		
-		System.out.println("TEST============================================="+list.toString());
+		//System.out.println("TEST============================================="+list.toString());
 		model.addAttribute("list",list);
 		model.addAttribute("cri",cri);
 		model.addAttribute("pageMaker",pageMaker);
@@ -245,6 +245,14 @@ public class UserBoardController {
 		model.addAttribute("todayCnt", todayCnt);
 	
 		//대표이미지 가져오기
+		List<ImageVO> listImg = new ArrayList<ImageVO>();
+		for(int i=0;i<list.size();i++) {
+			int boardNo = list.get(i).getBoardNo();
+			//System.out.println("숫자"+boardNo);
+			listImg.addAll(service.recommendboardImgList(boardNo));
+		}
+		//System.out.println("test=================================================================================="+listImg.toString());
+		model.addAttribute("listImg", listImg);
 		
 		
 		return "/user/userCommunityRecommendList";
@@ -284,9 +292,9 @@ public class UserBoardController {
 	//read -- 상세보기
 	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
 	public String communityRecommendRead(int boardNo, Model model) throws Exception{
-		System.out.println(boardNo);
+		//System.out.println(boardNo);
 		BoardVO vo = service.recommendReadByNo(boardNo);
-		System.out.println(vo.toString());
+		//System.out.println(vo.toString());
 		model.addAttribute("board", vo);
 		return "/user/userCommunityRecommendRead";
 	}

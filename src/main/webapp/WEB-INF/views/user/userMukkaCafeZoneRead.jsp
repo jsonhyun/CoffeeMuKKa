@@ -4,8 +4,9 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 <!-- bar-rating -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars2.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <style>
 	.daeguIcon{
@@ -56,10 +57,11 @@
 	    right: 80px;
 	}
 	#like{
-		height: 30px;
-	    position: absolute;
+		position: absolute;
 	    top: 25px;
 	    right: 20px;
+	    font-size: 30px;
+	    color: darkgrey;
 	}
 	#oneline{
 		margin: 10px 40px;
@@ -89,11 +91,44 @@
 	    padding-left: 10px;
 	    float: left;
 	}
+	.br-theme-fontawesome-stars .br-widget a.br-selected:after {
+		color: red;
+	}
 	#jumsu{
 		height: 45px;
 	    line-height: 45px;
 	    float: left;
 	    margin-left: -60px;
+	    margin-bottom: 20px;
+	}
+	td, th {
+	padding: 5px;
+	border: 1px solid white;
+	text-align: center;
+	}
+	
+	th {
+		background-color: white;
+	}
+	#menuImg{
+		background-image:url("${pageContext.request.contextPath }/resources/images/sumnail/carmel-menu.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		clear: both;
+    	width: 800px;
+		height: 400px;
+		margin: 0px 70px 30px;
+	}
+	.cafeInfoIcon{
+	    border-radius: 100px;
+	    width: 50px;
+	    padding: 10px;
+	    box-shadow: 3px 3px 10px #ccc;
+	}
+	#detailInfo{
+	    float: left;
+	    margin: 30px;
+	    width: 880px;
 	}
 </style>	
 	<div class="content subPageContent position">
@@ -108,7 +143,7 @@
 			<!-- 서브콘텐츠 시작 -->
 			<div class="modifyDate">Update 2020/05/10</div>
 			<img id="love" src="${pageContext.request.contextPath }/resources/images/key1.png">
-			<img id="like" src="${pageContext.request.contextPath }/resources/images/like.png">
+			<i class="far fa-thumbs-up" id="like"></i>
 			<div class="daeguIcon">달성군</div>
 			<c:set var="theme1" value="1"/>
 			<c:choose>
@@ -255,30 +290,253 @@
 					</select>
 				</div>
 				<div id="jumsu">4.7 / 5</div>
+
+				<h4 style="clear: both; margin-left: 50px;">기간별 별점 변화 그래프</h4>
+
+				<div id="Line_Controls_Chart">
+					<!-- 라인 차트 생성할 영역 -->
+					<div id="lineChartArea" style="padding: 0px 20px 0px 0px;margin-bottom: 30px;"></div>
+					<!-- 컨트롤바를 생성할 영역 -->
+					<div id="controlsArea" style="padding: 0px 20px 0px 0px; height: 130px;"></div>
+				</div>
+	
 			</div>
 			
 			<div class="cafeInfo" id="cafeInfo2">
 				<span style="font-size: 20px;font-weight: bold;">메뉴판</span><a class="upAndDown" href="#"></a>
 			</div>
 			<div class="closeInfo" id="cafeMenu">
-				<img class="infoIcon" src="${pageContext.request.contextPath }/resources/images/point.png"> 
-				<div style="height: 45px;line-height: 45px;">대구 달성군 다사읍 달구벌대로 616</div>
+				<div>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<div id="menuImg"></div>
+				</div>
 			</div>
 			
 			<div class="cafeInfo" id="cafeInfo3">
-				<span style="font-size: 20px;font-weight: bold;">편의 정보</span><a class="upAndDown" href="#"></a>
+				<span style="font-size: 20px;font-weight: bold;">상세 정보</span><a class="upAndDown" href="#"></a>
 			</div>
 			<div class="closeInfo" id="cafeComfort">
-				<img class="infoIcon" src="${pageContext.request.contextPath }/resources/images/point.png"> 
-				<div style="height: 45px;line-height: 45px;">대구 달성군 다사읍 달구벌대로 616</div>
+				<div>
+					<table id="detailInfo">
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/tableNum.png"></div>
+							</td>
+							<td>테이블 수 10개</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></div>
+							</td>
+							<td>콘센트 수 10개</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/toilet.png"></div>
+							</td>
+							<td>화장실 청결해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></div>
+							</td>
+							<td>디저트 직접 만들어요 </td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/terras.png"></div>
+							</td>
+							<td>루프탑/테라스 있어요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></div>
+							</td>
+							<td>예약룸 있어요</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/coffeeBeans.png"></div>
+							</td>
+							<td>원두 구매 가능해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/books.png"></div>
+							</td>
+							<td>도서를 보유하고 있어요</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/alcohol.png"></div>
+							</td>
+							<td>술 판매해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/goods.png"></div>
+							</td>
+							<td>굿즈를 판매해요</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			
 			<div class="cafeInfo" id="cafeInfo4"">
-				<span style="font-size: 20px;font-weight: bold;">상세 정보</span><a class="upAndDown" href="#"></a>
+				<span style="font-size: 20px;font-weight: bold;">편의 정보</span><a class="upAndDown" href="#"></a>
 			</div>
 			<div class="closeInfo" id="cafeDetail">
-				<img class="infoIcon" src="${pageContext.request.contextPath }/resources/images/point.png"> 
-				<div style="height: 45px;line-height: 45px;">대구 달성군 다사읍 달구벌대로 616</div>
+				<div>
+					<table id="detailInfo">
+						<tr>
+							<td style="width: 135px;">
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/wifi.png"></div>
+							</td>
+							<td style="width: 281px;">와이파이 있어요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/puppy.png"></div>
+							</td>
+							<td style="width: 305px;">애견 동반 가능해요</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></div>
+							</td>
+							<td>예약 가능해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/parking.png"></div>
+							</td>
+							<td>주차공간 있어요 </td>
+						</tr><tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/nokids.png"></div>
+							</td>
+							<td>노키즈존 맞아요</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<div style="margin-bottom: 50px;"></div>
 		</div>
@@ -286,12 +544,14 @@
 	
 <script>
 	$(function() {
+		<!-- 카페 세부정보 별점 -->
 		$('.starPoint').barrating({
 			theme: 'fontawesome-stars',
 			initialRating: 3,
 			readonly: true
 		})
 		
+		<!-- 카페 세부정보 이미지 변경 -->
 		$('.bxslider').bxSlider({
 			auto : true,
 			speed : 300,
@@ -300,7 +560,8 @@
 			pager : true,
 			slideWidth : 800
 		});
-
+		
+		<!-- 카페 상세정보, 메뉴판, 편의정보, 상세정보 -->
 		$(".cafeInfo").addClass("open");
 		$(".closeInfo").addClass("close");
 		$("#cafeInfo1 .upAndDown").html('<i class="fas fa-angle-up"></i>');
@@ -360,6 +621,109 @@
 				$(this).html('<i class="fas fa-angle-up"></i>');
 			}
 		})
+		
+		var chartDrowFun = {
+			chartDrow : function(){
+				var chartData = '';
+ 
+		        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
+		        var chartDateformat     = 'yyyy년MM월dd일';
+		        //라인차트의 라인 수
+		        var chartLineCount    = 10;
+		        //컨트롤러 바 차트의 라인 수
+		        var controlLineCount    = 10;
+ 
+        		function drawDashboard() {
+        			var data = new google.visualization.DataTable();
+			        //그래프에 표시할 컬럼 추가
+			        data.addColumn('datetime' , '날짜');
+			        data.addColumn('number'   , '별점');
+			 
+			        //그래프에 표시할 데이터
+			        var dataRow = [];
+ 
+		            for(var i = 0; i <= 30; i++){ //랜덤 데이터 생성
+		            	var star   = Math.floor(Math.random() * 5) + 1;
+		 
+		            	dataRow = [new Date('2020', '04', i ), star];
+		            	data.addRow(dataRow);
+		          	}
+ 
+		            var chart = new google.visualization.ChartWrapper({
+		              chartType   : 'LineChart',
+		              containerId : 'lineChartArea', //라인 차트 생성할 영역
+		              options     : {
+		            	  isStacked   : 'percent',
+		                  focusTarget : 'category',
+		                  height      : 300,
+		                  width       : '100%',
+		                  legend      : { position: "top", textStyle: {fontSize: 13}},
+		                  pointSize   : 5,
+		                  tooltip     : {textStyle : {fontSize:12}, showColorCode : true,trigger: 'both'},
+		                  hAxis       : {format: chartDateformat, gridlines:{count:chartLineCount,units: {
+		                	  years : {format: ['yyyy년']},
+		                      months: {format: ['MM월']},
+		                      days  : {format: ['dd일']},
+		                      hours : {format: ['HH시']}}
+		                  },
+		                  textStyle   : {fontSize:12}},
+		                  vAxis       : {minValue: 5,viewWindow:{min:0},gridlines:{count:-1},textStyle:{fontSize:12}},
+		                  animation   : {startup: true,duration: 1000,easing: 'in' },
+		                  annotations : {pattern: chartDateformat,
+		                	  textStyle: {
+		                		  fontSize: 15,
+		                		  bold: true,
+		                		  italic: true,
+		                		  color: '#871b47',
+		                		  auraColor: '#d799ae', 
+		                		  opacity: 0.8,
+		                		  pattern: chartDateformat
+		                	  }
+		                  },
+		                  colors: ['red']
+		              }
+		            });
+ 
+           			var control = new google.visualization.ControlWrapper({
+           				controlType: 'ChartRangeFilter',
+           				containerId: 'controlsArea',  //control bar를 생성할 영역
+           				options: {
+           					ui:{
+           						chartType: 'LineChart',
+           						chartOptions: {
+           							chartArea: {'width': '60%','height' : 80},
+           							hAxis: {'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize:12},
+           								gridlines:{count:controlLineCount,units: {
+           									years : {format: ['yyyy년']},
+           									months: {format: ['MM월']},
+           									days  : {format: ['dd일']},
+           									hours : {format: ['HH시']}}
+           							}},
+           						 	colors: ['red']
+           						}
+           					},
+	           				filterColumnIndex: 0
+           				}
+           			});
+           			
+		            var date_formatter = new google.visualization.DateFormat({ pattern: chartDateformat});
+		            date_formatter.format(data, 0);
+		 
+		            var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
+		            window.addEventListener('resize', function() { dashboard.draw(data); }, false); //화면 크기에 따라 그래프 크기 변경
+		            dashboard.bind([control], [chart]);
+		            dashboard.draw(data);
+ 
+        		}
+          		google.charts.setOnLoadCallback(drawDashboard);
+      		}
+	    }
+ 
+		$(document).ready(function(){
+		  google.charts.load('current', {'packages':['line','controls']});
+		  chartDrowFun.chartDrow(); //chartDrow() 실행
+		});
+		
 	})
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>

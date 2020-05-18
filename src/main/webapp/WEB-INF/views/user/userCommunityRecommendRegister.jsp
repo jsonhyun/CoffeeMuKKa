@@ -158,7 +158,7 @@
 		padding: 10px;
 		text-align: center;
 	}
-	button#btnCafeInfo,button#btnCafeReview{
+	button.btnCafeInfo,button.btnCafeReview{
 		height: 50px;
 		margin: 5px;
 		background-color: white;
@@ -168,7 +168,7 @@
 	.fa-greater-than{
 		color: #ED7D31;
 	}	
-	.cafeSearchWrap .goCageInfo_reiview button#btnCafeInfo:hover,button#btnCafeReview:hover{
+	.cafeSearchWrap .goCageInfo_reiview button.btnCafeInfo:hover,button.btnCafeReview:hover{
 		border: 2px solid #ED7D31;
 		background-color: white;
 		cursor: pointer;
@@ -200,7 +200,7 @@
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카 테 고 리</label>
 				<select class="cate" name="zoneNo.zoneNo">
-					<option selected="selected" value="위치">위치</option>
+					<option selected="selected" value="위치">전체(위치별)</option>
 					<option value="1">동성로</option>
 					<option value="2">수성못 들안길</option>
 					<option value="3">두류공원 이월드</option>
@@ -214,7 +214,7 @@
 					<option value="11">팔공산</option>
 				</select>
 				<select class="cate" name="themeNo.themeNo">
-					<option selected="selected" value="키워드">#키워드</option>				
+					<option selected="selected" value="키워드">전체(테마별)</option>				
 					<option value="1">#데이트</option>
 					<option value="2">#뷰</option>
 					<option value="3">#착한아메</option>
@@ -266,15 +266,14 @@
 						</div>
 					</div>
 					<div class="goCageInfo_reiview"></div>
+					
 				</div>
 		<!-- /검색박스 -->			
 		</div>
 	</div>
 </div>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d971f9b03ec09e4b77e1231e78cc625c"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> -->
+<div id="map" style="width:100%;height:400px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
 <!-- 틀1 : 등록된 모든카페 리스트 -->
 <script id="cafeAll" type="text/x-handlebars-tamplate">
 	{{#each.}}
@@ -299,27 +298,63 @@
 <script id="goCafeInfo" type="text/x-handlebars-tamplate">
 	{{#each.}}
 		<h3>이미 <span class='red'>Coffee MuKKa</span> 에 등록된 카페입니다</h3>
-		<button type="button" id="btnCafeInfo"><span class="red"><b>{{cafeName}}</b></span> 상세정보 보기 <i class="fas fa-greater-than"></i></button>
-		<button type="button" id="btnCafeReview">생생 카페 <span class="blue"><b>탐방기</b></span> 작성하기 <i class="fas fa-greater-than"></i></button>
+		<button type="button" class="btnCafeInfo" value="{{cafeNo}}"><span class="red"><b>{{cafeName}}</b></span> 상세정보 보기 <i class="fas fa-greater-than"></i></button>
+		<button type="button" class="btnCafeReview">생생 카페 <span class="blue"><b>탐방기</b></span> 작성하기 <i class="fas fa-greater-than"></i></button>
 	{{/each}}	
+</script>
+<!-- 틀4 : 등록된 카페가 없는 경우 -> 카페검색 -->
+<script id="searchCafeInfo" type="text/x-handlebars-tamplate">
 </script>
 <script>
 	//목록 버튼
 	$("#RC_list").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
 	})
+	
+	//탐방기 작성 버튼 - 동적 생성
+	$(document).on("click", ".btnCafeReview", function(){
+		location.href="${pageContext.request.contextPath}/user/community/cafeReview/register";
+	})
+	
+	//카페 상세정보 보기 - 동적 생성
+	$(document).on("click", ".btnCafeInfo", function(){		
+		location.href="${pageContext.request.contextPath}/user/mukkaCafe"; // 임시로 작성
+	})
 	//취소 버튼
 	//등록 폼 버튼
 	
 	//지도 테스트
-/*   	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();
+					
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						mapOption = {
+							center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+							level : 3 // 지도의 확대 레벨
+						};
 	
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴  */
+					// 지도를 생성합니다    
+					var map = new kakao.maps.Map(mapContainer, mapOption);
 	
+					// 주소로 좌표를 검색합니다
+					geocoder.addressSearch('대구 달성군 다사읍 달구벌대로 616', function(result, status) {
+						// 정상적으로 검색이 완료됐으면 
+						if (status === kakao.maps.services.Status.OK) {
+							var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords
+							});
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+							var infowindow = new kakao.maps.InfoWindow({
+								content : '<div style="width:150px;text-align:center;padding:6px 0;">카르멜</div>'
+							});
+							infowindow.open(map, marker);
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map.setCenter(coords);
+						}
+					});
 	/*** 검색박스 ***/
 	
 	//검색창, 전체리스트 다 보이게 구현 : 지역이름+카페이름+카페주소
@@ -437,6 +472,8 @@
 			}
 	})	
 </script>
+
+
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
