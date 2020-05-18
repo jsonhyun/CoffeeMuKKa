@@ -95,4 +95,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public BoardVO cafeReviewRead(int boardNo) throws Exception {
 		return sqlSession.selectOne(namespace + "cafeReviewRead", boardNo);
 	}
+	@Override
+	public List<BoardVO> cafeReviewSameList(BoardVO vo) throws Exception {
+		return sqlSession.selectList(namespace + "cafeReviewSameList", vo);
+	}
+	@Override
+	public int cafeReivewSameCnt(BoardVO vo) throws Exception {
+		return sqlSession.selectOne(namespace + "cafeReivewSameCnt", vo);
+	}
 }

@@ -88,9 +88,31 @@ public class BoardDAOTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void testCafeReviewRead() throws Exception {
 		int boardNo = 53;
 		dao.cafeReviewRead(boardNo);
+	}
+	
+	@Test
+	public void testCafeReviewSameList() throws Exception {
+		CafeVO cafe = new CafeVO();
+		cafe.setCafeNo(7);
+		
+		BoardVO vo = new BoardVO();
+		vo.setCafeNo(cafe);
+		vo.setBoardNo(12);
+		dao.cafeReviewSameList(vo);
+	}
+	
+	@Test
+	public void testCafeReivewSameCnt() throws Exception {
+		CafeVO cafe = new CafeVO();
+		cafe.setCafeNo(7);
+		
+		BoardVO vo = new BoardVO();
+		vo.setCafeNo(cafe);
+		vo.setBoardNo(12);
+		dao.cafeReivewSameCnt(vo);
 	}
 }

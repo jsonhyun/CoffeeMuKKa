@@ -89,9 +89,16 @@ public class UserBoardController {
 	@RequestMapping(value = "/community/cafeReview/read", method = RequestMethod.GET)
 	public String communityReviewRead(int boardNo, SearchCriteria cri, Model model) throws Exception {
 		BoardVO vo = service.cafeReviewRead(boardNo);
+		System.out.println("vo-----------------" + vo.getCafeNo().getCafeNo());
+		
+		List<BoardVO> sameVo = service.cafeReviewSameList(vo);
+		int sameCnt = service.cafeReivewSameCnt(vo);
 		
 		model.addAttribute("board", vo);
 		model.addAttribute("cri", cri);
+		model.addAttribute("sameBoard", sameVo);
+		model.addAttribute("sameCnt", sameCnt);
+		
 		
 		return "/user/userCommunityReviewRead";
 	}

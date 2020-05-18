@@ -24,12 +24,12 @@ $$
 create procedure loopInsert()
 BEGIN
 DECLARE i INT DEFAULT 1;
-WHILE i <= 50 DO
+WHILE i <= 70 DO
 	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number, vote_number) 
-	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 128)), '[카페탐방기] 더미 데이터', '<p>test</p>', floor(1 + (rand() * 99)), floor(1 + (rand() * 99)));
+	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), '[카페탐방기] 더미 데이터', '<p>test</p>', floor(1 + (rand() * 99)), floor(1 + (rand() * 99)));
 
 	insert into image(image_name , board_no)
-	values('/2020/05/18/s_ff706c70-f438-48a2-978e-1861b264b3d5_stove-1.jpg', LAST_INSERT_ID());
+	values('/2020/05/17/s_c5fd29a4-d893-4d2e-abb0-91fdbbd108e0_coffee-1.jpg', LAST_INSERT_ID());
 	
 	SET i = i + 1;
 END WHILE;
@@ -127,5 +127,8 @@ select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 				 left join cafe c on b.cafe_no = c.cafe_no 
 				 left join zone z on c.zone_no = z.zone_no 
 				 left join theme t on c.theme_no = t.theme_no
-	 where b.board_no = 53;
+	where c.cafe_no = 7 and b.board_no != 12;
 
+select count(*) 
+	from board b left join cafe c on b.cafe_no = c.cafe_no 
+	where c.cafe_no = 7 and b.board_no != 12;

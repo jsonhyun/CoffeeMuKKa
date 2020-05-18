@@ -37,5 +37,7 @@ public interface BoardDAO {
 	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception;
 	// 탐방기 -- read
 	public BoardVO cafeReviewRead(int boardNo) throws Exception;
+	public List<BoardVO> cafeReviewSameList(BoardVO vo) throws Exception;
+	public int cafeReivewSameCnt(BoardVO vo) throws Exception;
 	
 }

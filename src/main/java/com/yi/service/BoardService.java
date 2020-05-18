@@ -92,14 +92,23 @@ public class BoardService {
 		userGradeUpdate(vo);
 	}
 	
+	// 탐방기 list
 	public List<BoardVO> cafeReviesList(int cBoardNo,SearchCriteria cri) throws Exception {
 		return dao.cafeReviesList(cBoardNo, cri);
 	}
 	
+	// 탐방기 read
 	public BoardVO cafeReviewRead(int boardNo) throws Exception {
 		return dao.cafeReviewRead(boardNo);
 	}
 	
+	public List<BoardVO> cafeReviewSameList(BoardVO vo) throws Exception {
+		return dao.cafeReviewSameList(vo);
+	}
+	
+	public int cafeReivewSameCnt(BoardVO vo) throws Exception {
+		return dao.cafeReivewSameCnt(vo);
+	}
 	
 	
 	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드

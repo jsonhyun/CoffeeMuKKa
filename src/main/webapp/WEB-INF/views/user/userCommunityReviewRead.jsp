@@ -366,37 +366,42 @@
 			
 			<!-- 같은 카페의 다른 포스트 list -->
 			<div class="cafeR_sameList">
-				<div class="cafeR_sameTitle bottomLine clearfix">
-					<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">00</span>개의 <span class="red bold">탐방기</span>가 있어요!</p>
-					<div class="sameListBtn f_right">
-						<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-						<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+				<c:if test="${sameCnt > 0 }">
+					<div class="cafeR_sameTitle bottomLine clearfix">
+							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">${sameCnt }</span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
+						<c:if test="${sameCnt > 4 }">
+							<div class="sameListBtn f_right">
+								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
+								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+							</div>
+						</c:if>
 					</div>
-				</div>
+				</c:if>
 				<div class="cafeR_List clearfix mb30">
-					<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${item.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
+					<c:forEach var="sameItem" items="${sameBoard }">
+					<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${sameItem.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
 						<div class="cafeR_box">
 							<div class="cafeR_titleBox">
 								<div class="cafeR_titleImg">	
 									<div class="bg"></div>						
-									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" />
+									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${sameItem.files[0].imageName}" alt="카페대표이미지" />
 								</div>
 								<div class="cafeR_titleTop clearfix" >
 									<div class="cafeR_writer clearfix">
-										<img src="${pageContext.request.contextPath }/resources/images/${item.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
-										<span class="cafeR_name bold"><%-- ${item.userNo.nick } --%>닉네임</span>
-										<span class="cafeR_id bold">(<%-- ${item.userNo.userId } --%>id)</span>
+										<img src="${pageContext.request.contextPath }/resources/images/${sameItem.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
+										<span class="cafeR_name bold">${sameItem.userNo.nick }</span>
+										<span class="cafeR_id bold">(${sameItem.userNo.userId })</span>
 									</div>
-									<div class="cafeR_recomCnt bgRed"><%-- ${item.voteNumber } --%>0</div>						
+									<div class="cafeR_recomCnt bgRed">${sameItem.voteNumber }</div>						
 								</div>
-								<h2 class="classSec cafe_title"><%-- ${item.writingTitle } --%>제목</h2>
-								<div class="cafeR_date bold"><%-- <fmt:formatDate value="${item.registrationDate }" pattern="yyyy/MM/dd"/> --%>2020/02/02</div>
+								<h2 class="classSec cafe_title">${sameItem.writingTitle }</h2>
+								<div class="cafeR_date bold"><fmt:formatDate value="${sameItem.registrationDate }" pattern="yyyy/MM/dd"/></div>
 							</div>
 							<div class="cafeR_infoBox">
 								<div class="cafeR_infoTop clearfix">
-									<div class="zoneBtn zoneOrangeIconSmall"><%-- ${item.cafeNo.zoneNo.zoneName } --%>동성로</div>
-									<div class="themeKeySmall themeName">#<!-- ${item.cafeNo.themeNo.themeName } -->데이트</div>
-									<h2><%-- ${item.cafeNo.cafeName } --%>카페이름</h2>
+									<div class="zoneBtn zoneOrangeIconSmall">${sameItem.cafeNo.zoneNo.zoneName }</div>
+									<div class="themeKeySmall themeName">#${sameItem.cafeNo.themeNo.themeName }</div>
+									<h2>${sameItem.cafeNo.cafeName }</h2>
 								</div>
 								<%-- <p class="cafeR_text">
 									${item.writingContent }
@@ -406,16 +411,17 @@
 								<div class="cafeR_replyCdtWrap">
 									<div class="cafeR_btns">
 										<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
-										<span class="cafeR_replyCnt"><%-- ${item.replyCnt } --%>0</span>
+										<span class="cafeR_replyCnt">${sameItem.replyCnt }</span>
 									</div>
 									<div class="cafeR_btns">
 										<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
-										<span class="cafeR_viewCnt"><%-- ${item.viewNumber } --%>0</span>
+										<span class="cafeR_viewCnt">${sameItem.viewNumber }</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</a>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
