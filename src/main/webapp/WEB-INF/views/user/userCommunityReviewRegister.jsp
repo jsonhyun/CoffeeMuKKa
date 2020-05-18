@@ -4,7 +4,7 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 
 <!-- CKEditor -->
-<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
 
 <style>
 	.cafeRTitle {
@@ -232,7 +232,8 @@
 	//에디터
 	CKEDITOR.replace("p_content",{
 						height: 500,
-						filebrowserImageUploadUrl : "${pageContext.request.contextPath}/user/ckdFileUpload"
+						filebrowserImageUploadUrl : "${pageContext.request.contextPath}/user/ckdFileUpload",
+						customConfig: '${pageContext.request.contextPath}/resources/ckeditor_settings/config.js'
 					});
 	
 	// 대표이미지
