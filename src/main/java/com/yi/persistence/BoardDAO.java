@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 
 public interface BoardDAO {
@@ -13,6 +14,7 @@ public interface BoardDAO {
 	public List<BoardVO> recommendboardList() throws Exception;
 	//추천카페 -- 페이징된 리스트	
 	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception;
+	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception;
 
 	//추천카페 -- 등록
 	public void recommendInsert(BoardVO vo) throws Exception;

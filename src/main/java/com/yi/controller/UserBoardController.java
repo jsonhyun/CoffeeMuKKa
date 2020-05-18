@@ -233,6 +233,13 @@ public class UserBoardController {
 		model.addAttribute("todayCnt", todayCnt);
 	
 		//대표이미지 가져오기
+		List<ImageVO> listImg = new ArrayList<ImageVO>();
+		for(int i=0;i<list.size();i++) {
+			int boardNo = list.get(i).getBoardNo();
+			System.out.println("숫자"+boardNo);
+			listImg.addAll(service.recommendboardImgList(boardNo));
+		}
+		model.addAttribute("listImg", listImg);
 		
 		
 		return "/user/userCommunityRecommendList";

@@ -104,7 +104,8 @@ insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing
 values (2, 1, 1, 1, '테스트입니다', '121212', '테스트입니다');
 
 -- 검색결과 1개
-select b.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.board_no2 = 2 limit 1;
+select b.board_no2, b.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.board_no = 2 order by b.board_no desc limit 2;
+select i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.board_no2 = 2;
 
 select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
 

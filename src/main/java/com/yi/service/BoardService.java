@@ -44,13 +44,16 @@ public class BoardService {
 	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception{
 		return dao.recommendboardListCriteria(cri);
 	}
+	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {
+		return dao.recommendboardImgList(boardNo);
+	}
 	
 	//추천카페 -- 등록
 	@Transactional
 	public void recommendInsert(BoardVO vo) throws Exception{
 		dao.recommendInsert(vo);
 		int boardNo = vo.getBoardNo();
-		System.out.println("service=============================="+ vo.getFiles());
+		//System.out.println("service=============================="+ vo.getFiles());
 		for(String file : vo.getStringFiles()) {
 			dao.recommendInsertImages(file,boardNo);
 		}	

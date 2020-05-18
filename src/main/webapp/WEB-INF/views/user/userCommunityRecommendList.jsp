@@ -62,11 +62,19 @@
 		margin: 3px;
 		border: 1px solid #545454;
 	}
-	.recommendBest .recomWrap li div.RC_listImg{
+	.recommendBest .recomWrap li div.RC_listImgWrap{
 		width: 100%;
 		height: 160px;
-		background-color: gray;
+		position: relative;
 	}
+	.recommendBest .recomWrap li div.RC_listImgContainer img{
+		width: 100%;
+		height: 160px;
+		position: absolute;
+	}
+	.recommendBest .recomWrap li div.RC_listImgContainer .active{
+		z-index: 1;
+	}		
 	.recommendBest .recomWrap li div.RC_listTitle1{
 		width: 90%;
 		height: 33px;
@@ -307,7 +315,15 @@
 				<ul>
 					<c:forEach var="board" items="${list}">
 						<li>
-								<div class="RC_listImg"></div>
+								<div class="RC_listImgWrap">
+									<div class="RC_listImgContainer">
+										<c:forEach var="img" items="${listImg}">
+											<c:if test="${img.boardNo.boardNo == board.boardNo }">
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}">
+											</c:if>
+										</c:forEach>								
+									</div>							
+								</div>
 								<div class="RC_listTitle1">
 									<!-- 위치 -->
 									<div class="zoneBtn zoneOrangeIconSmall">${board.zoneNo.zoneName}</div>
@@ -359,12 +375,34 @@
 			</div>					
 	</div> 
 </div>
-	
 <script>
 	$("#RC_Register").click(function(){
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
 		//alert("test");
 	})
+	
+	
+	 var now_img = $(".RC_listImgContainer img:first"); //첫번째 이미지
+	 var next_img = $(".RC_listImgContainer img:last"); // 마지막 이미지
+	 
+	 //now_img.animate({"opacity":0},2000);
+	 
+	 function fade_change(){     
+	     next_img.addClass("active").css("opacity",0).animate({"opacity":1},2000, function(){
+	    	 
+	    	 
+	        /* $(".RC_listImgContainer").append(now_img);           //콜백
+	    	 next_img.removeClass("active"); */
+	     });
+	 }
+	 
+	 var timer = setInterval("fade_change()", 3000);
+	 
+	 $("div.RC_listImgContainer").hover(function(){ // mouse enter 시 
+	     clearInterval(timer);
+	 }, function(){                                  // mouse leave 시
+	     timer = setInterval("fade_change()",3000);
+	 });
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
