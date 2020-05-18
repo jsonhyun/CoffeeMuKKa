@@ -311,9 +311,12 @@
 		
 		<!-- 추천카페 : 리스트  -->
 			<div class="recommendBest mb30">
+				
 				<div class="recomWrap">
+				
 				<ul>
 					<c:forEach var="board" items="${list}">
+					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}">
 						<li>
 								<div class="RC_listImgWrap">
 									<div class="RC_listImgContainer">
@@ -351,12 +354,14 @@
 									</div>
 									<div class="RC_listTitle2">
 										<!-- 상세페이지로 가기 -->																																			
-										<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}"><h3 class="RC_titleName">${board.writingTitle}</h3></a>
+										<h3 class="RC_titleName">${board.writingTitle}</h3>
 									</div>							
 						</li>
+										</a>
 					</c:forEach>
 				</ul>
 				</div>
+
 			</div>
 		</div>
 			<!-- 페이징 -->
@@ -376,32 +381,29 @@
 	</div> 
 </div>
 <script>
+	//추천카페쓰기 버튼(게시물등록버튼)
 	$("#RC_Register").click(function(){
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
 		//alert("test");
 	})
 	
-	
-	 var now_img = $(".RC_listImgContainer img:first"); //첫번째 이미지
-	 var next_img = $(".RC_listImgContainer img:last"); // 마지막 이미지
-	 
-	 //now_img.animate({"opacity":0},2000);
-	 
-	 function fade_change(){     
+	// 이미지 로테이션 
+	 function fade_change(){
+		 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
+		 var next_img = $(".RC_listImgContainer img:last-of-type"); // 마지막 이미지 :last-of-type  --> 요수 무리 중 마지막 요소
 	     next_img.addClass("active").css("opacity",0).animate({"opacity":1},2000, function(){
-	    	 
-	    	 
-	        /* $(".RC_listImgContainer").append(now_img);           //콜백
+	    	 next_img.removeClass("active").animate({"opacity":0},2000);
+	    	/*  $(".RC_listImgContainer").append(now_img);           //콜백
 	    	 next_img.removeClass("active"); */
 	     });
 	 }
 	 
-	 var timer = setInterval("fade_change()", 3000);
+	 var timer = setInterval("fade_change()", 2000);
 	 
 	 $("div.RC_listImgContainer").hover(function(){ // mouse enter 시 
 	     clearInterval(timer);
 	 }, function(){                                  // mouse leave 시
-	     timer = setInterval("fade_change()",3000);
+	     timer = setInterval("fade_change()",2000);
 	 });
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
