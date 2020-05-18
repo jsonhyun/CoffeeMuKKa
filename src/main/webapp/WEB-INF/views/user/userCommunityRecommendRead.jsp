@@ -84,13 +84,11 @@
 	/* 글내용 */
 	div#RC_content{
 		width: 100%;
-		height: 600px;
 		border: 1px solid red;
 	}
-	div#RC_content div.temp{
+	div#RC_content div.readImgBox img{
 		width: 100%;
-		height: 250px;
-		margin-top: 10px;
+		height: 510px;
 	}
 	div#RC_content div#RC_btns{
 		width: 100%;
@@ -152,11 +150,11 @@
 		</div>
 		<!-- 게시글내용 : 사진, 글 -->
 		<div id="RC_content">
-			<!-- <div class="temp">이미지사진</div>
-			<div class="temp">이미지사진</div> -->
 			<c:forEach var="file" items="${board.files}">
-				<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${file.imageName}">
+				<input type="text" class="readImgName" value="${file.imageName}">
+				<%-- <img src = "${pageContext.request.contextPath }/user/displayFile?filename=${file.imageName}" class="readThumImg"> --%>
 			</c:forEach>
+			<div class="readImgBox"></div>
 			<p id="RC_contentText">${board.writingContent}</p>
 			<div id="RC_btns">
 				좋아요
@@ -168,7 +166,25 @@
 		</div>
 	</div>
 </div>
+
 <script>
+	var filesCnt = $(".readImgName").length;
+	var arr = new Array(filesCnt);
+	for(var i = 0; i<filesCnt;i++){
+		arr[i] = $(".readImgName").eq(i).val();
+		//alert(arr[i]);
+		var start = arr[i].substring(0,12);
+		var end = arr[i].substring(14);
+		
+		console.log(start+end);
+		fileName = start + end;
+		alert(fileName);
+		
+		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
+	}
+
+	
+	
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
