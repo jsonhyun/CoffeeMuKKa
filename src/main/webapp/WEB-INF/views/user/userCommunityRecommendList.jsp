@@ -387,12 +387,13 @@
 		//alert("test");
 	})
 	
-	// 이미지 로테이션 
+	// 이미지 로테이션
+	 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
+	 var next_img = $(".RC_listImgContainer img:last-of-type"); // 마지막 이미지 :last-of-type  --> 요수 무리 중 마지막 요소
+ 
 	 function fade_change(){
-		 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
-		 var next_img = $(".RC_listImgContainer img:last-of-type"); // 마지막 이미지 :last-of-type  --> 요수 무리 중 마지막 요소
-	     next_img.addClass("active").css("opacity",0).animate({"opacity":1},2000, function(){
-	    	 next_img.removeClass("active").animate({"opacity":0},2000);
+	     next_img.addClass("active").css("opacity",0).animate({"opacity":1},1500, function(){
+	    	 next_img.removeClass("active").animate({"opacity":0},1500);
 	    	/*  $(".RC_listImgContainer").append(now_img);           //콜백
 	    	 next_img.removeClass("active"); */
 	     });
@@ -403,6 +404,7 @@
 	 $("div.RC_listImgContainer").hover(function(){ // mouse enter 시 
 	     clearInterval(timer);
 	 }, function(){                                  // mouse leave 시
+		 now_img.animate({"opacity":0},1500);
 	     timer = setInterval("fade_change()",2000);
 	 });
 </script>
