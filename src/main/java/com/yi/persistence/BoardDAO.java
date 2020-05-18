@@ -35,6 +35,7 @@ public interface BoardDAO {
 	public void cafeReviewInsert(BoardVO vo) throws Exception;
 	// 탐방기 -- list
 	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception;
-	//탐방기 -- 키워드 이용 검색 가능한 페이징 처리 
+	// 탐방기 -- read
+	public BoardVO cafeReviewRead(int boardNo) throws Exception;
 	
 }

@@ -87,8 +87,13 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/read", method = RequestMethod.GET)
-	public String communityReviewRead(int boardNo, Model model) {
-		return null;
+	public String communityReviewRead(int boardNo, SearchCriteria cri, Model model) throws Exception {
+		BoardVO vo = service.cafeReviewRead(boardNo);
+		
+		model.addAttribute("board", vo);
+		model.addAttribute("cri", cri);
+		
+		return "/user/userCommunityReviewRead";
 	}
 	
 	//탐방기 등록

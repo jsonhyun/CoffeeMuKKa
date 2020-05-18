@@ -96,6 +96,10 @@ public class BoardService {
 		return dao.cafeReviesList(cBoardNo, cri);
 	}
 	
+	public BoardVO cafeReviewRead(int boardNo) throws Exception {
+		return dao.cafeReviewRead(boardNo);
+	}
+	
 	
 	
 	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
