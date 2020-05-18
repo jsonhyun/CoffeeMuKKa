@@ -28,7 +28,7 @@ public interface BoardDAO {
 	//각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용)
 	public int totalSearchCount(int cBoardNo) throws Exception; // 공통
 	//각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용 - join)
-	public int totalSearchCountJoin(SearchCriteria cri) throws Exception; // 공통
+	public int totalSearchCountJoin(int cBoardNo, SearchCriteria cri) throws Exception; // 공통
 	// 유저가 등록한 게시글 갯수
 	public int totalUserBoardCount(int userNo) throws Exception;
 	
@@ -36,7 +36,7 @@ public interface BoardDAO {
 	// 탐방기 -- 등록
 	public void cafeReviewInsert(BoardVO vo) throws Exception;
 	// 탐방기 -- list
-	public List<BoardVO> cafeReviesList(SearchCriteria cri) throws Exception;
+	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception;
 	//탐방기 -- 키워드 이용 검색 가능한 페이징 처리 
 	
 }

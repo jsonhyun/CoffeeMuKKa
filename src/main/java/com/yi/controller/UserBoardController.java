@@ -58,15 +58,12 @@ public class UserBoardController {
 	// 탐방기 리스트
 	@RequestMapping(value = "/community/cafeReview", method = RequestMethod.GET)
 	public String communityReviewList(SearchCriteria cri, Model model) throws Exception {
-		System.out.println("cri------------------" + cri);
 		int cBoardNo = 1;
 		cri.setPerPageNum(20);
 		
-		List<BoardVO> list = service.cafeReviesList(cri);
-		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.totalSearchCountJoin(cri));
+		pageMaker.setTotalCount(service.totalSearchCountJoin(cBoardNo, cri));
 		
 		//System.out.println("PageMaker---------------------------"+pageMaker);
 		//탐방기 오늘의 글 갯수
@@ -77,6 +74,8 @@ public class UserBoardController {
 		//지역리스트
 		List<ZoneVO> zoneList = service.zoneList();
 		
+		
+		List<BoardVO> list = service.cafeReviesList(cBoardNo, cri);
 		model.addAttribute("todayCnt", todayCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("pageMaker", pageMaker);
@@ -84,8 +83,6 @@ public class UserBoardController {
 		model.addAttribute("themeList", themeList);
 		model.addAttribute("zoneList", zoneList);
 		
-		System.out.println("pageMaker total ----------" + pageMaker.getTotalCount());
-		System.out.println("pageMaker -------------- " + pageMaker.getStartPage() + ", " + pageMaker.getEndPage());
 		return "/user/userCommunityReviewList";
 	}
 	

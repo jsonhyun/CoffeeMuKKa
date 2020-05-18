@@ -73,8 +73,8 @@ public class BoardService {
 		return dao.totalSearchCount(cBoardNo);
 	}
 	// 각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용 - join)
-	public int totalSearchCountJoin(SearchCriteria cri) throws Exception {
-		return dao.totalSearchCountJoin(cri);
+	public int totalSearchCountJoin(int cBoardNo, SearchCriteria cri) throws Exception {
+		return dao.totalSearchCountJoin(cBoardNo, cri);
 	}
 
 	// 테마 리스트
@@ -95,8 +95,8 @@ public class BoardService {
 		userGradeUpdate(vo);
 	}
 	
-	public List<BoardVO> cafeReviesList(SearchCriteria cri) throws Exception {
-		return dao.cafeReviesList(cri);
+	public List<BoardVO> cafeReviesList(int cBoardNo,SearchCriteria cri) throws Exception {
+		return dao.cafeReviesList(cBoardNo, cri);
 	}
 	
 	

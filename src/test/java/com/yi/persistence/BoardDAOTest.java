@@ -78,7 +78,11 @@ public class BoardDAOTest {
 	public void testCafeReviesList() throws Exception {
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
-		List<BoardVO> list = dao.cafeReviesList(cri);
+		cri.setSearchTheme("1");
+		cri.setSearchZone("1");
+		System.out.println("cri -------------" + cri);
+		System.out.println("cri -----------" + cri.getSearchTheme());
+		List<BoardVO> list = dao.cafeReviesList(1, cri);
 		for(BoardVO b : list) {
 			System.out.println(b);
 		}

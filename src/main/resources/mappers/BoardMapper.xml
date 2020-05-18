@@ -141,7 +141,7 @@
 	</select>
 	
 	<!-- 공통 : 각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용) -->
-	<select id="totalSearchCountJoin" resultType="int">
+	<select id="totalSearchCountJoin" parameterType="map" resultType="int">
 		select count(b.board_no) 
 			from board b left join image i on b.board_no = i.board_no 
 				 left join users u on b.user_no = u.user_no 
@@ -157,41 +157,43 @@
 		select count(*) from board where user_no = #{user_no};
 	</select>
 	
-	<!-- 공통 : 키워드 이용 검색 가능한 페이징 처리 매퍼 -->
-	<sql id="searchIf">
-		<if test="searchZone != '' and searchZone != null">			
-				AND z.zone_no = #{searchZone}
-			</if>
-			<if test="searchTheme != '' and searchTheme != null">
-				AND t.theme_no = #{searchTheme}
-			</if>
-			<if test="searchType == 't'.toString()">
-				AND b.writing_title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				AND b.writing_content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'tc'.toString()">
-				AND b.writing_title like CONCAT('%', #{keyword}, '%') OR b.writing_content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'uId'.toString()">
-				AND u.user_id = #{keyword}
-			</if>
-			<if test="searchType == 'uName'.toString()">
-				AND u.nick = #{keyword} OR u.name = #{keyword}
-			</if>
-	</sql>
-
-<!-- 경진 : 탐방기 -->
+	<!-- 공통 : 검색 -->
 	<sql id="search">
 		<where> 
-			b.board_no2 = 1
+			b.board_no2 = #{cBoardNo}
 			<include refid="searchIf"/>
 		</where>
 	</sql>
 	
+	<!-- 공통 : 키워드 이용 검색 가능한 페이징 처리 매퍼 -->
+	<sql id="searchIf">
+		<if test="cri.searchZone != '' and cri.searchZone != null">			
+				AND z.zone_no = #{cri.searchZone}
+			</if>
+			<if test="cri.searchTheme != '' and cri.searchTheme != null">
+				AND t.theme_no = #{cri.searchTheme}
+			</if>
+			<if test="cri.searchType == 't'.toString()">
+				AND b.writing_title like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'c'.toString()">
+				AND b.writing_content like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'tc'.toString()">
+				AND b.writing_title like CONCAT('%', #{cri.keyword}, '%') OR b.writing_content like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'uId'.toString()">
+				AND u.user_id = #{cri.keyword}
+			</if>
+			<if test="cri.searchType == 'uName'.toString()">
+				AND u.nick = #{cri.keyword} OR u.name = #{cri.keyword}
+			</if>
+	</sql>
+
+<!-- 경진 : 탐방기 -->
+	
 	<!-- 탐방기 : 탐방기 list -->
-	<select id="cafeReviesList" resultMap="BoardResult">
+	<select id="cafeReviesList" parameterType="map" resultMap="BoardResult">
 		select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
 			   z.zone_no , z.zone_name , t.theme_no , t.theme_name , c.cafe_name , i.image_name 
@@ -202,7 +204,7 @@
 						left join zone z on c.zone_no = z.zone_no 
 						left join theme t on c.theme_no = t.theme_no
 			<include refid="search"/>
-			order by b.board_no desc limit #{pageStart}, #{perPageNum}
+			order by b.board_no desc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<!-- 탐방기 : 글등록 -->

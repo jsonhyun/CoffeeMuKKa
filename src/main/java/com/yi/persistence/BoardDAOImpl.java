@@ -68,8 +68,11 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	//각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용 - join)
 	@Override
-	public int totalSearchCountJoin(SearchCriteria cri) throws Exception {
-		return sqlSession.selectOne(namespace+"totalSearchCountJoin", cri);
+	public int totalSearchCountJoin(int cBoardNo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cBoardNo", cBoardNo);
+		map.put("cri", cri);
+		return sqlSession.selectOne(namespace+"totalSearchCountJoin", map);
 	}
 	
 	// 유저가 등록한 게시글 갯수
@@ -86,8 +89,11 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.insert(namespace + "cafeReviewInsert", vo);
 	}
 	@Override
-	public List<BoardVO> cafeReviesList(SearchCriteria cri) throws Exception {
-		return sqlSession.selectList(namespace + "cafeReviesList", cri);
+	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cBoardNo", cBoardNo);
+		map.put("cri", cri);
+		return sqlSession.selectList(namespace + "cafeReviesList", map);
 	}
 
 	
