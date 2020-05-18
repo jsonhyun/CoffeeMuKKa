@@ -4,7 +4,7 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 <!-- bar-rating -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars2.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -57,10 +57,11 @@
 	    right: 80px;
 	}
 	#like{
-		height: 30px;
-	    position: absolute;
+		position: absolute;
 	    top: 25px;
 	    right: 20px;
+	    font-size: 30px;
+	    color: darkgrey;
 	}
 	#oneline{
 		margin: 10px 40px;
@@ -90,12 +91,44 @@
 	    padding-left: 10px;
 	    float: left;
 	}
+	.br-theme-fontawesome-stars .br-widget a.br-selected:after {
+		color: red;
+	}
 	#jumsu{
 		height: 45px;
 	    line-height: 45px;
 	    float: left;
 	    margin-left: -60px;
 	    margin-bottom: 20px;
+	}
+	td, th {
+	padding: 5px;
+	border: 1px solid white;
+	text-align: center;
+	}
+	
+	th {
+		background-color: white;
+	}
+	#menuImg{
+		background-image:url("${pageContext.request.contextPath }/resources/images/sumnail/carmel-menu.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		clear: both;
+    	width: 800px;
+		height: 400px;
+		margin: 0px 70px 30px;
+	}
+	.cafeInfoIcon{
+	    border-radius: 100px;
+	    width: 50px;
+	    padding: 10px;
+	    box-shadow: 3px 3px 10px #ccc;
+	}
+	#detailInfo{
+	    float: left;
+	    margin: 30px;
+	    width: 880px;
 	}
 </style>	
 	<div class="content subPageContent position">
@@ -110,7 +143,7 @@
 			<!-- 서브콘텐츠 시작 -->
 			<div class="modifyDate">Update 2020/05/10</div>
 			<img id="love" src="${pageContext.request.contextPath }/resources/images/key1.png">
-			<img id="like" src="${pageContext.request.contextPath }/resources/images/like.png">
+			<i class="far fa-thumbs-up" id="like"></i>
 			<div class="daeguIcon">달성군</div>
 			<c:set var="theme1" value="1"/>
 			<c:choose>
@@ -273,24 +306,237 @@
 				<span style="font-size: 20px;font-weight: bold;">메뉴판</span><a class="upAndDown" href="#"></a>
 			</div>
 			<div class="closeInfo" id="cafeMenu">
-				<img class="infoIcon" src="${pageContext.request.contextPath }/resources/images/point.png"> 
-				<div style="height: 45px;line-height: 45px;">대구 달성군 다사읍 달구벌대로 616</div>
+				<div>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<table style="float: left;margin: 30px;width: 250px;">
+						<tr>
+							<th>COFFEE</th>
+							<th>HOT</th>
+							<th>ICED</th>
+						</tr>
+						<tr>
+							<td style="text-align: center;">Americano</td>
+							<td style="text-align: center;" colspan="2">4000</td>
+						</tr>
+						<tr>
+							<td>Cafe Lattee</td>
+							<td colspan="2">5000</td>
+						</tr>
+						<tr>
+							<td>Vanilla Latte</td>
+							<td colspan="2">4000</td>
+						</tr>
+					</table>
+					<div id="menuImg"></div>
+				</div>
 			</div>
 			
 			<div class="cafeInfo" id="cafeInfo3">
-				<span style="font-size: 20px;font-weight: bold;">편의 정보</span><a class="upAndDown" href="#"></a>
+				<span style="font-size: 20px;font-weight: bold;">상세 정보</span><a class="upAndDown" href="#"></a>
 			</div>
 			<div class="closeInfo" id="cafeComfort">
-				<img class="infoIcon" src="${pageContext.request.contextPath }/resources/images/point.png"> 
-				<div style="height: 45px;line-height: 45px;">대구 달성군 다사읍 달구벌대로 616</div>
+				<div>
+					<table id="detailInfo">
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/tableNum.png"></div>
+							</td>
+							<td>테이블 수 10개</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></div>
+							</td>
+							<td>콘센트 수 10개</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/toilet.png"></div>
+							</td>
+							<td>화장실 청결해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></div>
+							</td>
+							<td>디저트 직접 만들어요 </td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/terras.png"></div>
+							</td>
+							<td>루프탑/테라스 있어요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></div>
+							</td>
+							<td>예약룸 있어요</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/coffeeBeans.png"></div>
+							</td>
+							<td>원두 구매 가능해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/books.png"></div>
+							</td>
+							<td>도서를 보유하고 있어요</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/alcohol.png"></div>
+							</td>
+							<td>술 판매해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/goods.png"></div>
+							</td>
+							<td>굿즈를 판매해요</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			
 			<div class="cafeInfo" id="cafeInfo4"">
-				<span style="font-size: 20px;font-weight: bold;">상세 정보</span><a class="upAndDown" href="#"></a>
+				<span style="font-size: 20px;font-weight: bold;">편의 정보</span><a class="upAndDown" href="#"></a>
 			</div>
 			<div class="closeInfo" id="cafeDetail">
-				<img class="infoIcon" src="${pageContext.request.contextPath }/resources/images/point.png"> 
-				<div style="height: 45px;line-height: 45px;">대구 달성군 다사읍 달구벌대로 616</div>
+				<div>
+					<table id="detailInfo">
+						<tr>
+							<td style="width: 135px;">
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/wifi.png"></div>
+							</td>
+							<td style="width: 281px;">와이파이 있어요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/puppy.png"></div>
+							</td>
+							<td style="width: 305px;">애견 동반 가능해요</td>
+						</tr>
+						<tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></div>
+							</td>
+							<td>예약 가능해요</td>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/parking.png"></div>
+							</td>
+							<td>주차공간 있어요 </td>
+						</tr><tr>
+							<td>
+								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/nokids.png"></div>
+							</td>
+							<td>노키즈존 맞아요</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<div style="margin-bottom: 50px;"></div>
 		</div>
