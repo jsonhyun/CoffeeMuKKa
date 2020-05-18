@@ -158,7 +158,7 @@
 		padding: 10px;
 		text-align: center;
 	}
-	button#btnCafeInfo,button#btnCafeReview{
+	button.btnCafeInfo,button.btnCafeReview{
 		height: 50px;
 		margin: 5px;
 		background-color: white;
@@ -168,7 +168,7 @@
 	.fa-greater-than{
 		color: #ED7D31;
 	}	
-	.cafeSearchWrap .goCageInfo_reiview button#btnCafeInfo:hover,button#btnCafeReview:hover{
+	.cafeSearchWrap .goCageInfo_reiview button.btnCafeInfo:hover,button.btnCafeReview:hover{
 		border: 2px solid #ED7D31;
 		background-color: white;
 		cursor: pointer;
@@ -200,7 +200,7 @@
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카 테 고 리</label>
 				<select class="cate" name="zoneNo.zoneNo">
-					<option selected="selected" value="위치">위치</option>
+					<option selected="selected" value="위치">전체(위치별)</option>
 					<option value="1">동성로</option>
 					<option value="2">수성못 들안길</option>
 					<option value="3">두류공원 이월드</option>
@@ -214,7 +214,7 @@
 					<option value="11">팔공산</option>
 				</select>
 				<select class="cate" name="themeNo.themeNo">
-					<option selected="selected" value="키워드">#키워드</option>				
+					<option selected="selected" value="키워드">전체(테마별)</option>				
 					<option value="1">#데이트</option>
 					<option value="2">#뷰</option>
 					<option value="3">#착한아메</option>
@@ -299,14 +299,24 @@
 <script id="goCafeInfo" type="text/x-handlebars-tamplate">
 	{{#each.}}
 		<h3>이미 <span class='red'>Coffee MuKKa</span> 에 등록된 카페입니다</h3>
-		<button type="button" id="btnCafeInfo"><span class="red"><b>{{cafeName}}</b></span> 상세정보 보기 <i class="fas fa-greater-than"></i></button>
-		<button type="button" id="btnCafeReview">생생 카페 <span class="blue"><b>탐방기</b></span> 작성하기 <i class="fas fa-greater-than"></i></button>
+		<button type="button" class="btnCafeInfo" value="{{cafeNo}}"><span class="red"><b>{{cafeName}}</b></span> 상세정보 보기 <i class="fas fa-greater-than"></i></button>
+		<button type="button" class="btnCafeReview">생생 카페 <span class="blue"><b>탐방기</b></span> 작성하기 <i class="fas fa-greater-than"></i></button>
 	{{/each}}	
 </script>
 <script>
 	//목록 버튼
 	$("#RC_list").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})
+	
+	//탐방기 작성 버튼 - 동적 생성
+	$(document).on("click", ".btnCafeReview", function(){
+		location.href="${pageContext.request.contextPath}/user/community/cafeReview/register";
+	})
+	
+	//카페 상세정보 보기 - 동적 생성
+	$(document).on("click", ".btnCafeInfo", function(){		
+		location.href="${pageContext.request.contextPath}/user/mukkaCafe"; // 임시로 작성
 	})
 	//취소 버튼
 	//등록 폼 버튼

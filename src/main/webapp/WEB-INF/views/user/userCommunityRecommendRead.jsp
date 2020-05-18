@@ -7,7 +7,7 @@
 	/* 상세보기 - 타이틀 */
 	div#RC_readTitle{
 		width: 100%;
-		height: 103px;
+		height: 136px;
 		background-color: #f7f7f7;
 		color: #545454;
 		border-top: 2px solid #545454;		
@@ -16,9 +16,9 @@
 	}
 	/* 타이틀1 */
 	div#RC_readTitle div#RC_readTitle1{
-		width: 99%;
-		height: 23px;
-		padding: 5px;
+		width: 100%;
+		height: 29px;
+		padding-top: 15px;
 	}
 	div#RC_readTitle div#RC_readTitle1 div.zoneOrangeIconSmall,div.themeKeySmall{
 		margin-left: 10px;
@@ -30,45 +30,40 @@
 	}
 	/* 타이틀2 */
 	div#RC_readTitle div#RC_readTitle2{
-		width: 99%;
-		height: 30px;
-		padding: 5px;
+		width: 100%;
+		height: 49px;
+		line-height: 49px;
 	}
-	div#RC_readTitle div#RC_readTitle2 span#RC_writingTitle{
+	div#RC_readTitle div#RC_readTitle2 #RC_writingTitle{
 		width: 50%;
 		margin-left: 10px;
 		font-weight: bold;
-		font-size: 21px;		
+		font-size: 21px;	
+		float: left;	
 	}
 	div#RC_readTitle2 div#RC_userInfo{
-		width: 33%;
+		width: 45%;
 		float: right;
 		text-align: right;
-		background-color: red;
 		margin-right: 10px;
-		line-height: 30px;
-		position: relative;
 	}		
 	div#RC_readTitle2 div#RC_userInfo img#gradeImg{
-		width: 25px;
-		height: 25px;
-		margin-top: 3px;
-		position: absolute;
-		left: 0;		
+		width: 30px;
+		height: 30px;	
 	}
 	span#RC_userNick{
 		width: 55%;
-		background: yellow;
-		line-height: 10px;
+		line-height: 10px;/* 
 		position: absolute;
 		right:0;
-		top:9px;	
+		top:9px;	 */
 	}	
 	/* 타이틀3 */
 	div#RC_readTitle div#RC_readTitle3{
-		width: 99%;
-		height: 30px;
-		padding: 5px;
+		width: 100%;
+		height: 29px;
+		height: 29px;
+		padding-bottom: 15px;
 	}
 	div#RC_readTitle div#RC_readTitle3 img#rc_point{
 		margin-left: 10px;
@@ -81,6 +76,7 @@
 		float: right;
 		margin-right: 10px;		
 	}
+	
 	/* 글내용 */
 	div#RC_content{
 		width: 100%;
@@ -89,6 +85,7 @@
 	div#RC_content div.readImgBox img{
 		width: 100%;
 		height: 510px;
+		margin-bottom: 10px;
 	}
 	div#RC_content div#RC_btns{
 		width: 100%;
@@ -136,7 +133,7 @@
 				<div id="RC_update"><fmt:formatDate value="${board.updateDate}" pattern="yyyy/MM/dd"/></div>						
 			</div>
 			<div id="RC_readTitle2">
-				<span id="RC_writingTitle">${board.writingTitle}</span>
+				<div id="RC_writingTitle">${board.writingTitle}</div>
 				<div id="RC_userInfo">
 					<img id="gradeImg"  src = "${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}">
 					<span id="RC_userNick">${board.userNo.nick}(${board.userNo.userId})</span>
@@ -151,11 +148,10 @@
 		<!-- 게시글내용 : 사진, 글 -->
 		<div id="RC_content">
 			<c:forEach var="file" items="${board.files}">
-				<input type="text" class="readImgName" value="${file.imageName}">
-				<%-- <img src = "${pageContext.request.contextPath }/user/displayFile?filename=${file.imageName}" class="readThumImg"> --%>
+				<input type="hidden" class="readImgName" value="${file.imageName}">
 			</c:forEach>
 			<div class="readImgBox"></div>
-			<p id="RC_contentText">${board.writingContent}</p>
+			<p id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></p>
 			<div id="RC_btns">
 				좋아요
 				댓글
@@ -176,9 +172,9 @@
 		var start = arr[i].substring(0,12);
 		var end = arr[i].substring(14);
 		
-		console.log(start+end);
+		//console.log(start+end);
 		fileName = start + end;
-		alert(fileName);
+		//alert(fileName);
 		
 		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
 	}

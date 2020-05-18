@@ -6,6 +6,7 @@
 <style>
 	.cafeReviewSearch {
 		padding: 10px 0;
+		padding-top: 20px;
 	}
 
 	.cafeReviewSearch .selectLeft {
@@ -282,15 +283,36 @@
 		<div class="cafeReviewSearch bottomLine2 clearfix">
 			<div class="selectLeft">
 				<select name="" id="">
-					<option value="all">전체</option>
+					<option selected="selected" value="위치">전체(위치별)</option>
+					<option value="1">동성로</option>
+					<option value="2">수성못 들안길</option>
+					<option value="3">두류공원 이월드</option>
+					<option value="4">달서구</option>
+					<option value="5">수성구</option>
+					<option value="6">서구-북구</option>
+					<option value="7">중구</option>
+					<option value="8">동구</option>
+					<option value="9">남구</option>
+					<option value="10">달성군</option>
 				</select>
 				<select name="" id="">
-					<option value="all">전체</option>
+					<option selected="selected" value="키워드">전체(테마별)</option>				
+					<option value="1">#데이트</option>
+					<option value="2">#뷰</option>
+					<option value="3">#착한아메</option>
+					<option value="4">#디저트</option>
+					<option value="5">#댕댕이</option>
+					<option value="6">#작업</option>
 				</select>
 			</div>
 			<div class="selectRight">
 				<select name="" id="">
-					<option value="">제목</option>
+					<%-- <option value="n" ${cri.searchType == null ? 'selected' : '' }>----</option>
+					<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>제목</option>
+					<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>내용</option>
+					<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>제목+내용</option>
+					<option value="uId" ${cri.searchType == 'uId' ? 'selected' : '' }>회원아이디</option>
+					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option> --%>
 				</select>
 				<input type="text" name="" placeholder="검색어를 입력하세요." />
 				<input type="submit" value="검색" class="navyBtn" style="cursor: pointer"/>
