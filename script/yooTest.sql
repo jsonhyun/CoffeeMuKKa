@@ -118,15 +118,11 @@ select count(b.board_no)
 				 left join theme t on c.theme_no = t.theme_no 
 	where z.zone_no = 3 and board_no2 = 1 ;
 
-select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no , 
-b.view_number , b.writing_title , b.registration_date , b.writing_content , 
-b.vote_number , b.reply_cnt ,       z.zone_no , z.zone_name , t.theme_no , 
-t.theme_name , c.cafe_name , i.image_name     
-from board b left join image i on b.board_no = i.board_no        
-left join users u on b.user_no = u.user_no        
-left join grade g on u.user_grade = g.user_grade        
-left join cafe c on b.cafe_no = c.cafe_no        
-left join zone z on c.zone_no = z.zone_no        
-left join theme t on c.theme_no = t.theme_no         
-WHERE b.board_no2 = 1                  
-order by b.board_no desc limit ?, ?
+select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no , b.view_number 
+, b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt , 
+z.zone_no , z.zone_name , t.theme_no , t.theme_name , c.cafe_name , i.image_name from board 
+b left join image i on b.board_no = i.board_no left join users u on b.user_no = u.user_no left 
+join grade g on u.user_grade = g.user_grade left join cafe c on b.cafe_no = c.cafe_no left 
+join zone z on c.zone_no = z.zone_no left join theme t on c.theme_no = t.theme_no WHERE b.board_no2 
+= 1 order by b.board_no desc limit 1, 20 ;
+
