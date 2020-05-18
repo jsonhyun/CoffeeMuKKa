@@ -191,10 +191,10 @@
 			</if>
 	</sql>
 
-<!-- 경진 : 탐방기 -->
-	
-	<!-- 탐방기 : 탐방기 list -->
-	<select id="cafeReviesList" parameterType="map" resultMap="BoardResult">
+
+	<!-- 경진 : 탐방기 -->
+	<!-- 탐방기 : 탐방기 select문 -->
+	<sql id="cafeRevieSelect">
 		select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
 			   z.zone_no , z.zone_name , t.theme_no , t.theme_name , c.cafe_name , i.image_name 
@@ -204,8 +204,19 @@
 						left join cafe c on b.cafe_no = c.cafe_no 
 						left join zone z on c.zone_no = z.zone_no 
 						left join theme t on c.theme_no = t.theme_no
+	</sql>
+	
+	<!-- 탐방기 : 탐방기 list -->
+	<select id="cafeReviesList" parameterType="map" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
 			<include refid="search"/>
 			order by b.board_no desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<!-- 탐방기 : 탐방기 read -->
+	<select id="cafeReviewRead" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+		where b.board_no = #{boardNo}
 	</select>
 	
 	<!-- 탐방기 : 글등록 -->
@@ -213,5 +224,7 @@
 		insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content) 
 			values (#{boardNo2.boardNo}, #{userNo.userNo}, #{cafeNo.cafeNo}, #{writingTitle}, #{writingContent});
 	</insert>
+	
+	
 
 </mapper>

@@ -88,6 +88,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewInsert(BoardVO vo) throws Exception {
 		sqlSession.insert(namespace + "cafeReviewInsert", vo);
 	}
+	
 	@Override
 	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -95,8 +96,8 @@ public class BoardDAOImpl implements BoardDAO{
 		map.put("cri", cri);
 		return sqlSession.selectList(namespace + "cafeReviesList", map);
 	}
-
-	
-	
-	
+	@Override
+	public BoardVO cafeReviewRead(int boardNo) throws Exception {
+		return sqlSession.selectOne(namespace + "cafeReviewRead", boardNo);
+	}
 }
