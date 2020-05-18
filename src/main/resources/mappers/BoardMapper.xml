@@ -140,17 +140,26 @@
 		select count(board_no) from board where board_no2 = #{cBoardNo}
 	</select>
 	
+	<!-- 공통 : 각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용) -->
+	<select id="totalSearchCountJoin" resultType="int">
+		select count(b.board_no) 
+			from board b left join image i on b.board_no = i.board_no 
+				 left join users u on b.user_no = u.user_no 
+				 left join grade g on u.user_grade = g.user_grade 
+				 left join cafe c on b.cafe_no = c.cafe_no 
+				 left join zone z on c.zone_no = z.zone_no 
+				 left join theme t on c.theme_no = t.theme_no 
+			<include refid="search"/>
+	</select>
+	
 	<!-- 공통 : 유저가 등록한 게시글 갯수 -->
 	<select id="totalUserBoardCount" resultType="int">
 		select count(*) from board where user_no = #{user_no};
 	</select>
-
-<!-- 경진 : 탐방기 -->
-	<!-- 탐방기 : 키워드 이용 검색 가능한 페이징 처리 매퍼 -->
-	<sql id="search">
-		<where>
-			b.board_no2 = 1 
-			<if test="searchZone != '' and searchZone != null">			
+	
+	<!-- 공통 : 키워드 이용 검색 가능한 페이징 처리 매퍼 -->
+	<sql id="searchIf">
+		<if test="searchZone != '' and searchZone != null">			
 				AND z.zone_no = #{searchZone}
 			</if>
 			<if test="searchTheme != '' and searchTheme != null">
@@ -171,8 +180,14 @@
 			<if test="searchType == 'uName'.toString()">
 				AND u.nick = #{keyword} OR u.name = #{keyword}
 			</if>
+	</sql>
+
+<!-- 경진 : 탐방기 -->
+	<sql id="search">
+		<where> 
+			b.board_no2 = 1
+			<include refid="searchIf"/>
 		</where>
-		
 	</sql>
 	
 	<!-- 탐방기 : 탐방기 list -->
@@ -195,6 +210,5 @@
 		insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content) 
 			values (#{boardNo2.boardNo}, #{userNo.userNo}, #{cafeNo.cafeNo}, #{writingTitle}, #{writingContent});
 	</insert>
-	
 
 </mapper>

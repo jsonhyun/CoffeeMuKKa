@@ -17,6 +17,27 @@ select * from authority; -- 관리자 권한
 select * from wishlist; -- 위시리스트
 select * from image; -- 이미지
 
+-- 더미 테이터
+drop procedure if exists loopInsert;
+delimiter $$
+$$
+create procedure loopInsert()
+BEGIN
+DECLARE i INT DEFAULT 1;
+WHILE i <= 50 DO
+	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number, vote_number) 
+	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 128)), '[카페탐방기] 더미 데이터', '<p>test</p>', floor(1 + (rand() * 99)), floor(1 + (rand() * 99)));
+
+	insert into image(image_name , board_no)
+	values('/2020/05/18/s_ff706c70-f438-48a2-978e-1861b264b3d5_stove-1.jpg', LAST_INSERT_ID());
+	
+	SET i = i + 1;
+END WHILE;
+end $$
+delimiter ;
+
+CALL loopInsert();
+
 -- test
 select * from cafe where cafe_name like '%슬%';
 
@@ -88,4 +109,24 @@ select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 		  and b.writing_title like '%커피%'
 	order by b.board_no desc limit 0, 20; 
 
+select count(b.board_no) 
+	from board b left join image i on b.board_no = i.board_no 
+				 left join users u on b.user_no = u.user_no 
+				 left join grade g on u.user_grade = g.user_grade 
+				 left join cafe c on b.cafe_no = c.cafe_no 
+				 left join zone z on c.zone_no = z.zone_no 
+				 left join theme t on c.theme_no = t.theme_no 
+	where z.zone_no = 3 and board_no2 = 1 ;
 
+select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no , 
+b.view_number , b.writing_title , b.registration_date , b.writing_content , 
+b.vote_number , b.reply_cnt ,       z.zone_no , z.zone_name , t.theme_no , 
+t.theme_name , c.cafe_name , i.image_name     
+from board b left join image i on b.board_no = i.board_no        
+left join users u on b.user_no = u.user_no        
+left join grade g on u.user_grade = g.user_grade        
+left join cafe c on b.cafe_no = c.cafe_no        
+left join zone z on c.zone_no = z.zone_no        
+left join theme t on c.theme_no = t.theme_no         
+WHERE b.board_no2 = 1                  
+order by b.board_no desc limit ?, ?

@@ -408,6 +408,7 @@
 					<option value="uId" ${cri.searchType == 'uId' ? 'selected' : '' }>회원아이디</option>
 					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option>
 				</select>
+				<input type="hidden" name="boardType" value="1"/>
 				<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
 				<button type="button" class="navyBtn" id="btnSearch">검색</button>
 			</div>
@@ -481,13 +482,13 @@
 		<div style="text-align: center;">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev == true }">
-					<li><a href="cafeRecommend?page=${pageMaker.startPage-1 }">&laquo;</a></li>
+					<li><a href="cafeRecommend?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
 				</c:if>
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }">${idx }</a></li>
+					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
 				</c:forEach>
 				<c:if test="${pageMaker.next == true }">
-					<li><a href="cafeRecommend?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+					<li><a href="cafeRecommend?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>	
@@ -529,7 +530,7 @@
 		var searchTheme = $("#searchTheme").val();
 		var searchType = $("#searchType").val();
 		var keyword = $("#keyword").val();
-		location.href = "cafeReview?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
+		location.href = "cafeReview?boardType=1&searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
 	})
 </script>
 

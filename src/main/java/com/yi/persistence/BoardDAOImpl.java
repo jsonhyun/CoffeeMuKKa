@@ -66,6 +66,11 @@ public class BoardDAOImpl implements BoardDAO{
 	public int totalSearchCount(int cBoardNo) throws Exception {
 		return sqlSession.selectOne(namespace+"totalSearchCount", cBoardNo);
 	}
+	//각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용 - join)
+	@Override
+	public int totalSearchCountJoin(SearchCriteria cri) throws Exception {
+		return sqlSession.selectOne(namespace+"totalSearchCountJoin", cri);
+	}
 	
 	// 유저가 등록한 게시글 갯수
 	@Override
@@ -86,5 +91,6 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	
-
+	
+	
 }
