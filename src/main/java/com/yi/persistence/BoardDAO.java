@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 
 public interface BoardDAO {
@@ -13,6 +14,7 @@ public interface BoardDAO {
 	public List<BoardVO> recommendboardList() throws Exception;
 	//추천카페 -- 페이징된 리스트	
 	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception;
+	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception;
 
 	//추천카페 -- 등록
 	public void recommendInsert(BoardVO vo) throws Exception;
@@ -35,6 +37,7 @@ public interface BoardDAO {
 	public void cafeReviewInsert(BoardVO vo) throws Exception;
 	// 탐방기 -- list
 	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception;
-	//탐방기 -- 키워드 이용 검색 가능한 페이징 처리 
+	// 탐방기 -- read
+	public BoardVO cafeReviewRead(int boardNo) throws Exception;
 	
 }

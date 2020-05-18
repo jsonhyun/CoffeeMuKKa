@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.Criteria;
+import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 
 @Repository
@@ -30,6 +31,10 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception {
 		return sqlSession.selectList(namespace+"recommendboardListCriteria", cri);
+	}
+	@Override
+	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {
+		return sqlSession.selectList(namespace+"recommendboardImgList", boardNo);
 	}
 
 	//추천카페 -- 등록		
@@ -83,6 +88,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewInsert(BoardVO vo) throws Exception {
 		sqlSession.insert(namespace + "cafeReviewInsert", vo);
 	}
+	
 	@Override
 	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -90,7 +96,8 @@ public class BoardDAOImpl implements BoardDAO{
 		map.put("cri", cri);
 		return sqlSession.selectList(namespace + "cafeReviesList", map);
 	}
-	
-	
-	
+	@Override
+	public BoardVO cafeReviewRead(int boardNo) throws Exception {
+		return sqlSession.selectOne(namespace + "cafeReviewRead", boardNo);
+	}
 }

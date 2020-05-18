@@ -154,11 +154,27 @@ th {
 	width: 48%;
 }
 
+.f_left {
+	float: left;
+}
+
+.f_right {
+	float: right;
+}
+
 .navyBtn {
 	background-color: #303A50;
 	border: none;
 	color: #fff;
 	padding: 3px 10px;
+	cursor: pointer;
+}
+
+.navyBtn2 {
+	background-color: #303A50;
+	border: none;
+	color: #fff;
+	padding: 6px 15px;
 	cursor: pointer;
 }
 
@@ -184,6 +200,34 @@ th {
 	background-color: #fff;
 	border-radius: 10px;
 	cursor: pointer;
+}
+
+.greenLineBtn {
+	background-color: #fff;
+	border: 1px solid green;
+	color: green;
+	padding: 5px 15px;
+	cursor: pointer;
+}
+
+.greenLineBtn:hover {
+	background-color: green;
+	color: #fff;
+	font-weight: 700;
+}
+
+.redLineBtn {
+	background-color: #fff;
+	border: 1px solid #d90000;
+	color: #d90000;
+	padding: 5px 15px;
+	cursor: pointer;
+}
+
+.redLineBtn:hover {
+	background-color: #d90000;
+	color: #fff;
+	font-weight: 700;
 }
 
 /* 한줄 */
@@ -225,6 +269,7 @@ th {
 	color: #bbb;
 }
 
+
 /* background color */
 .bgRed {
 	background-color: red;
@@ -244,6 +289,10 @@ th {
 .bgBlack {
 	background-color: #000;
 	color: #fff;
+}
+
+.bgLightGray {
+	background-color: #f7f7f7;
 }
 
 

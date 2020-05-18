@@ -63,7 +63,8 @@
 		background-color: #F46B45;	
 	}
 	
-	.cafeReviewArea .cafeR_box {
+	.cafeReviewArea .a_cafeReview {
+		display: block;
 		float: left;
 		width: 48.6%;
 		border: 1px solid #545454;
@@ -74,7 +75,7 @@
 		text-decoration: underline;
 	}
 	
-	.cafeReviewArea .cafeR_box:nth-of-type(odd) {
+	.cafeReviewArea .a_cafeReview:nth-of-type(odd) {
 		margin-right: 20px;
 	}
 	
@@ -431,8 +432,8 @@
 			</div>
 			<div class="cafeR_list clearfix mb30">
 				<!-- 탐방기 글 박스 -->
-				<a href="${pageContext.request.contextPath }/user/community/cafeReview">
-					<c:forEach var="item" items="${list }">
+				<c:forEach var="item" items="${list }">
+					<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${item.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
 						<div class="cafeR_box">
 							<div class="cafeR_titleBox">
 								<div class="cafeR_titleImg">	
@@ -473,8 +474,8 @@
 								</div>
 							</div>
 						</div>
-					</c:forEach>
-				</a>
+					</a>
+				</c:forEach>
 				<!-- 탐방기 글 end -->
 			</div>
 		</div>
@@ -532,6 +533,7 @@
 		var keyword = $("#keyword").val();
 		location.href = "cafeReview?boardType=1&searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
 	})
+	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>
