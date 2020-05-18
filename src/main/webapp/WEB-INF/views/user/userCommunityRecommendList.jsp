@@ -321,8 +321,11 @@
 								<div class="RC_listImgWrap">
 									<div class="RC_listImgContainer">
 										<c:forEach var="img" items="${listImg}">
-											<c:if test="${img.boardNo.boardNo == board.boardNo }">
-												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}">
+											  <c:if test="${board.boardNo == 33}">
+												<img src ="${pageContext.request.contextPath }/resources/images/rc_noImg.png">
+											</c:if> 
+											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg"> 												
 											</c:if>
 										</c:forEach>								
 									</div>							
@@ -380,23 +383,45 @@
 			</div>					
 	</div> 
 </div>
+<!-- 자바스크립트 & 제이쿼리 -->
 <script>
 	//추천카페쓰기 버튼(게시물등록버튼)
 	$("#RC_Register").click(function(){
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
-		//alert("test");
 	})
 	
-	// 이미지 로테이션
+	
+	// 기본이미지(이미지 추가 없이 글 등록시)
+		
+/* 		var $test = $("<img>").attr("src","${pageContext.request.contextPath }/resources/images/rc_noImg.png");
+		
+		var isChild = $(".RC_listImgContainer").children().is(".thumbNailImg"); //자식요소
+		
+		 if(isChild){
+			
+		}else{
+			var img = new Image();
+			$(".RC_listImgContainer").append($test);
+		} */
+		
+		
+		
+		/* $(".RC_listImgContainer").append(img);
+		 img.onerror = function(e){
+			this.src = "${pageContext.request.contextPath }/resources/images/rc_noImg.png";
+		}  */
+	  
+	// 이미지 로테이션 
 	 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
-	 var next_img = $(".RC_listImgContainer img:last-of-type"); // 마지막 이미지 :last-of-type  --> 요수 무리 중 마지막 요소
+	 
+	 var next_img = $(".RC_listImgContainer img:nth-child(2)"); // 두번째 이미지 : nth-child(2)  --> 요소 무리 둥 2번째 요소 (사진을 1개만 넣을 경우)
  
 	 function fade_change(){
-	     next_img.addClass("active").css("opacity",0).animate({"opacity":1},1500, function(){
-	    	 next_img.removeClass("active").animate({"opacity":0},1500);
-	    	/*  $(".RC_listImgContainer").append(now_img);           //콜백
-	    	 next_img.removeClass("active"); */
-	     });
+		     next_img.addClass("active").css("opacity",0).animate({"opacity":1},1500, function(){
+		    	 next_img.removeClass("active").animate({"opacity":0},1500);
+		    	// $(".RC_listImgContainer").append(now_img);           //콜백
+		    	// next_img.removeClass("active"); 
+		     });
 	 }
 	 
 	 var timer = setInterval("fade_change()", 2000);
@@ -404,7 +429,7 @@
 	 $("div.RC_listImgContainer").hover(function(){ // mouse enter 시 
 	     clearInterval(timer);
 	 }, function(){                                  // mouse leave 시
-		 now_img.animate({"opacity":0},1500);
+		 //now_img.animate({"opacity":0},1500);
 	     timer = setInterval("fade_change()",2000);
 	 });
 </script>

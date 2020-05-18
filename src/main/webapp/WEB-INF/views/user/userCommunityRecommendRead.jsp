@@ -152,8 +152,11 @@
 		</div>
 		<!-- 게시글내용 : 사진, 글 -->
 		<div id="RC_content">
-			<div class="temp">이미지사진</div>
-			<div class="temp">이미지사진</div>
+			<!-- <div class="temp">이미지사진</div>
+			<div class="temp">이미지사진</div> -->
+			<c:forEach var="file" items="${board.files}">
+				<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${file.imageName}">
+			</c:forEach>
 			<p id="RC_contentText">${board.writingContent}</p>
 			<div id="RC_btns">
 				좋아요

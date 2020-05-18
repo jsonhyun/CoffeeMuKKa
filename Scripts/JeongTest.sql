@@ -115,3 +115,12 @@ left join theme t on b.theme_no = t.theme_no
 left join image i on b.board_no = i.board_no
 where b.board_no2 = 2
 order by b.board_no desc limit 1,16;
+
+
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
+left join zone z on b.zone_no = z.zone_no
+left join theme t on b.theme_no = t.theme_no
+left join users u on b.user_no = u.user_no 
+left join grade g on u.user_grade = g.user_grade
+file
+where b.board_no2 = 2 and b.board_no = 2;

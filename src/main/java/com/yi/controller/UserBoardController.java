@@ -239,6 +239,7 @@ public class UserBoardController {
 			System.out.println("숫자"+boardNo);
 			listImg.addAll(service.recommendboardImgList(boardNo));
 		}
+		//System.out.println("test=================================================================================="+listImg.toString());
 		model.addAttribute("listImg", listImg);
 		
 		
@@ -281,7 +282,7 @@ public class UserBoardController {
 	public String communityRecommendRead(int boardNo, Model model) throws Exception{
 		System.out.println(boardNo);
 		BoardVO vo = service.recommendReadByNo(boardNo);
-		System.out.println(vo.toString());
+		//System.out.println(vo.toString());
 		model.addAttribute("board", vo);
 		return "/user/userCommunityRecommendRead";
 	}
