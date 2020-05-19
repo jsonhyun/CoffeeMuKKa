@@ -131,6 +131,7 @@ public class UserBoardController {
 		return "redirect:/user/community/cafeReview";
 	}
 	
+	// 탐방기 수정
 	@RequestMapping(value = "/community/cafeReview/modify", method = RequestMethod.GET)
 	public String communityReviewModifyGet(int boardNo, SearchCriteria cri, Model model) throws Exception {
 		BoardVO vo = service.cafeReviewRead(boardNo);
@@ -139,8 +140,13 @@ public class UserBoardController {
 		return "/user/userCommunityReviewModify";
 	}
 	
-	public String communityReviewModifyPost() {
-		return "redirect:/user/community/cafeReview/modify?boardNo=";
+	@RequestMapping(value = "/community/cafeReview/modify", method = RequestMethod.POST)
+	public String communityReviewModifyPost(String inImgFile, MultipartFile imgFile, BoardVO vo, SearchCriteria cri, Model model) {
+		System.out.println("modefy Post vo ------------- " + vo);
+		System.out.println("modefy Post inImgFile ------------- " + inImgFile);
+		System.out.println("modefy Post imgFileSize ------------- " + imgFile.getSize());
+		System.out.println("modefy Post cri ------------- " + cri);
+		return "redirect:/user/community/cafeReview/modify?boardNo="+vo.getBoardNo();
 	}
 	
 	// ckd에디터 이미지 등록

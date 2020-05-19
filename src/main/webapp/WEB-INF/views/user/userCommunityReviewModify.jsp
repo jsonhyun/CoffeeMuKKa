@@ -168,11 +168,12 @@
 			<!-- 서브페이지 공통적인 타이틀 -->
 			<h2 class="subPageTitle cafeRTitle">
 				<span class="title">생생 카페 탐방기 > </span>
-				<span class="red">글쓰기</span>
+				<span class="red">탐방기 수정</span>
 			</h2>
 			<div class="cafeRForm">
 				<form action="modify" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="boardNo2.boardNo" value="1"/>
+					<input type="hidden" name="boardNo" value="${board.boardNo }"/>
 					<div class="cafeR_search cafeR_groub clearfix">
 						<label>카페</label>
 						<!-- <button type="button" class="cafeSearchBtn orangeBtn">카페찾기</button> -->
@@ -295,8 +296,6 @@
 			alert("탐방기를 작성해주세요.");
 			return false;
 		} 
-		
-		return false;
 	})
 	
 </script>
