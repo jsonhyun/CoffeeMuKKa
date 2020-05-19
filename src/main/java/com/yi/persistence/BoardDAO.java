@@ -45,5 +45,9 @@ public interface BoardDAO {
 	public BoardVO cafeReviewRead(int boardNo) throws Exception;
 	public List<BoardVO> cafeReviewSameList(BoardVO vo) throws Exception;
 	public int cafeReivewSameCnt(BoardVO vo) throws Exception;
+	// 탐방기 -- modify
+	public void cafeReviewModify(BoardVO vo) throws Exception;
+	// 탐방기 -- remove
+	public void cafeReviewRemove(BoardVO vo) throws Exception;
 	
 }

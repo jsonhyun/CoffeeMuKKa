@@ -115,6 +115,27 @@ public class BoardService {
 		return dao.cafeReivewSameCnt(vo);
 	}
 	
+	/* 탐방기 수정 */
+	@Transactional // 대표 이미지와 같이 수정
+	public void cafeReviewAndImgModify(BoardVO vo, ImageVO imgVO) throws Exception {
+		dao.cafeReviewModify(vo);
+		imgDao.updateImageByBoardNo(imgVO);
+	}
+	
+	// 게시글 내용만 수정
+	public void cafeReviewModify(BoardVO vo) throws Exception {
+		dao.cafeReviewModify(vo);
+	}
+	
+	// 탐방기 조회수
+	public void cafeReviewViewUpdate(int boardNo) throws Exception {
+		dao.updateViewCnt(boardNo);
+	}
+	
+	// 탐방기 삭제 (삭제 여부 수정)
+	public void cafeReviewRemove(BoardVO vo) throws Exception {
+		dao.cafeReviewRemove(vo);
+	}
 	
 	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
 	private void userGradeUpdate(BoardVO vo) throws Exception {

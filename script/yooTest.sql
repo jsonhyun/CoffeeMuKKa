@@ -16,8 +16,9 @@ select * from grade; -- 회원 등급
 select * from authority; -- 관리자 권한
 select * from wishlist; -- 위시리스트
 select * from image; -- 이미지
+select * from vote; -- 추천리스트
 
--- 더미 테이터
+-- 더미 테이터 start ----------------------------------------------------------------------- 
 -- 카페 탐방기
 drop procedure if exists loopInsert;
 delimiter $$
@@ -25,9 +26,9 @@ $$
 create procedure loopInsert()
 BEGIN
 DECLARE i INT DEFAULT 1;
-WHILE i <= 70 DO
-	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number, vote_number) 
-	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)), floor(1 + (rand() * 99)));
+WHILE i <= 210 DO
+	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number) 
+	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)));
 
 	insert into image(image_name , board_no)
 	values('/2020/05/15/s_03cee4c3-7cfb-4c2b-8d5f-bd6d12385676_delisert-1.jpg', LAST_INSERT_ID());
@@ -39,10 +40,49 @@ delimiter ;
 
 CALL loopInsert();
 
+-- 탐방기 추천
+drop procedure if exists loopVoteInsert;
+delimiter $$
+$$
+create procedure loopVoteInsert()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 500 DO
+	Insert into vote(board_no, user_no) 
+	VALUES(floor(1 + (rand() * 210)), floor(1 + (rand() * 78)));
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopVoteInsert();
+
+-- 추천 수 board 컬럼에 넣기
+drop procedure if exists loopVoteCnt;
+delimiter $$
+$$
+create procedure loopVoteCnt()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 210 DO
+	
+	update board
+		set vote_number = (select count(*) from vote where board_no = i)
+		where board_no = i;
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopVoteCnt();
+
 -- 카페 탐방기 댓글
 
+-- 더미 테이터 end ----------------------------------------------------------------------- 
 
--- test
+-- test ------------------------------------------------------------------------------
 select * from cafe where cafe_name like '%슬%';
 
 select * 
@@ -91,10 +131,7 @@ select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 				 left join cafe c on b.cafe_no = c.cafe_no 
 				 left join zone z on c.zone_no = z.zone_no 
 				 left join theme t on c.theme_no = t.theme_no 
-	where b.board_no2 = 1 
-		  and z.zone_no = 2
-		  and t.theme_no = 4
-		  and b.writing_title like '%커피%'
+	where b.board_no2 = 1 and b.board_del_cdt = 1
 	order by b.board_no desc limit 0, 20; 
 
 select count(b.board_no) 
@@ -121,7 +158,24 @@ select count(*)
 	from board b left join cafe c on b.cafe_no = c.cafe_no 
 	where c.cafe_no = 7 and b.board_no != 12;
 
-	
+-- 수정
+-- update image set image_name = ? where board_no = ?;
+/*update board 
+	set writing_title = ?, writing_content = ?, update_date = now()
+	where board_no = ?*/
+
+-- 삭제 여부 변경
+update board 
+	set board_del_cdt = 1
+	where board_no = 210;
+
+select * from image where board_no = 2;
+select * from board where board_no = 210;
+
+update board 
+	set registration_date = '2020-05-18', update_date = '2020-05-18'
+	where board_no = 210;
+
 -- 좋아요(추천수)
 select board_no , vote_number from board;
 -- update board set vote_number = vote_number + 1 where board_no = 1;

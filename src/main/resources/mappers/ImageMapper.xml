@@ -10,7 +10,7 @@
 		<result property="boardNo.boardNo" column="board_no"/>
 	</resultMap>
 
-	<!-- 게시판 이미지 등록 -->
+	<!-- 이미지 등록 -->
 	<insert id="insertImageByBoardNo">
 		insert into image(image_name , board_no) 
 			values(#{imageName}, LAST_INSERT_ID())
@@ -20,5 +20,10 @@
 	<select id="imageListByBoardNo" resultMap="imageResult">
 		select * from image where board_no = #{boardNo}
 	</select>
-
+	
+	<!-- 게시판 이미지 수정 -->
+	<update id="updateImageByBoardNo">
+		update image set image_name = #{imageName} where board_no = #{boardNo.boardNo};
+	</update>
+	
 </mapper>
