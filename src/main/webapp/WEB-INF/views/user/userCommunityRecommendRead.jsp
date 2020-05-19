@@ -77,6 +77,23 @@
 	.d_cafeR_context_wrap .readImgBox{ /* 이미지 사이즈 고민 */
 		text-align: center;
 	}
+	.d_cafeR_context_wrap .readImgBox img{ /* 이미지 사이즈 고민 */
+		margin-top: 15px;
+	}
+	div#addMap{
+		width: 102%;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	span.mapTitle{
+		background-color: #303A50;
+		color: white;
+		font-weight: bold;
+		padding-left: 5px;
+		padding-right: 5px;
+		border-radius: 3px;
+		letter-spacing: 2px;
+	}
 	.d_cafeR_context_wrap #map{ 
 		width: 102%;
 		height: 400px;
@@ -358,6 +375,7 @@
 				<!-- 이미지 -->
 				<div class="readImgBox"></div>
 				<!-- 지도 -->
+				<div id="addMap"><span class="mapTitle">지도</span> | ${board.address}</div>
 			    <div id="map"></div>
 				<!-- 글내용 -->
 				<div id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></div>
