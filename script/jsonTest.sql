@@ -15,4 +15,21 @@ select cafe_name from cafe c left join starpoint s on c.cafe_no = s.cafe_no wher
 
 select count(*) from starpoint where cafe_no =2 and theme_no =6;
 
-select floor(sum(star_point)/count(*)) from starpoint where cafe_no =30; 
+select round(sum(star_point)/count(*), 1) from starpoint where cafe_no =30;
+
+select count(*) from starpoint s where cafe_no =1;
+
+select * from starpoint s where cafe_no =1 and theme_no =1;
+
+select cafe_no, theme_no
+FROM starpoint
+where cafe_no =1
+order by theme_no asc;
+
+SELECT s.cafe_no , (SELECT COUNT(*) FROM table WHERE <= t.value) AS ranking, t.value
+FROM starpoint s
+WHERE s.theme_no = 1;
+
+select IFNULL(round(sum(star_point)/count(*), 1), 0) from starpoint s where cafe_no = 1 and registration_date between '2020-7-01' and '2020-7-30';
+
+select m.*, k.sort_name from menu m left join menukinds k on m.menukinds = k.sort_no where cafe_no =1;

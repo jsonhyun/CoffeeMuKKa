@@ -1,6 +1,8 @@
 package com.yi.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
+import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
 
 @Repository
@@ -55,25 +58,47 @@ public class CafeDAOImpl implements CafeDAO {
 				
 		return sqlSession.selectList(namespace+"listPage", page);
 	}
-
-//	@Override
-//	public List<CafeVO> listCriteria(Criteria cri) throws Exception {
-//		return sqlSession.selectList(namespace+"listCriteria", cri);
-//	}
-//
-//	@Override
-//	public int totalCount() throws Exception {
-//		return sqlSession.selectOne(namespace+"totalCount");
-//	}
 	
 	@Override
 	public ImageVO imgSelect(int cafeNo) throws Exception {
 		return sqlSession.selectOne(namespace+"sumnailImg", cafeNo);
 	}
+
+	@Override
+	public List<ImageVO> imgList(int cafeNo) throws Exception {
+		return sqlSession.selectList(namespace+"imgList", cafeNo);
+	}
 	
 	@Override
 	public int starpointSelect(int cafeNo) throws Exception {
 		return sqlSession.selectOne(namespace+"pointSelect", cafeNo);
+	}
+	
+	@Override
+	public Double starpoint(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace+"starpoint", cafeNo);
+	}
+	
+	@Override
+	public int starpointByMonth(int cafeNo, int month) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cafeNo", cafeNo);
+		map.put("month", month);
+		System.out.println("++++++++++현재승++++"+sqlSession);
+		return sqlSession.selectOne(namespace+"starpointByMonth", map);
+	}
+	
+	@Override
+	public int rankTheme(int cafeNo, int themeNO) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("cafeNo", cafeNo);
+		map.put("themeNo", themeNO);
+		return sqlSession.selectOne(namespace+"rankTheme", map);
+	}
+
+	@Override
+	public List<MenuVO> menuList(int cafeNo) throws Exception {
+		return sqlSession.selectList(namespace+"menuList", cafeNo);
 	}
 	
 // 검색시 페이징 처리 DAOImpl
@@ -101,8 +126,5 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
 	}
-
-	
-
 	
 }

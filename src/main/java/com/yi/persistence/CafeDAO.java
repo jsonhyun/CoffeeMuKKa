@@ -4,20 +4,31 @@ import java.util.List;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
+import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
 
 public interface CafeDAO {
+	/* 카페 추가, 검색, 삭제, 수정 */
 	public void createCafe(CafeVO vo) throws Exception;
 	public CafeVO readCafe(int cafeNo) throws Exception;
 	public List<CafeVO> list() throws Exception;
 	public void updateCafe(CafeVO vo) throws Exception;
 	public void deleteCafe(int cafeNo) throws Exception;
+	
+	/* 카페 이미지 검색 */
 	public ImageVO imgSelect(int cafeNo) throws Exception;
+	public List<ImageVO> imgList(int cafeNo) throws Exception;
+	
+	/* 카페 별점 검색 */
 	public int starpointSelect(int cafeNo) throws Exception;
-
-//	public List<CafeVO> listCriteria(Criteria cri) throws Exception;
-//	public int totalCount() throws Exception;
-
+	public Double starpoint(int cafeNo) throws Exception;
+	public int starpointByMonth(int cafeNo, int month) throws Exception;
+	
+	/* 카페 테마 순위 검색 */
+	public int rankTheme(int cafeNo, int themeNo) throws Exception;
+	
+	/* 카페 메뉴 검색 */
+	public List<MenuVO> menuList(int cafeNo) throws Exception;
 	
 // 검색시 페이징 처리 dao
 	public List<CafeVO> listPage(int page) throws Exception;	

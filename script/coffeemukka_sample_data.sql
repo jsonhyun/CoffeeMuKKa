@@ -82,6 +82,12 @@ character set 'utf8'
 fields terminated by ',';
 select * from starpoint;
 
+load data local infile 'D:/workspace/workspace_mukka/CoffeeMuKKa/document/sample_data/menu.txt'
+into table coffeemukka.menu
+character set 'utf8'
+fields terminated by ',';
+select * from menu;
+
 -- 데이터 번호 0 -> 1로 수정
 /*update image 
 	set image_no = 1
