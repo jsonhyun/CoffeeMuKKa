@@ -313,7 +313,7 @@
 			<div class="cafeLocationSearch clearfix">
 				<div class="selectLeft">
 					<select name="searchZone" id="searchZone">
-						<option value="all" ${cri.searchZone=='all'? 'selected':'' }>전체</option>
+						<option value="all" ${cri.searchZone=='all'? 'selected':'' }>전체(위치별)</option>
 						<option value="1" ${cri.searchZone=='1'? 'selected':'' }>동성로</option>
 						<option value="2" ${cri.searchZone=='2'? 'selected':'' }>수성못 들안길</option>
 						<option value="3" ${cri.searchZone=='3'? 'selected':'' }>두류공원 이월드</option>
@@ -327,13 +327,13 @@
 						<option value="11" ${cri.searchZone=='11'? 'selected':'' }>팔공산</option>
 					</select>
 					<select name="searchTheme" id="searchTheme">
-						<option value="all" ${cri.searchTheme=='all'? 'selected':'' }>전체</option>
-						<option value="1" ${cri.searchTheme=='1'? 'selected':'' }>데이트</option>
-						<option value="2" ${cri.searchTheme=='2'? 'selected':'' }>뷰</option>
-						<option value="3" ${cri.searchTheme=='3'? 'selected':'' }>착한아메</option>
-						<option value="4" ${cri.searchTheme=='4'? 'selected':'' }>디저트</option>
-						<option value="5" ${cri.searchTheme=='5'? 'selected':'' }>댕댕이</option>
-						<option value="6" ${cri.searchTheme=='6'? 'selected':'' }>작업</option>
+						<option value="all" ${cri.searchTheme=='all'? 'selected':'' }>전체(테마별)</option>
+						<option value="1" ${cri.searchTheme=='1'? 'selected':'' }>#데이트</option>
+						<option value="2" ${cri.searchTheme=='2'? 'selected':'' }>#뷰</option>
+						<option value="3" ${cri.searchTheme=='3'? 'selected':'' }>#착한아메</option>
+						<option value="4" ${cri.searchTheme=='4'? 'selected':'' }>#디저트</option>
+						<option value="5" ${cri.searchTheme=='5'? 'selected':'' }>#댕댕이</option>
+						<option value="6" ${cri.searchTheme=='6'? 'selected':'' }>#작업</option>
 					</select>
 				</div>
 				<div class="selectRight">
