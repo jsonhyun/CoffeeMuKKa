@@ -26,4 +26,9 @@ public class ImageDAOImpl implements ImageDAO {
 		return sqlSession.selectList(namespace + "imageListByBoardNo", boardNo);
 	}
 
+	@Override
+	public void updateImageByBoardNo(ImageVO vo) throws Exception {
+		sqlSession.update(namespace + "updateImageByBoardNo", vo);
+	}
+
 }

@@ -433,48 +433,50 @@
 			<div class="cafeR_list clearfix mb30">
 				<!-- 탐방기 글 박스 -->
 				<c:forEach var="item" items="${list }">
-					<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${item.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
-						<div class="cafeR_box">
-							<div class="cafeR_titleBox">
-								<div class="cafeR_titleImg">	
-									<div class="bg"></div>						
-									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" />
-								</div>
-								<div class="cafeR_titleTop clearfix" >
-									<div class="cafeR_writer clearfix">
-										<img src="${pageContext.request.contextPath }/resources/images/${item.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
-										<span class="cafeR_name bold">${item.userNo.nick }</span>
-										<span class="cafeR_id bold">(${item.userNo.userId })</span>
+					<c:if test="${item.boardDelCdt == 'NO'}">
+						<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${item.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
+							<div class="cafeR_box">
+								<div class="cafeR_titleBox">
+									<div class="cafeR_titleImg">	
+										<div class="bg"></div>						
+										<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" />
 									</div>
-									<div class="cafeR_recomCnt bgRed">${item.voteNumber }</div>						
-								</div>
-								<h2 class="classSec cafe_title">${item.writingTitle }</h2>
-								<div class="cafeR_date bold"><fmt:formatDate value="${item.registrationDate }" pattern="yyyy/MM/dd"/></div>
-							</div>
-							<div class="cafeR_infoBox">
-								<div class="cafeR_infoTop clearfix">
-									<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
-									<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
-									<h2>${item.cafeNo.cafeName }</h2>
-								</div>
-								<%-- <p class="cafeR_text">
-									${item.writingContent }
-								</p> --%>
-							</div>
-							<div class="cafeR_replyCdt clearfix">
-								<div class="cafeR_replyCdtWrap">
-									<div class="cafeR_btns">
-										<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
-										<span class="cafeR_replyCnt">${item.replyCnt }</span>
+									<div class="cafeR_titleTop clearfix" >
+										<div class="cafeR_writer clearfix">
+											<img src="${pageContext.request.contextPath }/resources/images/${item.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
+											<span class="cafeR_name bold">${item.userNo.nick }</span>
+											<span class="cafeR_id bold">(${item.userNo.userId })</span>
+										</div>
+										<div class="cafeR_recomCnt bgRed">${item.voteNumber }</div>						
 									</div>
-									<div class="cafeR_btns">
-										<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
-										<span class="cafeR_viewCnt">${item.viewNumber }</span>
+									<h2 class="classSec cafe_title">${item.writingTitle }</h2>
+									<div class="cafeR_date bold"><fmt:formatDate value="${item.registrationDate }" pattern="yyyy/MM/dd"/></div>
+								</div>
+								<div class="cafeR_infoBox">
+									<div class="cafeR_infoTop clearfix">
+										<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
+										<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
+										<h2>${item.cafeNo.cafeName }</h2>
+									</div>
+									<%-- <p class="cafeR_text">
+										${item.writingContent }
+									</p> --%>
+								</div>
+								<div class="cafeR_replyCdt clearfix">
+									<div class="cafeR_replyCdtWrap">
+										<div class="cafeR_btns">
+											<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
+											<span class="cafeR_replyCnt">${item.replyCnt }</span>
+										</div>
+										<div class="cafeR_btns">
+											<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
+											<span class="cafeR_viewCnt">${item.viewNumber }</span>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</a>
+						</a>
+					</c:if>
 				</c:forEach>
 				<!-- 탐방기 글 end -->
 			</div>
@@ -483,13 +485,13 @@
 		<div style="text-align: center;">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev == true }">
-					<li><a href="cafeRecommend?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
+					<li><a href="cafeReview?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
 				</c:if>
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
 				</c:forEach>
 				<c:if test="${pageMaker.next == true }">
-					<li><a href="cafeRecommend?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
+					<li><a href="cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>	

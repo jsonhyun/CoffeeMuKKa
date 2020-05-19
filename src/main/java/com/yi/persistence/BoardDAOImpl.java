@@ -51,9 +51,10 @@ public class BoardDAOImpl implements BoardDAO{
 	}	
 	//추천카페 -- 상세보기
 	@Override
-	public BoardVO recommendReadByNo(int boardNo) {
+	public BoardVO recommendReadByNo(int boardNo) throws Exception {
 		return sqlSession.selectOne(namespace+"recommendReadByNo", boardNo);
 	}
+
 	
 	/*** 공통 ***/
 	//오늘 등록된 글 갯수(**커뮤니티 공통**)
@@ -79,6 +80,12 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public int totalUserBoardCount(int userNo) throws Exception {
 		return sqlSession.selectOne(namespace + "totalUserBoardCount", userNo);
+	}
+	
+	// 조회수
+	@Override
+	public void updateViewCnt(int boardNo) throws Exception {
+		sqlSession.update(namespace+"updateViewCnt",boardNo);	
 	}
 	
 
@@ -108,4 +115,15 @@ public class BoardDAOImpl implements BoardDAO{
 	public int cafeReivewSameCnt(BoardVO vo) throws Exception {
 		return sqlSession.selectOne(namespace + "cafeReivewSameCnt", vo);
 	}
+	
+	@Override
+	public void cafeReviewModify(BoardVO vo) throws Exception {
+		sqlSession.update(namespace + "cafeReviewModify", vo);
+	}
+	
+	@Override
+	public void cafeReviewRemove(BoardVO vo) throws Exception {
+		sqlSession.update(namespace + "cafeReviewRemove", vo);
+	}
+
 }

@@ -62,6 +62,12 @@
 		margin-right: 10px;
 	}
 	
+	.detaliCafeR_title_wrap .d_cafe_viewCnt {
+		color: gray;
+		float: right;
+		line-height: 45px;
+	}
+	
 	/* 콘텐츠 영역 */
 	.d_cafeR_context_wrap {
 		padding: 10px;
@@ -298,7 +304,12 @@
 				<div class="d_cafeR_titleTop clearfix">
 					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
 					<div class="themeKeySmall keyword themeName">#${board.themeNo.themeName }</div>
-					<div class="regDate"><fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/></div>
+					<div class="regDate">
+						등록일 : <fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/>
+						<c:if test="${board.registrationDate != board.updateDate}">
+						 | 수정일 : <fmt:formatDate value="${board.updateDate }" pattern="yyyy/MM/dd"/>
+						</c:if>
+					</div>
 				</div>
 				<div class="d_cafeR_titleMiddle clearfix">
 					<p class="d_cafeR_title">${board.writingTitle }</p>
@@ -307,13 +318,16 @@
 						<p>${board.userNo.nick }(${board.userNo.userId })</p>
 					</div>
 				</div>
-				<div class="d_cafeR_cafe">
+				<div class="d_cafeR_cafe clearfix">
 					<div class="d_cafe_icon clearfix">
 						<a href="#">
 							<img src="${pageContext.request.contextPath }/resources/images/cafe_icon.png" alt="카페 아이콘" />
 							<span class="orange bold">${board.cafeNo.cafeName }</span> 카페정보 <i class="fas fa-angle-right"></i>
 						</a>
 					</div>	
+					<p class="d_cafe_viewCnt">
+						조회수 <span class="orange">${board.viewNumber }</span>
+					</p>
 				</div>
 			</div>
 			
@@ -325,10 +339,10 @@
 			<!-- 버튼 영역 -->
 			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
 				<div class="d_cafeR_cnt d_cafeR_voteBtn clearfix f_left">
-					<a href="#" class="f_left">
-						<i class="far fa-thumbs-up orange voteIcon"></i>
+					<a href="#" id="voteIcon" class="f_left off grayB">
+						<i class="far fa-thumbs-up"></i>
 					</a>
-					<p class="orange f_left">좋아요 ${board.voteNumber }</p>
+					<p class="grayB f_left">좋아요 ${board.voteNumber }</p>
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
@@ -384,7 +398,15 @@
 							<div class="cafeR_titleBox">
 								<div class="cafeR_titleImg">	
 									<div class="bg"></div>						
-									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${sameItem.files[0].imageName}" alt="카페대표이미지" />
+									<img class="titleImg" src="" alt="카페대표이미지" />
+									<script>
+										// 같은 카페 다른 탐방기 list 대표이미지
+										var imgPath = '${pageContext.request.contextPath }/user/displayFile?filename=';
+										var sImgName = '${sameItem.files[0].imageName}';
+										var imgName = sImgName.replace("s_", "");
+										
+										$(".cafeR_sameList .titleImg").attr("src", imgPath+imgName);
+									</script>
 								</div>
 								<div class="cafeR_titleTop clearfix" >
 									<div class="cafeR_writer clearfix">
@@ -435,9 +457,22 @@
 <!-- container end -->
 
 <script>
+	// 수정 btn
+	$(".d_cafeR_modifyBtn").click(function(){
+		location.href = "${pageContext.request.contextPath }/user/community/cafeReview/modify?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
+	})
+	
+	// 삭제 btn
+	$(".d_cafeR_deleteBtn").click(function() {
+		var flag = confirm("카페 탐방기를 삭제하시겠습니까?");
+		if(flag) {
+			location.href="${pageContext.request.contextPath }/user/community/cafeReview/remove?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
+		}
+	})
+	
 	// 목록 btn
 	$(".d_cafeR_listBtn").click(function(){
-		location.href = "${pageContext.request.contextPath }/user/community/cafeReview?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}"
+		location.href = "${pageContext.request.contextPath }/user/community/cafeReview?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
 	})
 	
 	// 테마분류 색상 설정
@@ -451,8 +486,29 @@
 				$(this).addClass(keyword[i]);
 			}
 		}
-		
 	})
+	
+	// 좋아요(추천) - ajax 추가 해야함 
+	$("#voteIcon").click(function(e){
+		e.preventDefault();
+		
+		if($(this).hasClass("off")){
+			$(this).empty();
+			$(this).append('<i class="fas fa-thumbs-up"></i>');
+			$(this).addClass("on").addClass('orange');
+			$(this).removeClass("off").removeClass("grayB");
+			$(this).next().addClass('orange').removeClass("grayB");
+			
+		} else if($(this).hasClass("on")){
+			$(this).empty();
+			$(this).append('<i class="far fa-thumbs-up"></i>');
+			$(this).addClass("off").addClass('grayB');
+			$(this).removeClass("on").removeClass("orange");
+			$(this).next().addClass('grayB').removeClass("orange");
+			
+		}		
+	}) 
+	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

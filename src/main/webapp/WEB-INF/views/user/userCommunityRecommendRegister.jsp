@@ -272,8 +272,8 @@
 		</div>
 	</div>
 </div>
-<div id="map" style="width:100%;height:400px;"></div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
+<!-- <div id="map" style="width:100%;height:400px;"></div> -->
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script> -->
 <!-- 틀1 : 등록된 모든카페 리스트 -->
 <script id="cafeAll" type="text/x-handlebars-tamplate">
 	{{#each.}}
@@ -305,57 +305,63 @@
 <!-- 틀4 : 등록된 카페가 없는 경우 -> 카페검색 -->
 <script id="searchCafeInfo" type="text/x-handlebars-tamplate">
 </script>
+
+<!-- 자바스크립트 & 제이쿼리 -->
 <script>
 	//목록 버튼
 	$("#RC_list").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
 	})
 	
-	//탐방기 작성 버튼 - 동적 생성
-	$(document).on("click", ".btnCafeReview", function(){
-		location.href="${pageContext.request.contextPath}/user/community/cafeReview/register";
-	})
-	
-	//카페 상세정보 보기 - 동적 생성
-	$(document).on("click", ".btnCafeInfo", function(){		
-		location.href="${pageContext.request.contextPath}/user/mukkaCafe"; // 임시로 작성
-	})
 	//취소 버튼
+	$("#RC_cancel").click(function () {
+		var result = confirm("작성중인 글을 취소하시겠습니까?");
+		if(result){ //yes
+			location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+		}else{ //no
+			
+		}
+	})
+	
 	//등록 폼 버튼
+	$("form").submit(function(){
+		
+	})
 	
-	//지도 테스트
-					// 주소-좌표 변환 객체를 생성합니다
-					var geocoder = new kakao.maps.services.Geocoder();
-					
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-						mapOption = {
-							center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-							level : 3 // 지도의 확대 레벨
-						};
+/* 	//지도 테스트
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
 	
-					// 지도를 생성합니다    
-					var map = new kakao.maps.Map(mapContainer, mapOption);
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3 // 지도의 확대 레벨
+		};
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch('대구 달성군 다사읍 달구벌대로 616', function(result, status) {
+		// 정상적으로 검색이 완료됐으면 
+		if (status === kakao.maps.services.Status.OK) {
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			// 결과값으로 받은 위치를 마커로 표시합니다
+			var marker = new kakao.maps.Marker({
+				map : map,
+				position : coords
+			});
+			// 인포윈도우로 장소에 대한 설명을 표시합니다
+			var infowindow = new kakao.maps.InfoWindow({
+				content : '<div style="width:150px;text-align:center;padding:6px 0;">카르멜</div>'
+			});
+			infowindow.open(map, marker);
+			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			map.setCenter(coords);
+		}
+	}); */
 	
-					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('대구 달성군 다사읍 달구벌대로 616', function(result, status) {
-						// 정상적으로 검색이 완료됐으면 
-						if (status === kakao.maps.services.Status.OK) {
-							var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-							// 결과값으로 받은 위치를 마커로 표시합니다
-							var marker = new kakao.maps.Marker({
-								map : map,
-								position : coords
-							});
-							// 인포윈도우로 장소에 대한 설명을 표시합니다
-							var infowindow = new kakao.maps.InfoWindow({
-								content : '<div style="width:150px;text-align:center;padding:6px 0;">카르멜</div>'
-							});
-							infowindow.open(map, marker);
-							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-							map.setCenter(coords);
-						}
-					});
-	/*** 검색박스 ***/
+	/***************************** 검색박스 *****************************************/
 	
 	//검색창, 전체리스트 다 보이게 구현 : 지역이름+카페이름+카페주소
  	$("button.searchPoint").click(function() {
@@ -444,6 +450,16 @@
 				
 			}
 		}) 
+	})
+	
+	//탐방기 작성 버튼 - 동적 생성
+	$(document).on("click", ".btnCafeReview", function(){
+		location.href="${pageContext.request.contextPath}/user/community/cafeReview/register";
+	})
+	
+	//카페 상세정보 보기 - 동적 생성
+	$(document).on("click", ".btnCafeInfo", function(){		
+		location.href="${pageContext.request.contextPath}/user/mukkaCafe"; // 임시로 작성
 	})
 	
 	$(document).on("click", ".resCafe", function(){
