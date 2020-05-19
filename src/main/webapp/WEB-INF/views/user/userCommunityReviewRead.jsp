@@ -325,8 +325,8 @@
 			<!-- 버튼 영역 -->
 			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
 				<div class="d_cafeR_cnt d_cafeR_voteBtn clearfix f_left">
-					<a href="#" class="f_left">
-						<i class="far fa-thumbs-up orange voteIcon"></i>
+					<a href="#" id="voteIcon" class="f_left off">
+						<i class="far fa-thumbs-up orange"></i>
 					</a>
 					<p class="orange f_left">좋아요 ${board.voteNumber }</p>
 				</div>
@@ -435,6 +435,11 @@
 <!-- container end -->
 
 <script>
+	// 수정 btn
+	$(".d_cafeR_modifyBtn").click(function(){
+		location.href = "${pageContext.request.contextPath }/user/community/cafeReview/modify?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}"
+	})
+	
 	// 목록 btn
 	$(".d_cafeR_listBtn").click(function(){
 		location.href = "${pageContext.request.contextPath }/user/community/cafeReview?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}"
@@ -451,8 +456,26 @@
 				$(this).addClass(keyword[i]);
 			}
 		}
-		
 	})
+	
+	// 좋아요(추천) - ajax 추가 해야함 
+	$("#voteIcon").click(function(e){
+		e.preventDefault();
+		
+		if($(this).hasClass("off")){
+			$(this).empty();
+			$(this).append('<i class="fas fa-thumbs-up"></i>').addClass('orange');
+			$(this).addClass("on");
+			$(this).removeClass("off");
+			
+		} else if($(this).hasClass("on")){
+			$(this).empty();
+			$(this).append('<i class="far fa-thumbs-up"></i>').addClass('orange');
+			$(this).addClass("off");
+			$(this).removeClass("on");
+			
+		}		
+	}) 
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

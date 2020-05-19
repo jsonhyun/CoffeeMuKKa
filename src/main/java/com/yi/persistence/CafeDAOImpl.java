@@ -88,10 +88,11 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectOne(namespace+"totalSearchCount", cri);
 	}
 
+	// 카페 검색
 	@Override
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
-		List<CafeVO> list = sqlSession.selectList(namespace + "searchCafeByName", cafeName);
-		System.out.println("list------------------------"+list);
+		//List<CafeVO> list = sqlSession.selectList(namespace + "searchCafeByName", cafeName);
+		//System.out.println("list------------------------"+list);
 		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
 	}
 

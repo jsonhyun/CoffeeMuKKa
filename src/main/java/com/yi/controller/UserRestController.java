@@ -20,6 +20,7 @@ public class UserRestController {
 	@Autowired
 	private CafeService cafeService;
 	
+	// 카페 검색
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<List<CafeVO>> cafeList(String cafeName){
 		ResponseEntity<List<CafeVO>> entity = null;
@@ -35,8 +36,6 @@ public class UserRestController {
 		return entity;
 	}
 	
-	
-	
 	//카페 리스트 : 카페테이블 + 지역테이블
 	@RequestMapping(value = "/cafeZone", method = RequestMethod.GET)
 	public ResponseEntity<List<CafeVO>> cafeAllList(String cafeName){
@@ -51,4 +50,6 @@ public class UserRestController {
 		}		
 		return entity;
 	}	
+	
+	
 }

@@ -131,6 +131,18 @@ public class UserBoardController {
 		return "redirect:/user/community/cafeReview";
 	}
 	
+	@RequestMapping(value = "/community/cafeReview/modify", method = RequestMethod.GET)
+	public String communityReviewModifyGet(int boardNo, SearchCriteria cri, Model model) throws Exception {
+		BoardVO vo = service.cafeReviewRead(boardNo);
+		model.addAttribute("board", vo);
+		model.addAttribute("cri", cri);
+		return "/user/userCommunityReviewModify";
+	}
+	
+	public String communityReviewModifyPost() {
+		return "redirect:/user/community/cafeReview/modify?boardNo=";
+	}
+	
 	// ckd에디터 이미지 등록
 	@RequestMapping(value = "/ckdFileUpload", method = RequestMethod.POST)
 	public String ckeditorFileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws IOException {		
@@ -179,7 +191,6 @@ public class UserBoardController {
 			}
 		}
 
-		
 		return null;
 	}
 	
