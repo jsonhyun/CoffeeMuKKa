@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
 import com.yi.domain.BoardVO;
+import com.yi.domain.Condition;
 import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.PageMaker;
@@ -186,7 +187,18 @@ public class UserBoardController {
 		return "redirect:/user/community/cafeReview/read?boardNo="+vo.getBoardNo();
 	}
 	
-	
+	// 탐방기 삭제 (삭제 여부 변경 : db에 데이터는 남겨둠)
+	@RequestMapping(value = "/community/cafeReview/remove", method = RequestMethod.GET)
+	public String communityReviewRemove(BoardVO vo, SearchCriteria cri, Model model) throws Exception {
+		vo.setBoardDelCdt(Condition.YES);
+		service.cafeReviewRemove(vo);
+		model.addAttribute("page", cri.getPage());
+		model.addAttribute("searchZone", cri.getSearchZone());
+		model.addAttribute("searchTheme", cri.getSearchTheme());
+		model.addAttribute("searchType", cri.getSearchType());
+		model.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/user/community/cafeReview";
+	}
 	
 	// ckd에디터 이미지 등록
 	@RequestMapping(value = "/ckdFileUpload", method = RequestMethod.POST)

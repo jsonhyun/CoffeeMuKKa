@@ -120,5 +120,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewModify(BoardVO vo) throws Exception {
 		sqlSession.update(namespace + "cafeReviewModify", vo);
 	}
+	
+	@Override
+	public void cafeReviewRemove(BoardVO vo) throws Exception {
+		sqlSession.update(namespace + "cafeReviewRemove", vo);
+	}
 
 }

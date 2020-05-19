@@ -131,10 +131,7 @@ select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 				 left join cafe c on b.cafe_no = c.cafe_no 
 				 left join zone z on c.zone_no = z.zone_no 
 				 left join theme t on c.theme_no = t.theme_no 
-	where b.board_no2 = 1 
-		  and z.zone_no = 2
-		  and t.theme_no = 4
-		  and b.writing_title like '%커피%'
+	where b.board_no2 = 1 and b.board_del_cdt = 1
 	order by b.board_no desc limit 0, 20; 
 
 select count(b.board_no) 
@@ -166,6 +163,11 @@ select count(*)
 /*update board 
 	set writing_title = ?, writing_content = ?, update_date = now()
 	where board_no = ?*/
+
+-- 삭제 여부 변경
+update board 
+	set board_del_cdt = 1
+	where board_no = 210;
 
 select * from image where board_no = 2;
 select * from board where board_no = 210;
