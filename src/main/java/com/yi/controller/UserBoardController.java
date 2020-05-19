@@ -88,9 +88,14 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/read", method = RequestMethod.GET)
-	public String communityReviewRead(int boardNo, SearchCriteria cri, Model model) throws Exception {
+	public String communityReviewRead(int boardNo, boolean flag, SearchCriteria cri, Model model) throws Exception {
 		BoardVO vo = service.cafeReviewRead(boardNo);
-		System.out.println("vo-----------------" + vo.getCafeNo().getCafeNo());
+		//System.out.println("vo-----------------" + vo.getCafeNo().getCafeNo());
+		
+		// 조회수 
+		if(flag) {
+			service.cafeReviewViewUpdate(vo.getBoardNo());
+		}
 		
 		List<BoardVO> sameVo = service.cafeReviewSameList(vo);
 		int sameCnt = service.cafeReivewSameCnt(vo);
@@ -180,6 +185,8 @@ public class UserBoardController {
 		
 		return "redirect:/user/community/cafeReview/read?boardNo="+vo.getBoardNo();
 	}
+	
+	
 	
 	// ckd에디터 이미지 등록
 	@RequestMapping(value = "/ckdFileUpload", method = RequestMethod.POST)

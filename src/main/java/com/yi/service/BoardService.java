@@ -126,6 +126,11 @@ public class BoardService {
 		dao.cafeReviewModify(vo);
 	}
 	
+	// 탐방기 조회수
+	public void cafeReviewViewUpdate(int boardNo) throws Exception {
+		dao.updateViewCnt(boardNo);
+	}
+	
 	
 	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
 	private void userGradeUpdate(BoardVO vo) throws Exception {

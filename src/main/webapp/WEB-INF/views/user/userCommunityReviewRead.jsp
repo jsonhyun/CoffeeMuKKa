@@ -62,6 +62,12 @@
 		margin-right: 10px;
 	}
 	
+	.detaliCafeR_title_wrap .d_cafe_viewCnt {
+		color: gray;
+		float: right;
+		line-height: 45px;
+	}
+	
 	/* 콘텐츠 영역 */
 	.d_cafeR_context_wrap {
 		padding: 10px;
@@ -312,13 +318,16 @@
 						<p>${board.userNo.nick }(${board.userNo.userId })</p>
 					</div>
 				</div>
-				<div class="d_cafeR_cafe">
+				<div class="d_cafeR_cafe clearfix">
 					<div class="d_cafe_icon clearfix">
 						<a href="#">
 							<img src="${pageContext.request.contextPath }/resources/images/cafe_icon.png" alt="카페 아이콘" />
 							<span class="orange bold">${board.cafeNo.cafeName }</span> 카페정보 <i class="fas fa-angle-right"></i>
 						</a>
 					</div>	
+					<p class="d_cafe_viewCnt">
+						조회수 <span class="orange">${board.viewNumber }</span>
+					</p>
 				</div>
 			</div>
 			
@@ -389,7 +398,15 @@
 							<div class="cafeR_titleBox">
 								<div class="cafeR_titleImg">	
 									<div class="bg"></div>						
-									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${sameItem.files[0].imageName}" alt="카페대표이미지" />
+									<img class="titleImg" src="" alt="카페대표이미지" />
+									<script>
+										// 같은 카페 다른 탐방기 list 대표이미지
+										var imgPath = '${pageContext.request.contextPath }/user/displayFile?filename=';
+										var sImgName = '${sameItem.files[0].imageName}';
+										var imgName = sImgName.replace("s_", "");
+										
+										$(".cafeR_sameList .titleImg").attr("src", imgPath+imgName);
+									</script>
 								</div>
 								<div class="cafeR_titleTop clearfix" >
 									<div class="cafeR_writer clearfix">
@@ -442,12 +459,20 @@
 <script>
 	// 수정 btn
 	$(".d_cafeR_modifyBtn").click(function(){
-		location.href = "${pageContext.request.contextPath }/user/community/cafeReview/modify?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}"
+		location.href = "${pageContext.request.contextPath }/user/community/cafeReview/modify?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
+	})
+	
+	// 삭제 btn
+	$(".d_cafeR_deleteBtn").click(function() {
+		var flag = confirm("카페 탐방기를 삭제하시겠습니까?");
+		if(flag) {
+			//location.href="${pageContext.request.contextPath }/user/community/cafeReview/remove?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
+		}
 	})
 	
 	// 목록 btn
 	$(".d_cafeR_listBtn").click(function(){
-		location.href = "${pageContext.request.contextPath }/user/community/cafeReview?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}"
+		location.href = "${pageContext.request.contextPath }/user/community/cafeReview?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
 	})
 	
 	// 테마분류 색상 설정
@@ -483,6 +508,7 @@
 			
 		}		
 	}) 
+	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

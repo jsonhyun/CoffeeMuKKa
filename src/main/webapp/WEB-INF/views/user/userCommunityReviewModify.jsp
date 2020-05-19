@@ -240,7 +240,6 @@
 					});
 	
 	// 대표이미지
-	//${pageContext.request.contextPath }/user/displayFile?filename=${board.files[0].imageName}
 	var imgPath = '${pageContext.request.contextPath }/user/displayFile?filename=';
 	var sImgName = '${board.files[0].imageName}';
 	var imgName = sImgName.replace("s_", "");
