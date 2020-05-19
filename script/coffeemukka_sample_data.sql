@@ -58,7 +58,6 @@ character set 'utf8'
 fields terminated by ',';
 select * from users;
 
-
 load data local infile 'D:/workspace/workspace_mukka/CoffeeMuKKa/document/sample_data/cafe.txt'
 into table coffeemukka.cafe 
 character set 'utf8'
@@ -84,9 +83,9 @@ fields terminated by ',';
 select * from starpoint;
 
 -- 데이터 번호 0 -> 1로 수정
-update image 
+/*update image 
 	set image_no = 1
-	where image_no = 0;
+	where image_no = 0;*/ -- 유저 데이터 수정 후 1부터 데이터가 들어감
 
 update users
 	set user_no = 1
