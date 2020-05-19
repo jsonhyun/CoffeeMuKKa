@@ -429,7 +429,7 @@
 						</div>
 					</div>
 					<div class="more">
-						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/read"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
+						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
 					</div>
 				</div>
 			</div>

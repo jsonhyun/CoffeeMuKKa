@@ -26,22 +26,29 @@ public class CafeService {
 	public ImageVO imgSelect(int cafeNo) throws Exception {
 		return dao.imgSelect(cafeNo);
 	}
+	public List<ImageVO> imgList(int cafeNo) throws Exception{
+		return dao.imgList(cafeNo);
+	}
 	
 	public int starpointSelect(int cafeNo) throws Exception {
 		return dao.starpointSelect(cafeNo);
 	}
 	
+	public Double starpoint(int cafeNo) throws Exception {
+		return dao.starpoint(cafeNo);
+	}
+	
+	public int starpointByMonth(int cafeNo, int month) throws Exception{
+		return dao.starpointByMonth(cafeNo, month);
+	}
+	
+	public int rankTheme(int cafeNo, int themeNo) throws Exception{
+		return dao.rankTheme(cafeNo, themeNo);
+	}
+	
 	public List<CafeVO> list() throws Exception {
 		return dao.list();
 	}
-	
-//	public List<CafeVO> listCriteria(Criteria cri) throws Exception{
-//		return dao.listCriteria(cri);
-//	}
-//	
-//	public int totalCount() throws Exception {
-//		return dao.totalCount();
-//	}
 
 // 검색시 페이징 처리 service
 	

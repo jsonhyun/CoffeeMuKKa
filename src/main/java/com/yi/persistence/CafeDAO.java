@@ -12,12 +12,16 @@ public interface CafeDAO {
 	public List<CafeVO> list() throws Exception;
 	public void updateCafe(CafeVO vo) throws Exception;
 	public void deleteCafe(int cafeNo) throws Exception;
+	
 	public ImageVO imgSelect(int cafeNo) throws Exception;
+	public List<ImageVO> imgList(int cafeNo) throws Exception;
+	
 	public int starpointSelect(int cafeNo) throws Exception;
-
-//	public List<CafeVO> listCriteria(Criteria cri) throws Exception;
-//	public int totalCount() throws Exception;
-
+	public Double starpoint(int cafeNo) throws Exception;
+	public int starpointByMonth(int cafeNo, int month) throws Exception;
+	
+	
+	public int rankTheme(int cafeNo, int themeNo) throws Exception;
 	
 // 검색시 페이징 처리 dao
 	public List<CafeVO> listPage(int page) throws Exception;	

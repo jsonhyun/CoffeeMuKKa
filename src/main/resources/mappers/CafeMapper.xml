@@ -8,7 +8,8 @@
 		<result property="address" column="address"/>
 		<result property="detailAddress" column="detail_address"/>
 		<result property="tel" column="tel"/>
-		<result property="opentime" column="opentime"/>
+		<result property="wkdOpentime" column="wkd_opentime"/>
+		<result property="wkndOpentime" column="wknd_opentime"/>
 		<result property="closedDay" column="closed_day"/>
 		<result property="sns" column="sns"/>
 		<result property="tableNumber" column="table_number"/>
@@ -123,9 +124,11 @@
 		        #{cafeCdt})
 	</insert>
 	
-	<select id="readCafe" resultType="CafeVO">
-		select * from cafe
-		where cafe_no = #{cafeNo}
+	<select id="readCafe" resultMap="CafeListSelectResult">
+		select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no
+		where c.cafe_no=#{cafeNo}
 	</select>
 	
 	<select id="list" resultType="CafeVO">
@@ -170,32 +173,33 @@
 	</update>
 	
 	<select id="sumnailImg" resultMap="selectImgResult">
-		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
+		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1
+	</select>
+	
+	<select id="imgList" resultMap="selectImgResult">
+		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo}
 	</select>
 	
 	<select id="pointSelect" resultType="int">
-		select floor(sum(star_point)/count(*)) from starpoint where cafe_no =#{cafeNo} 
+		select round(sum(star_point)/count(*)) from starpoint where cafe_no =#{cafeNo} 
+	</select>
+	
+	<select id="starpoint" resultType="double">
+		select round(sum(star_point)/count(*),1) from starpoint where cafe_no =#{cafeNo} 
+	</select>
+	
+	<select id="starpointByMonth" resultType="int">
+		select IFNULL(round(sum(star_point)/count(*), 1), 0) from starpoint where cafe_no = ${cafeNo} and registration_date between '2020-${month}-01' and '2020-${month}-30'
+	</select>
+	
+	<select id="rankTheme" resultType="int">
+		select count(*) from starpoint where cafe_no =#{cafeNo} and theme_no =#{themeNo}
 	</select>
 	
 	<delete id="deleteCafe" parameterType="CafeVO">
 		delete from cafe where cafe_no=#{cafeNo}
 	</delete>
 	
-<!-- 페이징 처리 sql문 -->
-<!-- 	<select id="listPage" resultType="CafeVO">
-		select * from cafe order by cafe_no desc limit #{page}, 10
-	</select>
-	
-	<select id="listCriteria" resultMap="CafeListSelectResult">
-		select c.cafe_no, c.cafe_name, z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, c.oneline, c.address, c.detail_address from cafe c left join theme t on c.theme_no = t.theme_no 
-		left join `zone` z on c.zone_no = z.zone_no order by cafe_no asc limit #{pageStart}, #{perPageNum}
-		select * from cafe order by cafe_no desc limit #{pageStart}, #{perPageNum}
-	</select>
-	
-	<select id="totalCount" resultType="int">
-		select count(cafe_no) from cafe
-	</select> -->
-		
 <!-- 키워드 이용 검색 가능한 페이징 처리 매퍼 --> 	
 	<sql id="search">
 		<if test="searchType=='n'.toString()">
@@ -243,11 +247,11 @@
 	
 <!-- 이름에 의한 카페 검색 -->
 	<select id="searchCafeByName" resultType="CafeVO">
-		select * from cafe where cafe_name like CONCAT('%', #{cafeName}, '%');
+		select * from cafe where cafe_name like CONCAT('%', #{cafeName}, '%')
 	</select>
 	
 	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->
 	<select id="rcSearchCafeByName" resultMap="CafeListSelectResult">
-		select * from cafe c left join zone z on c.zone_no  = z.zone_no where c.cafe_name like CONCAT('%', #{cafeName}, '%');
+		select * from cafe c left join zone z on c.zone_no  = z.zone_no where c.cafe_name like CONCAT('%', #{cafeName}, '%')
 	</select>	
 </mapper>

@@ -1,10 +1,14 @@
 package com.yi.domain;
 
+import java.util.Date;
+
 public class StarpointVO {
 	private int starPointNo;
 	private CafeVO cafeNo;
+	private ThemeVO themeNo;
 	private int starPoint;
 	private String starPointComment;
+	private Date registrationDate;
 
 	public int getStarPointNo() {
 		return starPointNo;
@@ -20,6 +24,14 @@ public class StarpointVO {
 
 	public void setCafeNo(CafeVO cafeNo) {
 		this.cafeNo = cafeNo;
+	}
+
+	public ThemeVO getThemeNo() {
+		return themeNo;
+	}
+
+	public void setThemeNo(ThemeVO themeNo) {
+		this.themeNo = themeNo;
 	}
 
 	public int getStarPoint() {
@@ -38,10 +50,19 @@ public class StarpointVO {
 		this.starPointComment = starPointComment;
 	}
 
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
 	@Override
 	public String toString() {
-		return "StarpointVO [starPointNo=" + starPointNo + ", cafeNo=" + cafeNo + ", starPoint=" + starPoint
-				+ ", starPointComment=" + starPointComment + "]";
+		return "StarpointVO [starPointNo=" + starPointNo + ", cafeNo=" + cafeNo + ", themeNo=" + themeNo
+				+ ", starPoint=" + starPoint + ", starPointComment=" + starPointComment + ", registrationDate="
+				+ registrationDate + "]";
 	}
 
 }

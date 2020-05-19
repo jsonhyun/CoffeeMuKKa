@@ -11,7 +11,8 @@ public class CafeVO {
 	private String address;
 	private String detailAddress;
 	private String tel;
-	private String opentime;
+	private String wkdOpentime;
+	private String wkndOpentime;
 	private String closedDay;
 	private String sns;
 	private int tableNumber;
@@ -39,17 +40,16 @@ public class CafeVO {
 	private int cafeCdt;
 
 	public CafeVO() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	public CafeVO(int cafeNo, String cafeName, ThemeVO themeNo, ZoneVO zoneNo, UsersVO userNo, String address,
-			String detailAddress, String tel, String opentime, String closedDay, String sns, int tableNumber,
-			int socketNumber, int toiletCdt, int mkdessertCdt, int terrasCdt, int reservationCdt, int wondooBuyCdt,
-			int bookCdt, int beerCdt, int goodsCdt, int wifiCdt, int puppyCdt, int reserveokCdt, int parkingCdt,
-			int nokidsCdt, Date registrationDate, Date updateDate, int viewNumber, String content, String oneline,
-			int voteNumber, int powerlinkCdt, int cafeCdt) {
+			String detailAddress, String tel, String wkdOpentime, String wkndOpentime, String closedDay, String sns,
+			int tableNumber, int socketNumber, int toiletCdt, int mkdessertCdt, int terrasCdt, int reservationCdt,
+			int wondooBuyCdt, int bookCdt, int beerCdt, int goodsCdt, int wifiCdt, int puppyCdt, int reserveokCdt,
+			int parkingCdt, int nokidsCdt, Date registrationDate, Date updateDate, int viewNumber, String content,
+			String oneline, int voteNumber, int powerlinkCdt, int cafeCdt) {
 		super();
 		this.cafeNo = cafeNo;
 		this.cafeName = cafeName;
@@ -59,7 +59,8 @@ public class CafeVO {
 		this.address = address;
 		this.detailAddress = detailAddress;
 		this.tel = tel;
-		this.opentime = opentime;
+		this.wkdOpentime = wkdOpentime;
+		this.wkndOpentime = wkndOpentime;
 		this.closedDay = closedDay;
 		this.sns = sns;
 		this.tableNumber = tableNumber;
@@ -151,12 +152,20 @@ public class CafeVO {
 		this.tel = tel;
 	}
 
-	public String getOpentime() {
-		return opentime;
+	public String getWkdOpentime() {
+		return wkdOpentime;
 	}
 
-	public void setOpentime(String opentime) {
-		this.opentime = opentime;
+	public void setWkdOpentime(String wkdOpentime) {
+		this.wkdOpentime = wkdOpentime;
+	}
+
+	public String getWkndOpentime() {
+		return wkndOpentime;
+	}
+
+	public void setWkndOpentime(String wkndOpentime) {
+		this.wkndOpentime = wkndOpentime;
 	}
 
 	public String getClosedDay() {
@@ -363,14 +372,15 @@ public class CafeVO {
 	public String toString() {
 		return "CafeVO [cafeNo=" + cafeNo + ", cafeName=" + cafeName + ", themeNo=" + themeNo + ", zoneNo=" + zoneNo
 				+ ", userNo=" + userNo + ", address=" + address + ", detailAddress=" + detailAddress + ", tel=" + tel
-				+ ", opentime=" + opentime + ", closedDay=" + closedDay + ", sns=" + sns + ", tableNumber="
-				+ tableNumber + ", socketNumber=" + socketNumber + ", toiletCdt=" + toiletCdt + ", mkdessertCdt="
-				+ mkdessertCdt + ", terrasCdt=" + terrasCdt + ", reservationCdt=" + reservationCdt + ", wondooBuyCdt="
-				+ wondooBuyCdt + ", bookCdt=" + bookCdt + ", beerCdt=" + beerCdt + ", goodsCdt=" + goodsCdt
-				+ ", wifiCdt=" + wifiCdt + ", puppyCdt=" + puppyCdt + ", reserveokCdt=" + reserveokCdt + ", parkingCdt="
-				+ parkingCdt + ", nokidsCdt=" + nokidsCdt + ", registrationDate=" + registrationDate + ", updateDate="
-				+ updateDate + ", viewNumber=" + viewNumber + ", content=" + content + ", oneline=" + oneline
-				+ ", voteNumber=" + voteNumber + ", powerlinkCdt=" + powerlinkCdt + ", cafeCdt=" + cafeCdt + "]";
+				+ ", wkdOpentime=" + wkdOpentime + ", wkndOpentime=" + wkndOpentime + ", closedDay=" + closedDay
+				+ ", sns=" + sns + ", tableNumber=" + tableNumber + ", socketNumber=" + socketNumber + ", toiletCdt="
+				+ toiletCdt + ", mkdessertCdt=" + mkdessertCdt + ", terrasCdt=" + terrasCdt + ", reservationCdt="
+				+ reservationCdt + ", wondooBuyCdt=" + wondooBuyCdt + ", bookCdt=" + bookCdt + ", beerCdt=" + beerCdt
+				+ ", goodsCdt=" + goodsCdt + ", wifiCdt=" + wifiCdt + ", puppyCdt=" + puppyCdt + ", reserveokCdt="
+				+ reserveokCdt + ", parkingCdt=" + parkingCdt + ", nokidsCdt=" + nokidsCdt + ", registrationDate="
+				+ registrationDate + ", updateDate=" + updateDate + ", viewNumber=" + viewNumber + ", content="
+				+ content + ", oneline=" + oneline + ", voteNumber=" + voteNumber + ", powerlinkCdt=" + powerlinkCdt
+				+ ", cafeCdt=" + cafeCdt + "]";
 	}
 
 }
