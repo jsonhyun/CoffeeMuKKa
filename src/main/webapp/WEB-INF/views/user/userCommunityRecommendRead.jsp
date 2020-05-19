@@ -77,6 +77,10 @@
 	.d_cafeR_context_wrap .readImgBox{ /* 이미지 사이즈 고민 */
 		text-align: center;
 	}
+	.d_cafeR_context_wrap #map{ 
+		width: 102%;
+		height: 400px;
+	}
 	
 	/* 버튼 영역 */
 	.d_cafeR_btn_wrap .d_cafeR_cnt {
@@ -331,7 +335,7 @@
 					<div class="regDate"><fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/></div>
 				</div>
 				<div class="d_cafeR_titleMiddle clearfix">
-					<p class="d_cafeR_title">${board.writingTitle }</p>
+					<p class="d_cafeR_title" id="cafe_title">${board.writingTitle }</p>
 					<div class="d_cafeR_user clearfix">
 						<img src="${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}" alt="등급아이콘" />
 						<p>${board.userNo.nick }(${board.userNo.userId })</p>
@@ -340,7 +344,7 @@
 				<div class="d_cafeR_cafe">
 					<div class="d_cafe_icon clearfix">
 							<img src="${pageContext.request.contextPath }/resources/images/location.png">
-							<span class="blue bold">${board.address}</span>							
+							<span class="blue bold" id="add">${board.address}</span>							
 					</div>
 					<div id="RC_viewCnt">조회수 <span class="orange">${board.viewNumber}</span></div>	
 				</div>
@@ -351,9 +355,14 @@
 				<c:forEach var="file" items="${board.files}">
 					<input type="hidden" class="readImgName" value="${file.imageName}">
 				</c:forEach>
+				<!-- 이미지 -->
 				<div class="readImgBox"></div>
-				<p id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></p>
+				<!-- 지도 -->
+			    <div id="map"></div>
+				<!-- 글내용 -->
+				<div id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></div>
 			</div>
+			
 			
 			<!-- 버튼 영역 -->
 			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
@@ -368,9 +377,9 @@
 					<p class="grayB f_left">댓글 ${board.replyCnt}</p>
 				</div>
 				<div class="d_cafeR_btns f_right">
-					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left">수정</button>
-					<button type="button" class="d_cafeR_deleteBtn redLineBtn f_left">삭제</button>
-					<button class="d_cafeR_listBtn navyBtn2 f_left">목록</button>
+					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left" id="RC_modify">수정</button>
+					<button type="button" class="d_cafeR_deleteBtn redLineBtn f_left" id="RC_delete">삭제</button>
+					<button class="d_cafeR_listBtn navyBtn2 f_left" id="RC_list">목록</button>
 				</div>
 			</div>
 			
@@ -452,12 +461,13 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>					
 					</a>
 					</c:forEach>
 				</div>
 			</div>
 		</div>
+	</div>		
 		<!-- 서브페이지 콘텐츠 end -->
 	</div>
 	
@@ -466,13 +476,9 @@
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
 <script>
-	// 목록 btn
-	$(".d_cafeR_listBtn").click(function(){
-		location.href = "${pageContext.request.contextPath }/user/community/cafeReview?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}"
-	})
-	
+	//콘텐츠영역 - 사진출력	
 	var filesCnt = $(".readImgName").length;
 	var arr = new Array(filesCnt);
 	for(var i = 0; i<filesCnt;i++){
@@ -487,6 +493,57 @@
 		
 		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
 	}
+	
+	//수정버튼
+	$("#RC_modify").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})
+	//삭제버튼
+	$("#RC_delete").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})	
+	//목록버튼
+	$("#RC_list").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})
+	
+
+	//지도 -- 주소, 카페이름 빼오기
+	var address = $("#add").text();
+	console.log(address);
+	var cafeName = $("#cafe_title").text();
+	console.log(cafeName);
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3 // 지도의 확대 레벨
+		};
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(address, function(result, status) {
+		// 정상적으로 검색이 완료됐으면 
+		if (status === kakao.maps.services.Status.OK) {
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			// 결과값으로 받은 위치를 마커로 표시합니다
+			var marker = new kakao.maps.Marker({
+				map : map,
+				position : coords
+			});
+			// 인포윈도우로 장소에 대한 설명을 표시합니다
+			var infowindow = new kakao.maps.InfoWindow({
+				content : '<div style="width:150px;text-align:center;padding:6px 0;">'+cafeName+'</div>'
+			});
+			infowindow.open(map, marker);
+			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			map.setCenter(coords);
+		}
+	});
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>
