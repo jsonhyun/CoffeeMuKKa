@@ -342,14 +342,13 @@
 						<li>
 								<div class="RC_listImgWrap">
 									<div class="RC_listImgContainer">
+						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
 										<c:forEach var="img" items="${listImg}">
-											  <c:if test="${board.boardNo == 33}">
-												<img src ="${pageContext.request.contextPath }/resources/images/rc_noImg.png">
-											</c:if> 
 											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
-												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg"> 												
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
 											</c:if>
-										</c:forEach>								
+										</c:forEach>
+										<p class="test"></p>								
 									</div>							
 								</div>
 								<div class="RC_listTitle1">
@@ -454,6 +453,16 @@
 		 //now_img.animate({"opacity":0},1500);
 	     timer = setInterval("fade_change()",2000);
 	 });
+	 
+	 //원본파일 불러오기(선명한 파일)
+	$(".thumbNailImg").each(function(i, obj) {
+		var file = $(this).attr("src");
+		var start = file.substring(0,51);
+		var end = file.substring(53);
+		var fileName = start + end;
+		$(this).attr("src", fileName);
+		console.log(fileName);
+	})	 
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>

@@ -173,7 +173,7 @@
 		var end = arr[i].substring(14);
 		
 		//console.log(start+end);
-		fileName = start + end;
+		var fileName = start + end;
 		//alert(fileName);
 		
 		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
