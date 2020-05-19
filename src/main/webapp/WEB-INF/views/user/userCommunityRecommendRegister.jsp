@@ -4,6 +4,9 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 
 <style>
+	button{
+		outline: none;
+	}
 	/* 등록카페 확인버튼 */
 	div.subTitleandBtn{
 		width: 100%;
@@ -47,7 +50,8 @@
 	input#point{
 		width: 71%;
 		height: 30px;
-		background-color: #FAFAFA;		
+		background-color: #FAFAFA;
+		margin-bottom: 10px;		
 	}
 	input#title{
 		width: 84%;
@@ -103,22 +107,28 @@
 	#pagination .on {font-weight: bold; cursor: default;color:#777;}	
 	textarea#text{
 		width: 100%;
+		margin-top: 10px;
 	}
 	input#file{
-		width: 98%;
-		border: 1px solid #BDBDBD;
-		padding: 10px;		
+		width: 62%;
+		margin-left: 10px;
+	}
+	input#file-upload-button{
+		background-color: yellow;
 	}
 	div#imagesBox{
 		width: 100%;
-		height: 200px;
+		height: 225px;
+		overflow-x: auto;	
 		border: 1px solid #BDBDBD;
-		background-color: #FAFAFA;
+		background-color: #D5D5D5;
+		margin-top: 20px;
 	}
 	div#imagesBox img{
-		width: 150px;
-		height: 150px;
-		margin: 10px;
+		width: 165px;
+		height: 165px;
+		margin: 27px;
+		border: 1px solid #BDBDBD;
 	}	
 	button{
 	   padding: 3px 10px;
@@ -289,12 +299,12 @@
 
 			<!-- 추천카페 : 이름, 주소 -->					
 			<div class="RC_Rg_groub">		
-				<label class="RC_label">카 페&nbsp;&nbsp;상&nbsp; 호&nbsp; 명</label>
+				<label class="RC_label">카&nbsp;&nbsp;&nbsp;페&nbsp;&nbsp;상 호 명</label>
 				<input type="text" name="writingTitle" id="title">
 			</div>
 			<!-- 등록카페 확인 -->	
 			<div class="RC_Rg_groub">	
-				<label class="RC_label">카 페&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</label>
+				<label class="RC_label">카&nbsp;&nbsp;&nbsp;페&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 소</label>
 				<input type="text" name="address" id="point">
 				<button type="button" class="recommdenPoint orangeBtn">추천 카페 찾기</button>		
 			</div>
@@ -306,7 +316,7 @@
 			        <div class="option">
 			            <div>
 			                <form onsubmit="searchPlaces(); return false;">
-			                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+			                    키워드 : <input type="text" value="영남인재교육원" id="keyword" size="15"> 
 			                    <button type="submit">검색하기</button> 
 			                </form>
 			            </div>
@@ -322,10 +332,11 @@
 			</div>
 			<!-- 카페 이미지 첨부 -->
 			<div class="RC_Rg_groub">	
-				<label class="RC_label">이미지 첨부</label>
+				<label class="RC_label">이 미 지&nbsp;&nbsp;첨 부</label>
 				<input type="file" name="imgfiles" multiple="multiple" id="file" style="cursor: pointer">
 				<!-- 미리보기박스 -->
-				<div id="imagesBox"></div>
+				<div id="imagesBox">
+				</div>
 			</div>
 			<!-- 등록버튼들 -->
 			<div class="RC_Rg_groub">	
@@ -392,6 +403,8 @@
 <!-- 틀4 : 등록된 카페가 없는 경우 -> 카페검색 -->
 <script id="searchCafeInfo" type="text/x-handlebars-tamplate">
 </script>
+
+
 
 <!-- 자바스크립트 & 제이쿼리 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
@@ -526,6 +539,7 @@
 		$(".cafeSearchWrap").hide();
 	})
 	
+	//미리보기
 	$("#file").change(function() {
 		//var file = $(this)[0].files[0]; // $(this)[0] : javascript 객체
 		
@@ -540,7 +554,7 @@
 				var $img = $("<img>").attr("src", e.target.result);
 				$("#imagesBox").append($img);
 			}
-			}
+		}
 	})
 	
 	//지도
