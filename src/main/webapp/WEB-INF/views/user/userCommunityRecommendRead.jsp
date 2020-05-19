@@ -84,7 +84,7 @@
 	}
 	div#RC_content div.readImgBox img{
 		width: 100%;
-		height: 510px;
+		height: 530px;
 		margin-bottom: 10px;
 	}
 	div#RC_content div#RC_btns{

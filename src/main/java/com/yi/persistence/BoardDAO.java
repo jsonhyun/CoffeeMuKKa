@@ -20,7 +20,9 @@ public interface BoardDAO {
 	public void recommendInsert(BoardVO vo) throws Exception;
 	public void recommendInsertImages(String imageName, int boardNo) throws Exception;	
 	//추천카페 -- 상세보기
-	public BoardVO recommendReadByNo(int boardNo);
+	public BoardVO recommendReadByNo(int boardNo) throws Exception;	
+	
+	
 	
 	/*** 공통 ***/
 	//오늘 등록된 글 갯수(**커뮤니티 공통**)
@@ -31,6 +33,8 @@ public interface BoardDAO {
 	public int totalSearchCountJoin(int cBoardNo, SearchCriteria cri) throws Exception; // 공통
 	// 유저가 등록한 게시글 갯수
 	public int totalUserBoardCount(int userNo) throws Exception;
+	// 조회수
+	public void updateViewCnt(int boardNo) throws Exception;
 	
 	/*** 탐방기 ***/
 	// 탐방기 -- 등록

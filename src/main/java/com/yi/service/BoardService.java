@@ -60,6 +60,8 @@ public class BoardService {
 	}	
 	//추천카페 -- 상세보기
 	public BoardVO recommendReadByNo(int boardNo) throws Exception{
+		//조회수
+		dao.updateViewCnt(boardNo);
 		return dao.recommendReadByNo(boardNo);
 	}
 	
