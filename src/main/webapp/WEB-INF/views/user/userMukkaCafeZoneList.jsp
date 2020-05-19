@@ -390,7 +390,7 @@
 						</c:when>
 					</c:choose>
 					
-					<h2 class="cafeTitle"><a href="#">${cafe.cafeName }</a></h2>
+					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
 					<p class="oneline">'${cafe.oneline }'</p>
 					<div>
 						<div class="visit">

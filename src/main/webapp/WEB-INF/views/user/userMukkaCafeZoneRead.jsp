@@ -307,9 +307,10 @@
 			</div>
 			<div class="closeInfo" id="cafeMenu">
 				<div>
-					<table style="float: left;margin: 30px;width: 250px;">
+					<c:forEach var="menuList" items="${menuList }">
+						<table style="float: left;margin: 30px;width: 250px;">
 						<tr>
-							<th>COFFEE</th>
+							<th>${menuList.menukinds.sortName }</th>
 							<th>HOT</th>
 							<th>ICED</th>
 						</tr>
@@ -326,120 +327,7 @@
 							<td colspan="2">4000</td>
 						</tr>
 					</table>
-					<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>COFFEE</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
-					<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>COFFEE</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
-					<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>COFFEE</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
-					<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>COFFEE</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
-					<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>COFFEE</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
-					<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>COFFEE</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
+					</c:forEach>
 					<div id="menuImg"></div>
 				</div>
 			</div>

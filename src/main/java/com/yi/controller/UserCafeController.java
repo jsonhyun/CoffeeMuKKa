@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
+import com.yi.domain.MenuVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
 import com.yi.service.CafeService;
@@ -90,6 +91,9 @@ public class UserCafeController {
 				break;
 			}
 		}
+		/* 카페 메뉴 검색 */
+		List<MenuVO> menuList = service.menuList(cafeNo);
+		System.out.println(menuList);
 		
 		model.addAttribute("cafe", cafe);
 		model.addAttribute("themeRank", themeRank);
@@ -97,6 +101,7 @@ public class UserCafeController {
 		model.addAttribute("starpoint", starpoint);
 		model.addAttribute("starpointSelect", starpointSelect);
 		model.addAttribute("pointList", pointList);
+		model.addAttribute("menuList", menuList);
 		
 		return "/user/userMukkaCafeZoneRead";
 	}

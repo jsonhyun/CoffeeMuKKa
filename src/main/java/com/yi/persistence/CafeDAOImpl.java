@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
+import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
 
 @Repository
@@ -95,6 +96,10 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectOne(namespace+"rankTheme", map);
 	}
 
+	@Override
+	public List<MenuVO> menuList(int cafeNo) throws Exception {
+		return sqlSession.selectList(namespace+"menuList", cafeNo);
+	}
 	
 // 검색시 페이징 처리 DAOImpl
 	
