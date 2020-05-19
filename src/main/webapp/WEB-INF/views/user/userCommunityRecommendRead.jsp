@@ -93,8 +93,17 @@
 		color: #545454;
 		border-top: 2px solid #545454;		
 		border-bottom: 2px solid #545454;
-	}					
-
+	}
+	
+	/* 댓글 버튼s */					
+	img#likeImg, img#replyImg{
+		width: 30px;
+		height: 30px;
+	}
+	div#RC_btns button#RC_modify,button,#RC_list,button#RC_delete{
+		width: 10px;
+		height: 10px;
+	}
 	
 </style>
 	
@@ -153,17 +162,24 @@
 			<div class="readImgBox"></div>
 			<p id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></p>
 			<div id="RC_btns">
-				좋아요
-				댓글
-				<button>수정</button>
-				<button>삭제</button>
-				<button>목록</button>
+				<div id="RC_like">
+					<img src = "${pageContext.request.contextPath }/resources/images/like.png" id="likeImg">
+					<span>좋아요</span>
+				</div>
+				<div id="RC_rplay">
+					<img src = "${pageContext.request.contextPath }/resources/images/icon_reply.png" id="replyImg">
+					<span>댓글</span>
+				</div>
+				<button id="RC_modify">수정</button>
+				<button id="RC_delete">삭제</button>
+				<button id="RC_list">목록</button>
 			</div>
 		</div>
 	</div>
 </div>
 
 <script>
+	//게시글 사진 출력
 	var filesCnt = $(".readImgName").length;
 	var arr = new Array(filesCnt);
 	for(var i = 0; i<filesCnt;i++){
@@ -174,10 +190,16 @@
 		
 		//console.log(start+end);
 		var fileName = start + end;
-		//alert(fileName);
-		
+		//alert(fileName);		
 		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
 	}
+	
+	//수정버튼
+	//삭제버튼
+	//목록버튼
+	$("#RC_list").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})
 
 	
 	
