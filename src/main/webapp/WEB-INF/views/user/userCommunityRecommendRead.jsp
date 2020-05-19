@@ -2,184 +2,477 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
-
 <style>
-	/* 상세보기 - 타이틀 */
-	div#RC_readTitle{
-		width: 100%;
-		height: 136px;
-		background-color: #f7f7f7;
-		color: #545454;
-		border-top: 2px solid #545454;		
-		border-bottom: 2px solid #545454;
-		margin-bottom: 20px;		
+	.wrapStyle {
+		border-top: 1px solid #545454;
+		border-bottom: 1px solid #545454;
+		padding: 15px;
 	}
-	/* 타이틀1 */
-	div#RC_readTitle div#RC_readTitle1{
-		width: 100%;
-		height: 29px;
-		padding-top: 15px;
-	}
-	div#RC_readTitle div#RC_readTitle1 div.zoneOrangeIconSmall,div.themeKeySmall{
-		margin-left: 10px;
+
+	/* title 영역 */
+	.detaliCafeR_title_wrap .keyword {
 		font-size: 14px;
-	}	
-	div#RC_readTitle div#RC_readTitle1 div#RC_update{
+	}
+	
+	.detaliCafeR_title_wrap .regDate {
 		float: right;
+		color: gray;
+		font-weight: 300;
+		margin-right: 13px;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafeR_titleMiddle{
+		padding: 10px;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafeR_title {
+		font-size: 25px;
+		font-weight: 700;
+		float: left;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafeR_user {
+		float: right;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafeR_user img{
+		height: 25px;
+		float: left;
+		margin-right: 5px;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafeR_user p {
+		float: left;
+		font-size: 16px;
+		font-weight: 700;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafe_icon {
+		background-color: #deeaf6;
+		display: inline-block;
+		padding: 10px;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafe_icon a {
+		color: #2d4686;
+	}
+	
+	.detaliCafeR_title_wrap .d_cafe_icon img {
+		height: 25px;
+		float: left;
 		margin-right: 10px;
 	}
-	/* 타이틀2 */
-	div#RC_readTitle div#RC_readTitle2{
-		width: 100%;
-		height: 49px;
-		line-height: 49px;
+	#RC_viewCnt{
+		float: right;
+		color: gray;
+		font-weight: 300;
+		margin-right: 13px;
+		margin-top: 10px;	
 	}
-	div#RC_readTitle div#RC_readTitle2 #RC_writingTitle{
-		width: 50%;
+	
+	/* 콘텐츠 영역 */
+	.d_cafeR_context_wrap {
+		padding: 10px;
+	}
+	.d_cafeR_context_wrap .readImgBox{ /* 이미지 사이즈 고민 */
+		text-align: center;
+	}
+	
+	/* 버튼 영역 */
+	.d_cafeR_btn_wrap .d_cafeR_cnt {
+		font-size: 20px;
+		line-height: 18px;
+		margin-right: 20px;
+		margin-top: 10px;
+	}
+	
+	.d_cafeR_btn_wrap p {
+		margin-left: 5px;
+	}
+	
+	.d_cafeR_btn_wrap .d_cafeR_btns button {
+		font-size: 18px;
 		margin-left: 10px;
-		font-weight: bold;
-		font-size: 21px;	
-		float: left;	
 	}
-	div#RC_readTitle2 div#RC_userInfo{
-		width: 45%;
-		float: right;
-		text-align: right;
-		margin-right: 10px;
-	}		
-	div#RC_readTitle2 div#RC_userInfo img#gradeImg{
-		width: 30px;
-		height: 30px;	
+	
+	/* 댓글 영역 */
+	.replyStyle{
+		border-bottom: 1px solid #545454;
+		padding: 10px 25px;
 	}
-	span#RC_userNick{
-		width: 55%;
-		line-height: 10px;/* 
+	
+	/* 댓글 작성 */
+	.d_cafeR_reply_wrap .d_cafeR_reply_input img {
+		height: 37px;
+		margin-right: 15px;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_reply_input textarea[name="commentContent"] {
+		height: 35px;
+		width: 83%;
+		margin-right: 15px;
+		padding: 0 10px;
+		line-height: 35px;
+		font-size: 16px;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_reply_input #d_cafeR_replyAddBtn {
+		font-size: 18px;
+	}
+	
+	/* 댓글 리스트 */
+	.d_cafeR_reply_wrap .d_cafeR_replyList li {
+		line-height: 35px;
+		position: relative;
+	}	
+	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li img {
+		height: 35px;
+		margin-right: 30px;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(1) {
+		font-weight: 700;
+		margin-right: 30px;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:last-child {
 		position: absolute;
-		right:0;
-		top:9px;	 */
-	}	
-	/* 타이틀3 */
-	div#RC_readTitle div#RC_readTitle3{
-		width: 100%;
-		height: 29px;
-		height: 29px;
-		padding-bottom: 15px;
+		font-size: 14px;
+		top: 0;
+		right: 25px;
 	}
-	div#RC_readTitle div#RC_readTitle3 img#rc_point{
-		margin-left: 10px;
-		width: 20px;
-		height: 20px;
-	}	
-	div#RC_readTitle div#RC_readTitle3 span.blue{
-	}	
-	div#RC_readTitle div#RC_readTitle3 span#RC_viewCnt{
+	
+	/* 같은 카페 다른 리뷰 영역 */
+	.cafeR_sameList {
+		margin-top: 100px;
+	}
+	
+	.cafeR_sameList .cafeR_sameTitle {
+		font-size: 20px;
+	}
+	
+	.cafeR_sameList .cafeR_sameTitle .sameBtn {
+		width: 30px;
+	    height: 30px;
+	    border: 1px solid #aaa;
+	    line-height: 30px;
+	    text-align: center;
+	    margin-left: 10px;
+	    cursor: pointer;
+	}
+	
+	/* 다른 포스트 list */
+	.cafeR_sameList .a_cafeReview {
+		display: block;
+		float: left;
+		width: 48.6%;
+		border: 1px solid #545454;
+		margin-bottom: 20px;
+	}
+	
+	.cafeR_sameList .cafeR_box:hover .cafe_title{
+		text-decoration: underline;
+	}
+	
+	.cafeR_sameList .a_cafeReview:nth-of-type(odd) {
+		margin-right: 20px;
+	}
+	
+	.cafeR_sameList .cafeR_titleBox {
+		height: 200px;
+		padding: 15px 10px;
+		position: relative;
+		color: #fff;
+	}
+	
+	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg {
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: -1;
+	    overflow: hidden;
+	}
+	
+	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg .bg {
+		width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    background: rgba(0,0,0,0.4);
+	}
+	
+	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg img {
+		width: 100%;
+    	min-height: 100%;
+	}
+	
+	.cafeR_sameList .cafeR_writer {
+		line-height: 50px;
+		float: left;
+	}
+		
+	.cafeR_sameList .cafeR_writer img {
+		width: 50px;
+		display: block;
+		float: left;
+		margin-right: 10px;
+	}
+	
+	.cafeR_sameList .cafeR_writer span {
+		display: block;
+		float: left;
+		color: #fff;
+		font-size: 18px;
+	}
+	
+	.cafeR_sameList .cafeR_recomCnt {
 		float: right;
-		margin-right: 10px;		
-	}
-	
-	/* 글내용 */
-	div#RC_content{
-		width: 100%;
-		border: 1px solid red;
-	}
-	div#RC_content div.readImgBox img{
-		width: 100%;
-		height: 530px;
-		margin-bottom: 10px;
-	}
-	div#RC_content div#RC_btns{
-		width: 100%;
-		background-color: #f7f7f7;
-		color: #545454;
-		border-top: 2px solid #545454;		
-		border-bottom: 2px solid #545454;
-	}
-	
-	/* 댓글 버튼s */					
-	img#likeImg, img#replyImg{
 		width: 30px;
 		height: 30px;
-	}
-	div#RC_btns button#RC_modify,button,#RC_list,button#RC_delete{
-		width: 10px;
-		height: 10px;
+		border-radius: 40px;
+		margin: 10px;
+		text-align: center;
+		line-height: 30px;
+		font-weight: 700;
 	}
 	
-</style>
+	.cafeR_sameList .cafeR_titleBox h2 {
+		position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 85%;
+	    text-align: center;
+	}
 	
-<div class="content subPageContent">
-	<!-- 서브페이지 콘텐츠 -->
-	<div class="contentArea">
-		<!-- 서브페이지 공통적인 타이틀 -->
-		<h2 class="subPageTitle">
-			<span class="title">MuKKa人 추천 카페</span>
-			<span class="subTit grayB"> | 세 상 에! 이런 카페가 있는지 몰랐지?</span>
-		</h2>
-		<div id="RC_readTitle">
-			<!-- 지역 + 키워드  + 수정날짜 -->
-			<div id="RC_readTitle1">
-				<div class="zoneBtn zoneOrangeIconSmall">${board.zoneNo.zoneName}</div>	
+	.cafeR_sameList .cafeR_date {
+		position: absolute;
+	    top: 85%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 85%;
+	    text-align: right;
+	    font-size: 20px;
+	}	
+	
+	.cafeR_sameList .cafeR_infoBox {
+		padding: 10px;
+		padding-bottom: 0;
+	}
+	
+	.cafeR_sameList .cafeR_infoTop {
+		padding-bottom: 10px;
+	}
+	
+	.cafeR_sameList .cafeR_infoTop h2{
+		text-align: right;
+		padding: 10px 0;
+	}
+	
+	.cafeR_sameList .cafeR_text {
+		overflow: hidden; 
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 4; /* 라인수 */
+		-webkit-box-orient: vertical;
+		word-wrap: break-word;
+	}
+	
+	.cafeR_sameList .cafeR_replyCdtWrap {
+		float: right;
+		padding: 10px;
+		padding-right: 0;
+	}
+	
+	.cafeR_sameList .cafeR_replyCdt .cafeR_btns {
+		border: 1px solid #545454;
+		padding: 5px 10px;
+		border-radius: 10px;
+		float: left;
+		margin-right: 10px;
+	}
+</style>	
+	<div class="content subPageContent">
+		<!-- 서브페이지 콘텐츠 -->
+		<div class="contentArea">
+			<!-- 서브페이지 공통적인 타이틀 -->
+			<h2 class="subPageTitle">
+				<span class="title">MuKKa人 추천 카페</span>
+				<span class="subTit grayB"> | 세 상 에! 이런 카페가 있는지 몰랐지?</span>
+			</h2>
+			<!-- title 영역 -->
+			<div class="detaliCafeR_title_wrap bgLightGray wrapStyle">
+				<div class="d_cafeR_titleTop clearfix">
+					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
 				<c:choose>
 					<c:when test="${board.themeNo.themeNo == 1}">
-						<div class="date themeKeySmall">#${board.themeNo.themeName}</div>
+						<div class="date keyword themeKeySmall">#${board.themeNo.themeName}</div>
 					</c:when>
 					<c:when test="${board.themeNo.themeNo == 2}">
-						<div class="view themeKeySmall">#${board.themeNo.themeName}</div>
+						<div class="view keyword themeKeySmall">#${board.themeNo.themeName}</div>
 					</c:when>
 					<c:when test="${board.themeNo.themeNo == 3}">
-						<div class="ame themeKeySmall">#${board.themeNo.themeName}</div>
+						<div class="ame keyword themeKeySmall">#${board.themeNo.themeName}</div>
 					</c:when>
 					<c:when test="${board.themeNo.themeNo == 4}">
-						<div class="dessert themeKeySmall">#${board.themeNo.themeName}</div>
+						<div class="dessert keyword themeKeySmall">#${board.themeNo.themeName}</div>
 					</c:when>
 					<c:when test="${board.themeNo.themeNo == 5}">
-						<div class="dog themeKeySmall">#${board.themeNo.themeName}</div>
+						<div class="dog keyword themeKeySmall">#${board.themeNo.themeName}</div>
 					</c:when>																																								
 					<c:otherwise>
-						<div class="work themeKeySmall">#${board.themeNo.themeName}</div>		
+						<div class="work keyword themeKeySmall">#${board.themeNo.themeName}</div>		
 					</c:otherwise>
-				</c:choose>
-				<div id="RC_update"><fmt:formatDate value="${board.updateDate}" pattern="yyyy/MM/dd"/></div>						
-			</div>
-			<div id="RC_readTitle2">
-				<div id="RC_writingTitle">${board.writingTitle}</div>
-				<div id="RC_userInfo">
-					<img id="gradeImg"  src = "${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}">
-					<span id="RC_userNick">${board.userNo.nick}(${board.userNo.userId})</span>
+				</c:choose>					
+					<div class="regDate"><fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/></div>
+				</div>
+				<div class="d_cafeR_titleMiddle clearfix">
+					<p class="d_cafeR_title">${board.writingTitle }</p>
+					<div class="d_cafeR_user clearfix">
+						<img src="${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}" alt="등급아이콘" />
+						<p>${board.userNo.nick }(${board.userNo.userId })</p>
+					</div>
+				</div>
+				<div class="d_cafeR_cafe">
+					<div class="d_cafe_icon clearfix">
+							<img src="${pageContext.request.contextPath }/resources/images/location.png">
+							<span class="blue bold">${board.address}</span>							
+					</div>
+					<div id="RC_viewCnt">조회수 <span class="orange">${board.viewNumber}</span></div>	
 				</div>
 			</div>
-			<div id="RC_readTitle3">
-				<img id= "rc_point" src ="${pageContext.request.contextPath }/resources/images/rc_point.png">
-				<span class="blue">${board.address}</span>
-				<span id="RC_viewCnt">조회수 ${board.viewNumber}</span>
-			</div>		
+			
+			<!-- content 영역 -->
+			<div class="d_cafeR_context_wrap">
+				<c:forEach var="file" items="${board.files}">
+					<input type="hidden" class="readImgName" value="${file.imageName}">
+				</c:forEach>
+				<div class="readImgBox"></div>
+				<p id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></p>
+			</div>
+			
+			<!-- 버튼 영역 -->
+			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
+				<div class="d_cafeR_cnt d_cafeR_voteBtn clearfix f_left">
+					<a href="#" class="f_left">
+						<i class="far fa-thumbs-up orange voteIcon"></i>
+					</a>
+					<p class="orange f_left">좋아요 ${board.voteNumber }</p>
+				</div>
+				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
+					<i class="far fa-comment-dots clearfix grayB f_left"></i>
+					<p class="grayB f_left">댓글 ${board.replyCnt}</p>
+				</div>
+				<div class="d_cafeR_btns f_right">
+					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left">수정</button>
+					<button type="button" class="d_cafeR_deleteBtn redLineBtn f_left">삭제</button>
+					<button class="d_cafeR_listBtn navyBtn2 f_left">목록</button>
+				</div>
+			</div>
+			
+			<!-- 댓글 영역 -->
+			<div class="d_cafeR_reply_wrap">
+				<div class="d_cafeR_reply_input replyStyle clearfix">
+					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
+					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
+					<textarea class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
+					<!-- <input class="f_left" type="text" name="commentContent" placeholder="여러분의 소중한 댓글을 남겨주세요."/> -->
+					<button id="d_cafeR_replyAddBtn" class="orangeBtn f_left">저장</button>
+				</div>
+				
+				<!-- 댓글 샘플 -->
+				<div class="d_cafeR_replyList">
+					<ul>
+						<li class="replyStyle clearfix">
+							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
+							<p class="f_left">닉네임1</p>
+							<p class="f_left">댓글 내용</p>
+							<p class="regitDate orange">2020/05/02</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 같은 카페의 다른 포스트 list -->
+			<div class="cafeR_sameList">
+				<c:if test="${sameCnt > 0 }">
+					<div class="cafeR_sameTitle bottomLine clearfix">
+							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">${sameCnt }</span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
+						<c:if test="${sameCnt > 4 }">
+							<div class="sameListBtn f_right">
+								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
+								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+							</div>
+						</c:if>
+					</div>
+				</c:if>
+				<div class="cafeR_List clearfix mb30">
+					<c:forEach var="sameItem" items="${sameBoard }">
+					<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${sameItem.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
+						<div class="cafeR_box">
+							<div class="cafeR_titleBox">
+								<div class="cafeR_titleImg">	
+									<div class="bg"></div>						
+									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${sameItem.files[0].imageName}" alt="카페대표이미지" />
+								</div>
+								<div class="cafeR_titleTop clearfix" >
+									<div class="cafeR_writer clearfix">
+										<img src="${pageContext.request.contextPath }/resources/images/${sameItem.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
+										<span class="cafeR_name bold">${sameItem.userNo.nick }</span>
+										<span class="cafeR_id bold">(${sameItem.userNo.userId })</span>
+									</div>
+									<div class="cafeR_recomCnt bgRed">${sameItem.voteNumber }</div>						
+								</div>
+								<h2 class="classSec cafe_title">${sameItem.writingTitle }</h2>
+								<div class="cafeR_date bold"><fmt:formatDate value="${sameItem.registrationDate }" pattern="yyyy/MM/dd"/></div>
+							</div>
+							<div class="cafeR_infoBox">
+								<div class="cafeR_infoTop clearfix">
+									<div class="zoneBtn zoneOrangeIconSmall">${sameItem.cafeNo.zoneNo.zoneName }</div>
+									<div class="themeKeySmall themeName">#${sameItem.cafeNo.themeNo.themeName }</div>
+									<h2>${sameItem.cafeNo.cafeName }</h2>
+								</div>
+								<%-- <p class="cafeR_text">
+									${item.writingContent }
+								</p> --%>
+							</div>
+							<div class="cafeR_replyCdt clearfix">
+								<div class="cafeR_replyCdtWrap">
+									<div class="cafeR_btns">
+										<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
+										<span class="cafeR_replyCnt">${sameItem.replyCnt }</span>
+									</div>
+									<div class="cafeR_btns">
+										<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
+										<span class="cafeR_viewCnt">${sameItem.viewNumber }</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
-		<!-- 게시글내용 : 사진, 글 -->
-		<div id="RC_content">
-			<c:forEach var="file" items="${board.files}">
-				<input type="hidden" class="readImgName" value="${file.imageName}">
-			</c:forEach>
-			<div class="readImgBox"></div>
-			<p id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></p>
-			<div id="RC_btns">
-				<div id="RC_like">
-					<img src = "${pageContext.request.contextPath }/resources/images/like.png" id="likeImg">
-					<span>좋아요</span>
-				</div>
-				<div id="RC_rplay">
-					<img src = "${pageContext.request.contextPath }/resources/images/icon_reply.png" id="replyImg">
-					<span>댓글</span>
-				</div>
-				<button id="RC_modify">수정</button>
-				<button id="RC_delete">삭제</button>
-				<button id="RC_list">목록</button>
-			</div>
-		</div>
+		<!-- 서브페이지 콘텐츠 end -->
 	</div>
+	
+<script>
+</script>
+<%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
+<!-- container end -->
 
 <script>
-	//게시글 사진 출력
+	// 목록 btn
+	$(".d_cafeR_listBtn").click(function(){
+		location.href = "${pageContext.request.contextPath }/user/community/cafeReview?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}"
+	})
+	
 	var filesCnt = $(".readImgName").length;
 	var arr = new Array(filesCnt);
 	for(var i = 0; i<filesCnt;i++){
@@ -189,23 +482,11 @@
 		var end = arr[i].substring(14);
 		
 		//console.log(start+end);
-		var fileName = start + end;
-		//alert(fileName);		
+		fileName = start + end;
+		//alert(fileName);
+		
 		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
 	}
-	
-	//수정버튼
-	//삭제버튼
-	//목록버튼
-	$("#RC_list").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
-	})
-
-	
-	
 </script>
-<%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
-</div>
-<!-- container end -->
 
 <%@ include file="../userInclude/footer.jsp" %>
