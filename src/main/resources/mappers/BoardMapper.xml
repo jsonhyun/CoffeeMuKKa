@@ -201,7 +201,8 @@
 	<!-- 탐방기 : 탐방기 select문 -->
 	<sql id="cafeRevieSelect">
 		select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
-			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
+			   b.view_number , b.writing_title , b.registration_date , b.update_date,
+			   b.writing_content , b.vote_number , b.reply_cnt ,
 			   z.zone_no , z.zone_name , t.theme_no , t.theme_name , c.cafe_no, c.cafe_name , i.image_name 
 			from board b left join image i on b.board_no = i.board_no 
 						left join users u on b.user_no = u.user_no 
@@ -241,6 +242,11 @@
 			values (#{boardNo2.boardNo}, #{userNo.userNo}, #{cafeNo.cafeNo}, #{writingTitle}, #{writingContent});
 	</insert>
 	
-	
+	<!-- 탐방기 : 수정 -->
+	<update id="cafeReviewModify" parameterType="BoardVO">
+		update board 
+			set writing_title = #{writingTitle}, writing_content = #{writingContent}, update_date = now()
+			where board_no = #{boardNo}
+	</update>
 
 </mapper>

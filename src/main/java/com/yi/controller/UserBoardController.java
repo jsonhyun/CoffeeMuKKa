@@ -1,6 +1,7 @@
 package com.yi.controller;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -141,12 +142,43 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/modify", method = RequestMethod.POST)
-	public String communityReviewModifyPost(String inImgFile, MultipartFile imgFile, BoardVO vo, SearchCriteria cri, Model model) {
+	public String communityReviewModifyPost(String inImgFile, MultipartFile imgFile, BoardVO vo, SearchCriteria cri, Model model) throws Exception {
 		System.out.println("modefy Post vo ------------- " + vo);
 		System.out.println("modefy Post inImgFile ------------- " + inImgFile);
 		System.out.println("modefy Post imgFileSize ------------- " + imgFile.getSize());
 		System.out.println("modefy Post cri ------------- " + cri);
-		return "redirect:/user/community/cafeReview/modify?boardNo="+vo.getBoardNo();
+		
+		
+		if(imgFile.getSize() > 0) {
+			String imageName = UploadFileUtils.uploadFile(uploadPath, imgFile.getOriginalFilename(), imgFile.getBytes());
+
+			ImageVO imgVO = new ImageVO();
+			imgVO.setBoardNo(vo);
+			imgVO.setImageName(imageName);
+			
+			// 파일 삭제
+			File file = new File(uploadPath + inImgFile);
+			file.delete();
+			// 원본 삭제
+			String originlName = inImgFile.substring(0, 12) + inImgFile.substring(14);
+			//System.out.println("originlName -------------------- " + originlName);
+			
+			File originFile = new File(uploadPath + originlName);
+			originFile.delete();
+			
+			service.cafeReviewAndImgModify(vo, imgVO);
+		} else {
+			service.cafeReviewModify(vo);
+		}
+		
+		model.addAttribute("board", vo);
+		model.addAttribute("page", cri.getPage());
+		model.addAttribute("searchZone", cri.getSearchZone());
+		model.addAttribute("searchTheme", cri.getSearchTheme());
+		model.addAttribute("searchType", cri.getSearchType());
+		model.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/user/community/cafeReview/read?boardNo="+vo.getBoardNo();
 	}
 	
 	// ckd에디터 이미지 등록

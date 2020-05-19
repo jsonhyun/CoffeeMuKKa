@@ -115,6 +115,17 @@ public class BoardService {
 		return dao.cafeReivewSameCnt(vo);
 	}
 	
+	// 탐방기 수정
+	@Transactional
+	public void cafeReviewAndImgModify(BoardVO vo, ImageVO imgVO) throws Exception {
+		dao.cafeReviewModify(vo);
+		imgDao.updateImageByBoardNo(imgVO);
+	}
+	
+	public void cafeReviewModify(BoardVO vo) throws Exception {
+		dao.cafeReviewModify(vo);
+	}
+	
 	
 	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
 	private void userGradeUpdate(BoardVO vo) throws Exception {

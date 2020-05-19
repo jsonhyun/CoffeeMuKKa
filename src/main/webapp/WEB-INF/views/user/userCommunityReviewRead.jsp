@@ -298,7 +298,12 @@
 				<div class="d_cafeR_titleTop clearfix">
 					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
 					<div class="themeKeySmall keyword themeName">#${board.themeNo.themeName }</div>
-					<div class="regDate"><fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/></div>
+					<div class="regDate">
+						등록일 : <fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/>
+						<c:if test="${board.registrationDate != board.updateDate}">
+						 | 수정일 : <fmt:formatDate value="${board.updateDate }" pattern="yyyy/MM/dd"/>
+						</c:if>
+					</div>
 				</div>
 				<div class="d_cafeR_titleMiddle clearfix">
 					<p class="d_cafeR_title">${board.writingTitle }</p>
@@ -325,10 +330,10 @@
 			<!-- 버튼 영역 -->
 			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
 				<div class="d_cafeR_cnt d_cafeR_voteBtn clearfix f_left">
-					<a href="#" id="voteIcon" class="f_left off">
-						<i class="far fa-thumbs-up orange"></i>
+					<a href="#" id="voteIcon" class="f_left off grayB">
+						<i class="far fa-thumbs-up"></i>
 					</a>
-					<p class="orange f_left">좋아요 ${board.voteNumber }</p>
+					<p class="grayB f_left">좋아요 ${board.voteNumber }</p>
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
@@ -464,15 +469,17 @@
 		
 		if($(this).hasClass("off")){
 			$(this).empty();
-			$(this).append('<i class="fas fa-thumbs-up"></i>').addClass('orange');
-			$(this).addClass("on");
-			$(this).removeClass("off");
+			$(this).append('<i class="fas fa-thumbs-up"></i>');
+			$(this).addClass("on").addClass('orange');
+			$(this).removeClass("off").removeClass("grayB");
+			$(this).next().addClass('orange').removeClass("grayB");
 			
 		} else if($(this).hasClass("on")){
 			$(this).empty();
-			$(this).append('<i class="far fa-thumbs-up"></i>').addClass('orange');
-			$(this).addClass("off");
-			$(this).removeClass("on");
+			$(this).append('<i class="far fa-thumbs-up"></i>');
+			$(this).addClass("off").addClass('grayB');
+			$(this).removeClass("on").removeClass("orange");
+			$(this).next().addClass('grayB').removeClass("orange");
 			
 		}		
 	}) 

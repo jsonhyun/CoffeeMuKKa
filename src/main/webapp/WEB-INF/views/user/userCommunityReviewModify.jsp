@@ -174,6 +174,11 @@
 				<form action="modify" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="boardNo2.boardNo" value="1"/>
 					<input type="hidden" name="boardNo" value="${board.boardNo }"/>
+					<input type="hidden" name="page" value="${cri.page }" />
+					<input type="hidden" name="searchZone" value="${cri.searchZone }" />
+					<input type="hidden" name="searchTheme" value="${cri.searchTheme }" />
+					<input type="hidden" name="searchType" value="${cri.searchType }" />
+					<input type="hidden" name="keyword" value="${cri.keyword }" />
 					<div class="cafeR_search cafeR_groub clearfix">
 						<label>카페</label>
 						<!-- <button type="button" class="cafeSearchBtn orangeBtn">카페찾기</button> -->
@@ -202,8 +207,8 @@
 						</div>
 					</div>
 					<div class="cafeR_submit">
-						<button type="button" class="blueBtn">등록 취소</button>
-						<input type="submit" value="탐방기 등록" class="orangeBtn"/>
+						<button type="button" class="blueBtn">수정 취소</button>
+						<input type="submit" value="탐방기 수정" class="orangeBtn"/>
 					</div>
 				</form>
 				<div class="cafeSearchWrap">
@@ -268,7 +273,7 @@
 		console.log(res);
 		
 		if(res) {
-			location.href = "${pageContext.request.contextPath}/user/community/cafeReview";
+			location.href = "${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
 		}
 	})
 	

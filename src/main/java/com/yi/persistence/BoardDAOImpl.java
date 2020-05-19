@@ -115,5 +115,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public int cafeReivewSameCnt(BoardVO vo) throws Exception {
 		return sqlSession.selectOne(namespace + "cafeReivewSameCnt", vo);
 	}
+	
+	@Override
+	public void cafeReviewModify(BoardVO vo) throws Exception {
+		sqlSession.update(namespace + "cafeReviewModify", vo);
+	}
 
 }
