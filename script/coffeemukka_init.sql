@@ -494,6 +494,24 @@ ALTER TABLE CoffeeMuKKa.Image
 ALTER TABLE CoffeeMuKKa.Image
 	MODIFY COLUMN image_no INT NOT NULL AUTO_INCREMENT COMMENT '이미지번호';
 
+-- 추천리스트
+CREATE TABLE CoffeeMuKKa.Vote (
+	vote_no  INT NOT NULL COMMENT '추천번호', -- 추천번호
+	board_no INT NOT NULL COMMENT '게시글번호', -- 게시글번호
+	user_no  INT NOT NULL COMMENT '회원번호' -- 회원번호
+)
+COMMENT '추천리스트';
+
+-- 추천리스트
+ALTER TABLE CoffeeMuKKa.Vote
+	ADD CONSTRAINT PK_Vote -- 추천리스트 기본키
+		PRIMARY KEY (
+			vote_no -- 추천번호
+		);
+
+ALTER TABLE CoffeeMuKKa.Vote
+	MODIFY COLUMN vote_no INT NOT NULL AUTO_INCREMENT COMMENT '추천번호';
+
 -- 카페
 ALTER TABLE CoffeeMuKKa.Cafe
 	ADD CONSTRAINT FK_Theme_TO_Cafe -- 테마분류 -> 카페
@@ -772,4 +790,24 @@ ALTER TABLE CoffeeMuKKa.Image
 		)
 		REFERENCES CoffeeMuKKa.Cafe ( -- 카페
 			cafe_no -- 카페번호
+		);
+
+-- 추천리스트
+ALTER TABLE CoffeeMuKKa.Vote
+	ADD CONSTRAINT FK_Board_TO_Vote -- 게시판 -> 추천리스트
+		FOREIGN KEY (
+			board_no -- 게시글번호
+		)
+		REFERENCES CoffeeMuKKa.Board ( -- 게시판
+			board_no -- 게시글번호
+		);
+
+-- 추천리스트
+ALTER TABLE CoffeeMuKKa.Vote
+	ADD CONSTRAINT FK_Users_TO_Vote -- 회원현황 -> 추천리스트
+		FOREIGN KEY (
+			user_no -- 회원번호
+		)
+		REFERENCES CoffeeMuKKa.Users ( -- 회원현황
+			user_no -- 회원번호
 		);

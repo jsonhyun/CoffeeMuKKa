@@ -161,7 +161,7 @@
 	<!-- 공통 : 검색 -->
 	<sql id="search">
 		<where> 
-			b.board_no2 = #{cBoardNo}
+			b.board_no2 = #{cBoardNo} and b.board_del_cdt = 1
 			<include refid="searchIf"/>
 		</where>
 	</sql>
@@ -169,26 +169,26 @@
 	<!-- 공통 : 키워드 이용 검색 가능한 페이징 처리 매퍼 -->
 	<sql id="searchIf">
 		<if test="cri.searchZone != '' and cri.searchZone != null">			
-				AND z.zone_no = #{cri.searchZone}
-			</if>
-			<if test="cri.searchTheme != '' and cri.searchTheme != null">
-				AND t.theme_no = #{cri.searchTheme}
-			</if>
-			<if test="cri.searchType == 't'.toString()">
-				AND b.writing_title like CONCAT('%', #{cri.keyword}, '%')
-			</if>
-			<if test="cri.searchType == 'c'.toString()">
-				AND b.writing_content like CONCAT('%', #{cri.keyword}, '%')
-			</if>
-			<if test="cri.searchType == 'tc'.toString()">
-				AND b.writing_title like CONCAT('%', #{cri.keyword}, '%') OR b.writing_content like CONCAT('%', #{cri.keyword}, '%')
-			</if>
-			<if test="cri.searchType == 'uId'.toString()">
-				AND u.user_id = #{cri.keyword}
-			</if>
-			<if test="cri.searchType == 'uName'.toString()">
-				AND u.nick = #{cri.keyword} OR u.name = #{cri.keyword}
-			</if>
+			AND z.zone_no = #{cri.searchZone}
+		</if>
+		<if test="cri.searchTheme != '' and cri.searchTheme != null">
+			AND t.theme_no = #{cri.searchTheme}
+		</if>
+		<if test="cri.searchType == 't'.toString()">
+			AND b.writing_title like CONCAT('%', #{cri.keyword}, '%')
+		</if>
+		<if test="cri.searchType == 'c'.toString()">
+			AND b.writing_content like CONCAT('%', #{cri.keyword}, '%')
+		</if>
+		<if test="cri.searchType == 'tc'.toString()">
+			AND b.writing_title like CONCAT('%', #{cri.keyword}, '%') OR b.writing_content like CONCAT('%', #{cri.keyword}, '%')
+		</if>
+		<if test="cri.searchType == 'uId'.toString()">
+			AND u.user_id = #{cri.keyword}
+		</if>
+		<if test="cri.searchType == 'uName'.toString()">
+			AND u.nick = #{cri.keyword} OR u.name = #{cri.keyword}
+		</if>
 	</sql>
 	
 	<!-- 게시글 조회수 -->
@@ -201,7 +201,8 @@
 	<!-- 탐방기 : 탐방기 select문 -->
 	<sql id="cafeRevieSelect">
 		select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
-			   b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
+			   b.view_number , b.writing_title , b.registration_date , b.update_date,
+			   b.writing_content , b.vote_number , b.reply_cnt , b.board_del_cdt,
 			   z.zone_no , z.zone_name , t.theme_no , t.theme_name , c.cafe_no, c.cafe_name , i.image_name 
 			from board b left join image i on b.board_no = i.board_no 
 						left join users u on b.user_no = u.user_no 
@@ -241,6 +242,18 @@
 			values (#{boardNo2.boardNo}, #{userNo.userNo}, #{cafeNo.cafeNo}, #{writingTitle}, #{writingContent});
 	</insert>
 	
+	<!-- 탐방기 : 수정 -->
+	<update id="cafeReviewModify" parameterType="BoardVO">
+		update board 
+			set writing_title = #{writingTitle}, writing_content = #{writingContent}, update_date = now()
+			where board_no = #{boardNo}
+	</update>
 	
+	<!-- 탐방기 : 삭제 (삭제 여부 수정) -->
+	<update id="cafeReviewRemove" parameterType="BoardVO">
+		update board 
+			set board_del_cdt = #{boardDelCdt}
+			where board_no = #{boardNo};
+	</update>
 
 </mapper>
