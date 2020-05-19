@@ -17,10 +17,10 @@
 	}
 	button.searchPoint{
 		border-radius: 3px;
-		margin-left: 10px;
+		margin-left: 20px;
 		position: absolute;
 		top: 5px;
-		background-color: #303A50;
+		background-color: #DB0000;
 	}
 	h3#RC_line{
 		color: #545454;
@@ -72,12 +72,12 @@
 	}
 	.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 	.map_wrap {position:relative;width:100%;height:500px;}
-	#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+	#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:360px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 	.bg_white {background:#fff;}
 	#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 	#menu_wrap .option{text-align: center;}
 	#menu_wrap .option p {margin:10px 0;}  
-	#menu_wrap .option button {margin-left:5px;}
+	#menu_wrap .option button {margin-left:5px; height:26px; width: 100px;}
 	#placesList li {list-style: none;}
 	#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
 	#placesList .item span {display: block;margin-top:4px;}
@@ -104,7 +104,12 @@
 	#placesList .item .marker_15 {background-position: 0 -654px;}
 	#pagination {margin:10px auto;text-align: center;}
 	#pagination a {display:inline-block;margin-right:10px;}
-	#pagination .on {font-weight: bold; cursor: default;color:#777;}	
+	#pagination .on {font-weight: bold; cursor: default;color:#777;}
+	
+	input#keyword{
+		width: 160px;
+		height: 24px;
+	}	
 	textarea#text{
 		width: 100%;
 		margin-top: 10px;
@@ -116,7 +121,7 @@
 	input#file-upload-button{
 		background-color: yellow;
 	}
-	div#imagesBox{
+	div#imagesBox{ /* 이미지박스============================================ */
 		width: 100%;
 		height: 225px;
 		overflow-x: auto;	
@@ -124,10 +129,23 @@
 		background-color: #D5D5D5;
 		margin-top: 20px;
 	}
-	div#imagesBox img{
+	div.imageWrap{
 		width: 165px;
 		height: 165px;
+		border: 1px solid red;
 		margin: 27px;
+		position: relative;
+		float: left;
+	}
+	button.xBtn{
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	div#imagesBox img{
+		width: 163px;
+		height: 163px;
+		/* margin: 27px; */
 		border: 1px solid #BDBDBD;
 	}	
 	button{
@@ -257,7 +275,7 @@
 		<!-- 서브페이지 공통적인 타이틀 -->
 		<div class="subTitleandBtn">
 			<h2 class="subPageTitle">
-				<span class="title">MuKKa人 추천 카페  > </span>
+				<span class="title">MuKKa人 추천 카페&nbsp;&nbsp;&nbsp;<i class="fas fa-greater-than" style="color:black;"></i>&nbsp;&nbsp;</span>
 				<span class="red">글쓰기</span>
 				<button type="button" class="searchPoint orangeBtn">등록카페 확인</button>			
 			</h2>
@@ -266,7 +284,7 @@
 		<h3 id="RC_line"></h3>
 		<!-- 등록폼 -->
 		<div id="RC_regiForm">
-		<form action="register" method="post" enctype="multipart/form-data">
+		<!-- <form action="register" method="post" enctype="multipart/form-data"> -->
 			<input type="hidden" name="boardNo2.boardNo" value="2">
 			<input type="hidden" name="userNo.userNo" value="1"><!-- 임시 -->	
 			<!-- 카테고리 -->		
@@ -308,24 +326,25 @@
 				<input type="text" name="address" id="point">
 				<button type="button" class="recommdenPoint orangeBtn">추천 카페 찾기</button>		
 			</div>
+			
 			<!-- 추천카페 장소찾기 -->
 			<div class="map_wrap">
-			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-			
+			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>		
 			    <div id="menu_wrap" class="bg_white">
 			        <div class="option">
 			            <div>
 			                <form onsubmit="searchPlaces(); return false;">
-			                    키워드 : <input type="text" value="영남인재교육원" id="keyword" size="15"> 
-			                    <button type="submit">검색하기</button> 
-			                </form>
+			                    <b>키워드 : </b><input type="text" id="keyword" size="15" placeholder="추천카페 이름을 입력하세요"> 
+			                    <button type="submit"><b>검색하기</b></button> 
+			               </form>
 			            </div>
 			        </div>
 			        <hr>
 			        <ul id="placesList"></ul>
 			        <div id="pagination"></div>
 			    </div>
-			</div>						
+			</div>
+			<form action="register" method="post" enctype="multipart/form-data">
 			<!-- 카페후기 글 -->		
 			<div class="RC_Rg_groub">	
 				<textarea rows="15" cols="100" name="writingContent" id="text"></textarea>
@@ -335,8 +354,7 @@
 				<label class="RC_label">이 미 지&nbsp;&nbsp;첨 부</label>
 				<input type="file" name="imgfiles" multiple="multiple" id="file" style="cursor: pointer">
 				<!-- 미리보기박스 -->
-				<div id="imagesBox">
-				</div>
+				<div id="imagesBox"><!-- 미리보기 이미지 추가 --></div>
 			</div>
 			<!-- 등록버튼들 -->
 			<div class="RC_Rg_groub">	
@@ -539,25 +557,36 @@
 		$(".cafeSearchWrap").hide();
 	})
 	
-	//미리보기
+	//첨부 이미지 미리보기
 	$("#file").change(function() {
 		//var file = $(this)[0].files[0]; // $(this)[0] : javascript 객체
 		
 		var files = $(this)[0].files;
 		//var file = e.target.files;        https://greatps1215.tistory.com/5
-		console.log(files);
+		//console.log(files);
 		$("#imagesBox").empty();
 			for(var i = 0; i<files.length;i++){
 			var reader = new FileReader(); //javascript 객체
 			reader.readAsDataURL(files[i]);
 			reader.onload = function(e){
+				var $div = $("<div>").addClass("imageWrap");
+				var $close = $("<button>").attr("type", "button").text("X").addClass("xBtn");
 				var $img = $("<img>").attr("src", e.target.result);
-				$("#imagesBox").append($img);
+				
+				$div.append($img).append($close)
+				$("#imagesBox").append($div);
 			}
 		}
 	})
 	
-	//지도
+	//동적으로 생성된 X버튼
+	$(document).on("click", ".xBtn", function(){
+		$(this).closest("div").remove(); // closest -- 가장 가까운 상위 요소 선택자
+		$("input[name='imgfiles']").val("");
+		
+	})
+	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++지도
 	// 마커를 담을 배열입니다
 	var markers = [];
 	
@@ -584,10 +613,10 @@
 	
 	    var keyword = document.getElementById('keyword').value;
 	
-	    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+	    /* if (!keyword.replace(/^\s+|\s+$/g, '')) {
 	        alert('키워드를 입력해주세요!');
 	        return false;
-	    }
+	    } */
 	
 	    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 	    ps.keywordSearch( keyword, placesSearchCB); 

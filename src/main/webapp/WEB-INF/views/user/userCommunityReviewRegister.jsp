@@ -167,7 +167,7 @@
 		<div class="contentArea">
 			<!-- 서브페이지 공통적인 타이틀 -->
 			<h2 class="subPageTitle cafeRTitle">
-				<span class="title">생생 카페 탐방기 > </span>
+				<span class="title">생생 카페 탐방기&nbsp;&nbsp;&nbsp;<i class="fas fa-greater-than" style="color:black;"></i>&nbsp;&nbsp;</span>
 				<span class="red">글쓰기</span>
 			</h2>
 			<div class="cafeRForm">
