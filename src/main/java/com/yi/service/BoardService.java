@@ -88,6 +88,15 @@ public class BoardService {
 		return zoneDao.zoneList();
 	}
 	
+	// 게시글 추천(좋아요) 더하기
+	public void updateVotePlusCnt(int boardNo) throws Exception {
+		dao.updateVotePlusCnt(boardNo);
+	}
+	// 게시글 추천(좋아요) 빼기
+	public void updateVoteMinusCnt(int boardNo) throws Exception {
+		dao.updateVoteMinusCnt(boardNo);
+	}
+	
 	/*** 탐방기 ***/
 	@Transactional
 	public void cafeReviewInsert(BoardVO vo, ImageVO imgVO) throws Exception {

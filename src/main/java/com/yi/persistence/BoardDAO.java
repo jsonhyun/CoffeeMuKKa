@@ -35,6 +35,10 @@ public interface BoardDAO {
 	public int totalUserBoardCount(int userNo) throws Exception;
 	// 조회수
 	public void updateViewCnt(int boardNo) throws Exception;
+	// 게시글 추천(좋아요) 더하기
+	public void updateVotePlusCnt(int boardNo) throws Exception;
+	// 게시글 추천(좋아요) 빼기
+	public void updateVoteMinusCnt(int boardNo) throws Exception;
 	
 	/*** 탐방기 ***/
 	// 탐방기 -- 등록

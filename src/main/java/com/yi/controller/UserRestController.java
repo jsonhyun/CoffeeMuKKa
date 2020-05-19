@@ -2,6 +2,7 @@ package com.yi.controller;
 
 import java.util.List;
 
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yi.domain.CafeVO;
+import com.yi.service.BoardService;
 import com.yi.service.CafeService;
 
 @RestController
@@ -20,6 +22,11 @@ public class UserRestController {
 	@Autowired
 	private CafeService cafeService;
 	
+	@Autowired
+	private BoardService boardService;
+	
+	
+	/*-------- cafe ------------------------------------------------------------------*/
 	// 카페 검색
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<List<CafeVO>> cafeList(String cafeName){
@@ -51,5 +58,21 @@ public class UserRestController {
 		return entity;
 	}	
 	
+	
+	/*-------- board ------------------------------------------------------------------*/
+	// 게시글 추천(좋아요)
+	@RequestMapping(value = "/vote", method = RequestMethod.GET)
+	public ResponseEntity<Integer> updateVoteCnt(){
+		ResponseEntity<Integer> entity = null;
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 	
 }

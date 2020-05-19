@@ -195,7 +195,16 @@
 	<update id="updateViewCnt">
 		update board set view_number = view_number+1 where board_no = #{boardNo}
 	</update>
-
+	
+	<!-- 게시글 추천(좋아요) 더하기 -->
+	<update id="updateVotePlusCnt">
+		update board set vote_number = vote_number + 1 where board_no = #{boardNo}
+	</update>
+	<!-- 게시글 추천(좋아요) 빼기 -->
+	<update id="updateVoteMinusCnt">
+		update board set vote_number = vote_number - 1 where board_no = #{boardNo}
+	</update>
+	
 
 	<!-- 경진 : 탐방기 -->
 	<!-- 탐방기 : 탐방기 select문 -->
