@@ -98,7 +98,10 @@ insert into image (image_name, board_no) values ('/2020/05/05/s_850c7f97-489d-48
 
 select * from image;
 delete from board;
-select * from board; 
+select * from board;
+update board
+			set zone_no = 1, theme_no = 1, writing_title = '수정합니다', writing_content = '안녕하새요', address = ''
+		where board_no = 217;
 truncate table board;
 select last_insert_id(); 
 

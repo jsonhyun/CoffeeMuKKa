@@ -381,6 +381,8 @@
 				<!-- 글내용 -->
 				<div id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></div>
 			</div>
+			<!-- 히든처리 -->
+			<input type="hidden" name="board.boardNo" value="${board.boardNo}">
 			
 			
 			<!-- 버튼 영역 -->

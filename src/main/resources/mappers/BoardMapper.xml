@@ -71,6 +71,8 @@
 	<insert id="recommendInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo"> <!-- LAST_INSERT_ID()가 인식되지 않음 -->
 		insert into board (board_no, board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (#{boardNo}, #{boardNo2.boardNo}, #{userNo.userNo}, #{zoneNo.zoneNo}, #{themeNo.themeNo}, #{writingTitle}, #{writingContent}, #{address})
 	</insert>
+	
+	<!--추천카페 이미지 업로드  -->
 	<insert id="recommendInsertImages">
 		insert into image (image_name,board_no) values (#{imageName},#{boardNo})
 	</insert>	
@@ -91,9 +93,9 @@
 		delete from image where image_name = #{imageName}
 	</delete>
 	<!-- 추천카페 수정 -->
-	<update id="recommendUpdate" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo">
+	<update id="recommendUpdate" parameterType="BoardVO">
 		update board
-			set board_no =#{boardNo}, board_no2 = #{boardNo2.boardNo}, zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}
+			set zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}
 		where board_no = #{boardNo}
 	</update>	
 		

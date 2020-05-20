@@ -368,6 +368,7 @@
 			<!-------------------------------- 실질적인 등록폼 -------------------------------->
 			<form action="modify" method="post" enctype="multipart/form-data">
 			<!-- hidden처리 -->
+			<input type="hidden" name="board.boardNo" value="${board.boardNo}">
 			<input type="hidden" name="boardNo2.boardNo" value="2">
 			<input type="hidden" name="userNo.userNo" value="${board.userNo.userNo}">
 			<input type="hidden" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
