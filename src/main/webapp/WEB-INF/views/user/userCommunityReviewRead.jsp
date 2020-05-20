@@ -147,11 +147,23 @@
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:last-child {
+	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(2) {
+		width: 480px;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(3) {
 		position: absolute;
 		font-size: 14px;
 		top: 0;
 		right: 25px;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyBtn {
+		margin-right: 130px;
+	}
+	
+	.d_cafeR_reply_wrap .replyPage {
+		text-align: center;
 	}
 	
 	/* 같은 카페 다른 리뷰 영역 */
@@ -307,6 +319,100 @@
 		margin-right: 10px;
 	}
 	
+	/* 페이징 */
+	.pagination {
+		display: inline-block;
+	  	padding-left: 0;
+	  	margin: 20px 0;
+	  	border-radius: 4px;
+	}
+	.pagination > li {
+  		display: inline;
+	}
+	.pagination > li > a,
+	.pagination > li > span {
+		position: relative;
+		float: left;
+		padding: 6px 12px;
+		margin-left: -1px;
+		line-height: 1.42857143;
+		color: #303A50;
+		text-decoration: none;
+		background-color: #fff;
+		border: 1px solid #ddd;
+	}
+	.pagination > li:first-child > a,
+	.pagination > li:first-child > span {
+		margin-left: 0;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+	}
+	.pagination > li:last-child > a,
+	.pagination > li:last-child > span {
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+	.pagination > li > a:hover,
+	.pagination > li > span:hover,
+	.pagination > li > a:focus,
+	.pagination > li > span:focus {
+		color: #23527c;
+		background-color: #eee;
+		border-color: #ddd;
+	}
+	.pagination > .active > a,
+	.pagination > .active > span,
+	.pagination > .active > a:hover,
+	.pagination > .active > span:hover,
+	.pagination > .active > a:focus,
+	.pagination > .active > span:focus {
+		z-index: 2;
+		color: #fff;
+		cursor: default;
+		background-color: #303A50;
+		border-color: #303A50;
+	}
+	.pagination > .disabled > span,
+	.pagination > .disabled > span:hover,
+	.pagination > .disabled > span:focus,
+	.pagination > .disabled > a,
+	.pagination > .disabled > a:hover,
+	.pagination > .disabled > a:focus {
+		color: #777;
+		cursor: not-allowed;
+		background-color: #fff;
+		border-color: #ddd;
+	}
+	.pagination-lg > li > a,
+	.pagination-lg > li > span {
+		padding: 10px 16px;
+		font-size: 18px;
+	}
+	.pagination-lg > li:first-child > a,
+	.pagination-lg > li:first-child > span {
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+	.pagination-lg > li:last-child > a,
+	.pagination-lg > li:last-child > span {
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+	.pagination-sm > li > a,
+	.pagination-sm > li > span {
+		padding: 5px 10px;
+		font-size: 12px;
+	}
+	.pagination-sm > li:first-child > a,
+	.pagination-sm > li:first-child > span {
+       border-top-left-radius: 3px;
+	   border-bottom-left-radius: 3px;
+	}
+	.pagination-sm > li:last-child > a,
+	.pagination-sm > li:last-child > span {
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+	
 </style>	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -413,7 +519,7 @@
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
-					<p class="grayB f_left">댓글 ${board.replyCnt}</p>
+					<p class="grayB f_left">댓글 <span id="replyNum">${board.replyCnt}</span></p>
 				</div>
 				<div class="d_cafeR_btns f_right">
 					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left">수정</button>
@@ -434,14 +540,21 @@
 				
 				<!-- 댓글 샘플 -->
 				<div class="d_cafeR_replyList">
-					<ul>
-						<li class="replyStyle clearfix">
+					<ul class="replyListUl">
+						<%-- <li class="replyStyle clearfix boardReply">
 							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
 							<p class="f_left">닉네임1</p>
 							<p class="f_left">댓글 내용</p>
 							<p class="regitDate orange">2020/05/02</p>
-						</li>
+							<div class="replyBtn">
+								<a class="replyModify blueBtn" href="#" data-cmtNo="" data-cmtCnt="">수정</a>
+								<a class="replyRemove redBtn" href="#" data-cmtNo="">삭제</a>
+							</div>
+						</li> --%>
 					</ul>
+					<div class="replyPage">
+						<ul id="pagination" class="pagination"></ul>
+					</div>
 				</div>
 			</div>
 			
@@ -523,6 +636,69 @@
 </div>
 <!-- container end -->
 
+<!-- 댓글 -->
+<script id="template" type="text/x-handlebars-template">
+	{{#each list}}
+		<li class="replyStyle clearfix boardReply" data-cno="{{commentNo}}">
+			<img class="f_left" src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" alt="등급아이콘" />
+			<p class="f_left">{{userNo.nick}}</p>
+			<p class="f_left">{{commentContent}}</p>
+			<p class="regitDate orange">{{dateHelper updateDate}}</p>
+			<div class="replyBtn"></div>
+		</li>
+	{{/each}}
+</script>
+<script>
+	var no = 1;
+	
+	Handlebars.registerHelper ("dateHelper", function(value){
+		var d = new Date(value);
+		var year = d.getFullYear();
+		var month = d.getMonth() + 1;
+		var day = d.getDate();
+		return year + "/" + month + "/" + day;
+	})
+	
+	function getPageList( page ){
+		var bno = ${board.boardNo };
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/reply/"+bno+"/"+page,
+			type:"get",
+			datatype:"json",
+			success:function(res){
+				console.log(res);
+				$(".boardReply").remove();
+				var source = $("#template").html();
+				var func = Handlebars.compile(source);
+				$(".replyListUl").append(func(res));
+				
+				var startPage = res.pageMaker.startPage;
+				var endPage = res.pageMaker.endPage;
+				$("#pagination").empty();
+				for(var i = startPage; i <= endPage; i++){
+					var $li = $("<li>");
+					if(i == no) {
+						$li.addClass("active");
+					}
+					var $a = $("<a>").html(i);
+					$li.append($a);
+					$("#pagination").append($li);
+				}
+				
+				var totalCnt = res.pageMaker.totalCount;
+				$("#rpListBtn").text("["+totalCnt+"]");
+			}
+		})
+	}
+	
+	getPageList(no);
+	
+	$(document).on("click", "#pagination a", function(){
+		no = $(this).text();
+		getPageList(no);
+	})
+</script>
+
 <script>
 	// 수정 btn
 	$(".d_cafeR_modifyBtn").click(function(){
@@ -600,7 +776,6 @@
 			})
 		}		
 	}) 
-	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

@@ -79,6 +79,27 @@ delimiter ;
 CALL loopVoteCnt();
 
 -- 카페 탐방기 댓글
+drop procedure if exists loopReplyCnt;
+delimiter $$
+$$
+create procedure loopReplyCnt()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 10 DO
+	
+	insert into reply(board_no, user_no, comment_content) values(211, floor(1 + (rand() * 78)), '댓글 테스트');
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopReplyCnt();
+
+-- 생성된 댓글 갯수 게시글 댓글갯수컬럼에 넣기
+update board 
+	set reply_cnt = (select count(*) from reply where board_no = 211) 
+	where board_no = 211;
 
 -- 더미 테이터 end ----------------------------------------------------------------------- 
 
@@ -197,12 +218,25 @@ select * from vote where board_no = 211;
 /*
 insert into reply(board_no, user_no, comment_content) values(211, 3, '댓글 테스트');
 update reply 
-	set comment_content = '댓글 수정 테스트'
+	set comment_content = '댓글 수정 테스트', update_date = now()
 	where comment_no = 4;
 delete from reply where comment_no = 4;
 */
 
 select * from reply;
-select r.comment_no , u.user_grade, g.user_grade_image, u.nick, r.comment_content, r.update_date from reply r left join users u on r.user_no = u.user_no left join grade g on u.user_grade = g.user_grade 
-	where board_no = 211;
+
+select r.comment_no , r.board_no , u.user_grade, g.user_grade_image, 
+	   u.user_no, u.user_id, u.nick, r.comment_content, r.update_date 
+	from reply r left join users u on r.user_no = u.user_no 
+				left join grade g on u.user_grade = g.user_grade 
+	where board_no = 211 
+	order by comment_no desc;
+
+select r.comment_no , r.board_no , u.user_grade, g.user_grade_image, 
+		u.user_no, u.user_id, u.nick, r.comment_content, r.update_date 
+	from reply r left join users u on r.user_no = u.user_no 
+				left join grade g on u.user_grade = g.user_grade 
+	where comment_no = 16;
+
+select count(board_no) from reply where board_no = 211;
 

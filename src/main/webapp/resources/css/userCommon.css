@@ -186,6 +186,14 @@ th {
 	cursor: pointer;
 }
 
+.redBtn {
+	background-color: #d90000;
+	border: none;
+	color: #fff;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
 .blueBtn {
 	background-color: #0170c2;
 	border: none;
