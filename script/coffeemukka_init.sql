@@ -290,13 +290,12 @@ ALTER TABLE CoffeeMuKKa.FAQCate
 
 -- 댓글 테이블
 CREATE TABLE CoffeeMuKKa.Reply (
-	comment_no        INT         NOT NULL COMMENT '댓글번호', -- 댓글번호
-	board_no          INT         NOT NULL COMMENT '게시글번호', -- 게시글번호
-	user_no           INT         NOT NULL COMMENT '회원번호', -- 회원번호
-	comment_content   TEXT        NOT NULL COMMENT '댓글내용', -- 댓글내용
-	writer            VARCHAR(50) NOT NULL COMMENT '작성자', -- 작성자
-	registration_date TIMESTAMP   NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-	update_date       TIMESTAMP   NOT NULL DEFAULT now() COMMENT '수정일' -- 수정일
+	comment_no        INT       NOT NULL COMMENT '댓글번호', -- 댓글번호
+	board_no          INT       NOT NULL COMMENT '게시글번호', -- 게시글번호
+	user_no           INT       NOT NULL COMMENT '회원번호', -- 회원번호
+	comment_content   TEXT      NOT NULL COMMENT '댓글내용', -- 댓글내용
+	registration_date TIMESTAMP NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
+	update_date       TIMESTAMP NOT NULL DEFAULT now() COMMENT '수정일' -- 수정일
 )
 COMMENT '댓글 테이블';
 
