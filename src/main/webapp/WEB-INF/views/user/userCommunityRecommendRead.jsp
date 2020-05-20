@@ -96,7 +96,7 @@
 		letter-spacing: 2px;
 	}
 	.d_cafeR_context_wrap #map{ 
-		width: 102%;
+		width: 100%;
 		height: 400px;
 	}
 	

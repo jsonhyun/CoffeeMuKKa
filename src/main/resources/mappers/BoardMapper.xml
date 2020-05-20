@@ -85,6 +85,17 @@
 		left join image i on b.board_no = i.board_no
 		where b.board_no2 = 2 and b.board_no = #{boardNo}
 	</select>
+	
+	<!-- 추천카페 업로드한 이미지 (수정)삭제 -->
+	<delete id="removeRecommendImg">
+		delete from image where image_name = #{imageName}
+	</delete>
+	<!-- 추천카페 수정 -->
+	<update id="recommendUpdate" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo">
+		update board
+			set board_no =#{boardNo}, board_no2 = #{boardNo2.boardNo}, zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}
+		where board_no = #{boardNo}
+	</update>	
 		
 	
 <!-- **********************************************************************      공통 RESULTMAP     ***************************************************************************** -->

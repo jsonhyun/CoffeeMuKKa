@@ -54,7 +54,17 @@ public class BoardDAOImpl implements BoardDAO{
 	public BoardVO recommendReadByNo(int boardNo) throws Exception {
 		return sqlSession.selectOne(namespace+"recommendReadByNo", boardNo);
 	}
-
+	
+	//추천카페 -- 사진삭제 (수정)
+	@Override
+	public void removeRecommendImg(String imageName) throws Exception{
+		sqlSession.delete(namespace+"removeRecommendImg",imageName);		
+	}
+	//추천카페 -- 수정
+	@Override
+	public void recommendUpdate(BoardVO vo) throws Exception{
+		sqlSession.update(namespace + "recommendUpdate", vo);
+	}
 	
 	/*** 공통 ***/
 	//오늘 등록된 글 갯수(**커뮤니티 공통**)
@@ -151,5 +161,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewRemove(BoardVO vo) throws Exception {
 		sqlSession.update(namespace + "cafeReviewRemove", vo);
 	}
+
+
 	
 }

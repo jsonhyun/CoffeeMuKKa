@@ -140,7 +140,9 @@
 			position: relative;
 			float: left;
 	}
-	button.xBtn{
+	input.chkBox{
+		width:20px;
+		height:20px;
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -364,7 +366,7 @@
 			</div>
 			
 			<!-------------------------------- 실질적인 등록폼 -------------------------------->
-			<form action="register" method="post" enctype="multipart/form-data">
+			<form action="modify" method="post" enctype="multipart/form-data">
 			<!-- hidden처리 -->
 			<input type="hidden" name="boardNo2.boardNo" value="2">
 			<input type="hidden" name="userNo.userNo" value="${board.userNo.userNo}">
@@ -376,11 +378,15 @@
 			<div class="RC_Rg_groub">	
 				<textarea rows="15" cols="100" name="writingContent" id="text" placeholder=" &#13;&#10; &#13;&#10; &#13;&#10; &#13;&#10;    ☞    여러분의 소중한 추천 카페 이야기를 들려주세요.&#13;&#10;">${board.writingContent}</textarea>
 			</div> 
-			<div class="RC_Rg_groub">				
-					<c:forEach var="file" items="${board.files}">
-						<input type="hidden" class="readImgName" value="${file.imageName}">
-					</c:forEach>
-				<div id="b_imageBox"><!-- 첨부했던 이미지  --></div>
+			<div class="RC_Rg_groub">		
+						<div id="b_imageBox">
+							<c:forEach var="file" items="${board.files}">
+								<div class="imageWrap">
+									<input type="checkbox" class="chkBox" name="delfiles" value="${file.imageName}">
+									<img src="${pageContext.request.contextPath }/user/displayFile?filename=${file.imageName}">
+								</div>
+							</c:forEach>
+						</div>				
 			</div>
 			<!-- 카페 이미지 첨부 -->
 			<div class="RC_Rg_groub">	
@@ -895,30 +901,17 @@
 		$("div.map_wrap").slideToggle(1200);
 	})
 	
-	//첨부했던사진출력	
-	var filesCnt = $(".readImgName").length;
-	var arr = new Array(filesCnt);
-	for(var i = 0; i<filesCnt;i++){
-		arr[i] = $(".readImgName").eq(i).val();
-		//alert(arr[i]);
-		var start = arr[i].substring(0,12);
-		var end = arr[i].substring(14);
-		
-		//console.log(start+end);
-		fileName = start + end;
-		//alert(fileName);
-		var $div = $("<div>").addClass("imageWrap");
-		var $close = $("<button>").attr("type", "button").append("<i class='fas fa-times'></i>").addClass("xBtn"); //append -- 동적으로 태그 추가
-		$div.append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>").append($close);	
-		$("div#b_imageBox").append($div);			 	
-	}
+
+	$("input.chkBox:checkbox").change(function() {
+		if($(this).is(":checked")){
+			$(this).parent().css("opacity","0.3");
+			/* var filename = $(this).attr("value");
+			alert(filename); */
+		}else{
+			$(this).parent().css("opacity","1");
+		}
+	})
 	
-	 	//동적으로 생성된 X버튼
-	$(document).on("click", ".xBtn", function(){
-		$(this).closest("div").remove(); // closest -- 가장 가까운 상위 요소 선택자
-		//$("input[name='imgfiles']").val("");
-		
-	})	
 </script>
 
 

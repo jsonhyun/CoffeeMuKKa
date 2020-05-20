@@ -65,6 +65,23 @@ public class BoardService {
 		return dao.recommendReadByNo(boardNo);
 	}
 	
+	//추천카페 사진삭제
+	public void removeRecommendImg(String delfiles) throws Exception {
+		dao.removeRecommendImg(delfiles);	
+	}
+	
+	//추천카페 수정	
+	@Transactional
+	public void recommendUpdate(BoardVO vo) throws Exception {
+		dao.recommendUpdate(vo);
+		int boardNo = vo.getBoardNo();
+		/*
+		 * System.out.println("service=============================="+ boardNo);
+		 * for(String file : vo.getStringFiles()) {
+		 * dao.recommendInsertImages(file,boardNo); }
+		 */			
+	}
+	
 	/*** 공통 ***/
 	// 오늘 등록된 글 갯수(**커뮤니티 공통**)
 	public int todayBoardCount(int cBoardNo) throws Exception{
@@ -162,4 +179,6 @@ public class BoardService {
 			userDao.updateUsersGrade(3, userNo);
 		}
 	}
+
+
 }

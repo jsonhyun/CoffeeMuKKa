@@ -850,7 +850,7 @@
 
 
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
-</div>
+</div>if
 <!-- container end -->
 
 <%@ include file="../userInclude/footer.jsp" %>
