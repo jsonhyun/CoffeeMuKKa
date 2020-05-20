@@ -515,7 +515,7 @@
 	
 	//수정버튼
 	$("#RC_modify").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/modify?boardNo=${board.boardNo}";
 	})
 	//삭제버튼
 	$("#RC_delete").click(function() {

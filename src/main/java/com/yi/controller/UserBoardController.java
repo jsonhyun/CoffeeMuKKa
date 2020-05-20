@@ -366,7 +366,10 @@ public class UserBoardController {
 	}
 	//modify -- 수정
 	@RequestMapping(value = "/community/cafeRecommend/modify", method = RequestMethod.GET)
-	public String communityRecommendModify() {
+	public String communityRecommendModify(int boardNo, Model model) throws Exception {
+		BoardVO vo = service.recommendReadByNo(boardNo);
+		System.out.println("TEST============================================="+vo);
+		model.addAttribute("board", vo);
 		return "/user/userCommunityRecommendModify";
 	}
 }
