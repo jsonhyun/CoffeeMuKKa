@@ -132,23 +132,10 @@
 		background-color: #D5D5D5;
 		margin-top: 20px;
 	}
-	div.imageWrap{
-		width: 165px;
-		height: 165px;
-		border: 1px solid red;
-		margin: 27px;
-		position: relative;
-		float: left;
-	}
-	button.xBtn{
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
 	div#imagesBox img{
 		width: 163px;
 		height: 163px;
-		/* margin: 27px; */
+		margin: 27px;
 		border: 1px solid #BDBDBD;
 	}	
 	button{
@@ -322,12 +309,12 @@
 			<!-- 추천카페 : 이름, 주소 -->					
 			<div class="RC_Rg_groub">		
 				<label class="RC_label">카&nbsp;&nbsp;&nbsp;페&nbsp;&nbsp;상 호 명</label>
-				<input type="text" id="title" readonly>
+				<input type="text" id="title" readonly placeholder="   ☞    추천 카페 찾기를 통해  상호명을 입력 하세요.">
 			</div>
 			<!-- 등록카페 확인 -->	
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카&nbsp;&nbsp;&nbsp;페&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 소</label>
-				<input type="text" id="point" readonly>
+				<input type="text" id="point" readonly placeholder="    ☞    추천 카페 찾기를 통해  주소를 자동입력 입력 하세요.">
 				<button type="button" class="recommdenPoint orangeBtn">추천 카페 찾기</button>		
 			</div>
 			
@@ -354,13 +341,13 @@
 			<!-- hidden처리 -->
 			<input type="hidden" name="boardNo2.boardNo" value="2">
 			<input type="hidden" name="userNo.userNo" value="1"><!-- 임시 -->	
-			<input type="text" name="zoneNo.zoneNo" id="hiddenZone">
-			<input type="text" name="themeNo.themeNo" id="hiddenTheme">
-			<input type="text" name="writingTitle" id="hiddenTitle">
-			<input type="text" name="address" id="hiddenAddress">
+			<input type="hidden" name="zoneNo.zoneNo" id="hiddenZone">
+			<input type="hidden" name="themeNo.themeNo" id="hiddenTheme">
+			<input type="hidden" name="writingTitle" id="hiddenTitle">
+			<input type="hidden" name="address" id="hiddenAddress">
 			<!-- 카페후기 글 -->		
 			<div class="RC_Rg_groub">	
-				<textarea rows="15" cols="100" name="writingContent" id="text" placeholder=" 여러분의 소중한 추천 카페 이야기를 들려주세요.&#13;&#10;"></textarea>
+				<textarea rows="15" cols="100" name="writingContent" id="text" placeholder=" &#13;&#10; &#13;&#10; &#13;&#10; &#13;&#10;    ☞    여러분의 소중한 추천 카페 이야기를 들려주세요.&#13;&#10;"></textarea>
 			</div>
 			<!-- 카페 이미지 첨부 -->
 			<div class="RC_Rg_groub">	
@@ -613,22 +600,18 @@
 			var reader = new FileReader(); //javascript 객체
 			reader.readAsDataURL(files[i]);
 			reader.onload = function(e){
-				var $div = $("<div>").addClass("imageWrap");
-				var $close = $("<button>").attr("type", "button").text("X").addClass("xBtn");
 				var $img = $("<img>").attr("src", e.target.result);
-				
-				$div.append($img).append($close)
-				$("#imagesBox").append($div);
+				$("#imagesBox").append($img);
 			}
 		}
 	})
 	
-	//동적으로 생성된 X버튼
+/* 	//동적으로 생성된 X버튼
 	$(document).on("click", ".xBtn", function(){
 		$(this).closest("div").remove(); // closest -- 가장 가까운 상위 요소 선택자
 		$("input[name='imgfiles']").val("");
 		
-	})
+	}) */
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++지도
 	// 마커를 담을 배열입니다
@@ -680,6 +663,15 @@
 	    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 	
 	        alert('검색 결과가 존재하지 않습니다.');
+	       var searchCafe = $("input#keyword").val();
+	       alert(searchCafe);
+	       	$("input#title").val(searchCafe);
+	        $("input#point").addClass("red").val(" 정확한 주소를 확인할 수 없습니다.");
+	        $("div.map_wrap").slideUp(1200);
+	        
+	        //데이터베이스 값 넣기
+	        $("input#hiddenTitle").val(searchCafe);
+			$("input#hiddenAddress").val("");
 	        return;
 	
 	    } else if (status === kakao.maps.services.Status.ERROR) {
@@ -849,6 +841,7 @@
 	}
 	 
 	$("div.map_wrap").hide();
+	
 	/***************** 추천카페 찾기 버튼 ******************/
 	$("button.recommdenPoint").click(function() {
 		$("div.map_wrap").slideToggle(1200);
