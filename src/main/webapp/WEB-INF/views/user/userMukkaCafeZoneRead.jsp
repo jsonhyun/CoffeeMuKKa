@@ -105,6 +105,7 @@
 	padding: 5px;
 	border: 1px solid white;
 	text-align: center;
+	max-height: 35px;
 	}
 	
 	th {
@@ -307,26 +308,37 @@
 			</div>
 			<div class="closeInfo" id="cafeMenu">
 				<div>
-					<c:forEach var="menuList" items="${menuList }">
-						<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>${menuList.menukinds.sortName }</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
+					<c:forEach var="menuName" items="${menuName }">
+						<table style="float: left;margin: 30px;width: 250px; ">
+							<tr>
+								<th>${menuName.sortName }</th>
+								<th>HOT</th>
+								<th>ICED</th>
+							</tr>
+							<c:set var="row_sum" value="0"/>
+							<c:forEach var="menuList" items="${menuList }">
+								<c:if test="${menuName.sortNo == menuList.menukinds.sortNo }">
+									<tr>
+										<td>${menuList.menuName }</td>
+										<c:if test="${menuList.hI == 0 }">
+											<td>${menuList.price }</td>
+											<td>${menuList.icedMenuPrice }</td>
+										</c:if>
+										<c:if test="${menuList.hI == 1 }">
+											<td colspan="2">${menuList.price }</td>
+										</c:if>
+										<c:set var="row_sum" value="${row_sum + 1 }"/>
+									</tr>
+								</c:if>
+							</c:forEach>
+							<c:if test="${row_sum <= 5 }">
+								<c:forEach begin="0" end="3">
+									<tr>
+										<td style="color: white;">.</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</table>
 					</c:forEach>
 					<div id="menuImg"></div>
 				</div>
@@ -432,14 +444,13 @@
 	
 <script>
 	$(function() {
-		<!-- 카페 세부정보 별점 -->
+	<!-- 카페 세부정보 별점 -->
 		$('.starPoint').barrating({
 			theme: 'fontawesome-stars',
 			initialRating: ${starpointSelect},
 			readonly: true
 		})
-		
-		<!-- 카페 세부정보 이미지 변경 -->
+	<!-- 카페 세부정보 이미지 변경 -->
 		$('.bxslider').bxSlider({
 			auto : true,
 			speed : 300,
