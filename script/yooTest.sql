@@ -194,7 +194,15 @@ select * from vote where board_no = 211;
 	where board_no = 211;*/
 
 -- 댓글
-insert into reply(board_no, user_no, comment_content) values(210, 3, '댓글 테스트');
+/*
+insert into reply(board_no, user_no, comment_content) values(211, 3, '댓글 테스트');
+update reply 
+	set comment_content = '댓글 수정 테스트'
+	where comment_no = 4;
+delete from reply where comment_no = 4;
+*/
+
 select * from reply;
-select * from reply r left join users u on r.user_no = u.user_no;
+select r.comment_no , u.user_grade, g.user_grade_image, u.nick, r.comment_content, r.update_date from reply r left join users u on r.user_no = u.user_no left join grade g on u.user_grade = g.user_grade 
+	where board_no = 211;
 
