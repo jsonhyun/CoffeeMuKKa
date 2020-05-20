@@ -62,10 +62,10 @@ public class UserRestController {
 	/*-------- board ------------------------------------------------------------------*/
 	// 게시글 추천(좋아요) 추가
 	@RequestMapping(value = "/votePlus", method = RequestMethod.GET)
-	public ResponseEntity<Integer> updateVotePlusCnt(int boardNo){
+	public ResponseEntity<Integer> updateVotePlusCnt(int boardNo, int userNo){
 		ResponseEntity<Integer> entity = null;
 		try {
-			boardService.updateVotePlusCnt(boardNo);
+			boardService.insertVotePlusCnt(boardNo, userNo);
 			int boardVoteCnt = boardService.boardVoteCnt(boardNo);
 			entity = new ResponseEntity<Integer>(boardVoteCnt, HttpStatus.OK);
 		} catch (Exception e) {
@@ -77,10 +77,10 @@ public class UserRestController {
 	
 	//게시글 추천(좋아요) 취소
 	@RequestMapping(value = "/voteMinus", method = RequestMethod.GET)
-	public ResponseEntity<Integer> updateVoteMinusCnt(int boardNo){
+	public ResponseEntity<Integer> updateVoteMinusCnt(int boardNo, int userNo){
 		ResponseEntity<Integer> entity = null;
 		try {
-			boardService.updateVoteMinusCnt(boardNo);
+			boardService.deleteVoteMinusCnt(boardNo, userNo);
 			int boardVoteCnt = boardService.boardVoteCnt(boardNo);
 			entity = new ResponseEntity<Integer>(boardVoteCnt, HttpStatus.OK);
 		} catch (Exception e) {

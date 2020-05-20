@@ -555,9 +555,12 @@
 		}
 	})
 	
-	// 좋아요(추천) - ajax 추가 해야함 
+	// 좋아요(추천) - login 기능 구현시 수정해야함
 	$("#voteIcon").click(function(e){
 		e.preventDefault();
+		// login 기능 구현 후 수정해야함
+		var userNo = 3;
+		
 		var boardNo = ${board.boardNo};
 		
 		if($(this).hasClass("off")){
@@ -570,7 +573,7 @@
 			$.ajax({
 				url:"${pageContext.request.contextPath}/rest/votePlus",
 				type:"get",
-				data:{"boardNo" : boardNo},
+				data:{"boardNo" : boardNo, "userNo" : userNo},
 				datatype:"json",
 				success:function(res){
 					console.log(res);
@@ -588,7 +591,7 @@
 			$.ajax({
 				url:"${pageContext.request.contextPath}/rest/voteMinus",
 				type:"get",
-				data:{"boardNo" : boardNo},
+				data:{"boardNo" : boardNo, "userNo" : userNo},
 				datatype:"json",
 				success:function(res){
 					console.log(res);

@@ -198,12 +198,18 @@
 	</update>
 	
 	<!-- 공통 : 게시글 추천(좋아요) 더하기 -->
-	<update id="updateVotePlusCnt">
-		update board set vote_number = vote_number + 1 where board_no = #{boardNo}
-	</update>
+	<insert id="insertVotePlusCnt" parameterType="map">
+		insert into vote(board_no, user_no) values(#{boardNo}, #{userNo})
+	</insert>
 	<!-- 공통 : 게시글 추천(좋아요) 빼기 -->
-	<update id="updateVoteMinusCnt">
-		update board set vote_number = vote_number - 1 where board_no = #{boardNo}
+	<delete id="deleteVoteMinusCnt" parameterType="map">
+		delete from vote where board_no = #{boardNo} and user_no = #{userNo}
+	</delete>
+	<!-- 공통 : 게시글 추천 갯수 게시판 테이블에 추가 -->
+	<update id="updateBoardVoteCnt">
+		update board 
+			set vote_number = (select count(*) from vote where board_no = #{boardNo})
+			where board_no = #{boardNo}
 	</update>
 	<!-- 공통 : 게시글 추천(좋아요) 갯수 -->
 	<select id="boardVoteCnt" resultType="int">

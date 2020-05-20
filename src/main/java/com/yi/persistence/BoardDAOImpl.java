@@ -90,13 +90,24 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	// 게시글 추천(좋아요) 더하기
 	@Override
-	public void updateVotePlusCnt(int boardNo) throws Exception {
-		sqlSession.update(namespace + "updateVotePlusCnt", boardNo);
+	public void insertVotePlusCnt(int boardNo, int userNo) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("boardNo", boardNo);
+		map.put("userNo", userNo);
+		sqlSession.insert(namespace + "insertVotePlusCnt", map);
 	}
 	// 게시글 추천(좋아요) 빼기
 	@Override
-	public void updateVoteMinusCnt(int boardNo) throws Exception {
-		sqlSession.update(namespace + "updateVoteMinusCnt", boardNo);
+	public void deleteVoteMinusCnt(int boardNo, int userNo) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("boardNo", boardNo);
+		map.put("userNo", userNo);
+		sqlSession.delete(namespace + "deleteVoteMinusCnt", map);
+	}
+	// 게시글 추천 갯수 게시판 테이블에 추가
+	@Override
+	public void updateBoardVoteCnt(int boardNo) throws Exception {
+		sqlSession.update(namespace + "updateBoardVoteCnt", boardNo);
 	}
 	// 게시글 추천(좋아요) 갯수
 	@Override
@@ -141,6 +152,4 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.update(namespace + "cafeReviewRemove", vo);
 	}
 	
-	
-
 }
