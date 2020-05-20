@@ -124,6 +124,33 @@
 	input#file-upload-button{
 		background-color: yellow;
 	}
+	div#b_imageBox{
+		width: 100%;
+		height: 225px;
+		overflow-x: auto;	
+		border: 1px solid #BDBDBD;
+		background-color: #FFFFF6;
+		margin-top: 20px;	
+	}
+	div.imageWrap{
+			width: 165px;
+			height: 165px;
+			border: 1px solid red;
+			margin: 27px;
+			position: relative;
+			float: left;
+	}
+	button.xBtn{
+		position: absolute;
+		right: 0;
+		top: 0;
+	}		
+	div#b_imageBox img{
+		width: 163px;
+		height: 163px;
+		/* margin: 27px; */
+		border: 1px solid #BDBDBD;	
+	}
 	div#imagesBox{ /* 이미지박스============================================ */
 		width: 100%;
 		height: 225px;
@@ -339,22 +366,28 @@
 			<!-------------------------------- 실질적인 등록폼 -------------------------------->
 			<form action="register" method="post" enctype="multipart/form-data">
 			<!-- hidden처리 -->
-			<input type="text" name="boardNo2.boardNo" value="2">
-			<input type="text" name="userNo.userNo" value="${board.userNo.userNo}"><!-- 임시 -->	
-			<input type="text" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
-			<input type="text" name="themeNo.themeNo" id="hiddenTheme" value="${board.themeNo.themeNo}">
-			<input type="text" name="writingTitle" id="hiddenTitle" value="${board.writingTitle}">
-			<input type="text" name="address" id="hiddenAddress" value="${board.address}">
+			<input type="hidden" name="boardNo2.boardNo" value="2">
+			<input type="hidden" name="userNo.userNo" value="${board.userNo.userNo}">
+			<input type="hidden" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
+			<input type="hidden" name="themeNo.themeNo" id="hiddenTheme" value="${board.themeNo.themeNo}">
+			<input type="hidden" name="writingTitle" id="hiddenTitle" value="${board.writingTitle}">
+			<input type="hidden" name="address" id="hiddenAddress" value="${board.address}">
 			<!-- 카페후기 글 -->		
 			<div class="RC_Rg_groub">	
 				<textarea rows="15" cols="100" name="writingContent" id="text" placeholder=" &#13;&#10; &#13;&#10; &#13;&#10; &#13;&#10;    ☞    여러분의 소중한 추천 카페 이야기를 들려주세요.&#13;&#10;">${board.writingContent}</textarea>
+			</div> 
+			<div class="RC_Rg_groub">				
+					<c:forEach var="file" items="${board.files}">
+						<input type="hidden" class="readImgName" value="${file.imageName}">
+					</c:forEach>
+				<div id="b_imageBox"><!-- 첨부했던 이미지  --></div>
 			</div>
 			<!-- 카페 이미지 첨부 -->
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">이 미 지&nbsp;&nbsp;첨 부</label>
 				<input type="file" name="imgfiles" multiple="multiple" id="file" style="cursor: pointer">
 				<!-- 미리보기박스 -->
-				<div id="imagesBox"><!-- 미리보기 이미지 추가 --></div>
+				<div id="imagesBox"></div>
 			</div>
 			<!-- 등록버튼들 -->
 			<div class="RC_Rg_groub">	
@@ -427,6 +460,21 @@
 <!-- 자바스크립트 & 제이쿼리 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
 <script>
+	//카테고리(위치, 테마) 자동지정
+	var zoneNo = $("input#hiddenZone").val();
+	var themeNo = $("input#hiddenTheme").val();
+	
+	$("#zoneCate").val(zoneNo).prop("selected", true);
+	$("#themeCate").val(themeNo).prop("selected", true);
+	
+	//상호명 주소 자동지정
+	var b_title = $("input#hiddenTitle").val();
+	var b_address = $("input#hiddenAddress").val();
+	
+	$("input#title").val(b_title);
+	$("input#point").val(b_address);
+	
+	
 	//목록 버튼
 	$("#RC_list").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
@@ -846,6 +894,31 @@
 	$("button.recommdenPoint").click(function() {
 		$("div.map_wrap").slideToggle(1200);
 	})
+	
+	//첨부했던사진출력	
+	var filesCnt = $(".readImgName").length;
+	var arr = new Array(filesCnt);
+	for(var i = 0; i<filesCnt;i++){
+		arr[i] = $(".readImgName").eq(i).val();
+		//alert(arr[i]);
+		var start = arr[i].substring(0,12);
+		var end = arr[i].substring(14);
+		
+		//console.log(start+end);
+		fileName = start + end;
+		//alert(fileName);
+		var $div = $("<div>").addClass("imageWrap");
+		var $close = $("<button>").attr("type", "button").append("<i class='fas fa-times'></i>").addClass("xBtn"); //append -- 동적으로 태그 추가
+		$div.append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>").append($close);	
+		$("div#b_imageBox").append($div);			 	
+	}
+	
+	 	//동적으로 생성된 X버튼
+	$(document).on("click", ".xBtn", function(){
+		$(this).closest("div").remove(); // closest -- 가장 가까운 상위 요소 선택자
+		//$("input[name='imgfiles']").val("");
+		
+	})	
 </script>
 
 

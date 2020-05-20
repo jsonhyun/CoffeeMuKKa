@@ -253,7 +253,7 @@
 			var reader = new FileReader(); //javascript 객체
 			reader.readAsDataURL(file[i]);
 			reader.onload = function(e){
-				var $close = $("<button>").attr("type", "button").text("X").addClass("imgCloseBtn");
+				var $close = $("<button>").attr("type", "button").append("<i class='fas fa-times'></i>").addClass("imgCloseBtn"); // 폰트어썸 X버튼 적용 ㅎㅎㅎ
 				$(".fileImgBox").append($close);
 				$(".fileImgBox > img").attr("src", e.target.result);//e.target.result == reader.result -> 똑같은 값이 가져옴
 			} 
