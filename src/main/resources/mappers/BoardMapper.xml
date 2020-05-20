@@ -226,6 +226,11 @@
 	<select id="boardVoteCnt" resultType="int">
 		select vote_number from board where board_no = #{boardNo}
 	</select>
+	
+	<!-- 공통 : 게시글 댓글 갯수 추가 -->
+	<update id="updateBoardReplyCnt" parameterType="map">
+		update board set reply_cnt = reply_cnt + #{amount} where board_no = #{boardNo};
+	</update>
 
 	<!-- 경진 : 탐방기 -->
 	<!-- 탐방기 : 탐방기 select문 -->

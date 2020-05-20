@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.ReplyMapper">
+	<!-- 댓글 resultMap Join테이블 [board + users] -->
+	<resultMap type="ReplyVO" id="replyResult">
+		<id property="commentNo" column="comment_no"/>
+		<result property="commentContent" column="comment_content"/>
+		<result property="registrationDate" column="registration_date"/>
+		<result property="updateDate" column="update_date"/>
+		
+		<!-- 게시글 -->
+		<result property="boardNo.boardNo" column="board_no"/>
+		<!-- 유저 -->
+		<result property="userNo.userNo" column="user_no"/>
+		<result property="userNo.userId" column="user_id"/>
+		<result property="userNo.nick" column="nick"/>
+		<result property="userNo.userGrade.userGrede" column="user_grade"/>
+		<result property="userNo.userGrade.userGradeImage" column="user_grade_image"/>
+	</resultMap>
+	
+	<sql id="select">
+		select r.comment_no , r.board_no , u.user_grade, g.user_grade_image, 
+			   u.user_no, u.user_id, u.nick, r.comment_content, r.update_date 
+			from reply r left join users u on r.user_no = u.user_no 
+						 left join grade g on u.user_grade = g.user_grade 
+	</sql>
+	
+	<!-- 게시글 댓글 list -->
+	<select id="listByBoardNo" parameterType="map" resultMap="replyResult">
+		<include refid="select"/>
+		where r.board_no = #{boardNo}
+		order by comment_no desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<!-- 게시글 댓글 총 갯수(페이징 이용) -->
+	<select id="totalCountByReply" resultType="int">
+		select count(board_no) from reply where board_no = #{boardNo}
+	</select>
+	
+	<!-- 댓글 select -->
+	<select id="selectByCmtNo" resultMap="replyResult">
+		<include refid="select"/>
+		where r.comment_no = #{commentNo}
+	</select>
+	
+	<!-- 댓글 추가 -->
+	<insert id="insertReply" parameterType="ReplyVO">
+		insert into reply(board_no, user_no, comment_content) 
+			values(#{boardNo.boardNo}, #{userNo.userNo}, #{commentContent})
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="ReplyVO">
+		update reply 
+			set comment_content = #{commentContent}, update_date = now()
+			where comment_no = #{commentNo}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		delete from reply where comment_no = #{commentNo}
+	</delete>
+	
+</mapper>

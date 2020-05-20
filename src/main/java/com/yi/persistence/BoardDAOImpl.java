@@ -124,6 +124,16 @@ public class BoardDAOImpl implements BoardDAO{
 	public int boardVoteCnt(int boardNo) throws Exception {
 		return sqlSession.selectOne(namespace + "boardVoteCnt", boardNo);
 	}
+	
+	// 게시글 댓글 갯수 추가
+	@Override
+	public void updateBoardReplyCnt(int amount, int boardNo) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("amount", amount);
+		map.put("boardNo", boardNo);
+		
+		sqlSession.update(namespace + "updateBoardReplyCnt", map);
+	}
 
 	
 	/*** 탐방기 ***/
@@ -163,5 +173,6 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 
+	
 	
 }
