@@ -191,37 +191,46 @@
 		where cafe_no=#{cafeNo}
 	</update>
 	
+	<!-- 대표 이미지 검색 -->
 	<select id="sumnailImg" resultMap="selectImgResult">
 		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1
 	</select>
 	
+	<!-- 카페 상세페이지 내부 이미지 검색 -->
 	<select id="imgList" resultMap="selectImgResult">
 		select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo}
 	</select>
 	
+	<!-- 별점 검색(정수) -->
 	<select id="pointSelect" resultType="int">
 		select round(sum(star_point)/count(*)) from starpoint where cafe_no =#{cafeNo} 
 	</select>
 	
+	<!-- 별점 검색(소수점) -->
 	<select id="starpoint" resultType="double">
 		select round(sum(star_point)/count(*),1) from starpoint where cafe_no =#{cafeNo} 
 	</select>
 	
+	<!-- 월별 별점 검색 -->
 	<select id="starpointByMonth" resultType="int">
 		select IFNULL(round(sum(star_point)/count(*), 1), 0) from starpoint where cafe_no = ${cafeNo} and registration_date between '2020-${month}-01' and '2020-${month}-30'
 	</select>
 	
+	<!-- 테마 순위 검색 -->
 	<select id="rankTheme" resultType="int">
 		select count(*) from starpoint where cafe_no =#{cafeNo} and theme_no =#{themeNo}
 	</select>
 	
+	<!-- 카페별 메뉴 검색 -->
 	<select id="menuList" resultMap="MenuListResult">
 		select m.*, k.* from menu m left join menukinds k on m.menukinds = k.sort_no where cafe_no =#{cafeNo}
 	</select>
 	
+	<!-- 카페별 메뉴 분류 검색 -->
 	<select id="sortNameSelect" resultType="MenuKindsVO">
 		select distinct k.sort_no, k.sort_name from menu m left join menukinds k on m.menukinds = k.sort_no where cafe_no =#{cafeNo}
 	</select>	
+	
 	
 	<delete id="deleteCafe" parameterType="CafeVO">
 		delete from cafe where cafe_no=#{cafeNo}
