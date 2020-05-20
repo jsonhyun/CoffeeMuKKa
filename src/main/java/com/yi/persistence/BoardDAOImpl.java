@@ -98,7 +98,11 @@ public class BoardDAOImpl implements BoardDAO{
 	public void updateVoteMinusCnt(int boardNo) throws Exception {
 		sqlSession.update(namespace + "updateVoteMinusCnt", boardNo);
 	}
-	
+	// 게시글 추천(좋아요) 갯수
+	@Override
+	public int boardVoteCnt(int boardNo) throws Exception {
+		return sqlSession.selectOne(namespace + "boardVoteCnt", boardNo);
+	}
 
 	
 	/*** 탐방기 ***/
@@ -136,6 +140,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewRemove(BoardVO vo) throws Exception {
 		sqlSession.update(namespace + "cafeReviewRemove", vo);
 	}
+	
 	
 
 }

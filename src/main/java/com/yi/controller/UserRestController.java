@@ -60,18 +60,33 @@ public class UserRestController {
 	
 	
 	/*-------- board ------------------------------------------------------------------*/
-	// 게시글 추천(좋아요)
-	@RequestMapping(value = "/vote", method = RequestMethod.GET)
-	public ResponseEntity<Integer> updateVoteCnt(){
+	// 게시글 추천(좋아요) 추가
+	@RequestMapping(value = "/votePlus", method = RequestMethod.GET)
+	public ResponseEntity<Integer> updateVotePlusCnt(int boardNo){
 		ResponseEntity<Integer> entity = null;
-		
 		try {
-			
+			boardService.updateVotePlusCnt(boardNo);
+			int boardVoteCnt = boardService.boardVoteCnt(boardNo);
+			entity = new ResponseEntity<Integer>(boardVoteCnt, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
 		}
-		
+		return entity;
+	}
+	
+	//게시글 추천(좋아요) 취소
+	@RequestMapping(value = "/voteMinus", method = RequestMethod.GET)
+	public ResponseEntity<Integer> updateVoteMinusCnt(int boardNo){
+		ResponseEntity<Integer> entity = null;
+		try {
+			boardService.updateVoteMinusCnt(boardNo);
+			int boardVoteCnt = boardService.boardVoteCnt(boardNo);
+			entity = new ResponseEntity<Integer>(boardVoteCnt, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
 		return entity;
 	}
 	

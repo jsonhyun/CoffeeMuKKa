@@ -96,6 +96,10 @@ public class BoardService {
 	public void updateVoteMinusCnt(int boardNo) throws Exception {
 		dao.updateVoteMinusCnt(boardNo);
 	}
+	// 게시글 추천(좋아요) 갯수
+	public int boardVoteCnt(int boardNo) throws Exception {
+		return dao.boardVoteCnt(boardNo);
+	}
 	
 	/*** 탐방기 ***/
 	@Transactional

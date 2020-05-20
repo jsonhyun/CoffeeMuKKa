@@ -205,7 +205,10 @@
 	<update id="updateVoteMinusCnt">
 		update board set vote_number = vote_number - 1 where board_no = #{boardNo}
 	</update>
-	
+	<!-- 게시글 추천(좋아요) 갯수 -->
+	<select id="boardVoteCnt" resultType="int">
+		select vote_number from board where board_no = #{boardNo}
+	</select>
 
 	<!-- 경진 : 탐방기 -->
 	<!-- 탐방기 : 탐방기 select문 -->

@@ -182,3 +182,5 @@ select board_no , vote_number from board;
 -- update board set vote_number = vote_number - 1 where board_no = 1;
 
 select board_no from board order by board_no desc limit 1;
+
+select vote_number from board where board_no = 1;

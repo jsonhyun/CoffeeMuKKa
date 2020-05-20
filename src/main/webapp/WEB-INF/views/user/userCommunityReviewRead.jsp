@@ -409,7 +409,7 @@
 					<a href="#" id="voteIcon" class="f_left off grayB">
 						<i class="far fa-thumbs-up"></i>
 					</a>
-					<p class="grayB f_left">좋아요 ${board.voteNumber }</p>
+					<p class="grayB f_left">좋아요 <span id="voteNum">${board.voteNumber }</span></p>
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
@@ -558,6 +558,7 @@
 	// 좋아요(추천) - ajax 추가 해야함 
 	$("#voteIcon").click(function(e){
 		e.preventDefault();
+		var boardNo = ${board.boardNo};
 		
 		if($(this).hasClass("off")){
 			$(this).empty();
@@ -566,6 +567,17 @@
 			$(this).removeClass("off").removeClass("grayB");
 			$(this).next().addClass('orange').removeClass("grayB");
 			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/votePlus",
+				type:"get",
+				data:{"boardNo" : boardNo},
+				datatype:"json",
+				success:function(res){
+					console.log(res);
+					$("#voteNum").text(res);
+				}
+			})
+			
 		} else if($(this).hasClass("on")){
 			$(this).empty();
 			$(this).append('<i class="far fa-thumbs-up"></i>');
@@ -573,6 +585,16 @@
 			$(this).removeClass("on").removeClass("orange");
 			$(this).next().addClass('grayB').removeClass("orange");
 			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/voteMinus",
+				type:"get",
+				data:{"boardNo" : boardNo},
+				datatype:"json",
+				success:function(res){
+					console.log(res);
+					$("#voteNum").text(res);
+				}
+			})
 		}		
 	}) 
 	
