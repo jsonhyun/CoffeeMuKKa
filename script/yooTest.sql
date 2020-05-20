@@ -181,3 +181,16 @@ select board_no , vote_number from board;
 -- update board set vote_number = vote_number + 1 where board_no = 1;
 -- update board set vote_number = vote_number - 1 where board_no = 1;
 
+select vote_number from board where board_no = 211;
+select * from vote where board_no = 211;
+
+-- 추천 추가
+insert into vote(board_no, user_no) values(211, 3);
+-- 추천 취소
+delete from vote where board_no = 211 and user_no = 3;
+-- 변경된 추천 갯수 게시판 테이블에 추가
+update board 
+	set vote_number = (select count(*) from vote where board_no = 211)
+	where board_no = 211;
+
+

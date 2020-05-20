@@ -36,9 +36,13 @@ public interface BoardDAO {
 	// 조회수
 	public void updateViewCnt(int boardNo) throws Exception;
 	// 게시글 추천(좋아요) 더하기
-	public void updateVotePlusCnt(int boardNo) throws Exception;
+	public void insertVotePlusCnt(int boardNo, int userNo) throws Exception;
 	// 게시글 추천(좋아요) 빼기
-	public void updateVoteMinusCnt(int boardNo) throws Exception;
+	public void deleteVoteMinusCnt(int boardNo, int userNo) throws Exception;
+	// 게시글 추천(좋아요) 갯수 게시판 테이블에 추가
+	public void updateBoardVoteCnt(int boardNo) throws Exception;
+	// 게시글 추천(좋아요) 갯수
+	public int boardVoteCnt(int boardNo) throws Exception;
 	
 	/*** 탐방기 ***/
 	// 탐방기 -- 등록

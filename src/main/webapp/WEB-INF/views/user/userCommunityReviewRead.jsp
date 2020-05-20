@@ -73,6 +73,22 @@
 		padding: 10px;
 	}
 	
+	.d_cafeR_context_wrap .d_cafeR_context img {
+		max-width: 100%;
+		height: auto !important;
+	}
+	
+	/* 지도 */
+	.d_cafeR_context_wrap .d_cafeR_map{
+		margin: 50px;
+	}
+	
+	#map {
+		width: 500px;
+		height: 350px;
+		margin: 0 auto;
+	}
+	
 	/* 버튼 영역 */
 	.d_cafeR_btn_wrap .d_cafeR_cnt {
 		font-size: 20px;
@@ -290,6 +306,7 @@
 		float: left;
 		margin-right: 10px;
 	}
+	
 </style>	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -320,7 +337,7 @@
 				</div>
 				<div class="d_cafeR_cafe clearfix">
 					<div class="d_cafe_icon clearfix">
-						<a href="#">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${board.cafeNo.cafeNo}">
 							<img src="${pageContext.request.contextPath }/resources/images/cafe_icon.png" alt="카페 아이콘" />
 							<span class="orange bold">${board.cafeNo.cafeName }</span> 카페정보 <i class="fas fa-angle-right"></i>
 						</a>
@@ -333,7 +350,57 @@
 			
 			<!-- content 영역 -->
 			<div class="d_cafeR_context_wrap">
-				${board.writingContent }
+				<div class="d_cafeR_context">
+					${board.writingContent }
+				</div>
+				<div class="d_cafeR_map">
+					<div id="map"></div>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1e1376bc4218f98e1f7612e86695629e&libraries=services"></script>
+					<script>
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					    mapOption = {
+					        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					        level: 3 // 지도의 확대 레벨
+					    };  
+
+						// 지도를 생성합니다    
+						var map = new kakao.maps.Map(mapContainer, mapOption); 
+						
+						// 지도에 확대 축소 컨트롤을 생성한다
+						var zoomControl = new kakao.maps.ZoomControl();
+
+						// 지도의 우측에 확대 축소 컨트롤을 추가한다
+						map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
+						// 주소-좌표 변환 객체를 생성합니다
+						var geocoder = new kakao.maps.services.Geocoder();
+		
+						// 주소로 좌표를 검색합니다
+						geocoder.addressSearch('${board.cafeNo.address }', function(result, status) {
+		
+						    // 정상적으로 검색이 완료됐으면 
+						     if (status === kakao.maps.services.Status.OK) {
+		
+						        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+						        // 결과값으로 받은 위치를 마커로 표시합니다
+						        var marker = new kakao.maps.Marker({
+						            map: map,
+						            position: coords
+						        });
+		
+						        // 인포윈도우로 장소에 대한 설명을 표시합니다
+						        var infowindow = new kakao.maps.InfoWindow({
+						            content: '<div style="width:150px;text-align:center;padding:6px 0;">${board.cafeNo.cafeName}</div>'
+						        });
+						        infowindow.open(map, marker);
+		
+						        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+						        map.setCenter(coords);
+						    } 
+						});     
+					</script>
+				</div>
 			</div>
 			
 			<!-- 버튼 영역 -->
@@ -342,7 +409,7 @@
 					<a href="#" id="voteIcon" class="f_left off grayB">
 						<i class="far fa-thumbs-up"></i>
 					</a>
-					<p class="grayB f_left">좋아요 ${board.voteNumber }</p>
+					<p class="grayB f_left">좋아요 <span id="voteNum">${board.voteNumber }</span></p>
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
@@ -488,9 +555,13 @@
 		}
 	})
 	
-	// 좋아요(추천) - ajax 추가 해야함 
+	// 좋아요(추천) - login 기능 구현시 수정해야함
 	$("#voteIcon").click(function(e){
 		e.preventDefault();
+		// login 기능 구현 후 수정해야함
+		var userNo = 3;
+		
+		var boardNo = ${board.boardNo};
 		
 		if($(this).hasClass("off")){
 			$(this).empty();
@@ -499,6 +570,17 @@
 			$(this).removeClass("off").removeClass("grayB");
 			$(this).next().addClass('orange').removeClass("grayB");
 			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/votePlus",
+				type:"get",
+				data:{"boardNo" : boardNo, "userNo" : userNo},
+				datatype:"json",
+				success:function(res){
+					console.log(res);
+					$("#voteNum").text(res);
+				}
+			})
+			
 		} else if($(this).hasClass("on")){
 			$(this).empty();
 			$(this).append('<i class="far fa-thumbs-up"></i>');
@@ -506,6 +588,16 @@
 			$(this).removeClass("on").removeClass("orange");
 			$(this).next().addClass('grayB').removeClass("orange");
 			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/voteMinus",
+				type:"get",
+				data:{"boardNo" : boardNo, "userNo" : userNo},
+				datatype:"json",
+				success:function(res){
+					console.log(res);
+					$("#voteNum").text(res);
+				}
+			})
 		}		
 	}) 
 	

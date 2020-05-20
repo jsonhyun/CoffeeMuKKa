@@ -118,8 +118,8 @@ public class UserBoardController {
 	
 	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.POST)
 	public String communityReviewRegisterPost(BoardVO vo,  MultipartFile imgFile) throws Exception {
-		System.out.println("register POST ----------------- " + vo);
-		System.out.println("register POST ----------------- " + imgFile);
+		//System.out.println("register POST ----------------- " + vo);
+		//System.out.println("register POST ----------------- " + imgFile);
 		
 		String imageName = UploadFileUtils.uploadFile(uploadPath, imgFile.getOriginalFilename(), imgFile.getBytes());
 
@@ -130,8 +130,6 @@ public class UserBoardController {
 		UsersVO userNo = new UsersVO();
 		userNo.setUserNo(3);
 		vo.setUserNo(userNo);
-		
-		System.out.println(imgVO);
 		
 		service.cafeReviewInsert(vo, imgVO);
 		
