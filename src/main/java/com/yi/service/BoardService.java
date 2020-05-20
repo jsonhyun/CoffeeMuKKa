@@ -89,12 +89,18 @@ public class BoardService {
 	}
 	
 	// 게시글 추천(좋아요) 더하기
-	public void updateVotePlusCnt(int boardNo) throws Exception {
-		dao.updateVotePlusCnt(boardNo);
+	public void insertVotePlusCnt(int boardNo, int userNo) throws Exception {
+		dao.insertVotePlusCnt(boardNo, userNo);
+		dao.updateBoardVoteCnt(boardNo);
 	}
 	// 게시글 추천(좋아요) 빼기
-	public void updateVoteMinusCnt(int boardNo) throws Exception {
-		dao.updateVoteMinusCnt(boardNo);
+	public void deleteVoteMinusCnt(int boardNo, int userNo) throws Exception {
+		dao.deleteVoteMinusCnt(boardNo, userNo);
+		dao.updateBoardVoteCnt(boardNo);
+	}
+	// 게시글 추천(좋아요) 갯수
+	public int boardVoteCnt(int boardNo) throws Exception {
+		return dao.boardVoteCnt(boardNo);
 	}
 	
 	/*** 탐방기 ***/
