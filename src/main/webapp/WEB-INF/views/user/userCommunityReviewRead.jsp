@@ -73,6 +73,22 @@
 		padding: 10px;
 	}
 	
+	.d_cafeR_context_wrap .d_cafeR_context img {
+		max-width: 100%;
+		height: auto !important;
+	}
+	
+	/* 지도 */
+	.d_cafeR_context_wrap .d_cafeR_map{
+		margin: 50px;
+	}
+	
+	#map {
+		width: 500px;
+		height: 350px;
+		margin: 0 auto;
+	}
+	
 	/* 버튼 영역 */
 	.d_cafeR_btn_wrap .d_cafeR_cnt {
 		font-size: 20px;
@@ -291,17 +307,6 @@
 		margin-right: 10px;
 	}
 	
-	
-	/* 지도 */
-	.d_cafeR_context_wrap .d_cafeR_map{
-		margin: 50px;
-	}
-	
-	#map {
-		width: 500px;
-		height: 350px;
-		margin: 0 auto;
-	}
 </style>	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -332,7 +337,7 @@
 				</div>
 				<div class="d_cafeR_cafe clearfix">
 					<div class="d_cafe_icon clearfix">
-						<a href="#">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${board.cafeNo.cafeNo}">
 							<img src="${pageContext.request.contextPath }/resources/images/cafe_icon.png" alt="카페 아이콘" />
 							<span class="orange bold">${board.cafeNo.cafeName }</span> 카페정보 <i class="fas fa-angle-right"></i>
 						</a>
