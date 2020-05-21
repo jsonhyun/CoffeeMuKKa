@@ -40,3 +40,7 @@ select distinct k.sort_no , k.sort_name from menu m left join menukinds k on m.m
 
 select * from menu m ;
 select * from menukinds m ;
+
+select * from board b ;
+
+select count(*), cafe_no from board b where board_no2 =1 and cafe_no =2;

@@ -56,6 +56,10 @@ public class CafeService {
 		return dao.sortNameSelect(cafeNo);
 	}
 	
+	public int countReviewNum(int cafeNo) throws Exception {
+		return dao.countReviewNum(cafeNo);
+	}
+	
 	public List<CafeVO> list() throws Exception {
 		return dao.list();
 	}

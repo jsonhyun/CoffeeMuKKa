@@ -346,7 +346,7 @@
 				</div>
 			</div>
 			<!-- 위치별 카페 리스트 -->
-			<c:forEach var="cafe" items="${list }">
+			<c:forEach var="cafe" items="${list }" varStatus="i">
 			<div class="locationCafe">
 				<div class="locationListLeft">
 					<c:forEach var="img" items="${imgList }">
@@ -398,7 +398,7 @@
 								<img src="${pageContext.request.contextPath }/resources/images/menu2_1.png">
 							</div>
 							<div>
-								<span>100</span>개의 탐방기
+								<span>${reviewNum[i.index]}</span>개의 탐방기
 							</div>
 						</div>
 						<div class="location">
