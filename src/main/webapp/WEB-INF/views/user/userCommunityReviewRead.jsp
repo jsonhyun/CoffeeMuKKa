@@ -627,45 +627,8 @@
 </div>
 <!-- container end -->
 
-<script>
-	var sameBox = $(".cafeR_sameList > .cafeR_List");
-	var sameCnt =  ${sameCnt};
-	var samePage = Math.ceil(sameCnt / 2);
-	var sameW = sameBox.width((920 * samePage) + (22 * samePage));
-	
-	var index = 0;
-	var pageIndex = 1;
-	
-	$(".pageTotal").text(samePage);
-	
-	/* next */
-	$("#nextBtn").click(function(){
-		if(index == -(samePage-1)){
-			return;
-		}
-		
-		index--;
-		pageIndex++;
-		var marginLeft = index * 942;
-		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
-		$(".pageNum").text(pageIndex);
-	})
-	/* prev */
-	$("#prevBtn").click(function(){
-		if(index == 0){
-			return;
-		}
-		
-		index++;
-		pageIndex--;
-		var marginLeft = index * 942;
-		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
-		$(".pageNum").text(pageIndex);
-	})
-	
-	
-</script>
-<!-- 댓글기능 -->
+
+<!-- 댓글 구조 -->
 <script id="template" type="text/x-handlebars-template">
 	{{#each list}}
 		<li class="replyStyle clearfix boardReply" data-cno="{{commentNo}}">
@@ -694,9 +657,8 @@
 </script>
 
 <script>
-	var no = 1;
-	
 	/*---- 댓글 -----------------------------------------------------------------------------------------------------*/
+	var no = 1;
 	Handlebars.registerHelper ("dateHelper", function(value){
 		var d = new Date(value);
 		var year = d.getFullYear();
@@ -926,6 +888,43 @@
 			})
 		}		
 	}) 
+	
+	
+	/*---- 다른 탐방기 게시글 리스트 슬라이드 -----------------------------------------------------------------------------------------------------*/
+	var sameBox = $(".cafeR_sameList > .cafeR_List");
+	var sameCnt =  ${sameCnt};
+	var samePage = Math.ceil(sameCnt / 2);
+	var sameW = sameBox.width((920 * samePage) + (22 * samePage));
+	
+	var index = 0;
+	var pageIndex = 1;
+	
+	$(".pageTotal").text(samePage);
+	
+	/* next */
+	$("#nextBtn").click(function(){
+		if(index == -(samePage-1)){
+			return;
+		}
+		
+		index--;
+		pageIndex++;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
+	/* prev */
+	$("#prevBtn").click(function(){
+		if(index == 0){
+			return;
+		}
+		
+		index++;
+		pageIndex--;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>
