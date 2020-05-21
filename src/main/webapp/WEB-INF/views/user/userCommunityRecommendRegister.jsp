@@ -4,9 +4,6 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 
 <style>
-	button{
-		outline: none;
-	}
 	/* 등록카페 확인버튼 */
 	div.subTitleandBtn{
 		width: 100%;
@@ -46,22 +43,30 @@
 		width: 15%;
 		float: left;
 	}
+	input#title{
+		width: 83%;
+		height: 30px;
+		background-color: #FAFAFA;
+		border: 1px solid #5D5D5D;
+		font-size: 14px;
+		padding-left: 15px;
+	}
 
 	input#point{
-		width: 71%;
+		width: 69%;
 		height: 30px;
 		background-color: #FAFAFA;
-		margin-bottom: 10px;		
+		margin-bottom: 10px;
+		border: 1px solid #5D5D5D;
+		font-size: 14px;
+		padding-left: 15px; 
 	}
-	input#title{
-		width: 84%;
-		height: 30px;
-		background-color: #FAFAFA;
-	}
+
 	button.recommdenPoint{
 		height: 30px;
 		border-radius: 3px;
 		margin-left: 19px;
+		padding-left: 15px;
 	}
 	/* 추천카페 맵 */
 	.map_wrap, .map_wrap * {
@@ -314,7 +319,7 @@
 			<!-- 등록카페 확인 -->	
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카&nbsp;&nbsp;&nbsp;페&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 소</label>
-				<input type="text" id="point" readonly placeholder="    ☞    추천 카페 찾기를 통해  주소를 자동입력 입력 하세요.">
+				<input type="text" id="point" readonly placeholder="   ☞    추천 카페 찾기를 통해  주소를 자동입력 입력 하세요.">
 				<button type="button" class="recommdenPoint orangeBtn">추천 카페 찾기</button>		
 			</div>
 			

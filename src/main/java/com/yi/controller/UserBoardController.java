@@ -32,7 +32,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.google.gson.JsonObject;
 import com.yi.domain.BoardVO;
 import com.yi.domain.Condition;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
@@ -294,22 +293,21 @@ public class UserBoardController {
 	}
 	
 	
-	// 커뮤니티 - 무까추천 : 아름
-	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
+	// 커뮤니티 - 무까추천 : 아름  (MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify))
+	
 	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
-	public String communityRecommendList(Criteria cri, Model model) throws Exception {
+	public String communityRecommendList(SearchCriteria cri, Model model) throws Exception {
 		//카페추천 게시판번호 - 2번
 		int cBoardNo = 2;
+		cri.setPerPageNum(16); //한페이지당 16개씩
 		
-		//System.out.println(cri); // [searchType=null, keyword=null, getPage()=1]
-		
-		List<BoardVO> list = service.recommendboardListCriteria(cri);	
+		List<BoardVO> list = service.recommendboardListSearchCriteria(cBoardNo,cri);	
 	    PageMaker pageMaker = new PageMaker();
 	    pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
+		pageMaker.setTotalCount(service.totalSearchCountJoin(cBoardNo, cri));
 		
-		//System.out.println("TEST============================================="+list.toString());
+		
 		model.addAttribute("list",list);
 		model.addAttribute("cri",cri);
 		model.addAttribute("pageMaker",pageMaker);
@@ -325,12 +323,18 @@ public class UserBoardController {
 			//System.out.println("숫자"+boardNo);
 			listImg.addAll(service.recommendboardImgList(boardNo));
 		}
-		//System.out.println("test=================================================================================="+listImg.toString());
 		model.addAttribute("listImg", listImg);
-		
+
+		//지역 리스트
+		List<ZoneVO> zoneList = service.zoneList();
+		model.addAttribute("zoneList", zoneList);
+		//테마 리스트
+		List<ThemeVO> themeList = service.themeList();
+		model.addAttribute("themeList", themeList);
 		
 		return "/user/userCommunityRecommendList";
 	}
+	
 	//register -- 글등록
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.GET)
 	public String communityRecommendRegister() {
@@ -363,13 +367,49 @@ public class UserBoardController {
 		service.recommendInsert(vo);
 		return "redirect:/user/community/cafeRecommend";
 	}
-	//read -- 상세보기
+	
+	//read -- 상세보기(해당번호글의 내용 + (same)해당카페에 관한 추천글&개수 + (same)해당지역+해당키워드글&개수)
 	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
 	public String communityRecommendRead(int boardNo, Model model) throws Exception{
-		//System.out.println(boardNo);
+		//해당번호글의 내용
 		BoardVO vo = service.recommendReadByNo(boardNo);
-		//System.out.println(vo.toString());
 		model.addAttribute("board", vo);
+		
+		
+		//(same)해당카페에 관한 추천글List
+		List<BoardVO> sameCafe = service.recommendSameCafeList(vo);
+		model.addAttribute("sameCafe", sameCafe);
+		
+		//(same)해당카페에 관한 추천글 : 개수
+		int sameCafeCnt = service.recommendSameCafeCnt(vo);
+		model.addAttribute("sameCafeCnt", sameCafeCnt);
+		
+		//(same)해당카페에 이미지
+		List<ImageVO> slistImg = new ArrayList<ImageVO>();
+		
+		 for(int i=0;i<sameCafe.size();i++) { 
+			 int sboardNo = sameCafe.get(i).getBoardNo();
+			 slistImg.addAll(service.recommendSameCafeImgList(sboardNo));
+		 }	
+		model.addAttribute("slistImg", slistImg);
+		
+		//(same)해당지역+해당키워드글List
+		List<BoardVO> sameKeyword = service.recommendSameKeywordList(vo);
+		model.addAttribute("sameKeyword", sameKeyword);
+		
+		//(same)해당지역+해당키워드글 : 개수
+		int sameKeywordCnt = service.recommendSameKeywordCnt(vo);
+		model.addAttribute("sameKeywordCnt", sameKeywordCnt);
+		
+		//(same)해당키워드에 이미지
+		List<ImageVO> klistImg = new ArrayList<ImageVO>();
+		for(int i=0;i<sameKeyword.size();i++) {
+			int sboardNo = sameKeyword.get(i).getBoardNo();
+		    klistImg.addAll(service.recommendSameCafeImgList(sboardNo));
+		    }
+		model.addAttribute("klistImg", klistImg);
+
+
 		return "/user/userCommunityRecommendRead";
 	}
 	//modify -- 수정

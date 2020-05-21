@@ -110,6 +110,12 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace+"sortNameSelect", cafeNo);
 	}
 	
+	/* 카페 탐방기 숫자 검색 */
+	@Override
+	public int countReviewNum(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace+"countReviewNum", cafeNo);
+	}
+	
 // 검색시 페이징 처리 DAOImpl
 	
 	@Override
@@ -135,6 +141,5 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
 	}
-
 	
 }

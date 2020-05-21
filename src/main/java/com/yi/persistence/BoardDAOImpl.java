@@ -29,9 +29,13 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	//추천카페 -- 페이징된 리스트	
 	@Override
-	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception {
-		return sqlSession.selectList(namespace+"recommendboardListCriteria", cri);
+	public List<BoardVO> recommendboardListSearchCriteria(int cBoardNo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cBoardNo", cBoardNo);
+		map.put("cri", cri);
+		return sqlSession.selectList(namespace+"recommendboardListSearchCriteria", map);
 	}
+	
 	@Override
 	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {
 		return sqlSession.selectList(namespace+"recommendboardImgList", boardNo);
@@ -55,6 +59,33 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne(namespace+"recommendReadByNo", boardNo);
 	}
 	
+	//추천카페 -- 같은카페리스트
+	@Override
+	public List<BoardVO> recommendSameCafeList(BoardVO vo) throws Exception {
+		return sqlSession.selectList(namespace+"recommendSameCafeList", vo);
+	}
+	//추천카페 -- 같은카페 등록수
+	@Override
+	public int recommendSameCafeCnt(BoardVO vo) throws Exception {
+		return sqlSession.selectOne(namespace+"recommendSameCafeCnt", vo);
+	}
+	
+	//추천카페 -- 같은키워드리스트
+	@Override
+	public List<BoardVO> recommendSameKeywordList(BoardVO vo) throws Exception {
+		return sqlSession.selectList(namespace+"recommendSameKeywordList", vo);
+	}
+	//추천카페 -- 같은키워드 등록수
+	@Override
+	public int recommendSameKeywordCnt(BoardVO vo) throws Exception {
+		return sqlSession.selectOne(namespace+"recommendSameKeywordCnt", vo);
+	}
+	
+	//추천카페 -- 같은 이미지 리스트
+	@Override 
+	public List<ImageVO> recommendSameCafeImgList(int sboardNo) throws Exception {		
+		return sqlSession.selectList(namespace+"recommendSameCafeImgList", sboardNo);
+	}
 	//추천카페 -- 사진삭제 (수정)
 	@Override
 	public void removeRecommendImg(String imageName) throws Exception{

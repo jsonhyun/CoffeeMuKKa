@@ -3,7 +3,6 @@ package com.yi.persistence;
 import java.util.List;
 
 import com.yi.domain.BoardVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 
@@ -13,14 +12,24 @@ public interface BoardDAO {
 	//추천카페 -- 리스트	(테스트용)
 	public List<BoardVO> recommendboardList() throws Exception;
 	//추천카페 -- 페이징된 리스트	
-	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception;
+	public List<BoardVO> recommendboardListSearchCriteria(int cBoardNo, SearchCriteria cri) throws Exception;
 	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception;
 
 	//추천카페 -- 등록
 	public void recommendInsert(BoardVO vo) throws Exception;
 	public void recommendInsertImages(String imageName, int boardNo) throws Exception;	
 	//추천카페 -- 상세보기
-	public BoardVO recommendReadByNo(int boardNo) throws Exception;	
+	public BoardVO recommendReadByNo(int boardNo) throws Exception;
+	//추천카페 -- 같은카페리스트
+	public List<BoardVO> recommendSameCafeList(BoardVO vo) throws Exception;
+	//추천카페 -- 같은카페 등록수
+	public int recommendSameCafeCnt(BoardVO vo) throws Exception;
+	//추천카페 -- 같은키워드리스트
+	public List<BoardVO> recommendSameKeywordList(BoardVO vo) throws Exception;
+	//추천카페 -- 같은키워드 등록수	
+	public int recommendSameKeywordCnt(BoardVO vo) throws Exception;
+	//추천카페 -- 같은 이미지 리스트
+	public List<ImageVO> recommendSameCafeImgList(int sboardNo) throws Exception;
 	//추천카페 사진삭제 -- 수정
 	public void removeRecommendImg(String imageName) throws Exception;
 	//추천카페 -- 수정
@@ -64,6 +73,9 @@ public interface BoardDAO {
 	public void cafeReviewModify(BoardVO vo) throws Exception;
 	// 탐방기 -- remove
 	public void cafeReviewRemove(BoardVO vo) throws Exception;
+
+
+
 
 
 	

@@ -1,133 +1,111 @@
 select user(), database();
 
-select * from cafe;
-select * from board;
-desc board;
-select * from boardkinds;
-select * from keywordcate;
-select * from theme;
-select * from zone;
-select * from image;
-select * from users;
-select * from grade;
-select * from image;
-
 show tables;
 
--- 게시글번호(오토) / 게시판번호(2:추천) / 키워드분류번호(????) / 회원번호(0) / 지역번호(1) / 테마번호(1) / 글잠금여부() / 글제목 / 작성일 / 수정일 / 조회수 / 추천수 / 글내용
+select * from cafe; -- 카페
+select * from board; -- 게시판
+select * from users; -- 회원 현황
+select * from admin; -- 관리자
+select * from theme; -- 테마 분류
+select * from zone; -- 위치 분류
+select * from reply; -- 댓글 테이블
+select * from boardkinds; -- 게시판 분류
+select * from menukinds; -- 메뉴 분류
+select * from menu; -- 메뉴
+select * from starpoint; -- 별점
+select * from type; -- 회원 타입
+select * from grade; -- 회원 등급
+select * from authority; -- 관리자 권한
+select * from wishlist; -- 위시리스트
+select * from image; -- 이미지
+select * from vote; -- 추천리스트
 
-insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (2,0,1,1,'추천카페 테스트글','테스트내용','대구광역시');
+-- ----------------------------------
 
-select * from board where board_no2 = 2 order by  board_no desc;
-
-select * from board order by board_no desc;
-
--- 사진, 위치, 키워드, 제목, 번호
-
-select b.board_no, b.board_no2, b.user_no, b.zone_no, b.theme_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, bk.board_no, bk.board_name, u.user_no, u.user_id, u.password, u.name, u.nick, u.user_grade, z.zone_no, z.zone_name, t.theme_no, t.theme_name 
-from board b
-left join boardkinds bk on b.board_no2 = bk.board_no
-left join users u on b.user_no = u.user_no 
-left join `zone` z on b.zone_no = z.zone_no
-left join theme t on b.theme_no = t.theme_no
-where b.board_no2 = 2
-order by b.board_no desc;
-
-select b.board_no, b.zone_no, b.theme_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name from board b
-left join zone z on b.zone_no = z.zone_no
-order by b.board_no desc;
-
-select * from board b2 ;
-
-select b.board_no, b.writing_title, b.view_number,  z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
-left join zone z on b.zone_no = z.zone_no
-left join theme t on b.theme_no = t.theme_no
-order by b.board_no desc;
-
-
-select * from board where board_no = 1;
-
-select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
-left join zone z on b.zone_no = z.zone_no
-left join theme t on b.theme_no = t.theme_no
-left join users u on b.user_no = u.user_no 
-left join grade g on u.user_grade = g.user_grade 
-where b.board_no2 = 2 and b.board_no =25;
-
-select * from board b
-left join zone z on b.zone_no = z.zone_no
-left join theme t on b.theme_no = t.theme_no
-left join users u on b.user_no = u.user_no 
-left join grade g on u.user_grade = g.user_grade 
-where b.board_no2 = 2 and b.board_no =25;
-
-select * from users u left join grade g on u.user_grade = g.user_grade;
-
-select registration_date from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = 2;
-
-select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = 2;
-
-select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
+		select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick from board b
 		left join zone z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no
-		where b.board_no2 = 2
+		left join users u on b.user_no = u.user_no;
+select count(b.board_no)from board b left join image i on b.board_no = i.board_no 
+				 left join users u on b.user_no = u.user_no 
+				 left join grade g on u.user_grade = g.user_grade 
+				 left join cafe c on b.cafe_no = c.cafe_no 
+				 left join zone z on c.zone_no = z.zone_no 
+				 left join theme t on c.theme_no = t.theme_no
+				 where board_no2 = 2;
+select count(board_no) from board where board_no2 = #{cBoardNo}				 
+select count(board_no) from board where board_no2 = 1;
+
+select count(b.board_no) 
+				 from board b 
+				 left join users u on b.user_no = u.user_no 
+				 left join grade g on u.user_grade = g.user_grade 
+				 left join cafe c on b.cafe_no = c.cafe_no 
+				 left join zone z on c.zone_no = z.zone_no 
+				 left join theme t on c.theme_no = t.theme_no 
+	             where board_no2 = 2 ;
+select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no
+		where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 1;
+	
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and i.board_no != 1; limit 1;
+	
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		left join image i on b.board_no = i.board_no
+		where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 1;
+		where b.board_no2 = 2 and b.board_no = 16;
+	
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		left join image i on b.board_no = i.board_no
+		where b.zone_no = 6 and b.theme_no = 3 and b.board_no != 1;
+	
+	
+		where b.board_no2 = 2 and b.board_no = 16;	
+		
+select count(*) 
+			from board
+			where writing_title = '프리지아' and address = '대구 서구 서대구로7길 12' and board_no != 1;
+		
+select count(*) 
+			from board
+			where zone_no = 6 and theme_no = 3 and board_no != 1;
+		
+
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 1 limit 2;
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 2 limit 1;
+
+
+select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick, i.image_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no
+		left join image i on b.board_no = i.board_no 
+		where b.zone_no = 6 and b.theme_no = 3 and b.board_no != 1 and b.board_no = 16 limit 1;
 		order by b.board_no desc;
 	
-select * from board where board_no2 = 2 order by board_no desc limit 0, 16;
+		where b.board_no 
 
-select count(board_no) from board where board_no2 = 2;
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 441;
 
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = #{boardNo} limit 2;
+	
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 1 limit 1;
 
-select * from cafe where cafe_name like CONCAT('%', '슬로', '%');
-select * from cafe where cafe_name like CONCAT('%', '', '%');
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 441;
 
-select * from cafe c left join zone z on c.zone_no  = z.zone_no where c.cafe_name like CONCAT('%', '', '%');
-select * from cafe where cafe_name like CONCAT('%', '#{cafeName}', '%');
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 2 and b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12';
 
-select * from cafe where cafe_name like CONCAT('%', '슬로', '%')
-
-
-select * from cafe where cafe_name like CONCAT('%', '스테이55', '%');
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no  where b.zone_no = 5 and b.theme_no = 2 and b.board_no != 441 order by b.board_no desc;
 
 
-select * from cafe c left join zone z on c.zone_no = z.zone_no;
-select ;
-
-insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) values (2,1,1,1,'추천카페 테스트글','테스트내용','대구광역시');
-insert into image (image_name, board_no) values ('/2020/05/05/s_850c7f97-489d-482c-8dcf-1ed35e6e5d94_데이트.png', LAST_INSERT_ID());
-
-select * from image;
-delete from board;
-select * from board;
-update board
-			set zone_no = 1, theme_no = 1, writing_title = '수정합니다', writing_content = '안녕하새요', address = ''
-		where board_no = 217;
-truncate table board;
-select last_insert_id(); 
-
-insert into board (board_no2, user_no, zone_no, theme_no, writing_title, writing_content, address) 
-values (2, 1, 1, 1, '테스트입니다', '121212', '테스트입니다');
-
--- 검색결과 1개
-select b.board_no2, b.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.board_no = 2 order by b.board_no desc limit 2;
-select i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.board_no2 = 2;
-
-select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =#{cafeNo} limit 1;
-
-select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, i.image_name from board b
-left join zone z on b.zone_no = z.zone_no
-left join theme t on b.theme_no = t.theme_no
-left join image i on b.board_no = i.board_no
-where b.board_no2 = 2
-order by b.board_no desc limit 1,16;
-
-
-select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
-left join zone z on b.zone_no = z.zone_no
-left join theme t on b.theme_no = t.theme_no
-left join users u on b.user_no = u.user_no 
-left join grade g on u.user_grade = g.user_grade
-file
-where b.board_no2 = 2 and b.board_no = 2;
-
-update board set view_number = view_number+1 where board_no = #{boardNo}
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 17 and b.zone_no = 5 and b.theme_no = 2 and b.board_no != 441 order by b.board_no desc;

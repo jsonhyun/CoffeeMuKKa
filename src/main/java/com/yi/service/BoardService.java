@@ -1,5 +1,6 @@
 package com.yi.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,8 @@ public class BoardService {
 	}
 
 	// 추천카페 -- 페이징된 리스트
-	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception {
-		return dao.recommendboardListCriteria(cri);
+	public List<BoardVO> recommendboardListSearchCriteria(int cBoardNo, SearchCriteria cri) throws Exception {
+		return dao.recommendboardListSearchCriteria(cBoardNo, cri);
 	}
 
 	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {
@@ -67,6 +68,29 @@ public class BoardService {
 		dao.updateViewCnt(boardNo);
 		return dao.recommendReadByNo(boardNo);
 	}
+	
+	//같은 카페 리스트
+	public List<BoardVO> recommendSameCafeList(BoardVO vo) throws Exception {
+		return dao.recommendSameCafeList(vo);
+	}
+	//같은 카페 글 등록수
+	public int recommendSameCafeCnt(BoardVO vo) throws Exception {
+		return dao.recommendSameCafeCnt(vo);
+	}
+	//같은 카페 -- 이미지 리스트 (같은카페, 키워드)
+	public List<ImageVO> recommendSameCafeImgList(int sboardNo) throws Exception {
+		return dao.recommendSameCafeImgList(sboardNo);
+	}
+	
+	//같은 키워드 리스트
+	public List<BoardVO> recommendSameKeywordList(BoardVO vo) throws Exception {
+		return dao.recommendSameKeywordList(vo);
+	}
+	//같은 키워드 글 등록수
+	public int recommendSameKeywordCnt(BoardVO vo) throws Exception {
+		return dao.recommendSameKeywordCnt(vo);
+	}
+	
 
 	// 추천카페 사진삭제
 	public void removeRecommendImg(String delfiles) throws Exception {
@@ -197,5 +221,8 @@ public class BoardService {
 			userDao.updateUsersGrade(3, userNo);
 		}
 	}
+
+
+
 
 }

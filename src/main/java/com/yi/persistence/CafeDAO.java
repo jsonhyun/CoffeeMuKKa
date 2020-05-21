@@ -32,6 +32,10 @@ public interface CafeDAO {
 	public List<MenuVO> menuList(int cafeNo) throws Exception;
 	public List<MenuKindsVO> sortNameSelect(int cafeNo) throws Exception;
 	
+	/* 카페 탐방기 검색 */
+	public int countReviewNum(int cafeNo) throws Exception;
+	
+	
 // 검색시 페이징 처리 dao
 	public List<CafeVO> listPage(int page) throws Exception;	
 	public List<CafeVO> listSearchCriteria(SearchCriteria cri) throws Exception;
@@ -43,5 +47,6 @@ public interface CafeDAO {
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;
+	
 	
 }

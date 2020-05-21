@@ -77,7 +77,6 @@ delimiter ;
 CALL loopReplyInsert();
 
 -- 생성된 댓글 갯수 게시글 댓글갯수컬럼에 넣기 / 추천 수 board 컬럼에 넣기
-
 drop procedure if exists loopCnt;
 delimiter $$
 $$
