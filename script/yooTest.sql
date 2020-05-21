@@ -85,9 +85,9 @@ $$
 create procedure loopReplyCnt()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 10 DO
+WHILE i <= 25 DO
 	
-	insert into reply(board_no, user_no, comment_content) values(211, floor(1 + (rand() * 78)), '댓글 테스트');
+	insert into reply(board_no, user_no, comment_content) values(210, floor(1 + (rand() * 78)), '댓글 테스트');
 	
 	SET i = i + 1;
 END WHILE;
@@ -98,8 +98,8 @@ CALL loopReplyCnt();
 
 -- 생성된 댓글 갯수 게시글 댓글갯수컬럼에 넣기
 update board 
-	set reply_cnt = (select count(*) from reply where board_no = 211) 
-	where board_no = 211;
+	set reply_cnt = (select count(*) from reply where board_no = 210) 
+	where board_no = 210;
 
 -- 더미 테이터 end ----------------------------------------------------------------------- 
 
@@ -229,7 +229,7 @@ select r.comment_no , r.board_no , u.user_grade, g.user_grade_image,
 	   u.user_no, u.user_id, u.nick, r.comment_content, r.update_date 
 	from reply r left join users u on r.user_no = u.user_no 
 				left join grade g on u.user_grade = g.user_grade 
-	where board_no = 211 
+	where board_no = 210 
 	order by comment_no desc;
 
 select r.comment_no , r.board_no , u.user_grade, g.user_grade_image, 
