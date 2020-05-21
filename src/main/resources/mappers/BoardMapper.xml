@@ -60,7 +60,6 @@
 		select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
 		left join zone z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no
-		where b.board_no2 = #{cBoardNo}
 		<include refid="searchIf"/>
 		order by b.board_no desc limit #{cri.pageStart}, #{cri.perPageNum} <!-- 카페추천 : 한페이지당 16개씩 보여줌 -->
 	</select>

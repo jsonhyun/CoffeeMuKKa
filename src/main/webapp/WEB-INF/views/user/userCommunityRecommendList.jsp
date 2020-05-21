@@ -97,10 +97,10 @@
 	  	padding-left: 0;
 	  	margin: 20px 0;
 	  	border-radius: 4px;
-}
+	}
 	.pagination > li {
   		display: inline;
-}
+	}
 	.pagination > li > a,
 	.pagination > li > span {
 		position: relative;
@@ -112,18 +112,18 @@
 		text-decoration: none;
 		background-color: #fff;
 		border: 1px solid #ddd;
-}
+	}
 	.pagination > li:first-child > a,
 	.pagination > li:first-child > span {
 		margin-left: 0;
 		border-top-left-radius: 4px;
 		border-bottom-left-radius: 4px;
-}
+	}
 	.pagination > li:last-child > a,
 	.pagination > li:last-child > span {
 		border-top-right-radius: 4px;
 		border-bottom-right-radius: 4px;
-}
+	}
 	.pagination > li > a:hover,
 	.pagination > li > span:hover,
 	.pagination > li > a:focus,
@@ -131,7 +131,7 @@
 		color: #23527c;
 		background-color: #eee;
 		border-color: #ddd;
-}
+	}
 	.pagination > .active > a,
 	.pagination > .active > span,
 	.pagination > .active > a:hover,
@@ -143,7 +143,7 @@
 		cursor: default;
 		background-color: #303A50;
 		border-color: #303A50;
-}
+	}
 	.pagination > .disabled > span,
 	.pagination > .disabled > span:hover,
 	.pagination > .disabled > span:focus,
@@ -154,37 +154,36 @@
 		cursor: not-allowed;
 		background-color: #fff;
 		border-color: #ddd;
-}
+	}
 	.pagination-lg > li > a,
 	.pagination-lg > li > span {
 		padding: 10px 16px;
 		font-size: 18px;
-}
+	}
 	.pagination-lg > li:first-child > a,
 	.pagination-lg > li:first-child > span {
 		border-top-left-radius: 6px;
 		border-bottom-left-radius: 6px;
-}
+	}
 	.pagination-lg > li:last-child > a,
 	.pagination-lg > li:last-child > span {
 		border-top-right-radius: 6px;
 		border-bottom-right-radius: 6px;
-}
+	}
 	.pagination-sm > li > a,
 	.pagination-sm > li > span {
 		padding: 5px 10px;
 		font-size: 12px;
-}
+	}
 	.pagination-sm > li:first-child > a,
 	.pagination-sm > li:first-child > span {
        border-top-left-radius: 3px;
 	   border-bottom-left-radius: 3px;
-}
+	}
 	.pagination-sm > li:last-child > a,
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
-}			
 </style>
 	
 <div class="content subPageContent">
@@ -304,7 +303,7 @@
 					<option value="uId" ${cri.searchType == 'uId' ? 'selected' : '' }>회원아이디</option>
 					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option>
 				</select>
-				<input type="hidden" name="boardType" value="1"/>
+				<input type="hidden" name="boardType" value="2"/>
 				<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
 				<button type="button" class="navyBtn" id="btnSearch">검색</button>
 			</div>
@@ -403,27 +402,6 @@
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
 	})
 	
-	
-	// 기본이미지(이미지 추가 없이 글 등록시)
-		
-/* 		var $test = $("<img>").attr("src","${pageContext.request.contextPath }/resources/images/rc_noImg.png");
-		
-		var isChild = $(".RC_listImgContainer").children().is(".thumbNailImg"); //자식요소
-		
-		 if(isChild){
-			
-		}else{
-			var img = new Image();
-			$(".RC_listImgContainer").append($test);
-		} */
-		
-		
-		
-		/* $(".RC_listImgContainer").append(img);
-		 img.onerror = function(e){
-			this.src = "${pageContext.request.contextPath }/resources/images/rc_noImg.png";
-		}  */
-	  
 	// 이미지 로테이션 
 	 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
 	 
