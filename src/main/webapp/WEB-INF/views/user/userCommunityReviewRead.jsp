@@ -171,6 +171,7 @@
 	/* 같은 카페 다른 리뷰 영역 */
 	.cafeR_sameList {
 		margin-top: 100px;
+		overflow: hidden;
 	}
 	
 	.cafeR_sameList .cafeR_sameTitle {
@@ -191,7 +192,7 @@
 	.cafeR_sameList .a_cafeReview {
 		display: block;
 		float: left;
-		width: 48.6%;
+		width: 447px;
 		border: 1px solid #545454;
 		margin-bottom: 20px;
 	}
@@ -201,7 +202,7 @@
 	}
 	
 	.cafeR_sameList .a_cafeReview:nth-of-type(odd) {
-		margin-right: 20px;
+		margin-right: 22px;
 	}
 	
 	.cafeR_sameList .cafeR_titleBox {
@@ -624,6 +625,15 @@
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
+
+<script>
+	var sameCnt =  ${sameCnt};
+	var samePage = Math.ceil(sameCnt / 2);
+	var sameW = $(".cafeR_sameList > .cafeR_List").width(920 * samePage);
+	
+	console.log(Math.ceil(sameCnt / 2));
+	
+</script>
 <!-- 댓글기능 -->
 <script id="template" type="text/x-handlebars-template">
 	{{#each list}}
@@ -693,7 +703,7 @@
 				}
 				
 				var totalCnt = res.pageMaker.totalCount;
-				$("#rpListBtn").text("["+totalCnt+"]");
+				$("#replyNum").text(totalCnt);
 			}
 		})
 	}
