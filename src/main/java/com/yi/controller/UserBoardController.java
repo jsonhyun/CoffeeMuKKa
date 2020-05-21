@@ -375,14 +375,29 @@ public class UserBoardController {
 		int sameCafeCnt = service.recommendSameCafeCnt(vo);
 		model.addAttribute("sameCafeCnt", sameCafeCnt);
 		
+		//(same)해당카페에 이미지
+		List<ImageVO> slistImg = new ArrayList<ImageVO>();
+		for(int i=0;i<sameCafe.size();i++) {
+			int sboardNo = sameCafe.get(i).getBoardNo();
+			slistImg.addAll(service.recommendboardImgList(sboardNo));
+		}
+		model.addAttribute("slistImg", slistImg);
+		
 		//(same)해당지역+해당키워드글List
 		List<BoardVO> sameKeyword = service.recommendSameKeywordList(vo);
 		model.addAttribute("sameKeyword", sameKeyword);
 		
 		//(same)해당지역+해당키워드글 : 개수
-		int sameKeywordCnt = service.recommendSameCafeCnt(vo);
+		int sameKeywordCnt = service.recommendSameKeywordCnt(vo);
 		model.addAttribute("sameKeywordCnt", sameKeywordCnt);
 		
+		//(same)해당키워드에 이미지
+		List<ImageVO> klistImg = new ArrayList<ImageVO>();
+		for(int i=0;i<sameKeyword.size();i++) {
+			int kboardNo = sameKeyword.get(i).getBoardNo();
+			slistImg.addAll(service.recommendboardImgList(kboardNo));
+		}
+		model.addAttribute("klistImg", klistImg);
 		return "/user/userCommunityRecommendRead";
 	}
 	//modify -- 수정

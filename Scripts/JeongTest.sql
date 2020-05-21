@@ -91,3 +91,7 @@ select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_numbe
 		left join users u on b.user_no = u.user_no
 		where b.zone_no = 6 and b.theme_no = 3 and b.board_no != 1
 		order by b.board_no desc;
+		
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = #{boardNo} limit 2;
+	
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 1 limit 1;

@@ -467,85 +467,95 @@
 				</div>
 			</div>
 			
-			
-			<!-- 같은 카페의 다른 포스트 list -- "개수"  -->
-			<div class="recommentSameList">
- 				<c:if test="${sameCafeCnt > 0 }">
-					<div class="cafeR_sameTitle bottomLine clearfix">
-							<p class="f_left"><span class="blue bold">${board.writingTitle}</span>에 대한 <span class="orange bold">${sameCafeCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
-						<c:if test="${sameCafeCnt > 4 }">
-							<div class="sameListBtn f_right">
-								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+		<!-- ****************************************************** 상세보기 리스트(1) : 같은카페 ****************************************************** -->
+		<!-- 같은 카페명의 다른 포스트 list -- "개수"  -->
+		<div class="recommentSameList">
+			<c:if test="${sameCafeCnt > 0 }">
+				<div class="cafeR_sameTitle bottomLine clearfix">
+					<p class="f_left">
+						<span class="blue bold">${board.writingTitle}</span>에 대한 
+						<span class="orange bold">${sameCafeCnt }</span>개의 
+						<span class="red bold">추천글</span>이 더 있어요!
+					</p>
+					<!-- 페이징 버튼생성 -->
+					<c:if test="${sameCafeCnt > 4 }">
+						<div class="sameListBtn f_right">
+							<div class="sameBtn prevBtn f_left">
+								<i class="fas fa-angle-left"></i>
 							</div>
-						</c:if>
-					</div>
-				</c:if>	
-				
-			<!-- 같은 카페의 다른 포스트 list -->	
+							<div class="sameBtn nextBtn f_left">
+								<i class="fas fa-angle-right"></i>
+							</div>
+						</div>
+					</c:if>
+				</div>
+			</c:if>
+
+			<!-- 같은 카페의 다른 포스트 list -->
 			<div class="recommendBest mb30">
 				<div class="recomWrap">
-				 <ul>
-					<c:forEach var="sameCafe" items="${sameCafe}">
-					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
-						<li>
-							<div class="RC_listImgWrap">
-<%-- 									<div class="RC_listImgContainer">
+					<ul>
+						<c:forEach var="sameCafe" items="${sameCafe}">
+							<a
+								href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
+								<li>
+									<div class="RC_listImgWrap">
+										<div class="RC_listImgContainer">
 						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
-										<c:forEach var="img" items="${listImg}">
+										<c:forEach var="img" items="${slistImg}">
 											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
 												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
 											</c:if>
 										</c:forEach>
 										<p class="test"></p>								
-									</div>	 --%>						
-							</div>
-							<div class="RC_listTitle1">
-								<!-- 위치 -->
-								<div class="zoneBtn zoneOrangeIconSmall">${sameCafe.zoneNo.zoneName}</div>
-								<!-- 키워드 -->
-								<c:choose>
-									<c:when test="${board.themeNo.themeNo == 1}">
-										<div class="date themeKeySmall">#${sameCafe.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 2}">
-										<div class="view themeKeySmall">#${sameCafe.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 3}">
-										<div class="ame themeKeySmall">#${sameCafe.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 4}">
-										<div class="dessert themeKeySmall">#${sameCafe.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 5}">
-										<div class="dog themeKeySmall">#${sameCafe.themeNo.themeName}</div>
-									</c:when>																																								
-									<c:otherwise>
-										<div class="work themeKeySmall">#${sameCafe.themeNo.themeName}</div>		
-									</c:otherwise>
-								</c:choose>
-								</div>
-								<div class="RC_listTitle2">
-									<!-- 상세페이지로 가기 -->																																			
-									<h3 class="RC_titleName">${sameCafe.writingTitle}</h3>
-								</div>							
-						</li>
-					</a>
-					</c:forEach>
-				</ul>
+									</div>
+									</div>
+									<div class="RC_listTitle1">
+										<!-- 위치 -->
+										<div class="zoneBtn zoneOrangeIconSmall">${sameCafe.zoneNo.zoneName}</div>
+										<!-- 키워드 -->
+										<c:choose>
+											<c:when test="${board.themeNo.themeNo == 1}">
+												<div class="date themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 2}">
+												<div class="view themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 3}">
+												<div class="ame themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 4}">
+												<div class="dessert themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 5}">
+												<div class="dog themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+											</c:when>
+											<c:otherwise>
+												<div class="work themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div class="RC_listTitle2">
+										<!-- 상세페이지로 가기 -->
+										<h3 class="RC_titleName">${sameCafe.writingTitle}</h3>
+									</div>
+							</li>
+							</a>
+						</c:forEach>
+					</ul>
 				</div>
 
 			</div>
-</div>
+		</div><!-- class="recommentSameList" -->
 
 
-
+		<!-- ****************************************************** 상세보기 리스트(2) : 같은키워드 ****************************************************** -->
 			<!-- 같은 키워드의 다른 포스트 list -- "개수"  -->
 			<div class="recommentSameList">
- 				<c:if test="${sameCafeCnt > 0 }">
+ 				<c:if test="${sameKeywordCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
-							<p class="f_left"><span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 <span class="orange bold">${sameCafeCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
-						<c:if test="${sameCafeCnt > 4 }">
+							<p class="f_left"><span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 <span class="orange bold">${sameKeywordCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
+						<c:if test="${sameKeywordCnt > 4 }">
 							<div class="sameListBtn f_right">
 								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
 								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
@@ -554,15 +564,16 @@
 					</div>
 				</c:if>	
 				
-			<!-- 같은 키워드의 다른 포스트 list -->	
+			<!-- 같은 키워드의 다른 포스트 list -->
 			<div class="recommendBest mb30">
 				<div class="recomWrap">
-				 <ul>
-					<c:forEach var="sameKeyword" items="${sameKeyword}">
-					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
-						<li>
-							<div class="RC_listImgWrap">
-<%-- 									<div class="RC_listImgContainer">
+					<ul>
+						<c:forEach var="sameKeyword" items="${sameKeyword}">
+							<a
+								href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
+								<li>
+									<div class="RC_listImgWrap">
+										<%-- 									<div class="RC_listImgContainer">
 						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
 										<c:forEach var="img" items="${listImg}">
 											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
@@ -570,55 +581,47 @@
 											</c:if>
 										</c:forEach>
 										<p class="test"></p>								
-									</div>	 --%>						
-							</div>
-							<div class="RC_listTitle1">
-								<!-- 위치 -->
-								<div class="zoneBtn zoneOrangeIconSmall">${sameKeyword.zoneNo.zoneName}</div>
-								<!-- 키워드 -->
-								<c:choose>
-									<c:when test="${board.themeNo.themeNo == 1}">
-										<div class="date themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 2}">
-										<div class="view themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 3}">
-										<div class="ame themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 4}">
-										<div class="dessert themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
-									</c:when>
-									<c:when test="${board.themeNo.themeNo == 5}">
-										<div class="dog themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
-									</c:when>																																								
-									<c:otherwise>
-										<div class="work themeKeySmall">#${sameKeyword.themeNo.themeName}</div>		
-									</c:otherwise>
-								</c:choose>
-								</div>
-								<div class="RC_listTitle2">
-									<!-- 상세페이지로 가기 -->																																			
-									<h3 class="RC_titleName">${sameKeyword.writingTitle}</h3>
-								</div>							
-						</li>
-					</a>
-					</c:forEach>
-				</ul>
+									</div>	 --%>
+									</div>
+									<div class="RC_listTitle1">
+										<!-- 위치 -->
+										<div class="zoneBtn zoneOrangeIconSmall">${sameKeyword.zoneNo.zoneName}</div>
+										<!-- 키워드 -->
+										<c:choose>
+											<c:when test="${board.themeNo.themeNo == 1}">
+												<div class="date themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 2}">
+												<div class="view themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 3}">
+												<div class="ame themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 4}">
+												<div class="dessert themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+											</c:when>
+											<c:when test="${board.themeNo.themeNo == 5}">
+												<div class="dog themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+											</c:when>
+											<c:otherwise>
+												<div class="work themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div class="RC_listTitle2">
+										<!-- 상세페이지로 가기 -->
+										<h3 class="RC_titleName">${sameKeyword.writingTitle}</h3>
+									</div>
+							</li>
+							</a>
+						</c:forEach>
+					</ul>
 				</div>
-
 			</div>
-</div>
-
-
-			</div>
-		</div>
-	</div>		
-		<!-- 서브페이지 콘텐츠 end -->
-	</div>
-	
-<script>
-</script>
+		</div><!-- class="recommentSameList" -->
+	</div><!-- class="contentArea" -->
+</div><!-- class="content subPageContent" -->	
+<!-- 서브페이지 콘텐츠 end -->
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
@@ -696,6 +699,16 @@
 			map.setCenter(coords);
 		}
 	});
+	
+	 //원본파일 불러오기(선명한 파일)
+	$(".thumbNailImg").each(function(i, obj) {
+		var file = $(this).attr("src");
+		var start = file.substring(0,51);
+		var end = file.substring(53);
+		var fileName = start + end;
+		$(this).attr("src", fileName);
+		console.log(fileName);
+	})	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>
