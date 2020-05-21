@@ -142,24 +142,26 @@
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(1) {
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyNick {
 		font-weight: 700;
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(2) {
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox {
 		width: 480px;
 	}
 	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox > p {
+		-ms-word-break: break-all;
+		word-break: break-all;
+	}
+	
 	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(3) {
-		position: absolute;
 		font-size: 14px;
-		top: 0;
-		right: 25px;
 	}
 	
 	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyBtn {
-		margin-right: 130px;
+		margin-right: 30px;
 	}
 	
 	.d_cafeR_reply_wrap .replyPage {
@@ -412,7 +414,6 @@
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
-	
 </style>	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -533,25 +534,13 @@
 				<div class="d_cafeR_reply_input replyStyle clearfix">
 					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
 					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
-					<textarea class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
-					<!-- <input class="f_left" type="text" name="commentContent" placeholder="여러분의 소중한 댓글을 남겨주세요."/> -->
+					<textarea id="newCmt" class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
 					<button id="d_cafeR_replyAddBtn" class="orangeBtn f_left">저장</button>
 				</div>
 				
-				<!-- 댓글 샘플 -->
+				<!-- 댓글 list -->
 				<div class="d_cafeR_replyList">
-					<ul class="replyListUl">
-						<%-- <li class="replyStyle clearfix boardReply">
-							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
-							<p class="f_left">닉네임1</p>
-							<p class="f_left">댓글 내용</p>
-							<p class="regitDate orange">2020/05/02</p>
-							<div class="replyBtn">
-								<a class="replyModify blueBtn" href="#" data-cmtNo="" data-cmtCnt="">수정</a>
-								<a class="replyRemove redBtn" href="#" data-cmtNo="">삭제</a>
-							</div>
-						</li> --%>
-					</ul>
+					<ul class="replyListUl"></ul>
 					<div class="replyPage">
 						<ul id="pagination" class="pagination"></ul>
 					</div>
@@ -635,22 +624,38 @@
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
-
-<!-- 댓글 -->
+<!-- 댓글기능 -->
 <script id="template" type="text/x-handlebars-template">
 	{{#each list}}
 		<li class="replyStyle clearfix boardReply" data-cno="{{commentNo}}">
 			<img class="f_left" src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" alt="등급아이콘" />
-			<p class="f_left">{{userNo.nick}}</p>
-			<p class="f_left">{{commentContent}}</p>
-			<p class="regitDate orange">{{dateHelper updateDate}}</p>
-			<div class="replyBtn"></div>
+			<p class="f_left replyNick">{{userNo.nick}}</p>
+			<div class="f_left replyCmtBox"><p>{{commentContent}}</p></div>
+			<p class="regitDate orange f_right">{{dateHelper updateDate}}</p>
+			<!-- login 기능 구현 후 c:if 해야함 -->
+			<div class="replyBtn f_right">
+				<a class="replyModify blueBtn off" href="#" data-cmtNo="{{commentNo}}" data-cmtCnt="{{commentContent}}">수정</a>
+				<a class="replyRemove redBtn" href="#" data-cmtNo="{{commentNo}}">삭제</a>
+			</div>
 		</li>
 	{{/each}}
 </script>
+<script id="replyModifyBox" type="text/x-handlebars-template">
+	<div class="replyModify_box">
+		<img class="f_left" src="{{userIcon}}" alt="등급아이콘"/>
+		<p class="f_left replyNick">{{userNick}}</p>
+		<div class="f_left replyCmtBox"><textarea id="modifyText" style="width:95%; padding: 10px;">{{commentContent}}</textarea></div>
+		<div class="replyBtn f_right">
+			<button class="modifyCancel blueBtn off" type="button">수정 취소</button>
+			<button class="modifySumit redBtn" type="button" data-submitNo="{{commentNo}}">수정 저장</button>
+		</div>
+	</div>
+</script>
+
 <script>
 	var no = 1;
 	
+	/*---- 댓글 -----------------------------------------------------------------------------------------------------*/
 	Handlebars.registerHelper ("dateHelper", function(value){
 		var d = new Date(value);
 		var year = d.getFullYear();
@@ -659,14 +664,16 @@
 		return year + "/" + month + "/" + day;
 	})
 	
+	/* 댓글 리스트 */
 	function getPageList( page ){
-		var bno = ${board.boardNo };
+		var boardNo = ${board.boardNo};
+		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/rest/reply/"+bno+"/"+page,
+			url:"${pageContext.request.contextPath}/rest/replies/"+boardNo+"/"+page,
 			type:"get",
 			datatype:"json",
 			success:function(res){
-				console.log(res);
+				//console.log(res);
 				$(".boardReply").remove();
 				var source = $("#template").html();
 				var func = Handlebars.compile(source);
@@ -691,15 +698,99 @@
 		})
 	}
 	
-	getPageList(no);
+	/* 댓글 리스트 show */
+	getPageList(1);
 	
+	/* 댓글 페이징 */
 	$(document).on("click", "#pagination a", function(){
 		no = $(this).text();
 		getPageList(no);
 	})
-</script>
+	
+	/* 댓글 추가 */
+	$("#d_cafeR_replyAddBtn").click(function(){
+		// login 기능 구현 후 수정해야함
+		var userNo = 3;
+		
+		var boardNo = ${board.boardNo};
+		var newCmt = $("#newCmt").val();
+		
+		var json = JSON.stringify({"boardNo":{"boardNo" : boardNo}, "userNo": {"userNo" : userNo}, "commentContent":newCmt});
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/",
+			type:"post",
+			headers: {"Content-Type":"application/json"},
+			data: json,
+			dataType : "text",
+			success: function(res){
+				console.log(res);
+				if(res == "SUCCESS"){
+					alert("댓글이 등록됨");
+					getPageList(no);
+					$("#newCmt").val("");
+				}
+			}
+		})		
+	})
+	
+	/* 댓글 수정 : 댓글 수정 박스 */
+	$(document).on("click",".replyModify", function(){
+		
+		var commentContent = $(this).attr("data-cmtcnt");
+		var commentNo = $(this).attr("data-cmtno");
 
-<script>
+		var replyBox = $(this).closest("li");
+		var iconSrc = replyBox.find("img").attr("src");
+		var userNick = replyBox.find(".replyNick").text();
+		//var commentContent = replyBox.find(".replyCmtBox > p").text();
+		replyBox.children().hide();
+		
+		var source = $("#replyModifyBox").html();
+		var data = {userIcon:iconSrc, userNick:userNick , commentContent: commentContent, commentNo: commentNo};
+		var func = Handlebars.compile(source);
+		replyBox.append(func(data)); 
+		
+		return false;
+	})
+	
+	/* 댓글 수정 */
+	// 수정 취소
+	$(document).on("click", ".modifyCancel", function(){
+		var replyBox = $(this).closest("li");
+		replyBox.find(".replyModify_box").remove();
+		replyBox.children().show();
+	})
+	
+	// 수정 저장
+	$(document).on("click", ".modifySumit", function(){
+		var replyBox = $(this).closest("li");
+		var commentContent = replyBox.find("#modifyText").val();
+		var commentNo = $(this).attr("data-submitno");
+		//console.log(commentContent);
+		//console.log(commentNo);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/"+commentNo,
+			type:"put",
+			headers : {"Content-Type":"application/json"},
+			data: JSON.stringify({"commentContent" : commentContent}),
+			dataType : "text",
+			success:function(res){
+				//console.log(res);
+				if(res == "SUCCESS"){
+					alert("수정되었습니다.");
+					replyBox.find(".replyModify_box").remove();
+					getPageList(no);
+				}
+			}
+		})
+		
+	})
+	
+	/* 댓글 삭제 */
+
+	
+	/*---- 게시글 -----------------------------------------------------------------------------------------------------*/
 	// 수정 btn
 	$(".d_cafeR_modifyBtn").click(function(){
 		location.href = "${pageContext.request.contextPath }/user/community/cafeReview/modify?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
@@ -734,10 +825,10 @@
 	// 좋아요(추천) - login 기능 구현시 수정해야함
 	$("#voteIcon").click(function(e){
 		e.preventDefault();
+		var boardNo = ${board.boardNo};
+		
 		// login 기능 구현 후 수정해야함
 		var userNo = 3;
-		
-		var boardNo = ${board.boardNo};
 		
 		if($(this).hasClass("off")){
 			$(this).empty();

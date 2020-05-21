@@ -9,14 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.PageMaker;
 import com.yi.domain.ReplyVO;
+import com.yi.domain.UsersVO;
 import com.yi.service.BoardService;
 import com.yi.service.CafeService;
 import com.yi.service.ReplyService;
@@ -101,7 +104,7 @@ public class UserRestController {
 	
 	
 	/*-------- reply ------------------------------------------------------------------*/
-	@RequestMapping(value = "/reply/{boardNo}/{page}", method = RequestMethod.GET)
+	@RequestMapping(value = "/replies/{boardNo}/{page}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> replyList(@PathVariable("boardNo") int boardNo, @PathVariable("page") int page){
 		ResponseEntity<Map<String, Object>> entity = null;
 		
@@ -123,6 +126,38 @@ public class UserRestController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	@RequestMapping(value = "/replies/", method = RequestMethod.POST)
+	public ResponseEntity<String> replyRegister(@RequestBody ReplyVO vo){
+		//System.out.println("reply vo ---------------"+vo);
+		ResponseEntity<String> entity = null;
+		
+		try {
+			replyService.insertReply(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	@RequestMapping(value = "/replies/{commentNo}", method = RequestMethod.PUT)
+	public ResponseEntity<String> update(@PathVariable("commentNo") int commentNo, @RequestBody ReplyVO vo) {
+		ResponseEntity<String> entity = null;
+		
+		try {
+			vo.setCommentNo(commentNo);
+			replyService.updateReply(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
 		}
 		
 		return entity;
