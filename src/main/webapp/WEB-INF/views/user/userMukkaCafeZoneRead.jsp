@@ -211,7 +211,8 @@
 			pause : 4000,
 			mode : 'fade',
 			pager : true,
-			slideWidth : 800
+			slideWidth : 800,
+			adaptiveHeight : true
 		});
 		
 		<!-- 카페 상세정보, 메뉴판, 편의정보, 상세정보 -->
@@ -485,7 +486,7 @@
 			<div style="padding: 20px 65px;">
 				<div class="bxslider" style="text-align: center;">
 					<c:forEach var="images" items="${imgList }">
-						<div><img src="${pageContext.request.contextPath }/resources/images/sumnail/${images.imageName}" style="height: 500px;"></div>
+						<div><img src="${pageContext.request.contextPath }/resources/images/sumnail/${images.imageName}"></div>
 					</c:forEach>
 				</div>
 			</div>
