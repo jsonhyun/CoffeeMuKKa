@@ -131,3 +131,25 @@ file
 where b.board_no2 = 2 and b.board_no = 2;
 
 update board set view_number = view_number+1 where board_no = #{boardNo}
+
+select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		where b.board_no2 = 2
+		order by b.board_no desc limit 0, 16;
+		
+	
+select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
+			   b.view_number , b.writing_title , b.registration_date , b.update_date,
+			   b.writing_content , b.vote_number , b.reply_cnt , b.board_del_cdt, z.zone_no , z.zone_name ,
+			   t.theme_no , t.theme_name , c.cafe_no, c.cafe_name , c.address, i.image_name 
+			from board b left join image i on b.board_no = i.board_no 
+						left join users u on b.user_no = u.user_no 
+						left join grade g on u.user_grade = g.user_grade 
+						left join cafe c on b.cafe_no = c.cafe_no 
+						left join zone z on c.zone_no = z.zone_no 
+						left join theme t on c.theme_no = t.theme_no;
+						
+select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no;					

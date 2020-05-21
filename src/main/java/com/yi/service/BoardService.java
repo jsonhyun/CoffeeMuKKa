@@ -42,8 +42,8 @@ public class BoardService {
 	}
 
 	// 추천카페 -- 페이징된 리스트
-	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception {
-		return dao.recommendboardListCriteria(cri);
+	public List<BoardVO> recommendboardListSearchCriteria(int cBoardNo, SearchCriteria cri) throws Exception {
+		return dao.recommendboardListSearchCriteria(cBoardNo, cri);
 	}
 
 	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {

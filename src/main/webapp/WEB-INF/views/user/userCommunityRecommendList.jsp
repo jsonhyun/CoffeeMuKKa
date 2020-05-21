@@ -4,16 +4,16 @@
 <%@ include file="../userInclude/subMenu.jsp" %>
 
 <style>
-	.cafeReviewSearch {
+	.cafeRecommendSearch {
 		padding: 10px 0;
 		padding-top: 20px;
 	}
 
-	.cafeReviewSearch .selectLeft {
+	.cafeRecommendSearch .selectLeft {
 		float: left;
 	}
 	
-	.cafeReviewSearch .selectRight {
+	.cafeRecommendSearch .selectRight {
 		float: right;
 	}
 	
@@ -280,42 +280,33 @@
 		<!-- 게시판 베스트 end -->
 		
 		<!-- 카테고리 & 검색창 -->
-		<div class="cafeReviewSearch bottomLine2 clearfix">
+		<div class="cafeRecommendSearch bottomLine2 clearfix">
 			<div class="selectLeft">
-				<select name="" id="">
-					<option selected="selected" value="위치">전체(위치별)</option>
-					<option value="1">동성로</option>
-					<option value="2">수성못 들안길</option>
-					<option value="3">두류공원 이월드</option>
-					<option value="4">달서구</option>
-					<option value="5">수성구</option>
-					<option value="6">서구-북구</option>
-					<option value="7">중구</option>
-					<option value="8">동구</option>
-					<option value="9">남구</option>
-					<option value="10">달성군</option>
+				<select name="searchZone" id="searchZone">
+					<option value="" ${cri.searchZone == '' ? 'selected' : '' }>전체(위치별)</option>
+					<c:forEach var="zone" items="${zoneList }">
+						<option value="${zone.zoneNo }" ${cri.searchZone == zone.zoneNo ? 'selected' : '' }>${zone.zoneName }</option>
+					</c:forEach>
 				</select>
-				<select name="" id="">
-					<option selected="selected" value="키워드">전체(테마별)</option>				
-					<option value="1">#데이트</option>
-					<option value="2">#뷰</option>
-					<option value="3">#착한아메</option>
-					<option value="4">#디저트</option>
-					<option value="5">#댕댕이</option>
-					<option value="6">#작업</option>
+				<select name="searchTheme" id="searchTheme">
+					<option value="" ${cri.searchTheme == '' ? 'selected' : '' }>전체(테마별)</option>
+					<c:forEach var="theme" items="${themeList }">					
+						<option value="${theme.themeNo}" ${cri.searchTheme == theme.themeNo ? 'selected' : '' }>#${theme.themeName}</option>
+					</c:forEach>
 				</select>
 			</div>
 			<div class="selectRight">
-				<select name="" id="">
-					<%-- <option value="n" ${cri.searchType == null ? 'selected' : '' }>----</option>
+				<select name="searchType" id="searchType">
+					<option value="n" ${cri.searchType == null ? 'selected' : '' }>----</option>
 					<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>제목</option>
 					<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>내용</option>
 					<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>제목+내용</option>
 					<option value="uId" ${cri.searchType == 'uId' ? 'selected' : '' }>회원아이디</option>
-					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option> --%>
+					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option>
 				</select>
-				<input type="text" name="" placeholder="검색어를 입력하세요." />
-				<input type="submit" value="검색" class="navyBtn" style="cursor: pointer"/>
+				<input type="hidden" name="boardType" value="1"/>
+				<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
+				<button type="button" class="navyBtn" id="btnSearch">검색</button>
 			</div>
 		</div>
 		<!-- 카테고리 & 검색창 end -->
@@ -324,7 +315,7 @@
 		<!-- 추천카페 : 타이틀 -->
 		<div class="RC_Area">
 			<div class="RC_titleWrap clearfix">
-				<h3 class="RC_title">오늘의 카페 추천 | <span class="red cafeRCnt">${todayCnt}개</span></h3>
+				<h3 class="RC_title">오늘의 추천 카페 | <span class="red cafeRCnt">${todayCnt}개</span></h3>
 				<div class="RC_topBtns">
 					<div class="RC_Best grayLineBtn"><a href="#"><span class="red bold">베스트 글</span> 전체 보기</a></div>
 					<button class="navyBtn" id="RC_Register" style="cursor: pointer">추천 카페 쓰기</button>
@@ -389,19 +380,19 @@
 			</div>
 		</div>
 			<!-- 페이징 -->
-			<div style="text-align: center;">
-				<ul class="pagination">
-					<c:if test="${pageMaker.prev == true }">
-						<li><a href="cafeRecommend?page=${pageMaker.startPage-1 }">&laquo;</a></li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeRecommend?page=${idx }">${idx }</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next == true }">
-						<li><a href="cafeRecommend?page=${pageMaker.endPage+1 }">&raquo;</a></li>
-					</c:if>
-				</ul>
-			</div>					
+		<div style="text-align: center;">
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev == true }">
+					<li><a href="cafeRecommend?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeRecommend?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
+				</c:forEach>
+				<c:if test="${pageMaker.next == true }">
+					<li><a href="cafeRecommend?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
+				</c:if>
+			</ul>
+		</div>					
 	</div> 
 </div>
 
@@ -463,7 +454,16 @@
 		var fileName = start + end;
 		$(this).attr("src", fileName);
 		console.log(fileName);
-	})	 
+	})
+	
+	// 검색
+	$("#btnSearch").click(function () {
+		var searchZone = $("#searchZone").val();
+		var searchTheme = $("#searchTheme").val();
+		var searchType = $("#searchType").val();
+		var keyword = $("#keyword").val();
+		location.href = "cafeRecommend?boardType=2&searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
+	})	
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>

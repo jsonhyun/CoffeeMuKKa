@@ -290,18 +290,17 @@ public class UserBoardController {
 	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
 	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
-	public String communityRecommendList(Criteria cri, Model model) throws Exception {
+	public String communityRecommendList(SearchCriteria cri, Model model) throws Exception {
 		//카페추천 게시판번호 - 2번
 		int cBoardNo = 2;
+		cri.setPerPageNum(16); //한페이지당 16개씩
 		
-		//System.out.println(cri); // [searchType=null, keyword=null, getPage()=1]
-		
-		List<BoardVO> list = service.recommendboardListCriteria(cri);	
+		List<BoardVO> list = service.recommendboardListSearchCriteria(cBoardNo,cri);	
 	    PageMaker pageMaker = new PageMaker();
 	    pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.totalSearchCount(cBoardNo));
+		pageMaker.setTotalCount(service.totalSearchCountJoin(cBoardNo, cri));
 		
-		//System.out.println("TEST============================================="+list.toString());
+		
 		model.addAttribute("list",list);
 		model.addAttribute("cri",cri);
 		model.addAttribute("pageMaker",pageMaker);
@@ -317,8 +316,15 @@ public class UserBoardController {
 			//System.out.println("숫자"+boardNo);
 			listImg.addAll(service.recommendboardImgList(boardNo));
 		}
-		//System.out.println("test=================================================================================="+listImg.toString());
 		model.addAttribute("listImg", listImg);
+
+		//지역 리스트
+		List<ZoneVO> zoneList = service.zoneList();
+		model.addAttribute("zoneList", zoneList);
+		//테마 리스트
+		List<ThemeVO> themeList = service.themeList();
+		model.addAttribute("themeList", themeList);
+
 		
 		
 		return "/user/userCommunityRecommendList";

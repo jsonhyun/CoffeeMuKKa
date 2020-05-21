@@ -29,9 +29,13 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	//추천카페 -- 페이징된 리스트	
 	@Override
-	public List<BoardVO> recommendboardListCriteria(Criteria cri) throws Exception {
-		return sqlSession.selectList(namespace+"recommendboardListCriteria", cri);
+	public List<BoardVO> recommendboardListSearchCriteria(int cBoardNo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cBoardNo", cBoardNo);
+		map.put("cri", cri);
+		return sqlSession.selectList(namespace+"recommendboardListSearchCriteria", map);
 	}
+	
 	@Override
 	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {
 		return sqlSession.selectList(namespace+"recommendboardImgList", boardNo);
