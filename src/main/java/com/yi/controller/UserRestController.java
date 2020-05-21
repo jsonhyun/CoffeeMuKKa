@@ -148,12 +148,28 @@ public class UserRestController {
 	}
 	
 	@RequestMapping(value = "/replies/{commentNo}", method = RequestMethod.PUT)
-	public ResponseEntity<String> update(@PathVariable("commentNo") int commentNo, @RequestBody ReplyVO vo) {
+	public ResponseEntity<String> replyUpdate(@PathVariable("commentNo") int commentNo, @RequestBody ReplyVO vo) {
 		ResponseEntity<String> entity = null;
 		
 		try {
 			vo.setCommentNo(commentNo);
 			replyService.updateReply(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	
+	@RequestMapping(value = "/replies/{commentNo}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> replyDelete(@PathVariable("commentNo") int commentNo) {
+		ResponseEntity<String> entity = null;
+		
+		try {
+			replyService.deleteReply(commentNo);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

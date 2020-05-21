@@ -788,6 +788,24 @@
 	})
 	
 	/* 댓글 삭제 */
+	$(document).on("click", ".replyRemove", function(){
+		
+		var commentNo = $(this).attr("data-cmtno");
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/"+commentNo,
+			type:"delete",
+			dataType : "text",
+			success:function(res){
+				console.log(res);
+				if(res == "SUCCESS"){
+					alert("삭제되었습나다.");						
+					getPageList(no);
+				}
+			}
+		})
+		
+		return false;
+	})
 
 	
 	/*---- 게시글 -----------------------------------------------------------------------------------------------------*/
