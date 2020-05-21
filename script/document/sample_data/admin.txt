@@ -1,4 +1,0 @@
-﻿1,test001,test001,admin.png,2
-2,test002,test002,admin.png,1
-3,test003,test003,admin.png,1
-4,test004,test004,admin.png,2

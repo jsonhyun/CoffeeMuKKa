@@ -1,5 +1,7 @@
 select user(), database();
 
+show tables;
+
 select * from cafe;
 select * from board;
 desc board;

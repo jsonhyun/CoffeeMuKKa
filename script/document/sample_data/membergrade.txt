@@ -1,3 +1,0 @@
-﻿1,커피새싹,saessack.png
-2,커피묘목,myomok.png
-3,커피열매,yeolmae.png
