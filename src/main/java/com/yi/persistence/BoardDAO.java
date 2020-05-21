@@ -21,8 +21,10 @@ public interface BoardDAO {
 	public void recommendInsertImages(String imageName, int boardNo) throws Exception;	
 	//추천카페 -- 상세보기
 	public BoardVO recommendReadByNo(int boardNo) throws Exception;	
-	
-	
+	//추천카페 사진삭제 -- 수정
+	public void removeRecommendImg(String imageName) throws Exception;
+	//추천카페 -- 수정
+	public void recommendUpdate(BoardVO vo) throws Exception;
 	
 	/*** 공통 ***/
 	//오늘 등록된 글 갯수(**커뮤니티 공통**)
@@ -60,5 +62,7 @@ public interface BoardDAO {
 	public void cafeReviewModify(BoardVO vo) throws Exception;
 	// 탐방기 -- remove
 	public void cafeReviewRemove(BoardVO vo) throws Exception;
+
+
 	
 }

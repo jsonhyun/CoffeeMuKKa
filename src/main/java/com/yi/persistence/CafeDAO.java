@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
+import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
 
@@ -29,6 +30,7 @@ public interface CafeDAO {
 	
 	/* 카페 메뉴 검색 */
 	public List<MenuVO> menuList(int cafeNo) throws Exception;
+	public List<MenuKindsVO> sortNameSelect(int cafeNo) throws Exception;
 	
 // 검색시 페이징 처리 dao
 	public List<CafeVO> listPage(int page) throws Exception;	
@@ -41,4 +43,5 @@ public interface CafeDAO {
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;
+	
 }

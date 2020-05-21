@@ -32,4 +32,11 @@ WHERE s.theme_no = 1;
 
 select IFNULL(round(sum(star_point)/count(*), 1), 0) from starpoint s where cafe_no = 1 and registration_date between '2020-7-01' and '2020-7-30';
 
-select m.*, k.sort_name from menu m left join menukinds k on m.menukinds = k.sort_no where cafe_no =1;
+select m.* from menu m where cafe_no =10;
+select m.*, k.sort_name, k.sort_no from menu m left join menukinds k on m.menukinds = k.sort_no where cafe_no =10;
+select m.*, k.* from menu m left join menukinds k on m.menukinds = k.sort_no where cafe_no =1 and sort_no=2;
+
+select distinct k.sort_no , k.sort_name from menu m left join menukinds k on m.menukinds = k.sort_no where cafe_no =1;
+
+select * from menu m ;
+select * from menukinds m ;

@@ -366,7 +366,57 @@ public class UserBoardController {
 	}
 	//modify -- 수정
 	@RequestMapping(value = "/community/cafeRecommend/modify", method = RequestMethod.GET)
-	public String communityRecommendModify() {
+	public String communityRecommendModify(int boardNo, Model model) throws Exception {
+		BoardVO vo = service.recommendReadByNo(boardNo);
+		System.out.println("번호는요"+boardNo);
+		System.out.println("TEST============================================="+vo);
+		model.addAttribute("board", vo);
 		return "/user/userCommunityRecommendModify";
 	}
+	
+	@RequestMapping(value = "/community/cafeRecommend/modify", method = RequestMethod.POST)
+	public String communityRecommendModifyPOST(BoardVO vo, String[] delfiles, List<MultipartFile> imgfiles, /* SearchCriteria cri, */ Model model) throws Exception {
+		//추가한 이미지 파일 중 삭제할 파일이 있다면
+		if(delfiles !=null) {
+			for(int i=0;i<delfiles.length;i++) {
+				String test1 = delfiles[i].substring(0,12);
+				String test2 = delfiles[i].substring(14);
+				service.removeRecommendImg(delfiles[i]);
+				System.out.println("지웠다==========================================================="); //ok
+				
+				//썸네일 지우기
+				File file = new File(uploadPath+delfiles[i]);
+				file.delete();
+				
+				System.out.println("썸네일삭제===============================================================");  //ok
+				//원본파일 지우기
+				String orignName = test1 + test2;
+				File orignfile = new File(uploadPath+orignName);
+				orignfile.delete();	
+				System.out.println("원본파일삭제===============================================================");  //ok
+			}
+		}
+		//새로추가할 파일이 있다면
+	    ArrayList<String> fullName = new ArrayList<String>();
+		
+		for(MultipartFile file : imgfiles) {
+			System.out.println("파일이름 : "+file.getOriginalFilename()); // ok
+			System.out.println("파일사이즈 : "+file.getSize()); // ok
+			if(file.getSize() != 0) {
+				//upload처리
+				String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				
+				fullName.add(savedName);
+				System.out.println(savedName);
+			}
+		}
+		vo.setStringFiles(fullName);
+    
+	service.recommendUpdate(vo);
+	
+	//model.addAttribute("page", cri.getPage());
+	//model.addAttribute("searchType", cri.getSearchType() );
+	//model.addAttribute("keyword", cri.getKeyword());		
+		return "redirect:/user/community/cafeRecommend";
+	}	
 }

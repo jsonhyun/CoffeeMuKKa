@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
+import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
 
@@ -21,7 +22,7 @@ public class CafeDAOImpl implements CafeDAO {
 	
 	private static final String namespace = "mapper.CafeMapper.";
 	
-	
+	/* 카페 추가, 검색, 삭제, 수정 */
 	@Override
 	public void createCafe(CafeVO vo) throws Exception {
 		sqlSession.insert(namespace+"createCafe", vo);
@@ -59,6 +60,7 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace+"listPage", page);
 	}
 	
+	/* 카페 이미지 검색 */
 	@Override
 	public ImageVO imgSelect(int cafeNo) throws Exception {
 		return sqlSession.selectOne(namespace+"sumnailImg", cafeNo);
@@ -69,6 +71,7 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace+"imgList", cafeNo);
 	}
 	
+	/* 카페 별점 검색 */
 	@Override
 	public int starpointSelect(int cafeNo) throws Exception {
 		return sqlSession.selectOne(namespace+"pointSelect", cafeNo);
@@ -84,10 +87,10 @@ public class CafeDAOImpl implements CafeDAO {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("cafeNo", cafeNo);
 		map.put("month", month);
-		System.out.println("++++++++++현재승++++"+sqlSession);
 		return sqlSession.selectOne(namespace+"starpointByMonth", map);
 	}
 	
+	/* 카페 테마 순위 검색 */
 	@Override
 	public int rankTheme(int cafeNo, int themeNO) throws Exception {
 		Map<String, Integer> map = new HashMap<String, Integer>();
@@ -96,9 +99,15 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectOne(namespace+"rankTheme", map);
 	}
 
+	/* 카페 메뉴 검색 */
 	@Override
 	public List<MenuVO> menuList(int cafeNo) throws Exception {
 		return sqlSession.selectList(namespace+"menuList", cafeNo);
+	}
+	
+	@Override
+	public List<MenuKindsVO> sortNameSelect(int cafeNo) throws Exception {
+		return sqlSession.selectList(namespace+"sortNameSelect", cafeNo);
 	}
 	
 // 검색시 페이징 처리 DAOImpl
@@ -126,5 +135,6 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
 	}
+
 	
 }

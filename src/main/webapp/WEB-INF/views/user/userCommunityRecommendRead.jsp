@@ -78,6 +78,7 @@
 		text-align: center;
 	}
 	.d_cafeR_context_wrap .readImgBox img{ /* 이미지 사이즈 고민 */
+		width: 100%;
 		margin-top: 15px;
 	}
 	div#addMap{
@@ -95,7 +96,7 @@
 		letter-spacing: 2px;
 	}
 	.d_cafeR_context_wrap #map{ 
-		width: 102%;
+		width: 100%;
 		height: 400px;
 	}
 	
@@ -380,6 +381,8 @@
 				<!-- 글내용 -->
 				<div id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></div>
 			</div>
+			<!-- 히든처리 -->
+			<input type="hidden" name="board.boardNo" value="${board.boardNo}">
 			
 			
 			<!-- 버튼 영역 -->
@@ -514,7 +517,7 @@
 	
 	//수정버튼
 	$("#RC_modify").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/modify?boardNo=${board.boardNo}";
 	})
 	//삭제버튼
 	$("#RC_delete").click(function() {
@@ -528,9 +531,15 @@
 
 	//지도 -- 주소, 카페이름 빼오기
 	var address = $("#add").text();
-	console.log(address);
+	console.log("주소"+address);
 	var cafeName = $("#cafe_title").text();
-	console.log(cafeName);
+	if(address == ""){ //정확한 주소를 알 수 없을때
+		$("#add").removeClass("blue").addClass("red");
+		$("#add").text("정확한 주소를 확인할 수 없습니다.");
+		$("div#addMap").remove(); // 지도 Title remove
+		$("div#map").remove(); // 지도 remove
+	}
+	console.log("카페이름"+cafeName);
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 	
@@ -543,7 +552,7 @@
 	// 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption);
 
-	// 주소로 좌표를 검색합니다
+	// 주소로 좌표를 검색합니다 -- address
 	geocoder.addressSearch(address, function(result, status) {
 		// 정상적으로 검색이 완료됐으면 
 		if (status === kakao.maps.services.Status.OK) {
@@ -554,7 +563,7 @@
 				position : coords
 			});
 			// 인포윈도우로 장소에 대한 설명을 표시합니다
-			var infowindow = new kakao.maps.InfoWindow({
+			var infowindow = new kakao.maps.InfoWindow({                              //cafeName
 				content : '<div style="width:150px;text-align:center;padding:6px 0;">'+cafeName+'</div>'
 			});
 			infowindow.open(map, marker);

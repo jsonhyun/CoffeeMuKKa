@@ -109,7 +109,10 @@
 	input#keyword{
 		width: 160px;
 		height: 24px;
-	}	
+	}
+	input#keyword::placeholder{
+		color: red;
+	}
 	textarea#text{
 		width: 100%;
 		margin-top: 10px;
@@ -129,23 +132,10 @@
 		background-color: #D5D5D5;
 		margin-top: 20px;
 	}
-	div.imageWrap{
-		width: 165px;
-		height: 165px;
-		border: 1px solid red;
-		margin: 27px;
-		position: relative;
-		float: left;
-	}
-	button.xBtn{
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
 	div#imagesBox img{
 		width: 163px;
 		height: 163px;
-		/* margin: 27px; */
+		margin: 27px;
 		border: 1px solid #BDBDBD;
 	}	
 	button{
@@ -267,6 +257,10 @@
 		width: 100%;
 		height: 350px;
 		margin-top: 15px;
+	}
+	span.orangeBtn2{
+		padding: 2px;
+		border-radius: 2px;
 	}					
 </style>
 <div class="content subPageContent">
@@ -284,13 +278,10 @@
 		<h3 id="RC_line"></h3>
 		<!-- 등록폼 -->
 		<div id="RC_regiForm">
-		<!-- <form action="register" method="post" enctype="multipart/form-data"> -->
-			<input type="hidden" name="boardNo2.boardNo" value="2">
-			<input type="hidden" name="userNo.userNo" value="1"><!-- 임시 -->	
 			<!-- 카테고리 -->		
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카&nbsp;&nbsp;&nbsp;테&nbsp;&nbsp;&nbsp;고&nbsp;&nbsp;&nbsp;리</label>
-				<select class="cate" name="zoneNo.zoneNo">
+				<select id="zoneCate" class="cate">
 					<option selected="selected" value="위치">전체(위치별)</option>
 					<option value="1">동성로</option>
 					<option value="2">수성못 들안길</option>
@@ -304,7 +295,7 @@
 					<option value="10">달성군</option>
 					<option value="11">팔공산</option>
 				</select>
-				<select class="cate" name="themeNo.themeNo">
+				<select id="themeCate" class="cate">
 					<option selected="selected" value="키워드">전체(테마별)</option>				
 					<option value="1">#데이트</option>
 					<option value="2">#뷰</option>
@@ -318,12 +309,12 @@
 			<!-- 추천카페 : 이름, 주소 -->					
 			<div class="RC_Rg_groub">		
 				<label class="RC_label">카&nbsp;&nbsp;&nbsp;페&nbsp;&nbsp;상 호 명</label>
-				<input type="text" name="writingTitle" id="title">
+				<input type="text" id="title" readonly placeholder="   ☞    추천 카페 찾기를 통해  상호명을 입력 하세요.">
 			</div>
 			<!-- 등록카페 확인 -->	
 			<div class="RC_Rg_groub">	
 				<label class="RC_label">카&nbsp;&nbsp;&nbsp;페&nbsp;&nbsp;주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 소</label>
-				<input type="text" name="address" id="point">
+				<input type="text" id="point" readonly placeholder="    ☞    추천 카페 찾기를 통해  주소를 자동입력 입력 하세요.">
 				<button type="button" class="recommdenPoint orangeBtn">추천 카페 찾기</button>		
 			</div>
 			
@@ -344,10 +335,19 @@
 			        <div id="pagination"></div>
 			    </div>
 			</div>
+			
+			<!-------------------------------- 실질적인 등록폼 -------------------------------->
 			<form action="register" method="post" enctype="multipart/form-data">
+			<!-- hidden처리 -->
+			<input type="hidden" name="boardNo2.boardNo" value="2">
+			<input type="hidden" name="userNo.userNo" value="1"><!-- 임시 -->	
+			<input type="hidden" name="zoneNo.zoneNo" id="hiddenZone">
+			<input type="hidden" name="themeNo.themeNo" id="hiddenTheme">
+			<input type="hidden" name="writingTitle" id="hiddenTitle">
+			<input type="hidden" name="address" id="hiddenAddress">
 			<!-- 카페후기 글 -->		
 			<div class="RC_Rg_groub">	
-				<textarea rows="15" cols="100" name="writingContent" id="text"></textarea>
+				<textarea rows="15" cols="100" name="writingContent" id="text" placeholder=" &#13;&#10; &#13;&#10; &#13;&#10; &#13;&#10;    ☞    여러분의 소중한 추천 카페 이야기를 들려주세요.&#13;&#10;"></textarea>
 			</div>
 			<!-- 카페 이미지 첨부 -->
 			<div class="RC_Rg_groub">	
@@ -447,6 +447,30 @@
 		
 	})
 	
+	//카테고리 - 지역값 form에 넣기
+	$("select#zoneCate").change(function() {
+		var zone = $("select#zoneCate option:selected").val();
+		$("input#hiddenZone").val(zone);	
+	})
+	
+	//카테고리 - 테마값 form에 넣기
+	$("select#themeCate").change(function() {
+		var theme = $("select#themeCate option:selected").val();
+		$("input#hiddenTheme").val(theme);	
+	})
+	
+	//추천 카페 찾기 - marker 클릭 span.markerbg
+	$(document).on("click", "span.markerbg", function(){
+		var title = $(this).next().find("h5.cafeTitle").text();
+		var address = $(this).next().find("span.mapAdrs").text();
+		$("input#title").val(title);
+		$("input#point").val(address);
+		
+		$("input#hiddenTitle").val(title);
+		$("input#hiddenAddress").val(address);
+	})
+
+	
 	/***************************** 검색박스 *****************************************/
 	
 	//검색창, 전체리스트 다 보이게 구현 : 지역이름+카페이름+카페주소
@@ -509,16 +533,21 @@
 				$(".cafeResult").append($tr);
 				
 				if(res.length == 0) { // 등록된카페X -> 추천 글을 쓸수 있음
-					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:orange'><b><span class='red'>Coffee MuKKa</span> 에 등록된 카페가 없습니다</b></span>");
+					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:orange'><b><span class='red'>Coffee MuKKa</span> 에 등록된 카페가 아닙니다.<br><span class='orangeBtn orangeBtn2'>추천 카페 찾기</span>를 통해 여러분의 <span class='blue'>소중한 후기</span>를 남겨주세요.</b></span>");
 					var $tr = $("<tr>").append($tdNone);
 					$(".cafeResult").append($tr);
 					$(".goCageInfo_reiview").hide();
+					
+					$(".closeBtn").show();
 					
 				}else if(cafeName == ""){
 					var $tdNone = $("<td>").attr("colspan", "3").html("<span style='color:red'><b>카페 이름을 정확히 입력하세요</b></span>");
 					var $tr = $("<tr>").append($tdNone);
 					$(".cafeResult").append($tr);
 					$(".goCageInfo_reiview").hide();
+					
+					$(".closeBtn").show();
+					
 			   }else { // 등록된카페O -> 핸들바즈 삽입(검색결과)
 					$(".goCageInfo_reiview").show();
 					var source = $("#cafeRes").html();
@@ -530,6 +559,8 @@
 					$(".goCageInfo_reiview").append(func2(res));
 					
 					$("#goCafeInfo").empty(); // 버튼 자가증식 막기
+					
+					$(".closeBtn").hide(); // 글쓰는것 자체를 막음
 				}
 				
 				$(".cafeResultWrap").show();
@@ -569,22 +600,18 @@
 			var reader = new FileReader(); //javascript 객체
 			reader.readAsDataURL(files[i]);
 			reader.onload = function(e){
-				var $div = $("<div>").addClass("imageWrap");
-				var $close = $("<button>").attr("type", "button").text("X").addClass("xBtn");
 				var $img = $("<img>").attr("src", e.target.result);
-				
-				$div.append($img).append($close)
-				$("#imagesBox").append($div);
+				$("#imagesBox").append($img);
 			}
 		}
 	})
 	
-	//동적으로 생성된 X버튼
+/* 	//동적으로 생성된 X버튼
 	$(document).on("click", ".xBtn", function(){
 		$(this).closest("div").remove(); // closest -- 가장 가까운 상위 요소 선택자
 		$("input[name='imgfiles']").val("");
 		
-	})
+	}) */
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++지도
 	// 마커를 담을 배열입니다
@@ -592,7 +619,7 @@
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
-	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(35.8673341,128.5585313), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
 	    };  
 	
@@ -636,6 +663,15 @@
 	    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 	
 	        alert('검색 결과가 존재하지 않습니다.');
+	       var searchCafe = $("input#keyword").val();
+	       alert(searchCafe);
+	       	$("input#title").val(searchCafe);
+	        $("input#point").addClass("red").val(" 정확한 주소를 확인할 수 없습니다.");
+	        $("div.map_wrap").slideUp(1200);
+	        
+	        //데이터베이스 값 넣기
+	        $("input#hiddenTitle").val(searchCafe);
+			$("input#hiddenAddress").val("");
 	        return;
 	
 	    } else if (status === kakao.maps.services.Status.ERROR) {
@@ -710,10 +746,10 @@
 	    var el = document.createElement('li'),
 	    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
 	                '<div class="info">' +
-	                '   <h5>' + places.place_name + '</h5>';
+	                '   <h5 class="cafeTitle">' + places.place_name + '</h5>';
 	
 	    if (places.road_address_name) {
-	        itemStr += '    <span>' + places.road_address_name + '</span>' +
+	        itemStr += '    <span class="mapAdrs">' + places.road_address_name + '</span>' +
 	                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
 	    } else {
 	        itemStr += '    <span>' +  places.address_name  + '</span>'; 
@@ -805,6 +841,7 @@
 	}
 	 
 	$("div.map_wrap").hide();
+	
 	/***************** 추천카페 찾기 버튼 ******************/
 	$("button.recommdenPoint").click(function() {
 		$("div.map_wrap").slideToggle(1200);
@@ -813,7 +850,7 @@
 
 
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
-</div>
+</div>if
 <!-- container end -->
 
 <%@ include file="../userInclude/footer.jsp" %>
