@@ -20,7 +20,9 @@ public interface BoardDAO {
 	public void recommendInsert(BoardVO vo) throws Exception;
 	public void recommendInsertImages(String imageName, int boardNo) throws Exception;	
 	//추천카페 -- 상세보기
-	public BoardVO recommendReadByNo(int boardNo) throws Exception;	
+	public BoardVO recommendReadByNo(int boardNo) throws Exception;
+	//추천카페 -- 같은카페리스트
+	public List<BoardVO> recommendSameCafeList(BoardVO vo);
 	//추천카페 사진삭제 -- 수정
 	public void removeRecommendImg(String imageName) throws Exception;
 	//추천카페 -- 수정
@@ -62,6 +64,7 @@ public interface BoardDAO {
 	public void cafeReviewModify(BoardVO vo) throws Exception;
 	// 탐방기 -- remove
 	public void cafeReviewRemove(BoardVO vo) throws Exception;
+
 
 
 	

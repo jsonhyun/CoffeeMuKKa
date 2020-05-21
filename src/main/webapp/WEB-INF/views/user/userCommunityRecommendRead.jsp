@@ -317,6 +317,46 @@
 		float: left;
 		margin-right: 10px;
 	}
+	
+	/* 같은카페 리스트 */
+	.recommendBest .recomWrap ul{
+		overflow: hidden;
+	}
+	
+	.recommendBest .recomWrap li {
+		float: left;
+		width: 222px;
+		height: 260px;
+		margin: 3px;
+		border: 1px solid #545454;
+	}
+	.recommendBest .recomWrap li div.RC_listImgWrap{
+		width: 100%;
+		height: 160px;
+		position: relative;
+	}
+	.recommendBest .recomWrap li div.RC_listImgContainer img{
+		width: 100%;
+		height: 160px;
+		position: absolute;
+	}
+	.recommendBest .recomWrap li div.RC_listImgContainer .active{
+		z-index: 1;
+	}		
+	.recommendBest .recomWrap li div.RC_listTitle1{
+		width: 90%;
+		height: 33px;
+		padding: 8px;
+	}
+	.recommendBest .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
+		font-size: 12px;
+		margin-top: 5px;
+	}
+ 	.recommendBest .recomWrap li div.RC_listTitle2{
+		width: 90%;
+		height: 45px;
+		padding: 8px;
+	}	
 </style>	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -427,9 +467,10 @@
 				</div>
 			</div>
 			
-			<!-- 같은 카페의 다른 포스트 list -->
+			
+			<!-- 같은 카페의 다른 포스트 list -- "개수"  -->
 			<div class="cafeR_sameList">
-				<c:if test="${sameCnt > 0 }">
+<%-- 				<c:if test="${sameCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
 							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">${sameCnt }</span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
 						<c:if test="${sameCnt > 4 }">
@@ -439,53 +480,63 @@
 							</div>
 						</c:if>
 					</div>
-				</c:if>
-				<div class="cafeR_List clearfix mb30">
-					<c:forEach var="sameItem" items="${sameBoard }">
-					<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${sameItem.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
-						<div class="cafeR_box">
-							<div class="cafeR_titleBox">
-								<div class="cafeR_titleImg">	
-									<div class="bg"></div>						
-									<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${sameItem.files[0].imageName}" alt="카페대표이미지" />
-								</div>
-								<div class="cafeR_titleTop clearfix" >
-									<div class="cafeR_writer clearfix">
-										<img src="${pageContext.request.contextPath }/resources/images/${sameItem.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
-										<span class="cafeR_name bold">${sameItem.userNo.nick }</span>
-										<span class="cafeR_id bold">(${sameItem.userNo.userId })</span>
-									</div>
-									<div class="cafeR_recomCnt bgRed">${sameItem.voteNumber }</div>						
-								</div>
-								<h2 class="classSec cafe_title">${sameItem.writingTitle }</h2>
-								<div class="cafeR_date bold"><fmt:formatDate value="${sameItem.registrationDate }" pattern="yyyy/MM/dd"/></div>
+				</c:if>	 --%>
+				
+			<!-- 같은 카페의 다른 포스트 list -->	
+			<div class="recommendBest mb30">
+				<div class="recomWrap">
+				 <ul>
+					<c:forEach var="sameCafe" items="${sameCafe}">
+					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
+						<li>
+							<div class="RC_listImgWrap">
+<%-- 									<div class="RC_listImgContainer">
+						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
+										<c:forEach var="img" items="${listImg}">
+											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
+											</c:if>
+										</c:forEach>
+										<p class="test"></p>								
+									</div>	 --%>						
 							</div>
-							<div class="cafeR_infoBox">
-								<div class="cafeR_infoTop clearfix">
-									<div class="zoneBtn zoneOrangeIconSmall">${sameItem.cafeNo.zoneNo.zoneName }</div>
-									<div class="themeKeySmall themeName">#${sameItem.cafeNo.themeNo.themeName }</div>
-									<h2>${sameItem.cafeNo.cafeName }</h2>
+							<div class="RC_listTitle1">
+								<!-- 위치 -->
+								<div class="zoneBtn zoneOrangeIconSmall">${sameCafe.zoneNo.zoneName}</div>
+								<!-- 키워드 -->
+								<c:choose>
+									<c:when test="${board.themeNo.themeNo == 1}">
+										<div class="date themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 2}">
+										<div class="view themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 3}">
+										<div class="ame themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 4}">
+										<div class="dessert themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 5}">
+										<div class="dog themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+									</c:when>																																								
+									<c:otherwise>
+										<div class="work themeKeySmall">#${sameCafe.themeNo.themeName}</div>		
+									</c:otherwise>
+								</c:choose>
 								</div>
-								<%-- <p class="cafeR_text">
-									${item.writingContent }
-								</p> --%>
-							</div>
-							<div class="cafeR_replyCdt clearfix">
-								<div class="cafeR_replyCdtWrap">
-									<div class="cafeR_btns">
-										<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
-										<span class="cafeR_replyCnt">${sameItem.replyCnt }</span>
-									</div>
-									<div class="cafeR_btns">
-										<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
-										<span class="cafeR_viewCnt">${sameItem.viewNumber }</span>
-									</div>
-								</div>
-							</div>
-						</div>					
+								<div class="RC_listTitle2">
+									<!-- 상세페이지로 가기 -->																																			
+									<h3 class="RC_titleName">${sameCafe.writingTitle}</h3>
+								</div>							
+						</li>
 					</a>
 					</c:forEach>
+				</ul>
 				</div>
+
+			</div>
+</div>
 			</div>
 		</div>
 	</div>		

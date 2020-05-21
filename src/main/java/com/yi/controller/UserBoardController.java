@@ -32,7 +32,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.google.gson.JsonObject;
 import com.yi.domain.BoardVO;
 import com.yi.domain.Condition;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
@@ -286,8 +285,8 @@ public class UserBoardController {
 	}
 	
 	
-	// 커뮤니티 - 무까추천 : 아름
-	/** 커뮤니티 - MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify) **/
+	// 커뮤니티 - 무까추천 : 아름  (MuKKa人 추천 카페 cafeRecommendList : 리스트(list)/등록(register)/상세보기(read)/수정(modify))
+	
 	//list -- 리스트
 	@RequestMapping(value = "/community/cafeRecommend", method = RequestMethod.GET)
 	public String communityRecommendList(SearchCriteria cri, Model model) throws Exception {
@@ -324,11 +323,10 @@ public class UserBoardController {
 		//테마 리스트
 		List<ThemeVO> themeList = service.themeList();
 		model.addAttribute("themeList", themeList);
-
-		
 		
 		return "/user/userCommunityRecommendList";
 	}
+	
 	//register -- 글등록
 	@RequestMapping(value = "/community/cafeRecommend/register", method = RequestMethod.GET)
 	public String communityRecommendRegister() {
@@ -361,13 +359,19 @@ public class UserBoardController {
 		service.recommendInsert(vo);
 		return "redirect:/user/community/cafeRecommend";
 	}
-	//read -- 상세보기
+	
+	//read -- 상세보기(해당번호글의 내용 + (same)해당카페에 관한 추천글 + (same)해당지역+해당키워드글)
 	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
 	public String communityRecommendRead(int boardNo, Model model) throws Exception{
-		//System.out.println(boardNo);
+		//해당번호글의 내용
 		BoardVO vo = service.recommendReadByNo(boardNo);
-		//System.out.println(vo.toString());
 		model.addAttribute("board", vo);
+		
+		//(same)해당카페에 관한 추천글List
+		List<BoardVO> sameCafe = service.recommendSameCafeList(vo);
+		System.out.println(sameCafe.toString());
+		model.addAttribute("sameCafe", sameCafe);
+		//(same)해당지역+해당키워드글List
 		return "/user/userCommunityRecommendRead";
 	}
 	//modify -- 수정

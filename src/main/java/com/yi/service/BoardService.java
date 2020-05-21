@@ -67,6 +67,11 @@ public class BoardService {
 		dao.updateViewCnt(boardNo);
 		return dao.recommendReadByNo(boardNo);
 	}
+	
+	//같은 카페 리스트
+	public List<BoardVO> recommendSameCafeList(BoardVO vo) {
+		return dao.recommendSameCafeList(vo);
+	}
 
 	// 추천카페 사진삭제
 	public void removeRecommendImg(String delfiles) throws Exception {
@@ -187,5 +192,4 @@ public class BoardService {
 			userDao.updateUsersGrade(3, userNo);
 		}
 	}
-
 }
