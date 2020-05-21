@@ -346,7 +346,7 @@
 				</div>
 			</div>
 			<!-- 위치별 카페 리스트 -->
-			<c:forEach var="cafe" items="${list }">
+			<c:forEach var="cafe" items="${list }" varStatus="i">
 			<div class="locationCafe">
 				<div class="locationListLeft">
 					<c:forEach var="img" items="${imgList }">
@@ -390,7 +390,7 @@
 						</c:when>
 					</c:choose>
 					
-					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
+					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
 					<p class="oneline">'${cafe.oneline }'</p>
 					<div>
 						<div class="visit">
@@ -398,7 +398,7 @@
 								<img src="${pageContext.request.contextPath }/resources/images/menu2_1.png">
 							</div>
 							<div>
-								<span>100</span>개의 탐방기
+								<span>${reviewNum[i.index]}</span>개의 탐방기
 							</div>
 						</div>
 						<div class="location">
@@ -429,7 +429,7 @@
 						</div>
 					</div>
 					<div class="more">
-						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
+						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
 					</div>
 				</div>
 			</div>
