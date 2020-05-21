@@ -142,24 +142,26 @@
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(1) {
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyNick {
 		font-weight: 700;
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(2) {
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox {
 		width: 480px;
 	}
 	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox > p {
+		-ms-word-break: break-all;
+		word-break: break-all;
+	}
+	
 	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(3) {
-		position: absolute;
 		font-size: 14px;
-		top: 0;
-		right: 25px;
 	}
 	
 	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyBtn {
-		margin-right: 130px;
+		margin-right: 30px;
 	}
 	
 	.d_cafeR_reply_wrap .replyPage {
@@ -169,6 +171,7 @@
 	/* 같은 카페 다른 리뷰 영역 */
 	.cafeR_sameList {
 		margin-top: 100px;
+		overflow: hidden;
 	}
 	
 	.cafeR_sameList .cafeR_sameTitle {
@@ -189,7 +192,7 @@
 	.cafeR_sameList .a_cafeReview {
 		display: block;
 		float: left;
-		width: 48.6%;
+		width: 447px;
 		border: 1px solid #545454;
 		margin-bottom: 20px;
 	}
@@ -198,8 +201,8 @@
 		text-decoration: underline;
 	}
 	
-	.cafeR_sameList .a_cafeReview:nth-of-type(odd) {
-		margin-right: 20px;
+	.cafeR_sameList .a_cafeReview {
+		margin-right: 22px;
 	}
 	
 	.cafeR_sameList .cafeR_titleBox {
@@ -412,7 +415,6 @@
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
-	
 </style>	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -533,25 +535,13 @@
 				<div class="d_cafeR_reply_input replyStyle clearfix">
 					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
 					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
-					<textarea class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
-					<!-- <input class="f_left" type="text" name="commentContent" placeholder="여러분의 소중한 댓글을 남겨주세요."/> -->
+					<textarea id="newCmt" class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
 					<button id="d_cafeR_replyAddBtn" class="orangeBtn f_left">저장</button>
 				</div>
 				
-				<!-- 댓글 샘플 -->
+				<!-- 댓글 list -->
 				<div class="d_cafeR_replyList">
-					<ul class="replyListUl">
-						<%-- <li class="replyStyle clearfix boardReply">
-							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
-							<p class="f_left">닉네임1</p>
-							<p class="f_left">댓글 내용</p>
-							<p class="regitDate orange">2020/05/02</p>
-							<div class="replyBtn">
-								<a class="replyModify blueBtn" href="#" data-cmtNo="" data-cmtCnt="">수정</a>
-								<a class="replyRemove redBtn" href="#" data-cmtNo="">삭제</a>
-							</div>
-						</li> --%>
-					</ul>
+					<ul class="replyListUl"></ul>
 					<div class="replyPage">
 						<ul id="pagination" class="pagination"></ul>
 					</div>
@@ -563,10 +553,11 @@
 				<c:if test="${sameCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
 							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">${sameCnt }</span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
-						<c:if test="${sameCnt > 4 }">
+						<c:if test="${sameCnt > 2 }">
 							<div class="sameListBtn f_right">
-								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
+								<div id="prevBtn" class="sameBtn f_left"><i class="fas fa-angle-left"></i></div>
+								<div id="nextBtn" class="sameBtn f_left"><i class="fas fa-angle-right"></i></div>
 							</div>
 						</c:if>
 					</div>
@@ -636,21 +627,38 @@
 </div>
 <!-- container end -->
 
-<!-- 댓글 -->
+
+<!-- 댓글 구조 -->
 <script id="template" type="text/x-handlebars-template">
 	{{#each list}}
 		<li class="replyStyle clearfix boardReply" data-cno="{{commentNo}}">
 			<img class="f_left" src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" alt="등급아이콘" />
-			<p class="f_left">{{userNo.nick}}</p>
-			<p class="f_left">{{commentContent}}</p>
-			<p class="regitDate orange">{{dateHelper updateDate}}</p>
-			<div class="replyBtn"></div>
+			<p class="f_left replyNick">{{userNo.nick}}</p>
+			<div class="f_left replyCmtBox"><p>{{commentContent}}</p></div>
+			<p class="regitDate orange f_right">{{dateHelper updateDate}}</p>
+			<!-- login 기능 구현 후 c:if 해야함 -->
+			<div class="replyBtn f_right">
+				<a class="replyModify blueBtn off" href="#" data-cmtNo="{{commentNo}}" data-cmtCnt="{{commentContent}}">수정</a>
+				<a class="replyRemove redBtn" href="#" data-cmtNo="{{commentNo}}">삭제</a>
+			</div>
 		</li>
 	{{/each}}
 </script>
+<script id="replyModifyBox" type="text/x-handlebars-template">
+	<div class="replyModify_box">
+		<img class="f_left" src="{{userIcon}}" alt="등급아이콘"/>
+		<p class="f_left replyNick">{{userNick}}</p>
+		<div class="f_left replyCmtBox"><textarea id="modifyText" style="width:95%; padding: 10px;">{{commentContent}}</textarea></div>
+		<div class="replyBtn f_right">
+			<button class="modifyCancel blueBtn off" type="button">수정 취소</button>
+			<button class="modifySumit redBtn" type="button" data-submitNo="{{commentNo}}">수정 저장</button>
+		</div>
+	</div>
+</script>
+
 <script>
+	/*---- 댓글 -----------------------------------------------------------------------------------------------------*/
 	var no = 1;
-	
 	Handlebars.registerHelper ("dateHelper", function(value){
 		var d = new Date(value);
 		var year = d.getFullYear();
@@ -659,14 +667,16 @@
 		return year + "/" + month + "/" + day;
 	})
 	
+	/* 댓글 리스트 */
 	function getPageList( page ){
-		var bno = ${board.boardNo };
+		var boardNo = ${board.boardNo};
+		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/rest/reply/"+bno+"/"+page,
+			url:"${pageContext.request.contextPath}/rest/replies/"+boardNo+"/"+page,
 			type:"get",
 			datatype:"json",
 			success:function(res){
-				console.log(res);
+				//console.log(res);
 				$(".boardReply").remove();
 				var source = $("#template").html();
 				var func = Handlebars.compile(source);
@@ -686,20 +696,122 @@
 				}
 				
 				var totalCnt = res.pageMaker.totalCount;
-				$("#rpListBtn").text("["+totalCnt+"]");
+				$("#replyNum").text(totalCnt);
 			}
 		})
 	}
 	
-	getPageList(no);
+	/* 댓글 리스트 show */
+	getPageList(1);
 	
+	/* 댓글 페이징 */
 	$(document).on("click", "#pagination a", function(){
 		no = $(this).text();
 		getPageList(no);
 	})
-</script>
+	
+	/* 댓글 추가 */
+	$("#d_cafeR_replyAddBtn").click(function(){
+		// login 기능 구현 후 수정해야함
+		var userNo = 3;
+		
+		var boardNo = ${board.boardNo};
+		var newCmt = $("#newCmt").val();
+		
+		var json = JSON.stringify({"boardNo":{"boardNo" : boardNo}, "userNo": {"userNo" : userNo}, "commentContent":newCmt});
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/",
+			type:"post",
+			headers: {"Content-Type":"application/json"},
+			data: json,
+			dataType : "text",
+			success: function(res){
+				console.log(res);
+				if(res == "SUCCESS"){
+					alert("댓글이 등록됨");
+					getPageList(no);
+					$("#newCmt").val("");
+				}
+			}
+		})		
+	})
+	
+	/* 댓글 수정 : 댓글 수정 박스 */
+	$(document).on("click",".replyModify", function(){
+		
+		var commentContent = $(this).attr("data-cmtcnt");
+		var commentNo = $(this).attr("data-cmtno");
 
-<script>
+		var replyBox = $(this).closest("li");
+		var iconSrc = replyBox.find("img").attr("src");
+		var userNick = replyBox.find(".replyNick").text();
+		//var commentContent = replyBox.find(".replyCmtBox > p").text();
+		replyBox.children().hide();
+		
+		var source = $("#replyModifyBox").html();
+		var data = {userIcon:iconSrc, userNick:userNick , commentContent: commentContent, commentNo: commentNo};
+		var func = Handlebars.compile(source);
+		replyBox.append(func(data)); 
+		
+		return false;
+	})
+	
+	/* 댓글 수정 */
+	// 수정 취소
+	$(document).on("click", ".modifyCancel", function(){
+		var replyBox = $(this).closest("li");
+		replyBox.find(".replyModify_box").remove();
+		replyBox.children().show();
+	})
+	
+	// 수정 저장
+	$(document).on("click", ".modifySumit", function(){
+		var replyBox = $(this).closest("li");
+		var commentContent = replyBox.find("#modifyText").val();
+		var commentNo = $(this).attr("data-submitno");
+		//console.log(commentContent);
+		//console.log(commentNo);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/"+commentNo,
+			type:"put",
+			headers : {"Content-Type":"application/json"},
+			data: JSON.stringify({"commentContent" : commentContent}),
+			dataType : "text",
+			success:function(res){
+				//console.log(res);
+				if(res == "SUCCESS"){
+					alert("수정되었습니다.");
+					replyBox.find(".replyModify_box").remove();
+					getPageList(no);
+				}
+			}
+		})
+		
+	})
+	
+	/* 댓글 삭제 */
+	$(document).on("click", ".replyRemove", function(){
+		
+		var commentNo = $(this).attr("data-cmtno");
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/"+commentNo,
+			type:"delete",
+			dataType : "text",
+			success:function(res){
+				console.log(res);
+				if(res == "SUCCESS"){
+					alert("삭제되었습나다.");						
+					getPageList(no);
+				}
+			}
+		})
+		
+		return false;
+	})
+
+	
+	/*---- 게시글 -----------------------------------------------------------------------------------------------------*/
 	// 수정 btn
 	$(".d_cafeR_modifyBtn").click(function(){
 		location.href = "${pageContext.request.contextPath }/user/community/cafeReview/modify?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
@@ -734,10 +846,10 @@
 	// 좋아요(추천) - login 기능 구현시 수정해야함
 	$("#voteIcon").click(function(e){
 		e.preventDefault();
+		var boardNo = ${board.boardNo};
+		
 		// login 기능 구현 후 수정해야함
 		var userNo = 3;
-		
-		var boardNo = ${board.boardNo};
 		
 		if($(this).hasClass("off")){
 			$(this).empty();
@@ -776,6 +888,43 @@
 			})
 		}		
 	}) 
+	
+	
+	/*---- 다른 탐방기 게시글 리스트 슬라이드 -----------------------------------------------------------------------------------------------------*/
+	var sameBox = $(".cafeR_sameList > .cafeR_List");
+	var sameCnt =  ${sameCnt};
+	var samePage = Math.ceil(sameCnt / 2);
+	var sameW = sameBox.width((920 * samePage) + (22 * samePage));
+	
+	var index = 0;
+	var pageIndex = 1;
+	
+	$(".pageTotal").text(samePage);
+	
+	/* next */
+	$("#nextBtn").click(function(){
+		if(index == -(samePage-1)){
+			return;
+		}
+		
+		index--;
+		pageIndex++;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
+	/* prev */
+	$("#prevBtn").click(function(){
+		if(index == 0){
+			return;
+		}
+		
+		index++;
+		pageIndex--;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

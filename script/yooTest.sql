@@ -26,7 +26,7 @@ $$
 create procedure loopInsert()
 BEGIN
 DECLARE i INT DEFAULT 1;
-WHILE i <= 210 DO
+WHILE i <= 600 DO
 	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number) 
 	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)));
 
@@ -47,7 +47,7 @@ $$
 create procedure loopVoteInsert()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 500 DO
+WHILE i <= 1000 DO
 	Insert into vote(board_no, user_no) 
 	VALUES(floor(1 + (rand() * 210)), floor(1 + (rand() * 78)));
 	
@@ -85,9 +85,9 @@ $$
 create procedure loopReplyCnt()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 10 DO
-	
-	insert into reply(board_no, user_no, comment_content) values(211, floor(1 + (rand() * 78)), '댓글 테스트');
+WHILE i <= 25 DO
+
+	insert into reply(board_no, user_no, comment_content) values(600, floor(1 + (rand() * 78)), '댓글 테스트');
 	
 	SET i = i + 1;
 END WHILE;
@@ -98,8 +98,8 @@ CALL loopReplyCnt();
 
 -- 생성된 댓글 갯수 게시글 댓글갯수컬럼에 넣기
 update board 
-	set reply_cnt = (select count(*) from reply where board_no = 211) 
-	where board_no = 211;
+	set reply_cnt = (select count(*) from reply where board_no = 600) 
+	where board_no = 600;
 
 -- 더미 테이터 end ----------------------------------------------------------------------- 
 
@@ -229,7 +229,7 @@ select r.comment_no , r.board_no , u.user_grade, g.user_grade_image,
 	   u.user_no, u.user_id, u.nick, r.comment_content, r.update_date 
 	from reply r left join users u on r.user_no = u.user_no 
 				left join grade g on u.user_grade = g.user_grade 
-	where board_no = 211 
+	where board_no = 210 
 	order by comment_no desc;
 
 select r.comment_no , r.board_no , u.user_grade, g.user_grade_image, 
