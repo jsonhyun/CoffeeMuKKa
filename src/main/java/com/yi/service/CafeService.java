@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
+import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
 import com.yi.persistence.CafeDAO;
@@ -51,6 +52,10 @@ public class CafeService {
 		return dao.menuList(cafeNo);
 	}
 	
+	public List<MenuKindsVO> sortNameSelect(int cafeNo) throws Exception {
+		return dao.sortNameSelect(cafeNo);
+	}
+	
 	public List<CafeVO> list() throws Exception {
 		return dao.list();
 	}
@@ -81,4 +86,5 @@ public class CafeService {
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return dao.rcSearchCafeByName(cafeName);
 	}
+
 }
