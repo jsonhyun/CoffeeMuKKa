@@ -165,16 +165,16 @@
 		right: 25px;
 	}
 	
-	/* 같은 카페 다른 리뷰 영역 */
-	.cafeR_sameList {
+	/* 같은 카페 다른 추천글 영역 */
+	.recommentSameList {
 		margin-top: 100px;
 	}
 	
-	.cafeR_sameList .cafeR_sameTitle {
+	.recommentSameList .cafeR_sameTitle {
 		font-size: 20px;
 	}
 	
-	.cafeR_sameList .cafeR_sameTitle .sameBtn {
+	.recommentSameList .cafeR_sameTitle .sameBtn {
 		width: 30px;
 	    height: 30px;
 	    border: 1px solid #aaa;
@@ -185,7 +185,7 @@
 	}
 	
 	/* 다른 포스트 list */
-	.cafeR_sameList .a_cafeReview {
+	.recommentSameList .a_cafeReview {
 		display: block;
 		float: left;
 		width: 48.6%;
@@ -193,22 +193,22 @@
 		margin-bottom: 20px;
 	}
 	
-	.cafeR_sameList .cafeR_box:hover .cafe_title{
+	.recommentSameList .cafeR_box:hover .cafe_title{
 		text-decoration: underline;
 	}
 	
-	.cafeR_sameList .a_cafeReview:nth-of-type(odd) {
+	.recommentSameList .a_cafeReview:nth-of-type(odd) {
 		margin-right: 20px;
 	}
 	
-	.cafeR_sameList .cafeR_titleBox {
+	.recommentSameList .cafeR_titleBox {
 		height: 200px;
 		padding: 15px 10px;
 		position: relative;
 		color: #fff;
 	}
 	
-	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg {
+	.recommentSameList .cafeR_titleBox .cafeR_titleImg {
 		position: absolute;
 	    top: 0;
 	    left: 0;
@@ -218,7 +218,7 @@
 	    overflow: hidden;
 	}
 	
-	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg .bg {
+	.recommentSameList .cafeR_titleBox .cafeR_titleImg .bg {
 		width: 100%;
 	    height: 100%;
 	    position: absolute;
@@ -227,31 +227,31 @@
 	    background: rgba(0,0,0,0.4);
 	}
 	
-	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg img {
+	.recommentSameList .cafeR_titleBox .cafeR_titleImg img {
 		width: 100%;
     	min-height: 100%;
 	}
 	
-	.cafeR_sameList .cafeR_writer {
+	.recommentSameList .cafeR_writer {
 		line-height: 50px;
 		float: left;
 	}
 		
-	.cafeR_sameList .cafeR_writer img {
+	.recommentSameList .cafeR_writer img {
 		width: 50px;
 		display: block;
 		float: left;
 		margin-right: 10px;
 	}
 	
-	.cafeR_sameList .cafeR_writer span {
+	.recommentSameList .cafeR_writer span {
 		display: block;
 		float: left;
 		color: #fff;
 		font-size: 18px;
 	}
 	
-	.cafeR_sameList .cafeR_recomCnt {
+	.recommentSameList .cafeR_recomCnt {
 		float: right;
 		width: 30px;
 		height: 30px;
@@ -262,7 +262,7 @@
 		font-weight: 700;
 	}
 	
-	.cafeR_sameList .cafeR_titleBox h2 {
+	.recommentSameList .cafeR_titleBox h2 {
 		position: absolute;
 	    top: 50%;
 	    left: 50%;
@@ -271,7 +271,7 @@
 	    text-align: center;
 	}
 	
-	.cafeR_sameList .cafeR_date {
+	.recommentSameList .cafeR_date {
 		position: absolute;
 	    top: 85%;
 	    left: 50%;
@@ -281,21 +281,21 @@
 	    font-size: 20px;
 	}	
 	
-	.cafeR_sameList .cafeR_infoBox {
+	.recommentSameList .cafeR_infoBox {
 		padding: 10px;
 		padding-bottom: 0;
 	}
 	
-	.cafeR_sameList .cafeR_infoTop {
+	.recommentSameList .cafeR_infoTop {
 		padding-bottom: 10px;
 	}
 	
-	.cafeR_sameList .cafeR_infoTop h2{
+	.recommentSameList .cafeR_infoTop h2{
 		text-align: right;
 		padding: 10px 0;
 	}
 	
-	.cafeR_sameList .cafeR_text {
+	.recommentSameList .cafeR_text {
 		overflow: hidden; 
 		text-overflow: ellipsis;
 		display: -webkit-box;
@@ -304,13 +304,13 @@
 		word-wrap: break-word;
 	}
 	
-	.cafeR_sameList .cafeR_replyCdtWrap {
+	.recommentSameList .cafeR_replyCdtWrap {
 		float: right;
 		padding: 10px;
 		padding-right: 0;
 	}
 	
-	.cafeR_sameList .cafeR_replyCdt .cafeR_btns {
+	.recommentSameList .cafeR_replyCdt .cafeR_btns {
 		border: 1px solid #545454;
 		padding: 5px 10px;
 		border-radius: 10px;
@@ -469,18 +469,18 @@
 			
 			
 			<!-- 같은 카페의 다른 포스트 list -- "개수"  -->
-			<div class="cafeR_sameList">
-<%-- 				<c:if test="${sameCnt > 0 }">
+			<div class="recommentSameList">
+ 				<c:if test="${sameCafeCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
-							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">${sameCnt }</span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
-						<c:if test="${sameCnt > 4 }">
+							<p class="f_left"><span class="blue bold">${board.writingTitle}</span>에 대한 <span class="orange bold">${sameCafeCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
+						<c:if test="${sameCafeCnt > 4 }">
 							<div class="sameListBtn f_right">
 								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
 								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
 							</div>
 						</c:if>
 					</div>
-				</c:if>	 --%>
+				</c:if>	
 				
 			<!-- 같은 카페의 다른 포스트 list -->	
 			<div class="recommendBest mb30">
@@ -537,6 +537,80 @@
 
 			</div>
 </div>
+
+
+
+			<!-- 같은 키워드의 다른 포스트 list -- "개수"  -->
+			<div class="recommentSameList">
+ 				<c:if test="${sameCafeCnt > 0 }">
+					<div class="cafeR_sameTitle bottomLine clearfix">
+							<p class="f_left"><span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 <span class="orange bold">${sameCafeCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
+						<c:if test="${sameCafeCnt > 4 }">
+							<div class="sameListBtn f_right">
+								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
+								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+							</div>
+						</c:if>
+					</div>
+				</c:if>	
+				
+			<!-- 같은 키워드의 다른 포스트 list -->	
+			<div class="recommendBest mb30">
+				<div class="recomWrap">
+				 <ul>
+					<c:forEach var="sameKeyword" items="${sameKeyword}">
+					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
+						<li>
+							<div class="RC_listImgWrap">
+<%-- 									<div class="RC_listImgContainer">
+						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
+										<c:forEach var="img" items="${listImg}">
+											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
+											</c:if>
+										</c:forEach>
+										<p class="test"></p>								
+									</div>	 --%>						
+							</div>
+							<div class="RC_listTitle1">
+								<!-- 위치 -->
+								<div class="zoneBtn zoneOrangeIconSmall">${sameKeyword.zoneNo.zoneName}</div>
+								<!-- 키워드 -->
+								<c:choose>
+									<c:when test="${board.themeNo.themeNo == 1}">
+										<div class="date themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 2}">
+										<div class="view themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 3}">
+										<div class="ame themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 4}">
+										<div class="dessert themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${board.themeNo.themeNo == 5}">
+										<div class="dog themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+									</c:when>																																								
+									<c:otherwise>
+										<div class="work themeKeySmall">#${sameKeyword.themeNo.themeName}</div>		
+									</c:otherwise>
+								</c:choose>
+								</div>
+								<div class="RC_listTitle2">
+									<!-- 상세페이지로 가기 -->																																			
+									<h3 class="RC_titleName">${sameKeyword.writingTitle}</h3>
+								</div>							
+						</li>
+					</a>
+					</c:forEach>
+				</ul>
+				</div>
+
+			</div>
+</div>
+
+
 			</div>
 		</div>
 	</div>		

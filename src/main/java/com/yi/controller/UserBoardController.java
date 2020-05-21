@@ -360,7 +360,7 @@ public class UserBoardController {
 		return "redirect:/user/community/cafeRecommend";
 	}
 	
-	//read -- 상세보기(해당번호글의 내용 + (same)해당카페에 관한 추천글 + (same)해당지역+해당키워드글)
+	//read -- 상세보기(해당번호글의 내용 + (same)해당카페에 관한 추천글&개수 + (same)해당지역+해당키워드글&개수)
 	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
 	public String communityRecommendRead(int boardNo, Model model) throws Exception{
 		//해당번호글의 내용
@@ -369,9 +369,20 @@ public class UserBoardController {
 		
 		//(same)해당카페에 관한 추천글List
 		List<BoardVO> sameCafe = service.recommendSameCafeList(vo);
-		System.out.println(sameCafe.toString());
 		model.addAttribute("sameCafe", sameCafe);
+		
+		//(same)해당카페에 관한 추천글 : 개수
+		int sameCafeCnt = service.recommendSameCafeCnt(vo);
+		model.addAttribute("sameCafeCnt", sameCafeCnt);
+		
 		//(same)해당지역+해당키워드글List
+		List<BoardVO> sameKeyword = service.recommendSameKeywordList(vo);
+		model.addAttribute("sameKeyword", sameKeyword);
+		
+		//(same)해당지역+해당키워드글 : 개수
+		int sameKeywordCnt = service.recommendSameCafeCnt(vo);
+		model.addAttribute("sameKeywordCnt", sameKeywordCnt);
+		
 		return "/user/userCommunityRecommendRead";
 	}
 	//modify -- 수정

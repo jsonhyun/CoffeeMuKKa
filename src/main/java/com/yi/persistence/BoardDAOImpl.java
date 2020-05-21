@@ -61,10 +61,25 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	//추천카페 -- 같은카페리스트
 	@Override
-	public List<BoardVO> recommendSameCafeList(BoardVO vo) {
+	public List<BoardVO> recommendSameCafeList(BoardVO vo) throws Exception {
 		return sqlSession.selectList(namespace+"recommendSameCafeList", vo);
-	}	
+	}
+	//추천카페 -- 같은카페 등록수
+	@Override
+	public int recommendSameCafeCnt(BoardVO vo) throws Exception {
+		return sqlSession.selectOne(namespace+"recommendSameCafeCnt", vo);
+	}
 	
+	//추천카페 -- 같은키워드리스트
+	@Override
+	public List<BoardVO> recommendSameKeywordList(BoardVO vo) throws Exception {
+		return sqlSession.selectList(namespace+"recommendSameKeywordList", vo);
+	}
+	//추천카페 -- 같은키워드 등록수
+	@Override
+	public int recommendSameKeywordCnt(BoardVO vo) throws Exception {
+		return sqlSession.selectOne(namespace+"recommendSameKeywordCnt", vo);
+	}	
 	//추천카페 -- 사진삭제 (수정)
 	@Override
 	public void removeRecommendImg(String imageName) throws Exception{
@@ -181,6 +196,8 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewRemove(BoardVO vo) throws Exception {
 		sqlSession.update(namespace + "cafeReviewRemove", vo);
 	}
+
+
 
 
 

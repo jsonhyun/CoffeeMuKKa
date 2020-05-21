@@ -59,4 +59,35 @@ select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_n
 		left join grade g on u.user_grade = g.user_grade
 		left join image i on b.board_no = i.board_no
 		where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 1;
-		where b.board_no2 = 2 and b.board_no = 16;            
+		where b.board_no2 = 2 and b.board_no = 16;
+	
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		left join image i on b.board_no = i.board_no
+		where b.zone_no = 6 and b.theme_no = 3 and b.board_no != 1;
+	
+	
+		where b.board_no2 = 2 and b.board_no = 16;	
+		
+select count(*) 
+			from board
+			where writing_title = '프리지아' and address = '대구 서구 서대구로7길 12' and board_no != 1;
+		
+select count(*) 
+			from board
+			where zone_no = 6 and theme_no = 3 and board_no != 1;
+		
+
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 1 limit 2;
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 2 limit 1;
+
+
+select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no
+		where b.zone_no = 6 and b.theme_no = 3 and b.board_no != 1
+		order by b.board_no desc;

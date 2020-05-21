@@ -69,8 +69,21 @@ public class BoardService {
 	}
 	
 	//같은 카페 리스트
-	public List<BoardVO> recommendSameCafeList(BoardVO vo) {
+	public List<BoardVO> recommendSameCafeList(BoardVO vo) throws Exception {
 		return dao.recommendSameCafeList(vo);
+	}
+	//같은 카페 글 등록수
+	public int recommendSameCafeCnt(BoardVO vo) throws Exception {
+		return dao.recommendSameCafeCnt(vo);
+	}
+	
+	//같은 키워드 리스트
+	public List<BoardVO> recommendSameKeywordList(BoardVO vo) throws Exception {
+		return dao.recommendSameKeywordList(vo);
+	}
+	//같은 키워드 글 등록수
+	public int recommendSameKeywordCnt(BoardVO vo) throws Exception {
+		return dao.recommendSameKeywordCnt(vo);
 	}
 
 	// 추천카페 사진삭제
@@ -192,4 +205,6 @@ public class BoardService {
 			userDao.updateUsersGrade(3, userNo);
 		}
 	}
+
+
 }
