@@ -390,7 +390,7 @@
 						</c:when>
 					</c:choose>
 					
-					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
+					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
 					<p class="oneline">'${cafe.oneline }'</p>
 					<div>
 						<div class="visit">
@@ -429,7 +429,7 @@
 						</div>
 					</div>
 					<div class="more">
-						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
+						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
 					</div>
 				</div>
 			</div>

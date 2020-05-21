@@ -54,7 +54,7 @@ public class UserCafeController {
 		return "/user/userMukkaCafeZoneList";
 	}
 	
-	@RequestMapping(value = "/mukkaCafe/read", method = RequestMethod.GET)
+	@RequestMapping(value = "/mukkaCafe/zone/read", method = RequestMethod.GET)
 	public String cafeZoneRead(int cafeNo, Model model) throws Exception {
 		/* 카페 기본 정보 검색 */
 		CafeVO cafe = service.readCafe(cafeNo);
