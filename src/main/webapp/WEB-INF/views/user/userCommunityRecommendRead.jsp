@@ -321,6 +321,7 @@
 	/* 같은카페 리스트 */
 	.recommendBest .recomWrap ul{
 		overflow: hidden;
+		height: 265px;
 	}
 	
 	.recommendBest .recomWrap li {
@@ -480,12 +481,9 @@
 					<!-- 페이징 버튼생성 -->
 					<c:if test="${sameCafeCnt > 4 }">
 						<div class="sameListBtn f_right">
-							<div class="sameBtn prevBtn f_left">
-								<i class="fas fa-angle-left"></i>
-							</div>
-							<div class="sameBtn nextBtn f_left">
-								<i class="fas fa-angle-right"></i>
-							</div>
+							<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
+							<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
+							<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
 						</div>
 					</c:if>
 				</div>
@@ -554,6 +552,7 @@
 							<p class="f_left"><span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 <span class="orange bold">${sameKeywordCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
 						<c:if test="${sameKeywordCnt > 4 }">
 							<div class="sameListBtn f_right">
+								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
 								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
 								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
 							</div>
@@ -705,7 +704,43 @@
 		var fileName = start + end;
 		$(this).attr("src", fileName);
 		console.log("TEST========="+fileName);
-	})	
+	})
+	
+	//리스트 슬라이드
+/*     var sameBox = $(".recommentSameList > .recomWrap ul");
+	var sameCnt =  ${sameCnt};
+	var samePage = Math.ceil(sameCnt / 2);
+	var sameW = sameBox.width((940 * samePage) + (22 * samePage));
+	
+	var index = 0;
+	var pageIndex = 1;
+	
+	$(".pageTotal").text(samePage); */
+	
+	/* next */
+/*  	$("#nextBtn").click(function(){
+		if(index == -(samePage-1)){
+			return;
+		}
+		
+		index--;
+		pageIndex++;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	}) */
+	/* prev */
+/*  	$("#prevBtn").click(function(){
+		if(index == 0){
+			return;
+		}
+		
+		index++;
+		pageIndex--;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	}) */
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

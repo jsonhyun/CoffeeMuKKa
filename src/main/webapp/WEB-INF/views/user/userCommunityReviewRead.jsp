@@ -891,7 +891,7 @@
 	
 	
 	/*---- 다른 탐방기 게시글 리스트 슬라이드 -----------------------------------------------------------------------------------------------------*/
-	var sameBox = $(".cafeR_sameList > .cafeR_List");
+	var sameBox = $(". > .cafeR_List");
 	var sameCnt =  ${sameCnt};
 	var samePage = Math.ceil(sameCnt / 2);
 	var sameW = sameBox.width((920 * samePage) + (22 * samePage));
