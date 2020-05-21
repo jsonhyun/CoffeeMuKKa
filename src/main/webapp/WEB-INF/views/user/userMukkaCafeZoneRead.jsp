@@ -105,6 +105,7 @@
 	padding: 5px;
 	border: 1px solid white;
 	text-align: center;
+	max-height: 35px;
 	}
 	
 	th {
@@ -126,9 +127,23 @@
 	    box-shadow: 3px 3px 10px #ccc;
 	}
 	#detailInfo{
-	    float: left;
 	    margin: 30px;
-	    width: 880px;
+	}
+	.iconExplain{
+		list-style: none;
+	    float: left;
+	    width: 200px;
+	    height: 100px;
+	    line-height: 70px;
+	    text-align: center;
+	}
+	.iconExplain2{
+		list-style: none;
+	    float: left;
+	    width: 180px;
+	    height: 100px;
+	    line-height: 70px;
+	    text-align: left;
 	}
 </style>	
 	<div class="content subPageContent position">
@@ -307,26 +322,37 @@
 			</div>
 			<div class="closeInfo" id="cafeMenu">
 				<div>
-					<c:forEach var="menuList" items="${menuList }">
-						<table style="float: left;margin: 30px;width: 250px;">
-						<tr>
-							<th>${menuList.menukinds.sortName }</th>
-							<th>HOT</th>
-							<th>ICED</th>
-						</tr>
-						<tr>
-							<td style="text-align: center;">Americano</td>
-							<td style="text-align: center;" colspan="2">4000</td>
-						</tr>
-						<tr>
-							<td>Cafe Lattee</td>
-							<td colspan="2">5000</td>
-						</tr>
-						<tr>
-							<td>Vanilla Latte</td>
-							<td colspan="2">4000</td>
-						</tr>
-					</table>
+					<c:forEach var="menuName" items="${menuName }">
+						<table style="float: left;margin: 30px;width: 250px; ">
+							<tr>
+								<th>${menuName.sortName }</th>
+								<th>HOT</th>
+								<th>ICED</th>
+							</tr>
+							<c:set var="row_sum" value="0"/>
+							<c:forEach var="menuList" items="${menuList }">
+								<c:if test="${menuName.sortNo == menuList.menukinds.sortNo }">
+									<tr>
+										<td>${menuList.menuName }</td>
+										<c:if test="${menuList.hI == 0 }">
+											<td>${menuList.price }</td>
+											<td>${menuList.icedMenuPrice }</td>
+										</c:if>
+										<c:if test="${menuList.hI == 1 }">
+											<td colspan="2">${menuList.price }</td>
+										</c:if>
+										<c:set var="row_sum" value="${row_sum + 1 }"/>
+									</tr>
+								</c:if>
+							</c:forEach>
+							<c:if test="${row_sum <= 5 }">
+								<c:forEach begin="0" end="3">
+									<tr>
+										<td style="color: white;">.</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</table>
 					</c:forEach>
 					<div id="menuImg"></div>
 				</div>
@@ -337,58 +363,45 @@
 			</div>
 			<div class="closeInfo" id="cafeComfort">
 				<div>
-					<table id="detailInfo">
-						<tr>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/tableNum.png"></div>
-							</td>
-							<td>테이블 수 10개</td>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></div>
-							</td>
-							<td>콘센트 수 10개</td>
-						</tr>
-						<tr>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/toilet.png"></div>
-							</td>
-							<td>화장실 청결해요</td>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></div>
-							</td>
-							<td>디저트 직접 만들어요 </td>
-						</tr>
-						<tr>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/terras.png"></div>
-							</td>
-							<td>루프탑/테라스 있어요</td>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></div>
-							</td>
-							<td>예약룸 있어요</td>
-						</tr>
-						<tr>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/coffeeBeans.png"></div>
-							</td>
-							<td>원두 구매 가능해요</td>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/books.png"></div>
-							</td>
-							<td>도서를 보유하고 있어요</td>
-						</tr>
-						<tr>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/alcohol.png"></div>
-							</td>
-							<td>술 판매해요</td>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/goods.png"></div>
-							</td>
-							<td>굿즈를 판매해요</td>
-						</tr>
-					</table>
+					<ul id="detailInfo">
+						<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/tableNum.png"></li>
+						<li class="iconExplain2">테이블 수 ${cafe.tableNumber }개</li>
+						<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></li>
+						<li class="iconExplain2">콘센트 수  ${cafe.socketNumber }개</li>
+						<c:if test="${cafe.toiletCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/toilet.png"></li>
+							<li class="iconExplain2">화장실 청결해요</li>
+						</c:if>
+						<c:if test="${cafe.mkdessertCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/socketNum.png"></li>
+							<li class="iconExplain2">디저트 직접 만들어요</li>
+						</c:if>
+						<c:if test="${cafe.terrasCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/terras.png"></li>
+							<li class="iconExplain2">루프탑/테라스 있어요</li>
+						</c:if>
+						<c:if test="${cafe.reservationCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></li>
+							<li class="iconExplain2">예약룸 있어요</li>
+						</c:if>
+						<c:if test="${cafe.wondooBuyCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/coffeeBeans.png"></li>
+							<li class="iconExplain2">원두 구매 가능해요</li>
+						</c:if>
+						<c:if test="${cafe.bookCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/books.png"></li>
+							<li class="iconExplain2">도서를 보유하고 있어요</li>
+						</c:if>
+						<c:if test="${cafe.beerCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/alcohol.png"></li>
+							<li class="iconExplain2">술 판매해요</li>
+						</c:if>
+						<c:if test="${cafe.goodsCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/goods.png"></li>
+							<li class="iconExplain2">굿즈를 판매해요</li>
+						</c:if>
+						
+					</ul>
 				</div>
 			</div>
 			
@@ -397,33 +410,28 @@
 			</div>
 			<div class="closeInfo" id="cafeDetail">
 				<div>
-					<table id="detailInfo">
-						<tr>
-							<td style="width: 135px;">
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/wifi.png"></div>
-							</td>
-							<td style="width: 281px;">와이파이 있어요</td>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/puppy.png"></div>
-							</td>
-							<td style="width: 305px;">애견 동반 가능해요</td>
-						</tr>
-						<tr>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></div>
-							</td>
-							<td>예약 가능해요</td>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/parking.png"></div>
-							</td>
-							<td>주차공간 있어요 </td>
-						</tr><tr>
-							<td>
-								<div><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/nokids.png"></div>
-							</td>
-							<td>노키즈존 맞아요</td>
-						</tr>
-					</table>
+					<ul id="detailInfo">
+						<c:if test="${cafe.wifiCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/wifi.png"></li>
+							<li class="iconExplain2">와이파이 있어요</li>
+						</c:if>
+						<c:if test="${cafe.puppyCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/puppy.png"></li>
+							<li class="iconExplain2">애견 동반 가능해요</li>
+						</c:if>
+						<c:if test="${cafe.reserveokCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/reservation.png"></li>
+							<li class="iconExplain2">예약 가능해요</li>
+						</c:if>
+						<c:if test="${cafe.parkingCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/parking.png"></li>
+							<li class="iconExplain2">주차공간 있어요</li>
+						</c:if>
+						<c:if test="${cafe.nokidsCdt == 0 }">
+							<li class="iconExplain"><img class="cafeInfoIcon" src="${pageContext.request.contextPath }/resources/images/nokids.png"></li>
+							<li class="iconExplain2">노키즈존이에요</li>
+						</c:if>
+					</ul>
 				</div>
 			</div>
 			<div style="margin-bottom: 50px;"></div>
@@ -432,14 +440,13 @@
 	
 <script>
 	$(function() {
-		<!-- 카페 세부정보 별점 -->
+	<!-- 카페 세부정보 별점 -->
 		$('.starPoint').barrating({
 			theme: 'fontawesome-stars',
 			initialRating: ${starpointSelect},
 			readonly: true
 		})
-		
-		<!-- 카페 세부정보 이미지 변경 -->
+	<!-- 카페 세부정보 이미지 변경 -->
 		$('.bxslider').bxSlider({
 			auto : true,
 			speed : 300,
