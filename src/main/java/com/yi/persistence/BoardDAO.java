@@ -54,6 +54,8 @@ public interface BoardDAO {
 	public void cafeReviewInsert(BoardVO vo) throws Exception;
 	// 탐방기 -- list
 	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception;
+	public List<BoardVO> cafeReviewBestList(int cBoardNo, SearchCriteria cri) throws Exception;
+	public List<BoardVO> cafeReviewMonthBestList() throws Exception;
 	// 탐방기 -- read
 	public BoardVO cafeReviewRead(int boardNo) throws Exception;
 	public List<BoardVO> cafeReviewSameList(BoardVO vo) throws Exception;

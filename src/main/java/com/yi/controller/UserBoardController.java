@@ -59,7 +59,7 @@ public class UserBoardController {
 	
 	// 탐방기 리스트
 	@RequestMapping(value = "/community/cafeReview", method = RequestMethod.GET)
-	public String communityReviewList(SearchCriteria cri, Model model) throws Exception {
+	public String communityReviewList(String type, SearchCriteria cri, Model model) throws Exception {
 		int cBoardNo = 1;
 		cri.setPerPageNum(20);
 		
@@ -75,15 +75,23 @@ public class UserBoardController {
 		List<ThemeVO> themeList = service.themeList();
 		//지역리스트
 		List<ZoneVO> zoneList = service.zoneList();
+		// 월간 베스트
+		List<BoardVO> monthBestList = service.cafeReviewMonthBestList();
 		
+		List<BoardVO> list = null;
+		if(type == null) {
+			list = service.cafeReviesList(cBoardNo, cri);
+		} else if (type != null) {
+			list = service.cafeReviewBestList(cBoardNo, cri);
+		}
 		
-		List<BoardVO> list = service.cafeReviesList(cBoardNo, cri);
 		model.addAttribute("todayCnt", todayCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
 		model.addAttribute("themeList", themeList);
 		model.addAttribute("zoneList", zoneList);
+		model.addAttribute("monthBestList", monthBestList);
 		
 		return "/user/userCommunityReviewList";
 	}

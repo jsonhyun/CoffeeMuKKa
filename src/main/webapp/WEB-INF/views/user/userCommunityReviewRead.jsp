@@ -728,7 +728,7 @@
 			success: function(res){
 				console.log(res);
 				if(res == "SUCCESS"){
-					alert("댓글이 등록됨");
+					alert("댓글이 등록되었습니다.");
 					getPageList(no);
 					$("#newCmt").val("");
 				}

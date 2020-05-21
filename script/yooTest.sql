@@ -19,7 +19,7 @@ select * from image; -- 이미지
 select * from vote; -- 추천리스트
 
 -- 더미 테이터 start ----------------------------------------------------------------------- 
--- 카페 탐방기
+-- 카페 탐방기 추가
 drop procedure if exists loopInsert;
 delimiter $$
 $$
@@ -40,7 +40,7 @@ delimiter ;
 
 CALL loopInsert();
 
--- 탐방기 추천
+-- 탐방기 추천 추가
 drop procedure if exists loopVoteInsert;
 delimiter $$
 $$
@@ -48,8 +48,8 @@ create procedure loopVoteInsert()
 begin
 DECLARE i INT DEFAULT 1;
 WHILE i <= 1000 DO
-	Insert into vote(board_no, user_no) 
-	VALUES(floor(1 + (rand() * 210)), floor(1 + (rand() * 78)));
+	Insert into vote(board_no, user_no, vote_date) 
+	VALUES(floor(1 + (rand() * 600)), floor(1 + (rand() * 78)), '2020-04-21');
 	
 	SET i = i + 1;
 END WHILE;
@@ -58,17 +58,40 @@ delimiter ;
 
 CALL loopVoteInsert();
 
--- 추천 수 board 컬럼에 넣기
-drop procedure if exists loopVoteCnt;
+-- 카페 탐방기 댓글 추가
+drop procedure if exists loopReplyInsert;
 delimiter $$
 $$
-create procedure loopVoteCnt()
+create procedure loopReplyInsert()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 210 DO
+WHILE i <= 1200 DO
+
+	insert into reply(board_no, user_no, comment_content) values(floor(1 + (rand() * 600)), floor(1 + (rand() * 78)), '댓글 테스트');
 	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopReplyInsert();
+
+-- 생성된 댓글 갯수 게시글 댓글갯수컬럼에 넣기 / 추천 수 board 컬럼에 넣기
+
+drop procedure if exists loopCnt;
+delimiter $$
+$$
+create procedure loopCnt()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 600 DO
+
 	update board
 		set vote_number = (select count(*) from vote where board_no = i)
+		where board_no = i;
+	
+	update board 
+		set reply_cnt = (select count(*) from reply where board_no = i) 
 		where board_no = i;
 	
 	SET i = i + 1;
@@ -76,30 +99,7 @@ END WHILE;
 end
 delimiter ;
 
-CALL loopVoteCnt();
-
--- 카페 탐방기 댓글
-drop procedure if exists loopReplyCnt;
-delimiter $$
-$$
-create procedure loopReplyCnt()
-begin
-DECLARE i INT DEFAULT 1;
-WHILE i <= 25 DO
-
-	insert into reply(board_no, user_no, comment_content) values(600, floor(1 + (rand() * 78)), '댓글 테스트');
-	
-	SET i = i + 1;
-END WHILE;
-end
-delimiter ;
-
-CALL loopReplyCnt();
-
--- 생성된 댓글 갯수 게시글 댓글갯수컬럼에 넣기
-update board 
-	set reply_cnt = (select count(*) from reply where board_no = 600) 
-	where board_no = 600;
+CALL loopCnt();
 
 -- 더미 테이터 end ----------------------------------------------------------------------- 
 
@@ -154,6 +154,18 @@ select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 				 left join theme t on c.theme_no = t.theme_no 
 	where b.board_no2 = 1 and b.board_del_cdt = 1
 	order by b.board_no desc limit 0, 20; 
+
+select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no , 
+		b.view_number , b.writing_title , b.registration_date , b.writing_content , b.vote_number , b.reply_cnt ,
+		z.zone_no , z.zone_name , t.theme_no , t.theme_name , c.cafe_name ,i.image_name 
+	from board b left join image i on b.board_no = i.board_no 
+				 left join users u on b.user_no = u.user_no 
+				 left join grade g on u.user_grade = g.user_grade 
+				 left join cafe c on b.cafe_no = c.cafe_no 
+				 left join zone z on c.zone_no = z.zone_no 
+				 left join theme t on c.theme_no = t.theme_no 
+	where b.board_no2 = 1 and b.board_del_cdt = 1
+	order by b.vote_number desc limit 0, 20; 
 
 select count(b.board_no) 
 	from board b left join image i on b.board_no = i.board_no 
@@ -239,4 +251,23 @@ select r.comment_no , r.board_no , u.user_grade, g.user_grade_image,
 	where comment_no = 16;
 
 select count(board_no) from reply where board_no = 211;
+
+-- 탐방기 베스트 
+select v.board_no , num.cnt , b.writing_title , b.reply_cnt 
+	from vote v left join board b on v.board_no = b.board_no, 
+	(select board_no, count(board_no) as cnt  from vote where month(vote_date) = month(now())-1 group by board_no) num
+	where v.board_no = num.board_no and b.board_no2 = 1
+	group by board_no
+	order by num.cnt desc, v.board_no limit 10;
+
+select reply_cnt from board where board_no = 85;
+
+select board_no, count(board_no) as cnt  from vote where month(vote_date) = month(now())-1 group by board_no order by cnt desc;
+select board_no, count(board_no) as cnt  from vote group by board_no order by cnt desc;
+select * from vote where month(vote_date) = month(now())-1;
+
+select month(now()) - 1 ;
+
+select * from vote;
+
 

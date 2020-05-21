@@ -495,9 +495,10 @@ ALTER TABLE CoffeeMuKKa.Image
 
 -- 추천리스트
 CREATE TABLE CoffeeMuKKa.Vote (
-	vote_no  INT NOT NULL COMMENT '추천번호', -- 추천번호
-	board_no INT NOT NULL COMMENT '게시글번호', -- 게시글번호
-	user_no  INT NOT NULL COMMENT '회원번호' -- 회원번호
+	vote_no   INT       NOT NULL COMMENT '추천번호', -- 추천번호
+	board_no  INT       NOT NULL COMMENT '게시글번호', -- 게시글번호
+	user_no   INT       NOT NULL COMMENT '회원번호', -- 회원번호
+	vote_date TIMESTAMP NOT NULL DEFAULT now() COMMENT '추천일자' -- 추천일자
 )
 COMMENT '추천리스트';
 

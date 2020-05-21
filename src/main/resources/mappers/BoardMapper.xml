@@ -256,6 +256,23 @@
 			order by b.board_no desc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
+	<!-- 탐방기 : 탐방기 best list -->
+	<select id="cafeReviewBestList" parameterType="map" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+			<include refid="search"/>
+			order by b.vote_number desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<!-- 탐방기 : 탐방기 월간 best -->
+	<select id="cafeReviewMonthBestList" resultMap="BoardResult">
+		select v.board_no , b.writing_title , b.reply_cnt 
+			from vote v left join board b on v.board_no = b.board_no, 
+				(select board_no, count(board_no) as cnt  from vote where month(vote_date) = month(now())-1 group by board_no) num
+			where v.board_no = num.board_no and b.board_no2 = 1
+			group by board_no
+			order by num.cnt desc, v.board_no limit 10;
+	</select>
+	
 	<!-- 탐방기 : 탐방기 read -->
 	<select id="cafeReviewRead" resultMap="BoardResult">
 		<include refid="cafeRevieSelect"/>

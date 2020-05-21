@@ -289,6 +289,13 @@
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
+	}
+	
+	/* best list */
+	.bestBoardBox table td,
+	.bestBoardBox table th {
+		border: none;
+	}
 	
 </style>
 	
@@ -308,78 +315,35 @@
 				<p>월간</p>
 			</div>
 			<table class="post1-5">
-				<tr>
-					<td class="no"><p class="bgRed">1</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgRed">2</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgRed">3</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">4</p></td>
-					<td>
-						<a href="#" class="title">testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">5</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
+				<c:forEach var="bestItem" items="${monthBestList }" begin="0" end="2" varStatus="status">
+					<tr>
+						<td class="no"><p class="bgRed">${status.index + 1 }</p></td>
+						<td>
+							<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
+							<span class="review red">(${bestItem.replyCnt })</span>
+						</td>
+					</tr>
+				</c:forEach>
+				<c:forEach var="bestItem" items="${monthBestList }" begin="3" end="4" varStatus="status">
+					<tr>
+						<td class="no"><p class="bgPink">${status.index + 1 }</p></td>
+						<td>
+							<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
+							<span class="review red">(${bestItem.replyCnt })</span>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 			<table class="post6-10">
-				<tr>
-					<td class="no"><p class="bgPink">6</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">7</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">8</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">9</p></td>
-					<td>
-						<a href="#" class="title">testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">10</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
+				<c:forEach var="bestItem" items="${monthBestList }" begin="5" end="10" varStatus="status">
+					<tr>
+						<td class="no"><p class="bgPink">${status.index + 1 }</p></td>
+						<td>
+							<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
+							<span class="review red">(${bestItem.replyCnt })</span>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 		<!-- 게시판 베스트 end -->
@@ -421,7 +385,7 @@
 				<h3 class="cafeR_title">오늘의 탐방기 | <span class="red cafeRCnt">${todayCnt}개</span></h3>
 				<div class="cafeR_topBtns">
 					<div class="cafeR_topBtn cafeR_totalBtn grayLineBtn">
-						<a href="#">
+						<a href="${pageContext.request.contextPath }/user/community/cafeReview?type=best">
 							<span class="red bold">베스트 글</span> 전체 보기
 						</a>
 					</div>
@@ -529,11 +493,17 @@
 	
 	// 검색
 	$("#btnSearch").click(function () {
+		var bestType = location.href;
+	
 		var searchZone = $("#searchZone").val();
 		var searchTheme = $("#searchTheme").val();
 		var searchType = $("#searchType").val();
 		var keyword = $("#keyword").val();
-		location.href = "cafeReview?boardType=1&searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
+		if(bestType.indexOf("best") == -1){
+			location.href = "cafeReview?boardType=1&searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
+		} else {
+			location.href = "cafeReview?type=best&boardType=1&searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;			
+		}
 	})
 	
 </script>

@@ -74,7 +74,7 @@ public class BoardDAOTest {
 		dao.totalUserBoardCount(3);
 	}
 	
-	//@Test
+	@Test
 	public void testCafeReviesList() throws Exception {
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
@@ -94,7 +94,7 @@ public class BoardDAOTest {
 		dao.cafeReviewRead(boardNo);
 	}
 	
-	@Test
+	//@Test
 	public void testCafeReviewSameList() throws Exception {
 		CafeVO cafe = new CafeVO();
 		cafe.setCafeNo(7);
@@ -105,7 +105,7 @@ public class BoardDAOTest {
 		dao.cafeReviewSameList(vo);
 	}
 	
-	@Test
+	//@Test
 	public void testCafeReivewSameCnt() throws Exception {
 		CafeVO cafe = new CafeVO();
 		cafe.setCafeNo(7);

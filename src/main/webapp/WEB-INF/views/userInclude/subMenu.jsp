@@ -14,7 +14,7 @@
 		<div class="subBoardArea">
 			<div class="subBoardTitle">
 				<p>공지사항</p>
-				<p><a href=""><i class="fas fa-caret-right"></i> MORE</a></p>
+				<p><a href="#"><i class="fas fa-caret-right"></i> MORE</a></p>
 			</div>
 			<ul class="subBoardList">
 				<li>
@@ -43,7 +43,7 @@
 		<div class="subBoardArea">
 			<div class="subBoardTitle">
 				<p>이벤트</p>
-				<p><a href=""><i class="fas fa-caret-right"></i> MORE</a></p>
+				<p><a href="#"><i class="fas fa-caret-right"></i> MORE</a></p>
 			</div>
 			<ul class="subBoardList">
 				<li>

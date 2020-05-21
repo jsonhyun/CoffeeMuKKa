@@ -129,6 +129,7 @@ public class BoardService {
 	}
 
 	/*** 탐방기 ***/
+	// 등록
 	@Transactional
 	public void cafeReviewInsert(BoardVO vo, ImageVO imgVO) throws Exception {
 		dao.cafeReviewInsert(vo);
@@ -141,16 +142,25 @@ public class BoardService {
 	public List<BoardVO> cafeReviesList(int cBoardNo, SearchCriteria cri) throws Exception {
 		return dao.cafeReviesList(cBoardNo, cri);
 	}
+	// 탐방기 베스트 리스트
+	public List<BoardVO> cafeReviewBestList(int cBoardNo, SearchCriteria cri) throws Exception {
+		return dao.cafeReviewBestList(cBoardNo, cri);
+	}
+	// 탐방기 월간 베스트 리스트
+	public List<BoardVO> cafeReviewMonthBestList() throws Exception {
+		return dao.cafeReviewMonthBestList();
+	}
 
-	// 탐방기 read
+	// 탐방기 상세보기
 	public BoardVO cafeReviewRead(int boardNo) throws Exception {
 		return dao.cafeReviewRead(boardNo);
 	}
-
+	
+	// 탐방기 상세보기 같은 카페 탐방기 리스트
 	public List<BoardVO> cafeReviewSameList(BoardVO vo) throws Exception {
 		return dao.cafeReviewSameList(vo);
 	}
-
+	// 탐방기 상세보기 같은 카페 탐방기 카운트
 	public int cafeReivewSameCnt(BoardVO vo) throws Exception {
 		return dao.cafeReivewSameCnt(vo);
 	}
