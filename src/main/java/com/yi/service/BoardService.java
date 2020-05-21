@@ -1,5 +1,6 @@
 package com.yi.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,10 @@ public class BoardService {
 	public int recommendSameCafeCnt(BoardVO vo) throws Exception {
 		return dao.recommendSameCafeCnt(vo);
 	}
+	//같은 카페 -- 이미지 리스트 (같은카페, 키워드)
+	public List<ImageVO> recommendSameCafeImgList(int sboardNo) throws Exception {
+		return dao.recommendSameCafeImgList(sboardNo);
+	}
 	
 	//같은 키워드 리스트
 	public List<BoardVO> recommendSameKeywordList(BoardVO vo) throws Exception {
@@ -85,6 +90,7 @@ public class BoardService {
 	public int recommendSameKeywordCnt(BoardVO vo) throws Exception {
 		return dao.recommendSameKeywordCnt(vo);
 	}
+	
 
 	// 추천카페 사진삭제
 	public void removeRecommendImg(String delfiles) throws Exception {
@@ -205,6 +211,8 @@ public class BoardService {
 			userDao.updateUsersGrade(3, userNo);
 		}
 	}
+
+
 
 
 }

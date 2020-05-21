@@ -3,7 +3,6 @@ package com.yi.persistence;
 import java.util.List;
 
 import com.yi.domain.BoardVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 
@@ -29,6 +28,8 @@ public interface BoardDAO {
 	public List<BoardVO> recommendSameKeywordList(BoardVO vo) throws Exception;
 	//추천카페 -- 같은키워드 등록수	
 	public int recommendSameKeywordCnt(BoardVO vo) throws Exception;
+	//추천카페 -- 같은 이미지 리스트
+	public List<ImageVO> recommendSameCafeImgList(int sboardNo) throws Exception;
 	//추천카페 사진삭제 -- 수정
 	public void removeRecommendImg(String imageName) throws Exception;
 	//추천카페 -- 수정
@@ -70,6 +71,7 @@ public interface BoardDAO {
 	public void cafeReviewModify(BoardVO vo) throws Exception;
 	// 탐방기 -- remove
 	public void cafeReviewRemove(BoardVO vo) throws Exception;
+
 
 
 

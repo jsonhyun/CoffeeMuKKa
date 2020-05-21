@@ -101,6 +101,10 @@
 	<select id="recommendSameCafeCnt" resultType="int">
 		select count(*) from board where writing_title = #{writingTitle} and address = #{address} and board_no != #{boardNo}
 	</select>
+	<!-- 추천카페 : 같은카페 이미지 리스트 -->
+	<select id="recommendSameCafeImgList" resultMap="selectImgResult">
+		select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = #{sboardNo} limit 1;
+	</select>	
 	
  	<!-- 추천카페 : 같은키워드카페리스트 : 지역,테마 같아야함 // 해당게시글 번호는 나오면 안됨 // 최신순으로 정렬 -->
  	<select id="recommendSameKeywordList" resultMap="BoardResult">
@@ -116,7 +120,6 @@
  	<select id="recommendSameKeywordCnt" resultType="int">
 		select count(*) from board where zone_no = #{zoneNo.zoneNo} and theme_no = #{themeNo.themeNo} and board_no != #{boardNo}
 	</select> 
-	
 	
 	<!-- 추천카페 업로드한 이미지 (수정)삭제 -->
 	<delete id="removeRecommendImg">

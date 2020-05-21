@@ -85,13 +85,27 @@ select b.board_no, i.board_no ,i.image_name from image i left join board b on i.
 select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 2 limit 1;
 
 
-select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick from board b
+select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick, i.image_name from board b
 		left join zone z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no
 		left join users u on b.user_no = u.user_no
-		where b.zone_no = 6 and b.theme_no = 3 and b.board_no != 1
+		left join image i on b.board_no = i.board_no 
+		where b.zone_no = 6 and b.theme_no = 3 and b.board_no != 1 and b.board_no = 16 limit 1;
 		order by b.board_no desc;
-		
+	
+		where b.board_no 
+
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 441;
+
 select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = #{boardNo} limit 2;
 	
 select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 1 limit 1;
+
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12' and b.board_no != 441;
+
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 2 and b.writing_title = '프리지아' and b.address = '대구 서구 서대구로7길 12';
+
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no  where b.zone_no = 5 and b.theme_no = 2 and b.board_no != 441 order by b.board_no desc;
+
+
+select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = 17 and b.zone_no = 5 and b.theme_no = 2 and b.board_no != 441 order by b.board_no desc;

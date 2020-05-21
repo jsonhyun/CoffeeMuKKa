@@ -496,18 +496,16 @@
 				<div class="recomWrap">
 					<ul>
 						<c:forEach var="sameCafe" items="${sameCafe}">
-							<a
-								href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
+							<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
 								<li>
 									<div class="RC_listImgWrap">
 										<div class="RC_listImgContainer">
 						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
 										<c:forEach var="img" items="${slistImg}">
-											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
+											 <c:if test="${img.boardNo.boardNo == sameCafe.boardNo }">
 												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
 											</c:if>
-										</c:forEach>
-										<p class="test"></p>								
+										</c:forEach>							
 									</div>
 									</div>
 									<div class="RC_listTitle1">
@@ -536,7 +534,6 @@
 										</c:choose>
 									</div>
 									<div class="RC_listTitle2">
-										<!-- 상세페이지로 가기 -->
 										<h3 class="RC_titleName">${sameCafe.writingTitle}</h3>
 									</div>
 							</li>
@@ -573,15 +570,15 @@
 								href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
 								<li>
 									<div class="RC_listImgWrap">
-										<%-- 									<div class="RC_listImgContainer">
+										<div class="RC_listImgContainer">
 						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
-										<c:forEach var="img" items="${listImg}">
-											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
+										<c:forEach var="img" items="${klistImg}">
+											 <c:if test="${img.boardNo.boardNo == sameKeyword.boardNo }">
 												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
 											</c:if>
 										</c:forEach>
 										<p class="test"></p>								
-									</div>	 --%>
+									</div>
 									</div>
 									<div class="RC_listTitle1">
 										<!-- 위치 -->
@@ -707,7 +704,7 @@
 		var end = file.substring(53);
 		var fileName = start + end;
 		$(this).attr("src", fileName);
-		console.log(fileName);
+		console.log("TEST========="+fileName);
 	})	
 </script>
 
