@@ -201,7 +201,7 @@
 		text-decoration: underline;
 	}
 	
-	.cafeR_sameList .a_cafeReview:nth-of-type(odd) {
+	.cafeR_sameList .a_cafeReview {
 		margin-right: 22px;
 	}
 	
@@ -553,10 +553,11 @@
 				<c:if test="${sameCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
 							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">${sameCnt }</span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
-						<c:if test="${sameCnt > 4 }">
+						<c:if test="${sameCnt > 2 }">
 							<div class="sameListBtn f_right">
-								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
+								<div id="prevBtn" class="sameBtn f_left"><i class="fas fa-angle-left"></i></div>
+								<div id="nextBtn" class="sameBtn f_left"><i class="fas fa-angle-right"></i></div>
 							</div>
 						</c:if>
 					</div>
@@ -627,11 +628,41 @@
 <!-- container end -->
 
 <script>
+	var sameBox = $(".cafeR_sameList > .cafeR_List");
 	var sameCnt =  ${sameCnt};
 	var samePage = Math.ceil(sameCnt / 2);
-	var sameW = $(".cafeR_sameList > .cafeR_List").width(920 * samePage);
+	var sameW = sameBox.width((920 * samePage) + (22 * samePage));
 	
-	console.log(Math.ceil(sameCnt / 2));
+	var index = 0;
+	var pageIndex = 1;
+	
+	$(".pageTotal").text(samePage);
+	
+	/* next */
+	$("#nextBtn").click(function(){
+		if(index == -(samePage-1)){
+			return;
+		}
+		
+		index--;
+		pageIndex++;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
+	/* prev */
+	$("#prevBtn").click(function(){
+		if(index == 0){
+			return;
+		}
+		
+		index++;
+		pageIndex--;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
+	
 	
 </script>
 <!-- 댓글기능 -->
