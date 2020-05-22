@@ -167,7 +167,7 @@
 	
 	/* 같은 카페 다른 추천글 영역 */
 	.recommentSameList {
-		margin-top: 100px;
+		margin-top: 70px;
 	}
 	
 	.recommentSameList .cafeR_sameTitle {
@@ -191,6 +191,16 @@
 		width: 48.6%;
 		border: 1px solid #545454;
 		margin-bottom: 20px;
+	}
+	.recommentSameList .noimgList{
+		text-align: center;
+	}
+	.noimgList p.noList{
+		color: #5D5D5D;
+	}
+	.noimgList span.hotpink{
+		color:#FF007F;
+		font-size: 18px;
 	}
 	
 	.recommentSameList .cafeR_box:hover .cafe_title{
@@ -491,7 +501,7 @@
 			<c:if test="${sameCafeCnt == 0 }">
 				<div class="cafeR_sameTitle bottomLine clearfix">
 						<p class="f_left">
-							<span style="color:navy" class="bold">${board.writingTitle}</span>에 대한 
+							<span class="blue bold">${board.writingTitle}</span>에 대한 
 							<span class="orange bold">관련된 </span>
 							<span class="red bold">추천글</span>이 아직 없습니다.
 						</p>
@@ -499,6 +509,16 @@
 			</c:if>				
 
 			<!-- 같은 카페의 다른 포스트 list -->
+			<c:if test="${sameCafeCnt == 0 }">
+				<div class="recommendBest mb30">
+					<div class="noimgList">
+						<img src ="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+						<p class = "noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
+					</div>
+				</div>
+			</c:if>
+			
+			<c:if test="${sameCafeCnt > 0 }">
 			<div class="recommendBest mb30">
 				<div class="recomWrap">
 					<ul>
@@ -550,6 +570,7 @@
 				</div>
 
 			</div>
+			</c:if>
 		</div><!-- class="recommentSameList" -->
 
 
@@ -583,6 +604,16 @@
 				</c:if>	
 				
 			<!-- 같은 키워드의 다른 포스트 list -->
+			<c:if test="${sameKeywordCnt == 0 }">
+				<div class="recommendBest mb30">
+					<div class="noimgList">
+						<img src="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+						<p class="noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
+					</div>
+				</div>
+			</c:if>
+			
+			<c:if test="${sameKeywordCnt > 0 }">
 			<div class="recommendBest mb30">
 				<div class="recomWrap">
 					<ul>
@@ -636,6 +667,7 @@
 					</ul>
 				</div>
 			</div>
+			</c:if>
 		</div><!-- class="recommentSameList" -->
 	</div><!-- class="contentArea" -->
 </div><!-- class="content subPageContent" -->	
@@ -741,7 +773,7 @@
 	$(".pageTotal").text(samePage); */
 	
 	/* next */
-/*  	$("#nextBtn").click(function(){
+ /* 	$(".nextBtn").click(function(){
 		if(index == -(samePage-1)){
 			return;
 		}
@@ -753,7 +785,7 @@
 		$(".pageNum").text(pageIndex);
 	}) */
 	/* prev */
-/*  	$("#prevBtn").click(function(){
+ /* 	$(".prevBtn").click(function(){
 		if(index == 0){
 			return;
 		}
