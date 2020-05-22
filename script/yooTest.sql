@@ -48,9 +48,9 @@ $$
 create procedure loopVoteInsert()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 1000 DO
+WHILE i <= 1200 DO
 	Insert into vote(board_no, user_no, vote_date) 
-	VALUES(floor(1 + (rand() * 600)), floor(1 + (rand() * 78)), '2020-04-21');
+	VALUES(floor(35 + (rand() * 600)), floor(1 + (rand() * 78)), '2020-04-21');
 	
 	SET i = i + 1;
 END WHILE;
@@ -68,7 +68,7 @@ begin
 DECLARE i INT DEFAULT 1;
 WHILE i <= 1200 DO
 
-	insert into reply(board_no, user_no, comment_content) values(floor(1 + (rand() * 600)), floor(1 + (rand() * 78)), '댓글 테스트');
+	insert into reply(board_no, user_no, comment_content) values(floor(35 + (rand() * 600)), floor(1 + (rand() * 78)), '댓글 테스트');
 	
 	SET i = i + 1;
 END WHILE;
@@ -101,6 +101,7 @@ delimiter ;
 
 CALL loopCnt();
 
+select * from board;
 -- 더미 테이터 end ----------------------------------------------------------------------- 
 
 -- test ------------------------------------------------------------------------------
@@ -295,3 +296,11 @@ select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
 select * from starpoint where cafe_no = 4 and theme_no = 6;
 select * from theme;
 select * from cafe where cafe_no = 46;
+
+-- 메인 카페 검색
+select * from cafe where theme_no = 1 or theme_no = 3;
+
+select c.cafe_no, c.cafe_name, z.zone_no , z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, 
+		c.oneline, c.address, c.detail_address 
+	from cafe c left join theme t on c.theme_no = t.theme_no left join `zone` z on c.zone_no = z.zone_no
+	where c.zone_no = 3 and (c.theme_no = 3 or c.theme_no = 4);
