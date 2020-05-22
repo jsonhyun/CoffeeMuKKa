@@ -12,6 +12,6 @@
 			from starpoint s left join theme t on s.theme_no = t.theme_no left join cafe c on s.cafe_no = c.cafe_no 
 			where s.cafe_no = #{cafeNo} and s.theme_no != c.theme_no 
 			group by s.theme_no 
-			order by cnt desc, s.theme_no  limit 2;
+			order by cnt desc, s.theme_no  limit 2
 	</select>
 </mapper>

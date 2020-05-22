@@ -436,11 +436,10 @@
 				<div class="d_cafeR_titleTop clearfix">
 					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
 					<div class="themeKeySmall keyword themeName">#${board.themeNo.themeName }</div>
-					
+					<!-- 테마 순위 리스트 -->
 					<c:forEach var="theme" items="${themeRank}">
 						<div class="themeKeySmall keyword themeName">#${theme.themeName }</div>
 					</c:forEach>
-					
 					
 					<div class="regDate">
 						등록일 : <fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/>

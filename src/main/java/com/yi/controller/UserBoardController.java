@@ -97,8 +97,8 @@ public class UserBoardController {
 			 List<ThemeVO> theme = themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo());
 			 //System.out.println("theme---------------------------"+theme);
 			 map.put(list.get(i).getCafeNo().getCafeNo(), theme);
-			 System.out.println("list ----------------------- " + themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo()));
-			 System.out.println("theme-----------------------" + theme);
+			 //System.out.println("list ----------------------- " + themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo()));
+			 //System.out.println("theme-----------------------" + theme);
 		}
 		model.addAttribute("todayCnt", todayCnt);
 		model.addAttribute("list", list);

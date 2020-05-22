@@ -424,6 +424,7 @@
 									<div class="cafeR_infoTop clearfix">
 										<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
 										<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
+										<!-- 테마 순위 리스트 -->
 										<c:forEach var="theme" items="${themeMap}" varStatus="status">
 											<c:if test="${item.cafeNo.cafeNo == theme.key }">
 												<c:forEach var="themeItem" items="${theme.value }">
