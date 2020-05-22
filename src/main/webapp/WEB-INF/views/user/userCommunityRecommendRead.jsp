@@ -165,7 +165,7 @@
 		right: 25px;
 	}
 	
-	/* 같은 카페 다른 추천글 영역 */
+	/* 같은 카페 다른 추천글 영역 - 카페이름,개수 */
 	.recommentSameList {
 		margin-top: 70px;
 	}
@@ -329,41 +329,49 @@
 	}
 	
 	/* 같은카페 리스트 */
-	.recommendBest .recomWrap ul{
-		overflow: hidden;
+	.recommendBanner{
+		width: 918px;
 		height: 265px;
 	}
+	.recomWrap{
+		width: 918px;
+		height: 265px;
+		overflow: hidden;
+	}
+	.recommendBanner .recomWrap ul{
+		width: 3000px;
+	}
 	
-	.recommendBest .recomWrap li {
+	.recommendBanner .recomWrap li {
 		float: left;
 		width: 222px;
 		height: 260px;
 		margin: 3px;
 		border: 1px solid #545454;
 	}
-	.recommendBest .recomWrap li div.RC_listImgWrap{
+	.recommendBanner .recomWrap li div.RC_listImgWrap{
 		width: 100%;
 		height: 160px;
 		position: relative;
 	}
-	.recommendBest .recomWrap li div.RC_listImgContainer img{
+	.recommendBanner .recomWrap li div.RC_listImgContainer img{
 		width: 100%;
 		height: 160px;
 		position: absolute;
 	}
-	.recommendBest .recomWrap li div.RC_listImgContainer .active{
+	.recommendBanner .recomWrap li div.RC_listImgContainer .active{
 		z-index: 1;
 	}		
-	.recommendBest .recomWrap li div.RC_listTitle1{
+	.recommendBanner .recomWrap li div.RC_listTitle1{
 		width: 90%;
 		height: 33px;
 		padding: 8px;
 	}
-	.recommendBest .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
+	.recommendBanner .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
 		font-size: 12px;
 		margin-top: 5px;
 	}
- 	.recommendBest .recomWrap li div.RC_listTitle2{
+ 	.recommendBanner .recomWrap li div.RC_listTitle2{
 		width: 90%;
 		height: 45px;
 		padding: 8px;
@@ -481,6 +489,7 @@
 		<!-- ****************************************************** 상세보기 리스트(1) : 같은카페 ****************************************************** -->
 		<!-- 같은 카페명의 다른 포스트 list -- "개수"  -->
 		<div class="recommentSameList">
+			<!-- 관련추천글이 있을시 : 제목 -->
 			<c:if test="${sameCafeCnt > 0 }">
 				<div class="cafeR_sameTitle bottomLine clearfix">
 					<p class="f_left">
@@ -491,13 +500,15 @@
 					<!-- 페이징 버튼생성 -->
 					<c:if test="${sameCafeCnt > 4 }">
 						<div class="sameListBtn f_right">
-							<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
-							<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-							<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+							<div class="f_left orange"><span class="pageNum1">1</span> / <span class="pageTotal1">0</span></div>
+							<div class="sameBtn f_left" id="prevBtn1"><i class="fas fa-angle-left"></i></div>
+							<div class="sameBtn f_left" id="nextBtn1"><i class="fas fa-angle-right"></i></div>
 						</div>
 					</c:if>
 				</div>
 			</c:if>
+			
+			<!-- 관련추천글이 없을시 : 제목 + noImg -->
 			<c:if test="${sameCafeCnt == 0 }">
 				<div class="cafeR_sameTitle bottomLine clearfix">
 						<p class="f_left">
@@ -507,21 +518,19 @@
 						</p>
 				</div>
 			</c:if>				
-
-			<!-- 같은 카페의 다른 포스트 list -->
 			<c:if test="${sameCafeCnt == 0 }">
-				<div class="recommendBest mb30">
-					<div class="noimgList">
-						<img src ="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-						<p class = "noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
-					</div>
+				<div class="noimgList">
+					<img src ="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+					<p class = "noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
 				</div>
 			</c:if>
+			</div><!-- class="recommentSameList" -->
 			
+			<!-- 관련추철글이 있을시 : 배너 -->
 			<c:if test="${sameCafeCnt > 0 }">
-			<div class="recommendBest mb30">
+			<div class="recommendBanner mb30">
 				<div class="recomWrap">
-					<ul>
+					<ul id="banner1">
 						<c:forEach var="sameCafe" items="${sameCafe}">
 							<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
 								<li>
@@ -571,7 +580,7 @@
 
 			</div>
 			</c:if>
-		</div><!-- class="recommentSameList" -->
+		
 
 
 		<!-- ****************************************************** 상세보기 리스트(2) : 같은키워드 ****************************************************** -->
@@ -587,8 +596,8 @@
 						<c:if test="${sameKeywordCnt > 4 }">
 							<div class="sameListBtn f_right">
 								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
-								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+								<div class="sameBtn f_left" id="prevBtn"><i class="fas fa-angle-left"></i></div>
+								<div class="sameBtn f_left" id="nextBtn"><i class="fas fa-angle-right"></i></div>
 							</div>
 						</c:if>
 					</div>
@@ -605,16 +614,15 @@
 				
 			<!-- 같은 키워드의 다른 포스트 list -->
 			<c:if test="${sameKeywordCnt == 0 }">
-				<div class="recommendBest mb30">
 					<div class="noimgList">
 						<img src="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
 						<p class="noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
-					</div>
 				</div>
 			</c:if>
+			</div><!-- class="recommentSameList" -->
 			
 			<c:if test="${sameKeywordCnt > 0 }">
-			<div class="recommendBest mb30">
+			<div class="recommendBanner mb30">
 				<div class="recomWrap">
 					<ul>
 						<c:forEach var="sameKeyword" items="${sameKeyword}">
@@ -668,7 +676,7 @@
 				</div>
 			</div>
 			</c:if>
-		</div><!-- class="recommentSameList" -->
+		
 	</div><!-- class="contentArea" -->
 </div><!-- class="content subPageContent" -->	
 <!-- 서브페이지 콘텐츠 end -->
@@ -796,6 +804,32 @@
 		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
 		$(".pageNum").text(pageIndex);
 	}) */
+	
+	/** 첫번째 배너 **/
+	//next버튼
+	var index = 0;
+	$("#nextBtn1").click(function() {
+		
+		if(index == -5){
+			alert("오른쪽 끝입니다.");
+			return;
+		}
+		index--;
+		var marginLeft = index * 230;
+		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
+	})
+	//prev버튼
+	$("#prevBtn1").click(function() {
+		if(index == 0){
+			alert("왼쪽 끝입니다.");
+			return;
+		}
+		index++;
+		var marginLeft = index * 230; 
+		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
+	})
+	
+	/** 두번째 배너 **/
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

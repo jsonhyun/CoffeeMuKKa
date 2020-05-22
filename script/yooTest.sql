@@ -151,7 +151,8 @@ select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 				 left join cafe c on b.cafe_no = c.cafe_no 
 				 left join zone z on c.zone_no = z.zone_no 
 				 left join theme t on c.theme_no = t.theme_no 
-	where b.board_no2 = 1 and b.board_del_cdt = 1
+	where b.board_no2 = 2 and b.board_del_cdt = 1;
+	select * from board b join image i on b.board_no = i.board_no;
 	order by b.board_no desc limit 0, 20; 
 
 select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no , 
