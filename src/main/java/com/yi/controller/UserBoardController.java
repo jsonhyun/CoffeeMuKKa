@@ -254,7 +254,7 @@ public class UserBoardController {
 				
 				json.addProperty("uploaded", 1);
 				json.addProperty("fileName", fileN);
-				json.addProperty("url", "http://localhost:8080/coffeemukka/user/displayFile?filename="+fileD+fileName);
+				json.addProperty("url", "/coffeemukka/user/displayFile?filename="+fileD+fileName);
 				
 
 				printWriter.println(json);

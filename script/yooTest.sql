@@ -48,9 +48,9 @@ $$
 create procedure loopVoteInsert()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 1000 DO
+WHILE i <= 1200 DO
 	Insert into vote(board_no, user_no, vote_date) 
-	VALUES(floor(1 + (rand() * 600)), floor(1 + (rand() * 78)), '2020-04-21');
+	VALUES(floor(35 + (rand() * 600)), floor(1 + (rand() * 78)), '2020-04-21');
 	
 	SET i = i + 1;
 END WHILE;
@@ -68,7 +68,7 @@ begin
 DECLARE i INT DEFAULT 1;
 WHILE i <= 1200 DO
 
-	insert into reply(board_no, user_no, comment_content) values(floor(1 + (rand() * 600)), floor(1 + (rand() * 78)), '댓글 테스트');
+	insert into reply(board_no, user_no, comment_content) values(floor(35 + (rand() * 600)), floor(1 + (rand() * 78)), '댓글 테스트');
 	
 	SET i = i + 1;
 END WHILE;
@@ -101,6 +101,7 @@ delimiter ;
 
 CALL loopCnt();
 
+select * from board;
 -- 더미 테이터 end ----------------------------------------------------------------------- 
 
 -- test ------------------------------------------------------------------------------

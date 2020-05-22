@@ -28,11 +28,11 @@
 		
 		if(url[5] == "") {
 			$(".mainSearchBox").addClass("open");
-			$(".mainSearchBtn a").html('<i class="fas fa-angle-up"></i>');
+			$(".mainSearchBtn a").html('<span class="cafeSearchBtn">카페 검색 닫기</span> <i class="fas fa-angle-up"></i>');
 			$(".activeTotalCnt").html('현재 <span class="actTotal">500</span>개의 <b>카페정보</b>와 <span class="actTotal">300</span>개의 <b>카페 탐방기</b>가 있습니다.');
 		} else {
 			$(".mainSearchBox").addClass("close");
-			$(".mainSearchBtn a").html('<i class="fas fa-angle-down"></i>');
+			$(".mainSearchBtn a").html('<span class="cafeSearchBtn">카페 검색 열기</span> <i class="fas fa-angle-down"></i>');
 			$(".activeTotalCnt").empty();
 		}
 		
@@ -43,11 +43,11 @@
 			if($(".mainSearchBox").hasClass("open")) {
 				$(".mainSearchBox").slideUp();
 				$(".mainSearchBox").removeClass("open");
-				$(this).html('<i class="fas fa-angle-down"></i>');
+				$(this).html('<span class="cafeSearchBtn">카페 검색 열기</span> <i class="fas fa-angle-down"></i>');
 			} else {
 				$(".mainSearchBox").slideDown();
 				$(".mainSearchBox").addClass("open");
-				$(this).html('<i class="fas fa-angle-up"></i>');
+				$(this).html('<span class="cafeSearchBtn">카페 검색 닫기</span> <i class="fas fa-angle-up"></i>');
 			}
 		})
 		
@@ -119,6 +119,12 @@
 			}
 			$(".themeBar input[name='themeName']").val(themeNo);
 		})
+		
+		$("#mainMenuUl > li").hover(function(){
+			$(this).find(".subMenuUl").stop().slideDown();
+		}, function(){
+			$(this).find(".subMenuUl").stop().slideUp();
+		})
 	}) 
 </script>
 </head>
@@ -155,18 +161,32 @@
 		<div id="mainMenuWrap">
 			<div class="menuBox">
 				<div class="mainMenu clearfix">
-					<ul class="clearfix">
+					<ul class="clearfix" id="mainMenuUl">
 						<li>
 							<a href="${pageContext.request.contextPath }/user/mukkaCafe" class="menuName">
 								<img src="${pageContext.request.contextPath }/resources/images/menu1.png" alt="menu" id="mukkCafe" class="menuIcon"/>
 								<span>커피무까</span>
 							</a>
+							<ul class="subMenuUl">
+								<li><a href="#">커피무까</a></li>
+								<li><a href="#">위치별</a></li>
+								<li><a href="#">테마별</a></li>
+								<li><a href="#">MuKKa 베스트</a></li>
+								<li><a href="#">月別카페</a></li>
+							</ul>
 						</li>
 						<li>
 							<a href="${pageContext.request.contextPath }/user/community" class="menuName">
 								<img src="${pageContext.request.contextPath }/resources/images/menu2.png" alt="menu" id="community" class="menuIcon"/>
 								<span>커뮤니티</span>
 							</a>
+							<ul class="subMenuUl">
+								<li><a href="#">MuKKa의 전당</a></li>
+								<li><a href="#">생생 카체 탐방기</a></li>
+								<li><a href="#">MuKKa人 추천 카페</a></li>
+								<li><a href="#">사장님 고민 나눔</a></li>
+								<li><a href="#">자유게시판</a></li>
+							</ul>
 						</li>
 						<li>
 							<a href="#" class="menuName">
