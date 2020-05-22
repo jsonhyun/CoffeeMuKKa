@@ -13,7 +13,7 @@ left join `zone` z on c.zone_no = z.zone_no where c.zone_no=1 and c.theme_no=2 o
 
 select cafe_name from cafe c left join starpoint s on c.cafe_no = s.cafe_no where 
 
-select count(*) from starpoint where cafe_no =2 and theme_no =6;
+select count(*) from starpoint where cafe_no =60 and theme_no =6;
 
 select round(sum(star_point)/count(*), 1) from starpoint where cafe_no =30;
 

@@ -7,6 +7,7 @@ import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
+import com.yi.domain.ThemeVO;
 
 public interface CafeDAO {
 	/* 카페 추가, 검색, 삭제, 수정 */
@@ -26,7 +27,7 @@ public interface CafeDAO {
 	public int starpointByMonth(int cafeNo, int month) throws Exception;
 	
 	/* 카페 테마 순위 검색 */
-	public int rankTheme(int cafeNo, int themeNo) throws Exception;
+	public List<ThemeVO> rankTheme(int cafeNo) throws Exception;
 	
 	/* 카페 메뉴 검색 */
 	public List<MenuVO> menuList(int cafeNo) throws Exception;

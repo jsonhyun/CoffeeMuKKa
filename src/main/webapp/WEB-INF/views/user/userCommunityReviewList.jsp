@@ -407,7 +407,7 @@
 								<div class="cafeR_titleBox">
 									<div class="cafeR_titleImg">	
 										<div class="bg"></div>						
-										<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" />
+										<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_sample41.jpg'"/>
 									</div>
 									<div class="cafeR_titleTop clearfix" >
 										<div class="cafeR_writer clearfix">

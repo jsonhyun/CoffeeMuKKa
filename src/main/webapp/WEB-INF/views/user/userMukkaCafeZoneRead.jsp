@@ -198,13 +198,13 @@
 
 <script>
 	$(function() {
-	<!-- 카페 세부정보 별점 -->
+	// 카페 세부정보 별점 
 		$('.starPoint').barrating({
 			theme: 'fontawesome-stars',
 			initialRating: ${starpointSelect},
 			readonly: true
 		})
-	<!-- 카페 세부정보 이미지 변경 -->
+	//카페 세부정보 이미지 변경
 		$('.bxslider').bxSlider({
 			auto : true,
 			speed : 300,
@@ -215,7 +215,7 @@
 			adaptiveHeight : true
 		});
 		
-		<!-- 카페 상세정보, 메뉴판, 편의정보, 상세정보 -->
+		//카페 상세정보, 메뉴판, 편의정보, 상세정보
 		$('.cafeInfo').addClass('open');
 		$('.closeInfo').addClass('close');
 		$('#cafeInfo1 .upAndDown').html('<i class="fas fa-angle-up"></i>');
@@ -427,52 +427,28 @@
 					<div class="themeIcon" style="background-color: #0170c2;">#작업</div>
 				</c:when>
 			</c:choose>
-			<c:forEach var="theme" items="${themeRank }" begin="0" end="1" >
-				<c:if test="${cafe.themeNo.themeNo != theme }">
+			<c:forEach var="theme" items="${themeRank }">
+				<c:if test="${cafe.themeNo.themeNo != theme.themeNo}">
 					<c:choose>
-						<c:when test="${theme == 1 }">
+						<c:when test="${theme.themeNo == 1 }">
 							<div class="themeIcon" style="background-color: #b038fa;">#데이트</div>
 						</c:when>
-						<c:when test="${theme == 2 }">
+						<c:when test="${theme.themeNo == 2 }">
 							<div class="themeIcon" style="background-color: #528236;">#뷰</div>
 						</c:when>
-						<c:when test="${theme == 3 }">
+						<c:when test="${theme.themeNo == 3 }">
 							<div class="themeIcon" style="background-color: #96814c;">#착한아메</div>
 						</c:when>
-						<c:when test="${theme == 4 }">
+						<c:when test="${theme.themeNo == 4 }">
 							<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
 						</c:when>
-						<c:when test="${theme == 5 }">
+						<c:when test="${theme.themeNo == 5 }">
 							<div class="themeIcon" style="background-color: #FFB232;">#댕댕이</div>
 						</c:when>
-						<c:when test="${theme == 6 }">
+						<c:when test="${theme.themeNo == 6 }">
 							<div class="themeIcon" style="background-color: #0170c2;">#작업</div>
 						</c:when>
 					</c:choose>
-				</c:if>
-				<c:if test="${cafe.themeNo.themeNo == theme }">
-					<c:forEach var="theme" items="${themeRank }" begin="2" end="2" >
-						<c:choose>
-							<c:when test="${theme == 1 }">
-								<div class="themeIcon" style="background-color: #b038fa;">#데이트</div>
-							</c:when>
-							<c:when test="${theme == 2 }">
-								<div class="themeIcon" style="background-color: #528236;">#뷰</div>
-							</c:when>
-							<c:when test="${theme == 3 }">
-								<div class="themeIcon" style="background-color: #96814c;">#착한아메</div>
-							</c:when>
-							<c:when test="${theme == 4 }">
-								<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
-							</c:when>
-							<c:when test="${theme == 5 }">
-								<div class="themeIcon" style="background-color: #FFB232;">#댕댕이</div>
-							</c:when>
-							<c:when test="${theme == 6 }">
-								<div class="themeIcon" style="background-color: #0170c2;">#작업</div>
-							</c:when>
-						</c:choose>
-					</c:forEach>
 				</c:if>
 			</c:forEach>
 		</div>
