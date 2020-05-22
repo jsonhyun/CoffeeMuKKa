@@ -667,9 +667,9 @@
 	
 	    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 	
-	        alert('검색 결과가 존재하지 않습니다.');
+	        alert('검색 결과가 정확한 주소를 확인할 수 없습니다.');
 	       var searchCafe = $("input#keyword").val();
-	       alert(searchCafe);
+	       //alert(searchCafe);
 	       	$("input#title").val(searchCafe);
 	        $("input#point").addClass("red").val(" 정확한 주소를 확인할 수 없습니다.");
 	        $("div.map_wrap").slideUp(1200);

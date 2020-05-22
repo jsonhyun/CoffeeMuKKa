@@ -488,6 +488,15 @@
 					</c:if>
 				</div>
 			</c:if>
+			<c:if test="${sameCafeCnt == 0 }">
+				<div class="cafeR_sameTitle bottomLine clearfix">
+						<p class="f_left">
+							<span style="color:navy" class="bold">${board.writingTitle}</span>에 대한 
+							<span class="orange bold">관련된 </span>
+							<span class="red bold">추천글</span>이 아직 없습니다.
+						</p>
+				</div>
+			</c:if>				
 
 			<!-- 같은 카페의 다른 포스트 list -->
 			<div class="recommendBest mb30">
@@ -549,7 +558,11 @@
 			<div class="recommentSameList">
  				<c:if test="${sameKeywordCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
-							<p class="f_left"><span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 <span class="orange bold">${sameKeywordCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
+							<p class="f_left">
+								<span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 
+								<span class="orange bold">${sameKeywordCnt }</span>개의 
+								<span class="red bold">추천글</span>이 더 있어요!
+							</p>
 						<c:if test="${sameKeywordCnt > 4 }">
 							<div class="sameListBtn f_right">
 								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
@@ -557,6 +570,15 @@
 								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
 							</div>
 						</c:if>
+					</div>
+				</c:if>
+				<c:if test="${sameKeywordCnt == 0 }">
+					<div class="cafeR_sameTitle bottomLine clearfix">
+							<p class="f_left">
+								<span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 
+								<span class="orange bold">관련된 </span>
+								<span class="red bold">추천글</span>이 아직 없습니다.
+							</p>
 					</div>
 				</c:if>	
 				
@@ -699,6 +721,7 @@
 	 //원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {
 		var file = $(this).attr("src");
+		console.log("TEST========="+file);
 		var start = file.substring(0,51);
 		var end = file.substring(53);
 		var fileName = start + end;
