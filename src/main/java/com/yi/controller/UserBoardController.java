@@ -136,7 +136,7 @@ public class UserBoardController {
 		model.addAttribute("sameCnt", sameCnt);
 		model.addAttribute("themeRank", themeRank);
 		
-		System.out.println("themeRank-----------------------------------" + themeRank);
+		//System.out.println("themeRank-----------------------------------" + themeRank);
 		return "/user/userCommunityReviewRead";
 	}
 	
@@ -177,10 +177,10 @@ public class UserBoardController {
 	
 	@RequestMapping(value = "/community/cafeReview/modify", method = RequestMethod.POST)
 	public String communityReviewModifyPost(String inImgFile, MultipartFile imgFile, BoardVO vo, SearchCriteria cri, Model model) throws Exception {
-		System.out.println("modefy Post vo ------------- " + vo);
-		System.out.println("modefy Post inImgFile ------------- " + inImgFile);
-		System.out.println("modefy Post imgFileSize ------------- " + imgFile.getSize());
-		System.out.println("modefy Post cri ------------- " + cri);
+//		System.out.println("modefy Post vo ------------- " + vo);
+//		System.out.println("modefy Post inImgFile ------------- " + inImgFile);
+//		System.out.println("modefy Post imgFileSize ------------- " + imgFile.getSize());
+//		System.out.println("modefy Post cri ------------- " + cri);
 		
 		
 		if(imgFile.getSize() > 0) {
