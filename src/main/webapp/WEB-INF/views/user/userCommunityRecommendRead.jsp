@@ -539,7 +539,7 @@
 						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
 										<c:forEach var="img" items="${slistImg}">
 											 <c:if test="${img.boardNo.boardNo == sameCafe.boardNo }">
-												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
 											</c:if>
 										</c:forEach>							
 									</div>
@@ -634,7 +634,7 @@
 						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
 										<c:forEach var="img" items="${klistImg}">
 											 <c:if test="${img.boardNo.boardNo == sameKeyword.boardNo }">
-												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg">										
+												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
 											</c:if>
 										</c:forEach>
 										<p class="test"></p>								
