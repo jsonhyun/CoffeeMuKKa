@@ -285,7 +285,7 @@
 		<include refid="search"></include>
 	</select>
 	
-<!-- 이름에 의한 카페 검색 -->
+	<!-- 경진추가 : 이름에 의한 카페 검색 -->
 	<select id="searchCafeByName" resultType="CafeVO">
 		select * from cafe where cafe_name like CONCAT('%', #{cafeName}, '%')
 	</select>

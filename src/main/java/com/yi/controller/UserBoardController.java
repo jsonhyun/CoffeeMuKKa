@@ -9,7 +9,9 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.context.Theme;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +42,7 @@ import com.yi.domain.ThemeVO;
 import com.yi.domain.UsersVO;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
+import com.yi.service.ThemeService;
 import com.yi.util.UploadFileUtils;
 
 @Controller
@@ -47,7 +51,10 @@ public class UserBoardController {
 	
 	// 서비스 
 	@Autowired
-	BoardService service;
+	private BoardService service;
+	
+	@Autowired
+	private ThemeService themeService;
 	
 	@Resource(name="uploadPath") // String은 자바에 있는 클래스이기 때문에 @Autowired로 주입하지 않고 @Resource(name="uploadPath")로 주입받음
 	String uploadPath;
@@ -84,6 +91,15 @@ public class UserBoardController {
 			list = service.cafeReviewBestList(cBoardNo, cri);
 		}
 		
+		Map<Integer, List<ThemeVO>> map = new HashMap<Integer, List<ThemeVO>>();
+		
+		for(int i=0; i<list.size(); i++) {			
+			 List<ThemeVO> theme = themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo());
+			 //System.out.println("theme---------------------------"+theme);
+			 map.put(list.get(i).getCafeNo().getCafeNo(), theme);
+			 System.out.println("list ----------------------- " + themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo()));
+			 System.out.println("theme-----------------------" + theme);
+		}
 		model.addAttribute("todayCnt", todayCnt);
 		model.addAttribute("list", list);
 		model.addAttribute("pageMaker", pageMaker);
@@ -91,7 +107,10 @@ public class UserBoardController {
 		model.addAttribute("themeList", themeList);
 		model.addAttribute("zoneList", zoneList);
 		model.addAttribute("monthBestList", monthBestList);
+		model.addAttribute("themeMap", map);
 		
+		
+		//System.out.println("themeRank -------------------------" + map);
 		return "/user/userCommunityReviewList";
 	}
 	
@@ -108,12 +127,16 @@ public class UserBoardController {
 		List<BoardVO> sameVo = service.cafeReviewSameList(vo);
 		int sameCnt = service.cafeReivewSameCnt(vo);
 		
+		
+		List<ThemeVO> themeRank = themeService.cafeThemeRank(vo.getCafeNo().getCafeNo());
+		//System.out.println("themeRank ------------------------- " + themeRank);
 		model.addAttribute("board", vo);
 		model.addAttribute("cri", cri);
 		model.addAttribute("sameBoard", sameVo);
 		model.addAttribute("sameCnt", sameCnt);
+		model.addAttribute("themeRank", themeRank);
 		
-		
+		System.out.println("themeRank-----------------------------------" + themeRank);
 		return "/user/userCommunityReviewRead";
 	}
 	

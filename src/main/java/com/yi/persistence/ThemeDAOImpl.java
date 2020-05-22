@@ -15,9 +15,16 @@ public class ThemeDAOImpl implements ThemeDAO{
 	
 	private static final String namespace = "mappers.ThemeMapper.";
 
+	// 테마 리스트
 	@Override
 	public List<ThemeVO> themeList() throws Exception {
 		return sqlsession.selectList(namespace + "themeList");
+	}
+
+	// 카페별 테마 순위
+	@Override
+	public List<ThemeVO> cafeThemeRank(int cafeNo) throws Exception {
+		return sqlsession.selectList(namespace + "cafeThemeRank", cafeNo);
 	}
 	
 }

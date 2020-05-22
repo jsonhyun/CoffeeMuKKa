@@ -17,6 +17,7 @@ select * from authority; -- 관리자 권한
 select * from wishlist; -- 위시리스트
 select * from image; -- 이미지
 select * from vote; -- 추천리스트
+select * from starpoint; -- 별점 리스트
 
 -- 더미 테이터 start ----------------------------------------------------------------------- 
 -- 카페 탐방기 추가
@@ -267,6 +268,20 @@ select * from vote where month(vote_date) = month(now())-1;
 
 select month(now()) - 1 ;
 
-select * from vote;
 
+-- 테마 순위
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
+	from starpoint s left join theme t on s.theme_no = t.theme_no left join cafe c on s.cafe_no = c.cafe_no 
+	where s.cafe_no = 46 and s.theme_no != c.theme_no 
+	group by s.theme_no 
+	order by cnt desc, s.theme_no limit 2;
 
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
+	from starpoint s left join theme t on s.theme_no = t.theme_no left join cafe c on s.cafe_no = c.cafe_no 
+	where s.cafe_no = 46
+	group by s.theme_no 
+	order by cnt desc, s.theme_no;
+
+select * from starpoint where cafe_no = 4 and theme_no = 6;
+select * from theme;
+select * from cafe where cafe_no = 46;
