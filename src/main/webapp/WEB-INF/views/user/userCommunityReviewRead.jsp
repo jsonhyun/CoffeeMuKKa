@@ -415,6 +415,13 @@
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
+	}
+	
+	
+	/* 테마 아이콘 */
+	.detaliCafeR_title_wrap .themeKeySmall {
+		margin-right: 0;
+	}
 </style>	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
@@ -429,6 +436,11 @@
 				<div class="d_cafeR_titleTop clearfix">
 					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
 					<div class="themeKeySmall keyword themeName">#${board.themeNo.themeName }</div>
+					<!-- 테마 순위 리스트 -->
+					<c:forEach var="theme" items="${themeRank}">
+						<div class="themeKeySmall keyword themeName">#${theme.themeName }</div>
+					</c:forEach>
+					
 					<div class="regDate">
 						등록일 : <fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/>
 						<c:if test="${board.registrationDate != board.updateDate}">
@@ -445,7 +457,7 @@
 				</div>
 				<div class="d_cafeR_cafe clearfix">
 					<div class="d_cafe_icon clearfix">
-						<a href="${pageContext.request.contextPath }/user/mukkaCafe/read?cafeNo=${board.cafeNo.cafeNo}">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${board.cafeNo.cafeNo}">
 							<img src="${pageContext.request.contextPath }/resources/images/cafe_icon.png" alt="카페 아이콘" />
 							<span class="orange bold">${board.cafeNo.cafeName }</span> 카페정보 <i class="fas fa-angle-right"></i>
 						</a>
@@ -891,7 +903,7 @@
 	
 	
 	/*---- 다른 탐방기 게시글 리스트 슬라이드 -----------------------------------------------------------------------------------------------------*/
-	var sameBox = $(". > .cafeR_List");
+	var sameBox = $(".cafeR_sameList > .cafeR_List");
 	var sameCnt =  ${sameCnt};
 	var samePage = Math.ceil(sameCnt / 2);
 	var sameW = sameBox.width((920 * samePage) + (22 * samePage));
