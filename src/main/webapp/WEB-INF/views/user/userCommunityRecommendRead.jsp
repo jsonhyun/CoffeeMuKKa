@@ -338,10 +338,6 @@
 		height: 265px;
 		overflow: hidden;
 	}
-	.recommendBanner .recomWrap ul{
-		/* width: auto; */ /* 위드값 계산해서 주입시키기 */
-	}
-	
 	.recommendBanner .recomWrap li {
 		float: left;
 		width: 222px;
@@ -353,12 +349,19 @@
 		width: 100%;
 		height: 160px;
 		position: relative;
+		overflow: hidden;
 	}
 	.recommendBanner .recomWrap li div.RC_listImgContainer img{
 		width: 100%;
 		height: 160px;
 		position: absolute;
+		transition:all 1s;
+		transform-origin:left-top;
 	}
+	
+	.recommendBanner .recomWrap li div.RC_listImgContainer img:hover{
+		transform:scale(1.2);
+	}	
 	.recommendBanner .recomWrap li div.RC_listImgContainer .active{
 		z-index: 1;
 	}		
@@ -778,7 +781,7 @@
 	var pageTotal1 = Math.ceil(${sameCafeCnt} / 4); // ex. 3페이지
 	$(".pageTotal1").text(pageTotal1); // 1/3
 	
-	//ul너비 자동계산
+	//ul너비 자동계산 주입시키기
 	var width1 = (918*pageTotal1);
 	$("ul#banner1").css("width",width1);
 	//next버튼
