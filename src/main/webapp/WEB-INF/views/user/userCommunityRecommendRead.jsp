@@ -339,7 +339,7 @@
 		overflow: hidden;
 	}
 	.recommendBanner .recomWrap ul{
-		width: 3000px;
+		/* width: auto; */ /* 위드값 계산해서 주입시키기 */
 	}
 	
 	.recommendBanner .recomWrap li {
@@ -549,19 +549,19 @@
 										<div class="zoneBtn zoneOrangeIconSmall">${sameCafe.zoneNo.zoneName}</div>
 										<!-- 키워드 -->
 										<c:choose>
-											<c:when test="${board.themeNo.themeNo == 1}">
+											<c:when test="${sameCafe.themeNo.themeNo == 1}">
 												<div class="date themeKeySmall">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 2}">
+											<c:when test="${sameCafe.themeNo.themeNo == 2}">
 												<div class="view themeKeySmall">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 3}">
+											<c:when test="${sameCafe.themeNo.themeNo == 3}">
 												<div class="ame themeKeySmall">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 4}">
+											<c:when test="${sameCafe.themeNo.themeNo == 4}">
 												<div class="dessert themeKeySmall">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 5}">
+											<c:when test="${sameCafe.themeNo.themeNo == 5}">
 												<div class="dog themeKeySmall">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
 											<c:otherwise>
@@ -595,9 +595,9 @@
 							</p>
 						<c:if test="${sameKeywordCnt > 4 }">
 							<div class="sameListBtn f_right">
-								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
-								<div class="sameBtn f_left" id="prevBtn"><i class="fas fa-angle-left"></i></div>
-								<div class="sameBtn f_left" id="nextBtn"><i class="fas fa-angle-right"></i></div>
+								<div class="f_left orange"><span class="pageNum2">1</span> / <span class="pageTotal2">0</span></div>
+								<div class="sameBtn f_left" id="prevBtn2"><i class="fas fa-angle-left"></i></div>
+								<div class="sameBtn f_left" id="nextBtn2"><i class="fas fa-angle-right"></i></div>
 							</div>
 						</c:if>
 					</div>
@@ -624,7 +624,7 @@
 			<c:if test="${sameKeywordCnt > 0 }">
 			<div class="recommendBanner mb30">
 				<div class="recomWrap">
-					<ul>
+					<ul id="banner2">
 						<c:forEach var="sameKeyword" items="${sameKeyword}">
 							<a
 								href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
@@ -645,19 +645,19 @@
 										<div class="zoneBtn zoneOrangeIconSmall">${sameKeyword.zoneNo.zoneName}</div>
 										<!-- 키워드 -->
 										<c:choose>
-											<c:when test="${board.themeNo.themeNo == 1}">
+											<c:when test="${sameKeyword.themeNo.themeNo == 1}">
 												<div class="date themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 2}">
+											<c:when test="${sameKeyword.themeNo.themeNo == 2}">
 												<div class="view themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 3}">
+											<c:when test="${sameKeyword.themeNo.themeNo == 3}">
 												<div class="ame themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 4}">
+											<c:when test="${sameKeyword.themeNo.themeNo == 4}">
 												<div class="dessert themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
-											<c:when test="${board.themeNo.themeNo == 5}">
+											<c:when test="${sameKeyword.themeNo.themeNo == 5}">
 												<div class="dog themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
 											<c:otherwise>
@@ -761,75 +761,85 @@
 	 //원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {
 		var file = $(this).attr("src");
-		console.log("TEST========="+file);
+		//console.log("TEST========="+file);
 		var start = file.substring(0,51);
 		var end = file.substring(53);
 		var fileName = start + end;
 		$(this).attr("src", fileName);
-		console.log("TEST========="+fileName);
+		//console.log("TEST========="+fileName);
 	})
 	
-	//리스트 슬라이드
-/*     var sameBox = $(".recommentSameList > .recomWrap ul");
-	var sameCnt =  ${sameCnt};
-	var samePage = Math.ceil(sameCnt / 2);
-	var sameW = sameBox.width((940 * samePage) + (22 * samePage));
-	
-	var index = 0;
-	var pageIndex = 1;
-	
-	$(".pageTotal").text(samePage); */
-	
-	/* next */
- /* 	$(".nextBtn").click(function(){
-		if(index == -(samePage-1)){
-			return;
-		}
-		
-		index--;
-		pageIndex++;
-		var marginLeft = index * 942;
-		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
-		$(".pageNum").text(pageIndex);
-	}) */
-	/* prev */
- /* 	$(".prevBtn").click(function(){
-		if(index == 0){
-			return;
-		}
-		
-		index++;
-		pageIndex--;
-		var marginLeft = index * 942;
-		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
-		$(".pageNum").text(pageIndex);
-	}) */
-	
 	/** 첫번째 배너 **/
+	var sameCafeCnt = ${sameCafeCnt}; // 관련총 게시물 개수
+	//console.log(sameCafeCnt);
+	var pageNum1 = $(".pageNum1").text();
+	
+	//페이징
+	var pageTotal1 = Math.ceil(${sameCafeCnt} / 4);
+	$(".pageTotal1").text(pageTotal1);
+	
+	//ul너비 자동계산
+	var width1 = (225*sameCafeCnt);
+	$("ul#banner1").css("width",width1);
 	//next버튼
-	var index = 0;
+	var index1 = 0;
 	$("#nextBtn1").click(function() {
 		
-		if(index == -5){
+		if(index1 == -5){
 			alert("오른쪽 끝입니다.");
 			return;
 		}
-		index--;
-		var marginLeft = index * 230;
+		
+		pageNum1++;
+		$(".pageNum1").text(pageNum1);
+		
+		index1--;
+		var marginLeft = index1 * 230;
 		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
 	})
 	//prev버튼
 	$("#prevBtn1").click(function() {
-		if(index == 0){
+		if(index1 == 0){
 			alert("왼쪽 끝입니다.");
 			return;
 		}
-		index++;
-		var marginLeft = index * 230; 
+		pageNum1--;
+		$(".pageNum1").text(pageNum1);
+		index1++;
+		var marginLeft = index1 * 230; 
 		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
 	})
 	
+	
 	/** 두번째 배너 **/
+	var sameKeywordCnt = ${sameKeywordCnt }; // 관련총 게시물 개수
+	console.log(sameKeywordCnt);
+	
+	//페이징
+	var pageTotal2 = Math.ceil(${sameKeywordCnt} / 4);
+	$(".pageTotal2").text(pageTotal2); // 	
+	//next버튼
+	var index2 = 0;
+	$("#nextBtn2").click(function() {
+		
+		if(index2 == -5){
+			alert("오른쪽 끝입니다.");
+			return;
+		}
+		index2--;
+		var marginLeft = index2 * 230;
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1000);
+	})
+	//prev버튼
+	$("#prevBtn2").click(function() {
+		if(index2 == 0){
+			alert("왼쪽 끝입니다.");
+			return;
+		}
+		index2++;
+		var marginLeft = index2 * 230; 
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1000);
+	})	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>
