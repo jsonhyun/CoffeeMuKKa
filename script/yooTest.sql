@@ -270,15 +270,15 @@ select month(now()) - 1 ;
 
 
 -- 테마 순위
-select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no, count(s.theme_no) as cnt
 	from starpoint s left join theme t on s.theme_no = t.theme_no left join cafe c on s.cafe_no = c.cafe_no 
-	where s.cafe_no = 46 and s.theme_no != c.theme_no 
+	where s.cafe_no = 1 and s.theme_no != c.theme_no 
 	group by s.theme_no 
 	order by cnt desc, s.theme_no limit 2;
 
 select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
 	from starpoint s left join theme t on s.theme_no = t.theme_no left join cafe c on s.cafe_no = c.cafe_no 
-	where s.cafe_no = 46
+	where s.cafe_no = 10
 	group by s.theme_no 
 	order by cnt desc, s.theme_no;
 

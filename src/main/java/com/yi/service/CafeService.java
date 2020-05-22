@@ -10,6 +10,7 @@ import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
+import com.yi.domain.ThemeVO;
 import com.yi.persistence.CafeDAO;
 
 @Service
@@ -44,8 +45,8 @@ public class CafeService {
 		return dao.starpointByMonth(cafeNo, month);
 	}
 	
-	public int rankTheme(int cafeNo, int themeNo) throws Exception{
-		return dao.rankTheme(cafeNo, themeNo);
+	public List<ThemeVO> rankTheme(int cafeNo) throws Exception{
+		return dao.rankTheme(cafeNo);
 	}
 	
 	public List<MenuVO> menuList(int cafeNo) throws Exception{

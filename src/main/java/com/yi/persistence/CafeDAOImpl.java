@@ -13,6 +13,7 @@ import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
+import com.yi.domain.ThemeVO;
 
 @Repository
 public class CafeDAOImpl implements CafeDAO {
@@ -92,11 +93,8 @@ public class CafeDAOImpl implements CafeDAO {
 	
 	/* 카페 테마 순위 검색 */
 	@Override
-	public int rankTheme(int cafeNo, int themeNO) throws Exception {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("cafeNo", cafeNo);
-		map.put("themeNo", themeNO);
-		return sqlSession.selectOne(namespace+"rankTheme", map);
+	public List<ThemeVO> rankTheme(int cafeNo) throws Exception {
+		return sqlSession.selectList(namespace+"rankTheme", cafeNo);
 	}
 
 	/* 카페 메뉴 검색 */

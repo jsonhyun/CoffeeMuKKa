@@ -15,7 +15,9 @@ import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
+import com.yi.domain.ThemeVO;
 import com.yi.service.CafeService;
+import com.yi.service.ThemeService;
 
 @Controller
 @RequestMapping("/user/*")
@@ -24,6 +26,7 @@ public class UserCafeController {
 	// 서비스
 	@Autowired
 	CafeService service;
+	ThemeService themeService;
 	
 	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)
 	public String cafeZoneList(SearchCriteria cri, Model model) throws Exception {
@@ -60,25 +63,13 @@ public class UserCafeController {
 		CafeVO cafe = service.readCafe(cafeNo);
 		
 		/* 카페 테마 순위 검색 */
-		List<Integer> themeList = new ArrayList<Integer>();
-		for(int i=1;i<7;i++) {
-			int rankTheme = service.rankTheme(cafeNo, i);
-			themeList.add(rankTheme);
-		}
-		int[] rank = {1, 1, 1, 1, 1, 1};
-		for(int i=0;i<themeList.size();i++) {
-			for(int j=0;j<themeList.size();j++) {
-				if(themeList.get(i)<themeList.get(j)) {
-					rank[i] = rank[i]+1;
-				}
-			}
-		}
+		List<ThemeVO> themeList = service.rankTheme(cafeNo);
+
 		List<Integer> themeRank = new ArrayList<Integer>();
 		for(int i=0;i<themeList.size();i++) {
-			if(rank[i]<=3) {
-				themeRank.add(i+1);
-			}
+			themeRank.add(themeList.get(i).getThemeNo());
 		}
+		
 		/* 카페 이미지 리스트 검색 */
 		List<ImageVO> imgList = service.imgList(cafeNo);
 		
@@ -101,7 +92,7 @@ public class UserCafeController {
 		
 		
 		model.addAttribute("cafe", cafe);
-		model.addAttribute("themeRank", themeRank);
+		model.addAttribute("themeRank", themeList);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("starpoint", starpoint);
 		model.addAttribute("starpointSelect", starpointSelect);
