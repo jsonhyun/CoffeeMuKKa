@@ -97,8 +97,8 @@ public class UserBoardController {
 			 List<ThemeVO> theme = themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo());
 			 //System.out.println("theme---------------------------"+theme);
 			 map.put(list.get(i).getCafeNo().getCafeNo(), theme);
-			 System.out.println("list ----------------------- " + themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo()));
-			 System.out.println("theme-----------------------" + theme);
+			 //System.out.println("list ----------------------- " + themeService.cafeThemeRank(list.get(i).getCafeNo().getCafeNo()));
+			 //System.out.println("theme-----------------------" + theme);
 		}
 		model.addAttribute("todayCnt", todayCnt);
 		model.addAttribute("list", list);
@@ -136,7 +136,7 @@ public class UserBoardController {
 		model.addAttribute("sameCnt", sameCnt);
 		model.addAttribute("themeRank", themeRank);
 		
-		System.out.println("themeRank-----------------------------------" + themeRank);
+		//System.out.println("themeRank-----------------------------------" + themeRank);
 		return "/user/userCommunityReviewRead";
 	}
 	
@@ -177,10 +177,10 @@ public class UserBoardController {
 	
 	@RequestMapping(value = "/community/cafeReview/modify", method = RequestMethod.POST)
 	public String communityReviewModifyPost(String inImgFile, MultipartFile imgFile, BoardVO vo, SearchCriteria cri, Model model) throws Exception {
-		System.out.println("modefy Post vo ------------- " + vo);
-		System.out.println("modefy Post inImgFile ------------- " + inImgFile);
-		System.out.println("modefy Post imgFileSize ------------- " + imgFile.getSize());
-		System.out.println("modefy Post cri ------------- " + cri);
+//		System.out.println("modefy Post vo ------------- " + vo);
+//		System.out.println("modefy Post inImgFile ------------- " + inImgFile);
+//		System.out.println("modefy Post imgFileSize ------------- " + imgFile.getSize());
+//		System.out.println("modefy Post cri ------------- " + cri);
 		
 		
 		if(imgFile.getSize() > 0) {
@@ -343,8 +343,8 @@ public class UserBoardController {
 		List<ImageVO> listImg = new ArrayList<ImageVO>();
 		for(int i=0;i<list.size();i++) {
 			int boardNo = list.get(i).getBoardNo();
-			//System.out.println("숫자"+boardNo);
 			listImg.addAll(service.recommendboardImgList(boardNo));
+			
 		}
 		model.addAttribute("listImg", listImg);
 

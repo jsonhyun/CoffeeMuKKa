@@ -36,8 +36,8 @@
 				{"url" : ""},
 				{"url" : "/cafeReview"},
 				{"url" : "/cafeRecommend"},
-				{"url" : "/#"},
-				{"url" : "/#"}
+				{"url" : "/#"}, 
+				{"url" : "/#/#"}
 			]
 		}
 	]
