@@ -770,22 +770,22 @@
 	})
 	
 	/** 첫번째 배너 **/
-	var sameCafeCnt = ${sameCafeCnt}; // 관련총 게시물 개수
+	var sameCafeCnt = ${sameCafeCnt}; // 관련총 게시물 개수 ex.9
 	//console.log(sameCafeCnt);
 	var pageNum1 = $(".pageNum1").text();
 	
 	//페이징
-	var pageTotal1 = Math.ceil(${sameCafeCnt} / 4);
-	$(".pageTotal1").text(pageTotal1);
+	var pageTotal1 = Math.ceil(${sameCafeCnt} / 4); // ex. 3페이지
+	$(".pageTotal1").text(pageTotal1); // 1/3
 	
 	//ul너비 자동계산
-	var width1 = (225*sameCafeCnt);
+	var width1 = (918*pageTotal1);
 	$("ul#banner1").css("width",width1);
 	//next버튼
 	var index1 = 0;
 	$("#nextBtn1").click(function() {
 		
-		if(index1 == -5){
+		if(index1 == -(pageTotal1-1)){
 			alert("오른쪽 끝입니다.");
 			return;
 		}
@@ -794,8 +794,8 @@
 		$(".pageNum1").text(pageNum1);
 		
 		index1--;
-		var marginLeft = index1 * 230;
-		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
+		var marginLeft = index1 * 920;
+		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1500);
 	})
 	//prev버튼
 	$("#prevBtn1").click(function() {
@@ -805,30 +805,39 @@
 		}
 		pageNum1--;
 		$(".pageNum1").text(pageNum1);
+		
 		index1++;
-		var marginLeft = index1 * 230; 
-		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
+		var marginLeft = index1 * 920; 
+		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1500);
 	})
 	
 	
 	/** 두번째 배너 **/
-	var sameKeywordCnt = ${sameKeywordCnt }; // 관련총 게시물 개수
-	console.log(sameKeywordCnt);
+	var sameKeywordCnt = ${sameKeywordCnt}; 
+	var pageNum2 = $(".pageNum2").text();
 	
 	//페이징
-	var pageTotal2 = Math.ceil(${sameKeywordCnt} / 4);
-	$(".pageTotal2").text(pageTotal2); // 	
+	var pageTotal2 = Math.ceil(${sameKeywordCnt} / 4); 
+	$(".pageTotal2").text(pageTotal2); 
+	
+	//ul너비 자동계산
+	var width2 = (918*pageTotal2);
+	$("ul#banner2").css("width",width2);
 	//next버튼
 	var index2 = 0;
 	$("#nextBtn2").click(function() {
 		
-		if(index2 == -5){
+		if(index2 == -(pageTotal2-1)){
 			alert("오른쪽 끝입니다.");
 			return;
 		}
+		
+		pageNum2++;
+		$(".pageNum2").text(pageNum2);
+		
 		index2--;
-		var marginLeft = index2 * 230;
-		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1000);
+		var marginLeft = index2 * 920;
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
 	})
 	//prev버튼
 	$("#prevBtn2").click(function() {
@@ -836,10 +845,13 @@
 			alert("왼쪽 끝입니다.");
 			return;
 		}
+		pageNum2--;
+		$(".pageNum2").text(pageNum2);
+		
 		index2++;
-		var marginLeft = index2 * 230; 
-		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1000);
-	})	
+		var marginLeft = index2 * 920; 
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
+	})
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>
