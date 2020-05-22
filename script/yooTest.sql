@@ -295,3 +295,11 @@ select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
 select * from starpoint where cafe_no = 4 and theme_no = 6;
 select * from theme;
 select * from cafe where cafe_no = 46;
+
+-- 메인 카페 검색
+select * from cafe where theme_no = 1 or theme_no = 3;
+
+select c.cafe_no, c.cafe_name, z.zone_no , z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, 
+		c.oneline, c.address, c.detail_address 
+	from cafe c left join theme t on c.theme_no = t.theme_no left join `zone` z on c.zone_no = z.zone_no
+	where c.zone_no = 3 and (c.theme_no = 3 or c.theme_no = 4);

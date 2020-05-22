@@ -79,9 +79,10 @@
 		
 		$(".zoneList li").click(function(){
 			var zone = $(this).attr("data-zone");
+			var zoneNo = $(this).attr("data-zoneNo");
 			
 			$(".zoneTitle").text(zone).css("color", "black");
-			$(".zoneBar input[name='zoneName']").val(zone);
+			$(".zoneBar input[name='zoneName']").val(zoneNo);
 			$(".zoneList").slideUp(300);
 		})
 		
@@ -90,6 +91,7 @@
 		
 		$(".keys li").click(function(){
 			var keyword = $(this).attr("data-keyword");
+			var themeNo = $(this).attr("data-themeNo");
 			var key = $(this).attr("data-key");
 			var $spanThemeKey = $("<span>").addClass("themeKey").addClass(key).text("#" + keyword);
 			
@@ -115,7 +117,7 @@
 			} else {
 				$(".themeSapn").hide();
 			}
-			$(".themeBar input[name='themeName']").val(keywords);
+			$(".themeBar input[name='themeName']").val(themeNo);
 		})
 	}) 
 </script>
@@ -188,7 +190,7 @@
 				<div class="mainSearch">
 					<div class="keysWrap">
 						<ul class="keys">
-							<li data-keyword="데이트" data-key="date" data-onImg="key1_1.png" data-Img="key1.png">
+							<li data-keyword="데이트" data-themeNo="1" data-key="date" data-onImg="key1_1.png" data-Img="key1.png">
 								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key1.png" alt="keyIcon" />
 								</div>
@@ -197,7 +199,7 @@
 									<span class="keyword blue">#데이트</span>하기좋은
 								</div>
 							</li>
-							<li data-keyword="뷰" data-key="view" data-onImg="key2_2.png" data-Img="key2.png">
+							<li data-keyword="뷰" data-themeNo="2" data-key="view" data-onImg="key2_2.png" data-Img="key2.png">
 								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key2.png" alt="keyIcon" />
 								</div>
@@ -206,7 +208,7 @@
 									<span class="keyword blue">#뷰</span>가 끝내주는
 								</div>
 							</li>
-							<li data-keyword="착한아메" data-key="ame" data-onImg="key3_3.png" data-Img="key3.png">
+							<li data-keyword="착한아메" data-themeNo="3" data-key="ame" data-onImg="key3_3.png" data-Img="key3.png">
 								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key3.png" alt="keyIcon" />
 								</div>
@@ -215,7 +217,7 @@
 									<span class="keyword blue">#착한아메</span>
 								</div>
 							</li>
-							<li data-keyword="디저트" data-key="dessert" data-onImg="key4_4.png" data-Img="key4.png">
+							<li data-keyword="디저트" data-themeNo="4" data-key="dessert" data-onImg="key4_4.png" data-Img="key4.png">
 								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key4.png" alt="keyIcon" />
 								</div>
@@ -224,7 +226,7 @@
 									나는야<span class="keyword blue">#디저트</span>파
 								</div>
 							</li>
-							<li data-keyword="댕댕이" data-key="dog" data-onImg="key5_5.png" data-Img="key5.png">
+							<li data-keyword="댕댕이" data-themeNo="5" data-key="dog" data-onImg="key5_5.png" data-Img="key5.png">
 								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key5.png" alt="keyIcon" />
 								</div>
@@ -233,7 +235,7 @@
 									<span class="keyword blue">#댕댕이</span>와 함께
 								</div>
 							</li>
-							<li data-keyword="작업" data-key="work" data-onImg="key6_6.png" data-Img="key6.png">
+							<li data-keyword="작업" data-themeNo="6" data-key="work" data-onImg="key6_6.png" data-Img="key6.png">
 								<div class="keyIcon keyItem">
 									<img src="${pageContext.request.contextPath }/resources/images/key6.png" alt="keyIcon" />
 								</div>
@@ -255,11 +257,11 @@
 							<div class="zoneList">
 								<ul>
 									<!-- 데이터 만들어지면 c:foreach문으로 데이터 넣어서 구현 -->
-									<li class="zoneItem" data-zone="동성로">
+									<li class="zoneItem" data-zoneNo="1" data-zone="동성로">
 										<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
 										<span>동성로</span>	
 									</li>
-									<li class="zoneItem" data-zone="수성못 들안길">
+									<li class="zoneItem" data-zoneNo="" data-zone="수성못 들안길">
 										<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
 										<span>수성못 들안길</span>
 									</li>
