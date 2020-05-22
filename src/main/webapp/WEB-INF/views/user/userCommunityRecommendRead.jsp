@@ -165,9 +165,9 @@
 		right: 25px;
 	}
 	
-	/* 같은 카페 다른 추천글 영역 */
+	/* 같은 카페 다른 추천글 영역 - 카페이름,개수 */
 	.recommentSameList {
-		margin-top: 100px;
+		margin-top: 70px;
 	}
 	
 	.recommentSameList .cafeR_sameTitle {
@@ -191,6 +191,16 @@
 		width: 48.6%;
 		border: 1px solid #545454;
 		margin-bottom: 20px;
+	}
+	.recommentSameList .noimgList{
+		text-align: center;
+	}
+	.noimgList p.noList{
+		color: #5D5D5D;
+	}
+	.noimgList span.hotpink{
+		color:#FF007F;
+		font-size: 18px;
 	}
 	
 	.recommentSameList .cafeR_box:hover .cafe_title{
@@ -319,41 +329,49 @@
 	}
 	
 	/* 같은카페 리스트 */
-	.recommendBest .recomWrap ul{
-		overflow: hidden;
+	.recommendBanner{
+		width: 918px;
 		height: 265px;
 	}
+	.recomWrap{
+		width: 918px;
+		height: 265px;
+		overflow: hidden;
+	}
+	.recommendBanner .recomWrap ul{
+		width: 3000px;
+	}
 	
-	.recommendBest .recomWrap li {
+	.recommendBanner .recomWrap li {
 		float: left;
 		width: 222px;
 		height: 260px;
 		margin: 3px;
 		border: 1px solid #545454;
 	}
-	.recommendBest .recomWrap li div.RC_listImgWrap{
+	.recommendBanner .recomWrap li div.RC_listImgWrap{
 		width: 100%;
 		height: 160px;
 		position: relative;
 	}
-	.recommendBest .recomWrap li div.RC_listImgContainer img{
+	.recommendBanner .recomWrap li div.RC_listImgContainer img{
 		width: 100%;
 		height: 160px;
 		position: absolute;
 	}
-	.recommendBest .recomWrap li div.RC_listImgContainer .active{
+	.recommendBanner .recomWrap li div.RC_listImgContainer .active{
 		z-index: 1;
 	}		
-	.recommendBest .recomWrap li div.RC_listTitle1{
+	.recommendBanner .recomWrap li div.RC_listTitle1{
 		width: 90%;
 		height: 33px;
 		padding: 8px;
 	}
-	.recommendBest .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
+	.recommendBanner .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
 		font-size: 12px;
 		margin-top: 5px;
 	}
- 	.recommendBest .recomWrap li div.RC_listTitle2{
+ 	.recommendBanner .recomWrap li div.RC_listTitle2{
 		width: 90%;
 		height: 45px;
 		padding: 8px;
@@ -471,6 +489,7 @@
 		<!-- ****************************************************** 상세보기 리스트(1) : 같은카페 ****************************************************** -->
 		<!-- 같은 카페명의 다른 포스트 list -- "개수"  -->
 		<div class="recommentSameList">
+			<!-- 관련추천글이 있을시 : 제목 -->
 			<c:if test="${sameCafeCnt > 0 }">
 				<div class="cafeR_sameTitle bottomLine clearfix">
 					<p class="f_left">
@@ -481,18 +500,37 @@
 					<!-- 페이징 버튼생성 -->
 					<c:if test="${sameCafeCnt > 4 }">
 						<div class="sameListBtn f_right">
-							<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
-							<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-							<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+							<div class="f_left orange"><span class="pageNum1">1</span> / <span class="pageTotal1">0</span></div>
+							<div class="sameBtn f_left" id="prevBtn1"><i class="fas fa-angle-left"></i></div>
+							<div class="sameBtn f_left" id="nextBtn1"><i class="fas fa-angle-right"></i></div>
 						</div>
 					</c:if>
 				</div>
 			</c:if>
-
-			<!-- 같은 카페의 다른 포스트 list -->
-			<div class="recommendBest mb30">
+			
+			<!-- 관련추천글이 없을시 : 제목 + noImg -->
+			<c:if test="${sameCafeCnt == 0 }">
+				<div class="cafeR_sameTitle bottomLine clearfix">
+						<p class="f_left">
+							<span class="blue bold">${board.writingTitle}</span>에 대한 
+							<span class="orange bold">관련된 </span>
+							<span class="red bold">추천글</span>이 아직 없습니다.
+						</p>
+				</div>
+			</c:if>				
+			<c:if test="${sameCafeCnt == 0 }">
+				<div class="noimgList">
+					<img src ="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+					<p class = "noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
+				</div>
+			</c:if>
+			</div><!-- class="recommentSameList" -->
+			
+			<!-- 관련추철글이 있을시 : 배너 -->
+			<c:if test="${sameCafeCnt > 0 }">
+			<div class="recommendBanner mb30">
 				<div class="recomWrap">
-					<ul>
+					<ul id="banner1">
 						<c:forEach var="sameCafe" items="${sameCafe}">
 							<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
 								<li>
@@ -541,7 +579,8 @@
 				</div>
 
 			</div>
-		</div><!-- class="recommentSameList" -->
+			</c:if>
+		
 
 
 		<!-- ****************************************************** 상세보기 리스트(2) : 같은키워드 ****************************************************** -->
@@ -549,19 +588,41 @@
 			<div class="recommentSameList">
  				<c:if test="${sameKeywordCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
-							<p class="f_left"><span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 <span class="orange bold">${sameKeywordCnt }</span>개의 <span class="red bold">추천글</span>이 더 있어요!</p>
+							<p class="f_left">
+								<span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 
+								<span class="orange bold">${sameKeywordCnt }</span>개의 
+								<span class="red bold">추천글</span>이 더 있어요!
+							</p>
 						<c:if test="${sameKeywordCnt > 4 }">
 							<div class="sameListBtn f_right">
 								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
-								<div class="sameBtn prevBtn f_left"><i class="fas fa-angle-left"></i></div>
-								<div class="sameBtn nextBtn f_left"><i class="fas fa-angle-right"></i></div>
+								<div class="sameBtn f_left" id="prevBtn"><i class="fas fa-angle-left"></i></div>
+								<div class="sameBtn f_left" id="nextBtn"><i class="fas fa-angle-right"></i></div>
 							</div>
 						</c:if>
+					</div>
+				</c:if>
+				<c:if test="${sameKeywordCnt == 0 }">
+					<div class="cafeR_sameTitle bottomLine clearfix">
+							<p class="f_left">
+								<span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 
+								<span class="orange bold">관련된 </span>
+								<span class="red bold">추천글</span>이 아직 없습니다.
+							</p>
 					</div>
 				</c:if>	
 				
 			<!-- 같은 키워드의 다른 포스트 list -->
-			<div class="recommendBest mb30">
+			<c:if test="${sameKeywordCnt == 0 }">
+					<div class="noimgList">
+						<img src="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+						<p class="noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
+				</div>
+			</c:if>
+			</div><!-- class="recommentSameList" -->
+			
+			<c:if test="${sameKeywordCnt > 0 }">
+			<div class="recommendBanner mb30">
 				<div class="recomWrap">
 					<ul>
 						<c:forEach var="sameKeyword" items="${sameKeyword}">
@@ -614,7 +675,8 @@
 					</ul>
 				</div>
 			</div>
-		</div><!-- class="recommentSameList" -->
+			</c:if>
+		
 	</div><!-- class="contentArea" -->
 </div><!-- class="content subPageContent" -->	
 <!-- 서브페이지 콘텐츠 end -->
@@ -699,6 +761,7 @@
 	 //원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {
 		var file = $(this).attr("src");
+		console.log("TEST========="+file);
 		var start = file.substring(0,51);
 		var end = file.substring(53);
 		var fileName = start + end;
@@ -718,7 +781,7 @@
 	$(".pageTotal").text(samePage); */
 	
 	/* next */
-/*  	$("#nextBtn").click(function(){
+ /* 	$(".nextBtn").click(function(){
 		if(index == -(samePage-1)){
 			return;
 		}
@@ -730,7 +793,7 @@
 		$(".pageNum").text(pageIndex);
 	}) */
 	/* prev */
-/*  	$("#prevBtn").click(function(){
+ /* 	$(".prevBtn").click(function(){
 		if(index == 0){
 			return;
 		}
@@ -741,6 +804,32 @@
 		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
 		$(".pageNum").text(pageIndex);
 	}) */
+	
+	/** 첫번째 배너 **/
+	//next버튼
+	var index = 0;
+	$("#nextBtn1").click(function() {
+		
+		if(index == -5){
+			alert("오른쪽 끝입니다.");
+			return;
+		}
+		index--;
+		var marginLeft = index * 230;
+		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
+	})
+	//prev버튼
+	$("#prevBtn1").click(function() {
+		if(index == 0){
+			alert("왼쪽 끝입니다.");
+			return;
+		}
+		index++;
+		var marginLeft = index * 230; 
+		$("ul#banner1").animate({"margin-left":marginLeft+"px"},1000);
+	})
+	
+	/** 두번째 배너 **/
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

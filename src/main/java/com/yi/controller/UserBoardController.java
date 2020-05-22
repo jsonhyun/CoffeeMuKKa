@@ -343,8 +343,8 @@ public class UserBoardController {
 		List<ImageVO> listImg = new ArrayList<ImageVO>();
 		for(int i=0;i<list.size();i++) {
 			int boardNo = list.get(i).getBoardNo();
-			//System.out.println("숫자"+boardNo);
 			listImg.addAll(service.recommendboardImgList(boardNo));
+			
 		}
 		model.addAttribute("listImg", listImg);
 
