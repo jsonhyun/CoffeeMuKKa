@@ -5,6 +5,14 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/jquery-ui.css"> 
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <style>
+	span#bestMark{
+		color: white;
+		background: #FF007F;
+		border-radius: 5px;
+		padding: 0 8px;
+		font-weight: bold;
+		letter-spacing: 2px;
+	}
 	li,a:focus{
 		outline: none;
 	}
@@ -126,7 +134,7 @@
 		<!-- 서브페이지 공통적인 타이틀 -->
 		<h2 class="subPageTitle">
 			<span class="title">MuKKa人 추천 카페</span>
-			<span class="subTit grayB"> | 세 상 에! 이런 카페가 있는지 몰랐지?</span>
+			<span class="subTit grayB"> | <span id="bestMark">BEST</span></span>
 		</h2>
 
 			<!-- 베스트 리스트  -->
