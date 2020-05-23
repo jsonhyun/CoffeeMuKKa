@@ -22,9 +22,12 @@
 	 li.tabs-li{ /* 탭 제목-li */
 	 	width: 24%;
 	 }
-	 li.tabs-li a:focus {
-		border-bottom: 2px solid red;
-	}
+	 a#tabName1{
+	 	margin-left: 25px;
+	 }
+	 a.tabName2{
+	 	margin-left: 65px;
+	 }  
 </style>
 	
 <div class="content subPageContent">
@@ -83,10 +86,10 @@
 			<div id="tabWrap">
 				<div id="tabs">
 					<ul id="tabs-ul">
-						<li class="tabs-li"><a href="#tabs-1">MuKKa人의 선택</a></li> <!-- 고민 -->
-						<li class="tabs-li"><a href="#tabs-2">추천순</a></li> <!-- 추천순 -->
-						<li class="tabs-li"><a href="#tabs-3">조회순</a></li> <!-- 조회순 -->
-						<li class="tabs-li"><a href="#tabs-3">댓글순</a></li> <!-- 댓글순 -->
+						<li class="tabs-li"><a href="#tabs-1" id="tabName1">MuKKa人의 선택</a></li> <!-- 고민 -->
+						<li class="tabs-li"><a href="#tabs-2" class="tabName2">추천순</a></li> <!-- 추천순 -->
+						<li class="tabs-li"><a href="#tabs-3" class="tabName2">조회순</a></li> <!-- 조회순 -->
+						<li class="tabs-li"><a href="#tabs-3" class="tabName2">댓글순</a></li> <!-- 댓글순 -->
 					</ul>
 					<div id="tabs-1">
 						<p>랄랄라라~ddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p>

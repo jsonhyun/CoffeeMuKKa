@@ -715,15 +715,15 @@
 
 	//지도 -- 주소, 카페이름 빼오기
 	var address = $("#add").text();
-	console.log("주소"+address);
+	//console.log("주소"+address);
 	var cafeName = $("#cafe_title").text();
 	if(address == ""){ //정확한 주소를 알 수 없을때
 		$("#add").removeClass("blue").addClass("red");
 		$("#add").text("정확한 주소를 확인할 수 없습니다.");
-		$("div#addMap").remove(); // 지도 Title remove
-		$("div#map").remove(); // 지도 remove
+		$("div#addMap").hide(); // 지도 Title remove
+		$("div#map").hide(); // 지도 remove
 	}
-	console.log("카페이름"+cafeName);
+	//console.log("카페이름"+cafeName);
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 	
@@ -769,7 +769,7 @@
 	
 	/** 첫번째 배너 **/
 	var sameCafeCnt = ${sameCafeCnt}; // 관련총 게시물 개수 ex.9
-	//console.log(sameCafeCnt);
+	console.log(sameCafeCnt);
 	var pageNum1 = $(".pageNum1").text();
 	
 	//페이징
@@ -777,7 +777,7 @@
 	$(".pageTotal1").text(pageTotal1); // 1/3
 	
 	//ul너비 자동계산 주입시키기
-	var width1 = (918*pageTotal1);
+	var width1 = (920*pageTotal1);
 	$("ul#banner1").css("width",width1);
 	//next버튼
 	var index1 = 0;
@@ -819,7 +819,7 @@
 	$(".pageTotal2").text(pageTotal2); 
 	
 	//ul너비 자동계산
-	var width2 = (918*pageTotal2);
+	var width2 = (920*pageTotal2);
 	$("ul#banner2").css("width",width2);
 	//next버튼
 	var index2 = 0;
