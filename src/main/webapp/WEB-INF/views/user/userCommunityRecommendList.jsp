@@ -316,7 +316,7 @@
 			<div class="RC_titleWrap clearfix">
 				<h3 class="RC_title">오늘의 추천 카페 | <span class="red cafeRCnt">${todayCnt}개</span></h3>
 				<div class="RC_topBtns">
-					<div class="RC_Best grayLineBtn"><a href="#"><span class="red bold">베스트 글</span> 전체 보기</a></div>
+					<div class="RC_Best grayLineBtn"><a href="${pageContext.request.contextPath}/user/community/cafeRecommend/bestAll"><span class="red bold">베스트 글</span> 전체 보기</a></div>
 					<button class="navyBtn" id="RC_Register" style="cursor: pointer">추천 카페 쓰기</button>
 				</div>
 			</div>

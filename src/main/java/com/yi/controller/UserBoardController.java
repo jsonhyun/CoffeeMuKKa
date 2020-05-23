@@ -489,5 +489,11 @@ public class UserBoardController {
 	//model.addAttribute("searchType", cri.getSearchType() );
 	//model.addAttribute("keyword", cri.getKeyword());		
 		return "redirect:/user/community/cafeRecommend";
-	}	
+	}
+	
+	//추천카페 베스트 리스트
+	@RequestMapping(value = "/community/cafeRecommend/bestAll", method = RequestMethod.GET)
+	public String communityRecommendBestList(Model model) throws Exception {
+		return "/user/userCommunityRecommendBestAll";
+	}
 }
