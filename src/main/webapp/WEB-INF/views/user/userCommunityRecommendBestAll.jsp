@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/jquery-ui.css"> 
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <style>
 	li,a:focus{
@@ -27,7 +27,97 @@
 	 }
 	 a.tabName2{
 	 	margin-left: 65px;
-	 }  
+	 } 
+	 
+	 /* 리스트 스타일 */
+	 ol{
+	 	width: 100%;
+	 }
+	 ol li.rank_wrap{
+	 	width: 100%;
+	 	height: 155px;
+	 	margin: 15px 0;
+	 	border-bottom: 1px solid #BDBDBD;
+	 	
+	 }
+	 ol li.rank_wrap div{
+	 	 float: left;
+	 }
+	 div.rank_num{
+	 	width: 40px;
+	 	height: 155px;
+	 	font-size: 25px;
+	 	color: #FF7171;
+	 	clear: both;
+	 	padding-top: 6px;
+	 }
+ 	div.rank_img{
+ 		width: 14%;
+ 		padding: 14px;
+ 	}
+  	div.rank_img img{
+  		width: 100%;
+  		height: 120px;
+  	}
+	div.rank_info{
+		width: 77%;
+		height: 120px;
+		padding: 14px 0px;
+	}
+	div.rank_keyword{
+		width: 100%;
+		height: 27px;
+	}
+	div.rank_keyword span.zoneBtn,div.rank_keyword span.themeKeySmall{
+		font-size: 14px;
+		margin-right: 5px;
+		float: left;
+	}
+	div.rank_keyword span.rDate{
+		float: right;
+		font-size: 14px;
+	}
+	div.rank_title{
+		width: 100%;
+		height: 40px;
+		padding: 4px 0;
+	}
+	div.rank_title span.rTitle{
+		font-size: 25px;
+		font-weight: bold;
+		color: black;
+		float: left;
+		padding-left: 3px;
+	}
+	div.rank_title span.rGrade img{
+		width: 20px;
+		height: 20px;
+		margin-top: 9px;
+		padding-right: 10px;
+		float: right;
+	}
+	div.rank_title span.rNick{
+		font-weight: bold;
+		color: black;
+		font-size: 14px;
+		float: right;
+		margin-top: 9px;
+	}	
+ 	div.rank_viewAll{
+		width: 100%;
+		height: 20px;
+		font-size : 13px;
+	}
+	div.rank_viewAll span.rView,span.rThumb,span.rReply{
+		padding-right: 10px;
+	}
+
+	div.rank_text{
+		width: 100%;
+		padding: 5px 0;
+		font-size: 14px;
+		color: navy;
+	}
 </style>
 	
 <div class="content subPageContent">
@@ -38,50 +128,7 @@
 			<span class="title">MuKKa人 추천 카페</span>
 			<span class="subTit grayB"> | 세 상 에! 이런 카페가 있는지 몰랐지?</span>
 		</h2>
-			
-		
-		<!-- 카테고리 & 검색창 -->
-<%-- 		<div class="cafeRecommendSearch bottomLine2 clearfix">
-			<div class="selectLeft">
-				<select name="searchZone" id="searchZone">
-					<option value="" ${cri.searchZone == '' ? 'selected' : '' }>전체(위치별)</option>
-					<c:forEach var="zone" items="${zoneList }">
-						<option value="${zone.zoneNo }" ${cri.searchZone == zone.zoneNo ? 'selected' : '' }>${zone.zoneName }</option>
-					</c:forEach>
-				</select>
-				<select name="searchTheme" id="searchTheme">
-					<option value="" ${cri.searchTheme == '' ? 'selected' : '' }>전체(테마별)</option>
-					<c:forEach var="theme" items="${themeList }">					
-						<option value="${theme.themeNo}" ${cri.searchTheme == theme.themeNo ? 'selected' : '' }>#${theme.themeName}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="selectRight">
-				<select name="searchType" id="searchType">
-					<option value="n" ${cri.searchType == null ? 'selected' : '' }>----</option>
-					<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>제목</option>
-					<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>내용</option>
-					<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>제목+내용</option>
-					<option value="uId" ${cri.searchType == 'uId' ? 'selected' : '' }>회원아이디</option>
-					<option value="uName" ${cri.searchType == 'uName' ? 'selected' : '' }>글쓴이</option>
-				</select>
-				<input type="hidden" name="boardType" value="2"/>
-				<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
-				<button type="button" class="navyBtn" id="btnSearch">검색</button>
-			</div>
-		</div> --%>
-		<!-- 카테고리 & 검색창 end -->
-		
 
-		<!-- 추천카페 : 타이틀 -->
-		<div class="RC_Area">
-<%-- 			<div class="RC_titleWrap clearfix">
-				<h3 class="RC_title">오늘의 추천 카페 | <span class="red cafeRCnt">${todayCnt}개</span></h3>
-				<div class="RC_topBtns">
-					<div class="RC_Best grayLineBtn"><a href="#"><span class="red bold">베스트 글</span> 전체 보기</a></div>
-					<button class="navyBtn" id="RC_Register" style="cursor: pointer">추천 카페 쓰기</button>
-				</div>
-			</div> --%>
 			<!-- 베스트 리스트  -->
 			<div id="tabWrap">
 				<div id="tabs">
@@ -91,19 +138,189 @@
 						<li class="tabs-li"><a href="#tabs-3" class="tabName2">조회순</a></li> <!-- 조회순 -->
 						<li class="tabs-li"><a href="#tabs-3" class="tabName2">댓글순</a></li> <!-- 댓글순 -->
 					</ul>
+					
+					<!-- 탭1 -->
 					<div id="tabs-1">
-						<p>랄랄라라~ddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p>
-					</div>
+						<ol>
+						 <a href="#">							
+							<li class="rank_wrap">
+								<div class="rank_num">20</div>
+								<div class="rank_img">
+									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+								</div>
+								<div class="rank_info">
+									<div class="rank_keyword">
+										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
+										<span class="ame themeKeySmall">#착한아메</span>
+										<span class="rDate">2020-05-23</span>
+									</div>
+									<div class="rank_title">	
+										<span class="rTitle">프리지아</span>
+										<span class="rNick">커피가좋아(hceo1004)</span>
+										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
+									</div>
+									<div class="rank_viewAll">
+											<span class="rView">조회 <span class="red">10</span></span>
+											<span class="rThumb">추천  <span class="red">20</span></span>
+											<span class="rReply">댓글  <span class="red">20</span></span>										
+									</div>
+									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
+								</div>
+							</li>
+							</a>
+							
+						 <a href="#">							
+							<li class="rank_wrap">
+								<div class="rank_num">20</div>
+								<div class="rank_img">
+									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+								</div>
+								<div class="rank_info">
+									<div class="rank_keyword">
+										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
+										<span class="ame themeKeySmall">#착한아메</span>
+										<span class="rDate">2020-05-23</span>
+									</div>
+									<div class="rank_title">	
+										<span class="rTitle">프리지아</span>
+										<span class="rNick">커피가좋아(hceo1004)</span>
+										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
+									</div>
+									<div class="rank_viewAll">
+											<span class="rView">조회 <span class="red">10</span></span>
+											<span class="rThumb">추천  <span class="red">20</span></span>
+											<span class="rReply">댓글  <span class="red">20</span></span>										
+									</div>
+									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
+								</div>
+							</li>
+							</a>
+							
+						 <a href="#">							
+							<li class="rank_wrap">
+								<div class="rank_num">20</div>
+								<div class="rank_img">
+									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+								</div>
+								<div class="rank_info">
+									<div class="rank_keyword">
+										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
+										<span class="ame themeKeySmall">#착한아메</span>
+										<span class="rDate">2020-05-23</span>
+									</div>
+									<div class="rank_title">	
+										<span class="rTitle">프리지아</span>
+										<span class="rNick">커피가좋아(hceo1004)</span>
+										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
+									</div>
+									<div class="rank_viewAll">
+											<span class="rView">조회 <span class="red">10</span></span>
+											<span class="rThumb">추천  <span class="red">20</span></span>
+											<span class="rReply">댓글  <span class="red">20</span></span>										
+									</div>
+									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
+								</div>
+							</li>
+							</a>
+							
+						 <a href="#">							
+							<li class="rank_wrap">
+								<div class="rank_num">20</div>
+								<div class="rank_img">
+									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+								</div>
+								<div class="rank_info">
+									<div class="rank_keyword">
+										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
+										<span class="ame themeKeySmall">#착한아메</span>
+										<span class="rDate">2020-05-23</span>
+									</div>
+									<div class="rank_title">	
+										<span class="rTitle">프리지아</span>
+										<span class="rNick">커피가좋아(hceo1004)</span>
+										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
+									</div>
+									<div class="rank_viewAll">
+											<span class="rView">조회 <span class="red">10</span></span>
+											<span class="rThumb">추천  <span class="red">20</span></span>
+											<span class="rReply">댓글  <span class="red">20</span></span>										
+									</div>
+									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
+								</div>
+							</li>
+							</a>
+							
+						 <a href="#">							
+							<li class="rank_wrap">
+								<div class="rank_num">20</div>
+								<div class="rank_img">
+									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+								</div>
+								<div class="rank_info">
+									<div class="rank_keyword">
+										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
+										<span class="ame themeKeySmall">#착한아메</span>
+										<span class="rDate">2020-05-23</span>
+									</div>
+									<div class="rank_title">	
+										<span class="rTitle">프리지아</span>
+										<span class="rNick">커피가좋아(hceo1004)</span>
+										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
+									</div>
+									<div class="rank_viewAll">
+											<span class="rView">조회 <span class="red">10</span></span>
+											<span class="rThumb">추천  <span class="red">20</span></span>
+											<span class="rReply">댓글  <span class="red">20</span></span>										
+									</div>
+									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
+								</div>
+							</li>
+							</a>
+							
+						 <a href="#">							
+							<li class="rank_wrap">
+								<div class="rank_num">20</div>
+								<div class="rank_img">
+									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
+								</div>
+								<div class="rank_info">
+									<div class="rank_keyword">
+										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
+										<span class="ame themeKeySmall">#착한아메</span>
+										<span class="rDate">2020-05-23</span>
+									</div>
+									<div class="rank_title">	
+										<span class="rTitle">프리지아</span>
+										<span class="rNick">커피가좋아(hceo1004)</span>
+										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
+									</div>
+									<div class="rank_viewAll">
+											<span class="rView">조회 <span class="red">10</span></span>
+											<span class="rThumb">추천  <span class="red">20</span></span>
+											<span class="rReply">댓글  <span class="red">20</span></span>										
+									</div>
+									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
+								</div>
+							</li>
+							</a>																																			
+						</ol>
+						</div>
+					<!-- 탭2 -->
 					<div id="tabs-2">
-						<p>배고파!</p>
+	
 					</div>
+					<!-- 탭3 -->
 					<div id="tabs-3">
-						<p>룰루랄라</p>
+		
 					</div>
-					<div id="tabs-4"></div>
-					<div id="tabs-5"></div>
-				</div>
-			</div>
+					
+					<!-- 탭4 -->
+					<div id="tabs-4">
+
+					</div>
+					
+				</div><!-- div id="tabs" -->
+			</div><!-- div id="tabWrap" -->
 
 		</div><!-- div class="RC_Area"  -->
 				
