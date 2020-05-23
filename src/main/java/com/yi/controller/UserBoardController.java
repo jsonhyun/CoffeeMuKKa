@@ -25,7 +25,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.context.Theme;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -342,8 +341,8 @@ public class UserBoardController {
 		//대표이미지 가져오기
 		List<ImageVO> listImg = new ArrayList<ImageVO>();
 		for(int i=0;i<list.size();i++) {
-			int boardNo = list.get(i).getBoardNo();
-			listImg.addAll(service.recommendboardImgList(boardNo));
+			int sboardNo = list.get(i).getBoardNo();
+			listImg.addAll(service.recommendboardImgList(sboardNo));
 			
 		}
 		model.addAttribute("listImg", listImg);
@@ -408,11 +407,10 @@ public class UserBoardController {
 		model.addAttribute("sameCafeCnt", sameCafeCnt);
 		
 		//(same)해당카페에 이미지
-		List<ImageVO> slistImg = new ArrayList<ImageVO>();
-		
+		List<ImageVO> slistImg = new ArrayList<ImageVO>();		
 		 for(int i=0;i<sameCafe.size();i++) { 
 			 int sboardNo = sameCafe.get(i).getBoardNo();
-			 slistImg.addAll(service.recommendSameCafeImgList(sboardNo));
+			 slistImg.addAll(service.recommendboardImgList(sboardNo));
 		 }	
 		model.addAttribute("slistImg", slistImg);
 		
@@ -428,7 +426,7 @@ public class UserBoardController {
 		List<ImageVO> klistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<sameKeyword.size();i++) {
 			int sboardNo = sameKeyword.get(i).getBoardNo();
-		    klistImg.addAll(service.recommendSameCafeImgList(sboardNo));
+		    klistImg.addAll(service.recommendboardImgList(sboardNo));
 		    }
 		model.addAttribute("klistImg", klistImg);
 

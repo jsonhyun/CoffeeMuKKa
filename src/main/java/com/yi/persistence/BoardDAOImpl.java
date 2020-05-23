@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.BoardVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 
@@ -37,8 +36,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
-	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {
-		return sqlSession.selectList(namespace+"recommendboardImgList", boardNo);
+	public List<ImageVO> recommendboardImgList(int sboardNo) throws Exception {
+		return sqlSession.selectList(namespace+"recommendboardImgList", sboardNo);
 	}
 
 	//추천카페 -- 등록		
@@ -79,12 +78,6 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public int recommendSameKeywordCnt(BoardVO vo) throws Exception {
 		return sqlSession.selectOne(namespace+"recommendSameKeywordCnt", vo);
-	}
-	
-	//추천카페 -- 같은 이미지 리스트
-	@Override 
-	public List<ImageVO> recommendSameCafeImgList(int sboardNo) throws Exception {		
-		return sqlSession.selectList(namespace+"recommendSameCafeImgList", sboardNo);
 	}
 	//추천카페 -- 사진삭제 (수정)
 	@Override

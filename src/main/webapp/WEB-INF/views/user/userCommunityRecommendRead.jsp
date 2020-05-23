@@ -348,22 +348,17 @@
 	.recommendBanner .recomWrap li div.RC_listImgWrap{
 		width: 100%;
 		height: 160px;
-		position: relative;
 		overflow: hidden;
 	}
 	.recommendBanner .recomWrap li div.RC_listImgContainer img{
 		width: 100%;
 		height: 160px;
-		position: absolute;
 		transition:all 1s;
 		transform-origin:left-top;
 	}
 	
 	.recommendBanner .recomWrap li div.RC_listImgContainer img:hover{
 		transform:scale(1.2);
-	}	
-	.recommendBanner .recomWrap li div.RC_listImgContainer .active{
-		z-index: 1;
 	}		
 	.recommendBanner .recomWrap li div.RC_listTitle1{
 		width: 90%;

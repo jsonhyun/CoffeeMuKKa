@@ -1,6 +1,5 @@
 package com.yi.service;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.BoardVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 import com.yi.domain.ThemeVO;
@@ -47,8 +45,8 @@ public class BoardService {
 		return dao.recommendboardListSearchCriteria(cBoardNo, cri);
 	}
 
-	public List<ImageVO> recommendboardImgList(int boardNo) throws Exception {
-		return dao.recommendboardImgList(boardNo);
+	public List<ImageVO> recommendboardImgList(int sboardNo) throws Exception {
+		return dao.recommendboardImgList(sboardNo);
 	}
 
 	// 추천카페 -- 등록
@@ -76,10 +74,6 @@ public class BoardService {
 	//같은 카페 글 등록수
 	public int recommendSameCafeCnt(BoardVO vo) throws Exception {
 		return dao.recommendSameCafeCnt(vo);
-	}
-	//같은 카페 -- 이미지 리스트 (같은카페, 키워드)
-	public List<ImageVO> recommendSameCafeImgList(int sboardNo) throws Exception {
-		return dao.recommendSameCafeImgList(sboardNo);
 	}
 	
 	//같은 키워드 리스트

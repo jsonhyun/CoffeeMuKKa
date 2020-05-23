@@ -54,7 +54,7 @@
 	/* 추천카페 : 리스트 */
 	.recommendBest .recomWrap ul{
 		overflow: hidden;
-	}
+	} 
 	
 	.recommendBest .recomWrap li {
 		float: left;
@@ -66,16 +66,17 @@
 	.recommendBest .recomWrap li div.RC_listImgWrap{
 		width: 100%;
 		height: 160px;
-		position: relative;
+		overflow: hidden;
 	}
 	.recommendBest .recomWrap li div.RC_listImgContainer img{
 		width: 100%;
 		height: 160px;
-		position: absolute;
+		transition:all 1s;
+		transform-origin:left-top;		
 	}
-	.recommendBest .recomWrap li div.RC_listImgContainer .active{
-		z-index: 1;
-	}		
+	div.RC_listImgContainer img:hover{
+		transform:scale(1.2);
+	}
 	.recommendBest .recomWrap li div.RC_listTitle1{
 		width: 90%;
 		height: 33px;
@@ -402,7 +403,7 @@
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
 	})
 	
-	// 이미지 로테이션 
+/* 	// 이미지 로테이션 
 	 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
 	 
 	 var next_img = $(".RC_listImgContainer img:nth-child(2)"); // 두번째 이미지 : nth-child(2)  --> 요소 무리 둥 2번째 요소 (사진을 1개만 넣을 경우)
@@ -422,7 +423,7 @@
 	 }, function(){                                  // mouse leave 시
 		 //now_img.animate({"opacity":0},1500);
 	     timer = setInterval("fade_change()",2000);
-	 });
+	 }); */
 	 
 	 //원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {
