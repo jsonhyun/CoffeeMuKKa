@@ -21,7 +21,7 @@
 	 */
 	 
 	 
-	/*             공통                                              */
+	/* --------------- 공 통 --------------- */
 	.wrapStyle {
 	    border-top: 1px solid #545454;
 		border-bottom: 1px solid #545454;
@@ -29,6 +29,7 @@
 	}
 	 
 	/************** 1. 제목   *************/	
+	
 	.RC_titleWrap .keyword {
 		font-size: 14px;
 	}
@@ -90,13 +91,14 @@
 	}
 	
 	/************** 2. 내용   *************/
-	.d_cafeR_context_wrap {
+	
+	.RC_contentWrap {
 		padding: 10px;
 	}
-	.d_cafeR_context_wrap .readImgBox{ /* 이미지 사이즈 고민 */
+	.RC_contentWrap .readImgBox{ /* 이미지 사이즈 고민 */
 		text-align: center;
 	}
-	.d_cafeR_context_wrap .readImgBox img{ /* 이미지 사이즈 고민 */
+	.RC_contentWrap .readImgBox img{ /* 이미지 사이즈 고민 */
 		width: 100%;
 		margin-top: 15px;
 	}
@@ -114,41 +116,43 @@
 		border-radius: 3px;
 		letter-spacing: 2px;
 	}
-	.d_cafeR_context_wrap #map{ 
+	.RC_contentWrap #map{ 
 		width: 100%;
 		height: 400px;
 	}
 	
-	/* 버튼 영역 */
-	.d_cafeR_btn_wrap .d_cafeR_cnt {
+	/************** 3. 버튼영역   *************/
+	
+	.RC_btnWrap .RC_countBox {
 		font-size: 20px;
 		line-height: 18px;
 		margin-right: 20px;
 		margin-top: 10px;
 	}
 	
-	.d_cafeR_btn_wrap p {
+	.RC_btnWrap p {
 		margin-left: 5px;
 	}
 	
-	.d_cafeR_btn_wrap .d_cafeR_btns button {
+	.RC_btnWrap .RC_btnAll button {
 		font-size: 18px;
 		margin-left: 10px;
 	}
 	
-	/* 댓글 영역 */
+	/************** 4. 댓글영역   *************/
+	
 	.replyStyle{
 		border-bottom: 1px solid #545454;
 		padding: 10px 25px;
 	}
 	
-	/* 댓글 작성 */
-	.d_cafeR_reply_wrap .d_cafeR_reply_input img {
+	/* -- 댓글 작성 */
+	.RC_replyWrap .RC_replyInputBox img {
 		height: 37px;
 		margin-right: 15px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_reply_input textarea[name="commentContent"] {
+	.RC_replyWrap .RC_replyInputBox textarea[name="commentContent"] {
 		height: 35px;
 		width: 83%;
 		margin-right: 15px;
@@ -157,257 +161,48 @@
 		font-size: 16px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_reply_input #d_cafeR_replyAddBtn {
+	.RC_replyWrap .RC_replyInputBox #RC_replyAddBtn {
 		font-size: 18px;
 	}
 	
-	/* 댓글 리스트 */
-	.d_cafeR_reply_wrap .d_cafeR_replyList li {
+	/* -- 댓글 리스트 */
+	.RC_replyWrap .RC_replyList li {
 		line-height: 35px;
 		position: relative;
 	}	
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li img {
+	.RC_replyWrap .RC_replyList li img {
 		height: 35px;
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyNick {
+	.RC_replyWrap .RC_replyList li .replyNick {
 		font-weight: 700;
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox {
+	.RC_replyWrap .RC_replyList li .replyCmtBox {
 		width: 480px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox > p {
+	.RC_replyWrap .RC_replyList li .replyCmtBox > p {
 		-ms-word-break: break-all;
 		word-break: break-all;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(3) {
+	.RC_replyWrap .RC_replyList li > p:nth-of-type(3) {
 		font-size: 14px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyBtn {
+	.RC_replyWrap .RC_replyList li .replyBtn {
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .replyPage {
+	.RC_replyWrap .replyPage {
 		text-align: center;
 	}
-	/* 같은 카페 다른 추천글 영역 - 카페이름,개수 */
-	.recommentSameList {
-		margin-top: 70px;
-	}
 	
-	.recommentSameList .cafeR_sameTitle {
-		font-size: 20px;
-	}
-	
-	.recommentSameList .cafeR_sameTitle .sameBtn {
-		width: 30px;
-	    height: 30px;
-	    border: 1px solid #aaa;
-	    line-height: 30px;
-	    text-align: center;
-	    margin-left: 10px;
-	    cursor: pointer;
-	}
-	
-	/* 다른 포스트 list */
-	.recommentSameList .a_cafeReview {
-		display: block;
-		float: left;
-		width: 48.6%;
-		border: 1px solid #545454;
-		margin-bottom: 20px;
-	}
-	.recommentSameList .noimgList{
-		text-align: center;
-	}
-	.noimgList p.noList{
-		color: #5D5D5D;
-	}
-	.noimgList span.hotpink{
-		color:#FF007F;
-		font-size: 18px;
-	}
-	
-	.recommentSameList .cafeR_box:hover .RC_cafeName{
-		text-decoration: underline;
-	}
-	
-	.recommentSameList .a_cafeReview:nth-of-type(odd) {
-		margin-right: 20px;
-	}
-	
-	.recommentSameList .cafeR_titleBox {
-		height: 200px;
-		padding: 15px 10px;
-		position: relative;
-		color: #fff;
-	}
-	
-	.recommentSameList .cafeR_titleBox .cafeR_titleImg {
-		position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: 100%;
-	    height: 100%;
-	    z-index: -1;
-	    overflow: hidden;
-	}
-	
-	.recommentSameList .cafeR_titleBox .cafeR_titleImg .bg {
-		width: 100%;
-	    height: 100%;
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    background: rgba(0,0,0,0.4);
-	}
-	
-	.recommentSameList .cafeR_titleBox .cafeR_titleImg img {
-		width: 100%;
-    	min-height: 100%;
-	}
-	
-	.recommentSameList .cafeR_writer {
-		line-height: 50px;
-		float: left;
-	}
-		
-	.recommentSameList .cafeR_writer img {
-		width: 50px;
-		display: block;
-		float: left;
-		margin-right: 10px;
-	}
-	
-	.recommentSameList .cafeR_writer span {
-		display: block;
-		float: left;
-		color: #fff;
-		font-size: 18px;
-	}
-	
-	.recommentSameList .cafeR_recomCnt {
-		float: right;
-		width: 30px;
-		height: 30px;
-		border-radius: 40px;
-		margin: 10px;
-		text-align: center;
-		line-height: 30px;
-		font-weight: 700;
-	}
-	
-	.recommentSameList .cafeR_titleBox h2 {
-		position: absolute;
-	    top: 50%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    width: 85%;
-	    text-align: center;
-	}
-	
-	.recommentSameList .cafeR_date {
-		position: absolute;
-	    top: 85%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    width: 85%;
-	    text-align: right;
-	    font-size: 20px;
-	}	
-	
-	.recommentSameList .cafeR_infoBox {
-		padding: 10px;
-		padding-bottom: 0;
-	}
-	
-	.recommentSameList .cafeR_infoTop {
-		padding-bottom: 10px;
-	}
-	
-	.recommentSameList .cafeR_infoTop h2{
-		text-align: right;
-		padding: 10px 0;
-	}
-	
-	.recommentSameList .cafeR_text {
-		overflow: hidden; 
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 4; /* 라인수 */
-		-webkit-box-orient: vertical;
-		word-wrap: break-word;
-	}
-	
-	.recommentSameList .cafeR_replyCdtWrap {
-		float: right;
-		padding: 10px;
-		padding-right: 0;
-	}
-	
-	.recommentSameList .cafeR_replyCdt .cafeR_btns {
-		border: 1px solid #545454;
-		padding: 5px 10px;
-		border-radius: 10px;
-		float: left;
-		margin-right: 10px;
-	}
-	
-	/* 같은카페 리스트 */
-	.recommendBanner{
-		width: 918px;
-		height: 265px;
-	}
-	.recomWrap{
-		width: 918px;
-		height: 265px;
-		overflow: hidden;
-	}
-	.recommendBanner .recomWrap li {
-		float: left;
-		width: 222px;
-		height: 260px;
-		margin: 3px;
-		border: 1px solid #545454;
-	}
-	.recommendBanner .recomWrap li div.RC_listImgWrap{
-		width: 100%;
-		height: 160px;
-		overflow: hidden;
-	}
-	.recommendBanner .recomWrap li div.RC_listImgContainer img{
-		width: 100%;
-		height: 160px;
-		transition:all 1s;
-		transform-origin:left-top;
-	}
-	
-	.recommendBanner .recomWrap li div.RC_listImgContainer img:hover{
-		transform:scale(1.2);
-	}		
-	.recommendBanner .recomWrap li div.RC_listTitle1{
-		width: 90%;
-		height: 33px;
-		padding: 8px;
-	}
-	.recommendBanner .recomWrap li div.RC_listTitle1 div.zoneBtn,div.themeKeySmall{
-		font-size: 12px;
-		margin-top: 5px;
-	}
- 	.recommendBanner .recomWrap li div.RC_listTitle2{
-		width: 90%;
-		height: 45px;
-		padding: 8px;
-	}
-
-	/* 페이징 */
+	/* -- 댓글 페이징 */
 	.pagination {
 		display: inline-block;
 	  	padding-left: 0;
@@ -500,12 +295,218 @@
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
+	}	
+	
+	/************** 5. 리스트배너1 : 같은카페명   *************/
+	
+	.RC_sameList {
+		margin-top: 70px;
+	}
+	
+	.RC_sameList .RC_sameTitle {
+		font-size: 20px;
+	}
+	
+	.RC_sameList .RC_sameTitle .sameBtn {
+		width: 30px;
+	    height: 30px;
+	    border: 1px solid #aaa;
+	    line-height: 30px;
+	    text-align: center;
+	    margin-left: 10px;
+	    cursor: pointer;
+	}
+	
+	/* 다른 포스트 list */
+	.RC_sameList .a_cafeReview {
+		display: block;
+		float: left;
+		width: 48.6%;
+		border: 1px solid #545454;
+		margin-bottom: 20px;
+	}
+	.RC_sameList .RC_noImgList{
+		text-align: center;
+	}
+	.RC_noImgList p.RC_noListMent{
+		color: #5D5D5D;
+	}
+	.RC_noImgList span.hotpink{
+		color:#FF007F;
+		font-size: 18px;
+	}
+	
+	.RC_sameList .cafeR_box:hover .RC_cafeName{
+		text-decoration: underline;
+	}
+	
+	.RC_sameList .a_cafeReview:nth-of-type(odd) {
+		margin-right: 20px;
+	}
+	
+	.RC_sameList .cafeR_titleBox {
+		height: 200px;
+		padding: 15px 10px;
+		position: relative;
+		color: #fff;
+	}
+	
+	.RC_sameList .cafeR_titleBox .cafeR_titleImg {
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: -1;
+	    overflow: hidden;
+	}
+	
+	.RC_sameList .cafeR_titleBox .cafeR_titleImg .bg {
+		width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    background: rgba(0,0,0,0.4);
+	}
+	
+	.RC_sameList .cafeR_titleBox .cafeR_titleImg img {
+		width: 100%;
+    	min-height: 100%;
+	}
+	
+	.RC_sameList .cafeR_writer {
+		line-height: 50px;
+		float: left;
 	}
 		
-	/* 테마 아이콘 */
-	.RC_titleWrap .themeKeySmall {
-		margin-right: 0;
+	.RC_sameList .cafeR_writer img {
+		width: 50px;
+		display: block;
+		float: left;
+		margin-right: 10px;
+	}
+	
+	.RC_sameList .cafeR_writer span {
+		display: block;
+		float: left;
+		color: #fff;
+		font-size: 18px;
+	}
+	
+	.RC_sameList .cafeR_recomCnt {
+		float: right;
+		width: 30px;
+		height: 30px;
+		border-radius: 40px;
+		margin: 10px;
+		text-align: center;
+		line-height: 30px;
+		font-weight: 700;
+	}
+	
+	.RC_sameList .cafeR_titleBox h2 {
+		position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 85%;
+	    text-align: center;
+	}
+	
+	.RC_sameList .cafeR_date {
+		position: absolute;
+	    top: 85%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 85%;
+	    text-align: right;
+	    font-size: 20px;
+	}	
+	
+	.RC_sameList .cafeR_infoBox {
+		padding: 10px;
+		padding-bottom: 0;
+	}
+	
+	.RC_sameList .cafeR_infoTop {
+		padding-bottom: 10px;
+	}
+	
+	.RC_sameList .cafeR_infoTop h2{
+		text-align: right;
+		padding: 10px 0;
+	}
+	
+	.RC_sameList .cafeR_text {
+		overflow: hidden; 
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 4; /* 라인수 */
+		-webkit-box-orient: vertical;
+		word-wrap: break-word;
+	}
+	
+	.RC_sameList .cafeR_replyCdtWrap {
+		float: right;
+		padding: 10px;
+		padding-right: 0;
+	}
+	
+	.RC_sameList .cafeR_replyCdt .cafeR_btns {
+		border: 1px solid #545454;
+		padding: 5px 10px;
+		border-radius: 10px;
+		float: left;
+		margin-right: 10px;
+	}
+	
+	/************** 6. 리스트배너2 : 같은키워드   *************/
+	.recommendBanner{
+		width: 918px;
+		height: 265px;
+	}
+	.recomWrap{
+		width: 918px;
+		height: 265px;
+		overflow: hidden;
+	}
+	.recommendBanner .recomWrap li {
+		float: left;
+		width: 222px;
+		height: 260px;
+		margin: 3px;
+		border: 1px solid #545454;
+	}
+	.recommendBanner .recomWrap li div.RC_listBtnImgWrap{
+		width: 100%;
+		height: 160px;
+		overflow: hidden;
+	}
+	.recommendBanner .recomWrap li div.RC_listBtnImgContainer img{
+		width: 100%;
+		height: 160px;
+		transition:all 1s;
+		transform-origin:left-top;
+	}
+	
+	.recommendBanner .recomWrap li div.RC_listBtnImgContainer img:hover{
+		transform:scale(1.2);
 	}		
+	.recommendBanner .recomWrap li div.RC_listBtnTitle1{
+		width: 90%;
+		height: 33px;
+		padding: 8px;
+	}
+	.recommendBanner .recomWrap li div.RC_listBtnTitle1 div.zoneBtn,div.themeKeySmall{
+		font-size: 12px;
+		margin-top: 5px;
+	}
+ 	.recommendBanner .recomWrap li div.RC_listBtnTitle2{
+		width: 90%;
+		height: 45px;
+		padding: 8px;
+	}
 </style>
 
 
@@ -543,7 +544,7 @@
 
 			<div class="RC_titleWrap bgLightGray wrapStyle">
 			
-			    <!-- 지역/테마/등록일&수정일 -->
+			    <!-- (1) 지역/테마/등록일&수정일 -->
 				<div class="RC_title1 clearfix">
 					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
 					<c:choose>
@@ -574,16 +575,16 @@
 					</div>
 				</div>
 				
-				<!-- 타이틀/등급아이콘,닉네임,아이디 -->
+				<!-- (2) 타이틀/등급아이콘,닉네임,아이디 -->
 				<div class="RC_title2 clearfix">
 					<p class="RC_titleName" id="RC_cafeName">${board.writingTitle }</p>
 					<div class="RC_userInfo clearfix">
-						<img src="${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}" alt="등급아이콘" />
+						<img src="${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}" alt="등급아이콘">
 						<p>${board.userNo.nick }(${board.userNo.userId })</p>
 					</div>
 				</div>
 				
-				<!-- 주소 -->
+				<!-- (3) 주소 -->
 				<div class="RC_title3">
 					<div class="RC_pointIcon clearfix">
 						<img src="${pageContext.request.contextPath }/resources/images/location.png" alt="주소아이콘">
@@ -597,68 +598,118 @@
 			</div>
 		
 <!-- ******************************************************** 2. 내용(사진/지도/글)  ********************************************************* -->
-			<div class="d_cafeR_context_wrap">
+
+			<div class="RC_contentWrap">
+			
+				<!-- (1) 이미지 -->			
 				<c:forEach var="file" items="${board.files}">
 					<input type="hidden" class="readImgName" value="${file.imageName}">
-				</c:forEach>
-				<!-- 이미지 -->
-				<div class="readImgBox"></div>
-				<!-- 지도 -->
-				<div id="addMap"><span class="mapTitle">지도</span> | ${board.address}</div>
+				</c:forEach>								
+				<div class="readImgBox">
+					<!-- 이미지꺼내서 첨부하기 -->
+				</div>
+				
+				<!-- (2) 지도첨부 -->
+				<div id="addMap">
+					<span class="mapTitle">지도</span> | ${board.address}
+				</div>
 			    <div id="map"></div>
-				<!-- 글내용 -->
-				<div id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></div>
+			    
+				<!-- (3) 글내용 : pre태그로 textarea에서 쓴 형태 그대로 저장 -->
+				<div id="RC_contentText">
+					<pre style="padding:30px;">${board.writingContent}</pre>
+				</div>
+				
 			</div>			
+			
 <!-- *********************************************** 3. 버튼영역(좋아요, 댓글수, 수정&삭제&목록 버튼)  *********************************************** -->
-			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
-				<div class="d_cafeR_cnt d_cafeR_voteBtn clearfix f_left">
+
+			<div class="RC_btnWrap clearfix bgLightGray wrapStyle">
+			    
+			    <!-- (1) 카운트: 좋아요 -->
+				<div class="RC_countBox RC_voteBtn clearfix f_left">
 					<a href="#" id="voteIcon" class="f_left off grayB">
 						<i class="far fa-thumbs-up"></i>
 					</a>
-					<p class="grayB f_left">좋아요 <span id="voteNum">${board.voteNumber }</span></p>
-				</div>
-				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
-					<i class="far fa-comment-dots clearfix grayB f_left"></i>
-					<p class="grayB f_left">댓글<span id="replyNum"> ${board.replyCnt}</span></p>
-				</div>
-				<div class="d_cafeR_btns f_right">
-					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left" id="RC_modify">수정</button>
-					<button type="button" class="d_cafeR_deleteBtn redLineBtn f_left" id="RC_delete">삭제</button>
-					<button class="d_cafeR_listBtn navyBtn2 f_left" id="RC_list">목록</button>
-				</div>
-			</div>
-			
-<!-- *********************************************** 4. 댓글영역(댓글입력, 댓글목록(수정&삭제), 댓글페이징)  *********************************************** -->
-			<div class="d_cafeR_reply_wrap">
-				<div class="d_cafeR_reply_input replyStyle clearfix">
-					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
-					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
-					<textarea id="newCmt" class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
-					<button id="d_cafeR_replyAddBtn" class="orangeBtn f_left">저장</button>
+					<p class="grayB f_left">좋아요 <span id="voteNum"><fmt:formatNumber type="number" maxFractionDigits="3" value="${board.voteNumber}"/></span></p>
 				</div>
 				
-				<!-- 댓글 list -->
-				<div class="d_cafeR_replyList">
+				<!-- (2) 카운트: 댓글수 -->
+				<div class="RC_countBox RC_replyBtn f_left">
+					<i class="far fa-comment-dots clearfix grayB f_left"></i>
+					<p class="grayB f_left">댓글 <span id="replyNum"><fmt:formatNumber type="number" maxFractionDigits="3" value="${board.replyCnt}"/></span></p>
+				</div>
+				
+				<!-- (3) 수정/삭제/목록 -->
+				<div class="RC_btnAll f_right">
+					<button type="button" class="greenLineBtn f_left" id="RC_modifyBtn">수정</button>
+					<button type="button" class="redLineBtn f_left" id="RC_deleteBtn">삭제</button>
+					<button class="navyBtn2 f_left" id="RC_listBtn">목록</button>
+				</div>
+				
+			</div>
+			
+<!-- *********************************************** 4. 댓글영역(댓글입력, 댓글리스트(수정&삭제), 댓글페이징)  *********************************************** -->
+
+			<div class="RC_replyWrap">
+			
+	            <!-- (1) 댓글입력 -->		
+				<div class="RC_replyInputBox replyStyle clearfix">
+					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
+					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘">
+					<textarea id="newReply" class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
+					<button id="RC_replyAddBtn" class="orangeBtn f_left">저장</button>
+				</div>
+				
+				<!-- (2) 댓글리스트 -->
+				<div class="RC_replyList">
+				
+				    <!-- 댓글리스트 -->
 					<ul class="replyListUl"></ul>
-					<div class="replyPage">
+					
+					<!-- 댓글페이징 -->
+					<div class="replyPage">				
 						<ul id="pagination" class="pagination"></ul>
 					</div>
 				</div>
+				
 			</div>			
 			
 			
 			
 <!-- ********************************************************* 5. 리스트배너1 -- 같은카페명  ********************************************************* -->
-		<!-- 같은 카페명의 다른 포스트 list -- "개수"  -->
-		<div class="recommentSameList">
-			<!-- 관련추천글이 있을시 : 제목 -->
+
+		<div class="RC_sameList">
+             
+            <!-- (1) 제목 & 게시글나머지숫자 --> 
+            		
+			<!-- 관련추천글이 없을시 : 제목 + noImg + 여러분의 소중한 추천 카페 후기를 기다리고 있어요! -->
+			<c:if test="${sameCafeCnt == 0 }">
+				<div class="RC_sameTitle bottomLine clearfix">
+						<p class="f_left">
+							<span class="blue bold">${board.writingTitle}</span>에 대한 
+							<span class="orange bold">관련된 </span>
+							<span class="red bold">추천글</span>이 아직 없습니다.
+						</p>
+				</div>
+			</c:if>				
+			<c:if test="${sameCafeCnt == 0 }">
+				<div class="RC_noImgList">
+					<img src ="${pageContext.request.contextPath}/resources/images/rc_noImg.png" alt="NoImg">
+					<p class ="RC_noListMent bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
+				</div>
+			</c:if>
+			
+					
+			<!-- 관련추천글이 있을시 : 제목 + 나머지 추천카페 게시물 숫자 -->
 			<c:if test="${sameCafeCnt > 0 }">
-				<div class="cafeR_sameTitle bottomLine clearfix">
+				<div class="RC_sameTitle bottomLine clearfix">
 					<p class="f_left">
 						<span class="blue bold">${board.writingTitle}</span>에 대한 
-						<span class="orange bold">${sameCafeCnt }</span>개의 
+						<span class="orange bold"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sameCafeCnt }"/></span>개의 
 						<span class="red bold">추천글</span>이 더 있어요!
 					</p>
+					
 					<!-- 페이징 버튼생성 -->
 					<c:if test="${sameCafeCnt > 4 }">
 						<div class="sameListBtn f_right">
@@ -669,24 +720,8 @@
 					</c:if>
 				</div>
 			</c:if>
-			
-			<!-- 관련추천글이 없을시 : 제목 + noImg -->
-			<c:if test="${sameCafeCnt == 0 }">
-				<div class="cafeR_sameTitle bottomLine clearfix">
-						<p class="f_left">
-							<span class="blue bold">${board.writingTitle}</span>에 대한 
-							<span class="orange bold">관련된 </span>
-							<span class="red bold">추천글</span>이 아직 없습니다.
-						</p>
-				</div>
-			</c:if>				
-			<c:if test="${sameCafeCnt == 0 }">
-				<div class="noimgList">
-					<img src ="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-					<p class = "noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
-				</div>
-			</c:if>
-			</div><!-- class="recommentSameList" -->
+		
+		</div>
 			
 			<!-- 관련추철글이 있을시 : 배너 -->
 			<c:if test="${sameCafeCnt > 0 }">
@@ -696,8 +731,8 @@
 						<c:forEach var="sameCafe" items="${sameCafe}">
 							<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameCafe.boardNo}">
 								<li>
-									<div class="RC_listImgWrap">
-										<div class="RC_listImgContainer">
+									<div class="RC_listBtnImgWrap">
+										<div class="RC_listBtnImgContainer">
 						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
 										<c:forEach var="img" items="${slistImg}">
 											 <c:if test="${img.boardNo.boardNo == sameCafe.boardNo }">
@@ -706,7 +741,7 @@
 										</c:forEach>							
 									</div>
 									</div>
-									<div class="RC_listTitle1">
+									<div class="RC_listBtnTitle1">
 										<!-- 위치 -->
 										<div class="zoneBtn zoneOrangeIconSmall keyword">${sameCafe.zoneNo.zoneName}</div>
 										<!-- 키워드 -->
@@ -731,7 +766,7 @@
 											</c:otherwise>
 										</c:choose>
 									</div>
-									<div class="RC_listTitle2">
+									<div class="RC_listBtnTitle2">
 										<h3 class="RC_titleName">${sameCafe.writingTitle}</h3>
 									</div>
 							</li>
@@ -747,12 +782,12 @@
 
 <!-- ********************************************************* 6. 리스트배너2 -- 같은키워드명  ********************************************************* -->
 			<!-- 같은 키워드의 다른 포스트 list -- "개수"  -->
-			<div class="recommentSameList">
+			<div class="RC_sameList">
  				<c:if test="${sameKeywordCnt > 0 }">
-					<div class="cafeR_sameTitle bottomLine clearfix">
+					<div class="RC_sameTitle bottomLine clearfix">
 							<p class="f_left">
 								<span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 
-								<span class="orange bold">${sameKeywordCnt }</span>개의 
+								<span class="orange bold"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sameKeywordCnt }"/></span>개의 
 								<span class="red bold">추천글</span>이 더 있어요!
 							</p>
 						<c:if test="${sameKeywordCnt > 4 }">
@@ -765,7 +800,7 @@
 					</div>
 				</c:if>
 				<c:if test="${sameKeywordCnt == 0 }">
-					<div class="cafeR_sameTitle bottomLine clearfix">
+					<div class="RC_sameTitle bottomLine clearfix">
 							<p class="f_left">
 								<span style="color:navy" class="bold">#${board.zoneNo.zoneName} #${board.themeNo.themeName}</span>에 대한 
 								<span class="orange bold">관련된 </span>
@@ -776,12 +811,12 @@
 				
 			<!-- 같은 키워드의 다른 포스트 list -->
 			<c:if test="${sameKeywordCnt == 0 }">
-					<div class="noimgList">
+					<div class="RC_noImgList">
 						<img src="${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-						<p class="noList bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
+						<p class="RC_noListMent bold">여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!</p>
 				</div>
 			</c:if>
-			</div><!-- class="recommentSameList" -->
+			</div><!-- class="RC_sameList" -->
 			
 			<c:if test="${sameKeywordCnt > 0 }">
 				<div class="recommendBanner mb30">
@@ -791,8 +826,8 @@
 								<a
 									href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
 									<li>
-										<div class="RC_listImgWrap">
-											<div class="RC_listImgContainer">
+										<div class="RC_listBtnImgWrap">
+											<div class="RC_listBtnImgContainer">
 							                <!-- 이미지 이름 꺼내서 삽입하기 -->		
 											<c:forEach var="img" items="${klistImg}">
 												 <c:if test="${img.boardNo.boardNo == sameKeyword.boardNo }">
@@ -802,7 +837,7 @@
 											<p class="test"></p>								
 										</div>
 										</div>
-										<div class="RC_listTitle1">
+										<div class="RC_listBtnTitle1">
 											<!-- 위치 -->
 											<div class="zoneBtn zoneOrangeIconSmall keyword">${sameKeyword.zoneNo.zoneName}</div>
 											<!-- 키워드 -->
@@ -827,7 +862,7 @@
 												</c:otherwise>
 											</c:choose>
 										</div>
-										<div class="RC_listTitle2">
+										<div class="RC_listBtnTitle2">
 											<!-- 상세페이지로 가기 -->
 											<h3 class="RC_titleName">${sameKeyword.writingTitle}</h3>
 										</div>
@@ -850,7 +885,7 @@
 
 <!-- ------------------------------------------------------------ HandleBars ------------------------------------------------------------ -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
-<!-- 댓글틀 -->
+<!-- (1) 댓글틀 : 댓글리스트 -->
 <script id="template" type="text/x-handlebars-template">
 	{{#each list}}
 		<li class="replyStyle clearfix boardReply" data-cno="{{commentNo}}">
@@ -866,6 +901,8 @@
 		</li>
 	{{/each}}
 </script>
+
+<!-- (2) 댓글틀 : 댓글수정 -->
 <script id="replyModifyBox" type="text/x-handlebars-template">
 	<div class="replyModify_box">
 		<img class="f_left" src="{{userIcon}}" alt="등급아이콘"/>
@@ -914,15 +951,15 @@
 	}
 	
 	//수정버튼
-	$("#RC_modify").click(function() {
+	$("#RC_modifyBtn").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/modify?boardNo=${board.boardNo}";
 	})
 	//삭제버튼
-	$("#RC_delete").click(function() {
+	$("#RC_deleteBtn").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
 	})	
 	//목록버튼
-	$("#RC_list").click(function() {
+	$("#RC_listBtn").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
 	})
 	
@@ -1119,14 +1156,14 @@
 	})
 	
 	/* 댓글 추가 */
-	$("#d_cafeR_replyAddBtn").click(function(){
+	$("#RC_replyAddBtn").click(function(){
 		// login 기능 구현 후 수정해야함
 		var userNo = 3;
 		
 		var boardNo = ${board.boardNo};
-		var newCmt = $("#newCmt").val();
+		var newReply = $("#newReply").val();
 		
-		var json = JSON.stringify({"boardNo":{"boardNo" : boardNo}, "userNo": {"userNo" : userNo}, "commentContent":newCmt});
+		var json = JSON.stringify({"boardNo":{"boardNo" : boardNo}, "userNo": {"userNo" : userNo}, "commentContent":newReply});
 		$.ajax({
 			url:"${pageContext.request.contextPath}/rest/replies/",
 			type:"post",
@@ -1138,7 +1175,7 @@
 				if(res == "SUCCESS"){
 					alert("댓글이 등록되었습니다.");
 					getPageList(no);
-					$("#newCmt").val("");
+					$("#newReply").val("");
 				}
 			}
 		})		

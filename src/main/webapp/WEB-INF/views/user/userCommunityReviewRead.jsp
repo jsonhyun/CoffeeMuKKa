@@ -529,11 +529,11 @@
 					<a href="#" id="voteIcon" class="f_left off grayB">
 						<i class="far fa-thumbs-up"></i>
 					</a>
-					<p class="grayB f_left">좋아요 <span id="voteNum">${board.voteNumber }</span></p>
+					<p class="grayB f_left">좋아요 <span id="voteNum"><fmt:formatNumber type="number" maxFractionDigits="3" value="${board.voteNumber }"/></span></p>
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
-					<p class="grayB f_left">댓글 <span id="replyNum">${board.replyCnt}</span></p>
+					<p class="grayB f_left">댓글 <span id="replyNum"><fmt:formatNumber type="number" maxFractionDigits="3" value="${board.replyCnt}"/></span></p>
 				</div>
 				<div class="d_cafeR_btns f_right">
 					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left">수정</button>
@@ -564,7 +564,7 @@
 			<div class="cafeR_sameList">
 				<c:if test="${sameCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
-							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold">${sameCnt }</span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
+							<p class="f_left"><span class="blue bold">${board.cafeNo.cafeName }</span>에 대한 <span class="orange bold"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sameCnt }"/></span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
 						<c:if test="${sameCnt > 2 }">
 							<div class="sameListBtn f_right">
 								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
