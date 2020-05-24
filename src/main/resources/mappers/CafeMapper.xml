@@ -291,6 +291,31 @@
 	<select id="searchCafeByName" resultType="CafeVO">
 		select * from cafe where cafe_name like CONCAT('%', #{cafeName}, '%')
 	</select>
+	<!-- 경진추가 : 메인메뉴 카페 검색 -->
+	<sql id="mainSearch">
+		<where>
+			<if test="zoneNo != null">
+				c.zone_no = #{zoneNo}
+			</if>
+			<if test="themeNums != null">
+				and 
+				<foreach item="themeNo" collection="themeNums" separator=" or " index="index" open="(" close=")" >
+					c.theme_no = #{themeNo}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="cafeMainSearch" parameterType="map" resultMap="CafeListSelectResult">
+		select c.cafe_no, c.cafe_name, z.zone_no , z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, c.oneline, c.address, c.detail_address 
+			from cafe c left join theme t on c.theme_no = t.theme_no left join `zone` z on c.zone_no = z.zone_no
+			<include refid="mainSearch"/>
+			<!-- order by cafe_no desc limit #{pageStart}, #{perPageNum} -->
+	</select>
+	<select id="cafeMainSearchTotalCnt" parameterType="map" resultType="int">
+		select count(cafe_no) from cafe c
+		<include refid="mainSearch"/>
+	</select>
 	
 	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->
 	<select id="rcSearchCafeByName" resultMap="CafeListSelectResult">

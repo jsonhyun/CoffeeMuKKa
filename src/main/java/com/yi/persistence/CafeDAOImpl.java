@@ -1,5 +1,6 @@
 package com.yi.persistence;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
@@ -125,13 +127,36 @@ public class CafeDAOImpl implements CafeDAO {
 	public int totalSearchCount(SearchCriteria cri) throws Exception {
 		return sqlSession.selectOne(namespace+"totalSearchCount", cri);
 	}
-
-	// 카페 검색
+	
+	// 경진 추가 ----------------------------------------------------------------------------------------
+	// 카페 이름 검색
 	@Override
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
 		//List<CafeVO> list = sqlSession.selectList(namespace + "searchCafeByName", cafeName);
 		//System.out.println("list------------------------"+list);
 		return sqlSession.selectList(namespace + "searchCafeByName", cafeName);
+	}
+	
+	// 메인메뉴 카페 검색
+	@Override
+	public List<CafeVO> cafeMainSearch(int zoneNo, String themeNos, Criteria cri) throws Exception {
+		String[] themeNo = themeNos.split(",");
+		List<String> themeNums = new ArrayList<String>();
+		for(String t : themeNo) {
+			themeNums.add(t);
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("zoneNo", zoneNo);
+		map.put("themeNums", themeNums);
+		
+		return sqlSession.selectList(namespace + "cafeMainSearch", map);
+	}
+
+	@Override
+	public List<CafeVO> cafeMainSearchTotalCnt(int zoneNo, String themeNos, Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	//아름추가
@@ -139,5 +164,7 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
 	}
+
+	
 	
 }

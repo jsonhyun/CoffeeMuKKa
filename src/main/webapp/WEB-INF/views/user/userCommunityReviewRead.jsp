@@ -730,6 +730,11 @@
 		var boardNo = ${board.boardNo};
 		var newCmt = $("#newCmt").val();
 		
+		if(newCmt == "") {
+			alert("댓글 내용을 작성해주세요.");
+			return false;
+		}
+		
 		var json = JSON.stringify({"boardNo":{"boardNo" : boardNo}, "userNo": {"userNo" : userNo}, "commentContent":newCmt});
 		$.ajax({
 			url:"${pageContext.request.contextPath}/rest/replies/",

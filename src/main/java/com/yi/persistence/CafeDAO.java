@@ -3,6 +3,7 @@ package com.yi.persistence;
 import java.util.List;
 
 import com.yi.domain.CafeVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
@@ -45,6 +46,9 @@ public interface CafeDAO {
 	// 경진 추가
 	// 카페 이름 검색
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception;
+	// 메인메뉴 카페 검색
+	public List<CafeVO> cafeMainSearch(int zoneNo, String themeNos, Criteria cri) throws Exception;
+	public List<CafeVO> cafeMainSearchTotalCnt(int zoneNo, String themeNos, Criteria cri) throws Exception;
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;

@@ -103,12 +103,12 @@
 				$(this).removeClass("on");
 				$(this).find(".keyIcon img").attr("src", imgPath+img);
 				
-				keywords = keywords.replace(keyword+",", "");
+				keywords = keywords.replace(themeNo+",", "");
 				$("."+key).remove();
 			} else {				
 				$(this).addClass("on");
 				$(this).find(".keyIcon img").attr("src", imgPath+onImg);
-				keywords += keyword + ",";
+				keywords += themeNo + ",";
 				$(".themeBarBox").append($spanThemeKey);
 			}
 			
@@ -117,7 +117,8 @@
 			} else {
 				$(".themeSapn").hide();
 			}
-			$(".themeBar input[name='themeName']").val(themeNo);
+			$(".themeBar input[name='themeName']").val(keywords);
+			
 		})
 		
 		$("#mainMenuUl > li").hover(function(){
@@ -168,11 +169,11 @@
 								<span>커피무까</span>
 							</a>
 							<ul class="subMenuUl">
-								<li><a href="#">커피무까</a></li>
-								<li><a href="#">위치별</a></li>
-								<li><a href="#">테마별</a></li>
-								<li><a href="#">MuKKa 베스트</a></li>
-								<li><a href="#">月別카페</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe">커피무까</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/zone">위치별</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/theme">테마별</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/mukkaBest">MuKKa 베스트</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/monthCafe">月別카페</a></li>
 							</ul>
 						</li>
 						<li>
@@ -181,11 +182,11 @@
 								<span>커뮤니티</span>
 							</a>
 							<ul class="subMenuUl">
-								<li><a href="#">MuKKa의 전당</a></li>
-								<li><a href="#">생생 카체 탐방기</a></li>
-								<li><a href="#">MuKKa人 추천 카페</a></li>
-								<li><a href="#">사장님 고민 나눔</a></li>
-								<li><a href="#">자유게시판</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/community">MuKKa의 전당</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/community/cafeReview">생생 카체 탐방기</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/community/cafeRecommend">MuKKa人 추천 카페</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/community/#">사장님 고민 나눔</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/community/#">자유게시판</a></li>
 							</ul>
 						</li>
 						<li>
@@ -276,15 +277,12 @@
 							</div>							
 							<div class="zoneList">
 								<ul>
-									<!-- 데이터 만들어지면 c:foreach문으로 데이터 넣어서 구현 -->
-									<li class="zoneItem" data-zoneNo="1" data-zone="동성로">
-										<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
-										<span>동성로</span>	
-									</li>
-									<li class="zoneItem" data-zoneNo="" data-zone="수성못 들안길">
-										<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
-										<span>수성못 들안길</span>
-									</li>
+									<c:forEach var="zone" items="${zoneList }">
+										<li class="zoneItem" data-zoneNo="${zone.zoneNo }" data-zone="${zone.zoneName }">
+											<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
+											<span>${zone.zoneName }</span>	
+										</li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
