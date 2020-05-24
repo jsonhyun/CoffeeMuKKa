@@ -2,61 +2,81 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
+
+
+
+<!-- ------------------------------------------------------------ C S S ------------------------------------------------------------ -->
 <style>
-	/* read title 영역 */
+	/*** 추천카페 CSS 목차 ***/
+	
+	/* 
+	 *
+	 * 1. 제목
+	 * 2. 내용(사진/지도/글)
+	 * 3. 버튼영역(좋아요, 댓글수, 수정&삭제&목록 버튼)
+	 * 4. 댓글(댓글입력, 댓글목록(수정&삭제), 댓글페이징)
+	 * 5. 리스트배너1
+	 * 6. 리스트배너2
+	 *
+	 */
+	 
+	 
+	/*             공통                                              */
 	.wrapStyle {
 	    border-top: 1px solid #545454;
 		border-bottom: 1px solid #545454;
 		padding: 15px;
-	}	
-	.detaliCafeR_title_wrap .keyword {
+	}
+	 
+	/************** 1. 제목   *************/	
+	.RC_titleWrap .keyword {
 		font-size: 14px;
 	}
 	
-	.detaliCafeR_title_wrap .regDate {
+	.RC_titleWrap .RC_regDate {
 		float: right;
 		color: gray;
 		font-weight: 300;
 		margin-right: 13px;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafeR_titleMiddle{
+	.RC_titleWrap .RC_title2{
 		padding: 10px;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafeR_title {
+	.RC_titleWrap .RC_titleName {
 		font-size: 25px;
 		font-weight: 700;
 		float: left;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafeR_user {
+	.RC_titleWrap .RC_userInfo {
 		float: right;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafeR_user img{
+	.RC_titleWrap .RC_userInfo img{
 		height: 25px;
 		float: left;
 		margin-right: 5px;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafeR_user p {
+	.RC_titleWrap .RC_userInfo p {
 		float: left;
 		font-size: 16px;
 		font-weight: 700;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafe_icon {
+	.RC_titleWrap .RC_pointIcon {
 		background-color: #deeaf6;
 		display: inline-block;
 		padding: 10px;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafe_icon a {
+	.RC_titleWrap .RC_pointIcon a {
 		color: #2d4686;
 	}
 	
-	.detaliCafeR_title_wrap .d_cafe_icon img {
+	.RC_titleWrap .RC_pointIcon img {
 		height: 25px;
 		float: left;
 		margin-right: 10px;
@@ -69,7 +89,7 @@
 		margin-top: 10px;	
 	}
 	
-	/* 콘텐츠 영역 */
+	/************** 2. 내용   *************/
 	.d_cafeR_context_wrap {
 		padding: 10px;
 	}
@@ -215,7 +235,7 @@
 		font-size: 18px;
 	}
 	
-	.recommentSameList .cafeR_box:hover .cafe_title{
+	.recommentSameList .cafeR_box:hover .RC_cafeName{
 		text-decoration: underline;
 	}
 	
@@ -483,61 +503,100 @@
 	}
 		
 	/* 테마 아이콘 */
-	.detaliCafeR_title_wrap .themeKeySmall {
+	.RC_titleWrap .themeKeySmall {
 		margin-right: 0;
 	}		
 </style>
-	<div class="content subPageContent"><!-- 서브페이지 콘텐츠(큰틀1) -->	
-		<div class="contentArea"><!-- 서브페이지 공통적인 타이틀(큰틀2) -->
+
+
+
+
+<!-- ------------------------------------------------------------ H T M L ------------------------------------------------------------ -->
+
+	<!-- *** 추천카페 HTML 목차 ***  -->
+	
+	<!-- 
+	 *
+	 * 1. 제목
+	 * 2. 내용(사진/지도/글)
+	 * 3. 버튼영역(좋아요, 댓글수, 수정&삭제&목록 버튼)
+	 * 4. 댓글(댓글입력, 댓글목록(수정&삭제), 댓글페이징)
+	 * 5. 리스트배너1
+	 * 6. 리스트배너2
+	 *
+	 */ -->
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+	 
+	<div class="content subPageContent"><!-- 큰틀1 -->	
+		<div class="contentArea"><!-- 큰틀2 -->
 				
 			<h2 class="subPageTitle">
 				<span class="title">MuKKa人 추천 카페</span>
 				<span class="subTit grayB"> | 세 상 에! 이런 카페가 있는지 몰랐지?</span>
 			</h2>
 			
-			<!-- read title 영역 -->
-			<div class="detaliCafeR_title_wrap bgLightGray wrapStyle">
-				<div class="d_cafeR_titleTop clearfix">
+			<!-- *히든처리 : 게시글 번호 : boardNo -->
+			<input type="hidden" name="board.boardNo" value="${board.boardNo}">
+			
+<!-- ************************************************************* 1. 제목  ************************************************************** -->
+
+			<div class="RC_titleWrap bgLightGray wrapStyle">
+			
+			    <!-- 지역/테마/등록일&수정일 -->
+				<div class="RC_title1 clearfix">
 					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
-				<c:choose>
-					<c:when test="${board.themeNo.themeNo == 1}">
-						<div class="date keyword themeKeySmall">#${board.themeNo.themeName}</div>
-					</c:when>
-					<c:when test="${board.themeNo.themeNo == 2}">
-						<div class="view keyword themeKeySmall">#${board.themeNo.themeName}</div>
-					</c:when>
-					<c:when test="${board.themeNo.themeNo == 3}">
-						<div class="ame keyword themeKeySmall">#${board.themeNo.themeName}</div>
-					</c:when>
-					<c:when test="${board.themeNo.themeNo == 4}">
-						<div class="dessert keyword themeKeySmall">#${board.themeNo.themeName}</div>
-					</c:when>
-					<c:when test="${board.themeNo.themeNo == 5}">
-						<div class="dog keyword themeKeySmall">#${board.themeNo.themeName}</div>
-					</c:when>																																								
-					<c:otherwise>
-						<div class="work keyword themeKeySmall">#${board.themeNo.themeName}</div>		
-					</c:otherwise>
-				</c:choose>					
-					<div class="regDate"><fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd"/></div>
+					<c:choose>
+						<c:when test="${board.themeNo.themeNo == 1}">
+							<div class="date keyword themeKeySmall">#${board.themeNo.themeName}</div>
+						</c:when>
+						<c:when test="${board.themeNo.themeNo == 2}">
+							<div class="view keyword themeKeySmall">#${board.themeNo.themeName}</div>
+						</c:when>
+						<c:when test="${board.themeNo.themeNo == 3}">
+							<div class="ame keyword themeKeySmall">#${board.themeNo.themeName}</div>
+						</c:when>
+						<c:when test="${board.themeNo.themeNo == 4}">
+							<div class="dessert keyword themeKeySmall">#${board.themeNo.themeName}</div>
+						</c:when>
+						<c:when test="${board.themeNo.themeNo == 5}">
+							<div class="dog keyword themeKeySmall">#${board.themeNo.themeName}</div>
+						</c:when>
+						<c:otherwise>
+							<div class="work keyword themeKeySmall">#${board.themeNo.themeName}</div>
+						</c:otherwise>
+					</c:choose>
+					<div class="RC_regDate">
+						등록일 : <fmt:formatDate value="${board.registrationDate }" pattern="yyyy/MM/dd" />
+						<c:if test="${board.registrationDate != board.updateDate}">
+							 | 수정일 : <fmt:formatDate value="${board.updateDate }" pattern="yyyy/MM/dd" />
+						</c:if>
+					</div>
 				</div>
-				<div class="d_cafeR_titleMiddle clearfix">
-					<p class="d_cafeR_title" id="cafe_title">${board.writingTitle }</p>
-					<div class="d_cafeR_user clearfix">
+				
+				<!-- 타이틀/등급아이콘,닉네임,아이디 -->
+				<div class="RC_title2 clearfix">
+					<p class="RC_titleName" id="RC_cafeName">${board.writingTitle }</p>
+					<div class="RC_userInfo clearfix">
 						<img src="${pageContext.request.contextPath }/resources/images/${board.userNo.userGrade.userGradeImage}" alt="등급아이콘" />
 						<p>${board.userNo.nick }(${board.userNo.userId })</p>
 					</div>
 				</div>
-				<div class="d_cafeR_cafe">
-					<div class="d_cafe_icon clearfix">
-							<img src="${pageContext.request.contextPath }/resources/images/location.png">
-							<span class="blue bold" id="add">${board.address}</span>							
+				
+				<!-- 주소 -->
+				<div class="RC_title3">
+					<div class="RC_pointIcon clearfix">
+						<img src="${pageContext.request.contextPath }/resources/images/location.png" alt="주소아이콘">
+						<span class="blue bold" id="RC_address">${board.address}</span>
 					</div>
-					<div id="RC_viewCnt">조회수 <span class="orange">${board.viewNumber}</span></div>	
+					<div id="RC_viewCnt">
+						조회수 <span class="orange"><fmt:formatNumber type="number" maxFractionDigits="3" value="${board.viewNumber}"/></span> <!-- 조회수 : 3자리 마다 쉼표 -->
+					</div>
 				</div>
+				
 			</div>
-			
-			<!-- content 영역 -->
+		
+<!-- ******************************************************** 2. 내용(사진/지도/글)  ********************************************************* -->
 			<div class="d_cafeR_context_wrap">
 				<c:forEach var="file" items="${board.files}">
 					<input type="hidden" class="readImgName" value="${file.imageName}">
@@ -549,12 +608,8 @@
 			    <div id="map"></div>
 				<!-- 글내용 -->
 				<div id="RC_contentText"><pre style="padding:30px;">${board.writingContent}</pre></div>
-			</div>
-			<!-- 히든처리 -->
-			<input type="hidden" name="board.boardNo" value="${board.boardNo}">
-			
-			
-			<!-- 버튼 영역 -->
+			</div>			
+<!-- *********************************************** 3. 버튼영역(좋아요, 댓글수, 수정&삭제&목록 버튼)  *********************************************** -->
 			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
 				<div class="d_cafeR_cnt d_cafeR_voteBtn clearfix f_left">
 					<a href="#" id="voteIcon" class="f_left off grayB">
@@ -564,7 +619,7 @@
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
-					<p class="grayB f_left">댓글 ${board.replyCnt}</p>
+					<p class="grayB f_left">댓글<span id="replyNum"> ${board.replyCnt}</span></p>
 				</div>
 				<div class="d_cafeR_btns f_right">
 					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left" id="RC_modify">수정</button>
@@ -573,30 +628,7 @@
 				</div>
 			</div>
 			
-			<!-- 댓글 영역 -->
-<%-- 			<div class="d_cafeR_reply_wrap">
-				<div class="d_cafeR_reply_input replyStyle clearfix">
-					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
-					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
-					<textarea class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
-					<!-- <input class="f_left" type="text" name="commentContent" placeholder="여러분의 소중한 댓글을 남겨주세요."/> -->
-					<button id="d_cafeR_replyAddBtn" class="orangeBtn f_left">저장</button>
-				</div>
-				
-				<!-- 댓글 샘플 -->
-				<div class="d_cafeR_replyList">
-					<ul>
-						<li class="replyStyle clearfix">
-							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
-							<p class="f_left">닉네임1</p>
-							<p class="f_left">댓글 내용</p>
-							<p class="regitDate orange">2020/05/02</p>
-						</li>
-					</ul>
-				</div>
-			</div> --%>
-			
-			<!-- 댓글 영역 -->
+<!-- *********************************************** 4. 댓글영역(댓글입력, 댓글목록(수정&삭제), 댓글페이징)  *********************************************** -->
 			<div class="d_cafeR_reply_wrap">
 				<div class="d_cafeR_reply_input replyStyle clearfix">
 					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
@@ -616,7 +648,7 @@
 			
 			
 			
-		<!-- ****************************************************** 상세보기 리스트(1) : 같은카페 ****************************************************** -->
+<!-- ********************************************************* 5. 리스트배너1 -- 같은카페명  ********************************************************* -->
 		<!-- 같은 카페명의 다른 포스트 list -- "개수"  -->
 		<div class="recommentSameList">
 			<!-- 관련추천글이 있을시 : 제목 -->
@@ -713,7 +745,7 @@
 		
 
 
-		<!-- ****************************************************** 상세보기 리스트(2) : 같은키워드 ****************************************************** -->
+<!-- ********************************************************* 6. 리스트배너2 -- 같은키워드명  ********************************************************* -->
 			<!-- 같은 키워드의 다른 포스트 list -- "개수"  -->
 			<div class="recommentSameList">
  				<c:if test="${sameKeywordCnt > 0 }">
@@ -752,66 +784,71 @@
 			</div><!-- class="recommentSameList" -->
 			
 			<c:if test="${sameKeywordCnt > 0 }">
-			<div class="recommendBanner mb30">
-				<div class="recomWrap">
-					<ul id="banner2">
-						<c:forEach var="sameKeyword" items="${sameKeyword}">
-							<a
-								href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
-								<li>
-									<div class="RC_listImgWrap">
-										<div class="RC_listImgContainer">
-						                <!-- 이미지 이름 꺼내서 삽입하기 -->		
-										<c:forEach var="img" items="${klistImg}">
-											 <c:if test="${img.boardNo.boardNo == sameKeyword.boardNo }">
-												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
-											</c:if>
-										</c:forEach>
-										<p class="test"></p>								
-									</div>
-									</div>
-									<div class="RC_listTitle1">
-										<!-- 위치 -->
-										<div class="zoneBtn zoneOrangeIconSmall keyword">${sameKeyword.zoneNo.zoneName}</div>
-										<!-- 키워드 -->
-										<c:choose>
-											<c:when test="${sameKeyword.themeNo.themeNo == 1}">
-												<div class="date themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
-											</c:when>
-											<c:when test="${sameKeyword.themeNo.themeNo == 2}">
-												<div class="view themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
-											</c:when>
-											<c:when test="${sameKeyword.themeNo.themeNo == 3}">
-												<div class="ame themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
-											</c:when>
-											<c:when test="${sameKeyword.themeNo.themeNo == 4}">
-												<div class="dessert themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
-											</c:when>
-											<c:when test="${sameKeyword.themeNo.themeNo == 5}">
-												<div class="dog themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
-											</c:when>
-											<c:otherwise>
-												<div class="work themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
-											</c:otherwise>
-										</c:choose>
-									</div>
-									<div class="RC_listTitle2">
-										<!-- 상세페이지로 가기 -->
-										<h3 class="RC_titleName">${sameKeyword.writingTitle}</h3>
-									</div>
-							</li>
-							</a>
-						</c:forEach>
-					</ul>
+				<div class="recommendBanner mb30">
+					<div class="recomWrap">
+						<ul id="banner2">
+							<c:forEach var="sameKeyword" items="${sameKeyword}">
+								<a
+									href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
+									<li>
+										<div class="RC_listImgWrap">
+											<div class="RC_listImgContainer">
+							                <!-- 이미지 이름 꺼내서 삽입하기 -->		
+											<c:forEach var="img" items="${klistImg}">
+												 <c:if test="${img.boardNo.boardNo == sameKeyword.boardNo }">
+													<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+												</c:if>
+											</c:forEach>
+											<p class="test"></p>								
+										</div>
+										</div>
+										<div class="RC_listTitle1">
+											<!-- 위치 -->
+											<div class="zoneBtn zoneOrangeIconSmall keyword">${sameKeyword.zoneNo.zoneName}</div>
+											<!-- 키워드 -->
+											<c:choose>
+												<c:when test="${sameKeyword.themeNo.themeNo == 1}">
+													<div class="date themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 2}">
+													<div class="view themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 3}">
+													<div class="ame themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 4}">
+													<div class="dessert themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 5}">
+													<div class="dog themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:otherwise>
+													<div class="work themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="RC_listTitle2">
+											<!-- 상세페이지로 가기 -->
+											<h3 class="RC_titleName">${sameKeyword.writingTitle}</h3>
+										</div>
+								</li>
+								</a>
+							</c:forEach>
+						</ul>
+					</div>
 				</div>
-			</div>
 			</c:if>		
-	</div><!-- class="contentArea" -->
-</div><!-- class="content subPageContent" -->	
+	</div><!-- 큰틀1 -->
+</div><!-- 큰틀2 -->	
 <!-- 서브페이지 콘텐츠 end -->
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
+
+
+
+
+<!-- ------------------------------------------------------------ HandleBars ------------------------------------------------------------ -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
 <!-- 댓글틀 -->
 <script id="template" type="text/x-handlebars-template">
@@ -840,7 +877,26 @@
 		</div>
 	</div>
 </script>
+
+
+
+
+<!-- ------------------------------------------------------ JavaScript & jQuery ------------------------------------------------------ -->
 <script>
+	/*** 추천카페 JavaScript & jQuery 목차 ***/
+	
+	/* 
+	 *
+	 * 1. 제목
+	 * 2. 내용(사진/지도/글)
+	 * 3. 버튼영역(좋아요, 댓글수, 수정&삭제&목록 버튼)
+	 * 4. 댓글(댓글입력, 댓글목록(수정&삭제), 댓글페이징)
+	 * 5. 리스트배너1
+	 * 6. 리스트배너2
+	 *
+	 */
+	 
+	 
 	//콘텐츠영역 - 사진출력	
 	var filesCnt = $(".readImgName").length;
 	var arr = new Array(filesCnt);
@@ -872,12 +928,12 @@
 	
 
 	//지도 -- 주소, 카페이름 빼오기
-	var address = $("#add").text();
+	var address = $("#RC_address").text();
 	//console.log("주소"+address);
-	var cafeName = $("#cafe_title").text();
+	var cafeName = $("#RC_cafeName").text();
 	if(address == ""){ //정확한 주소를 알 수 없을때
-		$("#add").removeClass("blue").addClass("red");
-		$("#add").text("정확한 주소를 확인할 수 없습니다.");
+		$("#RC_address").removeClass("blue").addClass("red");
+		$("#RC_address").text("정확한 주소를 확인할 수 없습니다.");
 		$("div#addMap").hide(); // 지도 Title remove
 		$("div#map").hide(); // 지도 remove
 	}

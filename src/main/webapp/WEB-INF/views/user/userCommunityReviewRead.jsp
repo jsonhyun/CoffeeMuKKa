@@ -463,7 +463,7 @@
 						</a>
 					</div>	
 					<p class="d_cafe_viewCnt">
-						조회수 <span class="orange">${board.viewNumber }</span>
+						조회수 <span class="orange"><fmt:formatNumber type="number" maxFractionDigits="3" value="${board.viewNumber}"/></span>
 					</p>
 				</div>
 			</div>
