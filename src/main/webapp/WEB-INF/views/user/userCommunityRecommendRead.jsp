@@ -297,7 +297,7 @@
 		border-bottom-right-radius: 3px;
 	}	
 	
-	/************** 5. 리스트배너1 : 같은카페명   *************/
+	/************** 5. 리스트배너1,2 : 같은카페명 & 같은키워드   *************/
 	
 	.RC_sameList {
 		margin-top: 70px;
@@ -317,14 +317,6 @@
 	    cursor: pointer;
 	}
 	
-	/* 다른 포스트 list */
-	.RC_sameList .a_cafeReview {
-		display: block;
-		float: left;
-		width: 48.6%;
-		border: 1px solid #545454;
-		margin-bottom: 20px;
-	}
 	.RC_sameList .RC_noImgList{
 		text-align: center;
 	}
@@ -336,132 +328,6 @@
 		font-size: 18px;
 	}
 	
-	.RC_sameList .cafeR_box:hover .RC_cafeName{
-		text-decoration: underline;
-	}
-	
-	.RC_sameList .a_cafeReview:nth-of-type(odd) {
-		margin-right: 20px;
-	}
-	
-	.RC_sameList .cafeR_titleBox {
-		height: 200px;
-		padding: 15px 10px;
-		position: relative;
-		color: #fff;
-	}
-	
-	.RC_sameList .cafeR_titleBox .cafeR_titleImg {
-		position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: 100%;
-	    height: 100%;
-	    z-index: -1;
-	    overflow: hidden;
-	}
-	
-	.RC_sameList .cafeR_titleBox .cafeR_titleImg .bg {
-		width: 100%;
-	    height: 100%;
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    background: rgba(0,0,0,0.4);
-	}
-	
-	.RC_sameList .cafeR_titleBox .cafeR_titleImg img {
-		width: 100%;
-    	min-height: 100%;
-	}
-	
-	.RC_sameList .cafeR_writer {
-		line-height: 50px;
-		float: left;
-	}
-		
-	.RC_sameList .cafeR_writer img {
-		width: 50px;
-		display: block;
-		float: left;
-		margin-right: 10px;
-	}
-	
-	.RC_sameList .cafeR_writer span {
-		display: block;
-		float: left;
-		color: #fff;
-		font-size: 18px;
-	}
-	
-	.RC_sameList .cafeR_recomCnt {
-		float: right;
-		width: 30px;
-		height: 30px;
-		border-radius: 40px;
-		margin: 10px;
-		text-align: center;
-		line-height: 30px;
-		font-weight: 700;
-	}
-	
-	.RC_sameList .cafeR_titleBox h2 {
-		position: absolute;
-	    top: 50%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    width: 85%;
-	    text-align: center;
-	}
-	
-	.RC_sameList .cafeR_date {
-		position: absolute;
-	    top: 85%;
-	    left: 50%;
-	    transform: translate(-50%, -50%);
-	    width: 85%;
-	    text-align: right;
-	    font-size: 20px;
-	}	
-	
-	.RC_sameList .cafeR_infoBox {
-		padding: 10px;
-		padding-bottom: 0;
-	}
-	
-	.RC_sameList .cafeR_infoTop {
-		padding-bottom: 10px;
-	}
-	
-	.RC_sameList .cafeR_infoTop h2{
-		text-align: right;
-		padding: 10px 0;
-	}
-	
-	.RC_sameList .cafeR_text {
-		overflow: hidden; 
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 4; /* 라인수 */
-		-webkit-box-orient: vertical;
-		word-wrap: break-word;
-	}
-	
-	.RC_sameList .cafeR_replyCdtWrap {
-		float: right;
-		padding: 10px;
-		padding-right: 0;
-	}
-	
-	.RC_sameList .cafeR_replyCdt .cafeR_btns {
-		border: 1px solid #545454;
-		padding: 5px 10px;
-		border-radius: 10px;
-		float: left;
-		margin-right: 10px;
-	}
-	
-	/************** 6. 리스트배너2 : 같은키워드   *************/
 	.RC_banner{
 		width: 918px;
 		height: 265px;
@@ -508,8 +374,6 @@
 		padding: 8px;
 	}
 </style>
-
-
 
 
 <!-- ------------------------------------------------------------ H T M L ------------------------------------------------------------ -->
@@ -938,37 +802,12 @@
 	 */
 	 
 	 
-	//콘텐츠영역 - 사진출력	
-	var filesCnt = $(".readImgName").length;
-	var arr = new Array(filesCnt);
-	for(var i = 0; i<filesCnt;i++){
-		arr[i] = $(".readImgName").eq(i).val();
-		//alert(arr[i]);
-		var start = arr[i].substring(0,12);
-		var end = arr[i].substring(14);
-		
-		//console.log(start+end);
-		fileName = start + end;
-		//alert(fileName);
-		
-		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
-	}
+	 
+	/****** 1. 제목 ******/
 	
-	//수정버튼
-	$("#RC_modifyBtn").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/modify?boardNo=${board.boardNo}";
-	})
-	//삭제버튼
-	$("#RC_deleteBtn").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
-	})	
-	//목록버튼
-	$("#RC_listBtn").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
-	})
+	// -- 지도(주소) -- //
 	
-
-	//지도 -- 주소, 카페이름 빼오기
+	// 주소, 카페이름 빼오기
 	var address = $("#RC_address").text();
 	//console.log("주소"+address);
 	var cafeName = $("#RC_cafeName").text();
@@ -1011,7 +850,48 @@
 		}
 	});
 	
-	 //원본파일 불러오기(선명한 파일)
+	
+	/****** 2. 내용 ******/
+	
+	// -- 내용:사진출력 -- //
+	
+	var filesCnt = $(".readImgName").length;
+	var arr = new Array(filesCnt);
+	for(var i = 0; i<filesCnt;i++){
+		arr[i] = $(".readImgName").eq(i).val();
+		//alert(arr[i]);
+		var start = arr[i].substring(0,12);
+		var end = arr[i].substring(14);
+		
+		//console.log(start+end);
+		fileName = start + end;
+		//alert(fileName);
+		
+		$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");			 	
+	}
+	
+	
+	/****** 3. 버튼영역 ******/
+	
+	// -- 수정버튼 -- //	
+	$("#RC_modifyBtn").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/modify?boardNo=${board.boardNo}";
+	})
+	// -- 삭제버튼 -- //	
+	$("#RC_deleteBtn").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})	
+	
+	// -- 목록버튼 -- //	
+	$("#RC_listBtn").click(function() {
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+	})
+	
+
+
+	/****** 5,6. 리스트배너 ******/	
+	
+	// -- 원본파일 불러오기(선명한파일) -- //
 	$(".thumbNailImg").each(function(i, obj) {
 		var file = $(this).attr("src");
 		//console.log("TEST========="+file);
@@ -1022,7 +902,7 @@
 		//console.log("TEST========="+fileName);
 	})
 	
-	/** 첫번째 배너 **/
+	// ---------------------- 첫번째 배너 -------------------------------- //
 	var sameCafeCnt = ${sameCafeCnt}; // 관련총 게시물 개수 ex.9
 	console.log(sameCafeCnt);
 	var pageNum1 = $(".pageNum1").text();
@@ -1065,7 +945,7 @@
 	})
 	
 	
-	/** 두번째 배너 **/
+	// ---------------------- 두번째 배너 -------------------------------- //
 	var sameKeywordCnt = ${sameKeywordCnt}; 
 	var pageNum2 = $(".pageNum2").text();
 	
@@ -1106,7 +986,7 @@
 		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
 	})
 	
-	//댓글
+	/****** 4. 댓글 ******/
 	var no = 1;
 	Handlebars.registerHelper ("dateHelper", function(value){
 		var d = new Date(value);
