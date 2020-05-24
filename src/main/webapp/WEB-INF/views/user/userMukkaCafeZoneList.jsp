@@ -367,26 +367,25 @@
 					<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
 				</div>
 				<div class="locationListCenter">
-					<div class="daeguIcon">${cafe.zoneNo.zoneName }</div>
+					<div class="daeguIcon keyword">${cafe.zoneNo.zoneName }</div>
 					<c:set var="theme" value="${cafe.themeNo.themeNo }"/>
 					<c:choose>
 						<c:when test="${theme == 1 }">
-							<div class="themeIcon" style="background-color: #b038fa;">#${cafe.themeNo.themeName }</div>
+							<div class="themeIcon keyword" style="background-color: #b038fa;">#${cafe.themeNo.themeName }</div>
 						</c:when>
 						<c:when test="${theme == 2 }">
-							<div class="themeIcon" style="background-color: #528236;">#${cafe.themeNo.themeName }</div>
+							<div class="themeIcon keyword" style="background-color: #528236;">#${cafe.themeNo.themeName }</div>
 						</c:when>
 						<c:when test="${theme == 3 }">
-							<div class="themeIcon" style="background-color: #96814c;">#${cafe.themeNo.themeName }</div>
+							<div class="themeIcon keyword" style="background-color: #96814c;">#${cafe.themeNo.themeName }</div>
 						</c:when>
 						<c:when test="${theme == 4 }">
-							<div class="themeIcon" style="background-color: #f2486f;">#${cafe.themeNo.themeName }</div>
+							<div class="themeIcon keyword" style="background-color: #f2486f;">#${cafe.themeNo.themeName }</div>
 						</c:when>
 						<c:when test="${theme == 5 }">
-							<div class="themeIcon" style="background-color: #FFB232;">#${cafe.themeNo.themeName }</div>
+							<div class="themeIcon keyword" style="background-color: #FFB232;">#${cafe.themeNo.themeName }</div>
 						</c:when>
 						<c:when test="${theme == 6 }">
-							<div class="themeIcon" style="background-color: #0170c2;">#${cafe.themeNo.themeName }</div>
 						</c:when>
 					</c:choose>
 					

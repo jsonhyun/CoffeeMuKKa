@@ -390,9 +390,9 @@ public class UserBoardController {
 		return "redirect:/user/community/cafeRecommend";
 	}
 	
-	//read -- 상세보기(해당번호글의 내용 + (same)해당카페에 관한 추천글&개수 + (same)해당지역+해당키워드글&개수)
+	//read -- 상세보기(해당번호글의 내용 + (same)해당카페에 관한 추천글&개수 + (same)해당지역+해당키워드글&개수) // 댓글페이징 // 조회수
 	@RequestMapping(value = "/community/cafeRecommend/read", method = RequestMethod.GET)
-	public String communityRecommendRead(int boardNo, Model model) throws Exception{
+	public String communityRecommendRead(int boardNo, SearchCriteria cri, Model model) throws Exception{
 		//해당번호글의 내용
 		BoardVO vo = service.recommendReadByNo(boardNo);
 		model.addAttribute("board", vo);
@@ -429,6 +429,8 @@ public class UserBoardController {
 		    klistImg.addAll(service.recommendboardImgList(sboardNo));
 		    }
 		model.addAttribute("klistImg", klistImg);
+		
+		model.addAttribute("cri", cri);
 
 
 		return "/user/userCommunityRecommendRead";

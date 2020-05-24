@@ -3,13 +3,12 @@
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
 <style>
+	/* read title 영역 */
 	.wrapStyle {
-		border-top: 1px solid #545454;
+	    border-top: 1px solid #545454;
 		border-bottom: 1px solid #545454;
 		padding: 15px;
-	}
-
-	/* title 영역 */
+	}	
 	.detaliCafeR_title_wrap .keyword {
 		font-size: 14px;
 	}
@@ -153,18 +152,31 @@
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(1) {
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyNick {
 		font-weight: 700;
 		margin-right: 30px;
 	}
 	
-	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:last-child {
-		position: absolute;
-		font-size: 14px;
-		top: 0;
-		right: 25px;
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox {
+		width: 480px;
 	}
 	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox > p {
+		-ms-word-break: break-all;
+		word-break: break-all;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li > p:nth-of-type(3) {
+		font-size: 14px;
+	}
+	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyBtn {
+		margin-right: 30px;
+	}
+	
+	.d_cafeR_reply_wrap .replyPage {
+		text-align: center;
+	}
 	/* 같은 카페 다른 추천글 영역 - 카페이름,개수 */
 	.recommentSameList {
 		margin-top: 70px;
@@ -373,17 +385,117 @@
 		width: 90%;
 		height: 45px;
 		padding: 8px;
-	}	
-</style>	
-	<div class="content subPageContent">
-		<!-- 서브페이지 콘텐츠 -->
-		<div class="contentArea">
-			<!-- 서브페이지 공통적인 타이틀 -->
+	}
+
+	/* 페이징 */
+	.pagination {
+		display: inline-block;
+	  	padding-left: 0;
+	  	margin: 20px 0;
+	  	border-radius: 4px;
+	}
+	.pagination > li {
+  		display: inline;
+	}
+	.pagination > li > a,
+	.pagination > li > span {
+		position: relative;
+		float: left;
+		padding: 6px 12px;
+		margin-left: -1px;
+		line-height: 1.42857143;
+		color: #303A50;
+		text-decoration: none;
+		background-color: #fff;
+		border: 1px solid #ddd;
+	}
+	.pagination > li:first-child > a,
+	.pagination > li:first-child > span {
+		margin-left: 0;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+	}
+	.pagination > li:last-child > a,
+	.pagination > li:last-child > span {
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+	.pagination > li > a:hover,
+	.pagination > li > span:hover,
+	.pagination > li > a:focus,
+	.pagination > li > span:focus {
+		color: #23527c;
+		background-color: #eee;
+		border-color: #ddd;
+	}
+	.pagination > .active > a,
+	.pagination > .active > span,
+	.pagination > .active > a:hover,
+	.pagination > .active > span:hover,
+	.pagination > .active > a:focus,
+	.pagination > .active > span:focus {
+		z-index: 2;
+		color: #fff;
+		cursor: default;
+		background-color: #303A50;
+		border-color: #303A50;
+	}
+	.pagination > .disabled > span,
+	.pagination > .disabled > span:hover,
+	.pagination > .disabled > span:focus,
+	.pagination > .disabled > a,
+	.pagination > .disabled > a:hover,
+	.pagination > .disabled > a:focus {
+		color: #777;
+		cursor: not-allowed;
+		background-color: #fff;
+		border-color: #ddd;
+	}
+	.pagination-lg > li > a,
+	.pagination-lg > li > span {
+		padding: 10px 16px;
+		font-size: 18px;
+	}
+	.pagination-lg > li:first-child > a,
+	.pagination-lg > li:first-child > span {
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+	.pagination-lg > li:last-child > a,
+	.pagination-lg > li:last-child > span {
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+	.pagination-sm > li > a,
+	.pagination-sm > li > span {
+		padding: 5px 10px;
+		font-size: 12px;
+	}
+	.pagination-sm > li:first-child > a,
+	.pagination-sm > li:first-child > span {
+       border-top-left-radius: 3px;
+	   border-bottom-left-radius: 3px;
+	}
+	.pagination-sm > li:last-child > a,
+	.pagination-sm > li:last-child > span {
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+	}
+		
+	/* 테마 아이콘 */
+	.detaliCafeR_title_wrap .themeKeySmall {
+		margin-right: 0;
+	}		
+</style>
+	<div class="content subPageContent"><!-- 서브페이지 콘텐츠(큰틀1) -->	
+		<div class="contentArea"><!-- 서브페이지 공통적인 타이틀(큰틀2) -->
+				
 			<h2 class="subPageTitle">
 				<span class="title">MuKKa人 추천 카페</span>
 				<span class="subTit grayB"> | 세 상 에! 이런 카페가 있는지 몰랐지?</span>
 			</h2>
-			<!-- title 영역 -->
+			
+			<!-- read title 영역 -->
 			<div class="detaliCafeR_title_wrap bgLightGray wrapStyle">
 				<div class="d_cafeR_titleTop clearfix">
 					<div class="zoneOrangeIconSmall keyword">${board.zoneNo.zoneName }</div>
@@ -445,10 +557,10 @@
 			<!-- 버튼 영역 -->
 			<div class="d_cafeR_btn_wrap clearfix bgLightGray wrapStyle">
 				<div class="d_cafeR_cnt d_cafeR_voteBtn clearfix f_left">
-					<a href="#" class="f_left">
-						<i class="far fa-thumbs-up orange voteIcon"></i>
+					<a href="#" id="voteIcon" class="f_left off grayB">
+						<i class="far fa-thumbs-up"></i>
 					</a>
-					<p class="orange f_left">좋아요 ${board.voteNumber }</p>
+					<p class="grayB f_left">좋아요 <span id="voteNum">${board.voteNumber }</span></p>
 				</div>
 				<div class="d_cafeR_cnt d_cafeR_replyBtn f_left">
 					<i class="far fa-comment-dots clearfix grayB f_left"></i>
@@ -462,7 +574,7 @@
 			</div>
 			
 			<!-- 댓글 영역 -->
-			<div class="d_cafeR_reply_wrap">
+<%-- 			<div class="d_cafeR_reply_wrap">
 				<div class="d_cafeR_reply_input replyStyle clearfix">
 					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
 					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
@@ -482,7 +594,27 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div> --%>
+			
+			<!-- 댓글 영역 -->
+			<div class="d_cafeR_reply_wrap">
+				<div class="d_cafeR_reply_input replyStyle clearfix">
+					<!-- 로그인 된 회원의 등급 이미지 : 로그인 기능 구현 후 수정해야함 -->
+					<img class="f_left" src="${pageContext.request.contextPath }/resources/images/Lv01_w1.png" alt="등급아이콘" />
+					<textarea id="newCmt" class="f_left" name="commentContent" cols="30" rows="10" placeholder="여러분의 소중한 댓글을 남겨주세요."></textarea>
+					<button id="d_cafeR_replyAddBtn" class="orangeBtn f_left">저장</button>
+				</div>
+				
+				<!-- 댓글 list -->
+				<div class="d_cafeR_replyList">
+					<ul class="replyListUl"></ul>
+					<div class="replyPage">
+						<ul id="pagination" class="pagination"></ul>
+					</div>
+				</div>
+			</div>			
+			
+			
 			
 		<!-- ****************************************************** 상세보기 리스트(1) : 같은카페 ****************************************************** -->
 		<!-- 같은 카페명의 다른 포스트 list -- "개수"  -->
@@ -544,26 +676,26 @@
 									</div>
 									<div class="RC_listTitle1">
 										<!-- 위치 -->
-										<div class="zoneBtn zoneOrangeIconSmall">${sameCafe.zoneNo.zoneName}</div>
+										<div class="zoneBtn zoneOrangeIconSmall keyword">${sameCafe.zoneNo.zoneName}</div>
 										<!-- 키워드 -->
 										<c:choose>
 											<c:when test="${sameCafe.themeNo.themeNo == 1}">
-												<div class="date themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+												<div class="date themeKeySmall keyword">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameCafe.themeNo.themeNo == 2}">
-												<div class="view themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+												<div class="view themeKeySmall keyword">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameCafe.themeNo.themeNo == 3}">
-												<div class="ame themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+												<div class="ame themeKeySmall keyword">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameCafe.themeNo.themeNo == 4}">
-												<div class="dessert themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+												<div class="dessert themeKeySmall keyword">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameCafe.themeNo.themeNo == 5}">
-												<div class="dog themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+												<div class="dog themeKeySmall keyword">#${sameCafe.themeNo.themeName}</div>
 											</c:when>
 											<c:otherwise>
-												<div class="work themeKeySmall">#${sameCafe.themeNo.themeName}</div>
+												<div class="work themeKeySmall keyword">#${sameCafe.themeNo.themeName}</div>
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -640,26 +772,26 @@
 									</div>
 									<div class="RC_listTitle1">
 										<!-- 위치 -->
-										<div class="zoneBtn zoneOrangeIconSmall">${sameKeyword.zoneNo.zoneName}</div>
+										<div class="zoneBtn zoneOrangeIconSmall keyword">${sameKeyword.zoneNo.zoneName}</div>
 										<!-- 키워드 -->
 										<c:choose>
 											<c:when test="${sameKeyword.themeNo.themeNo == 1}">
-												<div class="date themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+												<div class="date themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameKeyword.themeNo.themeNo == 2}">
-												<div class="view themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+												<div class="view themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameKeyword.themeNo.themeNo == 3}">
-												<div class="ame themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+												<div class="ame themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameKeyword.themeNo.themeNo == 4}">
-												<div class="dessert themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+												<div class="dessert themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
 											<c:when test="${sameKeyword.themeNo.themeNo == 5}">
-												<div class="dog themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+												<div class="dog themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
 											</c:when>
 											<c:otherwise>
-												<div class="work themeKeySmall">#${sameKeyword.themeNo.themeName}</div>
+												<div class="work themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -673,8 +805,7 @@
 					</ul>
 				</div>
 			</div>
-			</c:if>
-		
+			</c:if>		
 	</div><!-- class="contentArea" -->
 </div><!-- class="content subPageContent" -->	
 <!-- 서브페이지 콘텐츠 end -->
@@ -682,6 +813,33 @@
 </div>
 <!-- container end -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
+<!-- 댓글틀 -->
+<script id="template" type="text/x-handlebars-template">
+	{{#each list}}
+		<li class="replyStyle clearfix boardReply" data-cno="{{commentNo}}">
+			<img class="f_left" src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" alt="등급아이콘" />
+			<p class="f_left replyNick">{{userNo.nick}}</p>
+			<div class="f_left replyCmtBox"><p>{{commentContent}}</p></div>
+			<p class="regitDate orange f_right">{{dateHelper updateDate}}</p>
+			<!-- login 기능 구현 후 c:if 해야함 -->
+			<div class="replyBtn f_right">
+				<a class="replyModify blueBtn off" href="#" data-cmtNo="{{commentNo}}" data-cmtCnt="{{commentContent}}">수정</a>
+				<a class="replyRemove redBtn" href="#" data-cmtNo="{{commentNo}}">삭제</a>
+			</div>
+		</li>
+	{{/each}}
+</script>
+<script id="replyModifyBox" type="text/x-handlebars-template">
+	<div class="replyModify_box">
+		<img class="f_left" src="{{userIcon}}" alt="등급아이콘"/>
+		<p class="f_left replyNick">{{userNick}}</p>
+		<div class="f_left replyCmtBox"><textarea id="modifyText" style="width:95%; padding: 10px;">{{commentContent}}</textarea></div>
+		<div class="replyBtn f_right">
+			<button class="modifyCancel blueBtn off" type="button">수정 취소</button>
+			<button class="modifySumit redBtn" type="button" data-submitNo="{{commentNo}}">수정 저장</button>
+		</div>
+	</div>
+</script>
 <script>
 	//콘텐츠영역 - 사진출력	
 	var filesCnt = $(".readImgName").length;
@@ -850,6 +1008,206 @@
 		var marginLeft = index2 * 920; 
 		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
 	})
+	
+	//댓글
+	var no = 1;
+	Handlebars.registerHelper ("dateHelper", function(value){
+		var d = new Date(value);
+		var year = d.getFullYear();
+		var month = d.getMonth() + 1;
+		var day = d.getDate();
+		return year + "/" + month + "/" + day;
+	})
+	
+	/* 댓글 리스트 */
+	function getPageList( page ){
+		var boardNo = ${board.boardNo};
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/"+boardNo+"/"+page,
+			type:"get",
+			datatype:"json",
+			success:function(res){
+				//console.log(res);
+				$(".boardReply").remove();
+				var source = $("#template").html();
+				var func = Handlebars.compile(source);
+				$(".replyListUl").append(func(res));
+				
+				var startPage = res.pageMaker.startPage;
+				var endPage = res.pageMaker.endPage;
+				$("#pagination").empty();
+				for(var i = startPage; i <= endPage; i++){
+					var $li = $("<li>");
+					if(i == no) {
+						$li.addClass("active");
+					}
+					var $a = $("<a>").html(i);
+					$li.append($a);
+					$("#pagination").append($li);
+				}
+				
+				var totalCnt = res.pageMaker.totalCount;
+				$("#replyNum").text(totalCnt);
+			}
+		})
+	}
+	
+	/* 댓글 리스트 show */
+	getPageList(1);
+	
+	/* 댓글 페이징 */
+	$(document).on("click", "#pagination a", function(){
+		no = $(this).text();
+		getPageList(no);
+	})
+	
+	/* 댓글 추가 */
+	$("#d_cafeR_replyAddBtn").click(function(){
+		// login 기능 구현 후 수정해야함
+		var userNo = 3;
+		
+		var boardNo = ${board.boardNo};
+		var newCmt = $("#newCmt").val();
+		
+		var json = JSON.stringify({"boardNo":{"boardNo" : boardNo}, "userNo": {"userNo" : userNo}, "commentContent":newCmt});
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/",
+			type:"post",
+			headers: {"Content-Type":"application/json"},
+			data: json,
+			dataType : "text",
+			success: function(res){
+				console.log(res);
+				if(res == "SUCCESS"){
+					alert("댓글이 등록되었습니다.");
+					getPageList(no);
+					$("#newCmt").val("");
+				}
+			}
+		})		
+	})
+	
+	/* 댓글 수정 : 댓글 수정 박스 */
+	$(document).on("click",".replyModify", function(){
+		
+		var commentContent = $(this).attr("data-cmtcnt");
+		var commentNo = $(this).attr("data-cmtno");
+
+		var replyBox = $(this).closest("li");
+		var iconSrc = replyBox.find("img").attr("src");
+		var userNick = replyBox.find(".replyNick").text();
+		//var commentContent = replyBox.find(".replyCmtBox > p").text();
+		replyBox.children().hide();
+		
+		var source = $("#replyModifyBox").html();
+		var data = {userIcon:iconSrc, userNick:userNick , commentContent: commentContent, commentNo: commentNo};
+		var func = Handlebars.compile(source);
+		replyBox.append(func(data)); 
+		
+		return false;
+	})
+	
+	/* 댓글 수정 */
+	// 수정 취소
+	$(document).on("click", ".modifyCancel", function(){
+		var replyBox = $(this).closest("li");
+		replyBox.find(".replyModify_box").remove();
+		replyBox.children().show();
+	})
+	
+	// 수정 저장
+	$(document).on("click", ".modifySumit", function(){
+		var replyBox = $(this).closest("li");
+		var commentContent = replyBox.find("#modifyText").val();
+		var commentNo = $(this).attr("data-submitno");
+		//console.log(commentContent);
+		//console.log(commentNo);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/"+commentNo,
+			type:"put",
+			headers : {"Content-Type":"application/json"},
+			data: JSON.stringify({"commentContent" : commentContent}),
+			dataType : "text",
+			success:function(res){
+				//console.log(res);
+				if(res == "SUCCESS"){
+					alert("수정되었습니다.");
+					replyBox.find(".replyModify_box").remove();
+					getPageList(no);
+				}
+			}
+		})
+		
+	})
+	
+	/* 댓글 삭제 */
+	$(document).on("click", ".replyRemove", function(){
+		
+		var commentNo = $(this).attr("data-cmtno");
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/replies/"+commentNo,
+			type:"delete",
+			dataType : "text",
+			success:function(res){
+				console.log(res);
+				if(res == "SUCCESS"){
+					alert("삭제되었습나다.");						
+					getPageList(no);
+				}
+			}
+		})
+		
+		return false;
+	})
+	
+	
+	// 좋아요(추천) - login 기능 구현시 수정해야함
+	$("#voteIcon").click(function(e){
+		e.preventDefault();
+		var boardNo = ${board.boardNo};
+		
+		// login 기능 구현 후 수정해야함
+		var userNo = 3;
+		
+		if($(this).hasClass("off")){
+			$(this).empty();
+			$(this).append('<i class="fas fa-thumbs-up"></i>');
+			$(this).addClass("on").addClass('orange');
+			$(this).removeClass("off").removeClass("grayB");
+			$(this).next().addClass('orange').removeClass("grayB");
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/votePlus",
+				type:"get",
+				data:{"boardNo" : boardNo, "userNo" : userNo},
+				datatype:"json",
+				success:function(res){
+					console.log(res);
+					$("#voteNum").text(res);
+				}
+			})
+			
+		} else if($(this).hasClass("on")){
+			$(this).empty();
+			$(this).append('<i class="far fa-thumbs-up"></i>');
+			$(this).addClass("off").addClass('grayB');
+			$(this).removeClass("on").removeClass("orange");
+			$(this).next().addClass('grayB').removeClass("orange");
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/voteMinus",
+				type:"get",
+				data:{"boardNo" : boardNo, "userNo" : userNo},
+				datatype:"json",
+				success:function(res){
+					console.log(res);
+					$("#voteNum").text(res);
+				}
+			})
+		}		
+	}) 	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

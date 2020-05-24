@@ -158,8 +158,8 @@
 								</div>
 								<div class="rank_info">
 									<div class="rank_keyword">
-										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
-										<span class="ame themeKeySmall">#착한아메</span>
+										<span class="zoneBtn zoneOrangeIconSmall keyword">동성로</span>
+										<span class="ame themeKeySmall keyword">#착한아메</span>
 										<span class="rDate">2020-05-23</span>
 									</div>
 									<div class="rank_title">	

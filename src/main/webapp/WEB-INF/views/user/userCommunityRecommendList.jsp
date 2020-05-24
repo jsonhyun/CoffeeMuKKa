@@ -344,26 +344,26 @@
 								</div>
 								<div class="RC_listTitle1">
 									<!-- 위치 -->
-									<div class="zoneBtn zoneOrangeIconSmall">${board.zoneNo.zoneName}</div>
+									<div class="zoneBtn zoneOrangeIconSmall keyword">${board.zoneNo.zoneName}</div>
 									<!-- 키워드 -->
 									<c:choose>
 										<c:when test="${board.themeNo.themeNo == 1}">
-											<div class="date themeKeySmall">#${board.themeNo.themeName}</div>
+											<div class="date themeKeySmall keyword">#${board.themeNo.themeName}</div>
 										</c:when>
 										<c:when test="${board.themeNo.themeNo == 2}">
-											<div class="view themeKeySmall">#${board.themeNo.themeName}</div>
+											<div class="view themeKeySmall keyword">#${board.themeNo.themeName}</div>
 										</c:when>
 										<c:when test="${board.themeNo.themeNo == 3}">
-											<div class="ame themeKeySmall">#${board.themeNo.themeName}</div>
+											<div class="ame themeKeySmall keyword">#${board.themeNo.themeName}</div>
 										</c:when>
 										<c:when test="${board.themeNo.themeNo == 4}">
-											<div class="dessert themeKeySmall">#${board.themeNo.themeName}</div>
+											<div class="dessert themeKeySmall keyword">#${board.themeNo.themeName}</div>
 										</c:when>
 										<c:when test="${board.themeNo.themeNo == 5}">
-											<div class="dog themeKeySmall">#${board.themeNo.themeName}</div>
+											<div class="dog themeKeySmall keyword">#${board.themeNo.themeName}</div>
 										</c:when>																																								
 										<c:otherwise>
-											<div class="work themeKeySmall">#${board.themeNo.themeName}</div>		
+											<div class="work themeKeySmall keyword">#${board.themeNo.themeName}</div>		
 										</c:otherwise>
 									</c:choose>
 									</div>

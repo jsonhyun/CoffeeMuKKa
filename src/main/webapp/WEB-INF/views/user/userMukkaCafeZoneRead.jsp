@@ -404,49 +404,49 @@
 			<div class="modifyDate">Update <fmt:formatDate value="${cafe.updateDate }" pattern="yyyy-MM-dd"/> </div>
 			<img id="love" src="${pageContext.request.contextPath }/resources/images/key1.png">
 			<i class="far fa-thumbs-up" id="like"></i>
-			<div class="daeguIcon">${cafe.zoneNo.zoneName }</div>
+			<div class="daeguIcon keyword">${cafe.zoneNo.zoneName }</div>
 			
 			<!-- 카페 테마 아이콘 관련 코드 -->
 			<c:choose>
 				<c:when test="${cafe.themeNo.themeNo == 1 }">
-					<div class="themeIcon" style="background-color: #b038fa;">#데이트</div>
+					<div class="themeIcon keyword" style="background-color: #b038fa;">#데이트</div>
 				</c:when>
 				<c:when test="${cafe.themeNo.themeNo == 2 }">
-					<div class="themeIcon" style="background-color: #528236;">#뷰</div>
+					<div class="themeIcon keyword" style="background-color: #528236;">#뷰</div>
 				</c:when>
 				<c:when test="${cafe.themeNo.themeNo == 3 }">
-					<div class="themeIcon" style="background-color: #96814c;">#착한아메</div>
+					<div class="themeIcon keyword" style="background-color: #96814c;">#착한아메</div>
 				</c:when>
 				<c:when test="${cafe.themeNo.themeNo == 4 }">
-					<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
+					<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
 				</c:when>
 				<c:when test="${cafe.themeNo.themeNo == 5 }">
-					<div class="themeIcon" style="background-color: #FFB232;">#댕댕이</div>
+					<div class="themeIcon keyword" style="background-color: #FFB232;">#댕댕이</div>
 				</c:when>
 				<c:when test="${cafe.themeNo.themeNo == 6 }">
-					<div class="themeIcon" style="background-color: #0170c2;">#작업</div>
+					<div class="themeIcon keyword" style="background-color: #0170c2;">#작업</div>
 				</c:when>
 			</c:choose>
 			<c:forEach var="theme" items="${themeRank }">
 				<c:if test="${cafe.themeNo.themeNo != theme.themeNo}">
 					<c:choose>
 						<c:when test="${theme.themeNo == 1 }">
-							<div class="themeIcon" style="background-color: #b038fa;">#데이트</div>
+							<div class="themeIcon keyword" style="background-color: #b038fa;">#데이트</div>
 						</c:when>
 						<c:when test="${theme.themeNo == 2 }">
-							<div class="themeIcon" style="background-color: #528236;">#뷰</div>
+							<div class="themeIcon keyword" style="background-color: #528236;">#뷰</div>
 						</c:when>
 						<c:when test="${theme.themeNo == 3 }">
-							<div class="themeIcon" style="background-color: #96814c;">#착한아메</div>
+							<div class="themeIcon keyword" style="background-color: #96814c;">#착한아메</div>
 						</c:when>
 						<c:when test="${theme.themeNo == 4 }">
-							<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
+							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
 						</c:when>
 						<c:when test="${theme.themeNo == 5 }">
-							<div class="themeIcon" style="background-color: #FFB232;">#댕댕이</div>
+							<div class="themeIcon keyword" style="background-color: #FFB232;">#댕댕이</div>
 						</c:when>
 						<c:when test="${theme.themeNo == 6 }">
-							<div class="themeIcon" style="background-color: #0170c2;">#작업</div>
+							<div class="themeIcon keyword" style="background-color: #0170c2;">#작업</div>
 						</c:when>
 					</c:choose>
 				</c:if>
@@ -691,12 +691,12 @@
 					<div style="margin: 0px 30px;font-size: 18px;margin-bottom: 15px;">${cafe.cafeName }의 키워드를 선택해주세요! <span style="color: red;font-size: 14px;">중복 선택 불가</span></div>
 					<form class="w3-container" action="/action_page.php">
 						<div>
-							<div class="themeIcon" style="background-color: white;color: #b038fa;border: 2px solid;margin-left: 15px; cursor: pointer;">#데이트</div>
-							<div class="themeIcon" style="background-color: white;color: #528236;border: 2px solid;cursor: pointer;">#뷰</div>
-							<div class="themeIcon" style="background-color: white;color: #96814c;border: 2px solid;cursor: pointer;">#착한아메</div>
-							<div class="themeIcon" style="background-color: white;color: #f2486f;border: 2px solid;cursor: pointer;">#디저트</div>
-							<div class="themeIcon" style="background-color: white;color: #FFB232;border: 2px solid;cursor: pointer;">#댕댕이</div>
-							<div class="themeIcon" style="background-color: white;color: #0170c2;border: 2px solid;cursor: pointer;">#작업</div>
+							<div class="themeIcon keyword" style="background-color: white;color: #b038fa;border: 2px solid;margin-left: 15px; cursor: pointer;">#데이트</div>
+							<div class="themeIcon keyword" style="background-color: white;color: #528236;border: 2px solid;cursor: pointer;">#뷰</div>
+							<div class="themeIcon keyword" style="background-color: white;color: #96814c;border: 2px solid;cursor: pointer;">#착한아메</div>
+							<div class="themeIcon keyword" style="background-color: white;color: #f2486f;border: 2px solid;cursor: pointer;">#디저트</div>
+							<div class="themeIcon keyword" style="background-color: white;color: #FFB232;border: 2px solid;cursor: pointer;">#댕댕이</div>
+							<div class="themeIcon keyword" style="background-color: white;color: #0170c2;border: 2px solid;cursor: pointer;">#작업</div>
 						</div>
 						<div style="width: 540px;border-bottom: 1px solid #ccc;margin: 0px 15px 10px;height: 20px;"></div>
 						<div class="w3-section">
@@ -734,7 +734,7 @@
 						</td>
 						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
 						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
+							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
 						</td>
 						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
 						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
@@ -758,7 +758,7 @@
 						</td>
 						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
 						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
+							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
 						</td>
 						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
 						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
@@ -782,7 +782,7 @@
 						</td>
 						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
 						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
+							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
 						</td>
 						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
 						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
@@ -806,7 +806,7 @@
 						</td>
 						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
 						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
+							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
 						</td>
 						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
 						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
@@ -830,7 +830,7 @@
 						</td>
 						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
 						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon" style="background-color: #f2486f;">#디저트</div>
+							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
 						</td>
 						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
 						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
