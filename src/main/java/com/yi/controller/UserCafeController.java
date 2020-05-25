@@ -103,4 +103,43 @@ public class UserCafeController {
 		return "/user/userMukkaCafeZoneRead";
 	}
 	
+	
+	// 경진 추가 --------------------------------------------------------------------------------------------------------------
+	// 메인 메뉴 검색
+	@RequestMapping(value = "/mukkaCafe/search", method = RequestMethod.GET)
+	public String cafeMainSearch(int zoneNo, String themeNos, SearchCriteria cri, Model model) throws Exception {
+		
+		List<CafeVO> list = service.cafeMainSearch(zoneNo, themeNos, cri);
+		List<ImageVO> imgList = new ArrayList<ImageVO>();
+		List<Integer> starpointList = new ArrayList<Integer>();
+		List<Integer> reviewNum = new ArrayList<Integer>();
+		
+		for(int i=0; i<list.size(); i++) {
+			int cafeNo = list.get(i).getCafeNo();
+			imgList.add(service.imgSelect(cafeNo));
+			starpointList.add(service.starpointSelect(cafeNo));
+			reviewNum.add(service.countReviewNum(cafeNo));
+		}
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.cafeMainSearchTotalCnt(zoneNo, themeNos, cri));
+		
+		model.addAttribute("cri", cri);
+		model.addAttribute("list", list);
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("starpoint", starpointList);
+		model.addAttribute("reviewNum", reviewNum);
+		model.addAttribute("zoneNo", zoneNo);
+		model.addAttribute("themeNos", themeNos);
+		
+		System.out.println("cri--------------------------------"+cri);
+		System.out.println("pageMaker ---------------------------" + pageMaker.getTotalCount());
+		return "/user/userMukkaCafeSearchList";
+	}
+	
+	
+	
+	
 }

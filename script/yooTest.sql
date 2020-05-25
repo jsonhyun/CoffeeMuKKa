@@ -303,6 +303,14 @@ select * from cafe where theme_no = 1 or theme_no = 3;
 select c.cafe_no, c.cafe_name, z.zone_no , z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, 
 		c.oneline, c.address, c.detail_address 
 	from cafe c left join theme t on c.theme_no = t.theme_no left join `zone` z on c.zone_no = z.zone_no
-	where c.zone_no = 10 and (c.theme_no = '3' or c.theme_no = '4');
+	where c.zone_no = 3 and (c.theme_no in (2));
 
-select count(cafe_no) from cafe c where c.zone_no = 10 and (c.theme_no = 3 or c.theme_no = 4);
+select c.cafe_no, c.cafe_name, z.zone_no , z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, 
+		c.oneline, c.address, c.detail_address 
+	from cafe c left join theme t on c.theme_no = t.theme_no left join `zone` z on c.zone_no = z.zone_no
+	where (c.theme_no in (1));
+
+select count(cafe_no) from cafe c where (c.theme_no in (1, 3)) and theme_no = 1;
+select count(cafe_no) from cafe c left join theme t on c.theme_no = t.theme_no where (c.theme_no in (1, 3)) and t.theme_no = 1;
+select count(cafe_no) from cafe c WHERE (c.theme_no in ( '1' , '3' ) ) AND t.theme_no = '3';
+select * from `zone`;

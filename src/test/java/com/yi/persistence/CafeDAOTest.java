@@ -1,8 +1,5 @@
 package com.yi.persistence;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +33,13 @@ public class CafeDAOTest {
 	
 	@Test
 	public void testCafeMainSearch() throws Exception {
-		Criteria cri = new Criteria();
-		cri.setPage(1);
-		cri.setPerPageNum(20);
-		String themeNos = "3,4,";
-		dao.cafeMainSearch(10, themeNos, cri);
+		SearchCriteria cri = new SearchCriteria();
+		cri.setSearchTheme("3");
+		String themeNos = "1,3,";
+		
+		System.out.println("SearchCriteria -------------------------" + cri);
+		dao.cafeMainSearch(0, themeNos, cri);
+		dao.cafeMainSearchTotalCnt(0, themeNos, cri);
 	}
 
 }

@@ -126,6 +126,24 @@
 		}, function(){
 			$(this).find(".subMenuUl").stop().slideUp();
 		})
+		
+		
+		/* 메인 카페 검색 */
+		//http://localhost:8080/coffeemukka/user/mukkaCafe/search?page=1&zoneNo=0&themeNos=1,3,&searchTheme=1
+		$("#sendBtn").click(function(){
+			var zoneNo = $("#zone").val() == "" ? 0 : $("#zone").val();
+			var themeNos = $("input[name='themeName']").val();
+			
+			if(zoneNo == 0 && themeNos == "") {
+				alert("카페 검색 조건은 선택해주세요.");
+				return false;
+			}
+			
+			location.href = "${pageContext.request.contextPath}/user/mukkaCafe/search?zoneNo="+zoneNo+"&themeNos="+themeNos+"&searchTheme=";
+			
+			return false;
+		})
+		
 	}) 
 </script>
 </head>
