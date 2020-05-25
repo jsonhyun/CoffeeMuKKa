@@ -201,7 +201,7 @@
 							</a>
 							<ul class="subMenuUl">
 								<li><a href="${pageContext.request.contextPath}/user/community">MuKKa의 전당</a></li>
-								<li><a href="${pageContext.request.contextPath}/user/community/cafeReview">생생 카체 탐방기</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/community/cafeReview">생생 카페 탐방기</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/community/cafeRecommend">MuKKa人 추천 카페</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/community/#">사장님 고민 나눔</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/community/#">자유게시판</a></li>

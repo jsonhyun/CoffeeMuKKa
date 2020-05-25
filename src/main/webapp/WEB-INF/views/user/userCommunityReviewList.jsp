@@ -424,14 +424,14 @@
 									<div class="cafeR_infoTop clearfix">
 										<div class="zoneBtn zoneOrangeIconSmall">${item.cafeNo.zoneNo.zoneName }</div>
 										<div class="themeKeySmall themeName">#${item.cafeNo.themeNo.themeName }</div>
-										<!-- 테마 순위 리스트 -->
+										<%-- <!-- 테마 순위 리스트(순위테마 전체를 검색할 수 있을때 풀기) -->
 										<c:forEach var="theme" items="${themeMap}" varStatus="status">
 											<c:if test="${item.cafeNo.cafeNo == theme.key }">
 												<c:forEach var="themeItem" items="${theme.value }">
 													<div class="themeKeySmall themeName">#${themeItem.themeName }</div>
 												</c:forEach>
 											</c:if>
-										</c:forEach>
+										</c:forEach> --%>
 										<h2>${item.cafeNo.cafeName }</h2>
 									</div>
 									<%-- <p class="cafeR_text">

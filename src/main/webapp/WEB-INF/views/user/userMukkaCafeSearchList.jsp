@@ -273,6 +273,15 @@
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
 }
+
+/* 검색 결과 없을 때 css */
+.listNone {
+	padding: 20px;
+	text-align: center;
+	border-top: 1px solid #545454;
+	border-bottom: 1px solid #545454;
+}
+
 </style>
 
 <!-- bar-rating -->
@@ -289,41 +298,38 @@
 				})
 		</c:forEach>
 		
-		$("#btnSearch").click(function () {
-			var searchZone = $("#searchZone").val();
-			var searchTheme = $("#searchTheme").val();
-			var searchType = $("#searchType").val();
-			var keyword = $("#keyword").val();
-			location.href = "zone?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
-		});
-		
 	});
 	
 	// 검색 결과 타이틀에 검색한 정보(지역, 테마) text
 	$(function(){
 		var themeNos = "${themeNos}".split(",");
-		console.log(themeNos);
 		var themeNames = "";
 		
 		for(var i=0; i<themeNos.length; i++){
 			switch (themeNos[i]) {
 			case "1":
 				themeNames += "데이트.";
+				$("#searchTheme").append("<option value='1' ${cri.searchTheme=='1'? 'selected':''}>#데이트</option>");
 				break;
 			case "2":
 				themeNames += "뷰.";
+				$("#searchTheme").append("<option value='2' ${cri.searchTheme=='2'? 'selected':''}>#뷰</option>");
 				break;
 			case "3":
 				themeNames += "착한아메.";
+				$("#searchTheme").append("<option value='3' ${cri.searchTheme=='3'? 'selected':''}>#착한아메</option>");
 				break;
 			case "4":
 				themeNames += "디저트.";
+				$("#searchTheme").append("<option value='4' ${cri.searchTheme=='4'? 'selected':''}>#디저트</option>");
 				break;
 			case "5":
 				themeNames += "댕댕이.";
+				$("#searchTheme").append("<option value='5' ${cri.searchTheme=='5'? 'selected':''}>#댕댕이</option>");
 				break;
 			case "6":
 				themeNames += "작업.";
+				$("#searchTheme").append("<option value='6' ${cri.searchTheme=='6'? 'selected':''}>#작업</option>");
 				break;
 			default:
 				break;
@@ -331,6 +337,18 @@
 		}
 		
 		$(".themeNames").text(themeNames);
+		
+		// 검색 테마 select change
+		$("#searchTheme").change(function(){
+			var searchTheme = $("#searchTheme").val();
+			var zoneNo = ${zoneNo};
+			var themeNo = "${themeNos}";
+			if(searchTheme != 'all') {				
+				location.href = "${pageContext.request.contextPath}/user/mukkaCafe/search?zoneNo="+${zoneNo}+"&themeNos="+themeNo+"&searchTheme="+searchTheme;
+			} else if(searchTheme == 'all'){
+				location.href = "${pageContext.request.contextPath}/user/mukkaCafe/search?zoneNo="+${zoneNo}+"&themeNos="+themeNo+"&searchTheme=";				
+			}
+		})
 	})
 </script>
 
@@ -356,112 +374,105 @@
 			<div class="cafeLocationSearch clearfix">
 				<div class="selectLeft">
 					<select name="searchTheme" id="searchTheme">
-						<option value="" ${cri.searchTheme=='' ? 'selected':'' }>검색 테마</option>
-						<%-- <option value="1" ${cri.searchTheme=='1'? 'selected':'' }>#데이트</option>
-						<option value="2" ${cri.searchTheme=='2'? 'selected':'' }>#뷰</option>
-						<option value="3" ${cri.searchTheme=='3'? 'selected':'' }>#착한아메</option>
-						<option value="4" ${cri.searchTheme=='4'? 'selected':'' }>#디저트</option>
-						<option value="5" ${cri.searchTheme=='5'? 'selected':'' }>#댕댕이</option>
-						<option value="6" ${cri.searchTheme=='6'? 'selected':'' }>#작업</option> --%>
+						<option value="all" ${cri.searchTheme=='' ? 'selected':'' }>검색 테마</option>
 					</select>
-				</div>
-				<div class="selectRight">
-					<select name="searchType" id="searchType">
-						<option value="n" ${cri.searchType==null? 'selected':'' }>----</option>
-						<option value="cafeName" ${cri.searchType=='cafeName'? 'selected':'' }>카페명</option>
-					</select>
-					<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
-					<input type="submit" id="btnSearch" value="검색" class="navyBtn"/>
 				</div>
 			</div>
 			<!-- 위치별 카페 리스트 -->
-			<c:forEach var="cafe" items="${list }" varStatus="i">
-			<div class="locationCafe">
-				<div class="locationListLeft">
-					<c:forEach var="img" items="${imgList }">
-						<c:if test="${img.cafeNo.cafeNo == cafe.cafeNo }">
-							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${img.imageName}">
-						</c:if>
-					</c:forEach>
-					<div class="blackOpacity"></div>
-					<div class="star">
-						<select class="starPoint"> 
-							<option value="1">1</option> 
-							<option value="2">2</option> 
-							<option value="3">3</option> 
-							<option value="4">4</option> 
-							<option value="5">5</option> 
-						</select>
+			<c:if test="${list != null }">
+				<c:forEach var="cafe" items="${list }" varStatus="i">
+				<div class="locationCafe">
+					<div class="locationListLeft">
+						<c:forEach var="img" items="${imgList }">
+							<c:if test="${img.cafeNo.cafeNo == cafe.cafeNo }">
+								<img src="${pageContext.request.contextPath }/resources/images/sumnail/${img.imageName}">
+							</c:if>
+						</c:forEach>
+						<div class="blackOpacity"></div>
+						<div class="star">
+							<select class="starPoint"> 
+								<option value="1">1</option> 
+								<option value="2">2</option> 
+								<option value="3">3</option> 
+								<option value="4">4</option> 
+								<option value="5">5</option> 
+							</select>
+						</div>
+						<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
 					</div>
-					<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
+					<div class="locationListCenter">
+						<div class="daeguIcon keyword">${cafe.zoneNo.zoneName }</div>
+						<c:set var="theme" value="${cafe.themeNo.themeNo }"/>
+						<c:choose>
+							<c:when test="${theme == 1 }">
+								<div class="themeIcon keyword" style="background-color: #b038fa;">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 2 }">
+								<div class="themeIcon keyword" style="background-color: #528236;">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 3 }">
+								<div class="themeIcon keyword" style="background-color: #96814c;">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 4 }">
+								<div class="themeIcon keyword" style="background-color: #f2486f;">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 5 }">
+								<div class="themeIcon keyword" style="background-color: #FFB232;">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 6 }">
+							</c:when>
+						</c:choose>
+						
+						<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
+						<p class="oneline">'${cafe.oneline }'</p>
+						<div>
+							<div class="visit">
+								<div class="visitAndLocation">
+									<img src="${pageContext.request.contextPath }/resources/images/menu2_1.png">
+								</div>
+								<div>
+									<span>${reviewNum[i.index]}</span>개의 탐방기
+								</div>
+							</div>
+							<div class="location">
+								<div class="visitAndLocation">
+									<img src="${pageContext.request.contextPath }/resources/images/menu5.png">
+								</div>
+								<div>
+									<p>${cafe.address } ${cafe.detailAddress }</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="locationListRight">
+						<div>
+							<p class="cafeRegiDate">
+								<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${cafe.registrationDate}"/>						
+							</p>
+							<img class="cafeZzim" src="${pageContext.request.contextPath }/resources/images/key1.png">
+						</div>
+						<div>
+							<div class="replyAndView">
+								<img src="${pageContext.request.contextPath }/resources/images/reply.png">
+								<span>20</span>
+							</div>
+							<div class="replyAndView">
+								<img src="${pageContext.request.contextPath }/resources/images/view.png">
+								<span>${cafe.viewNumber }</span>
+							</div>
+						</div>
+						<div class="more">
+							<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
+						</div>
+					</div>
 				</div>
-				<div class="locationListCenter">
-					<div class="daeguIcon keyword">${cafe.zoneNo.zoneName }</div>
-					<c:set var="theme" value="${cafe.themeNo.themeNo }"/>
-					<c:choose>
-						<c:when test="${theme == 1 }">
-							<div class="themeIcon keyword" style="background-color: #b038fa;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 2 }">
-							<div class="themeIcon keyword" style="background-color: #528236;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 3 }">
-							<div class="themeIcon keyword" style="background-color: #96814c;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 4 }">
-							<div class="themeIcon keyword" style="background-color: #f2486f;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 5 }">
-							<div class="themeIcon keyword" style="background-color: #FFB232;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 6 }">
-						</c:when>
-					</c:choose>
-					
-					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
-					<p class="oneline">'${cafe.oneline }'</p>
-					<div>
-						<div class="visit">
-							<div class="visitAndLocation">
-								<img src="${pageContext.request.contextPath }/resources/images/menu2_1.png">
-							</div>
-							<div>
-								<span>${reviewNum[i.index]}</span>개의 탐방기
-							</div>
-						</div>
-						<div class="location">
-							<div class="visitAndLocation">
-								<img src="${pageContext.request.contextPath }/resources/images/menu5.png">
-							</div>
-							<div>
-								<p>${cafe.address } ${cafe.detailAddress }</p>
-							</div>
-						</div>
-					</div>
+				</c:forEach>
+			</c:if>
+			<c:if test="${list[0] == null}">
+				<div class="listNone">
+					<h3>검색 결과가 없습니다.</h3>
 				</div>
-				<div class="locationListRight">
-					<div>
-						<p class="cafeRegiDate">
-							<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${cafe.registrationDate}"/>						
-						</p>
-						<img class="cafeZzim" src="${pageContext.request.contextPath }/resources/images/key1.png">
-					</div>
-					<div>
-						<div class="replyAndView">
-							<img src="${pageContext.request.contextPath }/resources/images/reply.png">
-							<span>20</span>
-						</div>
-						<div class="replyAndView">
-							<img src="${pageContext.request.contextPath }/resources/images/view.png">
-							<span>${cafe.viewNumber }</span>
-						</div>
-					</div>
-					<div class="more">
-						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
-					</div>
-				</div>
-			</div>
-			</c:forEach>
+			</c:if>
 			
 			<!-- 페이징 처리 부분 -->
 			<div style="text-align: center;">
