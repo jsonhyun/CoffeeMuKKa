@@ -297,6 +297,10 @@
 			location.href = "zone?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
 		});
 		
+	});
+	
+	// 검색 결과 타이틀에 검색한 정보(지역, 테마) text
+	$(function(){
 		var themeNos = "${themeNos}".split(",");
 		console.log(themeNos);
 		var themeNames = "";
@@ -327,8 +331,7 @@
 		}
 		
 		$(".themeNames").text(themeNames);
-		
-	});
+	})
 </script>
 
 	<div class="content subPageContent">
