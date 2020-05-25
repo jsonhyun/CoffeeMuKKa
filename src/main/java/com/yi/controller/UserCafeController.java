@@ -28,6 +28,7 @@ public class UserCafeController {
 	CafeService service;
 	ThemeService themeService;
 	
+	
 	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)
 	public String cafeZoneList(SearchCriteria cri, Model model) throws Exception {
 		
@@ -124,7 +125,7 @@ public class UserCafeController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.cafeMainSearchTotalCnt(zoneNo, themeNos, cri));
-		
+				
 		model.addAttribute("cri", cri);
 		model.addAttribute("list", list);
 		model.addAttribute("imgList", imgList);
@@ -134,8 +135,6 @@ public class UserCafeController {
 		model.addAttribute("zoneNo", zoneNo);
 		model.addAttribute("themeNos", themeNos);
 		
-		System.out.println("cri--------------------------------"+cri);
-		System.out.println("pageMaker ---------------------------" + pageMaker.getTotalCount());
 		return "/user/userMukkaCafeSearchList";
 	}
 	

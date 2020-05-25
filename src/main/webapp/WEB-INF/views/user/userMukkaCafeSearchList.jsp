@@ -295,7 +295,39 @@
 			var searchType = $("#searchType").val();
 			var keyword = $("#keyword").val();
 			location.href = "zone?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
-		})
+		});
+		
+		var themeNos = "${themeNos}".split(",");
+		console.log(themeNos);
+		var themeNames = "";
+		
+		for(var i=0; i<themeNos.length; i++){
+			switch (themeNos[i]) {
+			case "1":
+				themeNames += "데이트.";
+				break;
+			case "2":
+				themeNames += "뷰.";
+				break;
+			case "3":
+				themeNames += "착한아메.";
+				break;
+			case "4":
+				themeNames += "디저트.";
+				break;
+			case "5":
+				themeNames += "댕댕이.";
+				break;
+			case "6":
+				themeNames += "작업.";
+				break;
+			default:
+				break;
+			}
+		}
+		
+		$(".themeNames").text(themeNames);
+		
 	})
 </script>
 
@@ -303,8 +335,16 @@
 		<!-- 서브페이지 콘텐츠 -->
 		<div class="contentArea">
 			<h2 class="subPageTitle">
-				<span class="title">위치별</span>
-				<span class="subTit grayB"> | 위치 중심의 카페정보</span>
+				<span class="title">카페 검색 결과 </span>
+				<span class="subTit grayB"> 
+					> 
+					<c:if test="${zoneNo != 0 }">
+						${zoneNo == list[0].zoneNo.zoneNo ? list[0].zoneNo.zoneName : '' } |
+					</c:if>
+					<c:if test="${themeNos != '' }">
+						<span class="themeNames"></span>
+					</c:if>
+				</span>
 			</h2>
 			
 			<!-- 서브콘텐츠 시작 -->
@@ -312,28 +352,14 @@
 			<!-- 위치, 테마 선택 및 검색란 -->
 			<div class="cafeLocationSearch clearfix">
 				<div class="selectLeft">
-					<select name="searchZone" id="searchZone">
-						<option value="all" ${cri.searchZone=='all'? 'selected':'' }>전체(위치별)</option>
-						<option value="1" ${cri.searchZone=='1'? 'selected':'' }>동성로</option>
-						<option value="2" ${cri.searchZone=='2'? 'selected':'' }>수성못 들안길</option>
-						<option value="3" ${cri.searchZone=='3'? 'selected':'' }>두류공원 이월드</option>
-						<option value="4" ${cri.searchZone=='4'? 'selected':'' }>달서구</option>
-						<option value="5" ${cri.searchZone=='5'? 'selected':'' }>수성구</option>
-						<option value="6" ${cri.searchZone=='6'? 'selected':'' }>서구-북구</option>
-						<option value="7" ${cri.searchZone=='7'? 'selected':'' }>중구</option>
-						<option value="8" ${cri.searchZone=='8'? 'selected':'' }>동구</option>
-						<option value="9" ${cri.searchZone=='9'? 'selected':'' }>남구</option>
-						<option value="10" ${cri.searchZone=='10'? 'selected':'' }>달성군</option>
-						<option value="11" ${cri.searchZone=='11'? 'selected':'' }>팔공산</option>
-					</select>
 					<select name="searchTheme" id="searchTheme">
-						<option value="all" ${cri.searchTheme=='all'? 'selected':'' }>전체(테마별)</option>
-						<option value="1" ${cri.searchTheme=='1'? 'selected':'' }>#데이트</option>
+						<option value="" ${cri.searchTheme=='' ? 'selected':'' }>검색 테마</option>
+						<%-- <option value="1" ${cri.searchTheme=='1'? 'selected':'' }>#데이트</option>
 						<option value="2" ${cri.searchTheme=='2'? 'selected':'' }>#뷰</option>
 						<option value="3" ${cri.searchTheme=='3'? 'selected':'' }>#착한아메</option>
 						<option value="4" ${cri.searchTheme=='4'? 'selected':'' }>#디저트</option>
 						<option value="5" ${cri.searchTheme=='5'? 'selected':'' }>#댕댕이</option>
-						<option value="6" ${cri.searchTheme=='6'? 'selected':'' }>#작업</option>
+						<option value="6" ${cri.searchTheme=='6'? 'selected':'' }>#작업</option> --%>
 					</select>
 				</div>
 				<div class="selectRight">
