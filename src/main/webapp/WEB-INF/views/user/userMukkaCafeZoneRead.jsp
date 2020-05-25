@@ -499,7 +499,7 @@
 				$(this).css("color", "white");
 				for(var i=0;i<6;i++){
 					if($('.changeColor').eq(i).css("color")=="rgb(255, 255, 255)"){
-						$('#hiddenTheme').val(i);
+						$('#hiddenTheme').val(i+1);
 					}
 				}
 				
@@ -508,34 +508,6 @@
 				$(this).css("color", backgroundColor);
 				$(this).css("border-color",backgroundColor);
 			}
-		})
-		
-		$('#btnStarpointAdd').click(function() {
-			var cafeNo = ${cafe.cafeNo};
-			var themeNo = $('#hiddenTheme').val();
-			var starPoint = $('#hiddenStarpoint').val();
-			var starPointComment = $('#comment').val();
-			console.log(cafeNo);
-			console.log(themeNo);
-			console.log(starPoint);
-			console.log(starPointComment);
-			
-			/* var json = JSON.stringify({"cafeNo":cafeNo, "themeNo":themeNo, "starPoint":starPoint, "starPointComment":starPointComment});
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/replies/",
-				type:"post",
-				headers:{"Content-Type":"application/json"},
-				data:json,
-				dataType:"text",
-				success:function(res){
-					if(res=="SUCCESS"){
-						alert("댓글이 틍록되었습니다.");
-						$("#newReplyText").val("");
-						getPageList(1);
-					}
-				}
-			}) */
 		})
 	})
 </script>
@@ -780,7 +752,7 @@
 			</div>
 			
 			<!-- 카페 편의정보 관련 -->
-			<div class="cafeInfo" id="cafeInfo4"">
+			<div class="cafeInfo" id="cafeInfo4">
 				<span style="font-size: 20px;font-weight: bold;">편의 정보</span><a class="upAndDown" href="#"></a>
 			</div>
 			<div class="closeInfo" id="cafeDetail">
@@ -816,16 +788,16 @@
 				<div id="commentTitle">
 					<span style="color: #2e75b6;">${cafe.cafeName }</span>에 대한 <span id="spointNum" style="color: #FF5722;"></span>개의 이야기가 있어요!
 				</div>
-				<button id="commentRegiBtn" onclick="document.getElementById('id01').style.display='block'">내 <span style="color: red; font-weight: bold; ">평점</span> 등록</button>
+				<button id="commentRegiBtn" onclick="document.getElementById('starPointModal').style.display='block'">내 <span style="color: red; font-weight: bold; ">평점</span> 등록</button>
 			</div>
 
-			<div id="id01" class="w3-modal">
+			<div id="starPointModal" class="w3-modal">
 				<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
 					<div>
 						<div id="commentBoxHeader">내 평점 등록</div>
 					</div>
 					<div class="w3-center"><br>
-						<span style="color: white;" onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+						<span style="color: white;" onclick="document.getElementById('starPointModal').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
 						<div style="font-size: 25px;font-weight: bold;margin-bottom: 10px;">${cafe.cafeName }</div>
 						<select id="starPointCheck"> 
 							<option value="1">1</option> 
@@ -853,7 +825,7 @@
 						<div class="w3-section">
 							<textarea id="comment" style="margin: 0px 0px 0px 15px;width: 540px;height: 210px;"placeholder=" ${cafe.cafeName }에서 즐거우셨나요? 어떤 점이 좋았는지 이야기해주세요."></textarea>
 							<div style="text-align: center;">
-								<button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-text-grey w3-border"style="width: 100px;margin-right: 10px;">취소</button>
+								<button onclick="document.getElementById('starPointModal').style.display='none'" type="button" class="w3-button w3-text-grey w3-border"style="width: 100px;margin-right: 10px;">취소</button>
 								<button class="w3-button w3-red w3-section w3-padding" id="btnStarpointAdd" style="width: 100px;">등록</button>
 							</div>
 						</div>
@@ -891,11 +863,12 @@
 				</select>
 			</div>
 		</td>
-		<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">{{starPoint}}</td>
+		<td style="font-weight: bold;width: 25px;text-align: center;border-bottom: 1px solid #dadada;">{{starPoint}}</td>
 		<td style="width: 115px;border-bottom: 1px solid #dadada;">
 			<div class="themeIcon keyword spThemeIcon" style="background-color: #f2486f;"><span>#</span>{{themeNo.themeName}}</div>
 		</td>
 		<td style="border-bottom: 1px solid #dadada;">{{starPointComment}}</td>
+		
 		<td style="width: 140px;border-bottom: 1px solid #dadada;">| {{dateHelper registrationDate}}</td>
 		<td style="border-bottom: 1px solid #dadada;text-align: left;">
 			<img src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
@@ -926,15 +899,12 @@
 			type:"get",
 			datatype:"json",
 			success:function(res){
-				console.log(res);
 				var starpoint = new Array();
 				var backColor = new Array();
 				for(var i=0;i<res.list.length;i++){
 					starpoint[i] = res.list[i].starPoint;
 					backColor[i] = res.list[i].themeNo.themeNo;
 				}
-				console.log(starpoint);
-				console.log(backColor);
 				
 				$(".spointBoard").remove();
 				var source = $("#template").html();
@@ -951,7 +921,6 @@
 				
 				for(var i=0;i<res.list.length;i++){
 					var colorNum = backColor[i];
-					console.log(colorNum);
 					switch(colorNum){
 					case 1:
 						$('.spThemeIcon').eq(i).css("background-color","#b038fa");
@@ -1003,6 +972,42 @@
 	$(document).on("click", "#pagination a", function(){
 		no = $(this).text();
 		getPageList(no);
+	})
+	
+	/* 댓글 추가 */
+	$("#btnStarpointAdd").click(function(){
+		// login 기능 구현 후 수정해야함
+		var userNo = 1;
+		var cafeNo = ${cafe.cafeNo};
+		var themeNo = $('#hiddenTheme').val();
+		var starPoint = $('#hiddenStarpoint').val();
+		var starPointComment = $('#comment').val();
+		
+		if(starPointComment == "") {
+			alert("코멘트를 남겨주세요.");
+			return false;
+		}
+		
+		var json = JSON.stringify({"cafeNo":{"cafeNo":cafeNo}, "themeNo":{"themeNo":themeNo}, "userNo": {"userNo" : userNo}, "starPoint":starPoint, "starPointComment":starPointComment});
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/starpoint/",
+			type:"post",
+			headers: {"Content-Type":"application/json"},
+			data: json,
+			dataType : "text",
+			success: function(res){
+				if(res == "SUCCESS"){
+					alert("댓글이 등록되었습니다.");
+					getPageList(no);
+					$("#starPointModal").css("display", "none");
+					$('#comment').val("");
+					var color = $('.changeColor').eq(themeNo-1).css("background-color");
+					$('.changeColor').eq(themeNo-1).css("background-color","white");
+					$('.changeColor').eq(themeNo-1).css("border-color",color);
+					$('.changeColor').eq(themeNo-1).css("color",color);
+				}
+			}
+		})		
 	})
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>

@@ -73,19 +73,19 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	@Override
 	public void insertStarPoint(StarpointVO vo) throws Exception {
-		// TODO Auto-generated method stub
+		sqlsession.insert(namesapces+"insertStarPoint", vo);
 		
 	}
 
 	@Override
 	public void updateStarPoint(StarpointVO vo) throws Exception {
-		// TODO Auto-generated method stub
+		sqlsession.update(namesapces+"updateStarPoint", vo);
 		
 	}
 
 	@Override
 	public void deleteStarPoint(int starPointNo) throws Exception {
-		// TODO Auto-generated method stub
+		sqlsession.delete(namesapces+"deleteStarPoint", starPointNo);
 		
 	}
 

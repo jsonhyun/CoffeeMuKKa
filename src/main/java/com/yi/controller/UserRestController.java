@@ -203,4 +203,19 @@ public class UserRestController {
 		
 		return entity;
 	}
+	
+	@RequestMapping(value = "/starpoint/", method = RequestMethod.POST)
+	public ResponseEntity<String> starPointRegister(@RequestBody StarpointVO vo){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			replyService.insertStarPoint(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 }

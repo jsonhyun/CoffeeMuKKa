@@ -85,7 +85,7 @@
 	
 	<!-- 카페 평점 list -->
 	<select id="listByCafeNo" parameterType="map" resultMap="starPointResult">
-		select s.cafe_no, t.theme_no, t.theme_name, s.star_point, s.star_point_comment, s.registration_date, u.user_grade, g.user_grade_image, u.nick, u.user_id 
+		select s.star_point_no, s.cafe_no, t.theme_no, t.theme_name, s.star_point, s.star_point_comment, s.registration_date, u.user_grade, g.user_grade_image, u.nick, u.user_id 
 		from starpoint s 
 		left join theme t on s.theme_no = t.theme_no 
 		left join users u on s.user_no = u.user_no 
@@ -103,4 +103,22 @@
 	<select id="selectByStarPointNo" resultMap="starPointResult">
 		select * from starpoint where star_point_no = #{starPointNo};
 	</select>
+	
+	<!-- 평점 추가 -->
+	<insert id="insertStarPoint" parameterType="StarpointVO">
+		insert into starpoint(cafe_no, theme_no, user_no, star_point, star_point_comment) 
+		values(#{cafeNo.cafeNo}, #{themeNo.themeNo}, #{userNo.userNo}, #{starPoint}, #{starPointComment})
+	</insert>
+	
+	<!-- 평점 수정 -->
+	<update id="updateStarPoint" parameterType="StarpointVO">
+		update starpoint 
+			set theme_no=#{themeNo.themeNo}, star_point=#{starPoint}, star_point_comment= #{starPointComment}
+			where star_point_no = #{starPointNo}
+	</update>
+	
+	<!-- 평점 삭제 -->
+	<delete id="deleteStarPoint">
+		delete from starpoint where star_point_no = #{starPointNo}
+	</delete>
 </mapper>
