@@ -61,4 +61,46 @@
 		delete from reply where comment_no = #{commentNo}
 	</delete>
 	
+	<!-- starPoint -->
+	<!-- 평점 resultMap Join테이블 [cafe + theme] -->
+	<resultMap type="StarpointVO" id="starPointResult">
+		<id property="starPointNo" column="star_point_no"/>
+		<result property="starPoint" column="star_point"/>
+		<result property="starPointComment" column="star_point_comment"/>
+		<result property="registrationDate" column="registration_date"/>
+		<result property="updateDate" column="update_date"/>
+		
+		<!-- 회원 -->
+		<result property="userNo.userNo" column="user_no"/>
+		<result property="userNo.userId" column="user_id"/>
+		<result property="userNo.nick" column="nick"/>
+		<result property="userNo.userGrade.userGrede" column="user_grade"/>
+		<result property="userNo.userGrade.userGradeImage" column="user_grade_image"/>
+		<!-- 카페 -->
+		<result property="cafeNo.cafeNo" column="cafe_no"/>
+		<!-- 테마 -->
+		<result property="themeNo.themeNo" column="theme_no"/>
+		<result property="themeNo.themeName" column="theme_name"/>
+	</resultMap>
+	
+	<!-- 카페 평점 list -->
+	<select id="listByCafeNo" parameterType="map" resultMap="starPointResult">
+		select s.cafe_no, t.theme_no, t.theme_name, s.star_point, s.star_point_comment, s.registration_date, u.user_grade, g.user_grade_image, u.nick, u.user_id 
+		from starpoint s 
+		left join theme t on s.theme_no = t.theme_no 
+		left join users u on s.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade 
+		where cafe_no = #{cafeNo} 
+		order by star_point_no desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<!-- 카페 평점 총 갯수(페이징 이용) -->
+	<select id="totalCountByCafeNo" resultType="int">
+		select count(*) from starpoint where cafe_no = #{cafeNo}
+	</select>
+	
+	<!-- 평점 select -->
+	<select id="selectByStarPointNo" resultMap="starPointResult">
+		select * from starpoint where star_point_no = #{starPointNo};
+	</select>
 </mapper>

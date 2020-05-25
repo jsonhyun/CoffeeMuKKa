@@ -44,3 +44,34 @@ select * from menukinds m ;
 select * from board b ;
 
 select count(*), cafe_no from board b where board_no2 =1 and cafe_no =2;
+
+delete from starpoint ;
+/*평점*/
+select * from starpoint where cafe_no = 1;
+
+select * from starpoint where star_point_no = 0;
+
+select s.cafe_no, s.theme_no ,s.star_point , s.star_point_comment , s.registration_date , u.user_grade, u.nick, u.user_id 
+from starpoint s 
+left join theme t on s.theme_no = t.theme_no 
+left join users u on s.user_no = u.user_no 
+where cafe_no = 1 
+order by star_point_no desc limit 0, 10;
+
+select s.cafe_no, t.theme_no, t.theme_name, s.star_point, s.star_point_comment, s.registration_date, u.user_grade, g.user_grade_image, u.nick, u.user_id 
+		from starpoint s 
+		left join theme t on s.theme_no = t.theme_no 
+		left join users u on s.user_no = u.user_no
+		left join grade g on u.user_grade = g.user_grade 
+		where cafe_no = 1 
+order by star_point_no desc limit 0, 10;
+
+select count(*) from starpoint where cafe_no = 1;
+
+select r.comment_no , r.board_no , u.user_grade, g.user_grade_image, u.user_no, u.user_id, u.nick, r.comment_content, r.update_date 
+from reply r left join users u on r.user_no = u.user_no 
+left join grade g on u.user_grade = g.user_grade 
+where r.board_no = 5
+order by comment_no desc limit 0, 10;
+
+

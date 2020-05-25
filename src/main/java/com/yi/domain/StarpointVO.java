@@ -6,9 +6,27 @@ public class StarpointVO {
 	private int starPointNo;
 	private CafeVO cafeNo;
 	private ThemeVO themeNo;
+	private UsersVO userNo;
 	private int starPoint;
 	private String starPointComment;
 	private Date registrationDate;
+	private Date updateDate;
+
+	public UsersVO getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(UsersVO userNo) {
+		this.userNo = userNo;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
 	public int getStarPointNo() {
 		return starPointNo;
@@ -60,9 +78,9 @@ public class StarpointVO {
 
 	@Override
 	public String toString() {
-		return "StarpointVO [starPointNo=" + starPointNo + ", cafeNo=" + cafeNo + ", themeNo=" + themeNo
-				+ ", starPoint=" + starPoint + ", starPointComment=" + starPointComment + ", registrationDate="
-				+ registrationDate + "]";
+		return "StarpointVO [starPointNo=" + starPointNo + ", cafeNo=" + cafeNo + ", themeNo=" + themeNo + ", userNo="
+				+ userNo + ", starPoint=" + starPoint + ", starPointComment=" + starPointComment + ", registrationDate="
+				+ registrationDate + ", updateDate=" + updateDate + "]";
 	}
 
 }
