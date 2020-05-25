@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.Criteria;
 import com.yi.domain.ReplyVO;
-import com.yi.domain.UsersVO;
+import com.yi.domain.StarpointVO;
 import com.yi.persistence.BoardDAO;
 import com.yi.persistence.ReplyDAO;
 
@@ -47,5 +47,31 @@ public class ReplyService {
 		ReplyVO vo = dao.selectByCmtNo(commentNo);
 		dao.deleteReply(commentNo);
 		boardDao.updateBoardReplyCnt(-1, vo.getBoardNo().getBoardNo());
+	}
+	
+	/*-------- starPoint ------------------------------------------------------------------*/
+
+	public List<StarpointVO> listByCafeNo(int cafeNo, Criteria cri) throws Exception{
+		return dao.listByCafeNo(cafeNo, cri);
+	}
+	
+	public int totalCountByCafeNo(int cafeNo) throws Exception{
+		return dao.totalCountByCafeNo(cafeNo);
+	}
+	
+	public StarpointVO selectByStarPointNo(int starPointNo) throws Exception{
+		return dao.selectByStarPointNo(starPointNo);
+	}
+	
+	public void insertStarPoint(StarpointVO vo) throws Exception{
+		dao.insertStarPoint(vo);
+	}
+	
+	public void updateStarPoint(StarpointVO vo) throws Exception{
+		dao.updateStarPoint(vo);
+	}
+	
+	public void deleteStarPoint(int starPointNo) throws Exception{
+		dao.deleteStarPoint(starPointNo);
 	}
 }

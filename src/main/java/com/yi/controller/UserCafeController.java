@@ -26,6 +26,8 @@ public class UserCafeController {
 	// 서비스
 	@Autowired
 	CafeService service;
+	
+	@Autowired
 	ThemeService themeService;
 	
 	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)

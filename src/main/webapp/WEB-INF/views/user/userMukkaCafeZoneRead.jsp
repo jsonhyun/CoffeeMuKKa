@@ -194,6 +194,100 @@
 	    background-color: #001e5a;
 	}
 	
+	.pagination {
+		display: inline-block;
+	  	padding-left: 0;
+	  	margin: 20px 0;
+	  	border-radius: 4px;
+	}
+	.pagination > li {
+  		display: inline;
+	}
+	.pagination > li > a,
+	.pagination > li > span {
+		position: relative;
+		float: left;
+		padding: 6px 12px;
+		margin-left: -1px;
+		line-height: 1.42857143;
+		color: #303A50;
+		text-decoration: none;
+		background-color: #fff;
+		border: 1px solid #ddd;
+	}
+	.pagination > li:first-child > a,
+	.pagination > li:first-child > span {
+		margin-left: 0;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+	}
+	.pagination > li:last-child > a,
+	.pagination > li:last-child > span {
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+	.pagination > li > a:hover,
+	.pagination > li > span:hover,
+	.pagination > li > a:focus,
+	.pagination > li > span:focus {
+		color: #23527c;
+		background-color: #eee;
+		border-color: #ddd;
+	}
+	.pagination > .active > a,
+	.pagination > .active > span,
+	.pagination > .active > a:hover,
+	.pagination > .active > span:hover,
+	.pagination > .active > a:focus,
+	.pagination > .active > span:focus {
+		z-index: 2;
+		color: #fff;
+		cursor: default;
+		background-color: #303A50;
+		border-color: #303A50;
+	}
+	.pagination > .disabled > span,
+	.pagination > .disabled > span:hover,
+	.pagination > .disabled > span:focus,
+	.pagination > .disabled > a,
+	.pagination > .disabled > a:hover,
+	.pagination > .disabled > a:focus {
+		color: #777;
+		cursor: not-allowed;
+		background-color: #fff;
+		border-color: #ddd;
+	}
+	.pagination-lg > li > a,
+	.pagination-lg > li > span {
+		padding: 10px 16px;
+		font-size: 18px;
+	}
+	.pagination-lg > li:first-child > a,
+	.pagination-lg > li:first-child > span {
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+	.pagination-lg > li:last-child > a,
+	.pagination-lg > li:last-child > span {
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+	.pagination-sm > li > a,
+	.pagination-sm > li > span {
+		padding: 5px 10px;
+		font-size: 12px;
+	}
+	.pagination-sm > li:first-child > a,
+	.pagination-sm > li:first-child > span {
+       border-top-left-radius: 3px;
+	   border-bottom-left-radius: 3px;
+	}
+	.pagination-sm > li:last-child > a,
+	.pagination-sm > li:last-child > span {
+		border-top-right-radius: 3px;
+		border-bottom-right-radius: 3px;
+	}
+	
 </style>	
 
 <script>
@@ -383,8 +477,7 @@
 		$('#starPointCheck').barrating({
 			theme: 'fontawesome-stars',
 			onSelect: function(value, text, event){
-				console.log(value);
-				/* 별점 클릭 후 처리는 여기서 코드, 선택한 별점 값을 value로 받음 */
+				$('#hiddenStarpoint').val(value);
 			} 
 		});
 		
@@ -393,7 +486,6 @@
 			for(var i=0;i<6;i++){
 				colorArr[i] = $('.changeColor').eq(i).css("color");
 			}
-			console.log(colorArr);
 			var color = $(this).css("color");
 			var backgroundColor = $(this).css("background-color");
 			
@@ -405,11 +497,45 @@
 				}
 				$(this).css("background-color", color);
 				$(this).css("color", "white");
+				for(var i=0;i<6;i++){
+					if($('.changeColor').eq(i).css("color")=="rgb(255, 255, 255)"){
+						$('#hiddenTheme').val(i);
+					}
+				}
+				
 			}else{
 				$(this).css("background-color", "white");
 				$(this).css("color", backgroundColor);
 				$(this).css("border-color",backgroundColor);
 			}
+		})
+		
+		$('#btnStarpointAdd').click(function() {
+			var cafeNo = ${cafe.cafeNo};
+			var themeNo = $('#hiddenTheme').val();
+			var starPoint = $('#hiddenStarpoint').val();
+			var starPointComment = $('#comment').val();
+			console.log(cafeNo);
+			console.log(themeNo);
+			console.log(starPoint);
+			console.log(starPointComment);
+			
+			/* var json = JSON.stringify({"cafeNo":cafeNo, "themeNo":themeNo, "starPoint":starPoint, "starPointComment":starPointComment});
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/replies/",
+				type:"post",
+				headers:{"Content-Type":"application/json"},
+				data:json,
+				dataType:"text",
+				success:function(res){
+					if(res=="SUCCESS"){
+						alert("댓글이 틍록되었습니다.");
+						$("#newReplyText").val("");
+						getPageList(1);
+					}
+				}
+			}) */
 		})
 	})
 </script>
@@ -688,7 +814,7 @@
 			<!-- 카페 댓글 관련 -->
 			<div>
 				<div id="commentTitle">
-					<span style="color: #2e75b6;">${cafe.cafeName }</span>에 대한 <span style="color: #FF5722;">50</span>개의 이야기가 있어요!
+					<span style="color: #2e75b6;">${cafe.cafeName }</span>에 대한 <span id="spointNum" style="color: #FF5722;"></span>개의 이야기가 있어요!
 				</div>
 				<button id="commentRegiBtn" onclick="document.getElementById('id01').style.display='block'">내 <span style="color: red; font-weight: bold; ">평점</span> 등록</button>
 			</div>
@@ -708,11 +834,12 @@
 							<option value="4">4</option> 
 							<option value="5">5</option> 
 						</select>
+						<input type="hidden" id="hiddenStarpoint">
 						<div style="color: #949494;">평점을 선택해주세요.</div>
 						<div style="width: 90%;border-bottom: 1px solid #ccc;margin: 0px 30px 10px;height: 20px;"></div>
 					</div>
 					<div style="margin: 0px 30px;font-size: 18px;margin-bottom: 15px;">${cafe.cafeName }의 키워드를 선택해주세요! <span style="color: red;font-size: 14px;">중복 선택 불가</span></div>
-					<form class="w3-container" action="/action_page.php">
+					<div class="w3-container">
 						<div>
 							<div class="themeIcon keyword changeColor" style="background-color: white;color: #b038fa;border: 2px solid;margin-left: 15px; cursor: pointer;">#데이트</div>
 							<div class="themeIcon keyword changeColor" style="background-color: white;color: #528236;border: 2px solid;cursor: pointer;">#뷰</div>
@@ -721,156 +848,163 @@
 							<div class="themeIcon keyword changeColor" style="background-color: white;color: #FFB232;border: 2px solid;cursor: pointer;">#댕댕이</div>
 							<div class="themeIcon keyword changeColor" style="background-color: white;color: #0170c2;border: 2px solid;cursor: pointer;">#작업</div>
 						</div>
+						<input type="hidden" id="hiddenTheme">
 						<div style="width: 540px;border-bottom: 1px solid #ccc;margin: 0px 15px 10px;height: 20px;"></div>
 						<div class="w3-section">
-							<textarea style="margin: 0px 0px 0px 15px;width: 540px;height: 210px;"placeholder=" ${cafe.cafeName }에서 즐거우셨나요? 어떤 점이 좋았는지 이야기해주세요."></textarea>
+							<textarea id="comment" style="margin: 0px 0px 0px 15px;width: 540px;height: 210px;"placeholder=" ${cafe.cafeName }에서 즐거우셨나요? 어떤 점이 좋았는지 이야기해주세요."></textarea>
 							<div style="text-align: center;">
 								<button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-text-grey w3-border"style="width: 100px;margin-right: 10px;">취소</button>
-								<button class="w3-button w3-red w3-section w3-padding" type="submit" style="width: 100px;">등록</button>
+								<button class="w3-button w3-red w3-section w3-padding" id="btnStarpointAdd" style="width: 100px;">등록</button>
 							</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
-			
-			
-			
 			<div>
-				<table style="width: 900px; margin: 0px 20px;">
+				<table style="width: 900px; margin: 0px 20px;" id="spointList">
 					<tr>
 						<td colspan="6" style="text-align: left;border-top: 3px solid #ccc;border-bottom: 1px solid #949494;">
 							<i class="fas fa-check" style="color: #ccc;"></i><span style="margin-left: 10px;margin-right: 20px;">별점순</span>
 							<i class="fas fa-check" style="color: #ccc;"></i><span style="margin-left: 10px;">최신순</span>
 						</td>
 					</tr>
-					<tr>
-						<td style="width: 120px;border-bottom: 1px solid #dadada;">
-							<div class="star" id="spointComment">
-								<select class="starPoint">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-						</td>
-						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
-						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
-						</td>
-						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
-						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
-						<td style="border-bottom: 1px solid #dadada;">
-							<img src="${pageContext.request.contextPath }/resources/images/saessack.png" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
-							<span>커피가좋아</span>
-							<span>(airplant)</span>
-						</td>
-					</tr>
-					<tr>
-						<td style="width: 120px;border-bottom: 1px solid #dadada;">
-							<div class="star" id="spointComment">
-								<select class="starPoint">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-						</td>
-						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
-						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
-						</td>
-						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
-						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
-						<td style="border-bottom: 1px solid #dadada;">
-							<img src="${pageContext.request.contextPath }/resources/images/saessack.png" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
-							<span>커피가좋아</span>
-							<span>(airplant)</span>
-						</td>
-					</tr>
-					<tr>
-						<td style="width: 120px;border-bottom: 1px solid #dadada;">
-							<div class="star" id="spointComment">
-								<select class="starPoint">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-						</td>
-						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
-						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
-						</td>
-						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
-						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
-						<td style="border-bottom: 1px solid #dadada;">
-							<img src="${pageContext.request.contextPath }/resources/images/saessack.png" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
-							<span>커피가좋아</span>
-							<span>(airplant)</span>
-						</td>
-					</tr>
-					<tr>
-						<td style="width: 120px;border-bottom: 1px solid #dadada;">
-							<div class="star" id="spointComment">
-								<select class="starPoint">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-						</td>
-						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
-						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
-						</td>
-						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
-						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
-						<td style="border-bottom: 1px solid #dadada;">
-							<img src="${pageContext.request.contextPath }/resources/images/saessack.png" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
-							<span>커피가좋아</span>
-							<span>(airplant)</span>
-						</td>
-					</tr>
-					<tr>
-						<td style="width: 120px;border-bottom: 1px solid #dadada;">
-							<div class="star" id="spointComment">
-								<select class="starPoint">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-						</td>
-						<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">5</td>
-						<td style="width: 100px;border-bottom: 1px solid #dadada;">
-							<div class="themeIcon keyword" style="background-color: #f2486f;">#디저트</div>
-						</td>
-						<td style="border-bottom: 1px solid #dadada;">여기 빵이 너무 맛있어요!!!</td>
-						<td style="width: 95px;border-bottom: 1px solid #dadada;">| 2020-05-11</td>
-						<td style="border-bottom: 1px solid #dadada;">
-							<img src="${pageContext.request.contextPath }/resources/images/saessack.png" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
-							<span>커피가좋아</span>
-							<span>(airplant)</span>
-						</td>
-					</tr>
-					
 				</table>
+				<div class="spointPage" style="text-align: center;">
+					<ul id="pagination" class="pagination"></ul>
+				</div>
 				<div style="margin-bottom: 50px;clear: both;"></div>
 			</div>
 		</div>
 	</div>
 	
+<script id="template" type="text/x-handlebars-template">
+	{{#each list}}
+	<tr class="spointBoard" data-spno="{{starPointNo}}">
+		<td style="width: 120px;border-bottom: 1px solid #dadada;">
+			<div class="star" id="spointComment">
+				<select class="starPointWrite">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+		</td>
+		<td style="font-weight: bold;width: 25px;text-align: left;border-bottom: 1px solid #dadada;">{{starPoint}}</td>
+		<td style="width: 115px;border-bottom: 1px solid #dadada;">
+			<div class="themeIcon keyword spThemeIcon" style="background-color: #f2486f;"><span>#</span>{{themeNo.themeName}}</div>
+		</td>
+		<td style="border-bottom: 1px solid #dadada;">{{starPointComment}}</td>
+		<td style="width: 140px;border-bottom: 1px solid #dadada;">| {{dateHelper registrationDate}}</td>
+		<td style="border-bottom: 1px solid #dadada;text-align: left;">
+			<img src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
+			<span>{{userNo.nick}}</span>
+			<span>({{userNo.userId}})</span>
+		</td>
+	</tr>
+	{{/each}}
+</script>
 
+<script>
+	/*---- starpoint -----------------------------------------------------------------------------------------------------*/
+	var no = 1;
+	Handlebars.registerHelper ("dateHelper", function(value){
+		var d = new Date(value);
+		var year = d.getFullYear();
+		var month = d.getMonth() + 1;
+		var day = d.getDate();
+		return year + "/" + month + "/" + day;
+	})
+	
+	/* 댓글 리스트 */
+	function getPageList( page ){
+		var cafeNo = ${cafe.cafeNo};
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/starpoint/"+cafeNo+"/"+page,
+			type:"get",
+			datatype:"json",
+			success:function(res){
+				console.log(res);
+				var starpoint = new Array();
+				var backColor = new Array();
+				for(var i=0;i<res.list.length;i++){
+					starpoint[i] = res.list[i].starPoint;
+					backColor[i] = res.list[i].themeNo.themeNo;
+				}
+				console.log(starpoint);
+				console.log(backColor);
+				
+				$(".spointBoard").remove();
+				var source = $("#template").html();
+				var func = Handlebars.compile(source);
+				$("#spointList").append(func(res));				
+				
+				for(var i=0;i<res.list.length;i++){
+					$('.starPointWrite').eq(i).barrating({
+						theme: 'fontawesome-stars', 
+						initialRating: starpoint[i], 
+						readonly: true
+					})
+				}
+				
+				for(var i=0;i<res.list.length;i++){
+					var colorNum = backColor[i];
+					console.log(colorNum);
+					switch(colorNum){
+					case 1:
+						$('.spThemeIcon').eq(i).css("background-color","#b038fa");
+						break;
+					case 2:
+						$('.spThemeIcon').eq(i).css("background-color","#528236");
+						break;
+					case 3:
+						$('.spThemeIcon').eq(i).css("background-color","#96814c");
+						break;
+					case 4:
+						$('.spThemeIcon').eq(i).css("background-color","#f2486f");
+						break;
+					case 5:
+						$('.spThemeIcon').eq(i).css("background-color","#FFB232");
+						break;
+					case 6:
+						$('.spThemeIcon').eq(i).css("background-color","#0170c2");
+						break;
+					}
+				}
+
+				var startPage = res.pageMaker.startPage;
+				var endPage = res.pageMaker.endPage;
+				$("#pagination").empty();
+				for(var i = startPage; i <= endPage; i++){
+					var $li = $("<li>");
+					if(i == no) {
+						$li.addClass("active");
+					}
+					var $a = $("<a>").html(i);
+					$a.css("cursor", "pointer");
+					$li.append($a);
+					$("#pagination").append($li);
+				}
+				
+				var totalCnt = res.pageMaker.totalCount;
+				$("#spointNum").text(totalCnt);
+			}
+		})
+		
+		
+	}
+	
+	/* 댓글 리스트 show */
+	getPageList(1);
+	
+	/* 댓글 페이징 */
+	$(document).on("click", "#pagination a", function(){
+		no = $(this).text();
+		getPageList(no);
+	})
+</script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->

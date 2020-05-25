@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.PageMaker;
 import com.yi.domain.ReplyVO;
-import com.yi.domain.UsersVO;
+import com.yi.domain.StarpointVO;
 import com.yi.service.BoardService;
 import com.yi.service.CafeService;
 import com.yi.service.ReplyService;
@@ -178,5 +176,31 @@ public class UserRestController {
 		
 		return entity;
 	}
-	
+	/*-------- starpoint ------------------------------------------------------------------*/
+	@RequestMapping(value = "/starpoint/{cafeNo}/{page}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> starPointList(@PathVariable("cafeNo") int cafeNo, @PathVariable("page") int page){
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		try {
+			Criteria cri = new Criteria();
+			cri.setPage(page);
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(replyService.totalCountByCafeNo(cafeNo));
+			
+			List<StarpointVO> list = replyService.listByCafeNo(cafeNo, cri);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("list", list);
+			map.put("pageMaker", pageMaker);
+			
+			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 }

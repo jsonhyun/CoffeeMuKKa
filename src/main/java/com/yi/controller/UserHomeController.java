@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yi.domain.ThemeVO;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
 

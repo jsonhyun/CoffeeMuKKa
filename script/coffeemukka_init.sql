@@ -370,9 +370,11 @@ CREATE TABLE CoffeeMuKKa.Starpoint (
 	star_point_no      INT       NOT NULL COMMENT '별점번호', -- 별점번호
 	cafe_no            INT       NOT NULL COMMENT '카페번호', -- 카페번호
 	theme_no           INT       NOT NULL COMMENT '테마번호', -- 테마번호
+	user_no            INT       NOT NULL COMMENT '회원번호', -- 회원번호
 	star_point         INTEGER   NOT NULL COMMENT '별점', -- 별점
 	star_point_comment TEXT      NULL     COMMENT '별점댓글', -- 별점댓글
-	registration_date  TIMESTAMP NOT NULL DEFAULT now() COMMENT '등록일자' -- 등록일자
+	registration_date  TIMESTAMP NOT NULL DEFAULT now() COMMENT '등록일자', -- 등록일자
+	update_date        TIMESTAMP NOT NULL DEFAULT now() COMMENT '수정일자' -- 수정일자
 )
 COMMENT '별점';
 
@@ -498,7 +500,7 @@ CREATE TABLE CoffeeMuKKa.Vote (
 	vote_no   INT       NOT NULL COMMENT '추천번호', -- 추천번호
 	board_no  INT       NOT NULL COMMENT '게시글번호', -- 게시글번호
 	user_no   INT       NOT NULL COMMENT '회원번호', -- 회원번호
-	vote_date TIMESTAMP NOT NULL DEFAULT now() COMMENT '추천일자' -- 추천일자
+	vote_date TIMESTAMP NOT NULL COMMENT '추천일자' -- 추천일자
 )
 COMMENT '추천리스트';
 
@@ -740,6 +742,16 @@ ALTER TABLE CoffeeMuKKa.Starpoint
 		)
 		REFERENCES CoffeeMuKKa.Theme ( -- 테마분류
 			theme_no -- 테마번호
+		);
+
+-- 별점
+ALTER TABLE CoffeeMuKKa.Starpoint
+	ADD CONSTRAINT FK_Users_TO_Starpoint -- 회원현황 -> 별점
+		FOREIGN KEY (
+			user_no -- 회원번호
+		)
+		REFERENCES CoffeeMuKKa.Users ( -- 회원현황
+			user_no -- 회원번호
 		);
 
 -- 키워드분류

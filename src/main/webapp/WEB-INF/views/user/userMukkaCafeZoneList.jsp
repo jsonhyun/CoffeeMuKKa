@@ -285,7 +285,9 @@
 		
 		<c:forEach var="starpoint" items="${starpoint }" varStatus="status">
 			$('.starPoint').eq(${status.index }).barrating({
-					theme: 'fontawesome-stars' , initialRating: ${starpoint}, readonly: true
+					theme: 'fontawesome-stars', 
+					initialRating: ${starpoint}, 
+					readonly: true
 				})
 		</c:forEach>
 		
