@@ -388,6 +388,29 @@
 			} 
 		});
 		
+		$('.changeColor').click(function() {
+			var colorArr = new Array();
+			for(var i=0;i<6;i++){
+				colorArr[i] = $('.changeColor').eq(i).css("color");
+			}
+			console.log(colorArr);
+			var color = $(this).css("color");
+			var backgroundColor = $(this).css("background-color");
+			
+			if(color != "rgb(255, 255, 255)"){
+				for(var i=0;i<colorArr.length;i++){
+					if(colorArr[i]=="rgb(255, 255, 255)"){
+						return false;
+					}
+				}
+				$(this).css("background-color", color);
+				$(this).css("color", "white");
+			}else{
+				$(this).css("background-color", "white");
+				$(this).css("color", backgroundColor);
+				$(this).css("border-color",backgroundColor);
+			}
+		})
 	})
 </script>
 
@@ -691,12 +714,12 @@
 					<div style="margin: 0px 30px;font-size: 18px;margin-bottom: 15px;">${cafe.cafeName }의 키워드를 선택해주세요! <span style="color: red;font-size: 14px;">중복 선택 불가</span></div>
 					<form class="w3-container" action="/action_page.php">
 						<div>
-							<div class="themeIcon keyword" style="background-color: white;color: #b038fa;border: 2px solid;margin-left: 15px; cursor: pointer;">#데이트</div>
-							<div class="themeIcon keyword" style="background-color: white;color: #528236;border: 2px solid;cursor: pointer;">#뷰</div>
-							<div class="themeIcon keyword" style="background-color: white;color: #96814c;border: 2px solid;cursor: pointer;">#착한아메</div>
-							<div class="themeIcon keyword" style="background-color: white;color: #f2486f;border: 2px solid;cursor: pointer;">#디저트</div>
-							<div class="themeIcon keyword" style="background-color: white;color: #FFB232;border: 2px solid;cursor: pointer;">#댕댕이</div>
-							<div class="themeIcon keyword" style="background-color: white;color: #0170c2;border: 2px solid;cursor: pointer;">#작업</div>
+							<div class="themeIcon keyword changeColor" style="background-color: white;color: #b038fa;border: 2px solid;margin-left: 15px; cursor: pointer;">#데이트</div>
+							<div class="themeIcon keyword changeColor" style="background-color: white;color: #528236;border: 2px solid;cursor: pointer;">#뷰</div>
+							<div class="themeIcon keyword changeColor" style="background-color: white;color: #96814c;border: 2px solid;cursor: pointer;">#착한아메</div>
+							<div class="themeIcon keyword changeColor" style="background-color: white;color: #f2486f;border: 2px solid;cursor: pointer;">#디저트</div>
+							<div class="themeIcon keyword changeColor" style="background-color: white;color: #FFB232;border: 2px solid;cursor: pointer;">#댕댕이</div>
+							<div class="themeIcon keyword changeColor" style="background-color: white;color: #0170c2;border: 2px solid;cursor: pointer;">#작업</div>
 						</div>
 						<div style="width: 540px;border-bottom: 1px solid #ccc;margin: 0px 15px 10px;height: 20px;"></div>
 						<div class="w3-section">
