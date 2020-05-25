@@ -328,7 +328,7 @@
 		
 		$(".themeNames").text(themeNames);
 		
-	})
+	});
 </script>
 
 	<div class="content subPageContent">
