@@ -139,24 +139,38 @@ public class CafeDAOImpl implements CafeDAO {
 	
 	// 메인메뉴 카페 검색
 	@Override
-	public List<CafeVO> cafeMainSearch(int zoneNo, String themeNos, Criteria cri) throws Exception {
-		String[] themeNo = themeNos.split(",");
+	public List<CafeVO> cafeMainSearch(int zoneNo, String themeNos, SearchCriteria cri) throws Exception {
 		List<String> themeNums = new ArrayList<String>();
-		for(String t : themeNo) {
-			themeNums.add(t);
-		}
+		if(themeNos.indexOf(",") > 0) {			
+			String[] themeNo = themeNos.split(",");
+			for(String t : themeNo) {
+				themeNums.add(t);
+			}
+		} 
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("zoneNo", zoneNo);
 		map.put("themeNums", themeNums);
+		map.put("cri", cri);
 		
 		return sqlSession.selectList(namespace + "cafeMainSearch", map);
 	}
 
 	@Override
-	public List<CafeVO> cafeMainSearchTotalCnt(int zoneNo, String themeNos, Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int cafeMainSearchTotalCnt(int zoneNo, String themeNos, SearchCriteria cri) throws Exception {
+		List<String> themeNums = new ArrayList<String>();
+		if(themeNos.indexOf(",") > 0) {			
+			String[] themeNo = themeNos.split(",");
+			for(String t : themeNo) {
+				themeNums.add(t);
+			}
+		} 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("zoneNo", zoneNo);
+		map.put("themeNums", themeNums);
+		map.put("cri", cri);
+		return sqlSession.selectOne(namespace + "cafeMainSearchTotalCnt", map);
 	}
 
 	//아름추가

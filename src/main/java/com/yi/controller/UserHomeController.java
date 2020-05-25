@@ -30,8 +30,6 @@ public class UserHomeController {
 		return "/user/userHome";
 	}
 	
-	// 메인 메뉴 검색
-	
 	
 	// 레이아웃 샘플페이지 
 	@RequestMapping(value = "/sample", method = RequestMethod.GET)

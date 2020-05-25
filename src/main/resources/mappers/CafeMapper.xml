@@ -294,14 +294,18 @@
 	<!-- 경진추가 : 메인메뉴 카페 검색 -->
 	<sql id="mainSearch">
 		<where>
-			<if test="zoneNo != null">
+			<if test="zoneNo > 0 and zoneNo != null">
 				c.zone_no = #{zoneNo}
 			</if>
-			<if test="themeNums != null">
-				and 
-				<foreach item="themeNo" collection="themeNums" separator=" or " index="index" open="(" close=")" >
-					c.theme_no = #{themeNo}
+			<if test="themeNums.size > 0 and themeNums != null">
+				and (c.theme_no in 
+				<foreach item="themeNo" collection="themeNums" separator=" , " index="index" open="(" close=")" >
+					#{themeNo}
 				</foreach>
+				)
+			</if>
+			<if test="cri.searchTheme != '' and cri.searchTheme != null">
+				AND t.theme_no = #{cri.searchTheme}
 			</if>
 		</where>
 	</sql>
@@ -310,10 +314,10 @@
 		select c.cafe_no, c.cafe_name, z.zone_no , z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, c.oneline, c.address, c.detail_address 
 			from cafe c left join theme t on c.theme_no = t.theme_no left join `zone` z on c.zone_no = z.zone_no
 			<include refid="mainSearch"/>
-			<!-- order by cafe_no desc limit #{pageStart}, #{perPageNum} -->
+			order by cafe_no desc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="cafeMainSearchTotalCnt" parameterType="map" resultType="int">
-		select count(cafe_no) from cafe c
+		select count(cafe_no) from cafe c left join theme t on c.theme_no = t.theme_no
 		<include refid="mainSearch"/>
 	</select>
 	
