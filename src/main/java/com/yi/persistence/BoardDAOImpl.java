@@ -212,6 +212,25 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewRemove(BoardVO vo) throws Exception {
 		sqlSession.update(namespace + "cafeReviewRemove", vo);
 	}
+	// ***재승 추가 ***
+	// 해당카페의 탐방기 리스트
+	@Override
+	public List<BoardVO> cafeReviewSameListByCafeNo(BoardVO vo) throws Exception {
+		return sqlSession.selectList(namespace+"cafeReviewSameListByCafeNo", vo);
+	}
+	@Override
+	public int cafeReivewSameCntByCafeNo(BoardVO vo) throws Exception {
+		return sqlSession.selectOne(namespace + "cafeReivewSameCntByCafeNo", vo);
+	}
+	// 해당카페와 키워드, 지역이 같은 추천카페 리스트
+	@Override
+	public List<BoardVO> recommendSameKeywordListByZoneAndTheme(BoardVO boardVO) throws Exception {
+		return sqlSession.selectList(namespace+"recommendSameKeywordListByZoneAndTheme", boardVO);
+	}
+	@Override
+	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception {
+		return sqlSession.selectOne(namespace+"recommendSameKeywordCntByZoneAndTheme", boardVO);
+	}
 	
 	
 }

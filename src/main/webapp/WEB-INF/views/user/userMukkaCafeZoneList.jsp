@@ -387,8 +387,9 @@
 						<c:when test="${theme == 5 }">
 							<div class="themeIcon keyword" style="background-color: #FFB232;">#${cafe.themeNo.themeName }</div>
 						</c:when>
-						<c:when test="${theme == 6 }">
-						</c:when>
+						<c:otherwise>
+							<div class="themeIcon keyword" style="background-color: #0170c2;">#${cafe.themeNo.themeName }</div>
+						</c:otherwise>
 					</c:choose>
 					
 					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>

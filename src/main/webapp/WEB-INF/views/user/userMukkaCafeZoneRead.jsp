@@ -166,7 +166,7 @@
 	    line-height: 70px;
 	    text-align: left;
 	}
-	/* 카페 댓글 관련 */
+	/* 카페 평점 관련 */
 	#commentTitle{
 		font-size: 20px;
 	    font-weight: bold;
@@ -193,7 +193,7 @@
 	    color: white;
 	    background-color: #001e5a;
 	}
-	
+	/* 카페 평점 페이징 관련 */
 	.pagination {
 		display: inline-block;
 	  	padding-left: 0;
@@ -288,6 +288,234 @@
 		border-bottom-right-radius: 3px;
 	}
 	
+	/* 카페 탐방기 list */
+	.cafeR_sameList {
+		margin-top: 50px;
+		overflow: hidden;
+	}
+	
+	.cafeR_sameList .cafeR_sameTitle {
+		font-size: 20px;
+	}
+	
+	.cafeR_sameList .cafeR_sameTitle .sameBtn {
+		width: 30px;
+	    height: 30px;
+	    border: 1px solid #aaa;
+	    line-height: 30px;
+	    text-align: center;
+	    margin-left: 10px;
+	    cursor: pointer;
+	}
+
+	.cafeR_sameList .a_cafeReview {
+		display: block;
+		float: left;
+		width: 447px;
+		border: 1px solid #545454;
+		margin-bottom: 20px;
+	}
+	
+	.cafeR_sameList .cafeR_box:hover .cafe_title{
+		text-decoration: underline;
+	}
+	
+	.cafeR_sameList .a_cafeReview {
+		margin-right: 22px;
+	}
+	
+	.cafeR_sameList .cafeR_titleBox {
+		height: 200px;
+		padding: 15px 10px;
+		position: relative;
+		color: #fff;
+	}
+	
+	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg {
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: -1;
+	    overflow: hidden;
+	}
+	
+	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg .bg {
+		width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    background: rgba(0,0,0,0.4);
+	}
+	
+	.cafeR_sameList .cafeR_titleBox .cafeR_titleImg img {
+		width: 100%;
+    	min-height: 100%;
+	}
+	
+	.cafeR_sameList .cafeR_writer {
+		line-height: 50px;
+		float: left;
+	}
+		
+	.cafeR_sameList .cafeR_writer img {
+		width: 50px;
+		display: block;
+		float: left;
+		margin-right: 10px;
+	}
+	
+	.cafeR_sameList .cafeR_writer span {
+		display: block;
+		float: left;
+		color: #fff;
+		font-size: 18px;
+	}
+	
+	.cafeR_sameList .cafeR_recomCnt {
+		float: right;
+		width: 30px;
+		height: 30px;
+		border-radius: 40px;
+		margin: 10px;
+		text-align: center;
+		line-height: 30px;
+		font-weight: 700;
+	}
+	
+	.cafeR_sameList .cafeR_titleBox h2 {
+		position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 85%;
+	    text-align: center;
+	}
+	
+	.cafeR_sameList .cafeR_date {
+		position: absolute;
+	    top: 85%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 85%;
+	    text-align: right;
+	    font-size: 20px;
+	}	
+	
+	.cafeR_sameList .cafeR_infoBox {
+		padding: 10px;
+		padding-bottom: 0;
+	}
+	
+	.cafeR_sameList .cafeR_infoTop {
+		padding-bottom: 10px;
+	}
+	
+	.cafeR_sameList .cafeR_infoTop h2{
+		text-align: right;
+		padding: 10px 0;
+	}
+	
+	.cafeR_sameList .cafeR_text {
+		overflow: hidden; 
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 4; /* 라인수 */
+		-webkit-box-orient: vertical;
+		word-wrap: break-word;
+	}
+	
+	.cafeR_sameList .cafeR_replyCdtWrap {
+		float: right;
+		padding: 10px;
+		padding-right: 0;
+	}
+	
+	.cafeR_sameList .cafeR_replyCdt .cafeR_btns {
+		border: 1px solid #545454;
+		padding: 5px 10px;
+		border-radius: 10px;
+		float: left;
+		margin-right: 10px;
+	}
+	/* 추천 카페 리스트 */
+	.RC_sameList {
+		margin-top: 30px;
+	}
+	
+	.RC_sameList .RC_sameTitle {
+		font-size: 20px;
+	}
+	
+	.RC_sameList .RC_sameTitle .RC_sameBtn {
+		width: 30px;
+	    height: 30px;
+	    border: 1px solid #aaa;
+	    line-height: 30px;
+	    text-align: center;
+	    margin-left: 10px;
+	    cursor: pointer;
+	}
+	
+	.RC_sameList .RC_noImgList{
+		text-align: center;
+		margin-bottom: 50px;
+	}
+	.RC_noImgList p.RC_noListMent{
+		color: #5D5D5D;
+	}
+	.RC_noImgList span.hotpink{
+		color:#FF007F;
+		font-size: 18px;
+	}
+	
+	.RC_banner{
+		width: 918px;
+		height: 265px;
+	}
+	.RC_bannerWrap{
+		width: 918px;
+		height: 265px;
+		overflow: hidden;
+	}
+	.RC_banner .RC_bannerWrap li {
+		float: left;
+		width: 222px;
+		height: 260px;
+		margin: 3px;
+		border: 1px solid #545454;
+	}
+	.RC_banner .RC_bannerWrap li div.RC_listBtnImgWrap{
+		width: 100%;
+		height: 160px;
+		overflow: hidden;
+	}
+	.RC_banner .RC_bannerWrap li div.RC_listBtnImgContainer img{
+		width: 100%;
+		height: 160px;
+		transition:all 1s;
+		transform-origin:left-top;
+	}
+	
+	.RC_banner .RC_bannerWrap li div.RC_listBtnImgContainer img:hover{
+		transform:scale(1.2);
+	}		
+	.RC_banner .RC_bannerWrap li div.RC_listBtnTitle1{
+		width: 90%;
+		height: 33px;
+		padding: 8px;
+	}
+	.RC_banner .RC_bannerWrap li div.RC_listBtnTitle1 div.zoneBtn,div.themeKeySmall{
+		font-size: 16px;
+		margin-top: 5px;
+	}
+ 	.RC_banner .RC_bannerWrap li div.RC_listBtnTitle2{
+		width: 90%;
+		height: 45px;
+		padding: 8px;
+	}
 </style>	
 
 <script>
@@ -783,7 +1011,7 @@
 			</div>
 			<div style="margin-bottom: 50px;clear: both;"></div>
 			
-			<!-- 카페 댓글 관련 -->
+			<!-- 카페 평점 관련 -->
 			<div>
 				<div id="commentTitle">
 					<span style="color: #2e75b6;">${cafe.cafeName }</span>에 대한 <span id="spointNum" style="color: #FF5722;"></span>개의 이야기가 있어요!
@@ -806,6 +1034,7 @@
 							<option value="4">4</option> 
 							<option value="5">5</option> 
 						</select>
+						<input type="hidden" id="hiddenStarpointNo">
 						<input type="hidden" id="hiddenStarpoint">
 						<div style="color: #949494;">평점을 선택해주세요.</div>
 						<div style="width: 90%;border-bottom: 1px solid #ccc;margin: 0px 30px 10px;height: 20px;"></div>
@@ -825,8 +1054,13 @@
 						<div class="w3-section">
 							<textarea id="comment" style="margin: 0px 0px 0px 15px;width: 540px;height: 210px;"placeholder=" ${cafe.cafeName }에서 즐거우셨나요? 어떤 점이 좋았는지 이야기해주세요."></textarea>
 							<div style="text-align: center;">
-								<button onclick="document.getElementById('starPointModal').style.display='none'" type="button" class="w3-button w3-text-grey w3-border"style="width: 100px;margin-right: 10px;">취소</button>
+								<button onclick="document.getElementById('starPointModal').style.display='none'" id="btnStarpointCancel" type="button" class="w3-button w3-text-grey w3-border" style="width: 100px;margin-right: 10px;">취소</button>
+								<div id="btnAddDiv" style="display: inline;">
 								<button class="w3-button w3-red w3-section w3-padding" id="btnStarpointAdd" style="width: 100px;">등록</button>
+								</div>
+								<div id="btnModDiv" style="display: none;">
+								<button class="w3-button w3-red w3-section w3-padding" id="btnStarpointMod" style="width: 100px;">수정</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -835,7 +1069,7 @@
 			<div>
 				<table style="width: 900px; margin: 0px 20px;" id="spointList">
 					<tr>
-						<td colspan="6" style="text-align: left;border-top: 3px solid #ccc;border-bottom: 1px solid #949494;">
+						<td colspan="7" style="text-align: left;border-top: 3px solid #ccc;border-bottom: 1px solid #949494;">
 							<i class="fas fa-check" style="color: #ccc;"></i><span style="margin-left: 10px;margin-right: 20px;">별점순</span>
 							<i class="fas fa-check" style="color: #ccc;"></i><span style="margin-left: 10px;">최신순</span>
 						</td>
@@ -846,6 +1080,171 @@
 				</div>
 				<div style="margin-bottom: 50px;clear: both;"></div>
 			</div>
+			<!-- 해당 카페의 탐방기 list -->
+			<div class="cafeR_sameList">
+				<c:if test="${sameCnt > 0 }">
+					<div class="cafeR_sameTitle bottomLine clearfix">
+							<p class="f_left"><span class="blue bold">${cafe.cafeName }</span>에 대한 <span class="orange bold"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sameCnt }"/></span>개의 <span class="red bold">탐방기</span>가 더 있어요!</p>
+						<c:if test="${sameCnt > 2 }">
+							<div class="sameListBtn f_right">
+								<div class="f_left orange"><span class="pageNum">1</span> / <span class="pageTotal">0</span></div>
+								<div id="prevBtn" class="sameBtn f_left"><i class="fas fa-angle-left"></i></div>
+								<div id="nextBtn" class="sameBtn f_left"><i class="fas fa-angle-right"></i></div>
+							</div>
+						</c:if>
+					</div>
+				</c:if>
+				<div class="cafeR_List clearfix mb30">
+					<c:forEach var="sameItem" items="${sameBoard }">
+					<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${sameItem.boardNo}" class="a_cafeReview">
+						<div class="cafeR_box">
+							<div class="cafeR_titleBox">
+								<div class="cafeR_titleImg">	
+									<div class="bg"></div>						
+									<img class="titleImg" src="" alt="카페대표이미지" />
+									<script>
+										// 같은 카페 다른 탐방기 list 대표이미지
+										var imgPath = '${pageContext.request.contextPath }/user/displayFile?filename=';
+										var sImgName = '${sameItem.files[0].imageName}';
+										var imgName = sImgName.replace("s_", "");
+										
+										$(".cafeR_sameList .titleImg").attr("src", imgPath+imgName);
+									</script>
+								</div>
+								<div class="cafeR_titleTop clearfix" >
+									<div class="cafeR_writer clearfix">
+										<img src="${pageContext.request.contextPath }/resources/images/${sameItem.userNo.userGrade.userGradeImage }" alt="등급아이콘" />
+										<span class="cafeR_name bold">${sameItem.userNo.nick }</span>
+										<span class="cafeR_id bold">(${sameItem.userNo.userId })</span>
+									</div>
+									<div class="cafeR_recomCnt bgRed">${sameItem.voteNumber }</div>						
+								</div>
+								<h2 class="classSec cafe_title">${sameItem.writingTitle }</h2>
+								<div class="cafeR_date bold"><fmt:formatDate value="${sameItem.registrationDate }" pattern="yyyy/MM/dd"/></div>
+							</div>
+							<div class="cafeR_infoBox">
+								<div class="cafeR_infoTop clearfix">
+									<div class="zoneBtn zoneOrangeIconSmall">${sameItem.cafeNo.zoneNo.zoneName }</div>
+									<div class="themeKeySmall themeName">#${sameItem.cafeNo.themeNo.themeName }</div>
+									<h2>${sameItem.cafeNo.cafeName }</h2>
+								</div>
+								<%-- <p class="cafeR_text">
+									${item.writingContent }
+								</p> --%>
+							</div>
+							<div class="cafeR_replyCdt clearfix">
+								<div class="cafeR_replyCdtWrap">
+									<div class="cafeR_btns">
+										<img src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="icon" />
+										<span class="cafeR_replyCnt">${sameItem.replyCnt }</span>
+									</div>
+									<div class="cafeR_btns">
+										<img src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="icon" />
+										<span class="cafeR_viewCnt">${sameItem.viewNumber }</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="RC_sameList">
+            <!-- (1) 제목 & 게시글나머지숫자 --> 
+            		
+			<!-- 관련추천글 X : 제목 + noImg + 여러분의 소중한 추천 카페 후기를 기다리고 있어요! -->
+				<c:if test="${sameKeywordCnt == 0 }">
+					<div class="RC_sameTitle bottomLine clearfix">
+						<p class="f_left">
+							<span style="color: navy" class="bold">#${cafe.zoneNo.zoneName} #${cafe.themeNo.themeName}</span>에 대한 
+							<span class="orange bold">관련된</span> 
+							<span class="red bold">추천글</span>이 아직 없습니다.
+						</p>
+					</div>
+				</c:if>
+				<c:if test="${sameKeywordCnt == 0 }">
+					<div class="RC_noImgList">
+						<img src="${pageContext.request.contextPath}/resources/images/rc_noImg.png" alt="NoImg">
+						<p class="RC_noListMent bold">
+							여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!
+						</p>
+					</div>
+				</c:if>
+	
+				<!-- 관련추천글 O : 제목 + 나머지 추천카페 게시물 숫자 -->
+				<c:if test="${sameKeywordCnt > 0 }">
+					<div class="RC_sameTitle bottomLine clearfix">
+						<p class="f_left">
+							<span style="color:navy" class="bold">#${cafe.zoneNo.zoneName} #${cafe.themeNo.themeName}</span>에 대한 
+							<span class="orange bold"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sameKeywordCnt }"/></span>개의 
+							<span class="red bold">추천글</span>이 있어요!
+						</p>
+						
+						<!-- 페이징 버튼생성 -->
+						<c:if test="${sameKeywordCnt > 4 }">
+							<div class="RC_sameListBtns f_right">
+								<div class="f_left orange"><span class="pageNum2">1</span> / <span class="pageTotal2">0</span></div>
+								<div class="RC_sameBtn f_left" id="prevBtn2"><i class="fas fa-angle-left"></i></div>
+								<div class="RC_sameBtn f_left" id="nextBtn2"><i class="fas fa-angle-right"></i></div>
+							</div>
+						</c:if>
+					</div>
+				</c:if>
+			</div>
+			
+			<!-- 관련추천글 O : 이미지배너 -->
+			<c:if test="${sameKeywordCnt > 0 }">
+				<div class="RC_banner mb30">
+					<div class="RC_bannerWrap">
+						<ul id="banner2">
+							<c:forEach var="sameKeyword" items="${sameKeyword}">
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
+									<li>
+										<div class="RC_listBtnImgWrap">
+											<div class="RC_listBtnImgContainer">
+								                <!-- 이미지 이름 꺼내서 삽입하기 -->		
+												<c:forEach var="img" items="${klistImg}">
+													 <c:if test="${img.boardNo.boardNo == sameKeyword.boardNo }">
+														<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+													</c:if>
+												</c:forEach>								
+											</div>
+										</div>
+										<div class="RC_listBtnTitle1">
+											<!-- 위치 -->
+											<div class="zoneBtn zoneOrangeIconSmall keyword">${sameKeyword.zoneNo.zoneName}</div>
+											<!-- 키워드 -->
+											<c:choose>
+												<c:when test="${sameKeyword.themeNo.themeNo == 1}">
+													<div class="date themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 2}">
+													<div class="view themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 3}">
+													<div class="ame themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 4}">
+													<div class="dessert themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 5}">
+													<div class="dog themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:otherwise>
+													<div class="work themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="RC_listBtnTitle2">
+											<h3>${sameKeyword.writingTitle}</h3>
+										</div>
+									</li>
+								</a>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+			</c:if>		
 		</div>
 	</div>
 	
@@ -873,7 +1272,12 @@
 		<td style="border-bottom: 1px solid #dadada;text-align: left;">
 			<img src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
 			<span>{{userNo.nick}}</span>
-			<span>({{userNo.userId}})</span>
+		</td>
+		<td style="border-bottom: 1px solid #dadada;">
+			<div class="replyBtn f_right">
+				<a class="replyModify blueBtn off" href="#" data-spNo="{{starPointNo}}" data-sp="{{starPoint}}" data-spTheme="{{themeNo.themeNo}}" data-spComment="{{starPointComment}}">수정</a>
+				<a class="replyRemove redBtn" href="#"  data-spNo="{{starPointNo}}">삭제</a>
+			</div>
 		</td>
 	</tr>
 	{{/each}}
@@ -890,7 +1294,7 @@
 		return year + "/" + month + "/" + day;
 	})
 	
-	/* 댓글 리스트 */
+	/* 평점 리스트 */
 	function getPageList( page ){
 		var cafeNo = ${cafe.cafeNo};
 		
@@ -965,16 +1369,16 @@
 		
 	}
 	
-	/* 댓글 리스트 show */
+	/* 평점 리스트 show */
 	getPageList(1);
 	
-	/* 댓글 페이징 */
+	/* 평점 페이징 */
 	$(document).on("click", "#pagination a", function(){
 		no = $(this).text();
 		getPageList(no);
 	})
 	
-	/* 댓글 추가 */
+	/* 평점 추가 */
 	$("#btnStarpointAdd").click(function(){
 		// login 기능 구현 후 수정해야함
 		var userNo = 1;
@@ -997,7 +1401,7 @@
 			dataType : "text",
 			success: function(res){
 				if(res == "SUCCESS"){
-					alert("댓글이 등록되었습니다.");
+					alert("평점이 등록되었습니다.");
 					getPageList(no);
 					$("#starPointModal").css("display", "none");
 					$('#comment').val("");
@@ -1005,11 +1409,246 @@
 					$('.changeColor').eq(themeNo-1).css("background-color","white");
 					$('.changeColor').eq(themeNo-1).css("border-color",color);
 					$('.changeColor').eq(themeNo-1).css("color",color);
+					$('#starPointCheck').barrating('set', 1);
 				}
 			}
 		})		
 	})
+	/* 평점 취소 */
+	$('#btnStarpointCancel').click(function() {
+		$("#starPointModal").css("display", "none");
+		$('#comment').val("");
+		$('#starPointCheck').barrating('set', 1);
+		for(var i=0;i<6;i++){
+			switch(i){
+			case 0:
+				$('.changeColor').eq(0).css("background-color","white");
+				$('.changeColor').eq(0).css("color","#b038fa");
+				$('.changeColor').eq(0).css("border-color","#b038fa");
+			case 1:
+				$('.changeColor').eq(1).css("background-color","white");
+				$('.changeColor').eq(1).css("color","#528236e");
+				$('.changeColor').eq(1).css("border-color","#528236e");
+			case 2:
+				$('.changeColor').eq(2).css("background-color","white");
+				$('.changeColor').eq(2).css("color","#96814c");
+				$('.changeColor').eq(2).css("border-color","#96814c");
+			case 3:
+				$('.changeColor').eq(3).css("background-color","white");
+				$('.changeColor').eq(3).css("color","#f2486f");
+				$('.changeColor').eq(3).css("border-color","#f2486f");
+			case 4:
+				$('.changeColor').eq(4).css("background-color","white");
+				$('.changeColor').eq(4).css("color","#FFB232");
+				$('.changeColor').eq(4).css("border-color","#FFB232");
+			case 5:
+				$('.changeColor').eq(5).css("background-color","white");
+				$('.changeColor').eq(5).css("color","#0170c2");
+				$('.changeColor').eq(5).css("border-color","#0170c2");
+			}
+			$("#btnAddDiv").css("display","inline");
+			$("#btnModDiv").css("display","none");
+		}
+	})
+	/* 평점 수정 */
+	$(document).on("click",".replyModify", function(){
+		var starPointNo = $(this).attr("data-spNo");
+		var themeNo = $(this).attr("data-spTheme");
+		var starPoint = $(this).attr("data-sp");
+		var starPointComment = $(this).attr("data-spComment");
+		
+		$("#hiddenStarpointNo").val(starPointNo);
+		$("#hiddenTheme").val(themeNo);
+		
+		$("#starPointModal").css("display", "block");
+		$('#starPointCheck').barrating('set', starPoint);
+
+		switch(themeNo){
+			case "1":
+				$('.changeColor').eq(0).css("background-color","#b038fa");
+				$('.changeColor').eq(0).css("color","white");
+				break;
+			case "2":
+				$('.changeColor').eq(1).css("background-color","#528236");
+				$('.changeColor').eq(1).css("color","white");
+				break;
+			case "3":
+				$('.changeColor').eq(2).css("background-color","#96814c");
+				$('.changeColor').eq(2).css("color","white");
+				break;
+			case "4":
+				$('.changeColor').eq(3).css("background-color","#f2486f");
+				$('.changeColor').eq(3).css("color","white");
+				break;
+			case "5":
+				$('.changeColor').eq(4).css("background-color","#FFB232");
+				$('.changeColor').eq(4).css("color","white");
+				break;
+			case "6":
+				$('.changeColor').eq(5).css("background-color","#0170c2");
+				$('.changeColor').eq(5).css("color","white");
+				break;
+		}
+		$("#comment").val(starPointComment);
+		$("#btnAddDiv").css("display","none");
+		$("#btnModDiv").css("display","inline");
+		return false;
+	})
+	/* 평점 수정 저장 */
+	$("#btnStarpointMod").click(function(){
+		// login 기능 구현 후 수정해야함
+		var starPointNo = $('#hiddenStarpointNo').val();
+		var themeNo = $('#hiddenTheme').val();
+		var starPoint = $('#hiddenStarpoint').val();
+		var starPointComment = $('#comment').val();
+		
+		var json = JSON.stringify({"starPointNo":starPointNo, "themeNo":{"themeNo":themeNo}, "starPoint":starPoint, "starPointComment":starPointComment});
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/starpoint/"+starPointNo,
+			type:"put",
+			headers: {"Content-Type":"application/json"},
+			data: json,
+			dataType : "text",
+			success: function(res){
+				if(res == "SUCCESS"){
+					alert("평점이 수정되었습니다.");
+					getPageList(no);
+					$("#starPointModal").css("display", "none");
+					$('#comment').val("");
+					var color = $('.changeColor').eq(themeNo-1).css("background-color");
+					$('.changeColor').eq(themeNo-1).css("background-color","white");
+					$('.changeColor').eq(themeNo-1).css("border-color",color);
+					$('.changeColor').eq(themeNo-1).css("color",color);
+					$('#starPointCheck').barrating('set', 1);
+				}
+			}
+		})		
+	})
+	/* 평점 삭제 */
+	$(document).on("click", ".replyRemove", function(){
+		var con = confirm("정말 삭제하시겠습니까?");
+		if(con == true){
+			var starPointNo = $(this).attr("data-spNo");
+			console.log(starPointNo);
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/starpoint/"+starPointNo,
+				type:"delete",
+				dataType : "text",
+				success:function(res){
+					console.log(res);
+					if(res == "SUCCESS"){
+						alert("삭제되었습나다.");						
+						getPageList(no);
+					}
+				}
+			})	
+		}
+		return false;
+	})
+	
+	/*---- 다른 탐방기 게시글 리스트 슬라이드 -----------------------------------------------------------------------------------------------------*/
+	var sameBox = $(".cafeR_sameList > .cafeR_List");
+	var sameCnt =  ${sameCnt};
+	var samePage = Math.ceil(sameCnt / 2);
+	var sameW = sameBox.width((920 * samePage) + (22 * samePage));
+	
+	var index = 0;
+	var pageIndex = 1;
+	
+	$(".pageTotal").text(samePage);
+	
+	/* next */
+	$("#nextBtn").click(function(){
+		if(index == -(samePage-1)){
+			return;
+		}
+		
+		index--;
+		pageIndex++;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
+	/* prev */
+	$("#prevBtn").click(function(){
+		if(index == 0){
+			return;
+		}
+		
+		index++;
+		pageIndex--;
+		var marginLeft = index * 942;
+		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		$(".pageNum").text(pageIndex);
+	})
+	// 테마분류 색상 설정
+	$(".themeName").each(function(i, obj){
+		var name = $(this).text();
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+	})
+	
+	/*---- 추천 카페 게시글 리스트 슬라이드 -----------------------------------------------------------------------------------------------------*/	
+	
+	// -- 원본파일 불러오기(선명한파일) -- //
+	$(".thumbNailImg").each(function(i, obj) {
+		var file = $(this).attr("src");
+		//console.log("TEST========="+file);
+		var start = file.substring(0,51);
+		var end = file.substring(53);
+		var fileName = start + end;
+		$(this).attr("src", fileName);
+		//console.log("TEST========="+fileName);
+	})
+	
+	// ---------------------- 두번째 배너 -------------------------------- //
+	var sameKeywordCnt = ${sameKeywordCnt}; 
+	var pageNum2 = $(".pageNum2").text();
+	
+	//페이징
+	var pageTotal2 = Math.ceil(${sameKeywordCnt} / 4); 
+	$(".pageTotal2").text(pageTotal2); 
+	
+	//ul너비 자동계산
+	var width2 = (920*pageTotal2);
+	$("ul#banner2").css("width",width2);
+	//next버튼
+	var index2 = 0;
+	$("#nextBtn2").click(function() {
+		
+		if(index2 == -(pageTotal2-1)){
+			alert("오른쪽 끝입니다.");
+			return;
+		}
+		
+		pageNum2++;
+		$(".pageNum2").text(pageNum2);
+		
+		index2--;
+		var marginLeft = index2 * 920;
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
+	})
+	//prev버튼
+	$("#prevBtn2").click(function() {
+		if(index2 == 0){
+			alert("왼쪽 끝입니다.");
+			return;
+		}
+		pageNum2--;
+		$(".pageNum2").text(pageNum2);
+		
+		index2++;
+		var marginLeft = index2 * 920; 
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
+	})
 </script>
+
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
