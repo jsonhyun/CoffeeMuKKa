@@ -137,6 +137,11 @@ public class UserCafeController {
 		return "/user/userMukkaCafeZoneRead";
 	}
 	
+	@RequestMapping(value = "/mukkaCafe/theme", method = RequestMethod.GET)
+	public String cafeThemeList(SearchCriteria cri, Model model) throws Exception {
+		
+		return "/user/userMukkaCafeThemeList";
+	}
 	
 	// 경진 추가 --------------------------------------------------------------------------------------------------------------
 	// 메인 메뉴 검색
