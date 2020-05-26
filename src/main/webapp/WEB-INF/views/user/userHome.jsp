@@ -185,6 +185,8 @@
 		overflow: hidden;
 	}
 	.cafeRecommend .RC_listImgWrap{
+		width: 180px;
+		height: 150px;
 		overflow: hidden;
 	}
 	.cafeRecommend .newListImgs ul li {

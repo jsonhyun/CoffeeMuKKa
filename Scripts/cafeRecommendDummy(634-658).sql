@@ -1,6 +1,6 @@
 select user(), database();
 
--- 추천카페 더미 데이터 : board 테이블에 먼저 insert한후 / image 테이블에 insert할것 --
+-- 게시글번호 : 634 - 715번
 
 -- BOARD --
 INSERT INTO coffeemukka.board
