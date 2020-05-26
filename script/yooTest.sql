@@ -235,4 +235,24 @@ select * from `zone`;
 
 -- cafe best
 select * from cafe;
+select spoint
+	from starpoint s left join cafe c on s.cafe_no = c.cafe_no,
+		(select cafe_no, round(avg(star_point), 1) as spoint, update_date from starpoint where month(update_date) = month(now())-1 group by cafe_no) spoint
+	where s.cafe_no = spoint.cafe_no and c.cafe_cdt = 1
+	group by s.cafe_no
+	order by spoint desc, spoint.update_date desc limit 10;
 
+select spoint, c.*
+	from starpoint s left join cafe c on s.cafe_no = c.cafe_no,
+		(select cafe_no, round(avg(star_point), 1) as spoint, update_date from starpoint where month(update_date) = month(now())-1 group by cafe_no) spoint
+	where s.cafe_no = spoint.cafe_no and c.cafe_cdt = 1
+	group by s.cafe_no
+	order by spoint desc, spoint.update_date desc limit 10;
+
+select cafe_no, round(avg(star_point), 1) as spoint, update_date 
+	from starpoint 
+	where month(update_date) = month(now())-1 
+	group by cafe_no
+	order by spoint desc;
+
+select * from starpoint where cafe_no = 24 and month(update_date) = month(now())-1;

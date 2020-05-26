@@ -321,6 +321,23 @@
 		<include refid="mainSearch"/>
 	</select>
 	
+	<!-- 경진추가 : 전월 별점 베스트 -->
+	<sql id="monthBestSql">
+		from starpoint s left join cafe c on s.cafe_no = c.cafe_no,
+			(select cafe_no, round(avg(star_point), 1) as spoint, update_date from starpoint where month(update_date) = month(now())-1 group by cafe_no) spoint
+		where s.cafe_no = spoint.cafe_no and c.cafe_cdt = 1
+		group by s.cafe_no
+		order by spoint desc, spoint.update_date desc limit 10
+	</sql>
+	<select id="monthBestSPoint" resultType="double">
+		select spoint
+		<include refid="monthBestSql"/>
+	</select>
+	<select id="monthBestCafe" resultMap="CafeListSelectResult">
+		select spoint, c.*
+		<include refid="monthBestSql"/>
+	</select>
+	
 	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->
 	<select id="rcSearchCafeByName" resultMap="CafeListSelectResult">
 		select * from cafe c left join zone z on c.zone_no  = z.zone_no where c.cafe_name like CONCAT('%', #{cafeName}, '%')
