@@ -217,6 +217,24 @@ public class BoardService {
 		}
 	}
 
+//	재승 추가
+	// 카페 상세보기의 해당 카페 탐방기 리스트
+	public List<BoardVO> cafeReviewSameListByCafeNo(BoardVO boardVO) throws Exception {
+		return dao.cafeReviewSameListByCafeNo(boardVO);
+	}
+
+	public int cafeReivewSameCntByCafeNo(BoardVO boardVO) throws Exception {
+		return dao.cafeReivewSameCntByCafeNo(boardVO);
+	}
+	// 카페와 같은 키워드, 지역의 추천 카페 리스트
+	public List<BoardVO> recommendSameKeywordListByZoneAndTheme(BoardVO boardVO) throws Exception {
+		return dao.recommendSameKeywordListByZoneAndTheme(boardVO);
+	}
+
+	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception {
+		return dao.recommendSameKeywordCntByZoneAndTheme(boardVO);
+	}
+
 
 
 

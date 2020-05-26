@@ -72,7 +72,13 @@ public interface BoardDAO {
 	// 탐방기 -- remove
 	public void cafeReviewRemove(BoardVO vo) throws Exception;
 
-
+	/***재승 추가***/
+	//동일한 카페의 탐방기 리스트
+	public List<BoardVO> cafeReviewSameListByCafeNo(BoardVO vo) throws Exception;
+	public int cafeReivewSameCntByCafeNo(BoardVO vo) throws Exception;
+	//해당 카페와 키워드, 지역이 같은 추천카페 리스트
+	public List<BoardVO> recommendSameKeywordListByZoneAndTheme(BoardVO boardVO) throws Exception;
+	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception;
 
 
 
