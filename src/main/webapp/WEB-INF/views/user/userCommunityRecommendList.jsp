@@ -329,7 +329,7 @@
 				
 				<ul>
 					<c:forEach var="board" items="${list}">
-					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}">
+					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
 						<li>
 								<div class="RC_listImgWrap">
 									<div class="RC_listImgContainer">

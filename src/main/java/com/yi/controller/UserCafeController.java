@@ -30,7 +30,7 @@ public class UserCafeController {
 	@Autowired
 	ThemeService themeService;
 	
-	
+	/** 위치별 카페**/
 	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)
 	public String cafeZoneList(SearchCriteria cri, Model model) throws Exception {
 		
@@ -104,6 +104,35 @@ public class UserCafeController {
 		model.addAttribute("menuList", menuList);
 		
 		return "/user/userMukkaCafeZoneRead";
+	}
+	
+	/** 테마별 카페 **/
+	@RequestMapping(value = "/mukkaCafe/theme", method = RequestMethod.GET)
+	public String cafeThemeList(SearchCriteria cri, Model model) throws Exception {
+		List<CafeVO> list = service.listSearchCriteria(cri);
+		List<ImageVO> imgList = new ArrayList<ImageVO>();
+		List<Integer> starpointList = new ArrayList<Integer>();
+		List<Integer> reviewNum = new ArrayList<Integer>();
+		
+		for(int i=0; i<list.size();i++) {
+			int cafeNo = list.get(i).getCafeNo();
+			imgList.add(service.imgSelect(cafeNo));
+			starpointList.add(service.starpointSelect(cafeNo));
+			reviewNum.add(service.countReviewNum(cafeNo));
+		}
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalSearchCount(cri));
+		
+		model.addAttribute("cri", cri);
+		model.addAttribute("list", list);
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("starpoint", starpointList);
+		model.addAttribute("reviewNum", reviewNum);
+				
+		return "/user/userMukkaCafeThemeList";
 	}
 	
 	

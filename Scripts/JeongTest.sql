@@ -300,3 +300,14 @@ select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zon
 		left join theme t on b.theme_no = t.theme_no
 		where b.board_no2 = 2
 		order by b.board_no desc limit 0, 9;	
+		
+select * from board;
+
+select * from cafe;
+
+-- 더미 만들기
+INSERT INTO coffeemukka.board
+(board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
+VALUES(1, 2, NULL, 1, 6, 3, NULL, NULL, '프리지아', '2020-05-22 09:52:26.0', '2020-05-22 09:52:26.0', 5, 0, 1, '조용하고 아늑하고~
+무엇보다 아메리카노가 저는 너무 괜찮더라구요!
+시간나면 한번 가보세요!!!', '대구 서구 서대구로7길 12', 0);
