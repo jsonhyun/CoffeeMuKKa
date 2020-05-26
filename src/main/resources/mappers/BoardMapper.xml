@@ -111,7 +111,7 @@
 		where b.zone_no = #{zoneNo.zoneNo} and b.theme_no = #{themeNo.themeNo} and b.board_no != #{boardNo}
 		order by b.board_no desc	
 	</select>
-		
+	
 	<!-- 추천카페 : 같은지역,테마  개수 -->
  	<select id="recommendSameKeywordCnt" resultType="int">
 		select count(*) from board where zone_no = #{zoneNo.zoneNo} and theme_no = #{themeNo.themeNo} and board_no != #{boardNo}
@@ -126,8 +126,23 @@
 		update board
 			set zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}
 		where board_no = #{boardNo}
-	</update>	
+	</update>
 		
+	<!-- 재승 추가 -->
+	
+	<!-- 추천카페 : 같은키워드카페리스트 : 지역,테마 같아야함 // 해당게시글 번호는 나오면 안됨 // 최신순으로 정렬 -->
+ 	<select id="recommendSameKeywordListByZoneAndTheme" resultMap="BoardResult">
+		select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no
+		where b.zone_no = #{cafeNo.zoneNo.zoneNo} and b.theme_no = #{cafeNo.themeNo.themeNo}
+		order by b.board_no desc	
+	</select>
+	<!-- 추천카페 : 같은지역,테마  개수 -->
+ 	<select id="recommendSameKeywordCntByZoneAndTheme" resultType="int">
+		select count(*) from board where zone_no = #{cafeNo.zoneNo.zoneNo} and theme_no = #{cafeNo.themeNo.themeNo}
+	</select> 		
 	
 <!-- **********************************************************************      공통 RESULTMAP     ***************************************************************************** -->
 	<!-- BoardResultMap JOIN테이블[boardKinds + keySortNo + users + grade + zone + theme + cafe ] -->

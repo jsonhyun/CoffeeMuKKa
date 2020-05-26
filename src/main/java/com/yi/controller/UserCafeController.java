@@ -109,10 +109,8 @@ public class UserCafeController {
 		model.addAttribute("menuList", menuList);
 		
 		/* 같은 카페의 탐방기 */
-		CafeVO cafeVO = new CafeVO();
-		cafeVO.setCafeNo(cafeNo);
 		BoardVO boardVO = new BoardVO();
-		boardVO.setCafeNo(cafeVO);
+		boardVO.setCafeNo(cafe);
 		
 		List<BoardVO> sameVo = boardService.cafeReviewSameListByCafeNo(boardVO);
 		int sameCnt = boardService.cafeReivewSameCntByCafeNo(boardVO);
@@ -120,6 +118,22 @@ public class UserCafeController {
 		model.addAttribute("sameBoard", sameVo);
 		model.addAttribute("sameCnt", sameCnt);
 
+		//(same)해당지역+해당키워드글List
+		List<BoardVO> sameKeyword = boardService.recommendSameKeywordListByZoneAndTheme(boardVO);
+		model.addAttribute("sameKeyword", sameKeyword);
+		
+		//(same)해당지역+해당키워드글 : 개수
+		int sameKeywordCnt = boardService.recommendSameKeywordCntByZoneAndTheme(boardVO);
+		model.addAttribute("sameKeywordCnt", sameKeywordCnt);
+		
+		//(same)해당키워드에 이미지
+		List<ImageVO> klistImg = new ArrayList<ImageVO>();
+		for(int i=0;i<sameKeyword.size();i++) {
+			int sboardNo = sameKeyword.get(i).getBoardNo();
+		    klistImg.addAll(boardService.recommendboardImgList(sboardNo));
+		    }
+		model.addAttribute("klistImg", klistImg);
+		
 		return "/user/userMukkaCafeZoneRead";
 	}
 	

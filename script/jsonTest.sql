@@ -85,3 +85,12 @@ select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board
 						left join cafe c on b.cafe_no = c.cafe_no 
 						left join zone z on c.zone_no = z.zone_no 
 						left join theme t on c.theme_no = t.theme_no where c.cafe_no = 1;
+						
+select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no
+		where b.zone_no = 6 and b.theme_no = 4
+		order by b.board_no desc;	
+select * from board b;		
+select * from board b where zone_no =3 and theme_no =3;

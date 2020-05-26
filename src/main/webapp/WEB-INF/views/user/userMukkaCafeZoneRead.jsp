@@ -287,7 +287,8 @@
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
 	}
-	/* 같은 카페 다른 리뷰 영역 */
+	
+	/* 카페 탐방기 list */
 	.cafeR_sameList {
 		margin-top: 50px;
 		overflow: hidden;
@@ -306,8 +307,7 @@
 	    margin-left: 10px;
 	    cursor: pointer;
 	}
-	
-	/* 다른 포스트 list */
+
 	.cafeR_sameList .a_cafeReview {
 		display: block;
 		float: left;
@@ -439,6 +439,82 @@
 		border-radius: 10px;
 		float: left;
 		margin-right: 10px;
+	}
+	/* 추천 카페 리스트 */
+	.RC_sameList {
+		margin-top: 30px;
+	}
+	
+	.RC_sameList .RC_sameTitle {
+		font-size: 20px;
+	}
+	
+	.RC_sameList .RC_sameTitle .RC_sameBtn {
+		width: 30px;
+	    height: 30px;
+	    border: 1px solid #aaa;
+	    line-height: 30px;
+	    text-align: center;
+	    margin-left: 10px;
+	    cursor: pointer;
+	}
+	
+	.RC_sameList .RC_noImgList{
+		text-align: center;
+		margin-bottom: 50px;
+	}
+	.RC_noImgList p.RC_noListMent{
+		color: #5D5D5D;
+	}
+	.RC_noImgList span.hotpink{
+		color:#FF007F;
+		font-size: 18px;
+	}
+	
+	.RC_banner{
+		width: 918px;
+		height: 265px;
+	}
+	.RC_bannerWrap{
+		width: 918px;
+		height: 265px;
+		overflow: hidden;
+	}
+	.RC_banner .RC_bannerWrap li {
+		float: left;
+		width: 222px;
+		height: 260px;
+		margin: 3px;
+		border: 1px solid #545454;
+	}
+	.RC_banner .RC_bannerWrap li div.RC_listBtnImgWrap{
+		width: 100%;
+		height: 160px;
+		overflow: hidden;
+	}
+	.RC_banner .RC_bannerWrap li div.RC_listBtnImgContainer img{
+		width: 100%;
+		height: 160px;
+		transition:all 1s;
+		transform-origin:left-top;
+	}
+	
+	.RC_banner .RC_bannerWrap li div.RC_listBtnImgContainer img:hover{
+		transform:scale(1.2);
+	}		
+	.RC_banner .RC_bannerWrap li div.RC_listBtnTitle1{
+		width: 90%;
+		height: 33px;
+		padding: 8px;
+	}
+	.RC_banner .RC_bannerWrap li div.RC_listBtnTitle1 div.zoneBtn,div.themeKeySmall{
+		font-size: 16px;
+		margin-top: 5px;
+	}
+ 	.RC_banner .RC_bannerWrap li div.RC_listBtnTitle2{
+		width: 90%;
+		height: 45px;
+		padding: 8px;
 	}
 </style>	
 
@@ -1004,7 +1080,7 @@
 				</div>
 				<div style="margin-bottom: 50px;clear: both;"></div>
 			</div>
-			<!-- 같은 카페의 다른 포스트 list -->
+			<!-- 해당 카페의 탐방기 list -->
 			<div class="cafeR_sameList">
 				<c:if test="${sameCnt > 0 }">
 					<div class="cafeR_sameTitle bottomLine clearfix">
@@ -1073,6 +1149,102 @@
 					</c:forEach>
 				</div>
 			</div>
+			<div class="RC_sameList">
+            <!-- (1) 제목 & 게시글나머지숫자 --> 
+            		
+			<!-- 관련추천글 X : 제목 + noImg + 여러분의 소중한 추천 카페 후기를 기다리고 있어요! -->
+				<c:if test="${sameKeywordCnt == 0 }">
+					<div class="RC_sameTitle bottomLine clearfix">
+						<p class="f_left">
+							<span style="color: navy" class="bold">#${cafe.zoneNo.zoneName} #${cafe.themeNo.themeName}</span>에 대한 
+							<span class="orange bold">관련된</span> 
+							<span class="red bold">추천글</span>이 아직 없습니다.
+						</p>
+					</div>
+				</c:if>
+				<c:if test="${sameKeywordCnt == 0 }">
+					<div class="RC_noImgList">
+						<img src="${pageContext.request.contextPath}/resources/images/rc_noImg.png" alt="NoImg">
+						<p class="RC_noListMent bold">
+							여러분의 소중한 <span class="hotpink">추천 카페 후기</span>를 기다리고 있어요!
+						</p>
+					</div>
+				</c:if>
+	
+				<!-- 관련추천글 O : 제목 + 나머지 추천카페 게시물 숫자 -->
+				<c:if test="${sameKeywordCnt > 0 }">
+					<div class="RC_sameTitle bottomLine clearfix">
+						<p class="f_left">
+							<span style="color:navy" class="bold">#${cafe.zoneNo.zoneName} #${cafe.themeNo.themeName}</span>에 대한 
+							<span class="orange bold"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sameKeywordCnt }"/></span>개의 
+							<span class="red bold">추천글</span>이 있어요!
+						</p>
+						
+						<!-- 페이징 버튼생성 -->
+						<c:if test="${sameKeywordCnt > 4 }">
+							<div class="RC_sameListBtns f_right">
+								<div class="f_left orange"><span class="pageNum2">1</span> / <span class="pageTotal2">0</span></div>
+								<div class="RC_sameBtn f_left" id="prevBtn2"><i class="fas fa-angle-left"></i></div>
+								<div class="RC_sameBtn f_left" id="nextBtn2"><i class="fas fa-angle-right"></i></div>
+							</div>
+						</c:if>
+					</div>
+				</c:if>
+			</div>
+			
+			<!-- 관련추천글 O : 이미지배너 -->
+			<c:if test="${sameKeywordCnt > 0 }">
+				<div class="RC_banner mb30">
+					<div class="RC_bannerWrap">
+						<ul id="banner2">
+							<c:forEach var="sameKeyword" items="${sameKeyword}">
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${sameKeyword.boardNo}">
+									<li>
+										<div class="RC_listBtnImgWrap">
+											<div class="RC_listBtnImgContainer">
+								                <!-- 이미지 이름 꺼내서 삽입하기 -->		
+												<c:forEach var="img" items="${klistImg}">
+													 <c:if test="${img.boardNo.boardNo == sameKeyword.boardNo }">
+														<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+													</c:if>
+												</c:forEach>								
+											</div>
+										</div>
+										<div class="RC_listBtnTitle1">
+											<!-- 위치 -->
+											<div class="zoneBtn zoneOrangeIconSmall keyword">${sameKeyword.zoneNo.zoneName}</div>
+											<!-- 키워드 -->
+											<c:choose>
+												<c:when test="${sameKeyword.themeNo.themeNo == 1}">
+													<div class="date themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 2}">
+													<div class="view themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 3}">
+													<div class="ame themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 4}">
+													<div class="dessert themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:when test="${sameKeyword.themeNo.themeNo == 5}">
+													<div class="dog themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:when>
+												<c:otherwise>
+													<div class="work themeKeySmall keyword">#${sameKeyword.themeNo.themeName}</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="RC_listBtnTitle2">
+											<h3>${sameKeyword.writingTitle}</h3>
+										</div>
+									</li>
+								</a>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+			</c:if>		
 		</div>
 	</div>
 	
@@ -1409,7 +1581,72 @@
 		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
 		$(".pageNum").text(pageIndex);
 	})
+	// 테마분류 색상 설정
+	$(".themeName").each(function(i, obj){
+		var name = $(this).text();
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+	})
 	
+	/*---- 추천 카페 게시글 리스트 슬라이드 -----------------------------------------------------------------------------------------------------*/	
+	
+	// -- 원본파일 불러오기(선명한파일) -- //
+	$(".thumbNailImg").each(function(i, obj) {
+		var file = $(this).attr("src");
+		//console.log("TEST========="+file);
+		var start = file.substring(0,51);
+		var end = file.substring(53);
+		var fileName = start + end;
+		$(this).attr("src", fileName);
+		//console.log("TEST========="+fileName);
+	})
+	
+	// ---------------------- 두번째 배너 -------------------------------- //
+	var sameKeywordCnt = ${sameKeywordCnt}; 
+	var pageNum2 = $(".pageNum2").text();
+	
+	//페이징
+	var pageTotal2 = Math.ceil(${sameKeywordCnt} / 4); 
+	$(".pageTotal2").text(pageTotal2); 
+	
+	//ul너비 자동계산
+	var width2 = (920*pageTotal2);
+	$("ul#banner2").css("width",width2);
+	//next버튼
+	var index2 = 0;
+	$("#nextBtn2").click(function() {
+		
+		if(index2 == -(pageTotal2-1)){
+			alert("오른쪽 끝입니다.");
+			return;
+		}
+		
+		pageNum2++;
+		$(".pageNum2").text(pageNum2);
+		
+		index2--;
+		var marginLeft = index2 * 920;
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
+	})
+	//prev버튼
+	$("#prevBtn2").click(function() {
+		if(index2 == 0){
+			alert("왼쪽 끝입니다.");
+			return;
+		}
+		pageNum2--;
+		$(".pageNum2").text(pageNum2);
+		
+		index2++;
+		var marginLeft = index2 * 920; 
+		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
+	})
 </script>
 
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
