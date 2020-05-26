@@ -231,3 +231,8 @@ select count(cafe_no) from cafe c where (c.theme_no in (1, 3)) and theme_no = 1;
 select count(cafe_no) from cafe c left join theme t on c.theme_no = t.theme_no where (c.theme_no in (1, 3)) and t.theme_no = 1;
 select count(cafe_no) from cafe c WHERE (c.theme_no in ( '1' , '3' ) ) AND t.theme_no = '3';
 select * from `zone`;
+
+
+-- cafe best
+select * from cafe;
+

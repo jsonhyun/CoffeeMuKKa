@@ -194,6 +194,12 @@
 		border-radius: 10px;
 		float: left;
 		margin-right: 10px;
+		line-height: 28px;
+	}
+	
+	.cafeReviewArea .cafeR_replyCdt .cafeR_btns img {
+		float: left;
+		margin-right: 10px;
 	}
 	
 	/* 페이징 */
