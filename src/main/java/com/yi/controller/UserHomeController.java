@@ -1,5 +1,6 @@
 package com.yi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yi.domain.BoardVO;
+import com.yi.domain.ImageVO;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
 
@@ -26,6 +29,19 @@ public class UserHomeController {
 		
 		System.out.println("zoneList -----------------" + zoneList);
 		model.addAttribute("zoneList", zoneList);
+		
+		//실시간 카페 추천 리스트 & 대표이미지
+		List<BoardVO> rclist = boardService.recommendboardList();
+		model.addAttribute("rclist",rclist);
+		System.out.println("test1=========================="+rclist);
+		
+		List<ImageVO> rclistImg = new ArrayList<ImageVO>();
+		for(int i=0;i<rclist.size();i++) {
+			int sboardNo = rclist.get(i).getBoardNo();
+			rclistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+		}
+		System.out.println("test2=========================="+rclistImg);
+		model.addAttribute("rclistImg", rclistImg);
 		
 		return "/user/userHome";
 	}

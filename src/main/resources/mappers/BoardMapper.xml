@@ -46,13 +46,13 @@
 	</resultMap>	
 	
 	 <!-- **********************************************************************      QUERY     ***************************************************************************** -->	
-	<!-- 추천카페 : 리스트 : 테스트용-->
+	<!-- 추천카페 : 리스트 : Main Home-->
 	<select id="recommendboardList" resultMap="recommendBoardList">
 		select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
 		left join zone z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no
 		where b.board_no2 = 2
-		order by b.board_no desc
+		order by b.board_no desc limit 0, 9;
 	</select>
 	
 	<!-- 추천카페 : 페이징된 리스트 -->
@@ -124,7 +124,7 @@
 	<!-- 추천카페 수정 -->
 	<update id="recommendUpdate" parameterType="BoardVO">
 		update board
-			set zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}
+			set zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}, update_date = now()
 		where board_no = #{boardNo}
 	</update>
 		

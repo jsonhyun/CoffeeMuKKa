@@ -368,13 +368,16 @@
 			<!-------------------------------- 실질적인 등록폼 -------------------------------->
 			<form action="modify" method="post" enctype="multipart/form-data">
 			<!-- hidden처리 -->
-			<input type="hidden" name="board.boardNo" value="${board.boardNo}">
-			<input type="hidden" name="boardNo2.boardNo" value="2">
-			<input type="hidden" name="userNo.userNo" value="${board.userNo.userNo}">
-			<input type="hidden" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
-			<input type="hidden" name="themeNo.themeNo" id="hiddenTheme" value="${board.themeNo.themeNo}">
-			<input type="hidden" name="writingTitle" id="hiddenTitle" value="${board.writingTitle}">
-			<input type="hidden" name="address" id="hiddenAddress" value="${board.address}">
+			<input type="text" name="board.boardNo" value="${board.boardNo}">
+			<input type="text" name="boardNo2.boardNo" value="2">
+			<input type="text" name="userNo.userNo" value="${board.userNo.userNo}">
+			<input type="text" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
+			<input type="text" name="themeNo.themeNo" id="hiddenTheme" value="${board.themeNo.themeNo}">
+			<input type="text" name="writingTitle" id="hiddenTitle" value="${board.writingTitle}">
+			<input type="text" name="address" id="hiddenAddress" value="${board.address}">
+			<input type="text" value="${cri.page}" name="page">
+			<input type="text" value="${cri.searchType}" name="searchType">
+			<input type="text" value="${cri.keyword}" name="keyword">
 			<!-- 카페후기 글 -->		
 			<div class="RC_Rg_groub">	
 				<textarea rows="15" cols="100" name="writingContent" id="text" placeholder=" &#13;&#10; &#13;&#10; &#13;&#10; &#13;&#10;    ☞    여러분의 소중한 추천 카페 이야기를 들려주세요.&#13;&#10;">${board.writingContent}</textarea>

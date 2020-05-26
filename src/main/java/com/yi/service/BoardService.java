@@ -95,7 +95,8 @@ public class BoardService {
 	@Transactional
 	public void recommendUpdate(BoardVO vo) throws Exception {
 		dao.recommendUpdate(vo);
-		int boardNo = vo.getBoardNo();	
+		int boardNo = vo.getBoardNo();
+		/* int boardNo = 636; */
 		System.out.println("service+++++++++++++++++"+vo.toString());
 		System.out.println("service=============================="+ boardNo);
 		 for(String file : vo.getStringFiles()) {
