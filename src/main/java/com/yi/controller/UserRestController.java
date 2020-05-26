@@ -218,4 +218,35 @@ public class UserRestController {
 		
 		return entity;
 	}
+	
+	@RequestMapping(value = "/starpoint/{starPointNo}", method = RequestMethod.PUT)
+	public ResponseEntity<String> starpointUpdate(@PathVariable("starPointNo") int starPointNo, @RequestBody StarpointVO vo) {
+		ResponseEntity<String> entity = null;
+		
+		try {
+			vo.setStarPointNo(starPointNo);
+			replyService.updateStarPoint(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	@RequestMapping(value = "/starpoint/{starPointNo}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> starpointDelete(@PathVariable("starPointNo") int starPointNo) {
+		ResponseEntity<String> entity = null;
+		
+		try {
+			replyService.deleteStarPoint(starPointNo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 }

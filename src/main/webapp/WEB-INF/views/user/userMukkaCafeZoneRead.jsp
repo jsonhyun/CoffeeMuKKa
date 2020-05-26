@@ -166,7 +166,7 @@
 	    line-height: 70px;
 	    text-align: left;
 	}
-	/* 카페 댓글 관련 */
+	/* 카페 평점 관련 */
 	#commentTitle{
 		font-size: 20px;
 	    font-weight: bold;
@@ -783,7 +783,7 @@
 			</div>
 			<div style="margin-bottom: 50px;clear: both;"></div>
 			
-			<!-- 카페 댓글 관련 -->
+			<!-- 카페 평점 관련 -->
 			<div>
 				<div id="commentTitle">
 					<span style="color: #2e75b6;">${cafe.cafeName }</span>에 대한 <span id="spointNum" style="color: #FF5722;"></span>개의 이야기가 있어요!
@@ -806,6 +806,7 @@
 							<option value="4">4</option> 
 							<option value="5">5</option> 
 						</select>
+						<input type="hidden" id="hiddenStarpointNo">
 						<input type="hidden" id="hiddenStarpoint">
 						<div style="color: #949494;">평점을 선택해주세요.</div>
 						<div style="width: 90%;border-bottom: 1px solid #ccc;margin: 0px 30px 10px;height: 20px;"></div>
@@ -825,8 +826,13 @@
 						<div class="w3-section">
 							<textarea id="comment" style="margin: 0px 0px 0px 15px;width: 540px;height: 210px;"placeholder=" ${cafe.cafeName }에서 즐거우셨나요? 어떤 점이 좋았는지 이야기해주세요."></textarea>
 							<div style="text-align: center;">
-								<button onclick="document.getElementById('starPointModal').style.display='none'" type="button" class="w3-button w3-text-grey w3-border"style="width: 100px;margin-right: 10px;">취소</button>
+								<button onclick="document.getElementById('starPointModal').style.display='none'" id="btnStarpointCancel" type="button" class="w3-button w3-text-grey w3-border" style="width: 100px;margin-right: 10px;">취소</button>
+								<div id="btnAddDiv" style="display: inline;">
 								<button class="w3-button w3-red w3-section w3-padding" id="btnStarpointAdd" style="width: 100px;">등록</button>
+								</div>
+								<div id="btnModDiv" style="display: none;">
+								<button class="w3-button w3-red w3-section w3-padding" id="btnStarpointMod" style="width: 100px;">수정</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -835,7 +841,7 @@
 			<div>
 				<table style="width: 900px; margin: 0px 20px;" id="spointList">
 					<tr>
-						<td colspan="6" style="text-align: left;border-top: 3px solid #ccc;border-bottom: 1px solid #949494;">
+						<td colspan="7" style="text-align: left;border-top: 3px solid #ccc;border-bottom: 1px solid #949494;">
 							<i class="fas fa-check" style="color: #ccc;"></i><span style="margin-left: 10px;margin-right: 20px;">별점순</span>
 							<i class="fas fa-check" style="color: #ccc;"></i><span style="margin-left: 10px;">최신순</span>
 						</td>
@@ -873,7 +879,12 @@
 		<td style="border-bottom: 1px solid #dadada;text-align: left;">
 			<img src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
 			<span>{{userNo.nick}}</span>
-			<span>({{userNo.userId}})</span>
+		</td>
+		<td style="border-bottom: 1px solid #dadada;">
+			<div class="replyBtn f_right">
+				<a class="replyModify blueBtn off" href="#" data-spNo="{{starPointNo}}" data-sp="{{starPoint}}" data-spTheme="{{themeNo.themeNo}}" data-spComment="{{starPointComment}}">수정</a>
+				<a class="replyRemove redBtn" href="#"  data-spNo="{{starPointNo}}">삭제</a>
+			</div>
 		</td>
 	</tr>
 	{{/each}}
@@ -890,7 +901,7 @@
 		return year + "/" + month + "/" + day;
 	})
 	
-	/* 댓글 리스트 */
+	/* 평점 리스트 */
 	function getPageList( page ){
 		var cafeNo = ${cafe.cafeNo};
 		
@@ -965,16 +976,16 @@
 		
 	}
 	
-	/* 댓글 리스트 show */
+	/* 평점 리스트 show */
 	getPageList(1);
 	
-	/* 댓글 페이징 */
+	/* 평점 페이징 */
 	$(document).on("click", "#pagination a", function(){
 		no = $(this).text();
 		getPageList(no);
 	})
 	
-	/* 댓글 추가 */
+	/* 평점 추가 */
 	$("#btnStarpointAdd").click(function(){
 		// login 기능 구현 후 수정해야함
 		var userNo = 1;
@@ -997,7 +1008,7 @@
 			dataType : "text",
 			success: function(res){
 				if(res == "SUCCESS"){
-					alert("댓글이 등록되었습니다.");
+					alert("평점이 등록되었습니다.");
 					getPageList(no);
 					$("#starPointModal").css("display", "none");
 					$('#comment').val("");
@@ -1005,9 +1016,141 @@
 					$('.changeColor').eq(themeNo-1).css("background-color","white");
 					$('.changeColor').eq(themeNo-1).css("border-color",color);
 					$('.changeColor').eq(themeNo-1).css("color",color);
+					$('#starPointCheck').barrating('set', 1);
 				}
 			}
 		})		
+	})
+	/* 평점 취소 */
+	$('#btnStarpointCancel').click(function() {
+		$("#starPointModal").css("display", "none");
+		$('#comment').val("");
+		$('#starPointCheck').barrating('set', 1);
+		for(var i=0;i<6;i++){
+			switch(i){
+			case 0:
+				$('.changeColor').eq(0).css("background-color","white");
+				$('.changeColor').eq(0).css("color","#b038fa");
+				$('.changeColor').eq(0).css("border-color","#b038fa");
+			case 1:
+				$('.changeColor').eq(1).css("background-color","white");
+				$('.changeColor').eq(1).css("color","#528236e");
+				$('.changeColor').eq(1).css("border-color","#528236e");
+			case 2:
+				$('.changeColor').eq(2).css("background-color","white");
+				$('.changeColor').eq(2).css("color","#96814c");
+				$('.changeColor').eq(2).css("border-color","#96814c");
+			case 3:
+				$('.changeColor').eq(3).css("background-color","white");
+				$('.changeColor').eq(3).css("color","#f2486f");
+				$('.changeColor').eq(3).css("border-color","#f2486f");
+			case 4:
+				$('.changeColor').eq(4).css("background-color","white");
+				$('.changeColor').eq(4).css("color","#FFB232");
+				$('.changeColor').eq(4).css("border-color","#FFB232");
+			case 5:
+				$('.changeColor').eq(5).css("background-color","white");
+				$('.changeColor').eq(5).css("color","#0170c2");
+				$('.changeColor').eq(5).css("border-color","#0170c2");
+			}
+			$("#btnAddDiv").css("display","inline");
+			$("#btnModDiv").css("display","none");
+		}
+	})
+	/* 평점 수정 */
+	$(document).on("click",".replyModify", function(){
+		var starPointNo = $(this).attr("data-spNo");
+		var themeNo = $(this).attr("data-spTheme");
+		var starPoint = $(this).attr("data-sp");
+		var starPointComment = $(this).attr("data-spComment");
+		
+		$("#hiddenStarpointNo").val(starPointNo);
+		$("#hiddenTheme").val(themeNo);
+		
+		$("#starPointModal").css("display", "block");
+		$('#starPointCheck').barrating('set', starPoint);
+
+		switch(themeNo){
+			case "1":
+				$('.changeColor').eq(0).css("background-color","#b038fa");
+				$('.changeColor').eq(0).css("color","white");
+				break;
+			case "2":
+				$('.changeColor').eq(1).css("background-color","#528236");
+				$('.changeColor').eq(1).css("color","white");
+				break;
+			case "3":
+				$('.changeColor').eq(2).css("background-color","#96814c");
+				$('.changeColor').eq(2).css("color","white");
+				break;
+			case "4":
+				$('.changeColor').eq(3).css("background-color","#f2486f");
+				$('.changeColor').eq(3).css("color","white");
+				break;
+			case "5":
+				$('.changeColor').eq(4).css("background-color","#FFB232");
+				$('.changeColor').eq(4).css("color","white");
+				break;
+			case "6":
+				$('.changeColor').eq(5).css("background-color","#0170c2");
+				$('.changeColor').eq(5).css("color","white");
+				break;
+		}
+		$("#comment").val(starPointComment);
+		$("#btnAddDiv").css("display","none");
+		$("#btnModDiv").css("display","inline");
+		return false;
+	})
+	/* 평점 수정 저장 */
+	$("#btnStarpointMod").click(function(){
+		// login 기능 구현 후 수정해야함
+		var starPointNo = $('#hiddenStarpointNo').val();
+		var themeNo = $('#hiddenTheme').val();
+		var starPoint = $('#hiddenStarpoint').val();
+		var starPointComment = $('#comment').val();
+		
+		var json = JSON.stringify({"starPointNo":starPointNo, "themeNo":{"themeNo":themeNo}, "starPoint":starPoint, "starPointComment":starPointComment});
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rest/starpoint/"+starPointNo,
+			type:"put",
+			headers: {"Content-Type":"application/json"},
+			data: json,
+			dataType : "text",
+			success: function(res){
+				if(res == "SUCCESS"){
+					alert("평점이 수정되었습니다.");
+					getPageList(no);
+					$("#starPointModal").css("display", "none");
+					$('#comment').val("");
+					var color = $('.changeColor').eq(themeNo-1).css("background-color");
+					$('.changeColor').eq(themeNo-1).css("background-color","white");
+					$('.changeColor').eq(themeNo-1).css("border-color",color);
+					$('.changeColor').eq(themeNo-1).css("color",color);
+					$('#starPointCheck').barrating('set', 1);
+				}
+			}
+		})		
+	})
+	/* 평점 삭제 */
+	$(document).on("click", ".replyRemove", function(){
+		var con = confirm("정말 삭제하시겠습니까?");
+		if(con == true){
+			var starPointNo = $(this).attr("data-spNo");
+			console.log(starPointNo);
+			$.ajax({
+				url:"${pageContext.request.contextPath}/rest/starpoint/"+starPointNo,
+				type:"delete",
+				dataType : "text",
+				success:function(res){
+					console.log(res);
+					if(res == "SUCCESS"){
+						alert("삭제되었습나다.");						
+						getPageList(no);
+					}
+				}
+			})	
+		}
+		return false;
 	})
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
