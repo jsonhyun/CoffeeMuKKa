@@ -338,8 +338,7 @@
 											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
 												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg"  alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
 											</c:if>
-										</c:forEach>
-										<p class="test"></p>								
+										</c:forEach>							
 									</div>							
 								</div>
 								<div class="RC_listTitle1">

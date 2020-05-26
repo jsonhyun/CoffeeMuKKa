@@ -293,3 +293,10 @@ VALUES(225,'/2020/05/22/s_652a82e3-ad3b-4d45-9d0b-7e396c40dd3a_rc_sample014.PNG'
 update board
 			set zone_no = 9, theme_no = 1, writing_title = '넘버더스타즈', writing_content = '테스트입니당당아!', address = '대구 남구 현충로 54'
 		where board_no = 635;
+		
+	
+select b.board_no, b.board_no2, b.writing_title, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		where b.board_no2 = 2
+		order by b.board_no desc limit 0, 9;	
