@@ -44,9 +44,65 @@
 		font-size: 30px;
 	}
 	
+	.imgBox {
+		position: relative;
+	}
 	
+	.imgBox img{
+		width: 100%;
+		min-height: 100%;
+		display: block;
+	}
 	
+	.imgBox .dummy {
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0,.6);
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 	
+	.topWrap {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+	}
+	
+	.topWrap > div {
+		margin: 15px 10px;
+	}
+	
+	.topWrap .cafeName {
+		color: #fff;
+		font-size: 25px;
+		font-weight: 700;
+		line-height: 60px;
+	}
+	
+	.bottomWrap {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+	
+	#rank_1{
+		height: 350px;	
+	}
+	
+	#rank_1 .bestLeft {
+		width: 50%;
+		height: 350px;
+	}
+	
+	#rank_1 .imgBox {
+		height: 100%;
+		overflow: hidden;
+	}
+	
+	#rank_1 .bestLeft {
+		position: relative;
+	}
 </style>
 
 	<div class="content subPageContent">
@@ -59,16 +115,18 @@
 			</h2>
 			
 			<!-- 1위 -->
-			<div class="bestBox clearfix">
+			<div id="rank_1" class="bestBox clearfix">
 				<div class="bestLeft f_left">
-					<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-					<div class="dummy"></div>
-					<div class="topWrap">
-						<p class="no bgPurple">1</p>
-						<div class="zoneBtn zoneOrangeIconSmall">#지역</div><!-- ${item.cafeNo.zoneNo.zoneName } -->
-						<p class="cafeName">카페이름</p>
+					<div class="imgBox">
+						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
+						<div class="dummy"></div>
 					</div>
-					<div class="bottomWrap">
+					<div class="topWrap clearfix">
+						<p class="no bgPurple f_left">1</p>
+						<div class="zoneBtn zoneOrangeIconSmall f_left">#지역</div><!-- ${item.cafeNo.zoneNo.zoneName } -->
+						<p class="cafeName f_left">카페이름</p>
+					</div>
+					<div class="bottomWrap clearfix">
 						<div class="themeKeySmall themeName">#데이트</div>
 						<!-- #${item.cafeNo.themeNo.themeName } -->
 						<%-- <!-- 테마 순위 리스트(순위테마 전체를 검색할 수 있을때 풀기) -->
