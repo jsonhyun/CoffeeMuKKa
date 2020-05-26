@@ -140,7 +140,11 @@ public class UserCafeController {
 		return "/user/userMukkaCafeSearchList";
 	}
 	
-	
+	// 무까베스트
+	@RequestMapping(value = "/mukkaCafe/mukkaBest", method = RequestMethod.GET)
+	public String cafeBestList() {
+		return "/user/userMukkaCafeBestList";
+	}
 	
 	
 }

@@ -246,11 +246,21 @@ th {
 }
 
 /* 여러줄 */
+/* 2줄 */
 .classSec {
 	overflow: hidden; 
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+}
+
+.classSec_3line {
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* 라인수 */
 	-webkit-box-orient: vertical;
 	word-wrap: break-word;
 }
@@ -277,6 +287,9 @@ th {
 	color: #bbb;
 }
 
+.gray {
+	color: gray;
+}
 
 /* background color */
 .bgRed {
@@ -301,6 +314,10 @@ th {
 
 .bgLightGray {
 	background-color: #f7f7f7;
+}
+
+.bgPurple {
+	background-color: #5f43cb;
 }
 
 
