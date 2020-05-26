@@ -383,7 +383,7 @@ public class UserBoardController {
 			}
 		}
 		
-		vo.setStringFiles(fullName); // -- 여기서 왜 오류났는지... 다시
+		vo.setStringFiles(fullName);
 		//System.out.println("찍어라2"+vo);
 		
 		service.recommendInsert(vo);
@@ -437,16 +437,20 @@ public class UserBoardController {
 	}
 	//modify -- 수정
 	@RequestMapping(value = "/community/cafeRecommend/modify", method = RequestMethod.GET)
-	public String communityRecommendModify(int boardNo, Model model) throws Exception {
+	public String communityRecommendModify(int boardNo, SearchCriteria cri, Model model) throws Exception {
 		BoardVO vo = service.recommendReadByNo(boardNo);
 		System.out.println("번호는요"+boardNo);
 		System.out.println("TEST============================================="+vo);
 		model.addAttribute("board", vo);
+		model.addAttribute("cri", cri);
+		
 		return "/user/userCommunityRecommendModify";
 	}
 	
+	// 수정 - 리스트로 가기 // 리스트 검색 키워드 유지
 	@RequestMapping(value = "/community/cafeRecommend/modify", method = RequestMethod.POST)
-	public String communityRecommendModifyPOST(BoardVO vo, String[] delfiles, List<MultipartFile> imgfiles, /* SearchCriteria cri, */ Model model) throws Exception {
+	public String communityRecommendModifyPOST(BoardVO vo, String[] delfiles, List<MultipartFile> imgfiles, SearchCriteria cri, Model model) throws Exception {
+		System.out.println("TEST==========================="+delfiles);
 		//추가한 이미지 파일 중 삭제할 파일이 있다면
 		if(delfiles !=null) {
 			for(int i=0;i<delfiles.length;i++) {
@@ -467,6 +471,7 @@ public class UserBoardController {
 				System.out.println("원본파일삭제===============================================================");  //ok
 			}
 		}
+		
 		//새로추가할 파일이 있다면
 	    ArrayList<String> fullName = new ArrayList<String>();
 		
@@ -485,9 +490,11 @@ public class UserBoardController {
     
 	service.recommendUpdate(vo);
 	
-	//model.addAttribute("page", cri.getPage());
-	//model.addAttribute("searchType", cri.getSearchType() );
-	//model.addAttribute("keyword", cri.getKeyword());		
+	
+	
+	model.addAttribute("page", cri.getPage());
+	model.addAttribute("searchType", cri.getSearchType() );
+	model.addAttribute("keyword", cri.getKeyword());		
 		return "redirect:/user/community/cafeRecommend";
 	}
 	

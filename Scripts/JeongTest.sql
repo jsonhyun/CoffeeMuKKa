@@ -290,3 +290,6 @@ INSERT INTO coffeemukka.image
 VALUES(225,'/2020/05/22/s_652a82e3-ad3b-4d45-9d0b-7e396c40dd3a_rc_sample014.PNG',NULL,34);
 
 
+update board
+			set zone_no = 9, theme_no = 1, writing_title = '넘버더스타즈', writing_content = '테스트입니당당아!', address = '대구 남구 현충로 54'
+		where board_no = 635;

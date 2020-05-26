@@ -124,7 +124,7 @@
 	<!-- 추천카페 수정 -->
 	<update id="recommendUpdate" parameterType="BoardVO">
 		update board
-			set zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}
+			set zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}, update_date = now()
 		where board_no = #{boardNo}
 	</update>	
 		
