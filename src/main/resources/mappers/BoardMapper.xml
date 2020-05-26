@@ -320,6 +320,18 @@
 			where c.cafe_no = #{cafeNo.cafeNo} and b.board_no != ${boardNo}
 	</select>
 	
+	<!-- 재승 추가 -->
+	<select id="cafeReviewSameListByCafeNo" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+		where c.cafe_no = #{cafeNo.cafeNo}
+	</select>
+	
+	<select id="cafeReivewSameCntByCafeNo" resultType="int">
+		select count(*) 
+			from board b left join cafe c on b.cafe_no = c.cafe_no 
+			where c.cafe_no = #{cafeNo.cafeNo}
+	</select>
+	
 	<!-- 탐방기 : 글등록 -->
 	<insert id="cafeReviewInsert" parameterType="BoardVO">
 		insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content) 

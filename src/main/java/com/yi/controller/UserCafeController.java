@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
@@ -16,6 +17,7 @@ import com.yi.domain.MenuVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
 import com.yi.domain.ThemeVO;
+import com.yi.service.BoardService;
 import com.yi.service.CafeService;
 import com.yi.service.ThemeService;
 
@@ -29,6 +31,9 @@ public class UserCafeController {
 	
 	@Autowired
 	ThemeService themeService;
+	
+	@Autowired
+	BoardService boardService;
 	
 	
 	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)
@@ -61,7 +66,7 @@ public class UserCafeController {
 	}
 	
 	@RequestMapping(value = "/mukkaCafe/zone/read", method = RequestMethod.GET)
-	public String cafeZoneRead(int cafeNo, Model model) throws Exception {
+	public String cafeZoneRead(int cafeNo, boolean flag, SearchCriteria cri, Model model) throws Exception {
 		/* 카페 기본 정보 검색 */
 		CafeVO cafe = service.readCafe(cafeNo);
 		
@@ -103,6 +108,18 @@ public class UserCafeController {
 		model.addAttribute("menuName", menuName);
 		model.addAttribute("menuList", menuList);
 		
+		/* 같은 카페의 탐방기 */
+		CafeVO cafeVO = new CafeVO();
+		cafeVO.setCafeNo(cafeNo);
+		BoardVO boardVO = new BoardVO();
+		boardVO.setCafeNo(cafeVO);
+		
+		List<BoardVO> sameVo = boardService.cafeReviewSameListByCafeNo(boardVO);
+		int sameCnt = boardService.cafeReivewSameCntByCafeNo(boardVO);
+
+		model.addAttribute("sameBoard", sameVo);
+		model.addAttribute("sameCnt", sameCnt);
+
 		return "/user/userMukkaCafeZoneRead";
 	}
 	

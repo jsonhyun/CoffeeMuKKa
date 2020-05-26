@@ -216,6 +216,16 @@ public class BoardService {
 		}
 	}
 
+//	재승 추가
+	// 카페 상세보기의 해당 카페 탐방기 리스트
+	public List<BoardVO> cafeReviewSameListByCafeNo(BoardVO boardVO) throws Exception {
+		return dao.cafeReviewSameListByCafeNo(boardVO);
+	}
+
+	public int cafeReivewSameCntByCafeNo(BoardVO boardVO) throws Exception {
+		return dao.cafeReivewSameCntByCafeNo(boardVO);
+	}
+
 
 
 
