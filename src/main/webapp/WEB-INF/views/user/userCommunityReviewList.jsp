@@ -322,7 +322,7 @@
 		<div class="bestBoardBox">
 			<div class="boardTitle bottomLine2">
 				<p>베스트</p>
-				<p>월간</p>
+				<p><span class="orange preMonth"></span> 월 (월간)</p>
 			</div>
 			<table class="post1-5">
 				<c:forEach var="bestItem" items="${monthBestList }" begin="0" end="2" varStatus="status">
@@ -524,6 +524,10 @@
 		}
 	})
 	
+	// 베스트 월 표시
+	var nowMonth = new Date().getMonth() + 1;
+	var preMonth = nowMonth - 1;
+	$(".preMonth").text(preMonth);
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

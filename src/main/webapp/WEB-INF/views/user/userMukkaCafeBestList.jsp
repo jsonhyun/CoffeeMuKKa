@@ -11,8 +11,9 @@
 <style>
 	/* 별점 */
 	.starPointWrap {
-		width: 220px;
+		width: 300px;
 		margin: 0 auto;
+		line-height: 50px;
 	}
 	.spoint{
 		height: 50px;
@@ -39,6 +40,9 @@
 	    margin-left: -70px;
 	    margin-bottom: 20px;
 		font-size: 20px;
+	}
+	.termMonth {
+		float: right;
 	}
 	
 	/* 베스트 리스트 공통 */
@@ -275,7 +279,7 @@
 			<!-- 서브페이지 공통적인 타이틀 -->
 			<h2 class="subPageTitle">
 				<span class="title">MuKKa 베스트</span>
-				<span class="subTit grayB"> | MuKKa人이 애정하는 그 카페 <span class="orange">(2020.05.01 ~ 05.31[전월기준 날짜 폼 가져오기])</span></span>
+				<span class="subTit grayB"> | MuKKa人이 애정하는 그 카페 <span class="orange term"></span></span>
 			</h2>
 			
 			<!-- 1위 -->
@@ -283,6 +287,7 @@
 				<a href="#" class="hoverTaget">
 					<div class="bestLeft f_left">
 						<div class="imgBox">
+							<%-- <c:forEach ></c:forEach> --%>
 							<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
 							<div class="dummy"></div>
 						</div>
@@ -319,7 +324,8 @@
 								<option value="5">5</option> 
 							</select>
 						</div>
-						<div id="jumsu"><%-- ${starpoint } --%> 3 <span class="gray">/ 5</span></div>
+						<div id="jumsu"><%-- ${starpoint } --%> 3 <span class="gray">/ 5</span></div>						
+						<div class="termMonth">(<span class="termMonthText"></span>월 별점)</div>
 					</div>
 					<div class="cafeRivewCnt">
 						<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
@@ -394,7 +400,9 @@
 							</select>
 						</div>
 						<div id="jumsu"><%-- ${starpoint } --%> 3 <span class="gray">/ 5</span></div>
+						<div class="termMonth">(<span class="termMonthText"></span>월 별점)</div>
 					</div>
+					
 					<div class="cafeRivewCnt">
 						<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
 						<span>전체 <span class="orange">150</span>개의 탐방기</span>
@@ -439,6 +447,7 @@
 							</select>
 						</div>
 						<div id="jumsu"><%-- ${starpoint } --%> 3 <span class="gray">/ 5</span></div>
+						<div class="termMonth">(<span class="termMonthText"></span>월 별점)</div>
 					</div>
 					<div class="cafeRivewCnt">
 						<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
@@ -514,6 +523,12 @@
 	</div>
 	
 <script>
+	// 숫자 포멧
+	function pad(n, width) {
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
+
 	//카페 세부정보 별점 
 	$('.starPoint').barrating({
 		theme: 'fontawesome-stars',
@@ -533,6 +548,17 @@
 			}
 		}
 	})
+	
+	// 베스트 순위 산출 기간
+	var nowYear = new Date().getFullYear();
+	var nowMonth = new Date().getMonth() + 1;
+	var preMonth = nowMonth - 1;
+	var preMonthPad = pad(preMonth, 2);	
+	var lastDay = (new Date(nowYear, preMonth, 0)).getDate();
+	var term = "("+nowYear+"."+preMonthPad+".01 ~ "+preMonthPad+"."+lastDay+")";
+	$(".term").text(term);
+	$(".termMonthText").text(preMonth);
+	
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>

@@ -96,8 +96,13 @@ public class CafeService {
 	public int cafeMainSearchTotalCnt(int zoneNo, String themeNos, SearchCriteria cri) throws Exception {
 		return dao.cafeMainSearchTotalCnt(zoneNo, themeNos, cri);
 	}
-	
-	
+	// 카페 베스트
+	public List<Double> monthBestSPoint() throws Exception{
+		return dao.monthBestSPoint();
+	}
+	public List<CafeVO> monthBestCafe() throws Exception {
+		return dao.monthBestCafe();
+	}
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {

@@ -203,7 +203,18 @@ public class UserCafeController {
 	
 	// 무까베스트
 	@RequestMapping(value = "/mukkaCafe/mukkaBest", method = RequestMethod.GET)
-	public String cafeBestList() {
+	public String cafeBestList(Model model) throws Exception {
+		List<Double> bestStarPoint = service.monthBestSPoint();
+		List<CafeVO> bestCafe = service.monthBestCafe();
+		List<ImageVO> imgList = new ArrayList<ImageVO>();
+		for(CafeVO bc : bestCafe) {
+			imgList.add(service.imgSelect(bc.getCafeNo()));
+		}
+		
+		model.addAttribute("bestSP", bestStarPoint);
+		model.addAttribute("bestCafe", bestCafe);
+		model.addAttribute("imgList", imgList);
+		
 		return "/user/userMukkaCafeBestList";
 	}
 	
