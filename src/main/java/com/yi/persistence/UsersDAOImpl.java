@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yi.domain.UsersVO;
+
 @Repository
 public class UsersDAOImpl implements UsersDAO {
 
@@ -21,6 +23,11 @@ public class UsersDAOImpl implements UsersDAO {
 		map.put("gredeNo", gredeNo);
 		map.put("userNo", userNo);
 		sqlsession.update(namespace + "updateUsersGrade", map);
+	}
+
+	@Override
+	public UsersVO readUsers(String userid) throws Exception {
+		return sqlsession.selectOne(namespace+"readUsers", userid);
 	}
 
 }

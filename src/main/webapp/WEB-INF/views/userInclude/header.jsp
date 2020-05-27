@@ -144,6 +144,7 @@
 			
 			return false;
 		})
+		/* 로그인, 회원가입 전환시 작동 */
 		$("#login").click(function() {
 			$('#joinModal').removeClass("fade");
 			$('#loginModal').removeClass("fade");
@@ -160,6 +161,25 @@
 			$('#joinModal').addClass("fade");
 			$('#loginModal').addClass("fade");
 		})
+		/* 로그인 처리 */
+		$("form").submit(function (e) {
+			console.log("abcd")
+			var id = $("input[name='userId']").val();
+			var password = $("input[name='password']").val();
+			
+			if(id == "" || password == ""){
+				alert("사용자ID와 비밀번호를 정확히 입력해주세요.")
+				return false;
+			}
+			
+		})
+		
+		var result = $("#result").val();
+		if(result == 1){
+			alert("해당 아이디가 존재하지 않습니다. 회원가입을 해주세요.");
+		}else if(result == 2){
+			alert("비밀번호가 틀렸습니다. 다시 확인해주세요.");
+		}
 	}) 
 </script>
 <style>
@@ -212,8 +232,15 @@
 			<div class="topMenuWrap">
 				<ul>
 					<li><a href="#">ABOUT CMukka</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#joinModal">JOIN</a></li>
+					<c:if test="${Auth == null }">
+						<li><a href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#joinModal">JOIN</a></li>
+						<input type="hidden" value="${error }" id="result">
+					</c:if>
+					<c:if test="${Auth != null }">
+						<li>${Auth}님</li>
+						<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
+					</c:if>
 					<li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
 					<li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
 				</ul>
@@ -233,12 +260,15 @@
 					
 					<!-- Modal body -->
 					<div class="modal-body">
-						<img src="${pageContext.request.contextPath }/resources/images/login.png" style="width: 460px;">
-						<h3 style="color: #ed7d31;margin: 10px;">오늘은 어디서 커피한잔? '커 피 무 까'</h3>
-						<input class="inputRegi" type="text" id="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
-						<input class="inputRegi" type="password" id="pass" placeholder="비밀번호" style="margin-bottom: 5px;"><br>
-						<a href="#" style="color:#5B9BD5;margin-left: 243px; ">비밀번호 찾기</a><br>
-						<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-top: 5px;width: 337px;">로그인</button>
+						<form action="${pageContext.request.contextPath }/user/login" method="post">
+							<img src="${pageContext.request.contextPath }/resources/images/login.png" style="width: 460px;">
+							<h3 style="color: #ed7d31;margin: 10px;">오늘은 어디서 커피한잔? '커 피 무 까'</h3>
+							<input class="inputRegi" type="text" name="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
+							<input class="inputRegi" type="password" name="password" placeholder="비밀번호" style="margin-bottom: 5px;"><br>
+							<a href="#" style="color:#5B9BD5;margin-left: 150px; ">아이디 찾기</a>
+							<a href="#" style="color:#5B9BD5;margin-left: 10px; ">비밀번호 찾기</a><br>
+							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 337px;" value="로그인">
+						</form>
 					</div>
 					
 					<!-- Modal footer -->
@@ -284,7 +314,7 @@
 						<input class="inputRegi" type="email" id="email" placeholder="이메일"><br>
 						<input type="radio" name="userType" id="userType" value="개인회원"> <span class="chgColorSpan">개인회원</span>
 						<input type="radio" name="userType" id="userType" value="사업자회원" style="margin-left:20px;"> <span class="chgColorSpan">사업자회원</span><br>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">가입하기</button>
+						<button type="button" class="btn btn-primary">가입하기</button>
 					</div>
 					
 					<!-- Modal footer -->

@@ -294,7 +294,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.btn-danger {
+.btn-primary {
   color: #fff;
   background-color: #ed7d31;
   border-color: #ed7d31;
