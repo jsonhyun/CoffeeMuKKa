@@ -17,9 +17,10 @@
 <script src="https://kit.fontawesome.com/6f2f0f2d95.js"></script>
 <!-- handlebars -->
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-<!-- bxslider -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- 로그인, 회원가입 modal 관련 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/modal.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <script>
 	$(function(){
@@ -143,9 +144,53 @@
 			
 			return false;
 		})
-		
+		$("#login").click(function() {
+			$('#joinModal').removeClass("fade");
+			$('#loginModal').removeClass("fade");
+			$('#joinModal').modal('hide');
+			$('#loginModal').modal('show');
+			$('#joinModal').addClass("fade");
+			$('#loginModal').addClass("fade");
+		})
+		$("#join").click(function() {
+			$('#joinModal').removeClass("fade");
+			$('#loginModal').removeClass("fade");
+			$('#loginModal').modal('hide');
+			$('#joinModal').modal('show');
+			$('#joinModal').addClass("fade");
+			$('#loginModal').addClass("fade");
+		})
 	}) 
 </script>
+<style>
+	.inputRegi{
+		width: 325px;
+	    height: 30px;
+	    margin-bottom: 15px;
+	    padding: 5px;
+	    border: 1px solid #949494;
+	}
+	.inputRegi1{
+		width: 240px;
+	    height: 30px;
+	    margin-bottom: 15px;
+	    padding: 5px;
+	    border: 1px solid #949494;
+	}
+	input::-webkit-input-placeholder {
+		color:#949494;
+	}
+	.chgColorSpan{
+		color:#949494;
+	}
+	.btnCheck{
+		height: 42px;
+	    width: 80px;
+	    border: 1px;
+	    background: #303A50;
+	    color: white;
+	}
+</style>
 </head>
 <body>
 	<header>
@@ -167,14 +212,92 @@
 			<div class="topMenuWrap">
 				<ul>
 					<li><a href="#">ABOUT CMukka</a></li>
-					<li><a href="#">LOGIN</a></li>
-					<li><a href="#">JOIN</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#joinModal">JOIN</a></li>
 					<li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
 					<li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
 				</ul>
 			</div>
 		</div>
 		<!-- topMenu end -->
+		
+		<!-- 로그인 modal start -->
+		<div class="modal fade" id="loginModal">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+				    
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">Coffee MuKKa 로그인하기</h3>
+					</div>
+					
+					<!-- Modal body -->
+					<div class="modal-body">
+						<img src="${pageContext.request.contextPath }/resources/images/login.png" style="width: 460px;">
+						<h3 style="color: #ed7d31;margin: 10px;">오늘은 어디서 커피한잔? '커 피 무 까'</h3>
+						<input class="inputRegi" type="text" id="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
+						<input class="inputRegi" type="password" id="pass" placeholder="비밀번호" style="margin-bottom: 5px;"><br>
+						<a href="#" style="color:#5B9BD5;margin-left: 243px; ">비밀번호 찾기</a><br>
+						<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-top: 5px;width: 337px;">로그인</button>
+					</div>
+					
+					<!-- Modal footer -->
+					<div style="border-top: 1px solid #ccc;">
+						<div style="text-align: center;margin: 16px;">
+							<span>아이디가 없으신가요?</span> <a href="#" id="join" style="color:#ed7d31;">회원가입</a>
+						</div>
+					</div>
+				    
+				</div>
+			</div>
+		</div>
+		<!-- 로그인 modal end -->
+		
+		<!-- 회원가입 modal start -->
+		<div class="modal fade" id="joinModal">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+				    
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">Coffee MuKKa 회원 가입</h3>
+					</div>
+					
+					<!-- Modal body -->
+					<div class="modal-body">
+						<input class="inputRegi1" type="text" id="userId" placeholder="아이디">
+						<button class="btnCheck">중복확인</button><br>
+						<input class="inputRegi" type="password" id="pass" placeholder="비밀번호"><br>
+						<input class="inputRegi" type="password" id="passConfirm" placeholder="비밀번호 확인"><br>
+						<input class="inputRegi" type="text" id="name" placeholder="이름"><br>
+						<input class="inputRegi1" type="text" id="nick" placeholder="닉네임">
+						<button class="btnCheck">중복확인</button><br>
+						<select class="inputRegi" style="height: 42px;width: 337px;color: #949494;">
+							<option selected="selected">성별</option>
+							<option value="남자">남자</option>
+							<option value="여자">여자</option>
+						</select>
+						<input class="inputRegi" type="date" id="birth" placeholder="생년월일" style="color: #949494;"><br>
+						<input class="inputRegi" type="text" id="tel" placeholder="전화번호"><br>
+						<input class="inputRegi1" type="text" id="address" placeholder="주소">
+						<button class="btnCheck">주소검색</button><br>
+						<input class="inputRegi" type="email" id="email" placeholder="이메일"><br>
+						<input type="radio" name="userType" id="userType" value="개인회원"> <span class="chgColorSpan">개인회원</span>
+						<input type="radio" name="userType" id="userType" value="사업자회원" style="margin-left:20px;"> <span class="chgColorSpan">사업자회원</span><br>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">가입하기</button>
+					</div>
+					
+					<!-- Modal footer -->
+					<div style="border-top: 1px solid #ccc;">
+						<div style="text-align: center;margin: 16px;">
+							<span>이미 가입하셨나요?</span> <a href="#" id="login" style="color:#ed7d31;">로그인</a>
+						</div>
+					</div>
+				    
+				</div>
+			</div>
+		</div>
+		<!-- 회원가입 modal end -->
 		
 		<!-- mainMenu start -->
 		<div id="mainMenuWrap">
