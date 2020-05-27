@@ -190,7 +190,7 @@
 			$('#loginModal').addClass("fade");
 		})
 		/* 로그인 처리 */
-		$("form").submit(function (e) {
+		$("#loginForm").submit(function (e) {
 			var id = $("input[name='userId']").val();
 			var password = $("input[name='password']").val();
 			
@@ -286,7 +286,7 @@
 					
 					<!-- Modal body -->
 					<div class="modal-body">
-						<form action="${pageContext.request.contextPath }/user/login" method="post">
+						<form id="loginForm" action="${pageContext.request.contextPath }/user/login" method="post">
 							<img src="${pageContext.request.contextPath }/resources/images/login.png" style="width: 460px;">
 							<h3 style="color: #ed7d31;margin: 10px;">오늘은 어디서 커피한잔? '커 피 무 까'</h3>
 							<input class="inputRegi" type="text" name="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>

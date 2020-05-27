@@ -182,7 +182,7 @@
 	}
 	
 	.RC_replyWrap .RC_replyList li .replyCmtBox {
-		width: 480px;
+		width: 400px;
 	}
 	
 	.RC_replyWrap .RC_replyList li .replyCmtBox > p {
