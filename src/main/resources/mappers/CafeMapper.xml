@@ -46,6 +46,8 @@
 			<result property="zoneName" column="zone_name"/>
 		</association>
 		
+		<!-- imageVo -->
+		<collection property="images" resultMap="mappers.ImageMapper.imageResult"/>
 	</resultMap>
 	
 	<resultMap type="ImageVO" id="selectImgResult">
@@ -323,7 +325,7 @@
 	
 	<!-- 경진추가 : 전월 별점 베스트 -->
 	<sql id="monthBestSql">
-		from starpoint s left join cafe c on s.cafe_no = c.cafe_no,
+		from starpoint s left join cafe c on s.cafe_no = c.cafe_no left join image i on c.cafe_no = i.cafe_no,
 			(select cafe_no, round(avg(star_point), 1) as spoint, update_date from starpoint where month(update_date) = month(now())-1 group by cafe_no) spoint
 		where s.cafe_no = spoint.cafe_no and c.cafe_cdt = 1
 		group by s.cafe_no
@@ -334,7 +336,7 @@
 		<include refid="monthBestSql"/>
 	</select>
 	<select id="monthBestCafe" resultMap="CafeListSelectResult">
-		select spoint, c.*
+		select c.*, i.image_name
 		<include refid="monthBestSql"/>
 	</select>
 	

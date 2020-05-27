@@ -42,7 +42,7 @@ public class UserHomeController {
 		}
 		System.out.println("test2=========================="+rclistImg);
 		model.addAttribute("rclistImg", rclistImg);
-		
+		model.addAttribute("error", 0);
 		return "/user/userHome";
 	}
 	

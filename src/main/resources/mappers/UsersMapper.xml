@@ -26,4 +26,8 @@
 			set user_grade = #{gredeNo}
 			where user_no = #{userNo};
 	</update>
+	
+	<select id="readUsers" resultType="UsersVO">
+		select * from users where user_id = #{userId}
+	</select>
 </mapper>

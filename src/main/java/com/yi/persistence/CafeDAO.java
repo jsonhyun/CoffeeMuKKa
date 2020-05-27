@@ -49,6 +49,9 @@ public interface CafeDAO {
 	// 메인메뉴 카페 검색
 	public List<CafeVO> cafeMainSearch(int zoneNo, String themeNos, SearchCriteria cri) throws Exception;
 	public int cafeMainSearchTotalCnt(int zoneNo, String themeNos, SearchCriteria cri) throws Exception;
+	// 카페 베스트
+	public List<Double> monthBestSPoint() throws Exception;
+	public List<CafeVO> monthBestCafe() throws Exception;
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;

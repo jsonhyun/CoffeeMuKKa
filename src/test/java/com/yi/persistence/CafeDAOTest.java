@@ -31,7 +31,7 @@ public class CafeDAOTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testCafeMainSearch() throws Exception {
 		SearchCriteria cri = new SearchCriteria();
 		cri.setSearchTheme("3");
@@ -41,5 +41,14 @@ public class CafeDAOTest {
 		dao.cafeMainSearch(0, themeNos, cri);
 		dao.cafeMainSearchTotalCnt(0, themeNos, cri);
 	}
+	
+	@Test
+	public void testMonthBestSPoint() throws Exception {
+		dao.monthBestSPoint();
+	}
 
+	@Test
+	public void testMonthBestCafe() throws Exception {
+		dao.monthBestCafe();
+	}
 }
