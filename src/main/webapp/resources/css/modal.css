@@ -302,4 +302,11 @@
   margin: 15px;
 }
 
+.btn-danger {
+  color: #fff;
+  background-color: #00a4ff;
+  border-color: #00a4ff;
+  width: 315px;
+  margin: 15px;
+}
 

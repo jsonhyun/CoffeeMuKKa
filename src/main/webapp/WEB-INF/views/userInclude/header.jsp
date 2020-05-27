@@ -144,26 +144,53 @@
 			
 			return false;
 		})
-		/* 로그인, 회원가입 전환시 작동 */
-		$("#login").click(function() {
+		/* 로그인, 아이디 찾기, 비번찾기, 회원가입 전환시 작동 */
+		$(".login").click(function() {
+			$('#findIdModal').removeClass("fade");
+			$('#findPassModal').removeClass("fade");
 			$('#joinModal').removeClass("fade");
 			$('#loginModal').removeClass("fade");
+			$('#findIdModal').modal('hide');
+			$('#findPassModal').modal('hide');
 			$('#joinModal').modal('hide');
 			$('#loginModal').modal('show');
+			$('#findIdModal').addClass("fade");
+			$('#findPassModal').addClass("fade");
 			$('#joinModal').addClass("fade");
 			$('#loginModal').addClass("fade");
 		})
-		$("#join").click(function() {
+		$("#findId").click(function() {
+			$('#findIdModal').removeClass("fade");
+			$('#loginModal').removeClass("fade");
+			$('#loginModal').modal('hide');
+			$('#findIdModal').modal('show');
+			$('#findIdModal').addClass("fade");
+			$('#loginModal').addClass("fade");
+		})
+		$("#findPass").click(function() {
+			$('#findPassModal').removeClass("fade");
+			$('#loginModal').removeClass("fade");
+			$('#loginModal').modal('hide');
+			$('#findPassModal').modal('show');
+			$('#findPassModal').addClass("fade");
+			$('#loginModal').addClass("fade");
+		})
+		$(".join").click(function() {
+			$('#findIdModal').removeClass("fade");
+			$('#findPassModal').removeClass("fade");
 			$('#joinModal').removeClass("fade");
 			$('#loginModal').removeClass("fade");
 			$('#loginModal').modal('hide');
+			$('#findIdModal').modal('hide');
+			$('#findPassModal').modal('hide');
 			$('#joinModal').modal('show');
 			$('#joinModal').addClass("fade");
+			$('#findIdModal').addClass("fade");
+			$('#findPassModal').addClass("fade");
 			$('#loginModal').addClass("fade");
 		})
 		/* 로그인 처리 */
 		$("form").submit(function (e) {
-			console.log("abcd")
 			var id = $("input[name='userId']").val();
 			var password = $("input[name='password']").val();
 			
@@ -171,7 +198,6 @@
 				alert("사용자ID와 비밀번호를 정확히 입력해주세요.")
 				return false;
 			}
-			
 		})
 		
 		var result = $("#result").val();
@@ -238,7 +264,7 @@
 						<input type="hidden" value="${error }" id="result">
 					</c:if>
 					<c:if test="${Auth != null }">
-						<li>${Auth}님</li>
+						<li><a href="#">${Auth}님</a></li>
 						<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
 					</c:if>
 					<li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
@@ -265,8 +291,8 @@
 							<h3 style="color: #ed7d31;margin: 10px;">오늘은 어디서 커피한잔? '커 피 무 까'</h3>
 							<input class="inputRegi" type="text" name="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
 							<input class="inputRegi" type="password" name="password" placeholder="비밀번호" style="margin-bottom: 5px;"><br>
-							<a href="#" style="color:#5B9BD5;margin-left: 150px; ">아이디 찾기</a>
-							<a href="#" style="color:#5B9BD5;margin-left: 10px; ">비밀번호 찾기</a><br>
+							<a href="#" id="findId" style="color:#5B9BD5;margin-left: 150px;">아이디 찾기</a>
+							<a href="#" id="findPass" style="color:#5B9BD5;margin-left: 10px;">비밀번호 찾기</a><br>
 							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 337px;" value="로그인">
 						</form>
 					</div>
@@ -274,7 +300,7 @@
 					<!-- Modal footer -->
 					<div style="border-top: 1px solid #ccc;">
 						<div style="text-align: center;margin: 16px;">
-							<span>아이디가 없으신가요?</span> <a href="#" id="join" style="color:#ed7d31;">회원가입</a>
+							<span>아이디가 없으신가요?</span> <a href="#" class="join" style="color:#ed7d31;">회원가입</a>
 						</div>
 					</div>
 				    
@@ -282,6 +308,74 @@
 			</div>
 		</div>
 		<!-- 로그인 modal end -->
+		
+		<!-- 아이디찾기 modal start -->
+		<div class="modal fade" id="findIdModal">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+				    
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">Coffee MuKKa 아이디 찾기</h3>
+					</div>
+					
+					<!-- Modal body -->
+					<div class="modal-body">
+						<form action="#" method="post">
+							<input type="radio" name="usertype" value="normal" style="margin-bottom: 25px;"> <label style="margin-right:30px;">개인 회원</label>
+							<input type="radio" name="usertype" value="owner"> <label>사업자 회원</label>
+							<input class="inputRegi" type="text" name="name" placeholder="이름" style="margin-bottom: 20px;"><br>
+							<input class="inputRegi" type="email" name="email" placeholder="이메일" style="margin-bottom: 30px;"><br>
+							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;" value="돌아가기">
+							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 167px;" value="아이디 찾기">
+						</form>
+					</div>
+					
+					<!-- Modal footer -->
+					<div style="border-top: 1px solid #ccc;">
+						<div style="text-align: center;margin: 16px;">
+							<span>아이디가 없으신가요?</span> <a href="#" class="join" style="color:#ed7d31;">회원가입</a>
+						</div>
+					</div>
+				    
+				</div>
+			</div>
+		</div>
+		<!-- 아이디찾기 modal end -->
+		
+		<!-- 비밀번호 찾기 modal start -->
+		<div class="modal fade" id="findPassModal">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+				    
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">Coffee MuKKa 비밀번호 찾기</h3>
+					</div>
+					
+					<!-- Modal body -->
+					<div class="modal-body">
+						<form action="#" method="post">
+							<input type="radio" name="usertype" value="normal" style="margin-bottom: 25px;"> <label style="margin-right:30px;">개인 회원</label>
+							<input type="radio" name="usertype" value="owner"> <label>사업자 회원</label>
+							<input class="inputRegi" type="text" name="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
+							<input class="inputRegi" type="email" name="email" placeholder="이메일" style="margin-bottom: 30px;"><br>
+							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;" value="돌아가기">
+							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 167px;" value="비밀번호 찾기">
+						</form>
+					</div>
+					
+					<!-- Modal footer -->
+					<div style="border-top: 1px solid #ccc;">
+						<div style="text-align: center;margin: 16px;">
+							<span>아이디가 없으신가요?</span> <a href="#" class="join" style="color:#ed7d31;">회원가입</a>
+						</div>
+					</div>
+				    
+				</div>
+			</div>
+		</div>
+		<!-- 비밀번호 찾기 modal end -->
 		
 		<!-- 회원가입 modal start -->
 		<div class="modal fade" id="joinModal">
@@ -320,7 +414,7 @@
 					<!-- Modal footer -->
 					<div style="border-top: 1px solid #ccc;">
 						<div style="text-align: center;margin: 16px;">
-							<span>이미 가입하셨나요?</span> <a href="#" id="login" style="color:#ed7d31;">로그인</a>
+							<span>이미 가입하셨나요?</span> <a href="#" class="login" style="color:#ed7d31;">로그인</a>
 						</div>
 					</div>
 				    
