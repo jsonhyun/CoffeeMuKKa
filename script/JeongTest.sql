@@ -17,7 +17,8 @@ select * from type; -- 회원 타입
 select * from grade; -- 회원 등급
 select * from authority; -- 관리자 권한
 select * from wishlist; -- 위시리스트
-select * from image; -- 이미지
+select * from image;
+-- 이미지
 select * from vote; -- 추천리스트
 
 -- ----------------------------------
