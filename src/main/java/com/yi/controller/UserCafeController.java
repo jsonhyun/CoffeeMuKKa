@@ -35,7 +35,7 @@ public class UserCafeController {
 	@Autowired
 	BoardService boardService;
 	
-	
+	/** 위치별 카페**/
 	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)
 	public String cafeZoneList(SearchCriteria cri, Model model) throws Exception {
 		
@@ -137,11 +137,36 @@ public class UserCafeController {
 		return "/user/userMukkaCafeZoneRead";
 	}
 	
+
+	/** 테마별 카페 **/
 	@RequestMapping(value = "/mukkaCafe/theme", method = RequestMethod.GET)
 	public String cafeThemeList(SearchCriteria cri, Model model) throws Exception {
+		List<CafeVO> list = service.listSearchCriteria(cri);
+		List<ImageVO> imgList = new ArrayList<ImageVO>();
+		List<Integer> starpointList = new ArrayList<Integer>();
+		List<Integer> reviewNum = new ArrayList<Integer>();
 		
+		for(int i=0; i<list.size();i++) {
+			int cafeNo = list.get(i).getCafeNo();
+			imgList.add(service.imgSelect(cafeNo));
+			starpointList.add(service.starpointSelect(cafeNo));
+			reviewNum.add(service.countReviewNum(cafeNo));
+		}
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalSearchCount(cri));
+		
+		model.addAttribute("cri", cri);
+		model.addAttribute("list", list);
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("starpoint", starpointList);
+		model.addAttribute("reviewNum", reviewNum);
+				
 		return "/user/userMukkaCafeThemeList";
 	}
+	
 	
 	// 경진 추가 --------------------------------------------------------------------------------------------------------------
 	// 메인 메뉴 검색
@@ -176,7 +201,11 @@ public class UserCafeController {
 		return "/user/userMukkaCafeSearchList";
 	}
 	
-	
+	// 무까베스트
+	@RequestMapping(value = "/mukkaCafe/mukkaBest", method = RequestMethod.GET)
+	public String cafeBestList() {
+		return "/user/userMukkaCafeBestList";
+	}
 	
 	
 }

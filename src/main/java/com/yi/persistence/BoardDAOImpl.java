@@ -84,6 +84,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public void removeRecommendImg(String imageName) throws Exception{
 		sqlSession.delete(namespace+"removeRecommendImg",imageName);		
 	}
+	
 	//추천카페 -- 수정
 	@Override
 	public void recommendUpdate(BoardVO vo) throws Exception{

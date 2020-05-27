@@ -184,21 +184,34 @@
 	.cafeRecommend .newListImgs ul{
 		overflow: hidden;
 	}
-	
+	.cafeRecommend .RC_listImgWrap{
+		width: 180px;
+		height: 150px;
+		overflow: hidden;
+	}
 	.cafeRecommend .newListImgs ul li {
 		/* 임시설정 */
-		background-color: #ddd;
+		/* background-color: #ddd; */
 		
 		float: left;
 		width: 31.5%;
 		height: 150px;
 		margin: 5px;
-		margin-top: 0;
 	}
 	
 	.cafeRecommend .newListImgs ul li:nth-of-type(n+4) {
 		margin-top: 5px;
 	}
+	.cafeRecommend .newListImgs ul li img{
+		width: 180px;
+		height: 150px;
+		transition:all 1s;
+		transform-origin:left-top;
+	}
+	
+	.cafeRecommend .newListImgs ul li img:hover{
+		transform:scale(1.2);
+	}	
 	
 	.cafeRecommend .bestRankList .bestIcons {
 		overflow: hidden;
@@ -322,20 +335,30 @@
 				<h2 class="Title bottomLine">실시간 카페 추천</h2>
 				<div class="newListImgs">
 					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<c:forEach var="board" items="${rclist}">
+							<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}">
+								<li>
+									<div class="RC_listImgWrap">
+										<div class="RC_listImgContainer">
+											<!-- 이미지 이름 꺼내서 삽입하기 -->
+											<c:forEach var="img" items="${rclistImg}">
+												<c:if test="${img.boardNo.boardNo == board.boardNo }">
+													<img
+														src="${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}"
+														class="thumbNailImg" alt="카페대표이미지"
+														onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+												</c:if>
+											</c:forEach>
+										</div>
+									</div>
+								</li>
+							</a>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
 
-			<div class="bestRankList right">
+		<div class="bestRankList right">
 				<h2 class="Title bottomLine">열혈 MuKKa人 <span>(2020.00.00 ~ 00.00)</span></h2>
 				<div class="bestIcons">
 					<div class="bestIcon"><a href="#">1-10</a></div>
@@ -363,4 +386,15 @@
 	
 	<!-- infoBaner main에만 -->
 	<div class="banerArea"></div>
+<script>
+//원본파일 불러오기(선명한 파일)
+$(".thumbNailImg").each(function(i, obj) {
+	var file = $(this).attr("src");
+	var start = file.substring(0,51);
+	var end = file.substring(53);
+	var fileName = start + end;
+	$(this).attr("src", fileName);
+	console.log(fileName);
+})
+</script>	
 <%@ include file="../userInclude/footer.jsp" %>

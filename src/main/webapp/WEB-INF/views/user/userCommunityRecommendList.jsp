@@ -329,7 +329,7 @@
 				
 				<ul>
 					<c:forEach var="board" items="${list}">
-					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}">
+					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
 						<li>
 								<div class="RC_listImgWrap">
 									<div class="RC_listImgContainer">
@@ -338,8 +338,7 @@
 											 <c:if test="${img.boardNo.boardNo == board.boardNo }">
 												<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg"  alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
 											</c:if>
-										</c:forEach>
-										<p class="test"></p>								
+										</c:forEach>							
 									</div>							
 								</div>
 								<div class="RC_listTitle1">

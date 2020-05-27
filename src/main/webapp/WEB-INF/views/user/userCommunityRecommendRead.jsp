@@ -884,7 +884,7 @@
 	
 	// -- 목록버튼 -- //	
 	$("#RC_listBtn").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend?page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
 	})
 	
 
