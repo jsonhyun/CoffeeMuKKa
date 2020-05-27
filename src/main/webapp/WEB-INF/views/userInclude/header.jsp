@@ -17,9 +17,10 @@
 <script src="https://kit.fontawesome.com/6f2f0f2d95.js"></script>
 <!-- handlebars -->
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-<!-- bxslider -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- 로그인, 회원가입 modal 관련 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/modal.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <script>
 	$(function(){
@@ -146,6 +147,14 @@
 		
 	}) 
 </script>
+<style>
+	.inputRegi{
+		width: 300px;
+	    height: 40px;
+	    margin-bottom: 15px;
+	    padding: 5px;
+	}
+</style>
 </head>
 <body>
 	<header>
@@ -168,13 +177,52 @@
 				<ul>
 					<li><a href="#">ABOUT CMukka</a></li>
 					<li><a href="#">LOGIN</a></li>
-					<li><a href="#">JOIN</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#myModal">JOIN</a></li>
 					<li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
 					<li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
 				</ul>
 			</div>
 		</div>
 		<!-- topMenu end -->
+		
+		<!-- 회원가입 modal start -->
+		<!-- The Modal -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+				    
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Coffee MuKKa 회원 가입</h4>
+					</div>
+					
+					<!-- Modal body -->
+					<div class="modal-body">
+						<input class="inputRegi" type="text" id="userId" placeholder="아이디"><br>
+						<input class="inputRegi" type="password" id="password" placeholder="비밀번호"><br>
+						<input class="inputRegi" type="text" id="name" placeholder="이름"><br>
+						<input class="inputRegi" type="text" id="nick" placeholder="닉네임"><br>
+						<input type="radio" name="gender" id="gender" value="남자"> 남자
+						<input type="radio" name="gender" id="gender" value="여자" style="margin-left:20px; margin-bottom: 15px;"> 여자<br>
+						<input class="inputRegi" type="text" id="tel" placeholder="전화번호"><br>
+						<input class="inputRegi" type="text" id="address" placeholder="주소"><br>
+						<input class="inputRegi" type="email" id="email" placeholder="이메일"><br>
+						<input type="radio" name="userType" id="userType" value="개인회원"> 개인회원
+						<input type="radio" name="userType" id="userType" value="사업자회원" style="margin-left:20px;"> 사업자회원<br>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">가입하기</button>
+					</div>
+					
+					<!-- Modal footer -->
+					<div style="border-top: 1px solid #ccc;">
+						<div style="text-align: center;margin: 16px;">
+							<span>이미 가입하셨나요?</span> <a href="#" style="color:#ed7d31;">로그인</a>
+						</div>
+					</div>
+				    
+				</div>
+			</div>
+		</div>
+		<!-- 회원가입 modal end -->
 		
 		<!-- mainMenu start -->
 		<div id="mainMenuWrap">

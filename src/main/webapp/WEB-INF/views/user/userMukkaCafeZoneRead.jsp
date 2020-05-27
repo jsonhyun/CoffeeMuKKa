@@ -7,7 +7,11 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
+<!-- 구글 라인차트 관련 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- bxslider -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 <style>
 	/* 위치 아이콘 */
