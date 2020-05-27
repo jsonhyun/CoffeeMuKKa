@@ -1,7 +1,9 @@
 package com.yi.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -206,14 +208,28 @@ public class UserCafeController {
 	public String cafeBestList(Model model) throws Exception {
 		List<Double> bestStarPoint = service.monthBestSPoint();
 		List<CafeVO> bestCafe = service.monthBestCafe();
-		List<ImageVO> imgList = new ArrayList<ImageVO>();
-		for(CafeVO bc : bestCafe) {
-			imgList.add(service.imgSelect(bc.getCafeNo()));
+		
+		Map<Integer, List<ThemeVO>> map = new HashMap<Integer, List<ThemeVO>>();
+		for(int i=0; i<bestCafe.size(); i++) {
+			List<ThemeVO> theme = themeService.cafeThemeRank(bestCafe.get(i).getCafeNo());
+			map.put(bestCafe.get(i).getCafeNo(), theme);
 		}
+		
+		List<Integer> sameCnts = new ArrayList<Integer>();
+		for(int i=0; i<3; i++) {
+			int sameCnt = service.countReviewNum(bestCafe.get(i).getCafeNo());
+			sameCnts.add(sameCnt);
+		}
+		
+		int wishCnt = service.cafeWishCnt(bestCafe.get(0).getCafeNo());
+		int commentCnt = service.cafeCommentCnt(bestCafe.get(0).getCafeNo());
 		
 		model.addAttribute("bestSP", bestStarPoint);
 		model.addAttribute("bestCafe", bestCafe);
-		model.addAttribute("imgList", imgList);
+		model.addAttribute("themeMap", map);
+		model.addAttribute("sameCnts", sameCnts);
+		model.addAttribute("wishCnt", wishCnt);
+		model.addAttribute("commentCnt", commentCnt);
 		
 		return "/user/userMukkaCafeBestList";
 	}

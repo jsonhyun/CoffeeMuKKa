@@ -103,6 +103,12 @@ public class CafeService {
 	public List<CafeVO> monthBestCafe() throws Exception {
 		return dao.monthBestCafe();
 	}
+	public int cafeWishCnt(int cafeNo) throws Exception {
+		return dao.cafeWishCnt(cafeNo);
+	}
+	public int cafeCommentCnt(int cafeNo) throws Exception {
+		return dao.cafeCommentCnt(cafeNo);
+	}
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {

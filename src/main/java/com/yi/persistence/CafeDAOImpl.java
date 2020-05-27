@@ -183,6 +183,16 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> monthBestCafe() throws Exception {
 		return sqlSession.selectList(namespace + "monthBestCafe");
 	}
+	
+	@Override
+	public int cafeWishCnt(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace + "cafeWishCnt", cafeNo);
+	}
+
+	@Override
+	public int cafeCommentCnt(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace + "cafeCommentCnt", cafeNo);
+	}
 
 
 	//아름추가
@@ -192,6 +202,6 @@ public class CafeDAOImpl implements CafeDAO {
 	}
 
 	
-	
-	
+
+
 }

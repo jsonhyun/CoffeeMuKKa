@@ -42,13 +42,14 @@ public class CafeDAOTest {
 		dao.cafeMainSearchTotalCnt(0, themeNos, cri);
 	}
 	
-	@Test
+	//@Test
 	public void testMonthBestSPoint() throws Exception {
 		dao.monthBestSPoint();
 	}
 
-	@Test
+	//@Test
 	public void testMonthBestCafe() throws Exception {
 		dao.monthBestCafe();
 	}
+
 }

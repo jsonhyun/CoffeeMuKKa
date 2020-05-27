@@ -52,6 +52,8 @@ public interface CafeDAO {
 	// 카페 베스트
 	public List<Double> monthBestSPoint() throws Exception;
 	public List<CafeVO> monthBestCafe() throws Exception;
+	public int cafeWishCnt(int cafeNo) throws Exception;
+	public int cafeCommentCnt(int cafeNo) throws Exception;
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;

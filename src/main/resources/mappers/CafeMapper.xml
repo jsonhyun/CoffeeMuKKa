@@ -325,19 +325,32 @@
 	
 	<!-- 경진추가 : 전월 별점 베스트 -->
 	<sql id="monthBestSql">
-		from starpoint s left join cafe c on s.cafe_no = c.cafe_no left join image i on c.cafe_no = i.cafe_no,
-			(select cafe_no, round(avg(star_point), 1) as spoint, update_date from starpoint where month(update_date) = month(now())-1 group by cafe_no) spoint
+		from starpoint s left join cafe c on s.cafe_no = c.cafe_no 
+						 left join image i on c.cafe_no = i.cafe_no
+						 left join zone z on c.zone_no = z.zone_no 
+					 	 left join theme t on c.theme_no = t.theme_no 
+			, (select cafe_no, round(avg(star_point), 1) as spoint, update_date from starpoint where month(update_date) = month(now())-1 group by cafe_no) spoint
 		where s.cafe_no = spoint.cafe_no and c.cafe_cdt = 1
 		group by s.cafe_no
 		order by spoint desc, spoint.update_date desc limit 10
 	</sql>
+	<!-- 별점 -->
 	<select id="monthBestSPoint" resultType="double">
 		select spoint
 		<include refid="monthBestSql"/>
 	</select>
+	<!-- 베스트 리스트 -->
 	<select id="monthBestCafe" resultMap="CafeListSelectResult">
-		select c.*, i.image_name
+		select c.*, i.image_name, z.zone_name, t.theme_name
 		<include refid="monthBestSql"/>
+	</select>
+	<!-- 위시리스트(찜) cnt -->
+	<select id="cafeWishCnt" resultType="int">
+		select count(*) from wishlist where cafe_no = #{cafeNo}
+	</select>
+	<!-- 카페 댓글 cnt -->
+	<select id="cafeCommentCnt" resultType="int">
+		select count(*) from starpoint where cafe_no = #{cafeNo}
 	</select>
 	
 	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->

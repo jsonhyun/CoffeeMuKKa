@@ -170,11 +170,11 @@
 	#rank_1 .icon {
 		overflow: hidden;
 		border: 1px solid #545454;
-	    padding: 5px 20px;
+	    padding: 5px 18px;
 	    border-radius: 10px;
 	    margin-right: 10px;
-	    line-height: 29px;
-	    width: 13.1%;
+	    line-height: 25px;
+	    width: 14%;
 	    text-align: center;
 	}
 	
@@ -183,18 +183,18 @@
 	}
 	
 	#rank_1 .icon i {
-		font-size: 22px;
+		font-size: 20px;
 		margin-top: 3px;
-		margin-right: 10px;
+		margin-right: 5px;
 	}
 	
 	#rank_1 .icon img {
-		width: 29px;
-		margin-right: 10px;
+		width: 25px;
+		margin-right: 5px;
 	}
 	
 	#rank_1 .icon span {
-		font-size: 20px;
+		font-size: 16px;
 		color: gray;
 	}
 	
@@ -206,6 +206,14 @@
 	#rank_2_3 > div {
 		width: 48%;		
 		border-bottom: 1px solid #545454;
+	}
+	
+	#rank_2_3 > div:nth-of-type(1){
+		float: left;
+	}
+	
+	#rank_2_3 > div:nth-of-type(2){
+		float: right;
 	}
 	
 	#rank_2_3 > div > a {
@@ -240,6 +248,12 @@
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
+		transition:all 1s;
+		transform-origin:300%;	
+	}
+	
+	#rank_4_10 .hoverTaget:hover img {
+		transform:scale(1.2);
 	}
 	
 	#rank_4_10 .no {
@@ -284,31 +298,28 @@
 			
 			<!-- 1위 -->
 			<div id="rank_1" class="bestBox clearfix">
-				<a href="#" class="hoverTaget">
+				<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafe[0].cafeNo}" class="hoverTaget">
 					<div class="bestLeft f_left">
 						<div class="imgBox">
 							<%-- <c:forEach ></c:forEach> --%>
-							<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-							<div class="dummy"></div>
+							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${bestCafe[0].images[0].imageName}" alt="카페이미지" />
+							<div class="dummy"></div>	
 						</div>
 						<div class="topWrap clearfix">
 							<p class="no bgPurple f_left">1</p>
-							<div class="zoneBtn zoneOrangeIconSmall f_left">#지역</div><!-- ${item.cafeNo.zoneNo.zoneName } -->
-							<p class="cafeName f_left">카페이름</p>
+							<div class="zoneBtn zoneOrangeIconSmall f_left keyword">#${bestCafe[0].zoneNo.zoneName}</div><!-- ${item.cafeNo.zoneNo.zoneName } -->
+							<p class="cafeName f_left">${bestCafe[0].cafeName}</p>
 						</div>
 						<div class="bottomWrap">
-							<div class="themeKeySmall themeName">#데이트</div>
-							<div class="themeKeySmall themeName">#뷰</div>
-							<div class="themeKeySmall themeName">#댕댕이</div>
-							<!-- #${item.cafeNo.themeNo.themeName } -->
-							<%-- <!-- 테마 순위 리스트(순위테마 전체를 검색할 수 있을때 풀기) -->
+							<div class="themeKeySmall themeName keyword">#${bestCafe[0].themeNo.themeName}</div>
+							<!-- 테마 순위 리스트 -->
 							<c:forEach var="theme" items="${themeMap}" varStatus="status">
-								<c:if test="${item.cafeNo.cafeNo == theme.key }">
+								<c:if test="${bestCafe[0].cafeNo == theme.key }">
 									<c:forEach var="themeItem" items="${theme.value }">
-										<div class="themeKeySmall themeName">#${themeItem.themeName }</div>
+										<div class="themeKeySmall themeName keyword">#${themeItem.themeName }</div>
 									</c:forEach>
 								</c:if>
-							</c:forEach> --%>
+							</c:forEach>
 							<img src="${pageContext.request.contextPath }/resources/images/cafe_best_icon.png" alt="베스트아이콘" />
 						</div>
 					</div>
@@ -324,37 +335,40 @@
 								<option value="5">5</option> 
 							</select>
 						</div>
-						<div id="jumsu"><%-- ${starpoint } --%> 3 <span class="gray">/ 5</span></div>						
+						<div id="jumsu"><span class="starNum"></span><span class="gray">/ 5</span></div>						
 						<div class="termMonth">(<span class="termMonthText"></span>월 별점)</div>
 					</div>
 					<div class="cafeRivewCnt">
 						<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
-						<span>전체 <span class="orange">150</span>개의 탐방기</span>
+						<span>전체 <span class="orange sameCnt"></span>개의 탐방기</span>
 					</div>
-					<p class="cafeOneLine classSec">황제가 먹었다는 초콜릿 케이크 자허토르테를 맛볼 수 있는 카페</p>
-					<p class="cafeDetailText classSec_3line gray">
-						동성로 자허 호텔 뒷골목에서 운영하고 있는
-						작은 카페, 푸른 식물과 커피의 조화로 마치
-						도심속의 자연을 연출하는 산뜻한 공간입니다.
-					</p>
+					<script>
+						console.log('${bestCafe[0].oneline}');
+					</script>
+					<p class="cafeOneLine classSec">${bestCafe[0].oneline}</p>
+					<p class="cafeDetailText classSec_3line gray">${bestCafe[0].content}</p>
+					<script>
+						console.log('${bestCafe[0].cafeName}');
+						console.log('${bestCafe[0].themeNo.themeName}');
+					</script>
 					<div class="icons">
 						<div class="icon f_left">
 							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="아이콘" />
 							<!-- <i class="far fa-eye gray f_left"></i> -->
-							<span class="iconCnt">0</span>
+							<span class="iconCnt">${bestCafe[0].viewNumber }</span>
 						</div>
 						<div class="icon f_left">
 							<i class="far fa-thumbs-up gray f_left"></i>
-							<span class="iconCnt">0</span>
+							<span class="iconCnt">${bestCafe[0].voteNumber }</span>
 						</div>
 						<div class="icon f_left">
 							<i class="fas fa-heart gray f_left"></i>
-							<span class="iconCnt">0</span>
+							<span class="iconCnt">${wishCnt}</span>
 						</div>
 						<div class="icon f_left">
 							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/icon_reply.png" alt="아이콘" />
 							<!-- <i class="far fa-comment-dots gray f_left"></i> -->
-							<span class="iconCnt">0</span>
+							<span class="iconCnt">${commentCnt}</span>
 						</div>
 					</div>
 				</div>
@@ -362,163 +376,75 @@
 			
 			<!-- 2, 3위 -->
 			<div id="rank_2_3" class="bestBox clearfix">
-				<div class="f_left">
-					<a href="#" class="hoverTaget">
-						<div class="imgBox">
-							<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-							<div class="dummy"></div>
+				<c:forEach var="bestCafe" items="${bestCafe}" begin="1" end="2" varStatus="status">
+					<div>
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafe.cafeNo}" class="hoverTaget">
+							<div class="imgBox">
+								<img src="${pageContext.request.contextPath }/resources/images/sumnail/${bestCafe.images[0].imageName}" alt="카페이미지" />
+								<div class="dummy"></div>
+							</div>
+							<div class="topWrap clearfix">
+								<p class="no bgPurple f_left">${status.index+1}</p>
+								<div class="zoneBtn zoneOrangeIconSmall f_left keyword">#${bestCafe.zoneNo.zoneName }</div><!-- ${item.cafeNo.zoneNo.zoneName } -->
+								<p class="cafeName f_left">${bestCafe.cafeName }</p>
+							</div>
+							<div class="bottomWrap">
+								<div class="themeKeySmall themeName keyword">#${bestCafe.themeNo.themeName }</div>
+								<!-- 테마 순위 리스트 -->
+								<c:forEach var="theme" items="${themeMap}" varStatus="status">
+									<c:if test="${bestCafe.cafeNo == theme.key }">
+										<c:forEach var="themeItem" items="${theme.value }">
+											<div class="themeKeySmall themeName keyword">#${themeItem.themeName }</div>
+										</c:forEach>
+									</c:if>
+								</c:forEach>
+								<img src="${pageContext.request.contextPath }/resources/images/cafe_best_icon.png" alt="베스트아이콘" />
+							</div>
+						</a>
+						<div class="starPointWrap clearfix">
+							<div class="star spoint">
+								<select class="starPoint"> 
+									<option value="1">1</option> 
+									<option value="2">2</option> 
+									<option value="3">3</option> 
+									<option value="4">4</option> 
+									<option value="5">5</option> 
+								</select>
+							</div>
+							<div id="jumsu"><span class="starNum"></span><span class="gray">/ 5</span></div>
+							<div class="termMonth">(<span class="termMonthText"></span>월 별점)</div>
 						</div>
-						<div class="topWrap clearfix">
-							<p class="no bgPurple f_left">2</p>
-							<div class="zoneBtn zoneOrangeIconSmall f_left">#지역</div><!-- ${item.cafeNo.zoneNo.zoneName } -->
-							<p class="cafeName f_left">카페이름</p>
+						
+						<div class="cafeRivewCnt">
+							<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
+							<span>전체 <span class="orange sameCnt"></span>개의 탐방기</span>
 						</div>
-						<div class="bottomWrap">
-							<div class="themeKeySmall themeName">#데이트</div>
-							<div class="themeKeySmall themeName">#뷰</div>
-							<div class="themeKeySmall themeName">#댕댕이</div>
-							<!-- #${item.cafeNo.themeNo.themeName } -->
-							<%-- <!-- 테마 순위 리스트(순위테마 전체를 검색할 수 있을때 풀기) -->
-							<c:forEach var="theme" items="${themeMap}" varStatus="status">
-								<c:if test="${item.cafeNo.cafeNo == theme.key }">
-									<c:forEach var="themeItem" items="${theme.value }">
-										<div class="themeKeySmall themeName">#${themeItem.themeName }</div>
-									</c:forEach>
-								</c:if>
-							</c:forEach> --%>
-							<img src="${pageContext.request.contextPath }/resources/images/cafe_best_icon.png" alt="베스트아이콘" />
-						</div>
-					</a>
-					<div class="starPointWrap clearfix">
-						<div class="star spoint">
-							<select class="starPoint"> 
-								<option value="1">1</option> 
-								<option value="2">2</option> 
-								<option value="3">3</option> 
-								<option value="4">4</option> 
-								<option value="5">5</option> 
-							</select>
-						</div>
-						<div id="jumsu"><%-- ${starpoint } --%> 3 <span class="gray">/ 5</span></div>
-						<div class="termMonth">(<span class="termMonthText"></span>월 별점)</div>
 					</div>
-					
-					<div class="cafeRivewCnt">
-						<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
-						<span>전체 <span class="orange">150</span>개의 탐방기</span>
-					</div>
-				</div>
-				
-				<div class="f_right">
-					<a href="#" class="hoverTaget">
-						<div class="imgBox">
-							<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-							<div class="dummy"></div>
-						</div>
-						<div class="topWrap clearfix">
-							<p class="no bgPurple f_left">3</p>
-							<div class="zoneBtn zoneOrangeIconSmall f_left">#지역</div><!-- ${item.cafeNo.zoneNo.zoneName } -->
-							<p class="cafeName f_left">카페이름</p>
-						</div>
-						<div class="bottomWrap">
-							<div class="themeKeySmall themeName">#데이트</div>
-							<div class="themeKeySmall themeName">#뷰</div>
-							<div class="themeKeySmall themeName">#댕댕이</div>
-							<!-- #${item.cafeNo.themeNo.themeName } -->
-							<%-- <!-- 테마 순위 리스트(순위테마 전체를 검색할 수 있을때 풀기) -->
-							<c:forEach var="theme" items="${themeMap}" varStatus="status">
-								<c:if test="${item.cafeNo.cafeNo == theme.key }">
-									<c:forEach var="themeItem" items="${theme.value }">
-										<div class="themeKeySmall themeName">#${themeItem.themeName }</div>
-									</c:forEach>
-								</c:if>
-							</c:forEach> --%>
-							<img src="${pageContext.request.contextPath }/resources/images/cafe_best_icon.png" alt="베스트아이콘" />
-						</div>
-					</a>
-					<div class="starPointWrap clearfix">
-						<div class="star spoint">
-							<select class="starPoint"> 
-								<option value="1">1</option> 
-								<option value="2">2</option> 
-								<option value="3">3</option> 
-								<option value="4">4</option> 
-								<option value="5">5</option> 
-							</select>
-						</div>
-						<div id="jumsu"><%-- ${starpoint } --%> 3 <span class="gray">/ 5</span></div>
-						<div class="termMonth">(<span class="termMonthText"></span>월 별점)</div>
-					</div>
-					<div class="cafeRivewCnt">
-						<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
-						<span>전체 <span class="orange">150</span>개의 탐방기</span>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 			
 			<!-- 4 ~ 10위 -->
 			<div id="rank_4_10" class="bestBox clearfix">
+				<c:forEach var="bestCafe" items="${bestCafe}" begin="3" end="9" varStatus="status">
+					<div>
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafe.cafeNo}" class="imgBox hoverTaget">
+							<p class="no bgPurple f_left">${status.index+1}</p>
+							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${bestCafe.images[0].imageName}" alt="카페이미지" />
+							<div class="dummy classSec"><span class="cafeName">${bestCafe.cafeName }</span></div>
+						</a>
+					</div>
+				</c:forEach>
+				
 				<div>
-					<a href="#" class="imgBox hoverTaget">
-						<p class="no bgPurple f_left">4</p>
-						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-						<div class="dummy classSec"><span class="cafeName">카페이름</span></div>
-					</a>
-				</div>
-				<div>
-					<a href="#" class="imgBox hoverTaget">
-						<p class="no bgPurple f_left">5</p>
-						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-						<div class="dummy classSec"><span class="cafeName">카페이름</span></div>
-					</a>
-				</div>
-				<div>
-					<a href="#" class="imgBox hoverTaget">
-						<p class="no bgPurple f_left">6</p>
-						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-						<div class="dummy classSec"><span class="cafeName">카페이름</span></div>
-					</a>
-				</div>
-				<div>
-					<a href="#" class="imgBox hoverTaget">
-						<p class="no bgPurple f_left">7</p>
-						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-						<div class="dummy classSec"><span class="cafeName">카페이름</span></div>
-					</a>
-				</div>
-				<div>
-					<a href="#" class="imgBox hoverTaget">
-						<p class="no bgPurple f_left">8</p>
-						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-						<div class="dummy classSec"><span class="cafeName">카페이름</span></div>
-					</a>
-				</div>
-				<div>
-					<a href="#" class="imgBox hoverTaget">
-						<p class="no bgPurple f_left">9</p>
-						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-						<div class="dummy classSec"><span class="cafeName">카페이름</span></div>
-					</a>
-				</div>
-				<div>
-					<a href="#" class="imgBox hoverTaget">
-						<p class="no bgPurple f_left">10</p>
-						<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
-						<div class="dummy classSec"><span class="cafeName">카페이름</span></div>
-					</a>
-				</div>
-				<div>
-					<a href="#" class="cafeBtn">
+					<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone" class="cafeBtn">
 						<span class="orange">카페정보</span> (위치별) >
 					</a>
-					<a href="#" class="cafeBtn">
+					<a href="${pageContext.request.contextPath }/user/mukkaCafe/theme" class="cafeBtn">
 						<span class="orange">카페정보</span> (테마별) >
 					</a>
 				</div>
 				
 			</div>
-			
-
 		</div>
 	</div>
 	
@@ -530,11 +456,18 @@
 	}
 
 	//카페 세부정보 별점 
-	$('.starPoint').barrating({
-		theme: 'fontawesome-stars',
-		initialRating: 3, //${starpointSelect}
-		readonly: true
-	})
+	var bestSP = ${bestSP};
+	var sameCnt = ${sameCnts};
+	
+	for(var i=0; i<3; i++){		
+		$('.starPoint').eq(i).barrating({
+			theme: 'fontawesome-stars',
+			initialRating: Math.round(bestSP[i]),
+			readonly: true
+		})
+		$(".starNum").eq(i).text(bestSP[i]);
+		$(".sameCnt").eq(i).text(sameCnt[i]);
+	}
 	
 	// 테마분류 색상 설정
 	$(".themeName").each(function(i, obj){

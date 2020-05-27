@@ -927,7 +927,7 @@
 		index--;
 		pageIndex++;
 		var marginLeft = index * 942;
-		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		sameBox.stop().animate({"margin-left":marginLeft+"px"}, 500);
 		$(".pageNum").text(pageIndex);
 	})
 	/* prev */
@@ -939,7 +939,7 @@
 		index++;
 		pageIndex--;
 		var marginLeft = index * 942;
-		sameBox.animate({"margin-left":marginLeft+"px"}, 1000);
+		sameBox.stop().animate({"margin-left":marginLeft+"px"}, 500);
 		$(".pageNum").text(pageIndex);
 	})
 </script>
