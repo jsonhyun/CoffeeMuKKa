@@ -1,5 +1,6 @@
 package com.yi.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CafeVO {
@@ -38,6 +39,7 @@ public class CafeVO {
 	private int voteNumber;
 	private int powerlinkCdt;
 	private int cafeCdt;
+	private ArrayList<ImageVO> images;
 
 	public CafeVO() {
 		super();
@@ -368,19 +370,22 @@ public class CafeVO {
 		this.cafeCdt = cafeCdt;
 	}
 
+	public ArrayList<ImageVO> getImages() {
+		return images;
+	}
+
+	public void setImages(ArrayList<ImageVO> images) {
+		this.images = images;
+	}
+
 	@Override
 	public String toString() {
-		return "CafeVO [cafeNo=" + cafeNo + ", cafeName=" + cafeName + ", themeNo=" + themeNo + ", zoneNo=" + zoneNo
-				+ ", userNo=" + userNo + ", address=" + address + ", detailAddress=" + detailAddress + ", tel=" + tel
-				+ ", wkdOpentime=" + wkdOpentime + ", wkndOpentime=" + wkndOpentime + ", closedDay=" + closedDay
-				+ ", sns=" + sns + ", tableNumber=" + tableNumber + ", socketNumber=" + socketNumber + ", toiletCdt="
-				+ toiletCdt + ", mkdessertCdt=" + mkdessertCdt + ", terrasCdt=" + terrasCdt + ", reservationCdt="
-				+ reservationCdt + ", wondooBuyCdt=" + wondooBuyCdt + ", bookCdt=" + bookCdt + ", beerCdt=" + beerCdt
-				+ ", goodsCdt=" + goodsCdt + ", wifiCdt=" + wifiCdt + ", puppyCdt=" + puppyCdt + ", reserveokCdt="
-				+ reserveokCdt + ", parkingCdt=" + parkingCdt + ", nokidsCdt=" + nokidsCdt + ", registrationDate="
-				+ registrationDate + ", updateDate=" + updateDate + ", viewNumber=" + viewNumber + ", content="
-				+ content + ", oneline=" + oneline + ", voteNumber=" + voteNumber + ", powerlinkCdt=" + powerlinkCdt
-				+ ", cafeCdt=" + cafeCdt + "]";
+		return String.format(
+				"CafeVO [cafeNo=%s, cafeName=%s, themeNo=%s, zoneNo=%s, userNo=%s, address=%s, detailAddress=%s, tel=%s, wkdOpentime=%s, wkndOpentime=%s, closedDay=%s, sns=%s, tableNumber=%s, socketNumber=%s, toiletCdt=%s, mkdessertCdt=%s, terrasCdt=%s, reservationCdt=%s, wondooBuyCdt=%s, bookCdt=%s, beerCdt=%s, goodsCdt=%s, wifiCdt=%s, puppyCdt=%s, reserveokCdt=%s, parkingCdt=%s, nokidsCdt=%s, registrationDate=%s, updateDate=%s, viewNumber=%s, content=%s, oneline=%s, voteNumber=%s, powerlinkCdt=%s, cafeCdt=%s, images=%s]",
+				cafeNo, cafeName, themeNo, zoneNo, userNo, address, detailAddress, tel, wkdOpentime, wkndOpentime,
+				closedDay, sns, tableNumber, socketNumber, toiletCdt, mkdessertCdt, terrasCdt, reservationCdt,
+				wondooBuyCdt, bookCdt, beerCdt, goodsCdt, wifiCdt, puppyCdt, reserveokCdt, parkingCdt, nokidsCdt,
+				registrationDate, updateDate, viewNumber, content, oneline, voteNumber, powerlinkCdt, cafeCdt, images);
 	}
 
 }

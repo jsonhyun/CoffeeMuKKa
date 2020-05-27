@@ -172,6 +172,18 @@ public class CafeDAOImpl implements CafeDAO {
 		map.put("cri", cri);
 		return sqlSession.selectOne(namespace + "cafeMainSearchTotalCnt", map);
 	}
+	
+	// 카페 베스트
+	@Override
+	public List<Double> monthBestSPoint() throws Exception {
+		return sqlSession.selectList(namespace + "monthBestSPoint");
+	}
+
+	@Override
+	public List<CafeVO> monthBestCafe() throws Exception {
+		return sqlSession.selectList(namespace + "monthBestCafe");
+	}
+
 
 	//아름추가
 	@Override
@@ -179,6 +191,7 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
 	}
 
+	
 	
 	
 }
