@@ -501,6 +501,16 @@ public class UserBoardController {
 	//추천카페 베스트 리스트
 	@RequestMapping(value = "/community/cafeRecommend/bestAll", method = RequestMethod.GET)
 	public String communityRecommendBestList(Model model) throws Exception {
+		List<BoardVO> voteAll = service.rcRankVoteAll();
+		model.addAttribute("voteAll", voteAll);
+		
+		List<ImageVO> voteAllImg = new  ArrayList<ImageVO>();
+		for(int i=0;i<voteAll.size();i++) {
+			int sboardNo = voteAll.get(i).getBoardNo();
+			voteAllImg.addAll(service.recommendboardImgList(sboardNo));
+		}
+		model.addAttribute("voteAllImg", voteAllImg);
+		
 		return "/user/userCommunityRecommendBestAll";
 	}
 }

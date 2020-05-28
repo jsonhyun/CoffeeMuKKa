@@ -125,7 +125,7 @@
 		padding: 5px 0;
 		font-size: 14px;
 		color: navy;
-	}
+	}	
 </style>
 	
 <div class="content subPageContent">
@@ -149,169 +149,62 @@
 					
 					<!-- 탭1 -->
 					<div id="tabs-1">
-						<ol>
-						 <a href="#">							
-							<li class="rank_wrap">
-								<div class="rank_num">20</div>
-								<div class="rank_img">
-									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-								</div>
-								<div class="rank_info">
-									<div class="rank_keyword">
-										<span class="zoneBtn zoneOrangeIconSmall keyword">동성로</span>
-										<span class="ame themeKeySmall keyword">#착한아메</span>
-										<span class="rDate">2020-05-23</span>
-									</div>
-									<div class="rank_title">	
-										<span class="rTitle">프리지아</span>
-										<span class="rNick">커피가좋아(hceo1004)</span>
-										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
-									</div>
-									<div class="rank_viewAll">
-											<span class="rView">조회 <span class="red">10</span></span>
-											<span class="rThumb">추천  <span class="red">20</span></span>
-											<span class="rReply">댓글  <span class="red">20</span></span>										
-									</div>
-									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
-								</div>
-							</li>
-							</a>
-							
-						 <a href="#">							
-							<li class="rank_wrap">
-								<div class="rank_num">20</div>
-								<div class="rank_img">
-									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-								</div>
-								<div class="rank_info">
-									<div class="rank_keyword">
-										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
-										<span class="ame themeKeySmall">#착한아메</span>
-										<span class="rDate">2020-05-23</span>
-									</div>
-									<div class="rank_title">	
-										<span class="rTitle">프리지아</span>
-										<span class="rNick">커피가좋아(hceo1004)</span>
-										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
-									</div>
-									<div class="rank_viewAll">
-											<span class="rView">조회 <span class="red">10</span></span>
-											<span class="rThumb">추천  <span class="red">20</span></span>
-											<span class="rReply">댓글  <span class="red">20</span></span>										
-									</div>
-									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
-								</div>
-							</li>
-							</a>
-							
-						 <a href="#">							
-							<li class="rank_wrap">
-								<div class="rank_num">20</div>
-								<div class="rank_img">
-									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-								</div>
-								<div class="rank_info">
-									<div class="rank_keyword">
-										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
-										<span class="ame themeKeySmall">#착한아메</span>
-										<span class="rDate">2020-05-23</span>
-									</div>
-									<div class="rank_title">	
-										<span class="rTitle">프리지아</span>
-										<span class="rNick">커피가좋아(hceo1004)</span>
-										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
-									</div>
-									<div class="rank_viewAll">
-											<span class="rView">조회 <span class="red">10</span></span>
-											<span class="rThumb">추천  <span class="red">20</span></span>
-											<span class="rReply">댓글  <span class="red">20</span></span>										
-									</div>
-									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
-								</div>
-							</li>
-							</a>
-							
-						 <a href="#">							
-							<li class="rank_wrap">
-								<div class="rank_num">20</div>
-								<div class="rank_img">
-									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-								</div>
-								<div class="rank_info">
-									<div class="rank_keyword">
-										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
-										<span class="ame themeKeySmall">#착한아메</span>
-										<span class="rDate">2020-05-23</span>
-									</div>
-									<div class="rank_title">	
-										<span class="rTitle">프리지아</span>
-										<span class="rNick">커피가좋아(hceo1004)</span>
-										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
-									</div>
-									<div class="rank_viewAll">
-											<span class="rView">조회 <span class="red">10</span></span>
-											<span class="rThumb">추천  <span class="red">20</span></span>
-											<span class="rReply">댓글  <span class="red">20</span></span>										
-									</div>
-									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
-								</div>
-							</li>
-							</a>
-							
-						 <a href="#">							
-							<li class="rank_wrap">
-								<div class="rank_num">20</div>
-								<div class="rank_img">
-									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-								</div>
-								<div class="rank_info">
-									<div class="rank_keyword">
-										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
-										<span class="ame themeKeySmall">#착한아메</span>
-										<span class="rDate">2020-05-23</span>
-									</div>
-									<div class="rank_title">	
-										<span class="rTitle">프리지아</span>
-										<span class="rNick">커피가좋아(hceo1004)</span>
-										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
-									</div>
-									<div class="rank_viewAll">
-											<span class="rView">조회 <span class="red">10</span></span>
-											<span class="rThumb">추천  <span class="red">20</span></span>
-											<span class="rReply">댓글  <span class="red">20</span></span>										
-									</div>
-									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
-								</div>
-							</li>
-							</a>
-							
-						 <a href="#">							
-							<li class="rank_wrap">
-								<div class="rank_num">20</div>
-								<div class="rank_img">
-									<img src = "${pageContext.request.contextPath}/resources/images/rc_noImg.png">
-								</div>
-								<div class="rank_info">
-									<div class="rank_keyword">
-										<span class="zoneBtn zoneOrangeIconSmall">동성로</span>
-										<span class="ame themeKeySmall">#착한아메</span>
-										<span class="rDate">2020-05-23</span>
-									</div>
-									<div class="rank_title">	
-										<span class="rTitle">프리지아</span>
-										<span class="rNick">커피가좋아(hceo1004)</span>
-										<span class="rGrade"><img src = "${pageContext.request.contextPath}/resources/images/yeolmae.png"></span> 
-									</div>
-									<div class="rank_viewAll">
-											<span class="rView">조회 <span class="red">10</span></span>
-											<span class="rThumb">추천  <span class="red">20</span></span>
-											<span class="rReply">댓글  <span class="red">20</span></span>										
-									</div>
-									<div class="rank_text"><p>정말 여기 너무 좋은거 같아요 꿀잠자고 왔습니다. 커피맛도 너무 맜있구요!!!</p></div>
-								</div>
-							</li>
-							</a>																																			
-						</ol>
+							<ol>
+								<c:forEach var="voteAll" items="${voteAll}">
+									<li class="rank_wrap">
+										<a href="${pageContext.request.contextPath }/user/community/cafeRecommend/read?boardNo=${voteAll.boardNo}">
+											<div class="rank_num"></div>
+											<div class="rank_img">
+					                			<!-- 이미지 이름 꺼내서 삽입하기 -->		
+												<c:forEach var="voteAllImg" items="${voteAllImg}">
+													 <c:if test="${voteAllImg.boardNo.boardNo == voteAll.boardNo }">
+														<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${voteAllImg.imageName}" class="thumbNailImg"  alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+													</c:if>
+												</c:forEach>
+											</div>
+											<div class="rank_info">
+												<div class="rank_keyword">
+													<span class="zoneBtn zoneOrangeIconSmall keyword">${voteAll.zoneNo.zoneName}</span> 
+													<c:choose>
+														<c:when test="${voteAll.themeNo.themeNo == 1}">
+															<span class="date keyword themeKeySmall">#${voteAll.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteAll.themeNo.themeNo == 2}">
+															<span class="view keyword themeKeySmall">#${voteAll.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteAll.themeNo.themeNo == 3}">
+															<span class="ame keyword themeKeySmall">#${voteAll.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteAll.themeNo.themeNo == 4}">
+															<span class="dessert keyword themeKeySmall">#${voteAll.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteAll.themeNo.themeNo == 5}">
+															<span class="dog keyword themeKeySmall">#${voteAll.themeNo.themeName}</span> 
+														</c:when>
+														<c:otherwise>
+															<span class="work keyword themeKeySmall">#${voteAll.themeNo.themeName}</span> 
+														</c:otherwise>
+													</c:choose>											
+													<span class="rDate"><fmt:formatDate value="${voteAll.registrationDate }" pattern="yyyy-MM-dd" /></span>
+												</div>
+												<div class="rank_title">
+													<span class="rTitle">${voteAll.writingTitle}</span> 
+													<span class="rNick">${voteAll.userNo.nick }(${voteAll.userNo.userId })</span>
+													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${voteAll.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
+												</div>
+												<div class="rank_viewAll">
+													<span class="rView">조회 <span class="red">${voteAll.viewNumber}</span></span> <span
+														class="rThumb">추천 <span class="red">${voteAll.voteNumber}</span></span> <span
+														class="rReply">댓글 <span class="red">${voteAll.replyCnt}</span></span>
+												</div>
+												<div class="rank_text">
+													<p class="classOne">${voteAll.writingContent}</p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</c:forEach>																																
+							</ol>
 						</div>
 					<!-- 탭2 -->
 					<div id="tabs-2">
@@ -338,6 +231,23 @@
 <!-- 자바스크립트 & 제이쿼리 -->
 <script>
 $( "#tabs" ).tabs();
+
+
+//원본파일 불러오기(선명한 파일)
+$(".thumbNailImg").each(function(i, obj) {
+	var file = $(this).attr("src");
+	var start = file.substring(0,51);
+	var end = file.substring(53);
+	var fileName = start + end;
+	$(this).attr("src", fileName);
+	//console.log(fileName);
+})
+
+
+// 랭킹 숫자
+for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
+	$(".rank_num").eq(i).text(1+i);
+} 
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>

@@ -32,6 +32,8 @@ public interface BoardDAO {
 	public void removeRecommendImg(String imageName) throws Exception;
 	//추천카페 -- 수정
 	public void recommendUpdate(BoardVO vo) throws Exception;
+	//추천카페 -- 전체 조회순 랭킹
+	public List<BoardVO> rcRankVoteAll() throws Exception;
 	
 	/*** 공통 ***/
 	//오늘 등록된 글 갯수(**커뮤니티 공통**)
