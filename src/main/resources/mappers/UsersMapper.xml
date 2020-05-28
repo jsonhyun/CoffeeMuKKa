@@ -30,4 +30,14 @@
 	<select id="readUsers" resultType="UsersVO">
 		select * from users where user_id = #{userId}
 	</select>
+	
+	<select id="findUsers" resultType="UsersVO">
+		select user_id from users where name = #{name} and email=#{email} and user_type=#{userType.userType}
+	</select>
+	
+	<update id="modifyUsers">
+		update users
+			set password = #{password}
+			where user_id = #{userId}
+	</update>
 </mapper>
