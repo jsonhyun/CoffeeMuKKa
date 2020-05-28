@@ -3,6 +3,10 @@
 
 <%@ include file="../userInclude/header.jsp" %>
 <style>
+	/* 타이틀 클릭시 해당페이지 이동*/
+	h2 a.mainTitle:hover{
+		color: #ED7D31;
+	}
 	/* 파워링크 */
 	.powerLinkArea {
 		margin-top: 30px;
@@ -21,13 +25,37 @@
 	
 	.powerLinkWrap ul li {
 		/* 임시 표시 */
-		background-color: #ddd;
+		/* background-color: #ddd; */
 		
 		float: left;
 		width: 200px;
-		height: 250px;
+		height: 260px;
 		margin: 15px;
+		position: relative;
 	}
+	
+	.powerLinkWrap ul li img{
+		width: 200px;
+		height: 250px;
+	}
+ 	.powerLinkWrap ul li .powerDummy{
+		width: 100%;
+		height: 250px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: rgba(0,0,0,.4);
+	}	
+	.powerLinkEmphasis{ /* 파워링크 강조 */
+		width: 100%;
+		height: 250px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: none;
+	  	border: 10px solid #ED7D31;
+	  	margin: -10px;			  	
+	}			
 	
 	/* 카페 리스트 */
 	.cafeListArea {
@@ -243,24 +271,32 @@
 
 	<div class="content container">
 		
-		<!-- 파워링크 -->
+		<!-- 파워링크 : 해당카페번호꺼내서 해당이미지 1개씩 꺼내기 -->
 		<div class="powerLinkArea">
-			<h2>오늘 여기서 커피한잔 어때?</h2>
+			<h2><a href ="${pageContext.request.contextPath}/user/mukkaCafe/monthCafe" class="mainTitle">오늘 여기서 커피한잔 어때?</a></h2>
 			<div class="powerLinkWrap">
 				<ul>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
+				   <c:forEach var="powerList" items="${powerList}">
+	 					<c:forEach var="powerImg" items="${powerImg}">		
+							<c:if test="${powerImg.cafeNo.cafeNo == powerList.cafeNo }">
+								<li>
+									<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${powerList.cafeNo}">
+										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${powerImg.imageName}">
+										<div class="powerDummy"></div>
+									</a>
+								</li>
+							</c:if>
+						</c:forEach>				
+					</c:forEach>
 				</ul>
+				
 			</div>
 		</div>
 		
 		<!-- 카페 리스트 -->
 		<div class="cafeListArea">
 			<div class="newCafeList left">
-				<h2 class="newCafeTitle bottomLine">N월 반짝반짝 신상카페</h2>
+				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle">N월 반짝반짝 신상카페</a></h2>
 				<div class="newCafeImgs">
 					<!-- 카페 이미지 들어갈 자리 -->
 				</div>
@@ -278,7 +314,7 @@
 			</div>
 			
 			<div class="mukkaLikeCafeList right">
-				<h2 class="likeCafeTitle bottomLine">MuKKa人이 애정하는 그카페 <span>(2020.00.00 ~ 00.00)</span></h2>
+				<h2 class="likeCafeTitle bottomLine"><a href="#" class="mainTitle">MuKKa人이 애정하는 그카페</a> <span>(2020.00.00 ~ 00.00)</span></h2>
 				<div class="likeCafeList1">
 					<div class="cafeList1"></div>
 					<div class="cafeList2-5">
@@ -304,7 +340,7 @@
 		
 		<!-- 베스트 카페탐방기 -->
 		<div class="baseCafeReview">
-			<h2 class="Title bottomLine">MuKKa人이 전하는 생생 카페탐방기(BEST)</h2>
+			<h2 class="Title bottomLine"><a href="#" class="mainTitle">MuKKa人이 전하는 생생 카페탐방기(BEST)</a></h2>
 			<div class="baseList1-3 bottomLine">
 				<ul>
 					<li></li>
@@ -332,12 +368,12 @@
 		<!-- 카페추천 / 추천 랭킹 -->
 		<div class="cafeRecommend">
 			<div class="newList left">
-				<h2 class="Title bottomLine">실시간 카페 추천</h2>
+				<h2 class="Title bottomLine"><a href ="${pageContext.request.contextPath}/user/community/cafeRecommend/" class="mainTitle">실시간 카페 추천</a></h2>
 				<div class="newListImgs">
 					<ul>
 						<c:forEach var="board" items="${rclist}">
+						<li>
 							<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}">
-								<li>
 									<div class="RC_listImgWrap">
 										<div class="RC_listImgContainer">
 											<!-- 이미지 이름 꺼내서 삽입하기 -->
@@ -350,16 +386,16 @@
 												</c:if>
 											</c:forEach>
 										</div>
-									</div>
-								</li>
-							</a>
+									</div>						
+								</a>
+							</li>
 						</c:forEach>
 					</ul>
 				</div>
 			</div>
 
 		<div class="bestRankList right">
-				<h2 class="Title bottomLine">열혈 MuKKa人 <span>(2020.00.00 ~ 00.00)</span></h2>
+				<h2 class="Title bottomLine"><a href="#" class="mainTitle">열혈 MuKKa人 </a><span>(2020.00.00 ~ 00.00)</span></h2>
 				<div class="bestIcons">
 					<div class="bestIcon"><a href="#">1-10</a></div>
 					<div class="bestIcon"><a href="#">11-20</a></div>
@@ -387,14 +423,46 @@
 	<!-- infoBaner main에만 -->
 	<div class="banerArea"></div>
 <script>
-//원본파일 불러오기(선명한 파일)
-$(".thumbNailImg").each(function(i, obj) {
-	var file = $(this).attr("src");
-	var start = file.substring(0,51);
-	var end = file.substring(53);
-	var fileName = start + end;
-	$(this).attr("src", fileName);
-	console.log(fileName);
-})
+	//파워링크 이미지 효과 로테이션 powerLinkEmphasis
+	var first_dummy = $(".powerLinkWrap ul li div:eq(0)");
+	var second_dummy = $(".powerLinkWrap ul li div:eq(1)");
+	var third_dummy = $(".powerLinkWrap ul li div:eq(2)");
+	var fourth_dummy = $(".powerLinkWrap ul li div:eq(3)");
+	var fifth_dummy = $(".powerLinkWrap ul li div:eq(4)");	
+
+ 	function power_change(){
+ 		first_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
+			first_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
+				second_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
+					second_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
+						third_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
+							third_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
+								fourth_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
+									fourth_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
+										fifth_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
+											fifth_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy");
+										})
+									})
+								})
+							})
+						})
+					})
+				})
+			})
+		})
+ 	}
+ 	setInterval("power_change()", 10000);
+ 	power_change();
+ 	
+	
+	//추천카페 - 원본파일 불러오기(선명한 파일)
+	$(".thumbNailImg").each(function(i, obj) {
+		var file = $(this).attr("src");
+		var start = file.substring(0,51);
+		var end = file.substring(53);
+		var fileName = start + end;
+		$(this).attr("src", fileName);
+		console.log(fileName);
+	})
 </script>	
 <%@ include file="../userInclude/footer.jsp" %>

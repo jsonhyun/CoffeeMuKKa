@@ -1074,3 +1074,49 @@ INSERT INTO coffeemukka.image
 (image_no, image_name, cafe_no, board_no)
 VALUES(256, '/2020/05/27/s_713dca96-097a-42cc-b3d3-3ed27a8c3da8_14.PNG', NULL, 47);
 
+
+
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =2 limit 1;
+
+select * from cafe c left join image i on c.cafe_no  = i.cafe_no where powerlink_cdt = 1;
+
+select * from image i where cafe_no = 38;
+left join (select * from cafe c where powerlink_cdt  = 0);
+select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =1;		
+select * from (select * from cafe where powerlink_cdt =1) p, image i where p.cafe_no = i.cafe_no;
+
+select * from image; where cafe_no = 1 limit 1;
+
+select * from cafe where powerlink_cdt =0;
+select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no
+		where c.cafe_no=#{cafeNo}
+		
+		
+		
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =1 limit 1		
+
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =125 limit 1;
+
+select view_number, rank() over(order by view_number desc) as '순위' from board where board_no2 = 2;
+
+
+select * from board b left join zone z on b.zone_no = z.zone_no left join where board_no2 = 2 order by vote_number desc limit 10;
+-- 조회수
+select * from board where board_no2 = 2 order by view_number desc limit 10;
+-- 댓글수
+select * from board where board_no2 = 2 order by reply_cnt desc limit 10;
+-- 추천수
+select * from board where board_no2 = 2 order by vote_number desc limit 10;
+
+
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 = 2 order by vote_number desc limit 10;
