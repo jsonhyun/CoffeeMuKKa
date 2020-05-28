@@ -514,6 +514,26 @@ ALTER TABLE CoffeeMuKKa.Vote
 ALTER TABLE CoffeeMuKKa.Vote
 	MODIFY COLUMN vote_no INT NOT NULL AUTO_INCREMENT COMMENT '추천번호';
 
+-- 파워링크
+CREATE TABLE CoffeeMuKKa.PowerLink (
+	pow_no    INT       NOT NULL COMMENT '파워링크번호', -- 파워링크번호
+	cafe_no   INT       NOT NULL COMMENT '카페번호', -- 카페번호
+	reg_date  TIMESTAMP NOT NULL DEFAULT now() COMMENT '등록일자', -- 등록일자
+	post_date TIMESTAMP NOT NULL COMMENT '게시일자', -- 게시일자
+	pow_cdt   TINYINT   NOT NULL COMMENT '파워링크여부' -- 파워링크여부
+)
+COMMENT '파워링크';
+
+-- 파워링크
+ALTER TABLE CoffeeMuKKa.PowerLink
+	ADD CONSTRAINT PK_PowerLink -- 파워링크 기본키
+		PRIMARY KEY (
+			pow_no -- 파워링크번호
+		);
+
+ALTER TABLE CoffeeMuKKa.PowerLink
+	MODIFY COLUMN pow_no INT NOT NULL AUTO_INCREMENT COMMENT '파워링크번호';
+
 -- 카페
 ALTER TABLE CoffeeMuKKa.Cafe
 	ADD CONSTRAINT FK_Theme_TO_Cafe -- 테마분류 -> 카페
@@ -822,4 +842,14 @@ ALTER TABLE CoffeeMuKKa.Vote
 		)
 		REFERENCES CoffeeMuKKa.Users ( -- 회원현황
 			user_no -- 회원번호
+		);
+
+-- 파워링크
+ALTER TABLE CoffeeMuKKa.PowerLink
+	ADD CONSTRAINT FK_Cafe_TO_PowerLink -- 카페 -> 파워링크
+		FOREIGN KEY (
+			cafe_no -- 카페번호
+		)
+		REFERENCES CoffeeMuKKa.Cafe ( -- 카페
+			cafe_no -- 카페번호
 		);
