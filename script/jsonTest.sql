@@ -94,3 +94,5 @@ select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_numbe
 		order by b.board_no desc;	
 select * from board b;		
 select * from board b where zone_no =3 and theme_no =3;
+
+select user_id from users where name = '현재승' and email='airplant@naver.com' and user_type=2;
