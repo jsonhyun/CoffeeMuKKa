@@ -282,7 +282,6 @@ select powerlink_cdt , cafe_no from cafe;
 
 -- 파워링크에 데이터 넣기
 insert into powerlink (cafe_no, pow_cdt) select cafe_no, powerlink_cdt from cafe where powerlink_cdt is not null;
-select p.* , c.cafe_no, c.powerlink_cdt from powerlink p left join cafe c on p.cafe_no = c.cafe_no where month(post_date) = month(now());
 
 update powerlink 
 	set reg_date = "2020-04-20", pow_cdt = 1, post_date = "2020-05-01"
@@ -290,6 +289,11 @@ update powerlink
 update cafe 
 	set powerlink_cdt = 1
 	where cafe_no in (1, 2, 3, 4, 5);
+
+select p.*, c.cafe_no , c.powerlink_cdt from powerlink p left join cafe c on p.cafe_no = c.cafe_no;
+select p.* , c.cafe_no, c.powerlink_cdt from powerlink p left join cafe c on p.cafe_no = c.cafe_no where month(post_date) = month(now());
+
+
 
 
 
