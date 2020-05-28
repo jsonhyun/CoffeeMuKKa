@@ -452,7 +452,7 @@
 		})
  	}
  	setInterval("power_change()", 10000);
- 	power_change();	
+ 	power_change();
  	
 	
 	//추천카페 - 원본파일 불러오기(선명한 파일)

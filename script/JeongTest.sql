@@ -1101,3 +1101,22 @@ select c.*, z.*, t.* from cafe c
 select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =1 limit 1		
 
 select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =125 limit 1;
+
+select view_number, rank() over(order by view_number desc) as '순위' from board where board_no2 = 2;
+
+
+select * from board b left join zone z on b.zone_no = z.zone_no left join where board_no2 = 2 order by vote_number desc limit 10;
+-- 조회수
+select * from board where board_no2 = 2 order by view_number desc limit 10;
+-- 댓글수
+select * from board where board_no2 = 2 order by reply_cnt desc limit 10;
+-- 추천수
+select * from board where board_no2 = 2 order by vote_number desc limit 10;
+
+
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 = 2 order by vote_number desc limit 10;

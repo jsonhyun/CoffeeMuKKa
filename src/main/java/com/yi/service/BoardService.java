@@ -103,6 +103,11 @@ public class BoardService {
 			 dao.recommendInsertImages(file,boardNo);
 		 }		 
 	}
+	
+	// 추천카페 -- 전체 조회순 랭킹
+	public List<BoardVO> rcRankVoteAll() throws Exception{
+		return dao.rcRankVoteAll();
+	}
 
 	/*** 공통 ***/
 	// 오늘 등록된 글 갯수(**커뮤니티 공통**)
