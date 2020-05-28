@@ -272,12 +272,24 @@ select powerlink_cdt from cafe;
 
 -- 카페 파워링크 0으로 초기화
 update cafe 
-	set powerlink_cdt = 1
+	set powerlink_cdt = null;
+
+update cafe 
+	set powerlink_cdt = 0
 	where cafe_no in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 select powerlink_cdt , cafe_no from cafe;
 
 -- 파워링크에 데이터 넣기
-insert into powerlink (cafe_no, pow_cdt) select cafe_no, powerlink_cdt as pow_cdt from cafe;
+insert into powerlink (cafe_no, pow_cdt) select cafe_no, powerlink_cdt from cafe where powerlink_cdt is not null;
+select p.* , c.cafe_no, c.powerlink_cdt from powerlink p left join cafe c on p.cafe_no = c.cafe_no where month(post_date) = month(now());
+
+update powerlink 
+	set reg_date = "2020-04-20", pow_cdt = 1, post_date = "2020-05-01"
+	where cafe_no in (1, 2, 3, 4, 5);
+update cafe 
+	set powerlink_cdt = 1
+	where cafe_no in (1, 2, 3, 4, 5);
+
 
 

@@ -37,13 +37,12 @@ public class CafeVO {
 	private String content;
 	private String oneline;
 	private int voteNumber;
-	private int powerlinkCdt;
-	private int cafeCdt;
+	private CafeCdt powerlinkCdt;
+	private CafeCdt cafeCdt;
 	private ArrayList<ImageVO> images;
 
 	public CafeVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CafeVO(int cafeNo, String cafeName, ThemeVO themeNo, ZoneVO zoneNo, UsersVO userNo, String address,
@@ -51,7 +50,7 @@ public class CafeVO {
 			int tableNumber, int socketNumber, int toiletCdt, int mkdessertCdt, int terrasCdt, int reservationCdt,
 			int wondooBuyCdt, int bookCdt, int beerCdt, int goodsCdt, int wifiCdt, int puppyCdt, int reserveokCdt,
 			int parkingCdt, int nokidsCdt, Date registrationDate, Date updateDate, int viewNumber, String content,
-			String oneline, int voteNumber, int powerlinkCdt, int cafeCdt) {
+			String oneline, int voteNumber, CafeCdt powerlinkCdt, CafeCdt cafeCdt) {
 		super();
 		this.cafeNo = cafeNo;
 		this.cafeName = cafeName;
@@ -354,19 +353,19 @@ public class CafeVO {
 		this.voteNumber = voteNumber;
 	}
 
-	public int getPowerlinkCdt() {
+	public CafeCdt getPowerlinkCdt() {
 		return powerlinkCdt;
 	}
 
-	public void setPowerlinkCdt(int powerlinkCdt) {
+	public void setPowerlinkCdt(CafeCdt powerlinkCdt) {
 		this.powerlinkCdt = powerlinkCdt;
 	}
 
-	public int getCafeCdt() {
+	public CafeCdt getCafeCdt() {
 		return cafeCdt;
 	}
 
-	public void setCafeCdt(int cafeCdt) {
+	public void setCafeCdt(CafeCdt cafeCdt) {
 		this.cafeCdt = cafeCdt;
 	}
 

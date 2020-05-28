@@ -16,7 +16,7 @@ public class CafeDAOTest {
 	@Autowired
 	private CafeDAO dao;
 	
-	//@Test
+	@Test
 	public void test08ListCriteria() throws Exception {
 		SearchCriteria cri = new SearchCriteria(); //페이지 번호, 페이지당 display 게시글 갯수
 		cri.setPage(1);

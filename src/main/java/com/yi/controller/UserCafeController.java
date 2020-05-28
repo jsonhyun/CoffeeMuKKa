@@ -1,6 +1,9 @@
 package com.yi.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -234,5 +237,22 @@ public class UserCafeController {
 		return "/user/userMukkaCafeBestList";
 	}
 	
+	// 월간 카페
+	@RequestMapping(value = "/mukkaCafe/monthCafe", method = RequestMethod.GET)
+	public String cafeMonthList(Model model) {
+		
+		// 달이 바뀌면 자동 업데이트
+		Date from = new Date();
+		SimpleDateFormat fmYear = new SimpleDateFormat("yyyy");
+		SimpleDateFormat fmMonth = new SimpleDateFormat("MM");
+		String toYear = fmYear.format(from);
+		String toMonth = fmMonth.format(from);
+		if(!toYear.equals("2021") || !toMonth.equals("05")) {			
+			System.out.println("toYear-----------"+toYear);
+			System.out.println("toMonth-----------"+toMonth);
+		}
+		
+		return "/user/userMukkaCafeMonth";
+	}
 	
 }
