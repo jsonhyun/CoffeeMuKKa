@@ -265,4 +265,19 @@ select s.*, round(avg(s.star_point), 1) as cnt, c.cafe_no , c.cafe_name from caf
 
 select count(*) from wishlist where cafe_no = 2;
 select count(*) from starpoint where cafe_no = 2;
-select oneline from cafe;
+
+-- 월간 카페
+select * from powerlink;
+select powerlink_cdt from cafe;
+
+-- 카페 파워링크 0으로 초기화
+update cafe 
+	set powerlink_cdt = 1
+	where cafe_no in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+select powerlink_cdt , cafe_no from cafe;
+
+-- 파워링크에 데이터 넣기
+insert into powerlink (cafe_no, pow_cdt) select cafe_no, powerlink_cdt as pow_cdt from cafe;
+
+

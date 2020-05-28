@@ -39,7 +39,7 @@ CREATE TABLE CoffeeMuKKa.Cafe (
 	content           TEXT         NULL     COMMENT '내용', -- 내용
 	oneline           VARCHAR(255) NOT NULL COMMENT '한줄소개', -- 한줄소개
 	vote_number       INT          NOT NULL DEFAULT 0 COMMENT '추천수', -- 추천수
-	powerlink_cdt     TINYINT      NOT NULL COMMENT '파워링크여부', -- 파워링크여부
+	powerlink_cdt     TINYINT      NULL     COMMENT '파워링크여부', -- 파워링크여부
 	cafe_cdt          TINYINT      NOT NULL COMMENT '카페상태' -- 카페상태
 )
 COMMENT '카페';
