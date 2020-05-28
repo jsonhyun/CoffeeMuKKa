@@ -1,8 +1,17 @@
 select user(), database();
 
 -- 게시글번호 : 634 - 715번
-
+select * from image;
 -- IMAGE --
+INSERT INTO coffeemukka.image
+(image_no, image_name, cafe_no, board_no)
+VALUES(830, '/2020/05/28/s_5b8685e5-14bf-4864-8937-568611705cbf_1.PNG', NULL, 635);
+INSERT INTO coffeemukka.image
+(image_no, image_name, cafe_no, board_no)
+VALUES(831, '/2020/05/28/s_711d9b8d-b2d0-440e-8412-ba3515f7a01a_4.PNG', NULL, 636);
+INSERT INTO coffeemukka.image
+(image_no, image_name, cafe_no, board_no)
+VALUES(832, '/2020/05/28/s_97dbc2e8-2eb9-4fca-bdb4-275bb1218fdd_3.PNG', NULL, 636);
 INSERT INTO coffeemukka.image
 (image_no, image_name, cafe_no, board_no)
 VALUES(835, '/2020/05/28/s_d7d686f9-5696-4ace-99c2-55f0a81f8cd3_3 (2).PNG', NULL, 637);
@@ -42,9 +51,7 @@ VALUES(846, '/2020/05/28/s_ccfef22c-3fb2-4d02-a01b-7611ffa572ac_3.PNG', NULL, 64
 INSERT INTO coffeemukka.image
 (image_no, image_name, cafe_no, board_no)
 VALUES(847, '/2020/05/28/s_a1c0a0a4-2f93-4c1c-a113-c350447085f9_4.PNG', NULL, 642);
-INSERT INTO coffeemukka.image
-(image_no, image_name, cafe_no, board_no)
-VALUES(848, '/2020/05/28/s_1ff6871a-739e-461d-8c80-157cb9054237_5.PNG', NULL, 642);
+
 INSERT INTO coffeemukka.image
 (image_no, image_name, cafe_no, board_no)
 VALUES(849, '/2020/05/28/s_83e5eaef-6785-4a98-8a7e-e0242a2d928f_1.PNG', NULL, 642);
