@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yi.domain.CafeVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
@@ -110,9 +109,13 @@ public class CafeService {
 		return dao.cafeCommentCnt(cafeNo);
 	}
 	
-	//아름추가
+	/**************** 아름추가  ********************/
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return dao.rcSearchCafeByName(cafeName);
+	}
+	
+	public List<CafeVO> powerLinkCafeList() throws Exception{
+		return dao.powerLinkCafeList();
 	}
 
 }

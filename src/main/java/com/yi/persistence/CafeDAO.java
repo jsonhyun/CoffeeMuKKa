@@ -3,7 +3,6 @@ package com.yi.persistence;
 import java.util.List;
 
 import com.yi.domain.CafeVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
@@ -57,6 +56,9 @@ public interface CafeDAO {
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;
+	
+	//파워링크
+	public List<CafeVO> powerLinkCafeList() throws Exception;
 	
 	
 }

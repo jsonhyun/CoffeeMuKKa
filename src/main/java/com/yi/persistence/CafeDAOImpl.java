@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
@@ -195,10 +194,16 @@ public class CafeDAOImpl implements CafeDAO {
 	}
 
 
-	//아름추가
+	/**************** 아름추가  ********************/
 	@Override
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {
 		return sqlSession.selectList(namespace + "rcSearchCafeByName",cafeName);
+	}
+
+	//파워링크
+	@Override
+	public List<CafeVO> powerLinkCafeList() throws Exception {
+		return sqlSession.selectList(namespace+"powerLinkCafeList");
 	}
 
 	

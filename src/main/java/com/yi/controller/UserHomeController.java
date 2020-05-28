@@ -10,37 +10,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.BoardVO;
+import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
+import com.yi.service.CafeService;
 
 @Controller
 @RequestMapping("/user/*")
 public class UserHomeController {
 
-	// 서비스 
+	// 서비스
+	@Autowired
+	private CafeService cafeService;
+	
 	@Autowired
 	private BoardService boardService;
+	
+	
 	
 	// 유저 메인 홈
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String userHome(Model model) throws Exception {
 		List<ZoneVO> zoneList = boardService.zoneList();
 		
-		System.out.println("zoneList -----------------" + zoneList);
+		//System.out.println("zoneList -----------------" + zoneList);
 		model.addAttribute("zoneList", zoneList);
+		
+		//파워링크 & 대표이미지
+		List<CafeVO> powerList = cafeService.powerLinkCafeList();
+		model.addAttribute("powerList",powerList);
+		
+		List<ImageVO> powerImg = new ArrayList<ImageVO>();
+		for(int i=0;i<powerList.size();i++) {
+			int cafeNo = powerList.get(i).getCafeNo();
+			powerImg.add(cafeService.imgSelect(cafeNo));
+		}
+		model.addAttribute("powerImg", powerImg);
 		
 		//실시간 카페 추천 리스트 & 대표이미지
 		List<BoardVO> rclist = boardService.recommendboardList();
 		model.addAttribute("rclist",rclist);
-		System.out.println("test1=========================="+rclist);
 		
 		List<ImageVO> rclistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<rclist.size();i++) {
 			int sboardNo = rclist.get(i).getBoardNo();
 			rclistImg.addAll(boardService.recommendboardImgList(sboardNo));	
 		}
-		System.out.println("test2=========================="+rclistImg);
+		
 		model.addAttribute("rclistImg", rclistImg);
 		model.addAttribute("error", 0);
 		return "/user/userHome";

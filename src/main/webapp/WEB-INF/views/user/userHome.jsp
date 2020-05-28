@@ -29,6 +29,11 @@
 		margin: 15px;
 	}
 	
+	.powerLinkWrap ul li img{
+		width: 200px;
+		height: 250px;
+	}	
+	
 	/* 카페 리스트 */
 	.cafeListArea {
 		overflow: hidden;
@@ -243,17 +248,24 @@
 
 	<div class="content container">
 		
-		<!-- 파워링크 -->
+		<!-- 파워링크 : 해당카페번호꺼내서 해당이미지 1개씩 꺼내기 -->
 		<div class="powerLinkArea">
 			<h2>오늘 여기서 커피한잔 어때?</h2>
 			<div class="powerLinkWrap">
 				<ul>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
-					<li><a href="#"></a></li>
+				   <c:forEach var="powerList" items="${powerList}">
+	 					<c:forEach var="powerImg" items="${powerImg}">		
+							<c:if test="${powerImg.cafeNo.cafeNo == powerList.cafeNo }">
+								<li>
+									<a href="#">
+										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${powerImg.imageName}">
+									</a>
+								</li>
+							</c:if>
+						</c:forEach>				
+					</c:forEach>
 				</ul>
+				
 			</div>
 		</div>
 		
@@ -336,8 +348,8 @@
 				<div class="newListImgs">
 					<ul>
 						<c:forEach var="board" items="${rclist}">
+						<li>
 							<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}">
-								<li>
 									<div class="RC_listImgWrap">
 										<div class="RC_listImgContainer">
 											<!-- 이미지 이름 꺼내서 삽입하기 -->
@@ -350,9 +362,9 @@
 												</c:if>
 											</c:forEach>
 										</div>
-									</div>
-								</li>
-							</a>
+									</div>						
+								</a>
+							</li>
 						</c:forEach>
 					</ul>
 				</div>

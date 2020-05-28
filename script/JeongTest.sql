@@ -1074,3 +1074,30 @@ INSERT INTO coffeemukka.image
 (image_no, image_name, cafe_no, board_no)
 VALUES(256, '/2020/05/27/s_713dca96-097a-42cc-b3d3-3ed27a8c3da8_14.PNG', NULL, 47);
 
+
+
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =2 limit 1;
+
+select * from cafe c left join image i on c.cafe_no  = i.cafe_no where powerlink_cdt = 1;
+
+select * from image i where cafe_no = 38;
+left join (select * from cafe c where powerlink_cdt  = 0);
+select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =1;		
+select * from (select * from cafe where powerlink_cdt =1) p, image i where p.cafe_no = i.cafe_no;
+
+select * from image; where cafe_no = 1 limit 1;
+
+select * from cafe where powerlink_cdt =0;
+select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no
+		where c.cafe_no=#{cafeNo}
+		
+		
+		
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =1 limit 1		
+
+select i.cafe_no, i.image_name from image i left join cafe c on c.cafe_no = i.cafe_no where c.cafe_no =125 limit 1;
