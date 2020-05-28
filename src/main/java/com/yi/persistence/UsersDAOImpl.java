@@ -30,4 +30,9 @@ public class UsersDAOImpl implements UsersDAO {
 		return sqlsession.selectOne(namespace+"readUsers", userid);
 	}
 
+	@Override
+	public UsersVO findUsers(UsersVO vo) throws Exception {
+		return sqlsession.selectOne(namespace+"findUsers", vo);
+	}
+
 }

@@ -18,9 +18,11 @@ import com.yi.domain.Criteria;
 import com.yi.domain.PageMaker;
 import com.yi.domain.ReplyVO;
 import com.yi.domain.StarpointVO;
+import com.yi.domain.UsersVO;
 import com.yi.service.BoardService;
 import com.yi.service.CafeService;
 import com.yi.service.ReplyService;
+import com.yi.service.UsersService;
 
 @RestController
 @RequestMapping("/rest/*")
@@ -35,6 +37,8 @@ public class UserRestController {
 	@Autowired
 	private ReplyService replyService;
 	
+	@Autowired
+	private UsersService usersService;
 	
 	/*-------- cafe ------------------------------------------------------------------*/
 	// 카페 검색
@@ -249,4 +253,21 @@ public class UserRestController {
 		
 		return entity;
 	}
+	
+	/*-------- 아이디, 비밀번호 찾기 ------------------------------------------------------------------*/
+	
+	@RequestMapping(value = "/findid", method = RequestMethod.POST)
+	public ResponseEntity<String> findUsers(@RequestBody UsersVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			UsersVO dbVO = usersService.findUsers(vo);
+			
+			entity = new ResponseEntity<String>(dbVO.getUserId(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 }

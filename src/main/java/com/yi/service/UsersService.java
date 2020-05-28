@@ -15,4 +15,8 @@ public class UsersService {
 	public UsersVO readUsers(String userid) throws Exception {
 		return dao.readUsers(userid);
 	}
+
+	public UsersVO findUsers(UsersVO vo) throws Exception {
+		return dao.findUsers(vo);
+	}
 }
