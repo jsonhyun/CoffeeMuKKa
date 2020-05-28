@@ -168,10 +168,13 @@
 			$('#loginModal').addClass("fade");
 		})
 		$("#findPass").click(function() {
+			$('#findIdModal').removeClass("fade");
 			$('#findPassModal').removeClass("fade");
 			$('#loginModal').removeClass("fade");
 			$('#loginModal').modal('hide');
+			$('#findIdModal').modal('hide');
 			$('#findPassModal').modal('show');
+			$('#findIdModal').addClass("fade");
 			$('#findPassModal').addClass("fade");
 			$('#loginModal').addClass("fade");
 		})
@@ -225,7 +228,41 @@
 				data:json,
 				dataType:"text",
 				success:function(res){
-					alert("회원님의 아이디는 "+res+"입니다.");
+					 $("input[name='userType']").attr('disabled',true);
+					 $("input[name='name']").val("");
+					 $("input[name='email']").val("");
+					 
+					var con = confirm("회원님의 아이디는 "+res+"입니다. 비밀번호도 찾으시겠어요?");
+					if(con == true){
+						$("#findPass").trigger("click");	
+					}else{
+						$(".login").trigger("click");
+					}
+					
+				}
+			})
+		})
+		
+		/* 비번 찾기 */
+		$("#btnFindPass").click(function() {
+			var userType = $("input[name='userTypePw']").val();
+			var userId = $("input[name='userIdPw']").val();
+			var email = $("input[name='emailPw']").val();
+			
+			if(userType == "" || userId == "" || email == ""){
+				alert("모든 항목을 선택/입력 해주세요.")
+				return false;
+			}
+			var json = JSON.stringify({"userType":{"userType":userType}, "userId":userId, "email":email});
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath }/rest/findPass/",
+				type:"post",
+				headers:{"Content-Type":"application/json"},
+				data:json,
+				dataType:"text",
+				success:function(res){
+					alert("회원님의 임시비밀번호를 발급하였습니다. 이메일을 확인하시고 로그인해주세요.");
 					$(".login").trigger("click");
 				}
 			})
@@ -379,14 +416,14 @@
 					
 					<!-- Modal body -->
 					<div class="modal-body">
-						<form action="#" method="post">
-							<input type="radio" name="usertype" value="2" style="margin-bottom: 25px;"> <label style="margin-right:30px;">개인 회원</label>
-							<input type="radio" name="usertype" value="1"> <label>사업자 회원</label>
-							<input class="inputRegi" type="text" name="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
-							<input class="inputRegi" type="email" name="email" placeholder="이메일" style="margin-bottom: 30px;"><br>
+						<div>
+							<input type="radio" name="userTypePw" value="2" style="margin-bottom: 25px;"> <label style="margin-right:30px;">개인 회원</label>
+							<input type="radio" name="userTypePw" value="1"> <label>사업자 회원</label>
+							<input class="inputRegi" type="text" name="userIdPw" placeholder="아이디" style="margin-bottom: 20px;"><br>
+							<input class="inputRegi" type="email" name="emailPw" placeholder="이메일" style="margin-bottom: 30px;"><br>
 							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;" value="돌아가기">
-							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 167px;" value="비밀번호 찾기">
-						</form>
+							<input type="button" id="btnFindPass"class="btn btn-primary" style="margin-top: 5px;width: 167px;" value="비밀번호 찾기">
+						</div>
 					</div>
 					
 					<!-- Modal footer -->

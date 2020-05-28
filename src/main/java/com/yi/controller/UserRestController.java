@@ -3,10 +3,15 @@ package com.yi.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +44,9 @@ public class UserRestController {
 	
 	@Autowired
 	private UsersService usersService;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	/*-------- cafe ------------------------------------------------------------------*/
 	// 카페 검색
@@ -255,7 +263,7 @@ public class UserRestController {
 	}
 	
 	/*-------- 아이디, 비밀번호 찾기 ------------------------------------------------------------------*/
-	
+	//아이디 찾기
 	@RequestMapping(value = "/findid", method = RequestMethod.POST)
 	public ResponseEntity<String> findUsers(@RequestBody UsersVO vo){
 		ResponseEntity<String> entity = null;
@@ -267,6 +275,57 @@ public class UserRestController {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
+		return entity;
+	}
+	
+	// 비밀번호 찾기(비밀번호 재생성)
+	@RequestMapping(value = "/findPass", method = RequestMethod.POST)
+	public ResponseEntity<String> mailSending(@RequestBody UsersVO vo) throws Exception {
+		ResponseEntity<String> entity = null;
+		
+		UsersVO dbVO = usersService.readUsers(vo.getUserId());
+		//보내는 사람 메일 주소
+		String setfrom = "airplant02342@gmail.com";
+		
+		//메일 받을 주소
+		String tomail = dbVO.getEmail();
+		
+		//비밀번호 생성
+		Random rnd = new Random();
+		StringBuffer buf = new StringBuffer();
+		for(int i=0;i<10;i++) {
+			 if(rnd.nextBoolean()){
+			        buf.append((char)((int)(rnd.nextInt(26))+97));
+			    }else{
+
+			        buf.append((rnd.nextInt(10)));
+			    }
+			}
+		String newPass = String.format("%s", buf);
+		String title = "[Coffee MuKKa] 임시 비밀번호 재발급 메일입니다."; // 제목
+		String content = String.format("임시비밀번호는 %s 입니다. 해당 비밀번호로 로그인 해주세요.", newPass); // 내용
+		
+		//임시비밀번호 DB 업데이트
+		dbVO.setPassword(newPass);
+		usersService.modifyUsers(dbVO);
+
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+					true, "UTF-8");
+
+			messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+			messageHelper.setTo(tomail); // 받는사람 이메일
+			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+			messageHelper.setText(content); // 메일 내용
+
+			mailSender.send(message);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
+		}
+
 		return entity;
 	}
 	

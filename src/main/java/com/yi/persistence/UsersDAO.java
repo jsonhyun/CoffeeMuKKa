@@ -8,4 +8,6 @@ public interface UsersDAO {
 	public UsersVO readUsers(String userid) throws Exception;
 
 	public UsersVO findUsers(UsersVO vo) throws Exception;
+
+	public void modifyUsers(UsersVO vo) throws Exception;
 }
