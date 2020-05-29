@@ -21,8 +21,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/modal.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- 다음 주소검색 -->
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script>
+	/* 주소 검색 */
+	function openDaumZipAddress() {
+		new daum.Postcode({
+			oncomplete:function(data) {
+				jQuery("#address").val(data.address);
+				jQuery("#detailAddress").focus();
+				console.log(data);
+			}
+		}).open();
+	}
+	
 	$(function(){
 		/* main 페이지 searchBox 오픈 */
 		var url = location.href.split("/");
@@ -256,7 +269,7 @@
 			var json = JSON.stringify({"userType":{"userType":userType}, "userId":userId, "email":email});
 			
 			$.ajax({
-				url:"${pageContext.request.contextPath }/rest/findPass/",
+				url:"${pageContext.request.contextPath }/rest/findpass/",
 				type:"post",
 				headers:{"Content-Type":"application/json"},
 				data:json,
@@ -266,6 +279,123 @@
 					$(".login").trigger("click");
 				}
 			})
+		})
+		
+		/* 아이디 중복 체크 */
+		$("#btnDuplCheckId").click(function() {
+			var userId = $("input[name='duplCheckId']").val();
+			
+			if(userId == ""){
+				alert("아이디를 입력해주세요.");
+				return false;
+			}
+			
+			var json = JSON.stringify({"userId":userId});
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath }/rest/duplcheckid/",
+				type:"post",
+				headers:{"Content-Type":"application/json"},
+				data:json,
+				dataType:"text",
+				success:function(res){
+					if(res == "duplicate"){
+						alert("이미 사용중이 아이디입니다.");
+						$("input[name='duplCheckId']").val("");
+					}else{
+						alert("사용 가능한 아이디입니다.");
+						$("#flagId").val("true");
+					}
+				}
+			})
+		})
+		
+		/* 비밀번호 정규표현식 체크 */
+		var passRules = /^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/;
+		
+		$("#pass1").change(function() {
+			var pass1 = $("#pass1").val();
+			if(passRules.test(pass1)){
+				alert("사용가능한 비밀번호입니다.");
+			}else{
+				alert("사용 불가능한 비밀번호입니다.(숫자, 특수문자, 영문 1자리 이상 포함, 8자리 이상)")
+				$("#pass1").val('');
+			}
+		})
+		$("#pass2").change(function() {
+			var pass1 = $("#pass1").val();
+			var pass2 = $("#pass2").val();
+			if(pass1 == pass2){
+				alert("비밀번호가 일치합니다.");
+			}else{
+				alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+				$("#pass2").val('');
+			}
+		})
+		
+		/* 닉네임 중복 체크 */
+		$("#btnDuplCheckNick").click(function() {
+			var nick = $("input[name='duplCheckNick']").val();
+			
+			if(nick == ""){
+				alert("닉네임을 입력해주세요.");
+				return false;
+			}
+			
+			var json = JSON.stringify({"nick":nick});
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath }/rest/duplchecknick/",
+				type:"post",
+				headers:{"Content-Type":"application/json"},
+				data:json,
+				dataType:"text",
+				success:function(res){
+					if(res == "duplicate"){
+						alert("이미 사용중인 닉네임입니다.");
+						$("input[name='duplCheckNick']").val("");
+					}else{
+						alert("사용 가능한 닉네임입니다.");
+						$("#flagNick").val("true");
+					}
+				}
+			})
+		})
+		/* 가입하기 */
+		$("#btnJoin").click(function() {
+			var userId = $("input[name='duplCheckId']").val();
+			var password = $("#pass2").val();
+			var name = $("#joinName").val();
+			var nick = $("input[name='duplCheckNick']").val();
+			var gender = $("select[name='gender']").val();
+			var birthday = $("#joinBirth").val();
+			var tel = $("#joinTel").val();
+			var address = $("input[name='address']").val();
+			var detailAddress = $("input[name='detailAddress']").val();
+			var email = $("#joinEmail").val();
+			var userType = $("input[name='joinUserType']").val();
+			
+			var json = JSON.stringify({"userId":userId, "password":password, "name":name, "nick":nick, 
+									   "gender":{"gender": gender}, "birthday":birthday, "tel":tel, "address":address, 
+									   "detailAddress":detailAddress, "email":email, "userType":{"userType":userType}});
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath }/rest/register/",
+				type:"post",
+				headers:{"Content-Type":"application/json"},
+				data:json,
+				dataType:"text",
+				success:function(res){
+					if(res == "duplicate"){
+						alert("이미 사용중인 닉네임입니다.");
+						$("input[name='duplCheckNick']").val("");
+					}else{
+						alert("사용 가능한 닉네임입니다.");
+						$("#flagNick").val("true");
+					}
+				}
+			})
+			
 		})
 	}) 
 </script>
@@ -450,26 +580,29 @@
 					
 					<!-- Modal body -->
 					<div class="modal-body">
-						<input class="inputRegi1" type="text" id="userId" placeholder="아이디">
-						<button class="btnCheck">중복확인</button><br>
-						<input class="inputRegi" type="password" id="pass" placeholder="비밀번호"><br>
-						<input class="inputRegi" type="password" id="passConfirm" placeholder="비밀번호 확인"><br>
-						<input class="inputRegi" type="text" id="name" placeholder="이름"><br>
-						<input class="inputRegi1" type="text" id="nick" placeholder="닉네임">
-						<button class="btnCheck">중복확인</button><br>
-						<select class="inputRegi" style="height: 42px;width: 337px;color: #949494;">
+						<input class="inputRegi1" type="text" name="duplCheckId" id="duplCheckId" placeholder="아이디">
+						<input type="hidden" id="flagId" value="false">
+						<button class="btnCheck" id="btnDuplCheckId" style="cursor: pointer;">중복확인</button><br>
+						<input class="inputRegi" type="password" id="pass1" placeholder="비밀번호"><br>
+						<input class="inputRegi" type="password" id="pass2" placeholder="비밀번호 확인"><br>
+						<input class="inputRegi" type="text" id="joinName" placeholder="이름"><br>
+						<input class="inputRegi1" type="text" name="duplCheckNick" id="duplCheckNick" placeholder="닉네임">
+						<button class="btnCheck"  id="btnDuplCheckNick" style="cursor: pointer;">중복확인</button><br>
+						<input type="hidden" id="flagNick" value="false">
+						<select class="inputRegi" name="gender"style="height: 42px;width: 337px;color: #949494;">
 							<option selected="selected">성별</option>
-							<option value="남자">남자</option>
-							<option value="여자">여자</option>
+							<option value="MALE">남자</option>
+							<option value="FEMALE">여자</option>
 						</select>
-						<input class="inputRegi" type="date" id="birth" placeholder="생년월일" style="color: #949494;"><br>
-						<input class="inputRegi" type="text" id="tel" placeholder="전화번호"><br>
-						<input class="inputRegi1" type="text" id="address" placeholder="주소">
-						<button class="btnCheck">주소검색</button><br>
-						<input class="inputRegi" type="email" id="email" placeholder="이메일"><br>
-						<input type="radio" name="userType" id="userType" value="2"> <span class="chgColorSpan">개인회원</span>
-						<input type="radio" name="userType" id="userType" value="1" style="margin-left:20px;"> <span class="chgColorSpan">사업자회원</span><br>
-						<button type="button" class="btn btn-primary">가입하기</button>
+						<input class="inputRegi" type="date" id="joinBirth" placeholder="생년월일" style="color: #949494;"><br>
+						<input class="inputRegi" type="text" id="joinTel" placeholder="전화번호"><br>
+						<input class="inputRegi1" type="text" name ="address" id="address" placeholder="주소">
+						<input type="button" value="주소검색" class="btnCheck"  id="btnSearchAddr" onclick="openDaumZipAddress();" style="cursor: pointer;"><br>
+						<input class="inputRegi" type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
+						<input class="inputRegi" type="email" id="joinEmail" placeholder="이메일"><br>
+						<input type="radio" name="joinUserType" id="joinUserType" value="2"> <span class="chgColorSpan">개인회원</span>
+						<input type="radio" name="joinUserType" id="joinUserType" value="1" style="margin-left:20px;"> <span class="chgColorSpan">사업자회원</span><br>
+						<button type="button" class="btn btn-primary" id="btnJoin" style="cursor: pointer;">가입하기</button>
 					</div>
 					
 					<!-- Modal footer -->

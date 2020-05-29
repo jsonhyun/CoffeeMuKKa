@@ -40,4 +40,12 @@
 			set password = #{password}
 			where user_id = #{userId}
 	</update>
+	
+	<select id="duplCheckId" resultType="UsersVO">
+		select * from users where user_id=#{userId}
+	</select>
+	
+	<select id="duplCheckNick" resultType="UsersVO">
+		select * from users where nick=#{nick}
+	</select>
 </mapper>

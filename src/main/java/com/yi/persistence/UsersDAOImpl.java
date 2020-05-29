@@ -40,4 +40,19 @@ public class UsersDAOImpl implements UsersDAO {
 		sqlsession.update(namespace+"modifyUsers", vo);
 	}
 
+	@Override
+	public UsersVO duplCheckId(UsersVO vo) throws Exception {
+		return sqlsession.selectOne(namespace+"duplCheckId", vo);
+	}
+
+	@Override
+	public UsersVO duplCheckNick(UsersVO vo) throws Exception {
+		return sqlsession.selectOne(namespace+"duplCheckNick", vo);
+	}
+
+	@Override
+	public void register(UsersVO vo) throws Exception {
+		sqlsession.insert(namespace+"register", vo);
+	}
+
 }
