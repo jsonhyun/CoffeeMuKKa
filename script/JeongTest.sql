@@ -1176,4 +1176,5 @@ select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_n
 		left join theme t on b.theme_no = t.theme_no
 		left join users u on b.user_no = u.user_no 
 		left join grade g on u.user_grade = g.user_grade
-		where board_no2 = 2 order by vote_number desc limit 10;	
+		where board_no2 = 2 order by vote_number desc limit 10;
+		
