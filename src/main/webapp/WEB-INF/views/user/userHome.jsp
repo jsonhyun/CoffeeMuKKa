@@ -28,9 +28,9 @@
       animation-iteration-count: infinite; 
     } 
     @keyframes cursor{ 
-      0%{border-right: 1px solid #fff} 
-      50%{border-right: 1px solid #000} 
-      100%{border-right: 1px solid #fff} 
+      0%{border-right: 3px solid #fff} 
+      50%{border-right: 3px solid #000} 
+      100%{border-right: 3px solid #fff} 
     }
     .navy{
     	color: navy;
