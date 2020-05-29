@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
@@ -12,12 +13,16 @@ import com.yi.domain.MenuVO;
 import com.yi.domain.SearchCriteria;
 import com.yi.domain.ThemeVO;
 import com.yi.persistence.CafeDAO;
+import com.yi.persistence.PowerLinkDAO;
 
 @Service
 public class CafeService {
 	
 	@Autowired
 	CafeDAO dao;
+	
+	@Autowired
+	private PowerLinkDAO powerDao;
 	
 	public CafeVO readCafe(int cafeNo) throws Exception{
 		return dao.readCafe(cafeNo);
@@ -107,6 +112,20 @@ public class CafeService {
 	}
 	public int cafeCommentCnt(int cafeNo) throws Exception {
 		return dao.cafeCommentCnt(cafeNo);
+	}
+	// 파워링크 (월간카페)
+	public List<CafeVO> monthlyCafeList() throws Exception {
+		return dao.monthlyCafeList();
+	}
+	// 파워링크(월간카페) 월이 바뀌면 자동 변경
+	@Transactional
+	public void monthlyCafeUpdate(String month) throws Exception {
+		// 먼저 게시되었던 컬럼 cdt 2로 변경
+		powerDao.monthlyPreCafeUpdate();
+		// 다음으로 세기될 컬럼 cdt 1로 변경
+		powerDao.monthlyNextCafeUpdate(month);
+		// cafe컬럼에도 정보 변경
+		dao.monthlyCafeUpdate();
 	}
 	
 	/**************** 아름추가  ********************/

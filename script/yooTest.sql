@@ -269,6 +269,7 @@ select count(*) from starpoint where cafe_no = 2;
 -- 월간 카페
 select * from powerlink;
 select powerlink_cdt from cafe;
+truncate powerlink;
 
 -- 카페 파워링크 0으로 초기화
 update cafe 
@@ -277,22 +278,65 @@ update cafe
 update cafe 
 	set powerlink_cdt = 0
 	where cafe_no in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+update cafe 
+	set powerlink_cdt = 0
+	where cafe_no in (11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
 
-select powerlink_cdt , cafe_no from cafe;
+insert into powerlink (cafe_no, pow_cdt ) values(1, 0);
 
 -- 파워링크에 데이터 넣기
 insert into powerlink (cafe_no, pow_cdt) select cafe_no, powerlink_cdt from cafe where powerlink_cdt is not null;
 
 update powerlink 
-	set reg_date = "2020-04-20", pow_cdt = 1, post_date = "2020-05-01"
+	set reg_date = "2020-03-20", pow_cdt = 1, post_date = "2020-04-01"
 	where cafe_no in (1, 2, 3, 4, 5);
+
 update cafe 
 	set powerlink_cdt = 1
 	where cafe_no in (1, 2, 3, 4, 5);
 
-select p.*, c.cafe_no , c.powerlink_cdt from powerlink p left join cafe c on p.cafe_no = c.cafe_no;
-select p.* , c.cafe_no, c.powerlink_cdt from powerlink p left join cafe c on p.cafe_no = c.cafe_no where month(post_date) = month(now());
+update powerlink 
+	set reg_date = "2020-04-10", post_date = "2020-05-01", pow_cdt = 0
+	where cafe_no in (6, 7, 8, 9, 10);
 
+update powerlink 
+	set reg_date = "2020-05-22", post_date = "2020-06-01"
+	where cafe_no in (11, 12, 13, 14, 15);
+
+
+select * from powerlink;
+select * from powerlink where month(post_date) = '5' and pow_cdt = 0;
+select * from powerlink where pow_cdt = 1;
+
+update powerlink 
+	set pow_cdt = 2
+	where pow_cdt = 1;
+
+update powerlink 
+	set pow_cdt = 1
+	where month(post_date) = '5' and pow_cdt = 0;
+
+select powerlink_cdt , cafe_no from cafe;
+
+select c.cafe_no from cafe c left join powerlink p on c.cafe_no = p.cafe_no where p.pow_cdt = 1;
+select c.*, i.image_name from cafe c left join image i on c.cafe_no = i.cafe_no where powerlink_cdt = 1 group by c.cafe_no
+
+
+select p.*, c.cafe_no , c.powerlink_cdt from powerlink p left join cafe c on p.cafe_no = c.cafe_no;
+select year(post_date) as year, month(post_date) as month from powerlink where pow_cdt = 1 group by post_date;
+select year(post_date) as year, month(post_date) as month from powerlink where pow_cdt = 1 group by post_date;
+
+select count(*) from powerlink p left join cafe c on p.cafe_no = c.cafe_no where year(post_date)= year(now()) and  month(post_date) = '5';
+
+select c.*, i.image_name from cafe c left join image i on c.cafe_no = i.cafe_no where powerlink_cdt = 1 group by c.cafe_no;
+
+select * from powerlink where month(post_date) = '06';
+
+select c.cafe_no , p.cafe_no , c.powerlink_cdt , p.pow_cdt from cafe c right join powerlink p on c.cafe_no = p.cafe_no;
+select powerlink_cdt from cafe;
+
+update cafe c right join powerlink p on c.cafe_no = p.cafe_no 
+	set c.powerlink_cdt = p.pow_cdt;
 
 
 
