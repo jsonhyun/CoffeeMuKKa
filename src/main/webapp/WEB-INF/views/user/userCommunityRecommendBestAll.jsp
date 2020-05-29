@@ -51,7 +51,7 @@
 	 ol li.rank_wrap div{
 	 	 float: left;
 	 }
-	 div.rank_num{
+	 div.rank_num1,div.rank_num2,div.rank_num3,div.rank_num4{
 	 	width: 40px;
 	 	height: 155px;
 	 	font-size: 25px;
@@ -144,16 +144,16 @@
 						<li class="tabs-li"><a href="#tabs-1" id="tabName1">MuKKa人의 선택</a></li> <!-- 고민 -->
 						<li class="tabs-li"><a href="#tabs-2" class="tabName2">추천순</a></li> <!-- 추천순 -->
 						<li class="tabs-li"><a href="#tabs-3" class="tabName2">조회순</a></li> <!-- 조회순 -->
-						<li class="tabs-li"><a href="#tabs-3" class="tabName2">댓글순</a></li> <!-- 댓글순 -->
+						<li class="tabs-li"><a href="#tabs-4" class="tabName2">댓글순</a></li> <!-- 댓글순 -->
 					</ul>
 					
-					<!-- 탭1 -->
+					<!-- 탭1 : 전체 추천수 -->
 					<div id="tabs-1">
 							<ol>
 								<c:forEach var="voteAll" items="${voteAll}">
 									<li class="rank_wrap">
 										<a href="${pageContext.request.contextPath }/user/community/cafeRecommend/read?boardNo=${voteAll.boardNo}">
-											<div class="rank_num"></div>
+											<div class="rank_num1"></div>
 											<div class="rank_img">
 					                			<!-- 이미지 이름 꺼내서 삽입하기 -->		
 												<c:forEach var="voteAllImg" items="${voteAllImg}">
@@ -194,7 +194,7 @@
 												</div>
 												<div class="rank_viewAll">
 													<span class="rView">조회 <span class="red">${voteAll.viewNumber}</span></span> <span
-														class="rThumb">추천 <span class="red">${voteAll.voteNumber}</span></span> <span
+														class="rThumb">추천 <span class="red"><b>${voteAll.voteNumber}</b></span></span> <span
 														class="rReply">댓글 <span class="red">${voteAll.replyCnt}</span></span>
 												</div>
 												<div class="rank_text">
@@ -206,19 +206,184 @@
 								</c:forEach>																																
 							</ol>
 						</div>
-					<!-- 탭2 -->
+					<!-- 탭2 : 당월 추천수 -->
 					<div id="tabs-2">
-	
+							<ol>
+								<c:forEach var="voteList" items="${voteList}">
+									<li class="rank_wrap">
+										<a href="${pageContext.request.contextPath }/user/community/cafeRecommend/read?boardNo=${voteList.boardNo}">
+											<div class="rank_num2"></div>
+											<div class="rank_img">
+					                			<!-- 이미지 이름 꺼내서 삽입하기 -->		
+												<c:forEach var="voteListImg" items="${voteListImg}">
+													 <c:if test="${voteListImg.boardNo.boardNo == voteList.boardNo }">
+														<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${voteListImg.imageName}" class="thumbNailImg"  alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+													</c:if>
+												</c:forEach>
+											</div>
+											<div class="rank_info">
+												<div class="rank_keyword">
+													<span class="zoneBtn zoneOrangeIconSmall keyword">${voteList.zoneNo.zoneName}</span> 
+													<c:choose>
+														<c:when test="${voteList.themeNo.themeNo == 1}">
+															<span class="date keyword themeKeySmall">#${voteList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteList.themeNo.themeNo == 2}">
+															<span class="view keyword themeKeySmall">#${voteList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteList.themeNo.themeNo == 3}">
+															<span class="ame keyword themeKeySmall">#${voteList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteList.themeNo.themeNo == 4}">
+															<span class="dessert keyword themeKeySmall">#${voteList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${voteList.themeNo.themeNo == 5}">
+															<span class="dog keyword themeKeySmall">#${voteList.themeNo.themeName}</span> 
+														</c:when>
+														<c:otherwise>
+															<span class="work keyword themeKeySmall">#${voteList.themeNo.themeName}</span> 
+														</c:otherwise>
+													</c:choose>											
+													<span class="rDate"><fmt:formatDate value="${voteList.registrationDate }" pattern="yyyy-MM-dd" /></span>
+												</div>
+												<div class="rank_title">
+													<span class="rTitle">${voteList.writingTitle}</span> 
+													<span class="rNick">${voteList.userNo.nick }(${voteList.userNo.userId })</span>
+													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${voteList.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
+												</div>
+												<div class="rank_viewAll">
+													<span class="rView">조회 <span class="red">${voteList.viewNumber}</span></span> <span
+														class="rThumb">추천 <span class="red"><b>${voteList.voteNumber}</b></span></span> <span
+														class="rReply">댓글 <span class="red">${voteList.replyCnt}</span></span>
+												</div>
+												<div class="rank_text">
+													<p class="classOne">${voteList.writingContent}</p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</c:forEach>																																
+							</ol>	
 					</div>
-					<!-- 탭3 -->
+					<!-- 탭3 : 당월 조회순-->
 					<div id="tabs-3">
-		
+							<ol>
+								<c:forEach var="viewList" items="${viewList}">
+									<li class="rank_wrap">
+										<a href="${pageContext.request.contextPath }/user/community/cafeRecommend/read?boardNo=${viewList.boardNo}">
+											<div class="rank_num3"></div>
+											<div class="rank_img">
+					                			<!-- 이미지 이름 꺼내서 삽입하기 -->		
+												<c:forEach var="viewListImg" items="${viewListImg}">
+													 <c:if test="${viewListImg.boardNo.boardNo == viewList.boardNo }">
+														<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${viewListImg.imageName}" class="thumbNailImg"  alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+													</c:if>
+												</c:forEach>
+											</div>
+											<div class="rank_info">
+												<div class="rank_keyword">
+													<span class="zoneBtn zoneOrangeIconSmall keyword">${viewList.zoneNo.zoneName}</span> 
+													<c:choose>
+														<c:when test="${viewList.themeNo.themeNo == 1}">
+															<span class="date keyword themeKeySmall">#${viewList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${viewList.themeNo.themeNo == 2}">
+															<span class="view keyword themeKeySmall">#${viewList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${viewListl.themeNo.themeNo == 3}">
+															<span class="ame keyword themeKeySmall">#${viewList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${viewList.themeNo.themeNo == 4}">
+															<span class="dessert keyword themeKeySmall">#${viewList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${viewList.themeNo.themeNo == 5}">
+															<span class="dog keyword themeKeySmall">#${viewList.themeNo.themeName}</span> 
+														</c:when>
+														<c:otherwise>
+															<span class="work keyword themeKeySmall">#${viewList.themeNo.themeName}</span> 
+														</c:otherwise>
+													</c:choose>											
+													<span class="rDate"><fmt:formatDate value="${viewList.registrationDate }" pattern="yyyy-MM-dd" /></span>
+												</div>
+												<div class="rank_title">
+													<span class="rTitle">${viewList.writingTitle}</span> 
+													<span class="rNick">${viewList.userNo.nick }(${viewList.userNo.userId })</span>
+													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${viewList.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
+												</div>
+												<div class="rank_viewAll">
+													<span class="rView">조회 <span class="red"><b>${viewList.viewNumber}</b></span></span> <span
+														class="rThumb">추천 <span class="red">${viewList.voteNumber}</span></span> <span
+														class="rReply">댓글 <span class="red">${viewList.replyCnt}</span></span>
+												</div>
+												<div class="rank_text">
+													<p class="classOne">${viewList.writingContent}</p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</c:forEach>																																
+							</ol>		
 					</div>
 					
-					<!-- 탭4 -->
-					<div id="tabs-4">
-
-					</div>
+					<!-- 탭4 : 당월 댓글순-->
+ 					<div id="tabs-4">
+							<ol>
+								<c:forEach var="replyList" items="${replyList}">
+									<li class="rank_wrap">
+										<a href="${pageContext.request.contextPath }/user/community/cafeRecommend/read?boardNo=${replyList.boardNo}">
+											<div class="rank_num4"></div>
+											<div class="rank_img">
+					                			<!-- 이미지 이름 꺼내서 삽입하기 -->		
+												<c:forEach var="replyListImg" items="${replyListImg}">
+													 <c:if test="${replyListImg.boardNo.boardNo == replyList.boardNo }">
+														<img src = "${pageContext.request.contextPath }/user/displayFile?filename=${replyListImg.imageName}" class="thumbNailImg"  alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+													</c:if>
+												</c:forEach>
+											</div>
+											<div class="rank_info">
+												<div class="rank_keyword">
+													<span class="zoneBtn zoneOrangeIconSmall keyword">${replyList.zoneNo.zoneName}</span> 
+													<c:choose>
+														<c:when test="${replyList.themeNo.themeNo == 1}">
+															<span class="date keyword themeKeySmall">#${replyList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${replyList.themeNo.themeNo == 2}">
+															<span class="view keyword themeKeySmall">#${replyList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${replyList.themeNo.themeNo == 3}">
+															<span class="ame keyword themeKeySmall">#${replyList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${replyList.themeNo.themeNo == 4}">
+															<span class="dessert keyword themeKeySmall">#${replyList.themeNo.themeName}</span> 
+														</c:when>
+														<c:when test="${replyList.themeNo.themeNo == 5}">
+															<span class="dog keyword themeKeySmall">#${replyList.themeNo.themeName}</span> 
+														</c:when>
+														<c:otherwise>
+															<span class="work keyword themeKeySmall">#${replyList.themeNo.themeName}</span> 
+														</c:otherwise>
+													</c:choose>											
+													<span class="rDate"><fmt:formatDate value="${replyList.registrationDate }" pattern="yyyy-MM-dd" /></span>
+												</div>
+												<div class="rank_title">
+													<span class="rTitle">${replyList.writingTitle}</span> 
+													<span class="rNick">${replyList.userNo.nick }(${replyList.userNo.userId })</span>
+													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${replyList.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
+												</div>
+												<div class="rank_viewAll">
+													<span class="rView">조회 <span class="red">${replyList.viewNumber}</span></span> <span
+														class="rThumb">추천 <span class="red">${replyList.voteNumber}</span></span> <span
+														class="rReply">댓글 <span class="red"><b>${replyList.replyCnt}</b></span></span>
+												</div>
+												<div class="rank_text">
+													<p class="classOne">${replyList.writingContent}</p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</c:forEach>																																
+							</ol>
+					</div> 
 					
 				</div><!-- div id="tabs" -->
 			</div><!-- div id="tabWrap" -->
@@ -246,7 +411,19 @@ $(".thumbNailImg").each(function(i, obj) {
 
 // 랭킹 숫자
 for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
-	$(".rank_num").eq(i).text(1+i);
+	$(".rank_num1").eq(i).text(1+i);
+} 
+
+for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
+	$(".rank_num2").eq(i).text(1+i);
+} 
+
+for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
+	$(".rank_num3").eq(i).text(1+i);
+} 
+
+for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
+	$(".rank_num4").eq(i).text(1+i);
 } 
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
