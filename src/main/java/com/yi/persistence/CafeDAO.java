@@ -59,6 +59,8 @@ public interface CafeDAO {
 	
 	//파워링크
 	public List<CafeVO> powerLinkCafeList() throws Exception;
+	//당월 신상카페 - 등록일기준
+	public List<CafeVO> newCafeList() throws Exception;
 	
 	
 }

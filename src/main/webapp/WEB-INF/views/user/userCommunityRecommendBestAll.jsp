@@ -431,6 +431,9 @@ for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
 } 
 
 // 탭설명 바뀌기
+$(".tabs-li a").eq(0).click(function(){
+	$("span.tab-info").html("추천카페 <span class='red'><b><u>종합</u> </b></span><b>베스트 10</b> 을 소개해 드립니다.");
+})
 $(".tabs-li a").eq(1).click(function(){
 	$("span.tab-info").html("추천카페 <span class='red'><b>당월 <u>추천수</u> 기준 </b></span><b>베스트 10</b> 을 소개해 드립니다.");
 })

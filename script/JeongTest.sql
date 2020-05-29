@@ -1177,4 +1177,8 @@ select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_n
 		left join users u on b.user_no = u.user_no 
 		left join grade g on u.user_grade = g.user_grade
 		where board_no2 = 2 order by vote_number desc limit 10;
+	
+
+select * from cafe where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by registration_date desc limit 4;
 		
+select left(DATE_SUB(curdate(), INTERVAL 0 month),7);

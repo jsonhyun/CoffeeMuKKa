@@ -117,5 +117,8 @@ public class CafeService {
 	public List<CafeVO> powerLinkCafeList() throws Exception{
 		return dao.powerLinkCafeList();
 	}
-
+	
+	public List<CafeVO> newCafeList() throws Exception {
+		return dao.newCafeList();
+	}
 }

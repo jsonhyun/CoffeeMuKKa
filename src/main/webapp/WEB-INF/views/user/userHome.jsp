@@ -65,17 +65,27 @@
 	
 	.newCafeImgs {
 		/* 임시 설정 */
-		background-color: #ddd;
+		/* background-color: #ddd; */
 		
 		width: 100%;
-		height: 200px;
+		height: 350px;
 	}
+	.newCafeImgs img{
+		width: 100%;
+		height: 350px;
+	}	
 	
 	.newCafeTitleWrap {
 		margin: 10px;
 		overflow: hidden;
 	}
 	
+	.newCafeTitleWrap .zoneIcon{
+		margin-right: 10px;
+	}
+/* 	.newCafeTitleWrap .Icon{
+		margin-right: 10px;
+	} */
 	.newCafeTitleWrap .cafeName {
 		float: left;
 		font-size: 20px;
@@ -94,9 +104,14 @@
 		
 		float: left;
 		width: 31.5%;
-		height: 100px;
+		height: 200px;
 		margin: 5px;
 		margin-top: 0;
+	}
+	
+	.newCafeSmallImgs ul li img{
+		width: 100%;
+		height: 200px;
 	}
 	
 	.likeCafeTitle span {
@@ -297,20 +312,61 @@
 		<div class="cafeListArea">
 			<div class="newCafeList left">
 				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle">N월 반짝반짝 신상카페</a></h2>
-				<div class="newCafeImgs">
-					<!-- 카페 이미지 들어갈 자리 -->
-				</div>
-				<div class="newCafeTitleWrap">
-					<div class="zoneIcon zoneOrangeIcon">지역</div>
-					<p class="cafeName">카페이름</p>
-				</div>
+				
+				<c:forEach var="newCafeList" items="${newCafeList}" begin="0" end="0" varStatus="status">	
+					<div class="newCafeImgs">
+						<c:forEach var="newCafeImg" items="${newCafeImg}" begin="0" end="0" varStatus="status">
+							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
+								<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
+									<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">					
+								</a>
+							</c:if>
+						</c:forEach>
+					</div>
+					<div class="newCafeTitleWrap">
+	                    <!-- 위치 -->				
+						<div class="zoneIcon zoneOrangeIcon">${newCafeList.zoneNo.zoneName}</div>
+						<!-- 키워드 -->
+						<c:choose>
+							<c:when test="${newCafeList.themeNo.themeNo == 1}">
+								<div class="date themeKeySmall keyword">#${board.themeNo.themeName}</div>
+							</c:when>
+							<c:when test="${newCafeList.themeNo.themeNo == 2}">
+								<div class="view themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+							</c:when>
+							<c:when test="${newCafeList.themeNo.themeNo == 3}">
+								<div class="ame themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+							</c:when>
+							<c:when test="${newCafeList.themeNo.themeNo == 4}">
+								<div class="dessert themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+							</c:when>
+							<c:when test="${newCafeList.themeNo.themeNo == 5}">
+								<div class="dog themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+							</c:when>																																								
+							<c:otherwise>
+								<div class="work themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>		
+							</c:otherwise>
+						</c:choose>
+						<%-- <div class="cafeName">${newCafeList.cafeName}</div> --%>
+					</div>
+				</c:forEach>
+				
 				<div class="newCafeSmallImgs">
 					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
+						<c:forEach var="newCafeList" items="${newCafeList}" begin="1" end="3" varStatus="status">
+							<c:forEach var="newCafeImg" items="${newCafeImg}" begin="1" end="3" varStatus="status">
+							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
+								<li>
+									<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
+										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">					
+									</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						</c:forEach>
 					</ul>
 				</div>
+				
 			</div>
 			
 			<div class="mukkaLikeCafeList right">

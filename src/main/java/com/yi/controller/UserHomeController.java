@@ -48,6 +48,17 @@ public class UserHomeController {
 		}
 		model.addAttribute("powerImg", powerImg);
 		
+		//당월 신상카페
+		List<CafeVO> newCafeList = cafeService.newCafeList();
+		model.addAttribute("newCafeList", newCafeList);
+		
+		List<ImageVO> newCafeImg = new ArrayList<ImageVO>();
+		for(int i=0;i<newCafeList.size();i++) {
+			int cafeNo = newCafeList.get(i).getCafeNo();
+			newCafeImg.add(cafeService.imgSelect(cafeNo));
+		}
+		model.addAttribute("newCafeImg", newCafeImg);		
+				
 		//실시간 카페 추천 리스트 & 대표이미지
 		List<BoardVO> rclist = boardService.recommendboardList();
 		model.addAttribute("rclist",rclist);

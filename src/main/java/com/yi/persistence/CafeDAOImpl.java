@@ -205,6 +205,11 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> powerLinkCafeList() throws Exception {
 		return sqlSession.selectList(namespace+"powerLinkCafeList");
 	}
+	//당월 신상카페 - 등록일기준
+	@Override
+	public List<CafeVO> newCafeList() throws Exception {
+		return sqlSession.selectList(namespace+"newCafeList");
+	}
 
 	
 

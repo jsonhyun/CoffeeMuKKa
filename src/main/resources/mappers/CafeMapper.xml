@@ -362,5 +362,13 @@
 	<!-- 아름추가 :  파워링크 -->
 	<select id="powerLinkCafeList" resultMap="CafeListSelectResult">
 		select * from cafe where powerlink_cdt = 0
+	</select>
+	
+	<!-- 아름추가 : 당월 신상카페 리스트 4개  등록일기준 -->
+	<select id="newCafeList" resultMap="CafeListSelectResult">
+		select * from cafe c 
+		left join zone z on c.zone_no = z.zone_no 
+		left join theme t on c.theme_no = t.theme_no
+		where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(c.registration_date,7) order by c.registration_date desc limit 4
 	</select>	
 </mapper>
