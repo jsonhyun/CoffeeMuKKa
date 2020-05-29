@@ -7,6 +7,7 @@
 	.monthCafeLists {
 		position: relative;
 		margin-bottom: 80px;
+		width: 920px;
 	}
 
 	.monthCafeLists img {
@@ -34,11 +35,11 @@
 		font-weight: bold;
 	}
 	
-	.monthCafeLists .orderWrap:nth-last-of-type(5) { top: 5px; right: 240px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(4) { top: 85px; right: 160px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(3) { top: 165px; right: 130px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(2) { top: 245px; right: 140px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(1) { bottom: 15px; right: 220px;}
+	.monthCafeLists .orderWrap:nth-last-of-type(5) { top: 5px; right: 195px;}
+	.monthCafeLists .orderWrap:nth-last-of-type(4) { top: 85px; right: 140px;}
+	.monthCafeLists .orderWrap:nth-last-of-type(3) { top: 165px; right: 85px;}
+	.monthCafeLists .orderWrap:nth-last-of-type(2) { top: 245px; right: 150px;}
+	.monthCafeLists .orderWrap:nth-last-of-type(1) { bottom: 15px; right: 190px;}
 	
 	
 	/* 월간카페 */
@@ -97,7 +98,7 @@
 	}
 	
 </style>
-
+	
 	<div class="content subPageContent">
 		<!-- 서브페이지 콘텐츠 -->
 		<div class="contentArea">
@@ -110,23 +111,25 @@
 			<div class="monthCafeLists">
 				<img src="${pageContext.request.contextPath }/resources/images/monthCafeImg.png" alt="월간카페배너배경이미지" />
 				<p class="toMonth"></p>
-				<c:forEach var="i" begin="0" end="4">				
-					<p class="orderWrap"><a href="#"><span class="orderNum"></span><span class="cafeName orange"></span></a></p>
+				<c:forEach var="item" items="${list }">			
+					<p class="orderWrap"><a href="#"><span class="orderNum"></span><span class="cafeName orange">${item.cafeName}</span></a></p>
 				</c:forEach>
 			</div>
 			
-			<div class="monthCafeWrap">
-				<p class="orderTitie">첫번째, </p>
-				<p class="monthCafeName ornage">카페이름</p>
-				<p class="gray">'<span class="monthCafeContent">한줄내용</span>'</p>
-				<div class="imgBox">
-					<img src="${pageContext.request.contextPath }/resources/images/sumnail/23g-1.jpg" alt="카페이미지" />
+			<c:forEach var="item" items="${list }">
+				<div class="monthCafeWrap ">
+					<p class="orderTitie">첫번째, </p>
+					<p class="monthCafeName ornage">${item.cafeName}</p>
+					<p class="gray">'<span class="monthCafeContent">${item.oneline }</span>'</p>
+					<div class="imgBox">
+						<img src="${pageContext.request.contextPath }/resources/images/sumnail/${item.images[0].imageName}" alt="카페이미지" />
+					</div>
+					<div class="btns">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${item.cafeNo}" class="cafeBtn"><span class="orange">카페정보</span> 더보기 ></a>
+					</div>
+					<div class="lineDummy"></div>
 				</div>
-				<div class="btns">
-					<a href="#" class="cafeBtn"><span class="orange">카페정보</span> 더보기 ></a>
-				</div>
-				<div class="lineDummy"></div>
-			</div>
+			</c:forEach>
 
 		</div>
 	</div>
@@ -134,6 +137,7 @@
 </div>
 <!-- container end -->
 <script>
+
 	//숫자 포멧
 	function pad(n, width) {
 	  n = n + '';
@@ -150,18 +154,22 @@
 		$(obj).text(orderNum[i]);
 	});
 	
-	$(".cafeName").each(function(i, obj) {
-		$(obj).text("카페이름");
-	});
-	
-	/* $(".orderTitie").each(function(i, obj){
+	var cafes = ["cafe1", "cafe2", "cafe3", "cafe4", "cafe5"]; 
+	$(".orderTitie").each(function(i, obj){
 		$(obj).text(orderNum[i]);
-	}) */
+		$(obj).addClass(cafes[i]);
+	})
+	$(".orderWrap a").each(function(i, obj){
+		$(obj).attr("data-top", cafes[i]);
+	})
 	
 	
-	//console.log(orderNum[0]);
 	
-	
+	$(".orderWrap a").click(function(){
+		var top = $(this).attr("data-top");
+		var offset = $("."+top).offset();
+		$('html, body').animate({scrollTop : offset.top}, 300);
+	})
 	
 </script>
 <%@ include file="../userInclude/footer.jsp" %>

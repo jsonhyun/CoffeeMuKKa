@@ -159,6 +159,9 @@ ALTER TABLE CoffeeMuKKa.Users
 			user_no -- 회원번호
 		);
 
+ALTER TABLE CoffeeMuKKa.Users
+	MODIFY COLUMN user_no INT NOT NULL AUTO_INCREMENT COMMENT '회원번호';
+
 -- 관리자현황
 CREATE TABLE CoffeeMuKKa.Admin (
 	ano_no           INT          NOT NULL COMMENT '관리자번호', -- 관리자번호

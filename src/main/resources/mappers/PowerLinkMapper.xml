@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.PowerLink">
+	<!-- 파워링크(월간카페) 게시일자 -->
+	<select id="monthlyCafePostDate" resultType="String">
+		select month(post_date) as month from powerlink where pow_cdt = 1 group by post_date
+	</select>
+	
+	<!-- 파워링크(월간카페) 게시된 게시글 완료로 변경 -->
+	<update id="monthlyPreCafeUpdate">
+		update powerlink set pow_cdt = 2 where pow_cdt = 1
+	</update>
+	
+	<!-- 파워링크(월간카페) 다음에 게시되어야 할 데이터 게시로 변경 -->
+	<update id="monthlyNextCafeUpdate" parameterType="String">
+		update powerlink 
+			set pow_cdt = 1
+			where month(post_date) = #{month} and pow_cdt = 0
+	</update>
+</mapper>

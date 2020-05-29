@@ -279,7 +279,7 @@ public class UserRestController {
 	}
 	
 	// 비밀번호 찾기(비밀번호 재생성)
-	@RequestMapping(value = "/findPass", method = RequestMethod.POST)
+	@RequestMapping(value = "/findpass", method = RequestMethod.POST)
 	public ResponseEntity<String> mailSending(@RequestBody UsersVO vo) throws Exception {
 		ResponseEntity<String> entity = null;
 		
@@ -328,5 +328,53 @@ public class UserRestController {
 
 		return entity;
 	}
+	//아이디 중복 체크
+	@RequestMapping(value = "/duplcheckid", method = RequestMethod.POST)
+	public ResponseEntity<String> duplCheckId(@RequestBody UsersVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			UsersVO dbVO = usersService.duplCheckId(vo);
+			if(dbVO != null) {
+				entity = new ResponseEntity<String>("duplicate", HttpStatus.OK);
+			}else {
+				entity = new ResponseEntity<String>("Ok", HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
+	//닉네임 중복 체크
+	@RequestMapping(value = "/duplchecknick", method = RequestMethod.POST)
+	public ResponseEntity<String> duplCheckNick(@RequestBody UsersVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			UsersVO dbVO = usersService.duplCheckNick(vo);
+			if(dbVO != null) {
+				entity = new ResponseEntity<String>("duplicate", HttpStatus.OK);
+			}else {
+				entity = new ResponseEntity<String>("Ok", HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	//회원 가입
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<String> register(@RequestBody UsersVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			usersService.register(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 }

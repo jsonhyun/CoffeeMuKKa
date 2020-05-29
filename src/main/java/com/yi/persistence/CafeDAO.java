@@ -53,6 +53,11 @@ public interface CafeDAO {
 	public List<CafeVO> monthBestCafe() throws Exception;
 	public int cafeWishCnt(int cafeNo) throws Exception;
 	public int cafeCommentCnt(int cafeNo) throws Exception;
+	//파워링크(월간카페)
+	public List<CafeVO> monthlyCafeList() throws Exception;
+	//파워링크(월간카페) 게시 상태 PowerLink데이터랑 동일하게 유지할 update문
+	public void monthlyCafeUpdate() throws Exception;
+	
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;

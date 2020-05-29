@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mysql.fabric.Server;
 import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
 import com.yi.domain.ImageVO;
@@ -24,6 +26,7 @@ import com.yi.domain.SearchCriteria;
 import com.yi.domain.ThemeVO;
 import com.yi.service.BoardService;
 import com.yi.service.CafeService;
+import com.yi.service.PowerLinkService;
 import com.yi.service.ThemeService;
 
 @Controller
@@ -39,6 +42,9 @@ public class UserCafeController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	PowerLinkService powerLinkService;
 	
 	/** 위치별 카페**/
 	@RequestMapping(value = "/mukkaCafe/zone", method = RequestMethod.GET)
@@ -239,18 +245,23 @@ public class UserCafeController {
 	
 	// 월간 카페
 	@RequestMapping(value = "/mukkaCafe/monthCafe", method = RequestMethod.GET)
-	public String cafeMonthList(Model model) {
+	public String cafeMonthList(Model model) throws Exception {
+		int month = Integer.parseInt(powerLinkService.monthlyCafePostDate());
+		String postDate = String.format("%02d", month);
 		
 		// 달이 바뀌면 자동 업데이트
 		Date from = new Date();
-		SimpleDateFormat fmYear = new SimpleDateFormat("yyyy");
 		SimpleDateFormat fmMonth = new SimpleDateFormat("MM");
-		String toYear = fmYear.format(from);
 		String toMonth = fmMonth.format(from);
-		if(!toYear.equals("2021") || !toMonth.equals("05")) {			
-			System.out.println("toYear-----------"+toYear);
-			System.out.println("toMonth-----------"+toMonth);
+		
+		if(!toMonth.equals(postDate)) {			
+			// 파워링크(월간카페) 정보 업데이트
+			service.monthlyCafeUpdate(toMonth);
 		}
+		
+		List<CafeVO> list = service.monthlyCafeList();
+		
+		model.addAttribute("list", list);
 		
 		return "/user/userMukkaCafeMonth";
 	}
