@@ -1,5 +1,7 @@
 package com.yi.persistence;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class CafeDAOTest {
 	@Autowired
 	private CafeDAO dao;
 	
-	@Test
+	//@Test
 	public void test08ListCriteria() throws Exception {
 		SearchCriteria cri = new SearchCriteria(); //페이지 번호, 페이지당 display 게시글 갯수
 		cri.setPage(1);
@@ -50,6 +52,11 @@ public class CafeDAOTest {
 	//@Test
 	public void testMonthBestCafe() throws Exception {
 		dao.monthBestCafe();
+	}
+	
+	@Test
+	public void testMonthlyCafeUpdate() throws Exception {
+		dao.monthlyCafeUpdate();
 	}
 
 }
