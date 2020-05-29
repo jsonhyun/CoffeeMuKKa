@@ -83,13 +83,17 @@
 	.newCafeTitleWrap .zoneIcon{
 		margin-right: 10px;
 	}
-/* 	.newCafeTitleWrap .Icon{
-		margin-right: 10px;
-	} */
-	.newCafeTitleWrap .cafeName {
-		float: left;
-		font-size: 20px;
+	.newCafeTitleWrap .newCafekeyword{
+		padding: 5px 10px;
+		color: #fff;
 		font-weight: 700;
+		float: left;
+		border-radius: 5px;
+	}
+	.newCafeTitleWrap .cafeName {
+		display: inline;
+		font-size: 23px;
+		font-weight: bold;
 		margin-left: 15px;
 		line-height: 34px;
 	}
@@ -329,25 +333,25 @@
 						<!-- 키워드 -->
 						<c:choose>
 							<c:when test="${newCafeList.themeNo.themeNo == 1}">
-								<div class="date themeKeySmall keyword">#${board.themeNo.themeName}</div>
+								<div class="date themeKeySmall newCafekeyword">#${board.themeNo.themeName}</div>
 							</c:when>
 							<c:when test="${newCafeList.themeNo.themeNo == 2}">
-								<div class="view themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+								<div class="view themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>
 							</c:when>
 							<c:when test="${newCafeList.themeNo.themeNo == 3}">
-								<div class="ame themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+								<div class="ame newCafekeyword">#${newCafeList.themeNo.themeName}</div>
 							</c:when>
 							<c:when test="${newCafeList.themeNo.themeNo == 4}">
-								<div class="dessert themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+								<div class="dessert themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>
 							</c:when>
 							<c:when test="${newCafeList.themeNo.themeNo == 5}">
-								<div class="dog themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>
+								<div class="dog themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>
 							</c:when>																																								
 							<c:otherwise>
-								<div class="work themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>		
+								<div class="work themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>		
 							</c:otherwise>
 						</c:choose>
-						<div class="cafeName">${newCafeList.cafeName}</div>
+						<p class="cafeName">${newCafeList.cafeName}</p>
 					</div>
 				</c:forEach>
 				
