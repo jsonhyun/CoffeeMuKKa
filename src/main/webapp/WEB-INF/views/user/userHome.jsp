@@ -7,10 +7,38 @@
 	h2 a.mainTitle:hover{
 		color: #ED7D31;
 	}
+	/* 광고 */
+	.cafeMuKKaAdd{
+		margin-top: 25px;
+	}
+	.cafeMuKKaAdd .cafeMuKKaAddWrap{
+		background-color: #ddd;
+		width: 100%;
+		height: 450px;
+	}
+	/* 테스트중입니다 */
+	h1.typing-txt{
+		display: none;
+	}
+	h1.typing {  
+	/*       position: absolute;*/ 
+     display: inline-block; 
+      animation-name: cursor; 
+      animation-duration: 0.3s; 
+      animation-iteration-count: infinite; 
+    } 
+    @keyframes cursor{ 
+      0%{border-right: 1px solid #fff} 
+      50%{border-right: 1px solid #000} 
+      100%{border-right: 1px solid #fff} 
+    }
+    .navy{
+    	color: navy;
+    }	
 	/* 파워링크 */
 	.powerLinkArea {
-		margin-top: 30px;
-		margin-bottom: 30px;
+		margin-top: 45px;
+		margin-bottom: 45px;
 	}
 
 	.powerLinkArea h2 {
@@ -289,7 +317,14 @@
 </style>
 
 	<div class="content container">
-		
+		<div class="cafeMuKKaAdd">
+			<div class="cafeMuKKaAddWrap">
+				<h1 class="typing-txt">
+					#키워드 중심의 카페검색 Coffee MuKKa
+				</h1>
+				<h1 class="typing"></h1>
+			</div>
+		</div>
 		<!-- 파워링크 : 해당카페번호꺼내서 해당이미지 1개씩 꺼내기 -->
 		<div class="powerLinkArea">
 			<h2><a href ="${pageContext.request.contextPath}/user/mukkaCafe/monthCafe" class="mainTitle">오늘 여기서 커피한잔 어때?</a></h2>
@@ -524,5 +559,26 @@
 		$(this).attr("src", fileName);
 		console.log(fileName);
 	})
+	
+	//타이핑 테스트
+	var typingBool = false; 
+    var typingIdx=0; 
+    var typingTxt = $(".typing-txt").text(); // 타이핑될 텍스트를 가져온다 
+    typingTxt=typingTxt.split(""); // 한글자씩 자른다. 
+    
+    if(typingBool==false){ // 타이핑이 진행되지 않았다면 
+       typingBool=true;    
+       var tyInt = setInterval(typing,150); // 반복동작 
+     } 
+     
+     function typing(){ 
+       if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복 
+         $(".typing").append(typingTxt[typingIdx]); // 한글자씩 이어준다.
+         typingIdx++; 
+       } else{ 
+          clearInterval(tyInt); //끝나면 반복종료 
+       } 
+     }
+     
 </script>	
 <%@ include file="../userInclude/footer.jsp" %>
