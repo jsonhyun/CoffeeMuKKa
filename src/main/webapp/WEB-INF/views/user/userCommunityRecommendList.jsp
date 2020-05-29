@@ -50,7 +50,12 @@
 	.RC_topBtns #RC_Register:hover{
 		background-color: #F46B45;	
 	}
-	
+	td{
+		border: none;
+	}
+	td.no{
+		width: 62px;
+	}
 	/* 추천카페 : 리스트 */
 	.recommendBest .recomWrap ul{
 		overflow: hidden;
@@ -200,81 +205,38 @@
 		<div class="bestBoardBox">
 			<div class="boardTitle bottomLine2">
 				<p>베스트</p>
-				<p>월간</p>
+				<p><span class="orange preMonth"></span> 월 (월간)</p>
 			</div>
 			<table class="post1-5">
-				<tr>
-					<td class="no"><p class="bgRed">1</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgRed">2</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgRed">3</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">4</p></td>
-					<td>
-						<a href="#" class="title">testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">5</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
+				<c:forEach var="rcBestList" items="${rcBestList}" begin="0" end="2" varStatus="status">
+						<tr>
+							<td class="no"><p class="bgRed"><!-- 랭킹숫자 --></p></td>
+							<td>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">${rcBestList.writingTitle}</a>
+								<span class="review red">(${rcBestList.replyCnt})</span>
+							</td>
+						</tr>
+				</c:forEach>
+				<c:forEach var="rcBestList" items="${rcBestList}" begin="3" end="4" varStatus="status">
+						<tr>
+							<td class="no"><p class="bgPink"><!-- 랭킹숫자 --></p></td>
+							<td>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">${rcBestList.writingTitle}</a>
+								<span class="review red">(${rcBestList.replyCnt})</span>
+							</td>
+						</tr>
+				</c:forEach>				
 			</table>
 			<table class="post6-10">
-				<tr>
-					<td class="no"><p class="bgPink">6</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">7</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">8</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">9</p></td>
-					<td>
-						<a href="#" class="title">testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="no"><p class="bgPink">10</p></td>
-					<td>
-						<a href="#" class="title">test</a>
-						<span class="review red">(20)</span>
-					</td>
-				</tr>
+				<c:forEach var="rcBestList" items="${rcBestList}" begin="5" end="10" varStatus="status">
+						<tr>
+							<td class="no"><p class="bgPink"><!-- 랭킹숫자 --></p></td>
+							<td>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">${rcBestList.writingTitle}</a>
+								<span class="review red">(${rcBestList.replyCnt})</span>
+							</td>
+						</tr>
+				</c:forEach>				
 			</table>
 		</div>
 		<!-- 게시판 베스트 end -->
@@ -441,7 +403,17 @@
 		var searchType = $("#searchType").val();
 		var keyword = $("#keyword").val();
 		location.href = "cafeRecommend?boardType=2&searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
-	})	
+	})
+	
+ 	//랭킹숫자
+	for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
+		$("td.no p").eq(i).text(1+i);	
+	}
+	 
+	// 베스트 월 표시
+	var nowMonth = new Date().getMonth() + 1;
+	var preMonth = nowMonth - 1;
+	$(".preMonth").text(preMonth);	 
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>

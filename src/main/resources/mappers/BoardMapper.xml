@@ -147,28 +147,50 @@
 	
 	<!-- 추천카페[랭킹]:전체(월따지지 않고) 추천순 -->
 	<select id="rcRankVoteAll" resultMap="BoardResult">
-		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
 		left join zone z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no
 		left join users u on b.user_no = u.user_no 
 		left join grade g on u.user_grade = g.user_grade
-		where board_no2 = 2 order by vote_number desc limit 10;
+		where board_no2 = 2 order by vote_number desc limit 10
 	</select>
+	
 	<!-- 추천카페[랭킹]:해당월  추천순 -->
 	<select id="rcRankVoteMonth" resultMap="BoardResult">
-		select * from board where board_no2 = 2 order by vote_number desc limit 10;
+		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 =2 and left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by vote_number desc limit 10
 	</select>	
 	<!-- 추천카페[랭킹]:해당월  조회순 -->
 	<select id="rcRankViewMonth" resultMap="BoardResult">
-		select * from board where board_no2 = 2 order by vote_number desc limit 10;
+		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 =2 and left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by view_number desc limit 10
 	</select>	
 	<!-- 추천카페[랭킹]:해당월  댓글순 -->
 	<select id="rcRankReplyMonth" resultMap="BoardResult">
-		select * from board where board_no2 = 2 order by vote_number desc limit 10;
+		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 =2 and left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by reply_cnt desc limit 10
 	</select>	
+	
 	<!-- 추천카페[랭킹]:전월  추천순 --> 		
 	<select id="rcRankVoteLastMonth" resultMap="BoardResult">
-		select * from board where board_no2 = 2 order by vote_number desc limit 10;
+		select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 =2 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(registration_date,7) order by vote_number desc limit 10
 	</select>	
 <!-- **********************************************************************      공통 RESULTMAP     ***************************************************************************** -->
 	<!-- BoardResultMap JOIN테이블[boardKinds + keySortNo + users + grade + zone + theme + cafe ] -->

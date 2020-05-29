@@ -108,6 +108,23 @@ public class BoardService {
 	public List<BoardVO> rcRankVoteAll() throws Exception{
 		return dao.rcRankVoteAll();
 	}
+	//추천카페-- '당월' 추천순 랭킹
+	public List<BoardVO> rcRankVoteMonth() throws Exception {
+		return dao.rcRankVoteMonth();
+	}
+	//추천카페-- '당월' 조회순 랭킹
+	public List<BoardVO> rcRankViewMonth() throws Exception {
+		return dao.rcRankViewMonth();
+	}
+	//추천카페-- '당월' 댓글순 랭킹
+	public List<BoardVO> rcRankReplyMonth() throws Exception {
+		return dao.rcRankReplyMonth();
+	}
+	//추천카페-- '전월' 추천순 랭킹
+	public List<BoardVO> rcRankVoteLastMonth() throws Exception {
+		return dao.rcRankVoteLastMonth();
+	}	
+		
 
 	/*** 공통 ***/
 	// 오늘 등록된 글 갯수(**커뮤니티 공통**)

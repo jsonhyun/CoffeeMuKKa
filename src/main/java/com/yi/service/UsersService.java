@@ -23,4 +23,16 @@ public class UsersService {
 	public void modifyUsers(UsersVO vo) throws Exception{
 		dao.modifyUsers(vo);
 	}
+
+	public UsersVO duplCheckId(UsersVO vo) throws Exception {
+		return dao.duplCheckId(vo);
+	}
+
+	public UsersVO duplCheckNick(UsersVO vo) throws Exception {
+		return dao.duplCheckNick(vo);
+	}
+
+	public void register(UsersVO vo) throws Exception {
+		dao.register(vo);
+	}
 }
