@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yi.domain.CafeVO;
+import com.yi.domain.Condition;
 import com.yi.domain.Criteria;
+import com.yi.domain.GradeVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.ReplyVO;
 import com.yi.domain.StarpointVO;
@@ -270,7 +272,11 @@ public class UserRestController {
 		try {
 			UsersVO dbVO = usersService.findUsers(vo);
 			
-			entity = new ResponseEntity<String>(dbVO.getUserId(), HttpStatus.OK);
+			if(dbVO == null) {
+				entity = new ResponseEntity<String>("NULL", HttpStatus.OK);
+			}else {
+				entity = new ResponseEntity<String>(dbVO.getUserId(), HttpStatus.OK);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -369,6 +375,10 @@ public class UserRestController {
 	public ResponseEntity<String> register(@RequestBody UsersVO vo){
 		ResponseEntity<String> entity = null;
 		try {
+			vo.setUserLeaveCondition(Condition.NO);
+			GradeVO grade = new GradeVO();
+			grade.setUserGrede(1);
+			vo.setUserGrade(grade);
 			usersService.register(vo);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {

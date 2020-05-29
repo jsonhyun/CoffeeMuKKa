@@ -13,7 +13,7 @@
 		<result property="userLeaveCondition" column="user_leave_condition"/>
 		<result property="point" column="point"/>
 		<result property="tel" column="tel"/>
-		<result property="addredd" column="address"/>
+		<result property="address" column="address"/>
 		<result property="detailAddress" column="detail_address"/>
 		<result property="email" column="email"/>
 		<result property="userType.userType" column="user_type"/>
@@ -48,4 +48,9 @@
 	<select id="duplCheckNick" resultType="UsersVO">
 		select * from users where nick=#{nick}
 	</select>
+	
+	<insert id="register" parameterType="UsersVO">
+		insert into users(user_id, password, name, nick, gender, birthday, user_leave_condition, tel, address, detail_address, email, user_type, user_grade)
+		values(#{userId}, #{password}, #{name}, #{nick}, #{gender}, #{birthday}, #{userLeaveCondition}, #{tel}, #{address}, #{detailAddress}, #{email}, #{userType.userType}, #{userGrade.userGrade})
+	</insert>
 </mapper>

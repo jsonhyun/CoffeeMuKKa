@@ -1,15 +1,15 @@
 package com.yi.domain;
 
 public class GradeVO {
-	private int userGrede;//회원등급
+	private int userGrade;//회원등급
 	private String userGradeName;//회원등급이름
 	private String userGradeImage;//회원등급이미지
 	
 	public int getUserGrede() {
-		return userGrede;
+		return userGrade;
 	}
 	public void setUserGrede(int userGrede) {
-		this.userGrede = userGrede;
+		this.userGrade = userGrede;
 	}
 	public String getUserGradeName() {
 		return userGradeName;
@@ -26,7 +26,7 @@ public class GradeVO {
 	
 	@Override
 	public String toString() {
-		return "GradeVO [userGrede=" + userGrede + ", userGradeName=" + userGradeName + ", userGradeImage="
+		return "GradeVO [userGrade=" + userGrade + ", userGradeName=" + userGradeName + ", userGradeImage="
 				+ userGradeImage + "]";
 	}
 	

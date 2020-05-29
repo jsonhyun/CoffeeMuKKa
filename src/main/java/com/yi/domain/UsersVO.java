@@ -14,7 +14,7 @@ public class UsersVO {
 	private Condition userLeaveCondition; // 회원탈퇴유무
 	private int point; // 포인트
 	private String tel; // 전화번호
-	private String addredd; // 주소
+	private String address; // 주소
 	private String detailAddress; // 상세주소
 	private String email; // 이메일
 	private TypeVO userType; // 회원타입
@@ -115,20 +115,20 @@ public class UsersVO {
 		this.tel = tel;
 	}
 
-	public String getAddredd() {
-		return addredd;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddredd(String addredd) {
-		this.addredd = addredd;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getDetail_address() {
+	public String getDetailAddress() {
 		return detailAddress;
 	}
 
-	public void setDetail_address(String detail_address) {
-		this.detailAddress = detail_address;
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 
 	public String getEmail() {
@@ -157,10 +157,11 @@ public class UsersVO {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"UsersVO [userNo=%s, userId=%s, password=%s, name=%s, nick=%s, gender=%s, birthday=%s, userJoinDate=%s, userLeaveCondition=%s, point=%s, tel=%s, addredd=%s, detail_address=%s, email=%s, userType=%s, userGrade=%s]",
-				userNo, userId, password, name, nick, gender, birthday, userJoinDate, userLeaveCondition, point, tel,
-				addredd, detailAddress, email, userType, userGrade);
+		return "UsersVO [userNo=" + userNo + ", userId=" + userId + ", password=" + password + ", name=" + name
+				+ ", nick=" + nick + ", gender=" + gender + ", birthday=" + birthday + ", userJoinDate=" + userJoinDate
+				+ ", userLeaveCondition=" + userLeaveCondition + ", point=" + point + ", tel=" + tel + ", address="
+				+ address + ", detailAddress=" + detailAddress + ", email=" + email + ", userType=" + userType
+				+ ", userGrade=" + userGrade + "]";
 	}
 
 }

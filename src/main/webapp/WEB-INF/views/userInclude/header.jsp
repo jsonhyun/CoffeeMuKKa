@@ -241,10 +241,15 @@
 				data:json,
 				dataType:"text",
 				success:function(res){
-					 $("input[name='userType']").attr('disabled',true);
-					 $("input[name='name']").val("");
-					 $("input[name='email']").val("");
+					$("input[name='userType']").removeAttr("checked");
+					$("input[name='name']").val("");
+					$("input[name='email']").val("");
 					 
+					if(res == "NULL"){
+						alert("찾고 있는 아이디가 없습니다. 회원가입을 해주세요.");
+						return false;
+					}
+					
 					var con = confirm("회원님의 아이디는 "+res+"입니다. 비밀번호도 찾으시겠어요?");
 					if(con == true){
 						$("#findPass").trigger("click");	
@@ -276,6 +281,9 @@
 				dataType:"text",
 				success:function(res){
 					alert("회원님의 임시비밀번호를 발급하였습니다. 이메일을 확인하시고 로그인해주세요.");
+					$("input[name='userTypePw']").removeAttr("checked");
+					$("input[name='userIdPw']").val("");
+					$("input[name='emailPw']").val("");
 					$(".login").trigger("click");
 				}
 			})
@@ -375,8 +383,21 @@
 			var email = $("#joinEmail").val();
 			var userType = $("input[name='joinUserType']").val();
 			
+			if(userId=="" || password=="" || name=="" || nick=="" || gender=="" || birthday=="" || tel=="" || address=="" || email=="" || userType==""){
+				alert("모든 항목을 작성해주세요.");
+				return false;
+			}
+			var flagId = $("#flagId").val();
+			var flagNick = $("#flagNick").val();
+			alert(flagId);
+			alert(flagNick);
+			if(flagId == "false" || flagNick == "false"){
+				alert("아이디 또는 닉네임 중복확인을 해주세요.");
+				return false;
+			}
+			
 			var json = JSON.stringify({"userId":userId, "password":password, "name":name, "nick":nick, 
-									   "gender":{"gender": gender}, "birthday":birthday, "tel":tel, "address":address, 
+									   "gender": gender, "birthday":birthday, "tel":tel, "address":address, 
 									   "detailAddress":detailAddress, "email":email, "userType":{"userType":userType}});
 			
 			$.ajax({
@@ -386,12 +407,21 @@
 				data:json,
 				dataType:"text",
 				success:function(res){
-					if(res == "duplicate"){
-						alert("이미 사용중인 닉네임입니다.");
+					if(res == "SUCCESS"){
+						alert("회원 가입이 되었습니다. 로그인하여 커피무까를 즐겨주세요.");
+						$("input[name='duplCheckId']").val("");
+						$("#pass1").val("");
+						$("#pass2").val("");
+						$("#joinName").val("");
 						$("input[name='duplCheckNick']").val("");
-					}else{
-						alert("사용 가능한 닉네임입니다.");
-						$("#flagNick").val("true");
+						$("select[name='gender']").val("성별");
+						$("#joinBirth").val("");
+						$("#joinTel").val("");
+						$("input[name='address']").val("");
+						$("input[name='detailAddress']").val("");
+						$("#joinEmail").val("");
+						$("input[name='joinUserType']").removeAttr("checked");
+						$(".login").trigger("click");
 					}
 				}
 			})
@@ -513,8 +543,8 @@
 					<!-- Modal body -->
 					<div class="modal-body">
 						<div>
-							<input type="radio" name="usertype" value="2" style="margin-bottom: 25px;"> <label style="margin-right:30px;">개인 회원</label>
-							<input type="radio" name="usertype" value="1"> <label>사업자 회원</label>
+							<input type="radio" name="userType" value="2" style="margin-bottom: 25px;"> <label style="margin-right:30px;">개인 회원</label>
+							<input type="radio" name="userType" value="1"> <label>사업자 회원</label>
 							<input class="inputRegi" type="text" name="name" placeholder="이름" style="margin-bottom: 20px;"><br>
 							<input class="inputRegi" type="email" name="email" placeholder="이메일" style="margin-bottom: 30px;"><br>
 							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;" value="돌아가기">
