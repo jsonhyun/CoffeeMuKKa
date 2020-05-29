@@ -296,7 +296,7 @@ update cafe
 	where cafe_no in (1, 2, 3, 4, 5);
 
 update powerlink 
-	set reg_date = "2020-04-10", post_date = "2020-05-01", pow_cdt = 0
+	set reg_date = "2020-04-10", post_date = "2020-05-01"
 	where cafe_no in (6, 7, 8, 9, 10);
 
 update powerlink 
