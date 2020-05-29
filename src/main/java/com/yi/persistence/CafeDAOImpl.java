@@ -192,6 +192,19 @@ public class CafeDAOImpl implements CafeDAO {
 	public int cafeCommentCnt(int cafeNo) throws Exception {
 		return sqlSession.selectOne(namespace + "cafeCommentCnt", cafeNo);
 	}
+	
+	// 파워링크 (월간카페)
+	@Override
+	public List<CafeVO> monthlyCafeList() throws Exception {
+		return sqlSession.selectList(namespace + "monthlyCafeList");
+	}
+	// 파워링크(월간카페) 게시 상태 PowerLink데이터랑 동일하게 유지할 update문
+	@Override
+	public void monthlyCafeUpdate() throws Exception {
+		sqlSession.update(namespace + "monthlyCafeUpdate");
+	}
+
+
 
 
 	/**************** 아름추가  ********************/
@@ -205,6 +218,10 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> powerLinkCafeList() throws Exception {
 		return sqlSession.selectList(namespace+"powerLinkCafeList");
 	}
+
+	
+
+	
 
 	
 

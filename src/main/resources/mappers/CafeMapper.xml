@@ -352,6 +352,15 @@
 	<select id="cafeCommentCnt" resultType="int">
 		select count(*) from starpoint where cafe_no = #{cafeNo}
 	</select>
+	<!-- 파워링크(월간카페) -->
+	<select id="monthlyCafeList" resultMap="CafeListSelectResult">
+		select c.*, i.image_name from cafe c left join image i on c.cafe_no = i.cafe_no where powerlink_cdt = 1 group by c.cafe_no
+	</select>
+	<!-- 파워링크(월간카페) 게시 상태 PowerLink데이터랑 동일하게 유지할 update문 -->
+	<update id="monthlyCafeUpdate">
+		update cafe c right join powerlink p on c.cafe_no = p.cafe_no 
+			set c.powerlink_cdt = p.pow_cdt
+	</update>
 	
 	
 	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->
