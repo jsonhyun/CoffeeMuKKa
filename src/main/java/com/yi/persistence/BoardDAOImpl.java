@@ -95,7 +95,28 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardVO> rcRankVoteAll() throws Exception {
 		return sqlSession.selectList(namespace+"rcRankVoteAll");
+	}
+	//추천카페-- '당월' 추천순 랭킹
+	@Override
+	public List<BoardVO> rcRankVoteMonth() throws Exception {
+		return sqlSession.selectList(namespace+"rcRankVoteMonth");
+	}
+	//추천카페-- '당월' 조회순 랭킹
+	@Override
+	public List<BoardVO> rcRankViewMonth() throws Exception {
+		return sqlSession.selectList(namespace+"rcRankViewMonth");
+	}
+	//추천카페-- '당월' 댓글순 랭킹
+	@Override
+	public List<BoardVO> rcRankReplyMonth() throws Exception {
+		return sqlSession.selectList(namespace+"rcRankReplyMonth");
+	}
+	//추천카페-- '전월' 추천순 랭킹
+	@Override
+	public List<BoardVO> rcRankVoteLastMonth() throws Exception {
+		return sqlSession.selectList(namespace+"rcRankVoteLastMonth");
 	}	
+	
 	
 	/*** 공통 ***/
 	//오늘 등록된 글 갯수(**커뮤니티 공통**)
@@ -238,6 +259,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception {
 		return sqlSession.selectOne(namespace+"recommendSameKeywordCntByZoneAndTheme", boardVO);
 	}
+
 
 	
 	

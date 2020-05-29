@@ -1120,3 +1120,60 @@ select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_n
 		left join users u on b.user_no = u.user_no 
 		left join grade g on u.user_grade = g.user_grade
 		where board_no2 = 2 order by vote_number desc limit 10;
+		
+	
+select v.board_no , b.writing_title , b.reply_cnt 
+			from vote v left join board b on v.board_no = b.board_no, 
+				(select board_no, count(board_no) as cnt  from vote where month(vote_date) = month(now())-1 group by board_no) num
+			where v.board_no = num.board_no and b.board_no2 = 1
+			group by board_no
+			order by num.cnt desc, v.board_no limit 10;	
+		
+select * from board; where board_no2=2 and adddate(curdate(),1);
+-- 전체 추천수
+select * from board where board_no2=2 order by vote_number desc limit 10;
+-- 전월 추천수
+select * from board where board_no2=2 order by vote_number desc limit 10;
+-- 당월 조회순
+select * from board where board_no2=2 order by view_number desc limit 10;
+-- 당월 댓글순
+select * from board where board_no2=2 order by reply_cnt desc limit 10;
+-- 당월 추천순
+select * from board where board_no2=2 order by vote_number desc limit 10;
+
+select DATE_SUB(crudate(), interval 1 month);
+
+SELECT left(DATE_SUB(curdate(), INTERVAL ),7);
+
+-- 4월달 정보
+select * from board where board_no2 =2 and left(DATE_SUB(curdate(), INTERVAL ),7) = left(registration_date,7) order by vote_number desc limit 10;
+
+
+select substring(curdate(),7,1)-1;
+
+select * from board;
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 =2 and left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by vote_number desc limit 10;
+select * from board where board_no2 = 2;
+select * from board where substring(curdate(),6,2) ;
+
+
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 =2 and left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by reply_cnt desc limit 10;
+		
+	
+	
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 = 2 order by vote_number desc limit 10;	

@@ -354,6 +354,10 @@ public class UserBoardController {
 		List<ThemeVO> themeList = service.themeList();
 		model.addAttribute("themeList", themeList);
 		
+		//전월 베스트글 리스트
+		List<BoardVO> rcBestList = service.rcRankVoteLastMonth();
+		model.addAttribute("rcBestList",rcBestList);
+		
 		return "/user/userCommunityRecommendList";
 	}
 	
@@ -501,6 +505,7 @@ public class UserBoardController {
 	//추천카페 베스트 리스트
 	@RequestMapping(value = "/community/cafeRecommend/bestAll", method = RequestMethod.GET)
 	public String communityRecommendBestList(Model model) throws Exception {
+		//전체 조회순 랭킹
 		List<BoardVO> voteAll = service.rcRankVoteAll();
 		model.addAttribute("voteAll", voteAll);
 		
@@ -510,6 +515,39 @@ public class UserBoardController {
 			voteAllImg.addAll(service.recommendboardImgList(sboardNo));
 		}
 		model.addAttribute("voteAllImg", voteAllImg);
+		
+		//당월 추천순 랭킹
+		List<BoardVO> voteList = service.rcRankVoteMonth();
+		model.addAttribute("voteList",voteList);
+		
+		List<ImageVO> voteListImg = new  ArrayList<ImageVO>();
+		for(int i=0;i<voteList.size();i++) {
+			int sboardNo = voteList.get(i).getBoardNo();
+			voteListImg.addAll(service.recommendboardImgList(sboardNo));
+		}
+		model.addAttribute("voteListImg", voteListImg);
+		
+		//당월 조회순 랭킹
+		List<BoardVO> viewList = service.rcRankViewMonth();
+		model.addAttribute("viewList",viewList);
+		
+		List<ImageVO> viewListImg = new  ArrayList<ImageVO>();
+		for(int i=0;i<viewList.size();i++) {
+			int sboardNo = viewList.get(i).getBoardNo();
+			viewListImg.addAll(service.recommendboardImgList(sboardNo));
+		}
+		model.addAttribute("viewListImg", viewListImg);
+		
+		//당월 댓글순 랭킹
+		List<BoardVO> replyList = service.rcRankReplyMonth();
+		model.addAttribute("replyList",replyList);
+		
+		List<ImageVO> replyListImg = new  ArrayList<ImageVO>();
+		for(int i=0;i<replyList.size();i++) {
+			int sboardNo = replyList.get(i).getBoardNo();
+			replyListImg.addAll(service.recommendboardImgList(sboardNo));
+		}
+		model.addAttribute("replyListImg", replyListImg);
 		
 		return "/user/userCommunityRecommendBestAll";
 	}
