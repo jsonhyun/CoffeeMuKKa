@@ -1,6 +1,8 @@
 package com.yi.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import com.yi.domain.ImageVO;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
 import com.yi.service.CafeService;
+import com.yi.service.PowerLinkService;
 
 @Controller
 @RequestMapping("/user/*")
@@ -27,7 +30,8 @@ public class UserHomeController {
 	@Autowired
 	private BoardService boardService;
 	
-	
+	@Autowired
+	PowerLinkService powerLinkService;
 	
 	// 유저 메인 홈
 	@RequestMapping(value = "", method = RequestMethod.GET)
@@ -38,6 +42,19 @@ public class UserHomeController {
 		model.addAttribute("zoneList", zoneList);
 		
 		//파워링크 & 대표이미지
+		int month = Integer.parseInt(powerLinkService.monthlyCafePostDate());
+		String postDate = String.format("%02d", month);
+		
+		// 달이 바뀌면 자동 업데이트
+		Date from = new Date();
+		SimpleDateFormat fmMonth = new SimpleDateFormat("MM");
+		String toMonth = fmMonth.format(from);
+		
+		if(!toMonth.equals(postDate)) {			
+			// 파워링크(월간카페) 정보 업데이트
+			cafeService.monthlyCafeUpdate(toMonth);
+		}
+		
 		List<CafeVO> powerList = cafeService.powerLinkCafeList();
 		model.addAttribute("powerList",powerList);
 		

@@ -370,7 +370,7 @@
 	
 	<!-- 아름추가 :  파워링크 -->
 	<select id="powerLinkCafeList" resultMap="CafeListSelectResult">
-		select * from cafe where powerlink_cdt = 0
+		select * from cafe where powerlink_cdt = 1
 	</select>
 	
 	<!-- 아름추가 : 당월 신상카페 리스트 4개  등록일기준 -->

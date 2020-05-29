@@ -68,11 +68,11 @@
 		/* background-color: #ddd; */
 		
 		width: 100%;
-		height: 350px;
+		height: 485px;
 	}
 	.newCafeImgs img{
 		width: 100%;
-		height: 350px;
+		height: 485px;
 	}	
 	
 	.newCafeTitleWrap {
@@ -104,14 +104,14 @@
 		
 		float: left;
 		width: 31.5%;
-		height: 200px;
+		height: 190px;
 		margin: 5px;
 		margin-top: 0;
 	}
 	
 	.newCafeSmallImgs ul li img{
 		width: 100%;
-		height: 200px;
+		height: 190px;
 	}
 	
 	.likeCafeTitle span {
@@ -347,7 +347,7 @@
 								<div class="work themeKeySmall keyword">#${newCafeList.themeNo.themeName}</div>		
 							</c:otherwise>
 						</c:choose>
-						<%-- <div class="cafeName">${newCafeList.cafeName}</div> --%>
+						<div class="cafeName">${newCafeList.cafeName}</div>
 					</div>
 				</c:forEach>
 				
