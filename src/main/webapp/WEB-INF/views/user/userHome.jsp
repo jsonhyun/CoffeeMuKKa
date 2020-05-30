@@ -241,28 +241,78 @@
 	
 	.baseCafeReview .baseList1-3 ul li {
 		/* 임시설정 */
-		background-color: #ddd;
+		/* background-color: #ddd; */
 		
 		float: left;
 		width: 31%;
-		height: 170px;
-		margin: 10px;
+		height: 290px;
+		margin: 9px;
 		margin-top: 30px;
+		border: 1px solid #A6A6A6;
 	}
-	.baseCafeReview .baseList1-3 ul li img:nth-child(2n-1){
+	.bestImgWrap{
+		overflow: hidden;
+		position: relative;
+	}
+	.baseCafeReview .baseList1-3 ul li img.thumbNailImg:nth-child(2n-1){
 		width: 100%;
-		height: 170px;
+		height: 200px;
+		transition: all 1s;
+		transform-origin:left-top;
+	}
+	.baseCafeReview .baseList1-3 ul li img.thumbNailImg:nth-child(2n-1):hover{
+		transform:scale(1.2);
 	} 
 	
 	.baseCafeReview .baseList1-3 ul li.best1 {
-		height: 200px;
+		height: 320px;
 		margin-top: 0;
 	}
-	.baseCafeReview .baseList1-3 ul li.best1 img{
+	.baseCafeReview .baseList1-3 ul li.best1 img.thumbNailImg{
 		width: 100%;
-		height: 200px;
+		height: 230px;
+		transition: all 1s;
+		transform-origin:left-top;
+		
 	}
-	
+	.baseCafeReview .baseList1-3 ul li.best1 img.thumbNailImg:hover{
+		transform:scale(1.2);
+	}
+	.rvRank_no{
+		position: absolute;
+		left: 0;
+		top:0;
+		width: 35px;
+		height: 32px;
+		background-color: #FF2424;
+		color: white;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	.bestTitleInfo{
+		border-bottom: 1px solid #A6A6A6;
+		padding-bottom: 8px; 
+	}
+	.bestTitleInfo p{
+		font-size: 13px;
+		letter-spacing: 1px;
+	}
+	.bestUser{
+		width: 100%;
+		font-weight: bold;
+		font-size: 13px;
+		padding: 2px;
+	}
+	.bestUser img{
+		width: 20px;
+		height: 20px;
+	}
+	p.rvBestTitleAll{
+		font-weight: bold;
+		letter-spacing: 2px;
+		color: black;
+		font-size: 18px;
+	}
 	.baseCafeReview .bestLists ul{
 		overflow: hidden;
 	}
@@ -281,7 +331,7 @@
 		width: 100%;
 		height: 180px;
 	}
-	.baseCafeReview .bestLists ul li .bestDummy{
+	.bestDummy{
 		width: 100%;
 		height: 180px;
 		position: absolute;
@@ -289,13 +339,29 @@
 		top: 0;
 		background-color: rgba(0,0,0,.3);
 		text-align: center;
-		line-height: 180px;
-	}
-	.bestDummy h3{
 		color: white;
+	}
+	.bestDummy .reviewInfoWrap{
+		width: 100%;
+		margin-top: 65px;
 	}
 	.bestDummy h3:hover{
 		text-decoration: underline;
+	}
+	.bestDummy p.reviewInfo{
+		font-size: 13px;
+		letter-spacing: 1px;
+	}
+	.rvRank{
+		width: 35px;
+		height: 28px;
+		background-color: #ED7D31;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		position: absolute;
+		left: 0;
+		top: 0;
 	}
 	
 	/* 카페추천 / 추천 랭킹 */
@@ -497,54 +563,92 @@
 			<h2 class="Title bottomLine"><a href="#" class="mainTitle">MuKKa人이 전하는 생생 카페탐방기(BEST)</a></h2>
 			<div class="baseList1-3 bottomLine">
 				<ul>
+					<!-- 2위 -->
 					<c:forEach var="rvlist" items="${rvlist}" begin="1" end="1" varStatus="status">
 						<c:forEach var="rvlistImg" items="${rvlistImg}" begin="1" end="1"
 							varStatus="status">
 							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
-								<li><a
-									href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
-										<img
-										src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}"
-										class="thumbNailImg" alt="탐방기대표이미지"
-										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
-								</a></li>
+								<li>
+								<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+								<div class="bestImgWrap">
+										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}" class="thumbNailImg" alt="탐방기대표이미지" class="reviewBestImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+										<div class="rvRank_no">2</div>
+								</div>
+								<div class="bestTitleInfo">
+									<h3>${rvlist.writingTitle}</h3>
+									<p><b><span class="orange">${rvlist.zoneNo.zoneName}</span> · <span style="color:navy">#${rvlist.themeNo.themeName}</span> · 추천수 <span class="red">${rvlist.voteNumber}</span></b></p>
+								</div>
+								<div class="bestUser">
+									<p>
+										<img src="${pageContext.request.contextPath }/resources/images/${rvlist.userNo.userGrade.userGradeImage}" alt="등급아이콘">
+										${rvlist.userNo.nick}(${rvlist.userNo.userId})
+									</p>
+								</div>								
+								</a>
+								</li>
 							</c:if>
 						</c:forEach>
 					</c:forEach>
-					<c:forEach var="rvlist" items="${rvlist}" begin="0" end="0"
-						varStatus="status">
+					<!-- 1위 -->
+					<c:forEach var="rvlist" items="${rvlist}" begin="0" end="0" varStatus="status">
 						<c:forEach var="rvlistImg" items="${rvlistImg}" begin="0" end="0"
 							varStatus="status">
 							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
-								<li class="best1"><a
-									href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
-										<img
-										src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}"
-										class="thumbNailImg" alt="탐방기대표이미지"
-										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
-								</a></li>
+								<li class="best1">
+									<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+									<div class="bestImgWrap">
+										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}" class="thumbNailImg" alt="탐방기대표이미지" class="reviewBestImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">										
+										<div class="rvRank_no">1</div>														
+									</div>
+									<%-- <img src="${pageContext.request.contextPath }/resources/images/review_best_icon.png" class="bestIcon"> --%>
+									<div class="bestTitleInfo">
+										<h3>${rvlist.writingTitle}</h3>
+										<p><b><span class="orange">${rvlist.zoneNo.zoneName}</span> · <span style="color:navy">#${rvlist.themeNo.themeName}</span> · 추천수 <span class="red">${rvlist.voteNumber}</span></b></p>
+									</div>
+									<div class="bestUser">
+										<p>
+											<img src="${pageContext.request.contextPath }/resources/images/${rvlist.userNo.userGrade.userGradeImage}" alt="등급아이콘">
+											${rvlist.userNo.nick}(${rvlist.userNo.userId})
+										</p>
+									</div>
+									</a>
+								</li>
+									
 							</c:if>
 						</c:forEach>
 					</c:forEach>
+					<!-- 3위 -->
 					<c:forEach var="rvlist" items="${rvlist}" begin="2" end="2"
 						varStatus="status">
 						<c:forEach var="rvlistImg" items="${rvlistImg}" begin="2" end="2"
 							varStatus="status">
 							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
-								<li><a
-									href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
-										<img
-										src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}"
-										class="thumbNailImg" alt="탐방기대표이미지"
-										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
-								</a></li>
+								<li>
+								<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+								<div class="bestImgWrap">
+									<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}" class="thumbNailImg" alt="탐방기대표이미지"  class="reviewBestImg" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+									<div class="rvRank_no">3</div>								
+								</div>
+								<div class="bestTitleInfo">
+									<h3>${rvlist.writingTitle}</h3>
+									<p><b><span class="orange">${rvlist.zoneNo.zoneName}</span> · <span style="color:navy">#${rvlist.themeNo.themeName}</span> · 추천수 <span class="red">${rvlist.voteNumber}</span></b></p>
+								</div>
+								<div class="bestUser">
+									<p>
+										<img src="${pageContext.request.contextPath }/resources/images/${rvlist.userNo.userGrade.userGradeImage}" alt="등급아이콘">
+										${rvlist.userNo.nick}(${rvlist.userNo.userId})
+									</p>
+								</div>								
+								</a>								
+								</li>
 							</c:if>
 						</c:forEach>
 					</c:forEach>
 				</ul>
-				<p>월간 BEST TOP3</p>
+				<p class="rvBestTitleAll"><i class="fas fa-crown"></i><em> 월간 BEST TOP3</em></p>
 			</div>
 			<div class="bestLists">
+				<!-- 4위~15위 -->
 				<ul>
 						<c:forEach var="rvlist" items="${rvlist}" begin="3" end="14" varStatus="status">
 							<c:forEach var="rvlistImg" items="${rvlistImg}" begin="3" end="14" varStatus="status">
@@ -553,8 +657,12 @@
 									<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
 										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}" class="thumbNailImg" alt="탐방기대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
 										<div class="bestDummy">
-											<h3>${rvlist.writingTitle}</h3>
-										</div>					
+											<div class ="reviewInfoWrap">
+												<h3>${rvlist.writingTitle}</h3>
+												<p class="reviewInfo">${rvlist.zoneNo.zoneName} · #${rvlist.themeNo.themeName} · 추천수 <b>${rvlist.voteNumber}</b></p>
+											</div>
+										</div>
+										<div class="rvRank"></div>					
 									</a>
 								</li>
 							</c:if>
@@ -682,6 +790,11 @@
           clearInterval(tyInt); //끝나면 반복종료 
        } 
      }
+     
+     //4위~15위
+     for(var i=0;i<12;i++){ // 0,1,2,3,4,5,6,7,8,9
+	$(".rvRank").eq(i).text(4+i);
+	} 
      
 </script>	
 <%@ include file="../userInclude/footer.jsp" %>
