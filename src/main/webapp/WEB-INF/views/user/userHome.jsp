@@ -97,13 +97,47 @@
 		padding-left: 15px;
 	}
 	.noticeAndevent .neWrap ul li{
-		/* 임시 설정 */
-		background-color: #ddd;
 		width: 47%;
 		height: 155px;
 		float: left;
 		margin: 10px;
+		position: relative;
 	}
+	.noticeTitleWrap{
+		width: 89%;
+		height: 90px;
+		float: left;
+		margin: 33px;
+	}
+	.neWrap li img.noticeIcon{
+		width: 90px;
+		height: 90px;
+		opacity: 0.8;
+    	filter: alpha(opacity=50);
+    	vertical-align: top;
+    	float: left;
+    	margin-right: 40px;
+	}
+	.neWrap li img.btnNext{
+		width: 20px;
+		height: 30px;
+		float: right;
+		position: absolute;
+		right: 30px;
+		top:70px;
+	}
+	.noticeAndevent .neWrap ul li:first-child{
+		background-color: #FFD2D9;
+	}
+	.noticeAndevent .neWrap ul li:nth-child(2){
+		background-color: #E5E5E5;
+	}
+	.noticeAndevent .neWrap ul li:nth-child(3){
+		background-color: #F7E2DF;
+	}
+	.noticeAndevent .neWrap ul li:last-child{
+		background-color: #F6EBB3;
+	}			
 	/* 카페 리스트 */
 	.cafeListArea {
 		overflow: hidden;
@@ -227,7 +261,16 @@
 	.baseCafeReview {
 		margin-bottom: 30px;	
 	}
-	
+	span#bestMark{
+		color: white;
+		background: #FF007F;
+		border-radius: 5px;
+		padding: 0 8px;
+		font-weight: bold;
+		letter-spacing: 2px;
+		font-size: 20px;
+		margin-left: 8px;
+	}
 	.baseCafeReview .baseList1-3 {
 		text-align: center;
 		padding: 15px;
@@ -301,11 +344,12 @@
 		width: 100%;
 		font-weight: bold;
 		font-size: 13px;
-		padding: 2px;
+		padding: 5px;
 	}
 	.bestUser img{
 		width: 20px;
 		height: 20px;
+		vertical-align: top;
 	}
 	p.rvBestTitleAll{
 		font-weight: bold;
@@ -465,10 +509,46 @@
 		<div class="noticeAndevent">
 			<div class="neWrap">
 				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
+					<!-- <li>신규회원 혜택 최대 8,000 Beans 증정</li>
+					<li>탐방기 누.구.나 할 수 있다! 최대 10만 Beans 증정</li>
+					<li>Coffee MuKKa 앱설치 혜택 첫 앱 설치시 1000원 쿠폰 증정</li>
+					<li>카카오 채널 추가시 1000원 쿠폰 증정</li> -->
+					<li>
+						<div class="noticeTitleWrap">
+							<img src="${pageContext.request.contextPath }/resources/images/notice03.png" class="noticeIcon">
+							<p>신규회원 혜택</p>
+							<h2>최대 8,000 Beans 증정</h2>
+							<p>신규회원 혜택</p>
+							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+						</div>
+					</li>
+					<li>
+						<div class="noticeTitleWrap">
+							<img src="${pageContext.request.contextPath }/resources/images/notice02.png" class="noticeIcon">
+							<p>신규회원 혜택</p>
+							<h2>최대 8,000 Beans 증정</h2>
+							<p>신규회원 혜택</p>							
+							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+						</div>
+					</li>
+					<li>
+						<div class="noticeTitleWrap">
+							<img src="${pageContext.request.contextPath }/resources/images/notice01.png" class="noticeIcon">
+							<p>신규회원 혜택</p>
+							<h2>최대 8,000 Beans 증정</h2>
+							<p>신규회원 혜택</p>							
+							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+						</div>
+					</li>
+					<li>
+						<div class="noticeTitleWrap">
+							<img src="${pageContext.request.contextPath }/resources/images/notice04.png" class="noticeIcon">
+							<p>신규회원 혜택</p>
+							<h2>최대 8,000 Beans 증정</h2>
+							<p>신규회원 혜택</p>							
+							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -560,7 +640,7 @@
 		
 		<!-- 베스트 카페탐방기 -->
 		<div class="baseCafeReview">
-			<h2 class="Title bottomLine"><a href="#" class="mainTitle">MuKKa人이 전하는 생생 카페탐방기(BEST)</a></h2>
+			<h2 class="Title bottomLine"><a href="#" class="mainTitle">MuKKa人이 전하는 생생 카페탐방기</a> <span id="bestMark">BEST</span></h2>
 			<div class="baseList1-3 bottomLine">
 				<ul>
 					<!-- 2위 -->
