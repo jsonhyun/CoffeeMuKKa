@@ -88,28 +88,6 @@ character set 'utf8'
 fields terminated by ',';
 select * from menu;
 
-
--- 아름데이터
-/*load data local infile 'D:/workspace/workspace_mukka/CoffeeMuKKa/document/sample_data/board.csv'
-into table coffeemukka.board
-character set 'utf8'
-fields terminated by ','
-ENCLOSED BY '"' 
-LINES TERMINATED BY '\n';
-select * from board;
-
-load data local infile 'D:/workspace/workspace_mukka/CoffeeMuKKa/document/sample_data/boardimage.csv'
-into table coffeemukka.image
-character set 'utf8'
-fields terminated by ','
-ENCLOSED BY '"' 
-LINES TERMINATED BY '\n';*/
-
--- 데이터 번호 0 -> 1로 수정
-/*update image 
-	set image_no = 1
-	where image_no = 0;*/ -- 유저 데이터 수정 후 1부터 데이터가 들어감
-
 update users
 	set user_no = 1
 	where user_no = 0;
