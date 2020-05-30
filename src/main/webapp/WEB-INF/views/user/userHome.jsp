@@ -117,6 +117,7 @@
     	vertical-align: top;
     	float: left;
     	margin-right: 40px;
+    	margin-left: 10px;
 	}
 	.neWrap li img.btnNext{
 		width: 20px;
