@@ -22,10 +22,11 @@
 	}
 	h1.typing {  
 	/*       position: absolute;*/ 
-     display: inline-block; 
+     display: inline-block;
       animation-name: cursor; 
       animation-duration: 0.3s; 
-      animation-iteration-count: infinite; 
+      animation-iteration-count: infinite;
+      margin-left: 300px;
     } 
     @keyframes cursor{ 
       0%{border-right: 3px solid #fff} 
@@ -84,7 +85,25 @@
 	  	border: 10px solid #ED7D31;
 	  	margin: -10px;			  	
 	}			
-	
+	/* 공지사항 & 이벤트 */
+	.noticeAndevent{
+		margin-top: 45px;
+		margin-bottom: 45px;
+	}
+	.noticeAndevent .neWrap ul{
+		overflow: hidden;
+		width: 100%;
+		margin: 0 auto;
+		padding-left: 15px;
+	}
+	.noticeAndevent .neWrap ul li{
+		/* 임시 설정 */
+		background-color: #ddd;
+		width: 47%;
+		height: 155px;
+		float: left;
+		margin: 10px;
+	}
 	/* 카페 리스트 */
 	.cafeListArea {
 		overflow: hidden;
@@ -253,7 +272,7 @@
 	/* 카페추천 / 추천 랭킹 */
 	.cafeRecommend {
 		overflow: hidden;
-		margin-bottom: 30px;
+		margin-bottom: 150px;
 	}
 	
 	.cafeRecommend .newListImgs ul{
@@ -325,6 +344,7 @@
 				<h1 class="typing"></h1>
 			</div>
 		</div>
+		
 		<!-- 파워링크 : 해당카페번호꺼내서 해당이미지 1개씩 꺼내기 -->
 		<div class="powerLinkArea">
 			<h2><a href ="${pageContext.request.contextPath}/user/mukkaCafe/monthCafe" class="mainTitle">오늘 여기서 커피한잔 어때?</a></h2>
@@ -346,7 +366,17 @@
 				
 			</div>
 		</div>
-		
+		<!-- 공지사항 -->
+		<div class="noticeAndevent">
+			<div class="neWrap">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
 		<!-- 카페 리스트 -->
 		<div class="cafeListArea">
 			<div class="newCafeList left">
