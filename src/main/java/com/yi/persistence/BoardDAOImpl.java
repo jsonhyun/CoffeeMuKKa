@@ -259,6 +259,13 @@ public class BoardDAOImpl implements BoardDAO{
 	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception {
 		return sqlSession.selectOne(namespace+"recommendSameKeywordCntByZoneAndTheme", boardVO);
 	}
+	
+	
+	// 아름추가 : 탐방기 월간 베스트15 Main에 쓸 리스트
+	@Override
+	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception {
+		return sqlSession.selectList(namespace+"cafeReviewMonthBestListHome");
+	}
 
 
 	

@@ -249,10 +249,18 @@
 		margin: 10px;
 		margin-top: 30px;
 	}
+	.baseCafeReview .baseList1-3 ul li img:nth-child(2n-1){
+		width: 100%;
+		height: 170px;
+	} 
 	
 	.baseCafeReview .baseList1-3 ul li.best1 {
 		height: 200px;
 		margin-top: 0;
+	}
+	.baseCafeReview .baseList1-3 ul li.best1 img{
+		width: 100%;
+		height: 200px;
 	}
 	
 	.baseCafeReview .bestLists ul{
@@ -264,9 +272,30 @@
 		background-color: #ddd;
 		
 		float: left;
-		width: 18.3%;
-		height: 150px;
+		width: 31.6%;
+		height: 180px;
 		margin: 10px;
+		position: relative;
+	}
+	.baseCafeReview .bestLists ul li img{
+		width: 100%;
+		height: 180px;
+	}
+	.baseCafeReview .bestLists ul li .bestDummy{
+		width: 100%;
+		height: 180px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: rgba(0,0,0,.3);
+		text-align: center;
+		line-height: 180px;
+	}
+	.bestDummy h3{
+		color: white;
+	}
+	.bestDummy h3:hover{
+		text-decoration: underline;
 	}
 	
 	/* 카페추천 / 추천 랭킹 */
@@ -427,7 +456,7 @@
 							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
 								<li>
 									<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
-										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">					
+										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">				
 									</a>
 								</li>
 							</c:if>
@@ -468,24 +497,69 @@
 			<h2 class="Title bottomLine"><a href="#" class="mainTitle">MuKKa人이 전하는 생생 카페탐방기(BEST)</a></h2>
 			<div class="baseList1-3 bottomLine">
 				<ul>
-					<li></li>
-					<li class="best1"></li>
-					<li></li>
+					<c:forEach var="rvlist" items="${rvlist}" begin="1" end="1" varStatus="status">
+						<c:forEach var="rvlistImg" items="${rvlistImg}" begin="1" end="1"
+							varStatus="status">
+							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
+								<li><a
+									href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+										<img
+										src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}"
+										class="thumbNailImg" alt="탐방기대표이미지"
+										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+								</a></li>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
+					<c:forEach var="rvlist" items="${rvlist}" begin="0" end="0"
+						varStatus="status">
+						<c:forEach var="rvlistImg" items="${rvlistImg}" begin="0" end="0"
+							varStatus="status">
+							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
+								<li class="best1"><a
+									href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+										<img
+										src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}"
+										class="thumbNailImg" alt="탐방기대표이미지"
+										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+								</a></li>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
+					<c:forEach var="rvlist" items="${rvlist}" begin="2" end="2"
+						varStatus="status">
+						<c:forEach var="rvlistImg" items="${rvlistImg}" begin="2" end="2"
+							varStatus="status">
+							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
+								<li><a
+									href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+										<img
+										src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}"
+										class="thumbNailImg" alt="탐방기대표이미지"
+										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+								</a></li>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
 				</ul>
 				<p>월간 BEST TOP3</p>
 			</div>
 			<div class="bestLists">
 				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
+						<c:forEach var="rvlist" items="${rvlist}" begin="3" end="14" varStatus="status">
+							<c:forEach var="rvlistImg" items="${rvlistImg}" begin="3" end="14" varStatus="status">
+							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
+								<li>
+									<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}" class="thumbNailImg" alt="탐방기대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+										<div class="bestDummy">
+											<h3>${rvlist.writingTitle}</h3>
+										</div>					
+									</a>
+								</li>
+							</c:if>
+							</c:forEach>
+						</c:forEach>
 				</ul>
 			</div>
 		</div>
@@ -505,8 +579,7 @@
 											<c:forEach var="img" items="${rclistImg}">
 												<c:if test="${img.boardNo.boardNo == board.boardNo }">
 													<img
-														src="${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}"
-														class="thumbNailImg" alt="카페대표이미지"
+														src="${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" alt="카페대표이미지"
 														onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
 												</c:if>
 											</c:forEach>

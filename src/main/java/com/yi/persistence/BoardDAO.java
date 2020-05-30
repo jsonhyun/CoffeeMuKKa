@@ -89,6 +89,9 @@ public interface BoardDAO {
 	//해당 카페와 키워드, 지역이 같은 추천카페 리스트
 	public List<BoardVO> recommendSameKeywordListByZoneAndTheme(BoardVO boardVO) throws Exception;
 	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception;
+	
+	//아름추가  : 탐방기 월간 베스트15 Main에 쓸 리스트
+	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception;
 
 
 

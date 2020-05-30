@@ -257,6 +257,11 @@ public class BoardService {
 		return dao.recommendSameKeywordCntByZoneAndTheme(boardVO);
 	}
 
+	// 아름추가 : 탐방기 월간 베스트15 Main에 쓸 리스트
+	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception {
+		return dao.cafeReviewMonthBestListHome();
+	}
+
 
 
 
