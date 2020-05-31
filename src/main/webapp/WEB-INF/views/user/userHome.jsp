@@ -47,6 +47,7 @@
 
 	.powerLinkArea h2 {
 		text-align: center;
+		margin: 30px 0;
 	}
 	
 	.powerLinkWrap ul {
@@ -182,9 +183,13 @@
 		margin-left: 15px;
 		line-height: 34px;
 	}
-	
+	.newCafeSmallImgs{
+		position: relative;
+		z-index: 0;
+	}
 	.newCafeSmallImgs ul{
-		overflow: hidden;
+		/* overflow: hidden; */
+		
 	}
 	
 	.newCafeSmallImgs ul li {
@@ -196,11 +201,22 @@
 		height: 190px;
 		margin: 5px;
 		margin-top: 0;
+		
 	}
 	
 	.newCafeSmallImgs ul li img{
 		width: 100%;
 		height: 190px;
+	}
+	
+	.dron{
+		position: absolute;
+		z-index: 1;
+		width: 9.5%;
+		height: 190px;
+		border: 5px solid red;
+		margin: -5px;
+		margin-left: 0.5px;
 	}
 	
 	.likeCafeTitle span {
@@ -563,9 +579,9 @@
 			<div class="newCafeList left">
 				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle">반짝반짝 신상카페</a></h2>
 				
-				<c:forEach var="newCafeList" items="${newCafeList}" begin="0" end="0" varStatus="status">	
+				<c:forEach var="newCafeList" items="${newCafeList}" begin="0" end="2" varStatus="status">	
 					<div class="newCafeImgs">
-						<c:forEach var="newCafeImg" items="${newCafeImg}" begin="0" end="0" varStatus="status">
+						<c:forEach var="newCafeImg" items="${newCafeImg}" begin="0" end="2" varStatus="status">
 							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
 								<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
 									<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">					
@@ -608,7 +624,7 @@
 							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
 								<li>
 									<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
-										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">				
+									<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">				
 									</a>
 								</li>
 							</c:if>
@@ -616,6 +632,7 @@
 						</c:forEach>
 					</ul>
 				</div>
+				<div class="dron"></div>
 				
 			</div>
 			
@@ -846,6 +863,54 @@
  	setInterval("power_change()", 10000);
  	power_change();
  	
+	//신상카페
+	function dron_change(){		
+		$(".dron").animate({"marginLeft":"0.2px"},1600);
+		
+		/* 두번째사진 */
+		$(".dron").animate({"marginLeft":"191px"},600, function() {
+			$(".newCafeImgs").eq(0).hide();
+			$(".newCafeImgs").eq(1).show();		
+			$(".newCafeImgs").eq(2).hide();
+			
+			$(".newCafeTitleWrap").eq(0).hide();
+			$(".newCafeTitleWrap").eq(1).show();		
+			$(".newCafeTitleWrap").eq(2).hide();			
+		})
+		$(".dron").animate({"marginLeft":"191px"},1600);
+		
+		/* 세번째사진 */
+		$(".dron").animate({"marginLeft":"383px"},600, function() {
+			$(".newCafeImgs").eq(0).hide();
+			$(".newCafeImgs").eq(1).hide();		
+			$(".newCafeImgs").eq(2).show();
+			
+			$(".newCafeTitleWrap").eq(0).hide();
+			$(".newCafeTitleWrap").eq(1).hide();		
+			$(".newCafeTitleWrap").eq(2).show();			
+		})
+		$(".dron").animate({"marginLeft":"383px"},1600);
+		
+		/* 첫번째사진 */
+		$(".dron").animate({"marginLeft":"0.2px"},600, function() {
+			$(".newCafeImgs").eq(0).show();
+			$(".newCafeImgs").eq(1).hide();		
+			$(".newCafeImgs").eq(2).hide();
+			
+			$(".newCafeTitleWrap").eq(0).show();
+			$(".newCafeTitleWrap").eq(1).hide();		
+			$(".newCafeTitleWrap").eq(2).hide();			
+		})			
+	}
+	setInterval("dron_change()", 4000);
+	
+	
+	$(".newCafeImgs").eq(1).hide();
+	$(".newCafeImgs").eq(2).hide();
+	
+	$(".newCafeTitleWrap").eq(1).hide();
+	$(".newCafeTitleWrap").eq(2).hide();
+	dron_change();
 	
 	//추천카페 - 원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {

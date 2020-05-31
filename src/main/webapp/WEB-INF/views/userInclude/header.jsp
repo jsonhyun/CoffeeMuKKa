@@ -464,7 +464,7 @@
 		padding: 0 8px;
 		letter-spacing: 2px;
 		font-size: 12px;
-		margin-left: 8px;		
+		margin-left: 8px;	
 	}
 </style>
 </head>
