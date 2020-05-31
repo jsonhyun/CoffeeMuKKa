@@ -370,7 +370,7 @@
 	<!-- 경진추가 (user) end ************************************************************************************* -->
 	<!-- 경진추가 (admin) start ************************************************************************************* -->
 	<select id="cafeWaitingCnt" parameterType="CafeVO" resultType="int">
-		select count(*) from cafe where cafe_cdt = #{vo.cafeCdt}
+		select count(*) from cafe where cafe_cdt = #{cafeCdt}
 	</select>
 	
 	<select id="cafeWaitingCntAndKeyword" parameterType="map" resultType="int">

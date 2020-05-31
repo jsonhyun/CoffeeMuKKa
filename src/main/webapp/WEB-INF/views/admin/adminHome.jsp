@@ -21,7 +21,7 @@
 			 <!-- 신규 현황 start -->
 			 <div class="col-lg-4 col-sm-4 col-xs-12">
 			 	<div class="pmd-card pmd-z-depth">
-			 		<div class="pmd-card-title"><a href="${pageContext.request.contextPath}/admin/newCafe" class="quickBtn">신규카페승인대기 > </a></div>
+			 		<div class="pmd-card-title"><a href="${pageContext.request.contextPath}/admin/cafeMgn/newCafe" class="quickBtn">신규카페승인대기 > </a></div>
 			 		<div class="pmd-card-body pmd-display3 tCenter">${cafeWaitingCnt} <span class="smallFont">건</span></div>
 			 	</div>
 			 </div>		

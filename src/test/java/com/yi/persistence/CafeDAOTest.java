@@ -61,16 +61,14 @@ public class CafeDAOTest {
 		dao.monthlyCafeUpdate();
 	}
 	
-	//@Test
+	@Test
 	public void testCafeWaitingCnt() throws Exception {
-		SearchCriteria cri = new SearchCriteria(); 
-		cri.setKeyword("루");
 		CafeVO test = new CafeVO();
 		test.setCafeCdt(CafeCdt.WAITING);
 		dao.cafeWaitingCnt(test);
 	}
 
-	@Test
+	//@Test
 	public void testAdminNewCafeList() throws Exception {
 		SearchCriteria cri = new SearchCriteria(); 
 		cri.setKeyword("슬");
