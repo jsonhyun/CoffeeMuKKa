@@ -62,6 +62,8 @@ public interface CafeDAO {
 	// 경진 추가 (admin) start ---------------------------------------------------------------------------------------------
 	// 신규 카페 승인 대기 숫자
 	public int cafeWaitingCnt(CafeVO vo) throws Exception;
+	// 신규 카페 승인 list
+	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception;
 	
 	// 경진 추가 (admin) end ---------------------------------------------------------------------------------------------
 	

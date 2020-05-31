@@ -61,7 +61,7 @@ public class CafeDAOTest {
 		dao.monthlyCafeUpdate();
 	}
 	
-	@Test
+	//@Test
 	public void testCafeWaitingCnt() throws Exception {
 		CafeVO test = new CafeVO();
 		test.setCafeCdt(CafeCdt.WAITING);
@@ -70,4 +70,12 @@ public class CafeDAOTest {
 		System.out.println("cafe---------------------"+cafe);
 	}
 
+	@Test
+	public void testAdminNewCafeList() throws Exception {
+		SearchCriteria cri = new SearchCriteria(); //페이지 번호, 페이지당 display 게시글 갯수
+		
+		CafeVO vo = new CafeVO();
+		vo.setCafeCdt(CafeCdt.WAITING);
+		dao.adminNewCafeList(vo, cri);
+	}
 }

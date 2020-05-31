@@ -36,6 +36,11 @@
 		<result property="powerlinkCdt" column="powerlink_cdt"/>
 		<result property="cafeCdt" column="cafe_cdt"/>
 		
+		<!-- usersVO -->
+		<result property="userNo.userNo" column="user_no"/>
+		<result property="userNo.userId" column="user_id"/>
+		<result property="userNo.name" column="name"/>
+		
 		<association javaType="ThemeVO" property="themeNo">
 			<id property="themeNo" column="theme_no"/>
 			<result property="themeName" column="theme_name"/>
@@ -366,6 +371,12 @@
 	<!-- 경진추가 (admin) start ************************************************************************************* -->
 	<select id="cafeWaitingCnt" parameterType="CafeVO" resultType="int">
 		select count(*) from cafe where cafe_cdt = #{cafeCdt}
+	</select>
+	
+	<select id="adminNewCafeList" parameterType="map" resultMap="CafeListSelectResult">
+		select u.name, c.* 
+			from cafe c left join users u on c.user_no = u.user_no
+			where c.cafe_cdt = #{vo.cafeCdt} limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<!-- 경진추가 (admin) end ************************************************************************************* -->

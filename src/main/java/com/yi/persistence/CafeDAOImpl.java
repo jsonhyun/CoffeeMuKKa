@@ -209,6 +209,16 @@ public class CafeDAOImpl implements CafeDAO {
 	public int cafeWaitingCnt(CafeVO vo) throws Exception {
 		return sqlSession.selectOne(namespace + "cafeWaitingCnt", vo);
 	}
+	
+	// 신규 카페 승인 list
+	@Override
+	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(namespace + "adminNewCafeList", map);
+	}
 
 
 	// 경진 추가 (admin) end ----------------------------------------------------------------------------------------
@@ -230,6 +240,8 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> newCafeList() throws Exception {
 		return sqlSession.selectList(namespace+"newCafeList");
 	}
+
+	
 
 	
 

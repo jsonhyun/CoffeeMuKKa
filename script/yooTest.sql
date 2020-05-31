@@ -24,8 +24,11 @@ select count(*) from cafe where cafe_cdt = 0;
 select * from cafe where cafe_cdt = 0;
 select u.name, c.* 
 	from cafe c left join users u on c.user_no = u.user_no
-	where c.cafe_cdt = 0
-	limit 0, 10;
+	where c.cafe_cdt = 0 limit 0, 10;
+
+select u.name, c.* 
+	from cafe c left join users u on c.user_no = u.user_no
+	where c.cafe_cdt = 0;
 
 select count(*) from board where board_no2 = 2 and date(registration_date) = date(now()) - 1 ;
 select count(*) from board where board_no2 = 2 and date(registration_date) = date(now());

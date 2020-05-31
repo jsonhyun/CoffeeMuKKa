@@ -124,7 +124,7 @@ select * from board;
 
 -- monthlyCafe 더미 테이터 start ---------------------------------------------------------------------
 
--- 카페 파워링크 0으로 초기화
+-- 카페 파워링크 null으로 초기화
 update cafe 
 	set powerlink_cdt = null;
 -- sample : 파워링크 신청 데이터 추가
@@ -142,15 +142,15 @@ update powerlink
 	set reg_date = "2020-03-20", pow_cdt = 1, post_date = "2020-04-01"
 	where pow_no limit 5;
 
-update cafe c left join powerlink p on c.cafe_no = p.cafe_no 
-	set c.parking_cdt = p.pow_cdt;
-
 update powerlink 
 	set reg_date = "2020-04-10", post_date = "2020-05-01", pow_cdt = 0
 	where pow_no in (6, 7, 8, 9, 10);
 
 update powerlink 
-	set reg_date = "2020-05-22", post_date = "2020-06-01"
+	set reg_date = "2020-05-22", post_date = "2020-06-01", pow_cdt = 0
 	where pow_no in(11, 12, 13, 14, 15);
+
+update cafe c left join powerlink p on c.cafe_no = p.cafe_no 
+	set c.parking_cdt = p.pow_cdt;
 
 -- monthlyCafe 더미 테이터 end ----------------------------------------------------------------------- 

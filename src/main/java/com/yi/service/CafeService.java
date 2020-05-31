@@ -133,6 +133,11 @@ public class CafeService {
 		return dao.cafeWaitingCnt(vo);
 	}
 	
+	// 신규 카페 승인 list
+	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception {
+		return dao.adminNewCafeList(vo, cri);
+	}
+	
 	// 경친 추가(admin) end  ---------------------------------------------------------------------------
 	
 	/**************** 아름추가  ********************/
