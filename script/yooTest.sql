@@ -21,7 +21,11 @@ select * from starpoint; -- 별점 리스트
 
 -- test(admin) ------------------------------------------------------------------------------
 select count(*) from cafe where cafe_cdt = 0;
-select * from cafe where cafe_cdt = 0 order by cafe_no desc;
+select * from cafe where cafe_cdt = 0;
+select u.name, c.* 
+	from cafe c left join users u on c.user_no = u.user_no
+	where c.cafe_cdt = 0
+	limit 0, 10;
 
 select count(*) from board where board_no2 = 2 and date(registration_date) = date(now()) - 1 ;
 select count(*) from board where board_no2 = 2 and date(registration_date) = date(now());
