@@ -1162,6 +1162,10 @@ select * from board where board_no2 = 2;
 select * from board where substring(curdate(),6,2) ;
 
 
+select * from cafe c
+		left join zone z on c.zone_no = z.zone_no 
+		left join theme t on c.theme_no = t.theme_no order by cafe_no desc limit 3;
+
 select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, b.reply_cnt, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name from board b
 		left join zone z on b.zone_no = z.zone_no
 		left join theme t on b.theme_no = t.theme_no

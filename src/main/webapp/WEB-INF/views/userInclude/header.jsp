@@ -457,6 +457,15 @@
 	    background: #303A50;
 	    color: white;
 	}
+	span.hotPlace{
+		color: white;
+		background: #FF007F;
+		border-radius: 5px;
+		padding: 0 8px;
+		letter-spacing: 2px;
+		font-size: 12px;
+		margin-left: 8px;	
+	}
 </style>
 </head>
 <body>
@@ -769,7 +778,12 @@
 									<c:forEach var="zone" items="${zoneList }">
 										<li class="zoneItem" data-zoneNo="${zone.zoneNo }" data-zone="${zone.zoneName }">
 											<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
-											<span>${zone.zoneName }</span>	
+											<c:if test="${zone.zoneNo < 6}">
+												<span class="zoneName"><b>${zone.zoneName } <span class="hotPlace">HOT</span></b></span>
+											</c:if>
+											<c:if test="${zone.zoneNo > 5}">
+												<span class="zoneName">${zone.zoneName }</span>
+											</c:if>			
 										</li>
 									</c:forEach>
 								</ul>

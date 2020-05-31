@@ -11,10 +11,10 @@
 	.cafeMuKKaAdd{
 		margin-top: 25px;
 	}
-	.cafeMuKKaAdd .cafeMuKKaAddWrap{
-		background-color: #ddd;
+	.cafeMuKKaAdd .cafeMuKKaAddWrap1{
+	    /* background-color: #ddd; */
 		width: 100%;
-		height: 450px;
+		height: 50px;
 	}
 	/* 테스트중입니다 */
 	h1.typing-txt{
@@ -33,9 +33,12 @@
       50%{border-right: 3px solid #000} 
       100%{border-right: 3px solid #fff} 
     }
-    .navy{
-    	color: navy;
-    }	
+   	.cafeMuKKaAdd .cafeMuKKaAddWrap2{
+   		margin-top: 20px;
+	    background-color: #ddd;
+		width: 100%;
+		height: 500px;
+	}	
 	/* 파워링크 */
 	.powerLinkArea {
 		margin-top: 45px;
@@ -44,6 +47,7 @@
 
 	.powerLinkArea h2 {
 		text-align: center;
+		margin: 30px 0;
 	}
 	
 	.powerLinkWrap ul {
@@ -116,7 +120,7 @@
     	filter: alpha(opacity=50);
     	vertical-align: top;
     	float: left;
-    	margin-right: 40px;
+    	margin-right: 30px;
     	margin-left: 10px;
 	}
 	.neWrap li img.btnNext{
@@ -127,6 +131,20 @@
 		right: 30px;
 		top:70px;
 	}
+	.neWrap li h2{
+		color: #212121;
+		font-size: 22px;
+	}
+	p.smallTitle1{
+		font-size: 17px;
+		color: #353535;
+	}
+	p.smallTitle2{
+		font-weight: bold;
+		margin-top: 9px;
+		color: #353535;
+		font-size: 14px;
+	}	
 	.noticeAndevent .neWrap ul li:first-child{
 		background-color: #FFD2D9;
 	}
@@ -179,9 +197,13 @@
 		margin-left: 15px;
 		line-height: 34px;
 	}
-	
+	.newCafeSmallImgs{
+		position: relative;
+		z-index: 0;
+	}
 	.newCafeSmallImgs ul{
-		overflow: hidden;
+		/* overflow: hidden; */
+		
 	}
 	
 	.newCafeSmallImgs ul li {
@@ -193,11 +215,22 @@
 		height: 190px;
 		margin: 5px;
 		margin-top: 0;
+		
 	}
 	
 	.newCafeSmallImgs ul li img{
 		width: 100%;
 		height: 190px;
+	}
+	
+	.dron{
+		position: absolute;
+		z-index: 1;
+		width: 9.5%;
+		height: 190px;
+		border: 5px solid red;
+		margin: -5px;
+		margin-left: 0.5px;
 	}
 	
 	.likeCafeTitle span {
@@ -477,12 +510,25 @@
 
 	<div class="content container">
 		<div class="cafeMuKKaAdd">
-			<div class="cafeMuKKaAddWrap">
+			<div class="cafeMuKKaAddWrap1">
 				<h1 class="typing-txt">
 					#키워드 중심의 카페검색 Coffee MuKKa
 				</h1>
 				<h1 class="typing"></h1>
 			</div>
+			<div class="cafeMuKKaAddWrap2">
+				<div class="cafeMuKKaMainImg"></div>
+				<div class="cafeMuKKaMainText">
+					<h2>나의 일상이 되는 또 다른 공간</h2>
+					<h3>커피 한 잔의 여유를 만나는 나만의 카페</h3>
+					<p>이제 어디 갈지 너무 고민하지 마세요</p>
+					<p>우리 함께 찾아봐요</p>
+					<p>Coffee MuKKa</p>
+					<div class="box">
+					
+					</div>
+				</div>
+			</div>			
 		</div>
 		
 		<!-- 파워링크 : 해당카페번호꺼내서 해당이미지 1개씩 꺼내기 -->
@@ -510,45 +556,49 @@
 		<div class="noticeAndevent">
 			<div class="neWrap">
 				<ul>
-					<!-- <li>신규회원 혜택 최대 8,000 Beans 증정</li>
-					<li>탐방기 누.구.나 할 수 있다! 최대 10만 Beans 증정</li>
-					<li>Coffee MuKKa 앱설치 혜택 첫 앱 설치시 1000원 쿠폰 증정</li>
-					<li>카카오 채널 추가시 1000원 쿠폰 증정</li> -->
 					<li>
-						<div class="noticeTitleWrap">
-							<img src="${pageContext.request.contextPath }/resources/images/notice03.png" class="noticeIcon">
-							<p>신규회원 혜택</p>
-							<h2>최대 8,000 Beans 증정</h2>
-							<p>신규회원 혜택</p>
-							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
-						</div>
+						<a href="#">
+							<div class="noticeTitleWrap">
+								<img src="${pageContext.request.contextPath }/resources/images/notice03.png" class="noticeIcon">
+								<p class="smallTitle1">신규카페 등록 혜택</p>
+								<h2>月刊  카페 등록 이용권 3회부여</h2>
+								<p class="smallTitle2">신규 사장님 혜택</p>
+								<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+							</div>
+						</a>
 					</li>
 					<li>
-						<div class="noticeTitleWrap">
-							<img src="${pageContext.request.contextPath }/resources/images/notice02.png" class="noticeIcon">
-							<p>신규회원 혜택</p>
-							<h2>최대 8,000 Beans 증정</h2>
-							<p>신규회원 혜택</p>							
-							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
-						</div>
+						<a href="#">
+							<div class="noticeTitleWrap">
+								<img src="${pageContext.request.contextPath }/resources/images/notice02.png" class="noticeIcon">
+								<p class="smallTitle1">탐방기 작가 KING 누.구.나 쓸 수 있 다!</p>
+								<h2>최대 10만 Beans 증정</h2>
+								<p class="smallTitle2">매월 1번, 전월기준 1·2·3등 베스트 탐방기 선정</p>							
+								<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+							</div>
+						</a>
 					</li>
 					<li>
-						<div class="noticeTitleWrap">
-							<img src="${pageContext.request.contextPath }/resources/images/notice01.png" class="noticeIcon">
-							<p>신규회원 혜택</p>
-							<h2>최대 8,000 Beans 증정</h2>
-							<p>신규회원 혜택</p>							
-							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
-						</div>
+						<a href="#">					
+							<div class="noticeTitleWrap">
+								<img src="${pageContext.request.contextPath }/resources/images/notice01.png" class="noticeIcon">
+								<p class="smallTitle1">MuKKa人이 되신걸 환영합니다!</p>
+								<h2>최대 8,000 Beans 증정</h2>
+								<p class="smallTitle2">신규 회원 혜택</p>							
+								<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+							</div>
+						</a>
 					</li>
 					<li>
-						<div class="noticeTitleWrap">
-							<img src="${pageContext.request.contextPath }/resources/images/notice04.png" class="noticeIcon">
-							<p>신규회원 혜택</p>
-							<h2>최대 8,000 Beans 증정</h2>
-							<p>신규회원 혜택</p>							
-							<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
-						</div>
+						<a href="#">					
+							<div class="noticeTitleWrap">
+								<img src="${pageContext.request.contextPath }/resources/images/notice04.png" class="noticeIcon">
+								<p class="smallTitle1">신속하고 편리한 카카오 채널 상담</p>
+								<h2>카카오 채널 추가 이벤트</h2>
+								<p class="smallTitle2">편리한 1:1 상담톡을 이용해보세요</p>							
+								<img src="${pageContext.request.contextPath }/resources/images/btn_next_arr.png" class="btnNext">
+							</div>
+						</a>
 					</li>
 				</ul>
 			</div>
@@ -556,11 +606,11 @@
 		<!-- 카페 리스트 -->
 		<div class="cafeListArea">
 			<div class="newCafeList left">
-				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle">N월 반짝반짝 신상카페</a></h2>
+				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> 반짝반짝 신상카페</a></h2>
 				
-				<c:forEach var="newCafeList" items="${newCafeList}" begin="0" end="0" varStatus="status">	
+				<c:forEach var="newCafeList" items="${newCafeList}">
 					<div class="newCafeImgs">
-						<c:forEach var="newCafeImg" items="${newCafeImg}" begin="0" end="0" varStatus="status">
+						<c:forEach var="newCafeImg" items="${newCafeImg}">
 							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
 								<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
 									<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">					
@@ -598,12 +648,12 @@
 				
 				<div class="newCafeSmallImgs">
 					<ul>
-						<c:forEach var="newCafeList" items="${newCafeList}" begin="1" end="3" varStatus="status">
-							<c:forEach var="newCafeImg" items="${newCafeImg}" begin="1" end="3" varStatus="status">
+						<c:forEach var="newCafeList" items="${newCafeList}">
+							<c:forEach var="newCafeImg" items="${newCafeImg}">
 							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
 								<li>
 									<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
-										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">				
+									<img src="${pageContext.request.contextPath }/resources/images/sumnail/${newCafeImg.imageName}">				
 									</a>
 								</li>
 							</c:if>
@@ -611,11 +661,12 @@
 						</c:forEach>
 					</ul>
 				</div>
+				<div class="dron"></div>
 				
 			</div>
 			
 			<div class="mukkaLikeCafeList right">
-				<h2 class="likeCafeTitle bottomLine"><a href="#" class="mainTitle">MuKKa人이 애정하는 그카페</a> <span>(2020.00.00 ~ 00.00)</span></h2>
+				<h2 class="likeCafeTitle bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> MuKKa人이 애정하는 그카페</a> <span>(2020.00.00 ~ 00.00)</span></h2>
 				<div class="likeCafeList1">
 					<div class="cafeList1"></div>
 					<div class="cafeList2-5">
@@ -641,7 +692,7 @@
 		
 		<!-- 베스트 카페탐방기 -->
 		<div class="baseCafeReview">
-			<h2 class="Title bottomLine"><a href="#" class="mainTitle">MuKKa人이 전하는 생생 카페탐방기</a> <span id="bestMark">BEST</span></h2>
+			<h2 class="Title bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> MuKKa人이 전하는 생생 카페탐방기</a> <span id="bestMark">BEST</span></h2>
 			<div class="baseList1-3 bottomLine">
 				<ul>
 					<!-- 2위 -->
@@ -756,7 +807,7 @@
 		<!-- 카페추천 / 추천 랭킹 -->
 		<div class="cafeRecommend">
 			<div class="newList left">
-				<h2 class="Title bottomLine"><a href ="${pageContext.request.contextPath}/user/community/cafeRecommend/" class="mainTitle">실시간 카페 추천</a></h2>
+				<h2 class="Title bottomLine"><a href ="${pageContext.request.contextPath}/user/community/cafeRecommend/" class="mainTitle"><i class="fas fa-mug-hot"></i> 실시간 카페 추천</a></h2>
 				<div class="newListImgs">
 					<ul>
 						<c:forEach var="board" items="${rclist}">
@@ -782,7 +833,7 @@
 			</div>
 
 		<div class="bestRankList right">
-				<h2 class="Title bottomLine"><a href="#" class="mainTitle">열혈 MuKKa人 </a><span>(2020.00.00 ~ 00.00)</span></h2>
+				<h2 class="Title bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> 열혈 MuKKa人 </a><span>(2020.00.00 ~ 00.00)</span></h2>
 				<div class="bestIcons">
 					<div class="bestIcon"><a href="#">1-10</a></div>
 					<div class="bestIcon"><a href="#">11-20</a></div>
@@ -841,6 +892,54 @@
  	setInterval("power_change()", 10000);
  	power_change();
  	
+	//신상카페
+	function dron_change(){		
+		$(".dron").animate({"marginLeft":"0.2px"},1600);
+		
+		/* 두번째사진 */
+		$(".dron").animate({"marginLeft":"191px"},600, function() {
+			$(".newCafeImgs").eq(0).hide();
+			$(".newCafeImgs").eq(1).show();		
+			$(".newCafeImgs").eq(2).hide();
+			
+			$(".newCafeTitleWrap").eq(0).hide();
+			$(".newCafeTitleWrap").eq(1).show();		
+			$(".newCafeTitleWrap").eq(2).hide();			
+		})
+		$(".dron").animate({"marginLeft":"191px"},1600);
+		
+		/* 세번째사진 */
+		$(".dron").animate({"marginLeft":"383px"},600, function() {
+			$(".newCafeImgs").eq(0).hide();
+			$(".newCafeImgs").eq(1).hide();		
+			$(".newCafeImgs").eq(2).show();
+			
+			$(".newCafeTitleWrap").eq(0).hide();
+			$(".newCafeTitleWrap").eq(1).hide();		
+			$(".newCafeTitleWrap").eq(2).show();			
+		})
+		$(".dron").animate({"marginLeft":"383px"},1600);
+		
+		/* 첫번째사진 */
+		$(".dron").animate({"marginLeft":"0.2px"},600, function() {
+			$(".newCafeImgs").eq(0).show();
+			$(".newCafeImgs").eq(1).hide();		
+			$(".newCafeImgs").eq(2).hide();
+			
+			$(".newCafeTitleWrap").eq(0).show();
+			$(".newCafeTitleWrap").eq(1).hide();		
+			$(".newCafeTitleWrap").eq(2).hide();			
+		})			
+	}
+	setInterval("dron_change()", 4000);
+	
+	
+	$(".newCafeImgs").eq(1).hide();
+	$(".newCafeImgs").eq(2).hide();
+	
+	$(".newCafeTitleWrap").eq(1).hide();
+	$(".newCafeTitleWrap").eq(2).hide();
+	dron_change();
 	
 	//추천카페 - 원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {
