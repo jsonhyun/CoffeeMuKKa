@@ -88,7 +88,7 @@ public class CafeService {
 		dao.deleteCafe(cafeNo);
 	}
 	
-	// 경친 추가 ---------------------------------------------------------------------------
+	// 경친 추가(user) start  ---------------------------------------------------------------------------
 	// 카페 이름 검색
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
 		return dao.searchCafeByName(cafeName);
@@ -127,6 +127,22 @@ public class CafeService {
 		// cafe컬럼에도 정보 변경
 		dao.monthlyCafeUpdate();
 	}
+	// 경친 추가(user) end  ---------------------------------------------------------------------------
+	// 경친 추가(admin) start  ---------------------------------------------------------------------------
+	public int cafeWaitingCnt(CafeVO vo) throws Exception {
+		return dao.cafeWaitingCnt(vo);
+	}
+	
+	public int cafeWaitingCntAndKeyword(CafeVO vo, SearchCriteria cri) throws Exception {
+		return dao.cafeWaitingCntAndKeyword(vo, cri);
+	}
+	
+	// 신규 카페 승인 list
+	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception {
+		return dao.adminNewCafeList(vo, cri);
+	}
+	
+	// 경친 추가(admin) end  ---------------------------------------------------------------------------
 	
 	/**************** 아름추가  ********************/
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception {

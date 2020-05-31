@@ -186,9 +186,20 @@ public class BoardDAOImpl implements BoardDAO{
 		
 		sqlSession.update(namespace + "updateBoardReplyCnt", map);
 	}
+	
+	// 어드민 메인 탐방기, 카페 추천 cnt 
+	@Override
+	public int todayBoardCnt(int boardType) throws Exception {
+		return sqlSession.selectOne(namespace + "todayBoardCnt", boardType);
+	}
+	@Override
+	public int yesterBoardCnt(int boardType) throws Exception {
+		return sqlSession.selectOne(namespace + "yesterBoardCnt", boardType);
+	}
 
 	
 	/*** 탐방기 ***/
+	// 경진 추가 (user) start ------------------------------------------------------------------------------------	
 	//등록
 	@Override  
 	public void cafeReviewInsert(BoardVO vo) throws Exception {
@@ -240,6 +251,14 @@ public class BoardDAOImpl implements BoardDAO{
 	public void cafeReviewRemove(BoardVO vo) throws Exception {
 		sqlSession.update(namespace + "cafeReviewRemove", vo);
 	}
+	// 경진 추가 (user) start ------------------------------------------------------------------------------------	
+	// 경진 추가 (admin) start ------------------------------------------------------------------------------------	
+	
+
+	
+	// 경진 추가 (admin) end ------------------------------------------------------------------------------------	
+	
+	
 	// ***재승 추가 ***
 	// 해당카페의 탐방기 리스트
 	@Override

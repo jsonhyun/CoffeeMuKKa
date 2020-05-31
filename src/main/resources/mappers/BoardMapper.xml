@@ -327,7 +327,7 @@
 		update board set reply_cnt = reply_cnt + #{amount} where board_no = #{boardNo};
 	</update>
 
-	<!-- 경진 : 탐방기 -->
+	<!-- 경진 추가 start  ************************************************************************************************** -->
 	<!-- 탐방기 : 탐방기 select문 -->
 	<sql id="cafeRevieSelect">
 		select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
@@ -366,40 +366,6 @@
 			order by num.cnt desc, v.board_no limit 10;
 	</select>
 	
-	<!-- 탐방기(아름추가) : 탐방기 월간 베스트15 Main에 쓸 리스트 -->
-	<select id="cafeReviewMonthBestListHome" resultMap="BoardResult">
-		<include refid="cafeRevieSelect"/>
-		where board_no2 =1 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) order by vote_number desc limit 15
-	</select>
-	<!-- 탐방기 : 탐방기 read -->
-	<select id="cafeReviewRead" resultMap="BoardResult">
-		<include refid="cafeRevieSelect"/>
-		where b.board_no = #{boardNo}
-	</select>
-	
-	<select id="cafeReviewSameList" resultMap="BoardResult">
-		<include refid="cafeRevieSelect"/>
-		where c.cafe_no = #{cafeNo.cafeNo} and b.board_no != ${boardNo}
-	</select>
-	
-	<select id="cafeReivewSameCnt" resultType="int">
-		select count(*) 
-			from board b left join cafe c on b.cafe_no = c.cafe_no 
-			where c.cafe_no = #{cafeNo.cafeNo} and b.board_no != ${boardNo}
-	</select>
-	
-	<!-- 재승 추가 -->
-	<select id="cafeReviewSameListByCafeNo" resultMap="BoardResult">
-		<include refid="cafeRevieSelect"/>
-		where c.cafe_no = #{cafeNo.cafeNo}
-	</select>
-	
-	<select id="cafeReivewSameCntByCafeNo" resultType="int">
-		select count(*) 
-			from board b left join cafe c on b.cafe_no = c.cafe_no 
-			where c.cafe_no = #{cafeNo.cafeNo}
-	</select>
-	
 	<!-- 탐방기 : 글등록 -->
 	<insert id="cafeReviewInsert" parameterType="BoardVO">
 		insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content) 
@@ -419,5 +385,51 @@
 			set board_del_cdt = #{boardDelCdt}
 			where board_no = #{boardNo};
 	</update>
+	
+	<!-- 탐방기 : 탐방기 read -->
+	<select id="cafeReviewRead" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+		where b.board_no = #{boardNo}
+	</select>
+	
+	<select id="cafeReviewSameList" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+		where c.cafe_no = #{cafeNo.cafeNo} and b.board_no != ${boardNo}
+	</select>
+	
+	<select id="cafeReivewSameCnt" resultType="int">
+		select count(*) 
+			from board b left join cafe c on b.cafe_no = c.cafe_no 
+			where c.cafe_no = #{cafeNo.cafeNo} and b.board_no != ${boardNo}
+	</select>
+	
+	<!-- 어드민 : 신규탐방기 cnt -->
+	<select id="todayBoardCnt" resultType="int">
+		select count(*) from board where board_no2 = #{boardType} and date(registration_date) = date(now())
+	</select>
+	<select id="yesterBoardCnt" resultType="int">
+		select count(*) from board where board_no2 = #{boardType} and date(registration_date) = date(now())-1 
+	</select>
+	
+	<!-- 경진 추가 end  ************************************************************************************************** -->
+	
+	<!-- 탐방기(아름추가) : 탐방기 월간 베스트15 Main에 쓸 리스트 -->
+	<select id="cafeReviewMonthBestListHome" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+		where board_no2 =1 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) order by vote_number desc limit 15
+	</select>
+	
+	
+	<!-- 재승 추가 -->
+	<select id="cafeReviewSameListByCafeNo" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+		where c.cafe_no = #{cafeNo.cafeNo}
+	</select>
+	
+	<select id="cafeReivewSameCntByCafeNo" resultType="int">
+		select count(*) 
+			from board b left join cafe c on b.cafe_no = c.cafe_no 
+			where c.cafe_no = #{cafeNo.cafeNo}
+	</select>
 
 </mapper>

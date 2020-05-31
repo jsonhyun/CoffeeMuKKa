@@ -19,9 +19,36 @@ select * from image; -- 이미지
 select * from vote; -- 추천리스트
 select * from starpoint; -- 별점 리스트
 
+-- test(admin) ------------------------------------------------------------------------------
+select count(*) from cafe where cafe_cdt = 0;
+select * from cafe where cafe_cdt = 0;
+select u.name, c.* 
+	from cafe c left join users u on c.user_no = u.user_no
+	where c.cafe_cdt = 0 
+	limit 0, 10;
+
+select u.name, c.* 
+	from cafe c left join users u on c.user_no = u.user_no
+	where c.cafe_cdt = 0;
+
+select u.name, c.* from cafe c left join users u on c.user_no = u.user_no 
+where c.cafe_cdt = 0 and c.cafe_name like CONCAT('%', '슬', '%') limit 0, 10;
+
+select count(*) from board where board_no2 = 2 and date(registration_date) = date(now()) - 1 ;
+select count(*) from board where board_no2 = 2 and date(registration_date) = date(now());
 
 
--- test ------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+-- test(user) ------------------------------------------------------------------------------
 select * from cafe where cafe_name like '%슬%';
 
 select * 

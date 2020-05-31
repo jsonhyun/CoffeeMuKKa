@@ -67,6 +67,7 @@ public interface BoardDAO {
 	
 	
 	/*** 탐방기 ***/
+	// 경진 추가 (user) start ------------------------------------------------------------------------------------	
 	// 탐방기 -- 등록
 	public void cafeReviewInsert(BoardVO vo) throws Exception;
 	// 탐방기 -- list
@@ -81,6 +82,13 @@ public interface BoardDAO {
 	public void cafeReviewModify(BoardVO vo) throws Exception;
 	// 탐방기 -- remove
 	public void cafeReviewRemove(BoardVO vo) throws Exception;
+	// 경진 추가 (user) end ------------------------------------------------------------------------------------
+	// 경진 추가 (admin) start ------------------------------------------------------------------------------------
+	// 어드민 main 신규 탐방기 cnt
+	public int todayBoardCnt(int boardType) throws Exception;
+	public int yesterBoardCnt(int boardType) throws Exception;
+	
+	// 경진 추가 (admin) end ------------------------------------------------------------------------------------
 
 	/***재승 추가***/
 	//동일한 카페의 탐방기 리스트

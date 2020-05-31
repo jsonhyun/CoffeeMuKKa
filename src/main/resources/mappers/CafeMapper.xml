@@ -36,6 +36,11 @@
 		<result property="powerlinkCdt" column="powerlink_cdt"/>
 		<result property="cafeCdt" column="cafe_cdt"/>
 		
+		<!-- usersVO -->
+		<result property="userNo.userNo" column="user_no"/>
+		<result property="userNo.userId" column="user_id"/>
+		<result property="userNo.name" column="name"/>
+		
 		<association javaType="ThemeVO" property="themeNo">
 			<id property="themeNo" column="theme_no"/>
 			<result property="themeName" column="theme_name"/>
@@ -289,6 +294,7 @@
 		<include refid="search"></include>
 	</select>
 	
+	<!-- 경진추가 (user) start ************************************************************************************* -->
 	<!-- 경진추가 : 이름에 의한 카페 검색 -->
 	<select id="searchCafeByName" resultType="CafeVO">
 		select * from cafe where cafe_name like CONCAT('%', #{cafeName}, '%')
@@ -361,7 +367,31 @@
 		update cafe c right join powerlink p on c.cafe_no = p.cafe_no 
 			set c.powerlink_cdt = p.pow_cdt
 	</update>
+	<!-- 경진추가 (user) end ************************************************************************************* -->
+	<!-- 경진추가 (admin) start ************************************************************************************* -->
+	<select id="cafeWaitingCnt" parameterType="CafeVO" resultType="int">
+		select count(*) from cafe where cafe_cdt = #{vo.cafeCdt}
+	</select>
 	
+	<select id="cafeWaitingCntAndKeyword" parameterType="map" resultType="int">
+		select count(*) from cafe 
+			where cafe_cdt = #{vo.cafeCdt}
+		<if test="cri.keyword != '' and cri.keyword != null">
+			and cafe_name like CONCAT('%', #{cri.keyword}, '%')
+		</if>
+	</select>
+	
+	<select id="adminNewCafeList" parameterType="map" resultMap="CafeListSelectResult">
+		select u.name, c.* 
+			from cafe c left join users u on c.user_no = u.user_no
+			where c.cafe_cdt = #{vo.cafeCdt}
+			<if test="cri.keyword != '' and cri.keyword != null">
+				and c.cafe_name like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<!-- 경진추가 (admin) end ************************************************************************************* -->
 	
 	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->
 	<select id="rcSearchCafeByName" resultMap="CafeListSelectResult">

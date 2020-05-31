@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.yi.domain.CafeCdt;
+import com.yi.domain.CafeVO;
 import com.yi.domain.Criteria;
 import com.yi.domain.SearchCriteria;
 
@@ -54,9 +56,27 @@ public class CafeDAOTest {
 		dao.monthBestCafe();
 	}
 	
-	@Test
+	//@Test
 	public void testMonthlyCafeUpdate() throws Exception {
 		dao.monthlyCafeUpdate();
 	}
+	
+	//@Test
+	public void testCafeWaitingCnt() throws Exception {
+		SearchCriteria cri = new SearchCriteria(); 
+		cri.setKeyword("루");
+		CafeVO test = new CafeVO();
+		test.setCafeCdt(CafeCdt.WAITING);
+		dao.cafeWaitingCnt(test);
+	}
 
+	@Test
+	public void testAdminNewCafeList() throws Exception {
+		SearchCriteria cri = new SearchCriteria(); 
+		cri.setKeyword("슬");
+		
+		CafeVO vo = new CafeVO();
+		vo.setCafeCdt(CafeCdt.WAITING);
+		dao.adminNewCafeList(vo, cri);
+	}
 }

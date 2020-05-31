@@ -127,7 +127,7 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectOne(namespace+"totalSearchCount", cri);
 	}
 	
-	// 경진 추가 ----------------------------------------------------------------------------------------
+	// 경진 추가 (user) start ----------------------------------------------------------------------------------------
 	// 카페 이름 검색
 	@Override
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception {
@@ -203,8 +203,34 @@ public class CafeDAOImpl implements CafeDAO {
 	public void monthlyCafeUpdate() throws Exception {
 		sqlSession.update(namespace + "monthlyCafeUpdate");
 	}
+	// 경진 추가 (user) end ----------------------------------------------------------------------------------------
+	// 경진 추가 (admin) start ----------------------------------------------------------------------------------------
+	@Override
+	public int cafeWaitingCnt(CafeVO vo) throws Exception {
+		return sqlSession.selectOne(namespace + "cafeWaitingCnt", vo);
+	}
+	
+	@Override
+	public int cafeWaitingCntAndKeyword(CafeVO vo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		map.put("cri", cri);
+		
+		return sqlSession.selectOne(namespace + "cafeWaitingCntAndKeyword", map);
+	}
+	
+	// 신규 카페 승인 list
+	@Override
+	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(namespace + "adminNewCafeList", map);
+	}
 
 
+	// 경진 추가 (admin) end ----------------------------------------------------------------------------------------
 
 
 	/**************** 아름추가  ********************/
@@ -223,6 +249,8 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<CafeVO> newCafeList() throws Exception {
 		return sqlSession.selectList(namespace+"newCafeList");
 	}
+
+	
 
 	
 

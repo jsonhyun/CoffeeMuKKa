@@ -2,7 +2,16 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../adminInclude/header.jsp"%>
-		
+
+<style>
+	.smallFont {
+		font-size: 30px;
+	}
+	
+	.quickBtn:hover {
+		font-weight: 700;
+	}
+</style>
 	<!--content area start-->
 	<div id="content" class="pmd-content content-area dashboard">
 	
@@ -12,20 +21,20 @@
 			 <!-- 신규 현황 start -->
 			 <div class="col-lg-4 col-sm-4 col-xs-12">
 			 	<div class="pmd-card pmd-z-depth">
-			 		<div class="pmd-card-title">신규카페승인대기</div>
-			 		<div class="pmd-card-body pmd-display3 tCenter">N건</div>
+			 		<div class="pmd-card-title"><a href="${pageContext.request.contextPath}/admin/newCafe" class="quickBtn">신규카페승인대기 > </a></div>
+			 		<div class="pmd-card-body pmd-display3 tCenter">${cafeWaitingCnt} <span class="smallFont">건</span></div>
 			 	</div>
 			 </div>		
 			 <div class="col-lg-4 col-sm-4 col-xs-12">
 			 	<div class="pmd-card pmd-z-depth">
-			 		<div class="pmd-card-title">신규 탐방기</div>
-			 		<div class="pmd-card-body pmd-display3 tCenter">N건</div>
+			 		<div class="pmd-card-title"><a href="#" class="quickBtn">신규 탐방기(어제/오늘) > </a></div>
+			 		<div class="pmd-card-body pmd-display3 tCenter">${yesterDayCafeReviewCnt } <span class="smallFont">건</span> / ${todayCafeReviewCnt } <span class="smallFont">건</span></div>
 			 	</div>
 			 </div>		
 			 <div class="col-lg-4 col-sm-4 col-xs-12">
 			 	<div class="pmd-card pmd-z-depth">
-			 		<div class="pmd-card-title">신규 Mukka人 추천</div>
-			 		<div class="pmd-card-body pmd-display3 tCenter">N건</div>
+			 		<div class="pmd-card-title"><a href="#" class="quickBtn">신규 Mukka人 추천(어제/오늘) ></a></div>
+			 		<div class="pmd-card-body pmd-display3 tCenter">${yesterDayRecommendCnt} <span class="smallFont">건</span> / ${todayRecommendCnt} <span class="smallFont">건</span></div>
 			 	</div>
 			 </div>	
 			 <!-- 신규 현황 end -->	
@@ -33,7 +42,7 @@
 			 <!-- 그래프 start -->
 			 <div class="col-xs-12 col-sm-12 col-md-6">
 			 	<div class="pmd-card pmd-z-depth">			 	
-				 	<div class="pmd-card-title">방문자 그래프</div>
+				 	<div class="pmd-card-title">카페등록 그래프</div>
 				 	<div class="pmd-card-body"></div>
 			 	</div>
 			 </div>
@@ -46,7 +55,7 @@
 			 <!-- 그래프 end  -->
 			 
 			 <!-- Q&A 답변대기 start -->
-			 <div class="col-xs-12 col-sm-12 col-md-12">
+			 <!-- <div class="col-xs-12 col-sm-12 col-md-12">
 			 	<div class="component-box">
 				 	<div class="pmd-card pmd-z-depth pmd-card-custom-view">
 				 		<div class="pmd-card-title">Q&A 답변대기</div>
@@ -77,7 +86,7 @@
 				 		</div>	
 				 	</div>
 			 	</div>
-			 </div>
+			 </div> -->
 			 <!-- Q&A 답변대기 end -->
 		</div>
 	</div>
