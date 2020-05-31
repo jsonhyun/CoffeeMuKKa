@@ -42,7 +42,7 @@ public interface CafeDAO {
 	public List<CafeVO> listSearchCriteria(SearchCriteria cri) throws Exception;
 	public int totalSearchCount(SearchCriteria cri) throws Exception;
 	
-	// 경진 추가
+	// 경진 추가 (user) start ---------------------------------------------------------------------------------------------
 	// 카페 이름 검색
 	public List<CafeVO> searchCafeByName(String cafeName) throws Exception;
 	// 메인메뉴 카페 검색
@@ -57,7 +57,13 @@ public interface CafeDAO {
 	public List<CafeVO> monthlyCafeList() throws Exception;
 	//파워링크(월간카페) 게시 상태 PowerLink데이터랑 동일하게 유지할 update문
 	public void monthlyCafeUpdate() throws Exception;
+	// 경진 추가 (user) end ---------------------------------------------------------------------------------------------
 	
+	// 경진 추가 (admin) start ---------------------------------------------------------------------------------------------
+	// 신규 카페 승인 대기 숫자
+	public int cafeWaitingCnt(CafeVO vo) throws Exception;
+	
+	// 경진 추가 (admin) end ---------------------------------------------------------------------------------------------
 	
 	//아름추가
 	public List<CafeVO> rcSearchCafeByName(String cafeName) throws Exception;

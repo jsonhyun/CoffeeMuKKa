@@ -168,8 +168,20 @@ public class BoardService {
 	public int boardVoteCnt(int boardNo) throws Exception {
 		return dao.boardVoteCnt(boardNo);
 	}
+	
+	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
+	private void userGradeUpdate(BoardVO vo) throws Exception {
+		int userNo = vo.getUserNo().getUserNo();
+		int boardTotalCnt = dao.totalUserBoardCount(userNo);
+		if (boardTotalCnt >= 20) {
+			userDao.updateUsersGrade(2, userNo);
+		} else if (boardTotalCnt >= 100) {
+			userDao.updateUsersGrade(3, userNo);
+		}
+	}
 
 	/*** 탐방기 ***/
+	// 경진 추가 (user) start ------------------------------------------------------------------------------------	
 	// 등록
 	@Transactional
 	public void cafeReviewInsert(BoardVO vo, ImageVO imgVO) throws Exception {
@@ -228,16 +240,17 @@ public class BoardService {
 		dao.cafeReviewRemove(vo);
 	}
 
-	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
-	private void userGradeUpdate(BoardVO vo) throws Exception {
-		int userNo = vo.getUserNo().getUserNo();
-		int boardTotalCnt = dao.totalUserBoardCount(userNo);
-		if (boardTotalCnt >= 20) {
-			userDao.updateUsersGrade(2, userNo);
-		} else if (boardTotalCnt >= 100) {
-			userDao.updateUsersGrade(3, userNo);
-		}
+	// 경진 추가 (user) end ------------------------------------------------------------------------------------
+	// 경진 추가 (admin) start ------------------------------------------------------------------------------------
+	public int todayCafeReviewCnt(int boardType) throws Exception {
+		return dao.todayBoardCnt(boardType);
 	}
+	
+	public int yesterDayCafeReviewCnt(int boardType) throws Exception {
+		return dao.yesterBoardCnt(boardType);
+	}
+	
+	// 경진 추가 (admin) end ------------------------------------------------------------------------------------
 
 //	재승 추가
 	// 카페 상세보기의 해당 카페 탐방기 리스트

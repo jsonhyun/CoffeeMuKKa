@@ -19,9 +19,25 @@ select * from image; -- 이미지
 select * from vote; -- 추천리스트
 select * from starpoint; -- 별점 리스트
 
+-- test(admin) ------------------------------------------------------------------------------
+select count(*) from cafe where cafe_cdt = 0;
+select * from cafe where cafe_cdt = 0 order by cafe_no desc;
+
+select count(*) from board where board_no2 = 2 and date(registration_date) = date(now()) - 1 ;
+select count(*) from board where board_no2 = 2 and date(registration_date) = date(now());
 
 
--- test ------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+-- test(user) ------------------------------------------------------------------------------
 select * from cafe where cafe_name like '%슬%';
 
 select * 

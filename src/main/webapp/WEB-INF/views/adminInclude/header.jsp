@@ -47,17 +47,25 @@
 		var url = location.href.split("/");
 		$(".menu").removeClass("active");
 		
-		// 서브메뉴 url 판단
-		console.log(url[5]);
+		var menu = url[5];
+		var subMenu = url[6];
 		
-		// 서브메뉴 포커스 
-		if(url[5] == "") {
+		// 서브메뉴 url 판단
+		console.log("url[5]"+menu);
+		console.log("url[6]"+subMenu);
+		
+		// 메뉴 포커스 
+		if(menu == "") {
 			$("#Dashboard").addClass("active");
 		}
 		
-		if(url[5] == "newCafe"){
+		if(menu == "cafeMgn"){
 			$("#cafeMgr").addClass("active");
 			$("#cafeMgr").parent().addClass("open");
+		}
+		
+		// 서브메뉴 포커스
+		if(subMenu == "newCafe"){				
 			$(".cafeMgrSub").eq(0).addClass("active");
 		}
 	})
@@ -88,10 +96,10 @@
 								<a href="#">내정보 수정</a>
 							</li>
 							<li class="list-group-item unread">
-								<a href="#">나가기</a>
+								<a href="${pageContext.request.contextPath }/user/">나가기</a>
 							</li>
 							<li class="list-group-item unread">
-								<a href="#">로그아웃</a>
+								<a href="${pageContext.request.contextPath }/user/logout">로그아웃</a>
 							</li>
 						</ul><!-- End notifications list -->
 	
@@ -127,7 +135,7 @@
 					<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#">Logout</a></li>
+					<li><a href="${pageContext.request.contextPath }/user/logout">Logout</a></li>
 				</ul>
 			</li><!-- End user info -->
 			
@@ -145,7 +153,7 @@
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a class="cafeMgrSub menu" href="${pageContext.request.contextPath}/admin/newCafe">신규 등록 카페 승인</a></li>
+					<li><a class="cafeMgrSub menu" href="${pageContext.request.contextPath}/admin/cafeMgn/newCafe">신규 등록 카페 승인</a></li>
 					<li><a class="cafeMgrSub menu" href="#">카페 관리</a></li>
 					<li><a class="cafeMgrSub menu" href="#">월간 카페 등록 및 관리</a></li>
 				</ul>
@@ -160,6 +168,19 @@
 					<li><a class="userMgrSub menu" href="#">카페 점주 관리</a></li>
 					<li><a class="userMgrSub menu" href="#">회원 관리</a></li>
 					<li><a class="userMgrSub menu" href="#">관리자 관리</a></li>
+				</ul>
+			</li>
+			<li class="dropdown pmd-dropdown"> 
+				<a id="userMgr" aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media menu" data-sidebar="true" href="javascript:void(0);">	
+					<i class="fas fa-chalkboard fs18 media-left media-middle"></i>
+					<span class="media-body">게시글 관리</span>
+					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
+				</a> 
+				<ul class="dropdown-menu">
+					<li><a class="userMgrSub menu" href="#">생생 카페 탐방기 관리</a></li>
+					<li><a class="userMgrSub menu" href="#">MuKKa人 추천 카페 관리</a></li>
+					<li><a class="userMgrSub menu" href="#">사장님 고민 나눔 관리</a></li>
+					<li><a class="userMgrSub menu" href="#">자유게시판 관리</a></li>
 				</ul>
 			</li>
 			
@@ -187,13 +208,13 @@
 				</ul>
 			</li>
 			<li> 
-				<a class="pmd-ripple-effect" href="#">	
+				<a class="pmd-ripple-effect" href="${pageContext.request.contextPath }/user/">	
 					<i class="fas fa-door-open fs18 media-left media-middle"></i>
 					<span class="media-body">나가기</span>
 				</a> 
 			</li>
 			<li> 
-				<a class="pmd-ripple-effect" href="#">	
+				<a class="pmd-ripple-effect" href="${pageContext.request.contextPath }/user/logout">	
 					<i class="fas fa-sign-out-alt fs18 media-left media-middle"></i>
 					<span class="media-body">Login</span>
 				</a> 
