@@ -112,9 +112,9 @@
 			<div>
 				<div class="pull-right table-title-top-action">
 					<div class="pmd-textfield pull-left">
-					  <input type="text" id="exampleInputAmount" class="form-control" placeholder="Search for...">
+					  <input type="text" id="exampleInputAmount" class="form-control" value="${cri.keyword }" placeholder="카페이름 검색" name="keyword" >
 					</div>
-					<a href="javascript:void(0);" class="btn btn-primary pmd-btn-raised add-btn pmd-ripple-effect pull-left">Search</a>
+					<a href="#" id="searchBtn" class="btn btn-primary pmd-btn-raised add-btn pmd-ripple-effect pull-left">Search</a>
 				</div>
 				<!-- Title -->
 				<h1 class="section-title subPageTitle" id="services">
@@ -137,7 +137,7 @@
 							<th>사업자등록번호</th>
 							<th>카페등록일자</th>
 							<th>승인여부</th>
-							<th>상태</th>
+							<th>승인절차현황</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -165,13 +165,13 @@
 				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
 				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
-						<li><a href="newCafe?page=${pageMaker.startPage-1}">&laquo;</a></li>
+						<li><a href="newCafe?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafe?page=${idx}">${idx }</a></li>
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafe?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true }">
-						<li><a href="newCafe?page=${pageMaker.endPage+1}">&raquo;</a></li>
+						<li><a href="newCafe?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 			  	</ul>
 			</div>
@@ -181,5 +181,19 @@
 	<!--tab start-->
 	
 	<!--content area end-->
-	
+
+<script>
+	$("#searchBtn").click(function(){
+		var keyword = $("input[name='keyword']").val();
+		
+		if(keyword == '') {
+			alert("카페이름을 작성해주세요.");
+			return false;
+		}
+		
+		location.href = "newCafe?keyword="+keyword;
+		
+		return false;
+	})
+</script>
 <%@ include file="../adminInclude/footer.jsp"%>

@@ -65,7 +65,7 @@
 		}
 		
 		// 서브메뉴 포커스
-		if(subMenu == "newCafe"){				
+		if(subMenu.indexOf("newCafe") > -1){				
 			$(".cafeMgrSub").eq(0).addClass("active");
 		}
 	})

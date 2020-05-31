@@ -370,13 +370,25 @@
 	<!-- 경진추가 (user) end ************************************************************************************* -->
 	<!-- 경진추가 (admin) start ************************************************************************************* -->
 	<select id="cafeWaitingCnt" parameterType="CafeVO" resultType="int">
-		select count(*) from cafe where cafe_cdt = #{cafeCdt}
+		select count(*) from cafe where cafe_cdt = #{vo.cafeCdt}
+	</select>
+	
+	<select id="cafeWaitingCntAndKeyword" parameterType="map" resultType="int">
+		select count(*) from cafe 
+			where cafe_cdt = #{vo.cafeCdt}
+		<if test="cri.keyword != '' and cri.keyword != null">
+			and cafe_name like CONCAT('%', #{cri.keyword}, '%')
+		</if>
 	</select>
 	
 	<select id="adminNewCafeList" parameterType="map" resultMap="CafeListSelectResult">
 		select u.name, c.* 
 			from cafe c left join users u on c.user_no = u.user_no
-			where c.cafe_cdt = #{vo.cafeCdt} limit #{cri.pageStart}, #{cri.perPageNum}
+			where c.cafe_cdt = #{vo.cafeCdt}
+			<if test="cri.keyword != '' and cri.keyword != null">
+				and c.cafe_name like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<!-- 경진추가 (admin) end ************************************************************************************* -->

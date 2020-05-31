@@ -133,6 +133,10 @@ public class CafeService {
 		return dao.cafeWaitingCnt(vo);
 	}
 	
+	public int cafeWaitingCntAndKeyword(CafeVO vo, SearchCriteria cri) throws Exception {
+		return dao.cafeWaitingCntAndKeyword(vo, cri);
+	}
+	
 	// 신규 카페 승인 list
 	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception {
 		return dao.adminNewCafeList(vo, cri);

@@ -63,16 +63,17 @@ public class CafeDAOTest {
 	
 	//@Test
 	public void testCafeWaitingCnt() throws Exception {
+		SearchCriteria cri = new SearchCriteria(); 
+		cri.setKeyword("루");
 		CafeVO test = new CafeVO();
 		test.setCafeCdt(CafeCdt.WAITING);
-		System.out.println("cdt----------------------"+test.getCafeCdt());
-		int cafe = dao.cafeWaitingCnt(test);
-		System.out.println("cafe---------------------"+cafe);
+		dao.cafeWaitingCnt(test);
 	}
 
 	@Test
 	public void testAdminNewCafeList() throws Exception {
-		SearchCriteria cri = new SearchCriteria(); //페이지 번호, 페이지당 display 게시글 갯수
+		SearchCriteria cri = new SearchCriteria(); 
+		cri.setKeyword("슬");
 		
 		CafeVO vo = new CafeVO();
 		vo.setCafeCdt(CafeCdt.WAITING);

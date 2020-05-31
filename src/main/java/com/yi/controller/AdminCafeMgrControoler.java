@@ -30,7 +30,7 @@ public class AdminCafeMgrControoler {
 		List<CafeVO> list = service.adminNewCafeList(vo, cri);
 		PageMaker pageMater = new PageMaker();
 		pageMater.setCri(cri);
-		pageMater.setTotalCount(service.cafeWaitingCnt(vo));
+		pageMater.setTotalCount(service.cafeWaitingCntAndKeyword(vo, cri));
 		
 		model.addAttribute("list", list);
 		model.addAttribute("cri", cri);
