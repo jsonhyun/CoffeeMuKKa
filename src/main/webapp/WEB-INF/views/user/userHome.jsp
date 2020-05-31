@@ -11,10 +11,10 @@
 	.cafeMuKKaAdd{
 		margin-top: 25px;
 	}
-	.cafeMuKKaAdd .cafeMuKKaAddWrap{
-		background-color: #ddd;
+	.cafeMuKKaAdd .cafeMuKKaAddWrap1{
+	    /* background-color: #ddd; */
 		width: 100%;
-		height: 450px;
+		height: 50px;
 	}
 	/* 테스트중입니다 */
 	h1.typing-txt{
@@ -33,9 +33,12 @@
       50%{border-right: 3px solid #000} 
       100%{border-right: 3px solid #fff} 
     }
-    .navy{
-    	color: navy;
-    }	
+   	.cafeMuKKaAdd .cafeMuKKaAddWrap2{
+   		margin-top: 20px;
+	    background-color: #ddd;
+		width: 100%;
+		height: 500px;
+	}	
 	/* 파워링크 */
 	.powerLinkArea {
 		margin-top: 45px;
@@ -116,7 +119,7 @@
     	filter: alpha(opacity=50);
     	vertical-align: top;
     	float: left;
-    	margin-right: 40px;
+    	margin-right: 60px;
     	margin-left: 10px;
 	}
 	.neWrap li img.btnNext{
@@ -477,12 +480,14 @@
 
 	<div class="content container">
 		<div class="cafeMuKKaAdd">
-			<div class="cafeMuKKaAddWrap">
+			<div class="cafeMuKKaAddWrap1">
 				<h1 class="typing-txt">
 					#키워드 중심의 카페검색 Coffee MuKKa
 				</h1>
 				<h1 class="typing"></h1>
 			</div>
+			<div class="cafeMuKKaAddWrap2">
+			</div>			
 		</div>
 		
 		<!-- 파워링크 : 해당카페번호꺼내서 해당이미지 1개씩 꺼내기 -->
@@ -556,7 +561,7 @@
 		<!-- 카페 리스트 -->
 		<div class="cafeListArea">
 			<div class="newCafeList left">
-				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle">N월 반짝반짝 신상카페</a></h2>
+				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle">반짝반짝 신상카페</a></h2>
 				
 				<c:forEach var="newCafeList" items="${newCafeList}" begin="0" end="0" varStatus="status">	
 					<div class="newCafeImgs">
@@ -598,8 +603,8 @@
 				
 				<div class="newCafeSmallImgs">
 					<ul>
-						<c:forEach var="newCafeList" items="${newCafeList}" begin="1" end="3" varStatus="status">
-							<c:forEach var="newCafeImg" items="${newCafeImg}" begin="1" end="3" varStatus="status">
+						<c:forEach var="newCafeList" items="${newCafeList}" begin="0" end="2" varStatus="status">
+							<c:forEach var="newCafeImg" items="${newCafeImg}" begin="0" end="2" varStatus="status">
 							<c:if test="${newCafeImg.cafeNo.cafeNo == newCafeList.cafeNo }">
 								<li>
 									<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${newCafeList.cafeNo}">
