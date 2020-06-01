@@ -1,7 +1,4 @@
-select user(), database();
 
--- 게시글번호 : 634 - 715번
-select * from image;
 -- IMAGE --
 INSERT INTO coffeemukka.image
 (image_no, image_name, cafe_no, board_no)
