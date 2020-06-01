@@ -88,6 +88,12 @@ character set 'utf8'
 fields terminated by ',';
 select * from menu;
 
+load data local infile 'D:/workspace/workspace_mukka/CoffeeMuKKa/document/sample_data/license.txt'
+into table coffeemukka.license 
+character set 'utf8'
+fields terminated by ',';
+select * from license;
+
 update users
 	set user_no = 1
 	where user_no = 0;
