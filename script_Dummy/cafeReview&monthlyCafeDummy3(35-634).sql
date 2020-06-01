@@ -1,14 +1,14 @@
 -- cafeReview 더미 테이터 start ----------------------------------------------------------------------- 
--- 카페 탐방기 추가(전월)
+-- 카페 탐방기 추가(4월)
 drop procedure if exists loopInsert1;
 delimiter $$
 $$
 create procedure loopInsert1()
 BEGIN
 DECLARE i INT DEFAULT 1;
-WHILE i <= 300 DO
+WHILE i <= 200 DO
 	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number, registration_date, update_date ) 
-	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)), '2020-04-21', '2020-04-21');
+	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)), '2020-05-21', '2020-05-21');
 
 	insert into image(image_name , board_no)
 	values('/2020/05/15/s_03cee4c3-7cfb-4c2b-8d5f-bd6d12385676_delisert-1.jpg', LAST_INSERT_ID());
@@ -20,16 +20,16 @@ delimiter ;
 
 CALL loopInsert1();
 
--- 카페 탐방기 추가(당월)
+-- 카페 탐방기 추가(5월)
 drop procedure if exists loopInsert2;
 delimiter $$
 $$
 create procedure loopInsert2()
 BEGIN
 DECLARE i INT DEFAULT 1;
-WHILE i <= 300 DO
-	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number) 
-	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)));
+WHILE i <= 200 DO
+	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number, registration_date, update_date ) 
+	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)), '2020-05-21', '2020-05-21');
 
 	insert into image(image_name , board_no)
 	values('/2020/05/15/s_03cee4c3-7cfb-4c2b-8d5f-bd6d12385676_delisert-1.jpg', LAST_INSERT_ID());
@@ -41,7 +41,28 @@ delimiter ;
 
 CALL loopInsert2();
 
--- 탐방기 추천 추가(전월)
+-- 카페 탐방기 추가(당월)
+drop procedure if exists loopInsert3;
+delimiter $$
+$$
+create procedure loopInsert3()
+BEGIN
+DECLARE i INT DEFAULT 1;
+WHILE i <= 200 DO
+	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number) 
+	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)));
+
+	insert into image(image_name , board_no)
+	values('/2020/05/15/s_03cee4c3-7cfb-4c2b-8d5f-bd6d12385676_delisert-1.jpg', LAST_INSERT_ID());
+	
+	SET i = i + 1;
+END WHILE;
+end $$
+delimiter ;
+
+CALL loopInsert3();
+
+-- 탐방기 추천 추가(4월)
 drop procedure if exists loopVoteInsert1;
 delimiter $$
 $$
@@ -50,7 +71,7 @@ begin
 DECLARE i INT DEFAULT 1;
 WHILE i <= 1200 DO
 	Insert into vote(board_no, user_no, vote_date) 
-	VALUES(floor(35 + (rand() * 300)), floor(1 + (rand() * 78)), '2020-04-22');
+	VALUES(floor(35 + (rand() * 200)), floor(1 + (rand() * 78)), '2020-04-22');
 	
 	SET i = i + 1;
 END WHILE;
@@ -59,7 +80,7 @@ delimiter ;
 
 CALL loopVoteInsert1();
 
--- 탐방기 추천 추가(당월)
+-- 탐방기 추천 추가(5월)
 drop procedure if exists loopVoteInsert2;
 delimiter $$
 $$
@@ -68,7 +89,7 @@ begin
 DECLARE i INT DEFAULT 1;
 WHILE i <= 1200 DO
 	Insert into vote(board_no, user_no, vote_date) 
-	VALUES(floor(335 + (rand() * 300)), floor(1 + (rand() * 78)), now());
+	VALUES(floor(235 + (rand() * 200)), floor(1 + (rand() * 78)), '2020-05-22');
 	
 	SET i = i + 1;
 END WHILE;
@@ -77,6 +98,24 @@ delimiter ;
 
 CALL loopVoteInsert2();
 
+-- 탐방기 추천 추가(당월)
+drop procedure if exists loopVoteInsert3;
+delimiter $$
+$$
+create procedure loopVoteInsert3()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 1200 DO
+	Insert into vote(board_no, user_no, vote_date) 
+	VALUES(floor(435 + (rand() * 200)), floor(1 + (rand() * 78)), now());
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopVoteInsert3();
+
 -- 카페 탐방기 댓글 추가
 drop procedure if exists loopReplyInsert;
 delimiter $$
@@ -84,9 +123,9 @@ $$
 create procedure loopReplyInsert()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 1200 DO
+WHILE i <= 1500 DO
 
-	insert into reply(board_no, user_no, comment_content) values(floor(35 + (rand() * 600)), floor(1 + (rand() * 78)), '댓글 테스트');
+	insert into reply(board_no, user_no, comment_content) values(floor(35 + (rand() * 600)), floor(1 + (rand() * 78)), concat('댓글 테스트 ', i));
 	
 	SET i = i + 1;
 END WHILE;
@@ -130,12 +169,10 @@ update cafe
 -- sample : 파워링크 신청 데이터 추가
 update cafe 
 	set powerlink_cdt = 0
-	where cafe_cdt = 1 limit 15;
+	where cafe_cdt = 1 limit 20;
 
 -- cafe테이블에 파워링크여부가 0인 데이터 파워링크테이블에 데이터 넣기
 insert into powerlink (cafe_no, pow_cdt) select cafe_no, powerlink_cdt from cafe where powerlink_cdt is not null;
-select * from powerlink;
-select cafe_no , cafe_cdt , parking_cdt from cafe where cafe_cdt = 1;
 
 -- 테스트용 sample 데이터
 update powerlink 
@@ -149,6 +186,10 @@ update powerlink
 update powerlink 
 	set reg_date = "2020-05-22", post_date = "2020-06-01", pow_cdt = 0
 	where pow_no in(11, 12, 13, 14, 15);
+
+update powerlink 
+	set reg_date = "2020-06-05", post_date = "2020-07-01", pow_cdt = 0
+	where pow_no in(16, 17, 18, 19, 20);
 
 update cafe c left join powerlink p on c.cafe_no = p.cafe_no 
 	set c.parking_cdt = p.pow_cdt;
