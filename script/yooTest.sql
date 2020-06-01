@@ -19,6 +19,8 @@ select * from image; -- 이미지
 select * from vote; -- 추천리스트
 select * from starpoint; -- 별점 리스트
 
+select * from board where board_no2 = 2;
+
 -- test(admin) ------------------------------------------------------------------------------
 select count(*) from cafe where cafe_cdt = 0;
 select * from cafe where cafe_cdt = 0;
@@ -214,6 +216,12 @@ select v.board_no , num.cnt , b.writing_title , b.reply_cnt
 	where v.board_no = num.board_no and b.board_no2 = 1
 	group by board_no
 	order by num.cnt desc, v.board_no limit 10;
+
+select * from board where board_no2 = 1 order by board_no desc;
+
+select * from vote where board_no = 1;
+
+select board_no, count(board_no) as cnt  from vote where month(vote_date) = month(now())-1 group by board_no desc;
 
 select reply_cnt from board where board_no = 85;
 
