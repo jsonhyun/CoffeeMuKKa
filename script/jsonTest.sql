@@ -96,3 +96,10 @@ select * from board b;
 select * from board b where zone_no =3 and theme_no =3;
 
 select user_id from users where name = '현재승' and email='airplant@naver.com' and user_type=2;
+
+select month(post_date) as month from powerlink where pow_cdt = 1 group by post_date;
+
+select * from cafe c 
+		left join zone z on c.zone_no = z.zone_no 
+		left join theme t on c.theme_no = t.theme_no
+		where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(c.registration_date,7) order by c.registration_date desc limit 4;

@@ -40,7 +40,8 @@ CREATE TABLE CoffeeMuKKa.Cafe (
 	oneline           VARCHAR(255) NOT NULL COMMENT '한줄소개', -- 한줄소개
 	vote_number       INT          NOT NULL DEFAULT 0 COMMENT '추천수', -- 추천수
 	powerlink_cdt     TINYINT      NULL     COMMENT '파워링크여부', -- 파워링크여부
-	cafe_cdt          TINYINT      NOT NULL COMMENT '카페상태' -- 카페상태
+	cafe_cdt          TINYINT      NOT NULL COMMENT '카페상태', -- 카페상태
+	owner_license_no  VARCHAR(255) NOT NULL COMMENT '사업자 등록번호' -- 사업자 등록번호
 )
 COMMENT '카페';
 
@@ -536,6 +537,22 @@ ALTER TABLE CoffeeMuKKa.PowerLink
 
 ALTER TABLE CoffeeMuKKa.PowerLink
 	MODIFY COLUMN pow_no INT NOT NULL AUTO_INCREMENT COMMENT '파워링크번호';
+
+-- 사업자등록번호 조회
+CREATE TABLE CoffeeMuKKa.License (
+	no         INT          NOT NULL COMMENT '번호', -- 번호
+	owner_name VARCHAR(50)  NOT NULL COMMENT '사업자이름', -- 사업자이름
+	cafe_name  VARCHAR(50)  NOT NULL COMMENT '카페이름', -- 카페이름
+	owner_no   VARCHAR(255) NOT NULL COMMENT '사업자번호' -- 사업자번호
+)
+COMMENT '사업자등록번호 조회';
+
+-- 사업자등록번호 조회
+ALTER TABLE CoffeeMuKKa.License
+	ADD CONSTRAINT PK_License -- 사업자등록번호 조회 기본키
+		PRIMARY KEY (
+			no -- 번호
+		);
 
 -- 카페
 ALTER TABLE CoffeeMuKKa.Cafe
