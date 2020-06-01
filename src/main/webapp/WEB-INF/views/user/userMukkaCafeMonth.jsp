@@ -35,11 +35,11 @@
 		font-weight: bold;
 	}
 	
-	.monthCafeLists .orderWrap:nth-last-of-type(5) { top: 5px; right: 195px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(4) { top: 85px; right: 140px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(3) { top: 165px; right: 85px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(2) { top: 245px; right: 150px;}
-	.monthCafeLists .orderWrap:nth-last-of-type(1) { bottom: 15px; right: 190px;}
+	.monthCafeLists .orderWrap:nth-last-of-type(5) { top: 5px; left: 54%;}
+	.monthCafeLists .orderWrap:nth-last-of-type(4) { top: 85px; left: 63%;}
+	.monthCafeLists .orderWrap:nth-last-of-type(3) { top: 165px; left: 67%;}
+	.monthCafeLists .orderWrap:nth-last-of-type(2) { top: 245px; left: 65%;}
+	.monthCafeLists .orderWrap:nth-last-of-type(1) { bottom: 15px; left: 54%;}
 	
 	
 	/* 월간카페 */
