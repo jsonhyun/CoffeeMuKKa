@@ -123,7 +123,7 @@ $$
 create procedure loopReplyInsert()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 1500 DO
+WHILE i <= 1200 DO
 
 	insert into reply(board_no, user_no, comment_content) values(floor(35 + (rand() * 600)), floor(1 + (rand() * 78)), concat('댓글 테스트 ', i));
 	
