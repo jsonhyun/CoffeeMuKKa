@@ -119,46 +119,5 @@ delimiter ;
 
 CALL loopCnt();
 
--- 당월 (6월) 더미 데이터 ---------------------------------------------------
--- 카페 탐방기 추가(당월)
-drop procedure if exists loopInsert3;
-delimiter $$
-$$
-create procedure loopInsert3()
-BEGIN
-DECLARE i INT DEFAULT 1;
-WHILE i <= 200 DO
-	Insert into board(board_no2 , user_no , cafe_no , writing_title , writing_content, view_number) 
-	VALUES(1, floor(1 + (rand() * 78)), floor(1 + (rand() * 127)), concat('[카페탐방기] 더미 데이터 ', i), '<p>test</p>', floor(1 + (rand() * 99)));
-
-	insert into image(image_name , board_no)
-	values('/2020/05/15/s_03cee4c3-7cfb-4c2b-8d5f-bd6d12385676_delisert-1.jpg', LAST_INSERT_ID());
-	
-	SET i = i + 1;
-END WHILE;
-end $$
-delimiter ;
-
-CALL loopInsert3();
-
--- 탐방기 추천 추가(당월)
-drop procedure if exists loopVoteInsert3;
-delimiter $$
-$$
-create procedure loopVoteInsert3()
-begin
-DECLARE i INT DEFAULT 1;
-WHILE i <= 1200 DO /*추천 총 갯수*/
-	Insert into vote(board_no, user_no, vote_date) 
-	VALUES(floor(783 + (rand() * 200)), floor(1 + (rand() * 78)), now());
-		/* 시작 boardNo+1 , 시작boardNo-마지막boardNo */
-	
-	SET i = i + 1;
-END WHILE;
-end
-delimiter ;
-
-CALL loopVoteInsert3();
-
 -- cafeReview 더미 테이터 end ----------------------------------------------------------------------- 
 

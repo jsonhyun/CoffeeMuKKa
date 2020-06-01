@@ -19,7 +19,10 @@ select * from image; -- 이미지
 select * from vote; -- 추천리스트
 select * from starpoint; -- 별점 리스트
 
-select * from board where board_no2 = 2;
+select * from board order by board_no desc;
+select * from image order by image_no desc;
+select * from reply where board_no = 803;
+
 
 -- test(admin) ------------------------------------------------------------------------------
 select count(*) from cafe where cafe_cdt = 0;
