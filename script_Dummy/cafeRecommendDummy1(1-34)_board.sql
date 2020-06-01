@@ -1,6 +1,8 @@
-select user(), database();
--- 추천카페(4월데이터) : BOARD + REPLY
--- BOARD -- 4월데이터 : 1번 ~34번
+--  <아름데이터>  추천카페(4월데이터)  :  BOARD[게시판]  +  Vote[추천리스트]  + REPLY [댓글 테이블]
+--   BOARD -- 4월데이터 : 1번 ~34번    -----------------------------------------------------------------------------------------------------------------
+
+
+-- []
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(1, 2, NULL, 1, 1, 1, NULL, NULL, '마주봄', '2020-04-11 10:45:10.0', '2020-04-27 10:45:10.0', 1, 0, 1, '간만에 남자친구와 힐링 제대로 하고왔어요!
