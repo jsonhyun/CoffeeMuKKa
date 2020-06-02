@@ -103,3 +103,5 @@ select * from cafe c
 		left join zone z on c.zone_no = z.zone_no 
 		left join theme t on c.theme_no = t.theme_no
 		where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(c.registration_date,7) order by c.registration_date desc limit 4;
+		
+select * from admin where ano_id = 'test001';

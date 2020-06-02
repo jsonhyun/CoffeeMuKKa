@@ -218,8 +218,13 @@
 		var result = $("#result").val();
 		if(result == 1){
 			alert("해당 아이디가 존재하지 않습니다. 회원가입을 해주세요.");
+			$("#logo").trigger("click");
 		}else if(result == 2){
 			alert("비밀번호가 틀렸습니다. 다시 확인해주세요.");
+			$("#logo").trigger("click");
+		}else if(result == 3){
+			alert("관리자 권한이 없습니다. 다시 확인해주세요.");
+			$("#logo").trigger("click");
 		}
 		
 		/* 아이디 찾기 */
@@ -473,7 +478,7 @@
 		<!-- topMenu start -->
 		<div id="topMenu" class="clearfix">
 			<div class="logoWrap">
-				<a href="${pageContext.request.contextPath }/user/"><img src="${pageContext.request.contextPath }/resources/images/logo.png" alt="logo" /></a>
+				<a href="${pageContext.request.contextPath }/user/"><img src="${pageContext.request.contextPath }/resources/images/logo.png" alt="logo" id="logo" /></a>
 			</div>
 			<div class="rankWrap">
 				<p>N월의 카페순위</p>
@@ -488,15 +493,26 @@
 			<div class="topMenuWrap">
 				<ul>
 					<li><a href="#">ABOUT CMukka</a></li>
-					<c:if test="${Auth == null }">
-						<li><a href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a></li>
-						<li><a href="#" data-toggle="modal" data-target="#joinModal">JOIN</a></li>
-						<input type="hidden" value="${error }" id="result">
-					</c:if>
-					<c:if test="${Auth != null }">
-						<li><a href="#">${Auth}님</a></li>
-						<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
-					</c:if>
+					<c:choose>
+						<c:when test="${Auth == null }">
+							<li><a href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a></li>
+							<li><a href="#" data-toggle="modal" data-target="#joinModal">JOIN</a></li>
+							<input type="hidden" value="${error }" id="result">
+						</c:when>
+						<c:when test="${Auth == '관리자' }">
+							<li>
+								<a href="${pageContext.request.contextPath }/admin/">
+									<button style="cursor: pointer;width: 70px;height: 30px;border: 1px;background: red;color: white;letter-spacing: 3px;font-weight: 500;">관리자</button>
+								</a>
+							</li>
+							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
+						</c:when>
+						<c:when test="${Auth != '관리자' }">
+							<li><a href="#">${Auth}님</a></li>
+							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
+						</c:when>
+					</c:choose>
+					
 					<li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
 					<li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
 				</ul>
@@ -516,7 +532,7 @@
 					
 					<!-- Modal body -->
 					<div class="modal-body">
-						<form id="loginForm" action="${pageContext.request.contextPath }/user/login" method="post">
+						<form id="loginForm" action="${pageContext.request.contextPath }/user/" method="post">
 							<img src="${pageContext.request.contextPath }/resources/images/login.png" style="width: 460px;">
 							<h3 style="color: #ed7d31;margin: 10px;">오늘은 어디서 커피한잔? '커 피 무 까'</h3>
 							<input class="inputRegi" type="text" name="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
