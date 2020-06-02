@@ -1,5 +1,8 @@
--- 6월데이터
--- 702-782
+--  <아름데이터>  추천카페(6월데이터)  :  BOARD[게시판]  +  Vote[추천리스트]  + REPLY [댓글 테이블]
+--   게시글 -- 6월데이터 : 702번 ~782번    -----------------------------------------------------------------------------------------------------------------
+
+
+-- [BOARD] -------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
@@ -21,7 +24,7 @@ VALUES(705, 2, NULL, 212, 2, 2, NULL, NULL, '벨리시모앤틱카페', '2020-06
 너무 아기자기하고 마치 동화속에온 그런 기분이었습니다~', '대구 수성구 무학로 37', 4);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(706, 2, NULL, 213, 3, 4, NULL, NULL, '베리앙쥬', '2020-06-01 18:46:16.0', '2020-06-01 18:46:16.0', 0, 85, 1, '정말 달달하니 딱입니다!', '대구 달서구 성당로 3', 0);
+VALUES(706, 2, NULL, 213, 3, 4, NULL, NULL, '베리앙쥬', '2020-06-01 18:46:16.0', '2020-06-01 18:46:16.0', 0, 0, 1, '정말 달달하니 딱입니다!', '대구 달서구 성당로 3', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(707, 2, NULL, 210, 3, 3, NULL, NULL, '로지로키로드', '2020-06-01 18:50:10.0', '2020-06-01 18:50:10.0', 1, 0, 1, '전형적인 동네카페!', '대구 남구 현충로 53', 0);
@@ -31,14 +34,14 @@ VALUES(708, 2, NULL, 214, 9, 4, NULL, NULL, '금토끼', '2020-06-01 18:54:44.0'
 여기 가려고 앞산찾아갈정도는 아닌것같아용! 존맛은 아니지만 괜찮습니당', '대구 남구 큰골길 79', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(709, 2, NULL, 215, 2, 3, NULL, NULL, '커피아름', '2020-06-01 18:57:04.0', '2020-06-01 18:57:04.0', 1, 99, 1, '은은하고 좋아요!!! 강추!!!', '대구 수성구 무학로21안길 96', 3);
+VALUES(709, 2, NULL, 215, 2, 3, NULL, NULL, '커피아름', '2020-06-01 18:57:04.0', '2020-06-01 18:57:04.0', 1, 0, 1, '은은하고 좋아요!!! 강추!!!', '대구 수성구 무학로21안길 96', 3);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(710, 2, NULL, 216, 5, 1, NULL, NULL, '스완네', '2020-06-01 19:00:06.0', '2020-06-01 19:00:06.0', 2, 0, 1, '커피와 레모니라는 레몬 케이크가 맛있는 집 요즘 감성을 한껏 담은 카페라 곧 유명해질거 같아요!
  유명해지기 전에 수성구민이라면 방문해보세요', '대구 수성구 동대구로80길 73', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(711, 2, NULL, 217, 7, 2, NULL, NULL, '바하의선율', '2020-06-01 19:03:06.0', '2020-06-01 19:03:06.0', 1, 15, 1, '자몽프라프치노 맛있었어요 :) 위에 테라스에서 보이는 전경이 좋아요', '대구 중구 동덕로8길 40-20', 5);
+VALUES(711, 2, NULL, 217, 7, 2, NULL, NULL, '바하의선율', '2020-06-01 19:03:06.0', '2020-06-01 19:03:06.0', 1, 0, 1, '자몽프라프치노 맛있었어요 :) 위에 테라스에서 보이는 전경이 좋아요', '대구 중구 동덕로8길 40-20', 5);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(712, 2, NULL, 218, 9, 2, NULL, NULL, '1990대명', '2020-06-01 19:05:00.0', '2020-06-01 19:05:00.0', 1, 0, 1, '분위기 너무 좋아요!', '대구 남구 대경7길 12-4', 0);
@@ -56,7 +59,7 @@ INSERT INTO coffeemukka.board
 VALUES(716, 2, NULL, 212, 3, 4, NULL, NULL, '베리앙쥬', '2020-06-01 19:16:10.0', '2020-06-01 19:16:10.0', 0, 0, 1, '진짜 너무 맛있고 상큼하고 최고에요!', '대구 달서구 성당로 3', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(717, 2, NULL, 211, 7, 4, NULL, NULL, '라이브와이어커피하우스', '2020-06-01 19:18:03.0', '2020-06-01 19:18:03.0', 0, 18, 1, '퇴근하고 달달하니~ 넘 짱이야!', '대구 동구 동촌로46길 12', 0);
+VALUES(717, 2, NULL, 211, 7, 4, NULL, NULL, '라이브와이어커피하우스', '2020-06-01 19:18:03.0', '2020-06-01 19:18:03.0', 0, 0, 1, '퇴근하고 달달하니~ 넘 짱이야!', '대구 동구 동촌로46길 12', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(718, 2, NULL, 209, 7, 4, NULL, NULL, '커피모렌', '2020-06-01 19:19:35.0', '2020-06-01 19:19:35.0', 0, 0, 1, '녹차 덕후인데 정말 좋았어요!', '대구 중구 동성로2길 71', 0);
@@ -70,7 +73,7 @@ VALUES(720, 2, NULL, 211, 1, 1, NULL, NULL, '시즈더데이', '2020-06-01 19:21
 ', '대구 중구 중앙대로 412-26', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(721, 2, NULL, 213, 3, 4, NULL, NULL, '로지로키로드', '2020-06-01 19:21:52.0', '2020-06-01 19:21:52.0', 0, 21, 1, '상큼하니 기분전환 제대로였습니다^^', '대구 남구 현충로 53', 0);
+VALUES(721, 2, NULL, 213, 3, 4, NULL, NULL, '로지로키로드', '2020-06-01 19:21:52.0', '2020-06-01 19:21:52.0', 0, 0, 1, '상큼하니 기분전환 제대로였습니다^^', '대구 남구 현충로 53', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(722, 2, NULL, 214, 5, 6, NULL, NULL, '슬로우라이프', '2020-06-01 19:22:39.0', '2020-06-01 19:22:39.0', 0, 0, 1, '여기서 열코딩 하고 왔네요!', '대구 수성구 동대구로77길 33-6', 0);
@@ -79,7 +82,7 @@ INSERT INTO coffeemukka.board
 VALUES(723, 2, NULL, 1, 7, 1, NULL, NULL, '미도다방', '2020-06-01 19:24:17.0', '2020-06-01 19:24:17.0', 0, 0, 1, '마치 옛날로 돌아간 기분이에용', '대구 중구 진골목길 14', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(724, 2, NULL, 1, 7, 4, NULL, NULL, '바하의선율', '2020-06-01 19:24:50.0', '2020-06-01 19:24:50.0', 0, 3, 1, '정말 맛있습니다^^', '대구 중구 동덕로8길 40-20', 0);
+VALUES(724, 2, NULL, 1, 7, 4, NULL, NULL, '바하의선율', '2020-06-01 19:24:50.0', '2020-06-01 19:24:50.0', 0, 0, 1, '정말 맛있습니다^^', '대구 중구 동덕로8길 40-20', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(725, 2, NULL, 209, 8, 5, NULL, NULL, '라이브와이어커피하우스', '2020-06-01 19:25:27.0', '2020-06-01 19:25:27.0', 1, 0, 1, '으아아아아아아ㅏ아ㅏㅏㅏ~~~~~~~ 드디어 실물영접', '대구 동구 동촌로46길 12', 0);
@@ -88,7 +91,7 @@ INSERT INTO coffeemukka.board
 VALUES(726, 2, NULL, 210, 11, 5, NULL, NULL, '수다', '2020-06-01 19:25:51.0', '2020-06-01 19:25:51.0', 1, 0, 1, '너무 귀여워요!', '대구 동구 동화사2길 21-10', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(727, 2, NULL, 208, 2, 4, NULL, NULL, '벨리시모앤틱카페', '2020-06-01 19:26:45.0', '2020-06-01 19:26:45.0', 1, 0, 1, '너무 상큼합니다^^', '대구 수성구 무학로 37', 0);
+VALUES(727, 2, NULL, 208, 2, 4, NULL, NULL, '벨리시모앤틱카페', '2020-06-01 19:26:45.0', '2020-06-01 19:26:45.0', 1, 1, 1, '너무 상큼합니다^^', '대구 수성구 무학로 37', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(728, 2, NULL, 207, 10, 1, NULL, NULL, '161커피스튜디오', '2020-06-01 19:27:48.0', '2020-06-01 19:27:48.0', 1, 0, 1, '오랜만에 데이트 하고 기분전환도 하고 즐거웠어요~', '대구 달성군 현풍읍 비슬로 581', 1);
@@ -106,7 +109,7 @@ INSERT INTO coffeemukka.board
 VALUES(732, 2, NULL, 213, 6, 2, NULL, NULL, '카페디치엘로', '2020-06-01 19:34:42.0', '2020-06-01 19:34:42.0', 0, 0, 1, '북구에서 즐기는 한옥뷰~ 엑스코 주변에 있어요!', '대구 북구 유통단지로8길 46', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(733, 2, NULL, 214, 7, 4, NULL, NULL, '미도다방', '2020-06-01 19:35:22.0', '2020-06-01 19:35:22.0', 0, 22, 1, '진짜 정이 많으세요~', '대구 중구 진골목길 14', 0);
+VALUES(733, 2, NULL, 214, 7, 4, NULL, NULL, '미도다방', '2020-06-01 19:35:22.0', '2020-06-01 19:35:22.0', 0, 0, 1, '진짜 정이 많으세요~', '대구 중구 진골목길 14', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(734, 2, NULL, 216, 5, 4, NULL, NULL, '슬로우라이프', '2020-06-01 19:36:14.0', '2020-06-01 19:36:14.0', 0, 0, 1, '망고 정말 고와요... 한번 먹어볼만합니다 진짜 강추', '대구 수성구 동대구로77길 33-6', 0);
@@ -134,16 +137,16 @@ INSERT INTO coffeemukka.board
 VALUES(742, 2, NULL, 210, 6, 1, NULL, NULL, '카페디치엘로', '2020-06-01 20:11:33.0', '2020-06-01 20:11:33.0', 0, 0, 1, '시원하고 좋아요~ ', '대구 북구 유통단지로8길 46', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(743, 2, NULL, 214, 8, 4, NULL, NULL, '라이브와이어커피하우스', '2020-06-01 20:12:25.0', '2020-06-01 20:12:25.0', 0, 0, 1, '녹덕들은 한번쯤 와볼만한 카페!', '대구 동구 동촌로46길 12', 0);
+VALUES(743, 2, NULL, 214, 8, 4, NULL, NULL, '라이브와이어커피하우스', '2020-06-01 20:12:25.0', '2020-06-01 20:12:25.0', 0, 2, 1, '녹덕들은 한번쯤 와볼만한 카페!', '대구 동구 동촌로46길 12', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(744, 2, NULL, 212, 2, 4, NULL, NULL, '벨리시모앤틱카페', '2020-06-01 20:13:49.0', '2020-06-01 20:13:49.0', 0, 0, 1, '치즈케익 맛집인거 같아요~ 분위기도 정말 좋고 맛있고 행복한느낌 한가득이네요~', '대구 수성구 무학로 37', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(745, 2, NULL, 211, 7, 1, NULL, NULL, '미도다방', '2020-06-01 20:15:00.0', '2020-06-01 20:15:00.0', 79, 66, 1, '정갈한느낌~ 마치 타임머신타고 옛날로 돌아간 그런 기분입니다', '대구 중구 진골목길 14', 0);
+VALUES(745, 2, NULL, 211, 7, 1, NULL, NULL, '미도다방', '2020-06-01 20:15:00.0', '2020-06-01 20:15:00.0', 79, 3, 1, '정갈한느낌~ 마치 타임머신타고 옛날로 돌아간 그런 기분입니다', '대구 중구 진골목길 14', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(746, 2, NULL, 218, 11, 5, NULL, NULL, '수다', '2020-06-01 20:16:59.0', '2020-06-01 20:16:59.0', 2, 0, 1, '앜 너무 귀여버요~ 나중에 우리 보리도 델꾸올라구용^^', '대구 동구 동화사2길 21-10', 6);
+VALUES(746, 2, NULL, 218, 11, 5, NULL, NULL, '수다', '2020-06-01 20:16:59.0', '2020-06-01 20:16:59.0', 2, 4, 1, '앜 너무 귀여버요~ 나중에 우리 보리도 델꾸올라구용^^', '대구 동구 동화사2길 21-10', 6);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(747, 2, NULL, 1, 1, 4, NULL, NULL, '커피모렌', '2020-06-01 20:18:17.0', '2020-06-01 20:18:17.0', 0, 0, 1, '딸기 와플이 유명하다고 해서 와봤어요!
@@ -173,7 +176,7 @@ INSERT INTO coffeemukka.board
 VALUES(754, 2, NULL, 215, 1, 1, NULL, NULL, '너에게간다', '2020-06-01 20:26:44.0', '2020-06-01 20:26:44.0', 0, 0, 1, '감성적이고 예뻐요 사진을 못찍었네요', '대구 중구 중앙대로79길 11', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(755, 2, NULL, 214, 2, 4, NULL, NULL, '커피아름', '2020-06-01 20:29:11.0', '2020-06-01 20:29:11.0', 333, 0, 1, '너무 앙증맞지 않나요?!', '대구 수성구 무학로21안길 96', 0);
+VALUES(755, 2, NULL, 214, 2, 4, NULL, NULL, '커피아름', '2020-06-01 20:29:11.0', '2020-06-01 20:29:11.0', 333, 5, 1, '너무 앙증맞지 않나요?!', '대구 수성구 무학로21안길 96', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(756, 2, NULL, 211, 3, 3, NULL, NULL, '그린페이스카페', '2020-06-01 20:31:58.0', '2020-06-01 20:31:58.0', 0, 0, 1, '테이크아웃해서 책보면서 힐링했습니다!', '대구 달서구 성당로 117-10', 0);
@@ -203,7 +206,7 @@ INSERT INTO coffeemukka.board
 VALUES(763, 2, NULL, 209, 11, 1, NULL, NULL, '프라그란자', '2020-06-01 20:39:11.0', '2020-06-01 20:39:11.0', 0, 0, 1, '간만에 팔공산데이트는 역시 프라그란자!', '대구 동구 파계로 622', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(764, 2, NULL, 209, 7, 4, NULL, NULL, '호롱커피', '2020-06-01 20:40:25.0', '2020-06-01 20:40:25.0', 0, 22, 1, '요즘 맛있는 디저트 가게가 많아서 그런지, 앙버터가 만족스럽지 않았어요. 
+VALUES(764, 2, NULL, 209, 7, 4, NULL, NULL, '호롱커피', '2020-06-01 20:40:25.0', '2020-06-01 20:40:25.0', 0, 0, 1, '요즘 맛있는 디저트 가게가 많아서 그런지, 앙버터가 만족스럽지 않았어요. 
 딸기철이 지난 여름이라 딸기케익도 아쉬웠구요. 
 그래도 더운 날 시원하게 쉬어가기엔 좋았어요.', '대구 중구 관덕정길 13-13', 0);
 INSERT INTO coffeemukka.board
@@ -217,10 +220,10 @@ INSERT INTO coffeemukka.board
 VALUES(767, 2, NULL, 213, 3, 4, NULL, NULL, '베리앙쥬', '2020-06-01 20:43:19.0', '2020-06-01 20:43:19.0', 0, 0, 1, '꾸덕꾸덕하니 식감 너무 좋아요!', '대구 달서구 성당로 3', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(768, 2, NULL, 215, 3, 2, NULL, NULL, '그린페이스카페', '2020-06-01 20:44:33.0', '2020-06-01 20:44:33.0', 2, 0, 1, '더 더워지기전에 나들이 다녀왔습니다!!!!', '대구 달서구 성당로 117-10', 8);
+VALUES(768, 2, NULL, 215, 3, 2, NULL, NULL, '그린페이스카페', '2020-06-01 20:44:33.0', '2020-06-01 20:44:33.0', 2, 6, 1, '더 더워지기전에 나들이 다녀왔습니다!!!!', '대구 달서구 성당로 117-10', 8);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(769, 2, NULL, 216, 1, 4, NULL, NULL, '커피모렌', '2020-06-01 20:45:20.0', '2020-06-01 20:45:20.0', 1, 0, 1, '너무 귀여버서 못먹겠네요!', '대구 중구 동성로2길 71', 7);
+VALUES(769, 2, NULL, 216, 1, 4, NULL, NULL, '커피모렌', '2020-06-01 20:45:20.0', '2020-06-01 20:45:20.0', 1, 7, 1, '너무 귀여버서 못먹겠네요!', '대구 중구 동성로2길 71', 7);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(770, 2, NULL, 217, 3, 4, NULL, NULL, '베리앙쥬', '2020-06-01 20:46:22.0', '2020-06-01 20:46:22.0', 0, 0, 1, '왜 우리동네 딸기맛집인지 알꺼같아요!', '대구 달서구 성당로 3', 0);
@@ -238,11 +241,11 @@ INSERT INTO coffeemukka.board
 VALUES(774, 2, NULL, 217, 7, 3, NULL, NULL, '미도다방', '2020-06-01 20:51:27.0', '2020-06-01 20:51:27.0', 43, 0, 1, '노른자 동동~', '대구 중구 진골목길 14', 9);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(775, 2, NULL, 1, 5, 2, NULL, NULL, '스완네', '2020-06-01 20:52:57.0', '2020-06-01 20:52:57.0', 25, 0, 1, '원래부터 한옥뷰를 좋아했고~
+VALUES(775, 2, NULL, 1, 5, 2, NULL, NULL, '스완네', '2020-06-01 20:52:57.0', '2020-06-01 20:52:57.0', 25, 8, 1, '원래부터 한옥뷰를 좋아했고~
 정말 고즈넉하니 분위기 정말 짱입니다!', '대구 수성구 동대구로80길 73', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(776, 2, NULL, 209, 10, 6, NULL, NULL, '비욘드유어드림', '2020-06-01 20:54:21.0', '2020-06-01 20:54:21.0', 66, 19, 1, '간만에 열공하고 왔네요~
+VALUES(776, 2, NULL, 209, 10, 6, NULL, NULL, '비욘드유어드림', '2020-06-01 20:54:21.0', '2020-06-01 20:54:21.0', 66, 0, 1, '간만에 열공하고 왔네요~
 여기 좋아요~ 학습분위기도 정말 좋고!!! ', '대구 달성군 다사읍 대실역남로 2', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
@@ -252,20 +255,208 @@ INSERT INTO coffeemukka.board
 VALUES(778, 2, NULL, 209, 7, 4, NULL, NULL, '코즈', '2020-06-01 20:57:54.0', '2020-06-01 20:57:54.0', 144, 0, 1, '개인적으로 스콘을 매우 좋아해서 기대했던곳!', '대구 중구 달구벌대로 2125-8', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(779, 2, NULL, 211, 2, 1, NULL, NULL, '쿰', '2020-06-01 21:00:08.0', '2020-06-01 21:00:08.0', 123, 66, 1, '터키식 카페 독특하쥬!', '대구 수성구 수성로14길 41-27', 0);
+VALUES(779, 2, NULL, 211, 2, 1, NULL, NULL, '쿰', '2020-06-01 21:00:08.0', '2020-06-01 21:00:08.0', 123, 0, 1, '터키식 카페 독특하쥬!', '대구 수성구 수성로14길 41-27', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(780, 2, NULL, 212, 1, 1, NULL, NULL, '마주봄', '2020-06-01 21:02:25.0', '2020-06-01 21:02:25.0', 100, 0, 1, '단둘이 기분내기 딱!', '대구 중구 중앙대로 434-8', 0);
+VALUES(780, 2, NULL, 212, 1, 1, NULL, NULL, '마주봄', '2020-06-01 21:02:25.0', '2020-06-01 21:02:25.0', 100, 9, 1, '단둘이 기분내기 딱!', '대구 중구 중앙대로 434-8', 0);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
-VALUES(781, 2, NULL, 214, 1, 1, NULL, NULL, '노스폴', '2020-06-01 21:04:50.0', '2020-06-01 21:04:50.0', 25, 0, 1, '꾸덕꾸덕 좋아요~ 크림이 정말 맛있고 한번먹으면 또 생각나는맛!', '대구 중구 중앙대로 392', 11);
+VALUES(781, 2, NULL, 214, 1, 1, NULL, NULL, '노스폴', '2020-06-01 21:04:50.0', '2020-06-01 21:04:50.0', 25, 10, 1, '꾸덕꾸덕 좋아요~ 크림이 정말 맛있고 한번먹으면 또 생각나는맛!', '대구 중구 중앙대로 392', 11);
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(782, 2, NULL, 215, 3, 4, NULL, NULL, '베리앙쥬', '2020-06-01 21:06:10.0', '2020-06-01 21:06:10.0', 30, 0, 1, '진짜 여기 딸기 제대로인거 같습니다
 어머니 생신이라서 케익사서 가네요', '대구 달서구 성당로 3', 0);
 
+-- [VOTE] -------------------------------------------------------------------------------------------------------------------------------------
+-- 10 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4170,781,1,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4171,781,2,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4172,781,3,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4173,781,4,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4174,781,5,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4175,781,6,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4176,781,7,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4177,781,8,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4178,781,9,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4179,781,10,'2020-06-01 21:06:10.0');
 
--- 댓글
+-- 9 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4180,780,11,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4181,780,12,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4182,780,13,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4183,780,14,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4184,780,15,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4185,780,16,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4186,780,17,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4187,780,18,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4188,780,19,'2020-06-01 21:06:10.0');
+
+-- 8 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4189,775,20,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4190,775,21,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4191,775,22,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4192,775,23,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4193,775,24,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4194,775,25,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4195,775,26,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4196,775,27,'2020-06-01 21:06:10.0');
+
+-- 7 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4197,769,28,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4198,769,39,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4199,769,29,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4200,769,30,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4201,769,209,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4202,769,210,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4203,769,211,'2020-06-01 21:06:10.0');
+
+
+-- 6 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4204,768,212,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4205,768,213,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4206,768,214,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4207,768,215,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4208,768,216,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4209,768,217,'2020-06-01 21:06:10.0');
+
+-- 5 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4210,755,218,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4211,755,1,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4212,755,2,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4213,755,3,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4214,755,4,'2020-06-01 21:06:10.0');
+
+-- 4 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4215,746,5,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4216,746,6,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4217,746,7,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4218,746,8,'2020-06-01 21:06:10.0');
+
+-- 3 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4219,745,11,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4220,745,22,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4221,745,33,'2020-06-01 21:06:10.0');
+
+-- 2 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4223,743,44,'2020-06-01 21:06:10.0');
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4224,743,55,'2020-06-01 21:06:10.0');
+
+-- 1 --
+INSERT INTO coffeemukka.vote
+(vote_no,board_no,user_no,vote_date)
+VALUES(4225,727,209,'2020-06-01 21:06:10.0');
+
+
+-- [REPLY] -------------------------------------------------------------------------------------------------------------------------------------
+
 INSERT INTO coffeemukka.reply
 (comment_no, board_no, user_no, comment_content, registration_date, update_date)
 VALUES(2522, 781, 1, '저도 가보고싶어요!', '2020-06-01 21:12:07.0', '2020-06-01 21:12:07.0');
