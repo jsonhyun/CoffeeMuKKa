@@ -29,6 +29,8 @@
 	<beans:bean id="uploadPath" class="java.lang.String"> 
 		<!-- String은 자바에 있는 클래스이기 때문에 @Autowired로 주입하지 않고 @Resource(name="uploadPath")로 주입받음 -->
 		<beans:constructor-arg value="c:/zzz/upload/"></beans:constructor-arg>
+		<!-- 서버에 올릴 때 경로 수정해야함 -->
+		<!-- <beans:constructor-arg value="/home/java3-2/webapps/coffeemukka/zzz/upload/"></beans:constructor-arg> -->
 	</beans:bean>
 	
 	<!-- 비번찾기 메일 보내기 -->
