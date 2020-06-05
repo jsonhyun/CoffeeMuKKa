@@ -72,7 +72,7 @@ public class UserCafeController {
 		
 		return "/user/userMukkaCafeZoneList";
 	}
-	
+	/**카페 상세정보**/
 	@RequestMapping(value = "/mukkaCafe/zone/read", method = RequestMethod.GET)
 	public String cafeZoneRead(int cafeNo, boolean flag, SearchCriteria cri, Model model) throws Exception {
 		/* 카페 기본 정보 검색 */
