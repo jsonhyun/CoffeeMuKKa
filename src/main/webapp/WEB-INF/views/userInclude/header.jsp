@@ -508,7 +508,7 @@
 							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
 						</c:when>
 						<c:when test="${Auth != '관리자' }">
-							<li><a href="#">${Auth}님</a></li>
+							<li><a href="${pageContext.request.contextPath }/user/mypage">${Auth}님</a></li>
 							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
 						</c:when>
 					</c:choose>

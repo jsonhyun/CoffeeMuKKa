@@ -27,6 +27,11 @@
 		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/coffeemukka"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="rootroot"></property>
+		
+		<!-- 서버에 올릴 때 아래의 내용으로 변경해야함 -->
+		<!-- <property name="url" value="jdbc:log4jdbc:mariadb://java3-1.yi.or.kr:3306/coffeemukka?useUnicode=true&amp;characterEncoding=utf8"></property>
+		<property name="username" value="java3-1"></property>
+		<property name="password" value="java3-1333"></property> -->
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -233,6 +233,13 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.2</version>
 		</dependency>
+		
+		<!-- 서버에 올릴때 이거 추가 후 업뎃하고 올릴것 -->
+		<!-- <dependency>
+    			<groupId>org.mariadb.jdbc</groupId>
+    			<artifactId>mariadb-java-client</artifactId>
+    			<version>1.1.7</version>
+		</dependency> -->
 
 	</dependencies>
     <build>
