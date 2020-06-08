@@ -1185,8 +1185,16 @@ select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_n
 
 select * from cafe where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by registration_date desc limit 4;
 		
-select left(DATE_SUB(curdate(), INTERVAL 0 month),7);
+select left(DATE_SUB(curdate(), INTERVAL 0 month),7); -- 2020 06
 
+select left(DATE_SUB(curdate(), INTERVAL 1 month),7); -- 2020 05
+
+select * from starpoint where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(registration_date,7); -- 5월달 별점
+
+select c.cafe_name, sum(s.star_point), s.registration_date from cafe c left join starpoint s on c.cafe_no = s.cafe_no where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7);
+
+
+select c.cafe_name, sum(s.star_point)/5, s.registration_date from cafe c left join starpoint s on c.cafe_no = s.cafe_no where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name; 
 
 select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 			   b.view_number , b.writing_title , b.registration_date , b.update_date,
@@ -1199,3 +1207,30 @@ select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board
 						left join zone z on c.zone_no = z.zone_no 
 						left join theme t on c.theme_no = t.theme_no
 						where board_no2 =1 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) order by vote_number desc limit 14;
+						
+				
+select * from cafe c left join starpoint s on c.cafe_no = s.cafe_no where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date ,7) order by star_point desc limit 10;
+
+
+
+select * from cafe where cafe_name = '차니노유메';
+
+select c.cafe_name, s.star_point, s.registration_date from cafe c left join starpoint s on c.cafe_no = s.cafe_no where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7); -- 5월
+select c.cafe_name, s.star_point, s.registration_date from cafe c left join starpoint s on c.cafe_no = s.cafe_no where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(s.registration_date,7); -- 6월
+
+select count(star_point) as '총별점개수'from starpoint where cafe_no = 69; -- 총개수 : 69개
+
+select count(star_point) as '총별점개수'from starpoint where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(registration_date,7) and cafe_no = 69; -- 5월 9개
+
+
+
+group by c.cafe_name; 
+
+-- 전월기준 별점평균순위 : 영업중인 카페만
+select c.cafe_no, c.cafe_name, count(s.star_point), sum(s.star_point), round(sum(s.star_point)/count(s.star_point), 1), c.cafe_cdt
+from cafe c left join starpoint s
+on c.cafe_no = s.cafe_no
+where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) and c.cafe_cdt = 1
+group by c.cafe_name
+order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;
+
