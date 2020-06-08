@@ -36,6 +36,23 @@
 		}).open();
 	}
 	
+	/* 로그인 show */
+	function loginShow() {
+		$('#findIdModal').removeClass("fade");
+		$('#findPassModal').removeClass("fade");
+		$('#joinModal').removeClass("fade");
+		$('#loginModal').removeClass("fade");
+		$('#findIdModal').modal('hide');
+		$('#findPassModal').modal('hide');
+		$('#joinModal').modal('hide');
+		$('#loginModal').modal('show');
+		$('#findIdModal').addClass("fade");
+		$('#findPassModal').addClass("fade");
+		$('#joinModal').addClass("fade");
+		$('#loginModal').addClass("fade");
+	}
+	
+	
 	$(function(){
 		/* main 페이지 searchBox 오픈 */
 		var url = location.href.split("/");
@@ -157,21 +174,12 @@
 			
 			return false;
 		})
-		/* 로그인, 아이디 찾기, 비번찾기, 회원가입 전환시 작동 */
+		
+		/* 로그인, 아이디 찾기, 비번찾기, 회원가입 전환시 작동 */		
 		$(".login").click(function() {
-			$('#findIdModal').removeClass("fade");
-			$('#findPassModal').removeClass("fade");
-			$('#joinModal').removeClass("fade");
-			$('#loginModal').removeClass("fade");
-			$('#findIdModal').modal('hide');
-			$('#findPassModal').modal('hide');
-			$('#joinModal').modal('hide');
-			$('#loginModal').modal('show');
-			$('#findIdModal').addClass("fade");
-			$('#findPassModal').addClass("fade");
-			$('#joinModal').addClass("fade");
-			$('#loginModal').addClass("fade");
+			loginShow();
 		})
+		
 		$("#findId").click(function() {
 			$('#findIdModal').removeClass("fade");
 			$('#loginModal').removeClass("fade");
@@ -432,6 +440,7 @@
 			})
 			
 		})
+		
 	}) 
 </script>
 <style>

@@ -196,6 +196,16 @@ public class BoardDAOImpl implements BoardDAO{
 	public int yesterBoardCnt(int boardType) throws Exception {
 		return sqlSession.selectOne(namespace + "yesterBoardCnt", boardType);
 	}
+	
+	// 로그인 회원 게시글 좋아요 클릭 여부
+	@Override
+	public int userVoteCdt(int userNo, int boardNo) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("userNo", userNo);
+		map.put("boardNo", boardNo);
+		
+		return sqlSession.selectOne(namespace + "userVoteCdt", map);
+	}
 
 	
 	/*** 탐방기 ***/
@@ -285,6 +295,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception {
 		return sqlSession.selectList(namespace+"cafeReviewMonthBestListHome");
 	}
+	
 
 
 	

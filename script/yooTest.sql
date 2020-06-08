@@ -376,6 +376,9 @@ select powerlink_cdt from cafe;
 update cafe c right join powerlink p on c.cafe_no = p.cafe_no 
 	set c.powerlink_cdt = p.pow_cdt;
 
+-- 좋아요 여부 확인
+select count(*) from vote where user_no = 1 and board_no = 268;
+select * from vote;
 
 
 

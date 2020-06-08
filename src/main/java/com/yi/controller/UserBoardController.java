@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,7 +115,7 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/read", method = RequestMethod.GET)
-	public String communityReviewRead(int boardNo, boolean flag, SearchCriteria cri, Model model) throws Exception {
+	public String communityReviewRead(int boardNo, HttpSession session, boolean flag, SearchCriteria cri, Model model) throws Exception {
 		BoardVO vo = service.cafeReviewRead(boardNo);
 		//System.out.println("vo-----------------" + vo.getCafeNo().getCafeNo());
 		
@@ -128,6 +129,8 @@ public class UserBoardController {
 		
 		
 		List<ThemeVO> themeRank = themeService.cafeThemeRank(vo.getCafeNo().getCafeNo());
+		
+		
 		//System.out.println("themeRank ------------------------- " + themeRank);
 		model.addAttribute("board", vo);
 		model.addAttribute("cri", cri);
@@ -135,6 +138,8 @@ public class UserBoardController {
 		model.addAttribute("sameCnt", sameCnt);
 		model.addAttribute("themeRank", themeRank);
 		
+		System.out.println("vo-------------------" + boardNo);
+		System.out.println("authNo===============" + session.getAttribute("AuthNo"));
 		//System.out.println("themeRank-----------------------------------" + themeRank);
 		return "/user/userCommunityReviewRead";
 	}
@@ -146,7 +151,7 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.POST)
-	public String communityReviewRegisterPost(BoardVO vo,  MultipartFile imgFile) throws Exception {
+	public String communityReviewRegisterPost(BoardVO vo, MultipartFile imgFile) throws Exception {
 		//System.out.println("register POST ----------------- " + vo);
 		//System.out.println("register POST ----------------- " + imgFile);
 		
@@ -156,9 +161,9 @@ public class UserBoardController {
 		imgVO.setImageName(imageName);
 
 		// 회원 no 임시 설정 - login 기능 만들어지면 삭제 후 테스트 해봐야 함
-		UsersVO userNo = new UsersVO();
-		userNo.setUserNo(3);
-		vo.setUserNo(userNo);
+//		UsersVO userNo = new UsersVO();
+//		userNo.setUserNo(3);
+//		vo.setUserNo(userNo);
 		
 		service.cafeReviewInsert(vo, imgVO);
 		
