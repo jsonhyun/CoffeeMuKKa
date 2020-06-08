@@ -146,7 +146,7 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/register", method = RequestMethod.POST)
-	public String communityReviewRegisterPost(BoardVO vo,  MultipartFile imgFile) throws Exception {
+	public String communityReviewRegisterPost(BoardVO vo, MultipartFile imgFile) throws Exception {
 		//System.out.println("register POST ----------------- " + vo);
 		//System.out.println("register POST ----------------- " + imgFile);
 		
@@ -156,9 +156,9 @@ public class UserBoardController {
 		imgVO.setImageName(imageName);
 
 		// 회원 no 임시 설정 - login 기능 만들어지면 삭제 후 테스트 해봐야 함
-		UsersVO userNo = new UsersVO();
-		userNo.setUserNo(3);
-		vo.setUserNo(userNo);
+//		UsersVO userNo = new UsersVO();
+//		userNo.setUserNo(3);
+//		vo.setUserNo(userNo);
 		
 		service.cafeReviewInsert(vo, imgVO);
 		
