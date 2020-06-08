@@ -508,7 +508,8 @@
 							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
 						</c:when>
 						<c:when test="${Auth != '관리자' }">
-							<li><a href="${pageContext.request.contextPath }/user/mypage">${Auth}님</a></li>
+							<input type="hidden" value="${userId }">
+							<li><a href="${pageContext.request.contextPath }/user/mypage?userId=${userId}">${Auth}님</a></li>
 							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
 						</c:when>
 					</c:choose>
@@ -536,7 +537,7 @@
 							<img src="${pageContext.request.contextPath }/resources/images/login.png" style="width: 460px;">
 							<h3 style="color: #ed7d31;margin: 10px;">오늘은 어디서 커피한잔? '커 피 무 까'</h3>
 							<input class="inputRegi" type="text" name="userId" placeholder="아이디" style="margin-bottom: 20px;"><br>
-							<input class="inputRegi" type="password" name="password" placeholder="비밀번호" style="margin-bottom: 5px;"><br>
+							<input class="inputRegi" type="password" name="password" autocomplete="on" placeholder="비밀번호" style="margin-bottom: 5px;"><br>
 							<a href="#" id="findId" style="color:#5B9BD5;margin-left: 150px;">아이디 찾기</a>
 							<a href="#" id="findPass" style="color:#5B9BD5;margin-left: 10px;">비밀번호 찾기</a><br>
 							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 337px;" value="로그인">
@@ -638,8 +639,10 @@
 						<input class="inputRegi1" type="text" name="duplCheckId" id="duplCheckId" placeholder="아이디">
 						<input type="hidden" id="flagId" value="false">
 						<button class="btnCheck" id="btnDuplCheckId" style="cursor: pointer;">중복확인</button><br>
-						<input class="inputRegi" type="password" id="pass1" placeholder="비밀번호"><br>
-						<input class="inputRegi" type="password" id="pass2" placeholder="비밀번호 확인"><br>
+						<form>
+							<input class="inputRegi" type="password" id="pass1" autocomplete="on" placeholder="비밀번호"><br>
+							<input class="inputRegi" type="password" id="pass2" autocomplete="on" placeholder="비밀번호 확인"><br>
+						</form>
 						<input class="inputRegi" type="text" id="joinName" placeholder="이름"><br>
 						<input class="inputRegi1" type="text" name="duplCheckNick" id="duplCheckNick" placeholder="닉네임">
 						<button class="btnCheck"  id="btnDuplCheckNick" style="cursor: pointer;">중복확인</button><br>

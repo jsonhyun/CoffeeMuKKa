@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
-<!-- bar-rating -->
+<!-- 별점 관련 css/javascript -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/w3.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">

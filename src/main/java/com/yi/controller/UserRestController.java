@@ -313,7 +313,7 @@ public class UserRestController {
 		
 		//임시비밀번호 DB 업데이트
 		dbVO.setPassword(newPass);
-		usersService.modifyUsers(dbVO);
+		usersService.modifyUsersPass(dbVO);
 
 		try {
 			MimeMessage message = mailSender.createMimeMessage();

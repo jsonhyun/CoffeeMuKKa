@@ -15,13 +15,15 @@ public class UsersService {
 	public UsersVO readUsers(String userid) throws Exception {
 		return dao.readUsers(userid);
 	}
-
+	public UsersVO selectUserPage(String userid) throws Exception{
+		return dao.selectUserPage(userid);
+	}
 	public UsersVO findUsers(UsersVO vo) throws Exception {
 		return dao.findUsers(vo);
 	}
 	
-	public void modifyUsers(UsersVO vo) throws Exception{
-		dao.modifyUsers(vo);
+	public void modifyUsersPass(UsersVO vo) throws Exception{
+		dao.modifyUsersPass(vo);
 	}
 
 	public UsersVO duplCheckId(UsersVO vo) throws Exception {

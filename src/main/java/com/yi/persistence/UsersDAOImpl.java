@@ -36,8 +36,8 @@ public class UsersDAOImpl implements UsersDAO {
 	}
 
 	@Override
-	public void modifyUsers(UsersVO vo) throws Exception {
-		sqlsession.update(namespace+"modifyUsers", vo);
+	public void modifyUsersPass(UsersVO vo) throws Exception {
+		sqlsession.update(namespace+"modifyUsersPass", vo);
 	}
 
 	@Override
@@ -53,6 +53,11 @@ public class UsersDAOImpl implements UsersDAO {
 	@Override
 	public void register(UsersVO vo) throws Exception {
 		sqlsession.insert(namespace+"register", vo);
+	}
+
+	@Override
+	public UsersVO selectUserPage(String userid) throws Exception {
+		return sqlsession.selectOne(namespace+"selectUserPage", userid);
 	}
 
 }
