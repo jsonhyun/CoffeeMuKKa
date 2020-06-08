@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.StarPointMapper">
+
+	<resultMap type="StarpointVO" id="starPointResult">
+		<id property="starPointNo" column="star_point_no"/>
+		<result property="cafeNo.cafeNo" column="cafe_no"/>
+		<result property="themeNo.themeNo" column="theme_no"/>
+		<result property="userNo.userNo" column="user_no"/>
+		<result property="starPoint" column="star_point"/>
+		<result property="starPointComment" column="star_point_comment"/>
+		<result property="registrationDate" column="registration_date"/>
+		<result property="updateDate" column="update_date"/>
+	</resultMap>
+</mapper>

@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../userInclude/header.jsp" %>
+<!-- bar-rating -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/w3.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
 <style>
 	/* 타이틀 클릭시 해당페이지 이동*/
 	h2 a.mainTitle:hover{
@@ -231,65 +236,120 @@
 		border: 5px solid red;
 		margin: -5px;
 		margin-left: 0.5px;
+		cursor: pointer;
 	}
+	/* 전월기준 베스트 10 */
 	
 	.likeCafeTitle span {
 		font-size: 16px;
 		font-weight: 400;
-	}
-	
-	.likeCafeList1 {
-		overflow: hidden;
-		margin-bottom: 15px;
-	}
-	
-	.cafeList1 {
-		/* 임시설정 */
-		background-color: #ddd;	
+	}	
+	div.likeCafeList ul{
+		width: 100%;
 		
-		float: left;
-		width: 50%;
-		height: 234px;
 	}
 	
-	.cafeList2-5 {
-		float: right;
-		width: 48%;
-	}
-	
-	.cafeList2-5 ul {
-		overflow: hidden;
-	}
-	
-	.cafeList2-5 ul li {
-		/* 임시 설정 */
+	div.likeCafeList ul li{
+		width: 49%;
+		height: 142px;
 		background-color: #ddd;
-		
+		margin-bottom: 5px;
+		margin-left: 2.5px;
+		margin-right: 2.5px;
 		float: left;
-		width: 46%;
-		height: 112px;
-		margin: 5px;
-		margin-top: 0;
+		position: relative;
 	}
-	
-	.cafeList2-5 ul li:nth-of-type(n+3) {
-		margin-top: 5px;
+	img.bestCafeImg{
+		width: 100%;
+		height: 142px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		/* opacity: 0;	 */	
 	}
-	
-	.likeCafeList2 ul{
-		overflow: hidden;
+	div.likeRank_no{
+		width: 13%;
+		font-weight: bold;
+		color: white;
+		text-align: center;
+		background-color: #FF5E00;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 2;			
 	}
-	
-	.likeCafeList2 ul li {
-		/* 임시 설정 */
-		background-color: #ddd;
-	
-		float: left;
-		width: 18%;
-		height: 100px;
-		margin: 5px;
-		margin-top: 0;
+	div.likeZoneIcon{
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 2;
 	}
+	div.likeCafeList ul li:hover div.like_dummy{
+		opacity: 1;
+		cursor: pointer;
+	}	
+	div.like_dummy{
+		width: 100%;
+		height: 142px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0;
+		background-color: rgba(0,0,0,.8);
+		transition:1s all ease;
+	}
+	.spComment{
+		width: 100%;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		margin-top: 10px;		
+	}
+	.yellow{
+		color: yellow;
+		text-decoration : underline;
+		letter-spacing: 3px;
+	}
+	.termMonth{
+		width: 100%;
+		color: white;
+		text-align: center;
+		margin-top: 10px;
+	}
+	.starPointWrap {
+		width: 250px;
+		height: 33px;
+		margin: 0 auto;
+		line-height: 50px;
+		position: absolute;
+		left: 65px;
+		top: 98px;		
+	}
+	.spoint{
+	    width: 150px;	
+		height: 33px;
+	    line-height: 33px;
+	    background-color: #f4f4f4;
+	    border-radius: 10px;
+	    float: left;
+	}
+	.br-theme-fontawesome-stars .br-readonly a {
+		font-size: 15px;		
+	}
+	.br-theme-fontawesome-stars .br-readonly a:first-child{
+		padding-left: 15px;
+	}	
+	.br-theme-fontawesome-stars .br-widget a.br-selected:after {
+		color: red;
+	}
+	.jumsu{
+		height: 33px;
+	    line-height: 33px;
+	    float: left;
+	    margin-left: -51px;
+	    /* margin-bottom: 20px; */
+		font-size: 15px;
+	}			
 	
 	/* 베스트 카페탐방기 */
 	.baseCafeReview {
@@ -666,25 +726,38 @@
 			</div>
 			
 			<div class="mukkaLikeCafeList right">
-				<h2 class="likeCafeTitle bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> MuKKa人이 애정하는 그카페</a> <span>(2020.00.00 ~ 00.00)</span></h2>
-				<div class="likeCafeList1">
-					<div class="cafeList1"></div>
-					<div class="cafeList2-5">
-						<ul>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
-						</ul>
-					</div>
-				</div>
-				<div class="likeCafeList2">
+				<h2 class="likeCafeTitle bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> MuKKa人이 애정하는 그카페</a> <span class="orange term"></span></span></h2>
+				<div class="likeCafeList">
 					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<c:forEach var="bestCafeList" items="${bestCafeList}">
+							<c:forEach var="bestCafeImg" items="${bestCafeImg}">
+							<c:if test="${bestCafeImg.cafeNo.cafeNo == bestCafeList.cafeNo}">
+								<li>
+								<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${bestCafeList.cafeNo}">
+										<div class="likeRank_no"></div>
+										<%-- <div class="zoneIcon zoneOrangeIconSmall keyword likeZoneIcon">${bestCafeList.zoneNo.zoneName}</div> --%>				
+										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${bestCafeImg.imageName}" class="bestCafeImg">									
+										<div class="like_dummy">
+											<p class="spComment">"<i><span class="orange bold">${bestCafeList.userNo.name}</span>님 의 평가<br><span class="yellow">${bestCafeList.starPoint.starPointComment}</span></i>"</p>
+											<p class="termMonth">(<span class="termMonthText"></span>월 별점)</p>
+											<div class="starPointWrap clearfix">
+												<div class="star spoint">
+													<select class="starPoint"> 
+														<option value="1">1</option> 
+														<option value="2">2</option> 
+														<option value="3">3</option> 
+														<option value="4">4</option> 
+														<option value="5">5</option> 
+													</select>										
+												</div>
+											<div class="jumsu"><span class="spointNum"></span><span class="gray">/ 5</span></div>
+										</div>																				
+										</div>					
+									</a>
+								</li>
+							</c:if>
+							</c:forEach>
+						</c:forEach>			
 					</ul>
 				</div>
 			</div>
@@ -971,9 +1044,49 @@
        } 
      }
      
-     //4위~15위
+     //카페 전월기준 베스트 별점순 : 1위~10위
+     for(var i=0;i<10;i++){ // 0,1,2,3,4,5,6,7,8,9
+		$(".likeRank_no").eq(i).text(1+i);
+	} 
+     
+
+	/* 별점 */	
+	var starpoint = ${starpoint};
+	for(var i=0;i<starpoint.length;i++){
+	     $('.starPoint').barrating({
+				theme: 'fontawesome-stars',
+				initialRating:  Math.round(starpoint[i]),
+				readonly: true
+			})
+			
+		$(".spointNum").eq(i).text(starpoint[i]);			
+		
+	}
+
+	
+	// 숫자 포멧
+	function pad(n, width) {
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
+	
+	// 베스트 순위 산출 기간
+	var nowYear = new Date().getFullYear();
+	console.log(nowYear); // 2020
+	var nowMonth = new Date().getMonth() + 1;
+	console.log(nowMonth); // 6
+	var preMonth = nowMonth - 1;
+	console.log(preMonth); // 5
+	var preMonthPad = pad(preMonth, 2);
+	console.log(preMonthPad);
+	var lastDay = (new Date(nowYear, preMonth, 0)).getDate();
+	var term = "("+nowYear+"."+preMonthPad+".01 ~ "+preMonthPad+"."+lastDay+")";
+	$(".term").text(term);
+	$(".termMonthText").text(preMonth);	
+		
+     //탐방기 베스트순 : 4위~15위
      for(var i=0;i<12;i++){ // 0,1,2,3,4,5,6,7,8,9
-	$(".rvRank").eq(i).text(4+i);
+		$(".rvRank").eq(i).text(4+i);
 	} 
      
 </script>	

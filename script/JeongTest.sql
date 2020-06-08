@@ -1227,10 +1227,32 @@ select count(star_point) as '총별점개수'from starpoint where left(DATE_SUB(
 group by c.cafe_name; 
 
 -- 전월기준 별점평균순위 : 영업중인 카페만
-select c.cafe_no, c.cafe_name, count(s.star_point), sum(s.star_point), round(sum(s.star_point)/count(s.star_point), 1), c.cafe_cdt
+select *
+from cafe c
+left join starpoint s on c.cafe_no = s.cafe_no
+left join theme t on c.theme_no = t.theme_no
+left join zone z on c.zone_no = z.zone_no
+where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) and c.cafe_cdt = 1
+group by c.cafe_name
+order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;
+
+
+select round(sum(s.star_point)/count(s.star_point), 1) as 'point'
 from cafe c left join starpoint s
 on c.cafe_no = s.cafe_no
 where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) and c.cafe_cdt = 1
 group by c.cafe_name
 order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;
 
+
+
+select c.*, s.user_no, u.name , s.star_point_comment , i.image_name, z.zone_name, t.theme_name
+from starpoint s left join cafe c on s.cafe_no = c.cafe_no 
+						 left join image i on c.cafe_no = i.cafe_no
+						 left join zone z on c.zone_no = z.zone_no 
+					 	 left join theme t on c.theme_no = t.theme_no 
+					 	 left join users u on s.user_no = u.user_no 
+			, (select cafe_no, round(avg(star_point), 1) as spoint, update_date from starpoint where month(update_date) = month(now())-1 group by cafe_no) spoint
+		where s.cafe_no = spoint.cafe_no and c.cafe_cdt = 1
+		group by s.cafe_no
+		order by spoint desc, spoint.update_date desc limit 10;

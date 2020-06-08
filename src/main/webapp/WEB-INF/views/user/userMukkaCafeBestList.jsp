@@ -484,6 +484,7 @@
 	
 	// 베스트 순위 산출 기간
 	var nowYear = new Date().getFullYear();
+	console.log(nowYear);
 	var nowMonth = new Date().getMonth() + 1;
 	var preMonth = nowMonth - 1;
 	var preMonthPad = pad(preMonth, 2);	
