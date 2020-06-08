@@ -173,6 +173,7 @@
 			<div class="cafeRForm">
 				<form action="register" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="boardNo2.boardNo" value="1"/>
+					<input type="hidden" name="userNo.userNo" value="${AuthNo }" />
 					<div class="cafeR_search cafeR_groub clearfix">
 						<label>카페</label>
 						<button type="button" class="cafeSearchBtn orangeBtn">카페찾기</button>
@@ -229,6 +230,19 @@
 	{{/each}}
 </script>
 <script>
+	// 로그인 여부 확인
+	var auth = "${Auth}";
+	if(auth == "") {
+		loginShow();
+	}
+	
+	$("#loginModal").click(function() {
+		if(auth == ""){
+			alert("로그인 후 이용 가능합니다.");
+			location.href = "${pageContext.request.contextPath}/user/";
+		}
+	})
+
 	//에디터
 	CKEDITOR.replace("p_content",{
 						height: 500,

@@ -326,11 +326,16 @@
 	<update id="updateBoardReplyCnt" parameterType="map">
 		update board set reply_cnt = reply_cnt + #{amount} where board_no = #{boardNo};
 	</update>
+	
+	<!-- 공통 : 로그인 회원 좋아요 클릭 여부 -->
+	<select id="userVoteCdt" parameterType="map" resultType="int">
+		select count(*) from vote where user_no = #{userNo} and board_no = #{boardNo};
+	</select>
 
 	<!-- 경진 추가 start  ************************************************************************************************** -->
 	<!-- 탐방기 : 탐방기 select문 -->
 	<sql id="cafeRevieSelect">
-		select u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
+		select u.user_no, u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 			   b.view_number , b.writing_title , b.registration_date , b.update_date,
 			   b.writing_content , b.vote_number , b.reply_cnt , b.board_del_cdt, z.zone_no , z.zone_name ,
 			   t.theme_no , t.theme_name , c.cafe_no, c.cafe_name , c.address, i.image_name 

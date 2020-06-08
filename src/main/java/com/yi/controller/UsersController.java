@@ -55,6 +55,7 @@ public class UsersController {
 			}
 			System.out.println(dbVO.getNick());
 			session.setAttribute("Auth", dbVO.getNick());
+			session.setAttribute("AuthNo", dbVO.getUserNo());
 			return "redirect:/";
 		}
 	}

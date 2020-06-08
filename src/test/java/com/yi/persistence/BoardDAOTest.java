@@ -116,9 +116,14 @@ public class BoardDAOTest {
 		dao.cafeReivewSameCnt(vo);
 	}
 	
-	@Test
+	//@Test
 	public void testBoardCnt() throws Exception {
 		dao.todayBoardCnt(1);
 		dao.yesterBoardCnt(1);
+	}
+	
+	@Test
+	public void testUserVoteCdt() throws Exception {
+		dao.userVoteCdt(1, 268);
 	}
 }

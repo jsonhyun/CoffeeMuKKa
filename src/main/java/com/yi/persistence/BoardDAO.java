@@ -64,6 +64,8 @@ public interface BoardDAO {
 	public int boardVoteCnt(int boardNo) throws Exception;
 	// 게시글 댓글 갯수 추가
 	public void updateBoardReplyCnt(int amount, int boardNo) throws Exception;
+	// 로그인 회원 게시글 좋아요 클릭 여부
+	public int userVoteCdt(int userNo, int boardNo) throws Exception;
 	
 	
 	/*** 탐방기 ***/
