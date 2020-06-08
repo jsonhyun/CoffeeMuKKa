@@ -17,7 +17,10 @@
 		<result property="detailAddress" column="detail_address"/>
 		<result property="email" column="email"/>
 		<result property="userType.userType" column="user_type"/>
-		<result property="userGrade.userGrede" column="user_grade"/>
+		<result property="userType.userTypeName" column="user_type_name"/>
+		<result property="userGrade.userGrade" column="user_grade"/>
+		<result property="userGrade.userGradeName" column="user_grade_name"/>
+		<result property="userGrade.userGradeImage" column="user_grade_image"/>
 	</resultMap>
 	
 	<!-- 게시글 등록시 회원 등급 판단 및 수정 -->
@@ -31,11 +34,16 @@
 		select * from users where user_id = #{userId}
 	</select>
 	
+	<select id="selectUserPage" resultMap="usersResult">
+		select * from users u left join `type` t on u.user_type = t.user_type left join grade g on u.user_grade = g.user_grade 
+		where user_id =#{userId}
+	</select>
+	
 	<select id="findUsers" resultType="UsersVO">
 		select user_id from users where name = #{name} and email=#{email} and user_type=#{userType.userType}
 	</select>
 	
-	<update id="modifyUsers">
+	<update id="modifyUsersPass">
 		update users
 			set password = #{password}
 			where user_id = #{userId}

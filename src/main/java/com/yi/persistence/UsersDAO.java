@@ -9,11 +9,13 @@ public interface UsersDAO {
 
 	public UsersVO findUsers(UsersVO vo) throws Exception;
 
-	public void modifyUsers(UsersVO vo) throws Exception;
+	public void modifyUsersPass(UsersVO vo) throws Exception;
 
 	public UsersVO duplCheckId(UsersVO vo) throws Exception;
 
 	public UsersVO duplCheckNick(UsersVO vo)throws Exception;
 
 	public void register(UsersVO vo) throws Exception;
+
+	public UsersVO selectUserPage(String userid) throws Exception;
 }

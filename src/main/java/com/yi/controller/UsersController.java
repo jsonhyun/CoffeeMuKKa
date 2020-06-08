@@ -53,8 +53,9 @@ public class UsersController {
 				model.addAttribute("error", 2);
 				return "/user/userHome";
 			}
-			System.out.println(dbVO.getNick());
 			session.setAttribute("Auth", dbVO.getNick());
+			session.setAttribute("userId", dbVO.getUserId());
+			session.setAttribute("AuthNo", dbVO.getUserNo());
 			return "redirect:/";
 		}
 	}
@@ -67,8 +68,23 @@ public class UsersController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public String mypage()throws Exception{
+	// 마이페이지 이동
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage(String userId, Model model)throws Exception{
+		UsersVO dbVO = service.selectUserPage(userId);
+		System.out.println(dbVO);
+		model.addAttribute("dbVO",dbVO);
 		return "/user/userMypage";
 	}
+	
+	//마이페이지에서 정보 수정
+	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
+	public String modifyMypage(UsersVO vo, Model model) throws Exception{
+		System.out.println(vo);
+//		service.modifyUsers(vo);
+//		UsersVO dbVO = service.selectUserPage(vo.getUserId());
+//		model.addAttribute("dbVO",dbVO);
+		return null;
+	}
+	
 }

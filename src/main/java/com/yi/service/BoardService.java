@@ -180,6 +180,10 @@ public class BoardService {
 		}
 	}
 
+	public int userVoteCdt(int userNo, int boardNo) throws Exception {
+		return dao.userVoteCdt(userNo, boardNo);
+	}
+	
 	/*** 탐방기 ***/
 	// 경진 추가 (user) start ------------------------------------------------------------------------------------	
 	// 등록

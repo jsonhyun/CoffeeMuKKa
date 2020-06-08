@@ -536,8 +536,10 @@
 					<p class="grayB f_left">댓글 <span id="replyNum"><fmt:formatNumber type="number" maxFractionDigits="3" value="${board.replyCnt}"/></span></p>
 				</div>
 				<div class="d_cafeR_btns f_right">
-					<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left">수정</button>
-					<button type="button" class="d_cafeR_deleteBtn redLineBtn f_left">삭제</button>
+					<c:if test="${board.userNo.userNo == AuthNo}">
+						<button type="button" class="d_cafeR_modifyBtn greenLineBtn f_left">수정</button>
+						<button type="button" class="d_cafeR_deleteBtn redLineBtn f_left">삭제</button>
+					</c:if>
 					<button class="d_cafeR_listBtn navyBtn2 f_left">목록</button>
 				</div>
 			</div>

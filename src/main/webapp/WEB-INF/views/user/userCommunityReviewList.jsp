@@ -308,7 +308,7 @@
 		margin-right:0;
 	}
 </style>
-	
+
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
 	<div class="contentArea">
@@ -400,7 +400,7 @@
 						</a>
 					</div>
 					<div class="cafeR_topBtn cafeR_add navyBtn">
-						<a href="${pageContext.request.contextPath }/user/community/cafeReview/register" class="cafeR_addBtn">탐방기 쓰기</a>
+						<a href="#" class="cafeR_addBtn">탐방기 쓰기</a>
 					</div>
 				</div>
 			</div>
@@ -528,6 +528,17 @@
 	var nowMonth = new Date().getMonth() + 1;
 	var preMonth = nowMonth - 1;
 	$(".preMonth").text(preMonth);
+	
+	// 탐방기 등록 시 로그인 여부 확인
+	$(".cafeR_addBtn").click(function() {		
+		var auth = "${Auth}";
+		if(auth == "") {
+			loginShow();
+			return false;
+		}
+		
+		location.href = "${pageContext.request.contextPath }/user/community/cafeReview/register";
+	})
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

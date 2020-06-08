@@ -105,3 +105,5 @@ select * from cafe c
 		where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(c.registration_date,7) order by c.registration_date desc limit 4;
 		
 select * from admin where ano_id = 'test001';
+
+select * from users u left join `type` t on u.user_type = t.user_type left join grade g on u.user_grade = g.user_grade where user_id ='test0001';
