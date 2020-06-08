@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,7 +115,7 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value = "/community/cafeReview/read", method = RequestMethod.GET)
-	public String communityReviewRead(int boardNo, boolean flag, SearchCriteria cri, Model model) throws Exception {
+	public String communityReviewRead(int boardNo, HttpSession session, boolean flag, SearchCriteria cri, Model model) throws Exception {
 		BoardVO vo = service.cafeReviewRead(boardNo);
 		//System.out.println("vo-----------------" + vo.getCafeNo().getCafeNo());
 		
@@ -128,6 +129,8 @@ public class UserBoardController {
 		
 		
 		List<ThemeVO> themeRank = themeService.cafeThemeRank(vo.getCafeNo().getCafeNo());
+		
+		
 		//System.out.println("themeRank ------------------------- " + themeRank);
 		model.addAttribute("board", vo);
 		model.addAttribute("cri", cri);
@@ -135,6 +138,8 @@ public class UserBoardController {
 		model.addAttribute("sameCnt", sameCnt);
 		model.addAttribute("themeRank", themeRank);
 		
+		System.out.println("vo-------------------" + boardNo);
+		System.out.println("authNo===============" + session.getAttribute("AuthNo"));
 		//System.out.println("themeRank-----------------------------------" + themeRank);
 		return "/user/userCommunityReviewRead";
 	}
