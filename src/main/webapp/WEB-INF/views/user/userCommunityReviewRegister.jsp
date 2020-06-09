@@ -287,6 +287,12 @@
 	
 	$("#cafeSchBtn").click(function() {
 		var cafeName = $("input[name='cafeName']").val();
+		
+		if(cafeName == "") {
+			alert("카페이름을 작성해주세요.");
+			return false;
+		}
+		
 		$.ajax({
 			url:"${pageContext.request.contextPath}/rest/",
 			type:"get",
