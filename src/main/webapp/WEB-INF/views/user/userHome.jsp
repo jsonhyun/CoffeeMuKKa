@@ -265,7 +265,6 @@
 		position: absolute;
 		left: 0;
 		top: 0;
-		/* opacity: 0;	 */	
 	}
 	div.likeRank_no{
 		width: 13%;
@@ -273,20 +272,30 @@
 		color: white;
 		text-align: center;
 		background-color: #FF5E00;
+		font-size: 20px;
 		position: absolute;
-		left: 0;
-		top: 0;
+		left: 5px;
+		top: 5px;
 		z-index: 2;			
 	}
-	div.likeZoneIcon{
+	span.bestCafeName{
+		color: white;
+		font-weight:bold;
+		background-color: rgba(0,0,0,.6);
+		border-radius: 5px;
+		padding: 2px 10px;
 		position: absolute;
-		left: 0;
-		top: 0;
-		z-index: 2;
+		left: 50px;
+		top: 5px;
+		z-index: 2;			
+			
 	}
 	div.likeCafeList ul li:hover div.like_dummy{
 		opacity: 1;
 		cursor: pointer;
+	}
+	div.likeCafeList ul li:hover span.bestCafeName{
+		opacity: 0;
 	}	
 	div.like_dummy{
 		width: 100%;
@@ -726,7 +735,7 @@
 			</div>
 			
 			<div class="mukkaLikeCafeList right">
-				<h2 class="likeCafeTitle bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> MuKKa人이 애정하는 그카페</a> <span class="orange term"></span></span></h2>
+				<h2 class="likeCafeTitle bottomLine"><a href="${pageContext.request.contextPath}/user/mukkaCafe/mukkaBest" class="mainTitle"><i class="fas fa-mug-hot"></i> MuKKa人이 애정하는 그카페</a> <span class="orange term"></span></span></h2>
 				<div class="likeCafeList">
 					<ul>
 						<c:forEach var="bestCafeList" items="${bestCafeList}">
@@ -736,10 +745,11 @@
 								<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${bestCafeList.cafeNo}">
 										<div class="likeRank_no"></div>
 										<%-- <div class="zoneIcon zoneOrangeIconSmall keyword likeZoneIcon">${bestCafeList.zoneNo.zoneName}</div> --%>				
-										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${bestCafeImg.imageName}" class="bestCafeImg">									
+										<img src="${pageContext.request.contextPath }/resources/images/sumnail/${bestCafeImg.imageName}" class="bestCafeImg">
+										<span class="bestCafeName"><i class="fa fa-coffee" aria-hidden="true"></i> ${bestCafeList.cafeName}</span>							
 										<div class="like_dummy">
 											<p class="spComment">"<i><span class="orange bold">${bestCafeList.userNo.name}</span>님 의 평가<br><span class="yellow">${bestCafeList.starPoint.starPointComment}</span></i>"</p>
-											<p class="termMonth">(<span class="termMonthText"></span>월 별점)</p>
+											<p class="termMonth">(<span class="termMonthText"></span>월 평균 별점)</p>
 											<div class="starPointWrap clearfix">
 												<div class="star spoint">
 													<select class="starPoint"> 
