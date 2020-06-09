@@ -130,7 +130,7 @@ public class UserBoardController {
 		List<ThemeVO> themeRank = themeService.cafeThemeRank(vo.getCafeNo().getCafeNo());
 		
 		// 로그인회원 좋아요 여부
-		int userNo = (Integer)session.getAttribute("AuthNo");
+		int userNo = session.getAttribute("AuthNo") == null ? 0 : (Integer)session.getAttribute("AuthNo");
 		int voteCdt = service.userVoteCdt(userNo, boardNo);
 		
 		//System.out.println("themeRank ------------------------- " + themeRank);

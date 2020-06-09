@@ -164,9 +164,15 @@
 		margin-right: 30px;
 	}
 	
+	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyBtn .replyModify {
+		margin-right: 5px;	
+	}
+	
 	.d_cafeR_reply_wrap .replyPage {
 		text-align: center;
 	}
+	
+	
 	
 	/* 같은 카페 다른 리뷰 영역 */
 	.cafeR_sameList {
@@ -635,12 +641,9 @@
 		<!-- 서브페이지 콘텐츠 end -->
 	</div>
 	
-<script>
-</script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
-
 
 <!-- 댓글 구조 -->
 <script id="template" type="text/x-handlebars-template">
@@ -650,14 +653,11 @@
 			<p class="f_left replyNick">{{userNo.nick}}</p>
 			<div class="f_left replyCmtBox"><p>{{commentContent}}</p></div>
 			<p class="regitDate orange f_right">{{dateHelper updateDate}}</p>
-			<!-- login 기능 구현 후 c:if 해야함 -->
-			<div class="replyBtn f_right">
-				<a class="replyModify blueBtn off" href="#" data-cmtNo="{{commentNo}}" data-cmtCnt="{{commentContent}}">수정</a>
-				<a class="replyRemove redBtn" href="#" data-cmtNo="{{commentNo}}">삭제</a>
-			</div>
+			{{#replyBtnHelper userNo.userNo commentNo commentContent}}{{/replyBtnHelper}}
 		</li>
 	{{/each}}
 </script>
+
 <script id="replyModifyBox" type="text/x-handlebars-template">
 	<div class="replyModify_box">
 		<img class="f_left" src="{{userIcon}}" alt="등급아이콘"/>
@@ -671,15 +671,41 @@
 </script>
 
 <script>
+	//숫자 포멧
+	function pad(n, width) {
+		n = n + '';
+		return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
+
 	/*---- 댓글 -----------------------------------------------------------------------------------------------------*/
 	var no = 1;
 	Handlebars.registerHelper ("dateHelper", function(value){
 		var d = new Date(value);
 		var year = d.getFullYear();
-		var month = d.getMonth() + 1;
-		var day = d.getDate();
+		var month = pad(d.getMonth() + 1, 2);
+		var day = pad(d.getDate(), 2);
 		return year + "/" + month + "/" + day;
 	})
+	
+	/* 댓글 수정 show 여부 (작성한 회원에게만 보여주는 조건문) */
+	/* handlebars 헬퍼함수 : 댓글구조 스크립트에 헬퍼함수 추가하면 조건문이 실행됨 
+	   {{#replyBtnHelper userNo.userNo commentNo commentContent}}{{/replyBtnHelper}}
+	   {{헬퍼id 매개변수1 매개변수2 매개변수3}}
+	*/
+	Handlebars.registerHelper("replyBtnHelper", function(userNo, commentNo, commentContent){
+		var authNo = "${AuthNo}";
+		var replyUserNo = userNo;
+		var replyBtnHtml = '<div class="replyBtn f_right">'
+							+'<a class="replyModify blueBtn off" href="#" data-cmtNo="'+commentNo+'" data-cmtCnt="'+commentContent+'">수정</a>'
+							+'<a class="replyRemove redBtn" href="#" data-cmtNo="'+commentNo+'">삭제</a></div>';
+	
+		if(authNo == replyUserNo) {
+			return replyBtnHtml;
+		} else {
+			return "";
+		}
+	}); 
+	
 	
 	/* 댓글 리스트 */
 	function getPageList( page ){
@@ -724,16 +750,27 @@
 		getPageList(no);
 	})
 	
+	/* 댓글 작성 전 로그인 여부 확인 */
+	$("#newCmt").click(function() {
+		var authNo = "${AuthNo}";
+		if(authNo == "") {
+			loginShow();
+		}
+	})
+	
 	/* 댓글 추가 */
 	$("#d_cafeR_replyAddBtn").click(function(){
 		// login 기능 구현 후 수정해야함
-		var userNo = 3;
+		var userNo = "${AuthNo}";
 		
 		var boardNo = ${board.boardNo};
 		var newCmt = $("#newCmt").val();
 		
 		if(newCmt == "") {
 			alert("댓글 내용을 작성해주세요.");
+			return false;
+		} else if(userNo == ""){
+			loginShow();
 			return false;
 		}
 		
