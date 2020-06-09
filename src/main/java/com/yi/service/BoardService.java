@@ -127,6 +127,17 @@ public class BoardService {
 		
 
 	/*** 공통 ***/
+	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
+	private void userGradeUpdate(BoardVO vo) throws Exception {
+		int userNo = vo.getUserNo().getUserNo();
+		int boardTotalCnt = dao.totalUserBoardCount(userNo);
+		if (boardTotalCnt >= 20) {
+			userDao.updateUsersGrade(2, userNo);
+		} else if (boardTotalCnt >= 100) {
+			userDao.updateUsersGrade(3, userNo);
+		}
+	}
+	
 	// 오늘 등록된 글 갯수(**커뮤니티 공통**)
 	public int todayBoardCount(int cBoardNo) throws Exception {
 		return dao.todayBoardCount(cBoardNo);
@@ -169,17 +180,6 @@ public class BoardService {
 		return dao.boardVoteCnt(boardNo);
 	}
 	
-	// 유저가 올린 게시글 갯수 판단 후 등급 업데이트 메소드
-	private void userGradeUpdate(BoardVO vo) throws Exception {
-		int userNo = vo.getUserNo().getUserNo();
-		int boardTotalCnt = dao.totalUserBoardCount(userNo);
-		if (boardTotalCnt >= 20) {
-			userDao.updateUsersGrade(2, userNo);
-		} else if (boardTotalCnt >= 100) {
-			userDao.updateUsersGrade(3, userNo);
-		}
-	}
-
 	public int userVoteCdt(int userNo, int boardNo) throws Exception {
 		return dao.userVoteCdt(userNo, boardNo);
 	}
@@ -189,8 +189,12 @@ public class BoardService {
 	// 등록
 	@Transactional
 	public void cafeReviewInsert(BoardVO vo, ImageVO imgVO) throws Exception {
+		// board 데이터 추가
 		dao.cafeReviewInsert(vo);
+		// img 데이터 추가
 		imgDao.insertImageByBoardNo(imgVO);
+		// user 포인트 추가 / 매개변수 : ( 포인트점수, 유저번호 )
+		userDao.updatePoint(50, vo.getUserNo().getUserNo());
 
 		userGradeUpdate(vo);
 	}

@@ -324,37 +324,43 @@
 				<p>베스트</p>
 				<p><span class="orange preMonth"></span> 월 (월간)</p>
 			</div>
-			<table class="post1-5">
-				<c:forEach var="bestItem" items="${monthBestList }" begin="0" end="2" varStatus="status">
-					<tr>
-						<td class="no"><p class="bgRed">${status.index + 1 }</p></td>
-						<td>
-							<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
-							<span class="review red">(${bestItem.replyCnt })</span>
-						</td>
-					</tr>
-				</c:forEach>
-				<c:forEach var="bestItem" items="${monthBestList }" begin="3" end="4" varStatus="status">
-					<tr>
-						<td class="no"><p class="bgPink">${status.index + 1 }</p></td>
-						<td>
-							<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
-							<span class="review red">(${bestItem.replyCnt })</span>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-			<table class="post6-10">
-				<c:forEach var="bestItem" items="${monthBestList }" begin="5" end="10" varStatus="status">
-					<tr>
-						<td class="no"><p class="bgPink">${status.index + 1 }</p></td>
-						<td>
-							<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
-							<span class="review red">(${bestItem.replyCnt })</span>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
+			
+			<c:if test="${monthBestList.size() == 0 }">
+				<h3 style="text-align: center; padding: 20px 10px;"><span class="preMonth"></span>월의 베스트 카페 탐방기가 없습니다.</h3>
+			</c:if>
+			<c:if test="${monthBestList.size() != 0 }">
+				<table class="post1-5">
+					<c:forEach var="bestItem" items="${monthBestList }" begin="0" end="2" varStatus="status">
+						<tr>
+							<td class="no"><p class="bgRed">${status.index + 1 }</p></td>
+							<td>
+								<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
+								<span class="review red">(${bestItem.replyCnt })</span>
+							</td>
+						</tr>
+					</c:forEach>
+					<c:forEach var="bestItem" items="${monthBestList }" begin="3" end="4" varStatus="status">
+						<tr>
+							<td class="no"><p class="bgPink">${status.index + 1 }</p></td>
+							<td>
+								<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
+								<span class="review red">(${bestItem.replyCnt })</span>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<table class="post6-10">
+					<c:forEach var="bestItem" items="${monthBestList }" begin="5" end="10" varStatus="status">
+						<tr>
+							<td class="no"><p class="bgPink">${status.index + 1 }</p></td>
+							<td>
+								<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${bestItem.boardNo}&page=${cri.page}&flag=true&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="title">${bestItem.writingTitle }</a>
+								<span class="review red">(${bestItem.replyCnt })</span>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>
 		</div>
 		<!-- 게시판 베스트 end -->
 		
@@ -412,7 +418,7 @@
 							<div class="cafeR_box">
 								<div class="cafeR_titleBox">
 									<div class="cafeR_titleImg">	
-										<div class="bg"></div>						
+										<div class="bg"></div>			
 										<img class="titleImg" src="${pageContext.request.contextPath }/user/displayFile?filename=${item.files[0].imageName}" alt="카페대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_sample41.jpg'"/>
 									</div>
 									<div class="cafeR_titleTop clearfix" >

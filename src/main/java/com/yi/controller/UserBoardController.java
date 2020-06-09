@@ -127,9 +127,11 @@ public class UserBoardController {
 		List<BoardVO> sameVo = service.cafeReviewSameList(vo);
 		int sameCnt = service.cafeReivewSameCnt(vo);
 		
-		
 		List<ThemeVO> themeRank = themeService.cafeThemeRank(vo.getCafeNo().getCafeNo());
 		
+		// 로그인회원 좋아요 여부
+		int userNo = session.getAttribute("AuthNo") == null ? 0 : (Integer)session.getAttribute("AuthNo");
+		int voteCdt = service.userVoteCdt(userNo, boardNo);
 		
 		//System.out.println("themeRank ------------------------- " + themeRank);
 		model.addAttribute("board", vo);
@@ -137,9 +139,9 @@ public class UserBoardController {
 		model.addAttribute("sameBoard", sameVo);
 		model.addAttribute("sameCnt", sameCnt);
 		model.addAttribute("themeRank", themeRank);
+		model.addAttribute("voteCdt", voteCdt);
 		
-		System.out.println("vo-------------------" + boardNo);
-		System.out.println("authNo===============" + session.getAttribute("AuthNo"));
+		System.out.println("voteCdt---------------------" + voteCdt);
 		//System.out.println("themeRank-----------------------------------" + themeRank);
 		return "/user/userCommunityReviewRead";
 	}
