@@ -290,10 +290,31 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	
-	// 아름추가 : 탐방기 월간 베스트15 Main에 쓸 리스트
+	/*** 아름추가 ***/ 
+	// 탐방기 월간 베스트15 Main에 쓸 리스트
 	@Override
 	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception {
 		return sqlSession.selectList(namespace+"cafeReviewMonthBestListHome");
+	}
+	//열혈무까인 : 종합리스트
+	@Override
+	public List<BoardVO> bestUserAllBoard() throws Exception {
+		return sqlSession.selectList(namespace+"bestUserAllBoard");
+	}
+	//열혈무까인 : 종합 - 게시글수
+	@Override
+	public List<Integer> bestUserAllBoardCnt() throws Exception {
+		return sqlSession.selectList(namespace+"bestUserAllBoardCnt");
+	}
+	//열혈무까인 : 전월기준리스트
+	@Override
+	public List<BoardVO> bestUserBoard() throws Exception {
+		return sqlSession.selectList(namespace+"bestUserBoard");
+	}
+	//열혈무까인 : 전월기준 - 게시글수 
+	@Override
+	public List<Integer> bestUserBoardCnt() throws Exception {
+		return sqlSession.selectList(namespace+"bestUserBoardCnt");
 	}
 	
 
