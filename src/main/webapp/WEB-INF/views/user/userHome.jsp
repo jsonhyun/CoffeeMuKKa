@@ -551,7 +551,24 @@
 	.cafeRecommend .newListImgs ul li img:hover{
 		transform:scale(1.2);
 	}
-	
+	.bestRankList_info{
+		border-radius: 5px;
+		background-color: yellow;
+		margin-left: 10px;
+		padding: 2px 10px;
+		font-size: 20px;
+		color: black;
+		letter-spacing: 2px;
+	}
+	.bestRankUserTerm{
+		border-radius: 5px;
+		background-color: #FF2424;
+		margin-left: 10px;
+		padding: 2px 10px;
+		font-size: 15px;
+		color: white;
+		letter-spacing: 1px;	
+	}
 	ul#tabs-ul li,a:focus{
 		outline: none;
 	}
@@ -611,14 +628,17 @@
 	ol li.rank_wrap div{
 		display: inline;
 	}	
-	ol li.rank_wrap div.rank_num1{
+	ol li.rank_wrap div.rank_num{
 		font-size: 23px;
 		font-weight: bold;
 		padding: 3px;
 		padding-right: 10px;
-		color: red;
+		color: #FF7171;
 	}
-	ol li.rank_wrap div.rank_num1 span.num1::before{
+	.bestRankUserAll{
+		color: red;
+	}	
+	ol li.rank_wrap div.rank_num span.num1::before{
 	}	
 	ol li.rank_wrap div.grade_img{
 		padding: 4px;
@@ -988,7 +1008,7 @@
 			</div>
 
 		<div class="bestRankList right">
-				<h2 class="Title bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> 열혈 MuKKa人 </a><span>(2020.00.00 ~ 00.00)</span></h2>
+				<h2 class="Title bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> 열혈 MuKKa人 </a><span class="bestRankList_info">종합 베스트 10</span></h2>
 			<!-- 베스트 리스트  -->
 			<div id="tabWrap">
 				<div id="tabs">
@@ -1004,26 +1024,24 @@
 					<!-- 전체 베스트 20 -->
 					<div id="tabs-1">
 						<ol>
-							<c:forEach var="bestUserAll" items="${bestUserAll}" begin="0" end="9" varStatus="status">	
+							<c:forEach var="bestUserAll" items="${bestUserAll}" begin="0" end="9" varStatus="status">
 								<li class="rank_wrap">
-								${bestUserAll}
-								 <%-- <div class="rank_num1">
-								  		<span class="num1">1</span>
-								  </div>
-								  <div class="grade_img">
-								  	 <img src="${pageContext.request.contextPath}/resources/images/${bestUserAll.userNo.userGrade.userGradeImage}" class="gradeImg">
-								  </div>
-								  <div class="user_name">
-								  		<span class="blue2 bold">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})
-								  </div> --%>
-							<%-- <c:forEach var="bestUserAllCnt" items="${bestUserAllCnt}" begin="0" end="9" varStatus="status">						 
-								  <div class="board_cnt">
-								  	<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
-								  	<span class="board_cnt_num"><span class="red bold">${bestUserAllCnt}</span>개작성</span>
-								  </div> 
-								</li>							
-							</c:forEach> --%>
-							</c:forEach>																																	
+									<div class="rank_num">
+										<span class="num1"></span>
+									</div>
+									<div class="grade_img">
+										<img src="${pageContext.request.contextPath}/resources/images/${bestUserAll.userNo.userGrade.userGradeImage}" class="gradeImg">
+									</div>
+									<div class="user_name">
+										<span class="blue2 bold">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})
+									</div>
+									<div class="board_cnt">
+										<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
+										<span class="red bold board_cnt_num1"></span>개작성
+									</div>
+								</li>
+							</c:forEach>
+						
 						</ol>	
 					</div>
 					
@@ -1031,23 +1049,21 @@
 						<ol>
 							<c:forEach var="bestUser" items="${bestUser}" begin="0" end="9" varStatus="status">	
 								<li class="rank_wrap">
-								 <div class="rank_num1">
-								  		<span class="num1">1</span>
+								 <div class="rank_num">
+								  		<span class="num2"></span>
 								  </div>
 								  <div class="grade_img">
 								  	 <img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 								  </div>
 								  <div class="user_name">
 								  		<span class="blue2 bold">${bestUser.userNo.nick}</span>(${bestUser.userNo.userId})
-								  </div>
-							</c:forEach>
-							<%-- <c:forEach var="bestUserCnt" items="${bestUserCnt}" begin="0" end="9" varStatus="status">						 
-								  <div class="board_cnt">
-								  	<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
-								  	<span class="board_cnt_num"><span class="red bold">${bestUserCnt}</span>개작성</span>
-								  </div> 
+								  </div>					 
+									<div class="board_cnt">
+										<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
+										<span class="red bold board_cnt_num2"></span>개작성
+									</div> 
 								</li>							
-							</c:forEach>		 --%>																															
+							</c:forEach>																													
 						</ol>							
 					</div>
 					
@@ -1055,23 +1071,21 @@
 						<ol>
 							<c:forEach var="bestUser" items="${bestUser}" begin="10" end="19" varStatus="status">	
 								<li class="rank_wrap">
-								 <div class="rank_num1">
-								  		<span class="num1">1</span>
+								 <div class="rank_num">
+								  		<span class="num3"></span>
 								  </div>
 								  <div class="grade_img">
 								  	 <img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 								  </div>
 								  <div class="user_name">
 								  		<span class="blue2 bold">${bestUser.userNo.nick}</span>(${bestUser.userNo.userId})
-								  </div>
-							</c:forEach>
-							<%-- <c:forEach var="bestUserCnt" items="${bestUserCnt}" begin="10" end="19" varStatus="status">						 
-								  <div class="board_cnt">
-								  	<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
-								  	<span class="board_cnt_num"><span class="red bold">${bestUserCnt}</span>개작성</span>
-								  </div> 
+								  </div>					 
+									<div class="board_cnt">
+										<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
+										<span class="red bold board_cnt_num3"></span>개작성
+									</div> 
 								</li>							
-							</c:forEach> --%>																																	
+							</c:forEach>																																
 						</ol>							
 					</div>
 					
@@ -1080,46 +1094,42 @@
 						<ol>
 							<c:forEach var="bestUser" items="${bestUser}" begin="20" end="29" varStatus="status">	
 								<li class="rank_wrap">
-								 <div class="rank_num1">
-								  		<span class="num1">1</span>
+								 <div class="rank_num">
+								  		<span class="num4"></span>
 								  </div>
 								  <div class="grade_img">
 								  	 <img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 								  </div>
 								  <div class="user_name">
 								  		<span class="blue2 bold">${bestUser.userNo.nick}</span>(${bestUser.userNo.userId})
-								  </div>
-							</c:forEach>
-							<%-- <c:forEach var="bestUserCnt" items="${bestUserCnt}" begin="20" end="29" varStatus="status">						 
-								  <div class="board_cnt">
-								  	<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
-								  	<span class="board_cnt_num"><span class="red bold">${bestUserCnt}</span>개작성</span>
-								  </div> 
+								  </div>						 
+									<div class="board_cnt">
+										<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
+										<span class="red bold board_cnt_num4"></span>개작성
+									</div> 
 								</li>							
-							</c:forEach> --%>																																	
+							</c:forEach>																																
 						</ol>							
 					</div>
  					<div id="tabs-5">
 						<ol>
 							<c:forEach var="bestUser" items="${bestUser}" begin="30" end="39" varStatus="status">	
 								<li class="rank_wrap">
-								 <div class="rank_num1">
-								  		<span class="num1">1</span>
+								 <div class="rank_num">
+								  		<span class="num5"></span>
 								  </div>
 								  <div class="grade_img">
 								  	 <img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 								  </div>
 								  <div class="user_name">
 								  		<span class="blue2 bold">${bestUser.userNo.nick}</span>(${bestUser.userNo.userId})
-								  </div>
-							</c:forEach>
-							<%-- <c:forEach var="bestUserCnt" items="${bestUserCnt}" begin="30" end="39" varStatus="status">						 
-								  <div class="board_cnt">
-								  	<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
-								  	<span class="board_cnt_num"><span class="red bold">${bestUserCnt}</span>개작성</span>
-								  </div> 
+								  </div>					 
+									<div class="board_cnt">
+										<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
+										<span class="red bold board_cnt_num5"></span>개작성
+									</div>
 								</li>							
-							</c:forEach> --%>																																	
+							</c:forEach>																																	
 						</ol>							
 					</div>	
 									 
@@ -1127,28 +1137,26 @@
 						<ol>
 							<c:forEach var="bestUser" items="${bestUser}" begin="40" end="49" varStatus="status">	
 								<li class="rank_wrap">
-								 <div class="rank_num1">
-								  		<span class="num1">1</span>
+								 <div class="rank_num">
+								  		<span class="num6"></span>
 								  </div>
 								  <div class="grade_img">
 								  	 <img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 								  </div>
 								  <div class="user_name">
 								  		<span class="blue2 bold">${bestUser.userNo.nick}</span>(${bestUser.userNo.userId})
-								  </div>
-							</c:forEach>
-							<%-- <c:forEach var="bestUserCnt" items="${bestUserCnt}" begin="40" end="49" varStatus="status">						 
-								  <div class="board_cnt">
-								  	<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
-								  	<span class="board_cnt_num"><span class="red bold">${bestUserCnt}</span>개작성</span>
-								  </div> 
+								  </div>					 
+									<div class="board_cnt">
+										<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
+										<span class="red bold board_cnt_num6"></span>개작성
+									</div> 
 								</li>							
-							</c:forEach> --%>																																	
+							</c:forEach>																																	
 						</ol>							
 					</div>					
 				</div><!-- div id="tabs" -->
 			</div><!-- div id="tabWrap" -->				
-			</div>
+			</div><!-- 열혈무까인 -->
 		</div>
 		
 	</div>
@@ -1302,15 +1310,67 @@
 	var preMonthPad = pad(preMonth, 2);
 	console.log(preMonthPad);
 	var lastDay = (new Date(nowYear, preMonth, 0)).getDate();
-	var term = "("+nowYear+"."+preMonthPad+".01 ~ "+preMonthPad+"."+lastDay+")";
-	$(".term").text(term);
+	var term1 = "("+nowYear+"."+preMonthPad+".01 ~ "+preMonthPad+"."+lastDay+")";
+	var term2 = nowYear+"."+preMonthPad+".01 ~ "+preMonthPad+"."+lastDay+"- 기준 [1위-50위]";
+	$(".term").text(term1);
 	$(".termMonthText").text(preMonth);	
 		
      //탐방기 베스트순 : 4위~15위
      for(var i=0;i<12;i++){ // 0,1,2,3,4,5,6,7,8,9
 		$(".rvRank").eq(i).text(4+i);
 	} 
-     
+    
+	/* 열혈무까인 리스트 */	
      $( "#tabs" ).tabs();
+	
+ 	var bestUserAllCnt = ${bestUserAllCnt};
+ 	/* 열혈무까인(종합) 1위-10위 */
+ 	for(var i=0;i<10;i++){
+ 		$(".board_cnt_num1").eq(i).text(bestUserAllCnt[i]);
+ 	}
+ 	/* 전월기준 1위 - 50위 */
+	var bestUserCnt = ${bestUserCnt};
+ 	for(var i=0;i<50;i++){
+ 		$(".board_cnt_num2").eq(i).text(bestUserCnt[i]);
+ 		$(".board_cnt_num3").eq(i-10).text(bestUserCnt[i]);
+ 		$(".board_cnt_num4").eq(i-20).text(bestUserCnt[i]);
+ 		$(".board_cnt_num5").eq(i-30).text(bestUserCnt[i]);
+ 		$(".board_cnt_num6").eq(i-40).text(bestUserCnt[i]);
+ 	}
+ 	
+ 	for(var i=0;i<50;i++){
+ 		$(".num1").eq(i).text(i+1);
+ 		$(".num2").eq(i).text(i+1);
+ 		$(".num3").eq(i).text(i+11);
+ 		$(".num4").eq(i).text(i+21);
+ 		$(".num5").eq(i).text(i+31);
+ 		$(".num6").eq(i).text(i+41);
+ 	}
+ 	
+ 	//1위~3위 css다르게 적용
+ 	for(var i=0;i<3;i++){
+ 		$(".num1").eq(i).addClass("bestRankUserAll");
+ 		$(".num2").eq(i).addClass("bestRankUserAll");
+ 	}
+ 	
+ 	$(".tabs-li a").eq(0).click(function(){
+ 		$(".bestRankList_info").addClass("bestRankUserTerm").html("종합 베스트 10");
+ 	})
+ 	$(".tabs-li a").eq(1).click(function(){
+ 		$(".bestRankList_info").removeClass("bestRankList_info").addClass("bestRankUserTerm").html(term2);
+ 	})
+ 	$(".tabs-li a").eq(2).click(function(){
+ 		$(".bestRankList_info").removeClass("bestRankList_info").addClass("bestRankUserTerm").html(term2);
+ 	})
+ 	$(".tabs-li a").eq(3).click(function(){
+ 		$(".bestRankList_info").removeClass("bestRankList_info").addClass("bestRankUserTerm").html(term2);
+ 	})
+ 	$(".tabs-li a").eq(4).click(function(){
+ 		$(".bestRankList_info").removeClass("bestRankList_info").addClass("bestRankUserTerm").html(term2);
+ 	})
+ 	$(".tabs-li a").eq(5).click(function(){
+ 		$(".bestRankList_info").removeClass("bestRankList_info").addClass("bestRankUserTerm").html(term2);
+ 	}) 	
+    
 </script>	
 <%@ include file="../userInclude/footer.jsp" %>
