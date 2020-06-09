@@ -425,6 +425,25 @@
 	</select>
 	
 	
+	<!-- 열혈무까인 : 종합리스트 -->
+	<select id="bestUserAllBoard" resultMap="BoardResult">
+	  select b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade group by b.user_no order by count(b.user_no) desc
+	</select>
+	
+	<!-- 열혈무까인 : 종합리스트 - 게시글수 -->	
+	<select id="bestUserAllBoardCnt" resultType="int">
+		select count(b.user_no) from board b left join users u on b.user_no = u.user_no group by b.user_no order by count(b.user_no) desc
+	</select>
+	
+	<!-- 열혈무까인 : 전월기준리스트 -->
+	<select id="bestUserBoard" resultMap="BoardResult">
+		select b.user_no, g.user_grade_image, u.nick, u.user_id from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) group by b.user_no order by count(b.user_no) desc
+	</select>
+	<!-- 열혈무까인 : 전월기준리스트 - 게시글수 -->
+	<select id="bestUserBoardCnt" resultType="int">
+		select count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) group by b.user_no order by count(b.user_no) desc
+	</select>
+		
 	<!-- 재승 추가 -->
 	<select id="cafeReviewSameListByCafeNo" resultMap="BoardResult">
 		<include refid="cafeRevieSelect"/>
@@ -436,5 +455,6 @@
 			from board b left join cafe c on b.cafe_no = c.cafe_no 
 			where c.cafe_no = #{cafeNo.cafeNo}
 	</select>
+
 
 </mapper>

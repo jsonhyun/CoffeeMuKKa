@@ -100,10 +100,18 @@ public interface BoardDAO {
 	public List<BoardVO> recommendSameKeywordListByZoneAndTheme(BoardVO boardVO) throws Exception;
 	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception;
 	
-	//아름추가  : 탐방기 월간 베스트15 Main에 쓸 리스트
+	/*** 아름추가 ***/ 
+	// 탐방기 월간 베스트15 Main에 쓸 리스트
 	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception;
 
-
+	//열혈무까인 : 종합리스트
+	public List<BoardVO> bestUserAllBoard() throws Exception;
+	//열혈무까인 : 종합 - 게시글수
+	public List<Integer> bestUserAllBoardCnt() throws Exception;
+	//열혈무까인 : 전월기준리스트
+	public List<BoardVO> bestUserBoard() throws Exception;	
+	//열혈무까인 : 전월기준 - 게시글수 
+	public List<Integer> bestUserBoardCnt() throws Exception;
 
 	
 }

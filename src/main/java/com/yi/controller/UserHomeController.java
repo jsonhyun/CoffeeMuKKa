@@ -113,6 +113,21 @@ public class UserHomeController {
 		
 		model.addAttribute("rclistImg", rclistImg);
 		model.addAttribute("error", 0);
+		
+		//열혈무까인 리스트(종합)
+		List<BoardVO> bestUserAll = boardService.bestUserAllBoard();
+		model.addAttribute("bestUserAll",bestUserAll);
+		
+//		List<Integer> bestUserAllCnt = boardService.bestUserAllBoardCnt();
+//		model.addAttribute("bestUserAllCnt",bestUserAllCnt);
+		
+		//열혈무까인 리스트(전월기준)
+		List<BoardVO> bestUser = boardService.bestUserBoard();
+		model.addAttribute("bestUser",bestUser);
+		
+//		List<Integer> bestUserCnt = boardService.bestUserBoardCnt();
+//		model.addAttribute("bestUserCnt",bestUserCnt);
+		
 		return "/user/userHome";
 	}
 	

@@ -274,10 +274,28 @@ public class BoardService {
 		return dao.recommendSameKeywordCntByZoneAndTheme(boardVO);
 	}
 
-	// 아름추가 : 탐방기 월간 베스트15 Main에 쓸 리스트
+	/*** 아름 추가  ***/
+	// 탐방기 월간 베스트15 Main에 쓸 리스트
 	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception {
 		return dao.cafeReviewMonthBestListHome();
 	}
+	
+	//열혈무까인 : 종합리스트
+	public List<BoardVO> bestUserAllBoard() throws Exception {
+		return dao.bestUserAllBoard();
+	}
+	//열혈무까인 : 종합 - 게시글수
+	public List<Integer> bestUserAllBoardCnt() throws Exception {
+		return dao.bestUserAllBoardCnt();
+	}
+	//열혈무까인 : 전월기준리스트
+	public List<BoardVO> bestUserBoard() throws Exception {
+		return dao.bestUserBoard();
+	}
+	//열혈무까인 : 전월기준 - 게시글수 
+	public List<Integer> bestUserBoardCnt() throws Exception {
+		return dao.bestUserBoardCnt();
+	}	
 
 
 
