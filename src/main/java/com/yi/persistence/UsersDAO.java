@@ -18,4 +18,8 @@ public interface UsersDAO {
 	public void register(UsersVO vo) throws Exception;
 
 	public UsersVO selectUserPage(String userid) throws Exception;
+	
+	// 경진 추가 ----------------------------------------------------------------------------
+	// 게시글 등록 시 포인트 적립
+	public void updatePoint(int amount, int userNo) throws Exception;
 }

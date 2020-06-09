@@ -60,4 +60,14 @@ public class UsersDAOImpl implements UsersDAO {
 		return sqlsession.selectOne(namespace+"selectUserPage", userid);
 	}
 
+	// 경진 추가 ----------------------------------------------------------------------------
+	// 게시글 등록 시 포인트 적립
+	@Override
+	public void updatePoint(int amount, int userNo) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("amount", amount);
+		map.put("userNo", userNo);
+		sqlsession.update(namespace + "updatePoint", map);
+	}
+
 }
