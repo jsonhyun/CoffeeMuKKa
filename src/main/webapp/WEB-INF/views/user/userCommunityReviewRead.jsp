@@ -862,13 +862,28 @@
 		}
 	})
 	
-	// 좋아요(추천) - login 기능 구현시 수정해야함
+	// 좋아요(추천) 여부
+	var voteCdt = "${voteCdt}";
+	if(voteCdt > 0) {
+		var voteIcon = $("#voteIcon");
+		voteIcon.empty();
+		voteIcon.append('<i class="fas fa-thumbs-up"></i>');
+		voteIcon.addClass("on").addClass('orange');
+		voteIcon.removeClass("off").removeClass("grayB");
+		voteIcon.next().addClass('orange').removeClass("grayB");
+	}
+	
+	
+	// 좋아요(추천) 클릭 이벤트
 	$("#voteIcon").click(function(e){
 		e.preventDefault();
+		var userNo = "${AuthNo}";
 		var boardNo = ${board.boardNo};
 		
-		// login 기능 구현 후 수정해야함
-		var userNo = 3;
+		if(userNo == ""){
+			loginShow();
+			return false;
+		}
 		
 		if($(this).hasClass("off")){
 			$(this).empty();
