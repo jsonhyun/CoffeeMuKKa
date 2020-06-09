@@ -20,15 +20,19 @@
 	    border: 1px solid #ccc;
 	    margin: 10px 0 10px 10px;
 	}
-	#myMenu li:first-child {
+	#myMenu li:first-child a{
 		color: white;
+	}
+	#myMenu li:first-child {
 		background-color: #303A50;
 		cursor: pointer;
 	}
 	#myMenu li:hover {
-		color: white;
 		background-color: #303A50;
 		cursor: pointer;
+	}
+	#myMenu li:hover a{
+		color: white;
 	}
 	.subTitleName{
 	    width: 100px;
@@ -328,13 +332,13 @@
 <div>
 	<div id="content">
 		<ul id="myMenu">
-			<li>회원정보관리</li>
+			<li><a href="${pageContext.request.contextPath }/user/mypage?userId=${userId}">회원정보관리</a></li>
 			<c:if test="${dbVO.userType.userType == 1 }">
-				<li>내카페 관리</li>
+				<li><a href="${pageContext.request.contextPath }/user/mycafe?userId=${userId}">내카페 관리</a></li>
 			</c:if>
-			<li>즐겨찾는 카페</li>
-			<li>나의 추천 카페</li>
-			<li>나의 카페 탐방기</li>
+			<li><a href="${pageContext.request.contextPath }/user/mywishcafe?userId=${userId}">즐겨찾는 카페</a></li>
+			<li><a href="${pageContext.request.contextPath }/user/myrecommand?userId=${userId}">나의 추천 카페</a></li>
+			<li><a href="${pageContext.request.contextPath }/user/myreview?userId=${userId}">나의 카페 탐방기</a></li>
 		</ul>
 		<div style="clear: both;"></div>
 		<div class="subTitleName">내 등급 정보</div>

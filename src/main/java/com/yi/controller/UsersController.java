@@ -72,7 +72,7 @@ public class UsersController {
 		return "redirect:/";
 	}
 	
-	// 마이페이지 이동
+	// 마이페이지 회원정보관리로 이동
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(String userId, Model model)throws Exception{
 		UsersVO dbVO = service.selectUserPage(userId);
@@ -80,6 +80,13 @@ public class UsersController {
 		model.addAttribute("dbVO",dbVO);
 		model.addAttribute("boardCnt",boardCnt);
 		return "/user/userMypage";
+	}
+	
+	// 마이페이지 카페관리로 이동
+	@RequestMapping(value = "/mycafe", method = RequestMethod.GET)
+	public String mycafe(String userId, Model model)throws Exception{
+		
+		return "/user/userMyCafe";
 	}
 	
 }
