@@ -61,4 +61,10 @@
 		insert into users(user_id, password, name, nick, gender, birthday, user_leave_condition, tel, address, detail_address, email, user_type, user_grade)
 		values(#{userId}, #{password}, #{name}, #{nick}, #{gender}, #{birthday}, #{userLeaveCondition}, #{tel}, #{address}, #{detailAddress}, #{email}, #{userType.userType}, #{userGrade.userGrade})
 	</insert>
+	
+	<update id="modifyUsers">
+		update users
+			set nick = #{nick}, gender=#{gender}, birthday=#{birthday}, tel=#{tel}, address=#{address}, detail_address=#{detailAddress}, email=#{email}, user_type=#{userType.userType} 
+			where user_id = #{userId}
+	</update>
 </mapper>

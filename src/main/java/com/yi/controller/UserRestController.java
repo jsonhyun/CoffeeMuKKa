@@ -334,6 +334,7 @@ public class UserRestController {
 
 		return entity;
 	}
+	
 	//아이디 중복 체크
 	@RequestMapping(value = "/duplcheckid", method = RequestMethod.POST)
 	public ResponseEntity<String> duplCheckId(@RequestBody UsersVO vo){
@@ -380,6 +381,50 @@ public class UserRestController {
 			grade.setUserGrede(1);
 			vo.setUserGrade(grade);
 			usersService.register(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	//회원 정보수정
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public ResponseEntity<String> modify(@RequestBody UsersVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			usersService.modifyUsers(vo);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	//현재 비밀번호 확인
+	@RequestMapping(value = "/nowpassconfirm", method = RequestMethod.POST)
+	public ResponseEntity<String> nowPassConfirm(@RequestBody UsersVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			UsersVO dbVO = usersService.duplCheckId(vo);
+			if(dbVO.getPassword().equals(vo.getPassword())) {
+				entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>("FAIL",HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	//비밀번호 수정
+	@RequestMapping(value = "/modifypass", method = RequestMethod.POST)
+	public ResponseEntity<String> modifyPass(@RequestBody UsersVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			usersService.modifyUsersPass(vo);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

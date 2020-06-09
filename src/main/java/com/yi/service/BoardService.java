@@ -10,6 +10,7 @@ import com.yi.domain.BoardVO;
 import com.yi.domain.ImageVO;
 import com.yi.domain.SearchCriteria;
 import com.yi.domain.ThemeVO;
+import com.yi.domain.UsersVO;
 import com.yi.domain.ZoneVO;
 import com.yi.persistence.BoardDAO;
 import com.yi.persistence.ImageDAO;
@@ -256,7 +257,7 @@ public class BoardService {
 	
 	// 경진 추가 (admin) end ------------------------------------------------------------------------------------
 
-//	재승 추가
+	//	재승 추가
 	// 카페 상세보기의 해당 카페 탐방기 리스트
 	public List<BoardVO> cafeReviewSameListByCafeNo(BoardVO boardVO) throws Exception {
 		return dao.cafeReviewSameListByCafeNo(boardVO);
@@ -273,6 +274,11 @@ public class BoardService {
 	public int recommendSameKeywordCntByZoneAndTheme(BoardVO boardVO) throws Exception {
 		return dao.recommendSameKeywordCntByZoneAndTheme(boardVO);
 	}
+	// 유저가 올린 게시글 수
+	public int boardTotalCnt(UsersVO vo)throws Exception{
+		return dao.totalUserBoardCount(vo.getUserNo());
+	}
+	
 
 	/*** 아름 추가  ***/
 	// 탐방기 월간 베스트15 Main에 쓸 리스트

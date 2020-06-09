@@ -18,4 +18,6 @@ public interface UsersDAO {
 	public void register(UsersVO vo) throws Exception;
 
 	public UsersVO selectUserPage(String userid) throws Exception;
+
+	public void modifyUsers(UsersVO vo) throws Exception;
 }

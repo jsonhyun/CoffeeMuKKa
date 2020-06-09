@@ -97,6 +97,10 @@ select * from board b where zone_no =3 and theme_no =3;
 
 select user_id from users where name = '현재승' and email='airplant@naver.com' and user_type=2;
 
+select count(*) from board b where user_no =10;
+select count(*) from board b where user_no =9 and board_no2 =1;
+select count(*) from board b where user_no =6 and board_no2 =2;
+
 select month(post_date) as month from powerlink where pow_cdt = 1 group by post_date;
 
 select * from cafe c 
