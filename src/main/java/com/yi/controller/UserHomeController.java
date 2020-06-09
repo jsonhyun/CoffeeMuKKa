@@ -76,7 +76,19 @@ public class UserHomeController {
 		}
 		model.addAttribute("newCafeImg", newCafeImg);		
 		
-		//카페베스트리스트
+		//카페베스트리스트 + 카페 별점
+		List<CafeVO> bestCafeList = cafeService.monthBestCafe();
+		model.addAttribute("bestCafeList", bestCafeList);
+		
+		List<Double> starpoint = cafeService.monthBestSPoint();
+		model.addAttribute("starpoint", starpoint);
+		
+		List<ImageVO> bestCafeImg = new ArrayList<ImageVO>();
+		for(int i=0;i<bestCafeList.size();i++) {
+			int cafeNo = bestCafeList.get(i).getCafeNo();
+			bestCafeImg.add(cafeService.imgSelect(cafeNo));
+		}
+		model.addAttribute("bestCafeImg", bestCafeImg);			
 		
 		//탐방기리스트
 		List<BoardVO> rvlist = boardService.cafeReviewMonthBestListHome();

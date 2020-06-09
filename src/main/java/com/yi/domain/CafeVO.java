@@ -40,6 +40,7 @@ public class CafeVO {
 	private CafeCdt powerlinkCdt;
 	private CafeCdt cafeCdt;
 	private ArrayList<ImageVO> images;
+	private StarpointVO starPoint;
 
 	public CafeVO() {
 		super();
@@ -377,14 +378,27 @@ public class CafeVO {
 		this.images = images;
 	}
 
+	
+	public StarpointVO getStarPoint() {
+		return starPoint;
+	}
+
+	public void setStarPoint(StarpointVO starPoint) {
+		this.starPoint = starPoint;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format(
-				"CafeVO [cafeNo=%s, cafeName=%s, themeNo=%s, zoneNo=%s, userNo=%s, address=%s, detailAddress=%s, tel=%s, wkdOpentime=%s, wkndOpentime=%s, closedDay=%s, sns=%s, tableNumber=%s, socketNumber=%s, toiletCdt=%s, mkdessertCdt=%s, terrasCdt=%s, reservationCdt=%s, wondooBuyCdt=%s, bookCdt=%s, beerCdt=%s, goodsCdt=%s, wifiCdt=%s, puppyCdt=%s, reserveokCdt=%s, parkingCdt=%s, nokidsCdt=%s, registrationDate=%s, updateDate=%s, viewNumber=%s, content=%s, oneline=%s, voteNumber=%s, powerlinkCdt=%s, cafeCdt=%s, images=%s]",
+				"CafeVO [cafeNo=%s, cafeName=%s, themeNo=%s, zoneNo=%s, userNo=%s, address=%s, detailAddress=%s, tel=%s, wkdOpentime=%s, wkndOpentime=%s, closedDay=%s, sns=%s, tableNumber=%s, socketNumber=%s, toiletCdt=%s, mkdessertCdt=%s, terrasCdt=%s, reservationCdt=%s, wondooBuyCdt=%s, bookCdt=%s, beerCdt=%s, goodsCdt=%s, wifiCdt=%s, puppyCdt=%s, reserveokCdt=%s, parkingCdt=%s, nokidsCdt=%s, registrationDate=%s, updateDate=%s, viewNumber=%s, content=%s, oneline=%s, voteNumber=%s, powerlinkCdt=%s, cafeCdt=%s, images=%s, starPoint=%s]",
 				cafeNo, cafeName, themeNo, zoneNo, userNo, address, detailAddress, tel, wkdOpentime, wkndOpentime,
 				closedDay, sns, tableNumber, socketNumber, toiletCdt, mkdessertCdt, terrasCdt, reservationCdt,
 				wondooBuyCdt, bookCdt, beerCdt, goodsCdt, wifiCdt, puppyCdt, reserveokCdt, parkingCdt, nokidsCdt,
-				registrationDate, updateDate, viewNumber, content, oneline, voteNumber, powerlinkCdt, cafeCdt, images);
+				registrationDate, updateDate, viewNumber, content, oneline, voteNumber, powerlinkCdt, cafeCdt, images, starPoint);
 	}
+
+
+	
+	
 
 }
