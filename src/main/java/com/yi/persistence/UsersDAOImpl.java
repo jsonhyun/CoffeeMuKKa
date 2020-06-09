@@ -60,7 +60,12 @@ public class UsersDAOImpl implements UsersDAO {
 		return sqlsession.selectOne(namespace+"selectUserPage", userid);
 	}
 
-	// 경진 추가 ----------------------------------------------------------------------------
+	@Override
+	public void modifyUsers(UsersVO vo) throws Exception {
+		sqlsession.update(namespace+"modifyUsers", vo);
+	}
+
+	//경진 추가 ----------------------------------------------------------------------------
 	// 게시글 등록 시 포인트 적립
 	@Override
 	public void updatePoint(int amount, int userNo) throws Exception {

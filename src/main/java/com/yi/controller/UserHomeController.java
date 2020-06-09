@@ -113,6 +113,21 @@ public class UserHomeController {
 		
 		model.addAttribute("rclistImg", rclistImg);
 		model.addAttribute("error", 0);
+		
+		//열혈무까인 리스트(종합)
+		List<BoardVO> bestUserAll = boardService.bestUserAllBoard();
+		model.addAttribute("bestUserAll",bestUserAll);
+		
+		List<Integer> bestUserAllCnt = boardService.bestUserAllBoardCnt();
+		model.addAttribute("bestUserAllCnt",bestUserAllCnt);
+		
+		//열혈무까인 리스트(전월기준)
+		List<BoardVO> bestUser = boardService.bestUserBoard();
+		model.addAttribute("bestUser",bestUser);
+		
+		List<Integer> bestUserCnt = boardService.bestUserBoardCnt();
+		model.addAttribute("bestUserCnt",bestUserCnt);
+		
 		return "/user/userHome";
 	}
 	
@@ -134,6 +149,18 @@ public class UserHomeController {
 	// 커뮤니티 
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
 	public String communityHome() {
+		//실시간 카페 추천 리스트 & 대표이미지
+//		List<BoardVO> rclist = boardService.recommendboardList();
+//		model.addAttribute("rclist",rclist);
+//		
+//		List<ImageVO> rclistImg = new ArrayList<ImageVO>();
+//		for(int i=0;i<rclist.size();i++) {
+//			int sboardNo = rclist.get(i).getBoardNo();
+//			rclistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+//		}
+//		
+//		model.addAttribute("rclistImg", rclistImg);		
+		
 		return "/user/userCommunityHome";
 	}
 	

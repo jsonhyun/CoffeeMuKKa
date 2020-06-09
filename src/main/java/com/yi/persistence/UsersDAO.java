@@ -19,7 +19,10 @@ public interface UsersDAO {
 
 	public UsersVO selectUserPage(String userid) throws Exception;
 	
+	public void modifyUsers(UsersVO vo) throws Exception;
+	
 	// 경진 추가 ----------------------------------------------------------------------------
 	// 게시글 등록 시 포인트 적립
 	public void updatePoint(int amount, int userNo) throws Exception;
+
 }

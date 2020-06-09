@@ -22,6 +22,10 @@ public class UsersService {
 		return dao.findUsers(vo);
 	}
 	
+	public void modifyUsers(UsersVO vo) throws Exception{
+		dao.modifyUsers(vo);
+	}
+	
 	public void modifyUsersPass(UsersVO vo) throws Exception{
 		dao.modifyUsersPass(vo);
 	}

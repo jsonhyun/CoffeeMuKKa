@@ -62,6 +62,14 @@
 		values(#{userId}, #{password}, #{name}, #{nick}, #{gender}, #{birthday}, #{userLeaveCondition}, #{tel}, #{address}, #{detailAddress}, #{email}, #{userType.userType}, #{userGrade.userGrade})
 	</insert>
 	
+	<update id="modifyUsers">
+		update users
+			set nick = #{nick}, gender=#{gender}, birthday=#{birthday}, tel=#{tel}, address=#{address}, detail_address=#{detailAddress}, email=#{email}, user_type=#{userType.userType} 
+			where user_id = #{userId}
+	</update>
+	
+	<!-- 경진 추가 ******************************************************************************* -->
+	<!-- 게시글 등록 시 포인트 적립 -->
 	<update id="updatePoint" parameterType="map">
 		update users
 			set point = point + #{amount}
