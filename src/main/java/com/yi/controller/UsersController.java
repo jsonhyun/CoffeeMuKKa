@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.yi.domain.AdminVO;
 import com.yi.domain.UsersVO;
 import com.yi.service.AdminService;
+import com.yi.service.BoardService;
 import com.yi.service.UsersService;
 
 @Controller
@@ -22,6 +23,9 @@ public class UsersController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String loginPost(UsersVO vo, Model model, HttpSession session) throws Exception {
@@ -72,19 +76,10 @@ public class UsersController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(String userId, Model model)throws Exception{
 		UsersVO dbVO = service.selectUserPage(userId);
-		System.out.println(dbVO);
+		int boardCnt = boardService.boardTotalCnt(dbVO);
 		model.addAttribute("dbVO",dbVO);
+		model.addAttribute("boardCnt",boardCnt);
 		return "/user/userMypage";
-	}
-	
-	//마이페이지에서 정보 수정
-	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
-	public String modifyMypage(UsersVO vo, Model model) throws Exception{
-		System.out.println(vo);
-//		service.modifyUsers(vo);
-//		UsersVO dbVO = service.selectUserPage(vo.getUserId());
-//		model.addAttribute("dbVO",dbVO);
-		return null;
 	}
 	
 }

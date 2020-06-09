@@ -60,4 +60,9 @@ public class UsersDAOImpl implements UsersDAO {
 		return sqlsession.selectOne(namespace+"selectUserPage", userid);
 	}
 
+	@Override
+	public void modifyUsers(UsersVO vo) throws Exception {
+		sqlsession.update(namespace+"modifyUsers", vo);
+	}
+
 }

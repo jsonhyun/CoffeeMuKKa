@@ -549,7 +549,7 @@
 							<input class="inputRegi" type="password" name="password" autocomplete="on" placeholder="비밀번호" style="margin-bottom: 5px;"><br>
 							<a href="#" id="findId" style="color:#5B9BD5;margin-left: 150px;">아이디 찾기</a>
 							<a href="#" id="findPass" style="color:#5B9BD5;margin-left: 10px;">비밀번호 찾기</a><br>
-							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 337px;" value="로그인">
+							<input type="submit" class="btn btn-primary" style="margin-top: 5px;width: 337px;cursor: pointer;" value="로그인">
 						</form>
 					</div>
 					
@@ -582,8 +582,8 @@
 							<input type="radio" name="userType" value="1"> <label>사업자 회원</label>
 							<input class="inputRegi" type="text" name="name" placeholder="이름" style="margin-bottom: 20px;"><br>
 							<input class="inputRegi" type="email" name="email" placeholder="이메일" style="margin-bottom: 30px;"><br>
-							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;" value="돌아가기">
-							<input type="button" class="btn btn-primary" id="btnFindId" style="margin-top: 5px;width: 167px;" value="아이디 찾기">
+							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;cursor: pointer;" value="돌아가기">
+							<input type="button" class="btn btn-primary" id="btnFindId" style="margin-top: 5px;width: 167px;cursor: pointer;" value="아이디 찾기">
 						</div>
 					</div>
 					
@@ -616,8 +616,8 @@
 							<input type="radio" name="userTypePw" value="1"> <label>사업자 회원</label>
 							<input class="inputRegi" type="text" name="userIdPw" placeholder="아이디" style="margin-bottom: 20px;"><br>
 							<input class="inputRegi" type="email" name="emailPw" placeholder="이메일" style="margin-bottom: 30px;"><br>
-							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;" value="돌아가기">
-							<input type="button" id="btnFindPass"class="btn btn-primary" style="margin-top: 5px;width: 167px;" value="비밀번호 찾기">
+							<input type="button" class="btn btn-danger login" style="margin-top: 5px;width: 167px;margin-right: -15px;cursor: pointer;" value="돌아가기">
+							<input type="button" id="btnFindPass"class="btn btn-primary" style="margin-top: 5px;width: 167px;cursor: pointer;" value="비밀번호 찾기">
 						</div>
 					</div>
 					
