@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../userInclude/header.jsp" %>
-<!-- bar-rating -->
+<!-- 별점 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/w3.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
+<!-- 탭 -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/jquery-ui.css"> 
+<script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <style>
 	/* 타이틀 클릭시 해당페이지 이동*/
 	h2 a.mainTitle:hover{
@@ -575,6 +578,54 @@
 		display: inline-block;
 	}
 	
+	ul#tabs-ul li,a:focus{
+		outline: none;
+	}
+	div#tabWrap{ /* 탭전체 */
+		width: 99%;
+		/* background-color: red; */
+	}
+	div#tabs{ /* 탭 */
+		width: 100%;
+	}
+	ul#tabs-ul{ /* 탭 제목-ul */
+		width: 99%;
+	}
+	 li.tabs-li:first-child{ /* 탭 제목-li */
+	 	width: 26%;
+	 }
+ 	 li.tabs-li{ /* 탭 제목-li */
+	 	width: 13.5%;
+	 }
+	 a#ui-id-1.tabName2.ui-tabs-anchor{
+	 	padding: 0.5em 0.9em;
+	 }
+	 a#ui-id-2.tabName2.ui-tabs-anchor{
+	 	padding: 0.5em 0.6em;
+	 } 	
+	 a#ui-id-3.tabName2.ui-tabs-anchor{
+	 	padding: 0.5em 0.6em;
+	 } 	
+	 a#ui-id-4.tabName2.ui-tabs-anchor{
+		 padding: 0.5em 0.6em;
+	 } 	
+	 a#ui-id-5.tabName2.ui-tabs-anchor{
+		 padding: 0.5em 0.3em;
+	 }
+	 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+	 	color: white;
+	 }
+	.ui-state-active,
+	.ui-widget-content .ui-state-active,
+	.ui-widget-header .ui-state-active,
+	a.ui-button:active,
+	.ui-button:active,
+	.ui-button.ui-state-active:hover {
+		border: 1px solid #eeeeee;
+		background: #ED7D31;
+		font-weight: bold;
+		color: white;
+	}	  		 	 	 	  	 	
 </style>
 
 	<div class="content container">
@@ -917,25 +968,67 @@
 
 		<div class="bestRankList right">
 				<h2 class="Title bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> 열혈 MuKKa人 </a><span>(2020.00.00 ~ 00.00)</span></h2>
-				<div class="bestIcons">
-					<div class="bestIcon"><a href="#">1-10</a></div>
-					<div class="bestIcon"><a href="#">11-20</a></div>
-					<div class="bestIcon"><a href="#">21-30</a></div>
-				</div>
-				<div class="bestList">
-					<p>
-						<span class="no w50">1.</span>
-						<span class="icon w100">icon?</span>
-						<span class="cafeName w150">이름</span>
-						<span class="reviewCnt w100">리뷰 000</span>
-					</p>
-					<p>
-						<span class="no w50">2.</span>
-						<span class="icon w100">icon?</span>
-						<span class="cafeName w150">이름</span>
-						<span class="reviewCnt w100">리뷰 000</span>
-					</p>
-				</div>
+			<!-- 베스트 리스트  -->
+			<div id="tabWrap">
+				<div id="tabs">
+					<ul id="tabs-ul">
+						<li class="tabs-li"><a href="#tabs-1" id="tabName1">열혈 MuKKa人 </a></li> <!-- 전체 베스트 20 -->
+						<li class="tabs-li"><a href="#tabs-2" class="tabName2">1 - 20</a></li> 
+						<li class="tabs-li"><a href="#tabs-3" class="tabName2">21 - 40</a></li> 
+						<li class="tabs-li"><a href="#tabs-4" class="tabName2">41 - 60</a></li> 
+						<li class="tabs-li"><a href="#tabs-5" class="tabName2">61 - 80</a></li> 
+						<li class="tabs-li"><a href="#tabs-6" class="tabName2">81 - 100</a></li> 
+					</ul>
+					
+					<!-- 전체 베스트 20 -->
+					<div id="tabs-1">
+						<ol>
+							<li>
+							
+							</li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ol>	
+					</div>
+					
+					<div id="tabs-2">
+							
+					</div>
+					
+					<div id="tabs-3">
+							
+					</div>
+					
+					
+ 					<div id="tabs-4">
+							
+					</div>
+ 					<div id="tabs-5">
+							
+					</div>	
+									 
+ 					<div id="tabs-6">
+							
+					</div>					
+				</div><!-- div id="tabs" -->
+			</div><!-- div id="tabWrap" -->				
 			</div>
 		</div>
 		
@@ -1099,5 +1192,6 @@
 		$(".rvRank").eq(i).text(4+i);
 	} 
      
+     $( "#tabs" ).tabs();
 </script>	
 <%@ include file="../userInclude/footer.jsp" %>
