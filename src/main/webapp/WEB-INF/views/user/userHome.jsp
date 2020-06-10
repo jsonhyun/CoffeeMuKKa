@@ -290,7 +290,8 @@
 		position: absolute;
 		left: 50px;
 		top: 5px;
-		z-index: 2;			
+		z-index: 2;
+		transition: all .6s ease;			
 			
 	}
 	div.likeCafeList ul li:hover div.like_dummy{
@@ -1076,7 +1077,7 @@
 										<img src="${pageContext.request.contextPath}/resources/images/${bestUserAll.userNo.userGrade.userGradeImage}" class="gradeImg">
 									</td>
 									<td class="user_name">
-										<span class="blue2 bold">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})
+										<span class="blue2 bold nickname">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})
 									</td>
 									<td class="board_cntImg">
 										<img src="${pageContext.request.contextPath}/resources/images/menu2_1.png" class="boardImg">
@@ -1416,6 +1417,7 @@
  	//1위~3위 css다르게 적용
  	for(var i=0;i<3;i++){
  		$(".num1").eq(i).addClass("bestRankUserAll");
+ 		$(".nickname").eq(i).removeClass("blue2").addClass("red");
  		$(".medal").eq(i).append("<img src='${pageContext.request.contextPath}/resources/images/mini_medal.png' class='mini_medal'>");
  		$(".rank_wrap").eq(i).css("background","#FFFFE4");
  		$(".num2").eq(i).addClass("bestRankUserAll");

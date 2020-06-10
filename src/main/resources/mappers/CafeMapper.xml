@@ -413,7 +413,7 @@
 	<select id="newCafeList" resultMap="CafeListSelectResult">
 		select * from cafe c
 		left join zone z on c.zone_no = z.zone_no 
-		left join theme t on c.theme_no = t.theme_no order by cafe_no desc limit 3
+		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 order by cafe_no desc limit 3
 	</select>
 	
 	<!-- 아름추가 : 전월기준 카페 베스트 -->

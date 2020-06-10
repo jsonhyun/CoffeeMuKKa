@@ -6,23 +6,34 @@
 <style>
 	/* 파워링크 */
 	.contentArea .powerLink {
-		height: 300px;
-		margin-bottom: 30px;
+		height: 94px;
+		margin-bottom: 10px;
 	}
 	
 	/* 위치별 / 테마별 / 베스트 */
 	.contentArea .boxs {
+		height: 300px;
 		overflow: hidden;
 		margin-bottom: 30px;
 	}
 	
 	.contentArea .boxs .box {
+		height: 300px;
 		float: left;
 		width: 30%;
 		position: relative;
 		overflow: hidden;
 		margin-right: 46px;
+		position: relative;
 	}
+ 	.contentArea .boxs .box:hover div.hiddenBox{
+		opacity: 1;
+		top:0;	
+	}
+	.contentArea .boxs .box:hover div.cafe_info{
+		opacity: 0;
+	}
+
 	
 	.contentArea .boxs .box:last-child {
 		margin-right: 0;
@@ -33,19 +44,44 @@
 		top: 0;
 		left: 0;
 		padding: 5px 10px;
+		z-index: 2;
 	}
 	
-	.contentArea .boxs .box .img {
-		height: 200px;
+	.contentArea .boxs .box img {
+		width: 100%;
+		height: 300px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		
 	}
-	
-	.contentArea .boxs .box .info h3{
+	div.cafe_info{
+		background-color: rgba(0,0,0,0.8);
+		color: white;
+		position: absolute;
+		top: 208px;
+		left: 0;
+		transition: all 1s ease;	
+	}
+	.contentArea .boxs .box .cafe_info h3{
 		padding: 10px;
 	}
 	
-	.contentArea .boxs .box .info p {
+	.contentArea .boxs .box .cafe_info p {
 		max-width: 80%;
 		padding: 10px;
+	}
+	div.hiddenBox{
+		width: 100%;
+		height: 300px;
+		background-color: rgba(0,0,0,0.9);
+		
+		transition: all .6s ease;
+		position: absolute;
+		top: 208px;
+		left: 0;
+		opacity: 0;
 	}
 	
 	/* 실시간 */
@@ -80,28 +116,40 @@
 		<!-- 위치, 테마, 베스트 -->
 		<div class="boxs">
 			<div class="box">
-				<div class="point bgOrange">위치별</div>
-				<div class="img temp"></div>
-				<div class="info bgBlack">
-					<h3>카페 카일라</h3>
-					<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
-				</div>
+				<a href="#">
+					<div class="point bgOrange">위치별</div>
+					<img src="${pageContext.request.contextPath }/resources/images/rc_sample41.jpg">
+					<div class="cafe_info">
+						<h3 class="title">카페 카일라</h3>
+						<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
+					</div>
+					<div class="hiddenBox">
+					</div>
+				</a>
 			</div>
 			<div class="box">
-				<div class="point bgOrange">테마별</div>
-				<div class="img temp"></div>
-				<div class="info bgBlack">
-					<h3>카페 카일라</h3>
-					<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
-				</div>
+				<a href="#">	
+					<div class="point bgOrange">테마별</div>
+					<img src="${pageContext.request.contextPath }/resources/images/rc_sample41.jpg">
+					<div class="cafe_info">
+						<h3 class="title">카페 카일라</h3>
+						<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
+					</div>
+					<div class="hiddenBox">
+					</div>
+				</a>					
 			</div>
 			<div class="box">
-				<div class="point bgOrange">베스트</div>
-				<div class="img temp"></div>
-				<div class="info bgBlack">
-					<h3>카페 카일라</h3>
-					<p class="classOne ">'공간이 지나는 특별함을 누구나 testtest'</p>
-				</div>
+				<a href="#">	
+					<div class="point bgOrange">테마별</div>
+					<img src="${pageContext.request.contextPath }/resources/images/rc_sample41.jpg">
+					<div class="cafe_info">
+						<h3 class="title">카페 카일라</h3>
+						<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
+					</div>
+					<div class="hiddenBox">
+					</div>
+				</a>					
 			</div>
 		</div>
 		

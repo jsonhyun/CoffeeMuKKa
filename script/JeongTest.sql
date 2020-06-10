@@ -1274,3 +1274,8 @@ select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.use
 
 select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) group by b.user_no order by count(b.user_no) desc;
 select count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) group by b.user_no order by count(b.user_no) desc;
+
+
+select * from cafe c
+		left join zone z on c.zone_no = z.zone_no 
+		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 order by cafe_no desc limit 3;
