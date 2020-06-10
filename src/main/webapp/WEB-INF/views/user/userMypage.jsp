@@ -150,7 +150,7 @@
 		$("#thirdNum").val(telArray[2]);
 		
 		/* 회원타입 선택 */
-		$("input:radio[name='userType']:radio[value='${dbVO.userType.userTypeName}']").prop('checked', true); // 선택하기
+		$("input:radio[name='userType']:radio[value='${dbVO.userType.userTypeName}']").prop('checked', true); // 선택하기 
 		
 		/* 닉네임 중복 확인 */
 		$("#duplCheck").click(function() {
