@@ -616,7 +616,31 @@
 		background: #ED7D31;
 		font-weight: bold;
 		color: white;
+	}	 
+	 
+	.ui-state-active,
+	.ui-widget-content .ui-state-active,
+	.ui-widget-header .ui-state-active,
+	a.ui-button:active,
+	.ui-button:active,
+	.ui-button.ui-state-active:hover {
+		border: 1px solid #eeeeee;
+		background: #ED7D31;
+		font-weight: bold;
+		color: white;
 	}
+
+    /* 첫번째 탭만 red */
+	.ui-widget-header .ui-state-active:first-child,
+	a.ui-button:active,
+	.ui-button:active,
+	.ui-button.ui-state-active:hover {
+		border: 1px solid #eeeeee;
+		background: red;
+		font-weight: bold;
+		color: white;
+	}
+
 	.ui-tabs .ui-tabs-panel{
 		padding: 0.8em 0.5em;
 	}
@@ -624,18 +648,18 @@
 		width: 100%;
 		height: 487px;
 	}
-      tr, td{
+    tr, td{
 		border: none;
 	}
 	table tr.rank_wrap{
 		border-bottom: 1px solid #BDBDBD;
 		padding-top: 7.7px;
 	}
-	/* ol li.rank_wrap div{
+	ol li.rank_wrap div{
 		display: inline;
-	} */	
+	}	
 	table tr.rank_wrap td.rank_num{
-		width: 12%;
+		width: 8%;
 		font-size: 23px;
 		font-weight: bold;
 		color: #FF7171;
@@ -643,6 +667,14 @@
 	}
 	.bestRankUserAll{
 		color: red;
+	}
+	table tr.rank_wrap td.medal{
+		width: 7%;
+		text-align: center;
+	}
+	table tr.rank_wrap td.medal img.mini_medal{
+		width: 27px;
+		vertical-align: top;
 	}	
 	table tr.rank_wrap td.grade_img{
 		width: 10%;
@@ -653,12 +685,12 @@
 		vertical-align: top;
 	}
 	table tr.rank_wrap td.user_name{
-		width: 57%;
+		width: 60%;
 		font-size: 15px;
 		font-weight: bold;
 		color: black;
 		text-align: left;
-		padding-left: 25px;
+		padding-left: 15px;
 	}
 	.blue2{
 		color: blue;
@@ -670,6 +702,7 @@
 		 vertical-align: middle;
 	}	
 	table tr.rank_wrap td.board_cnt{
+		width: 16%;
 		font-size: 15px;
 		text-align: right;		
 	}
@@ -1019,7 +1052,9 @@
 			<div id="tabWrap">
 				<div id="tabs">
 					<ul id="tabs-ul">
-						<li class="tabs-li"><a href="#tabs-1" id="tabName1">열혈 MuKKa人 </a></li> <!-- 전체 베스트 20 -->
+						<!-- 전체 베스트 10 -->
+						<li class="tabs-li" id="tabs_firstClick"><a href="#tabs-1" id="tabName1">열혈 MuKKa人 </a></li>
+						<!-- 전월기준 1-50 --> 
 						<li class="tabs-li"><a href="#tabs-2" class="tabName2">1 - 10</a></li> 
 						<li class="tabs-li"><a href="#tabs-3" class="tabName2">11 - 20</a></li> 
 						<li class="tabs-li"><a href="#tabs-4" class="tabName2">21 - 30</a></li> 
@@ -1027,13 +1062,15 @@
 						<li class="tabs-li"><a href="#tabs-6" class="tabName2">41 - 50</a></li> 
 					</ul>
 					
-					<!-- 전체 베스트 20 -->
+					<!-- 전체 베스트 10 -->
 					<div id="tabs-1">
 						<table>
 							<c:forEach var="bestUserAll" items="${bestUserAll}" begin="0" end="9" varStatus="status">
 								<tr class="rank_wrap">
 									<td class="rank_num">
 										<span class="num1"></span>
+									</td>
+									<td class="medal">
 									</td>
 									<td class="grade_img">
 										<img src="${pageContext.request.contextPath}/resources/images/${bestUserAll.userNo.userGrade.userGradeImage}" class="gradeImg">
@@ -1052,6 +1089,7 @@
 						</table>
 					</div>
 					
+					<!-- 전월기준 1-50 --> 
 					<div id="tabs-2">
 						<table>
 							<c:forEach var="bestUser" items="${bestUser}" begin="0" end="9" varStatus="status">
@@ -1059,6 +1097,8 @@
 									<td class="rank_num">
 										<span class="num2"></span>
 									</td>
+									<td class="medal">
+									</td>									
 									<td class="grade_img">
 										<img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 									</td>
@@ -1083,6 +1123,8 @@
 									<td class="rank_num">
 										<span class="num3"></span>
 									</td>
+									<td class="medal">
+									</td>									
 									<td class="grade_img">
 										<img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 									</td>
@@ -1108,6 +1150,8 @@
 									<td class="rank_num">
 										<span class="num3"></span>
 									</td>
+									<td class="medal">
+									</td>									
 									<td class="grade_img">
 										<img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 									</td>
@@ -1124,6 +1168,7 @@
 							</c:forEach>
 						</table>							
 					</div>
+					
  					<div id="tabs-5">
 						<table>
 							<c:forEach var="bestUser" items="${bestUser}" begin="30" end="39" varStatus="status">
@@ -1131,6 +1176,8 @@
 									<td class="rank_num">
 										<span class="num5"></span>
 									</td>
+									<td class="medal">
+									</td>									
 									<td class="grade_img">
 										<img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 									</td>
@@ -1155,6 +1202,8 @@
 									<td class="rank_num">
 										<span class="num6"></span>
 									</td>
+									<td class="medal">
+									</td>									
 									<td class="grade_img">
 										<img src="${pageContext.request.contextPath}/resources/images/${bestUser.userNo.userGrade.userGradeImage}" class="gradeImg">
 									</td>
@@ -1367,6 +1416,8 @@
  	//1위~3위 css다르게 적용
  	for(var i=0;i<3;i++){
  		$(".num1").eq(i).addClass("bestRankUserAll");
+ 		$(".medal").eq(i).append("<img src='${pageContext.request.contextPath}/resources/images/mini_medal.png' class='mini_medal'>");
+ 		$(".rank_wrap").eq(i).css("background","#FFFFE4");
  		$(".num2").eq(i).addClass("bestRankUserAll");
  	}
  	
