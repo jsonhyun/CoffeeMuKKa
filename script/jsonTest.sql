@@ -111,3 +111,8 @@ select * from cafe c
 select * from admin where ano_id = 'test001';
 
 select * from users u left join `type` t on u.user_type = t.user_type left join grade g on u.user_grade = g.user_grade where user_id ='test0001';
+
+select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b 
+left join users u on b.user_no = u.user_no 
+left join grade g on u.user_grade = g.user_grade 
+group by b.user_no order by count(b.user_no) desc;
