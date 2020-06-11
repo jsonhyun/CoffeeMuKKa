@@ -1270,18 +1270,15 @@
 		<td style="width: 115px;border-bottom: 1px solid #dadada;">
 			<div class="themeIcon keyword spThemeIcon" style="background-color: #f2486f;"><span>#</span>{{themeNo.themeName}}</div>
 		</td>
-		<td style="border-bottom: 1px solid #dadada;">{{starPointComment}}</td>
+		<td style="border-bottom: 1px solid #dadada; text-align:left;">{{starPointComment}}</td>
 		
-		<td style="width: 140px;border-bottom: 1px solid #dadada;">| {{dateHelper registrationDate}}</td>
+		<td style="border-bottom: 1px solid #dadada;">{{dateHelper registrationDate}}</td>
 		<td style="border-bottom: 1px solid #dadada;text-align: left;">
-			<img src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" style="width: 25px;vertical-align: bottom;margin-right: 10px;">
+			<img src="${pageContext.request.contextPath }/resources/images/{{userNo.userGrade.userGradeImage}}" style="width: 25px;vertical-align: bottom;margin-right: 5px;">
 			<span>{{userNo.nick}}</span>
 		</td>
 		<td style="border-bottom: 1px solid #dadada;">
-			<div class="replyBtn f_right">
-				<a class="replyModify blueBtn off" href="#" data-spNo="{{starPointNo}}" data-sp="{{starPoint}}" data-spTheme="{{themeNo.themeNo}}" data-spComment="{{starPointComment}}">수정</a>
-				<a class="replyRemove redBtn" href="#"  data-spNo="{{starPointNo}}">삭제</a>
-			</div>
+			{{#starHelper userNo.nick starPointNo starPoint themeNo.themeNo starPointComment}}{{/starHelper}}
 		</td>
 	</tr>
 	{{/each}}
@@ -1297,6 +1294,19 @@
 		var day = d.getDate();
 		return year + "/" + month + "/" + day;
 	})
+	
+	Handlebars.registerHelper("starHelper", function(nick, starPointNo, starPoint, themeNo, starPointComment ){
+		var auth = "${Auth}";
+		var replyNick = nick;
+		var replyBtnHtml = '<div class="replyBtn f_right">'
+							+'<a class="replyModify blueBtn off" href="#" data-spNo="'+starPointNo+'" data-sp="'+starPoint+'" data-spTheme="'+themeNo.themeNo+'" data-spComment="'+starPointComment+'">수정</a>'
+							+'<a class="replyRemove redBtn" href="#" data-spNo="'+starPointNo+'">삭제</a></div>';
+		if(auth == replyNick) {
+			return replyBtnHtml;
+		} else {
+			return "";
+		}
+	}); 
 	
 	/* 평점 리스트 */
 	function getPageList( page ){
@@ -1385,7 +1395,7 @@
 	/* 평점 추가 */
 	$("#btnStarpointAdd").click(function(){
 		// login 기능 구현 후 수정해야함
-		var userNo = 1;
+		var userNo = ${AuthNo};
 		var cafeNo = ${cafe.cafeNo};
 		var themeNo = $('#hiddenTheme').val();
 		var starPoint = $('#hiddenStarpoint').val();
