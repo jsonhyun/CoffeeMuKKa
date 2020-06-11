@@ -92,6 +92,12 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectOne(namespace+"starpointByMonth", map);
 	}
 	
+	@Override
+	public Integer starCnt(int cafeNo) throws Exception {
+		return sqlSession.selectOne(namespace+"starCnt", cafeNo);
+	}
+
+	
 	/* 카페 테마 순위 검색 */
 	@Override
 	public List<ThemeVO> rankTheme(int cafeNo) throws Exception {
@@ -270,10 +276,6 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<Double> starPointCafeBest5() throws Exception {
 		return sqlSession.selectList(namespace + "starPointCafeBest5");
 	}	
-
-	
-
-	
 
 
 }

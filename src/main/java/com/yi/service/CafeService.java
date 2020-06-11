@@ -50,6 +50,10 @@ public class CafeService {
 		return dao.starpointByMonth(cafeNo, month);
 	}
 	
+	public Integer starCnt(int cafeNo) throws Exception {
+		return dao.starCnt(cafeNo);
+	}		
+	
 	public List<ThemeVO> rankTheme(int cafeNo) throws Exception{
 		return dao.rankTheme(cafeNo);
 	}
@@ -161,6 +165,7 @@ public class CafeService {
 		return dao.openCafeNoList();
 	}
 	
+
 	public List<CafeVO> viewNumberCafeListAll() throws Exception {
 		return dao.viewNumberCafeListAll();
 	}
@@ -174,5 +179,4 @@ public class CafeService {
 	public List<Double> starPointCafeBest5() throws Exception {
 		return dao.starPointCafeBest5();
 	}	
-	
 }

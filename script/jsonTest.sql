@@ -116,3 +116,7 @@ select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.use
 left join users u on b.user_no = u.user_no 
 left join grade g on u.user_grade = g.user_grade 
 group by b.user_no order by count(b.user_no) desc;
+
+select * from cafe where theme_no =1;
+
+select count(*) from starpoint where cafe_no = 1;

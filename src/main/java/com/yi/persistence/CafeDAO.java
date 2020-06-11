@@ -25,6 +25,7 @@ public interface CafeDAO {
 	public int starpointSelect(int cafeNo) throws Exception;
 	public Double starpoint(int cafeNo) throws Exception;
 	public int starpointByMonth(int cafeNo, int month) throws Exception;
+	public Integer starCnt(int cafeNo) throws Exception;
 	
 	/* 카페 테마 순위 검색 */
 	public List<ThemeVO> rankTheme(int cafeNo) throws Exception;

@@ -423,7 +423,7 @@
 					<div>
 						<div class="replyAndView">
 							<img src="${pageContext.request.contextPath }/resources/images/reply.png">
-							<span>20</span>
+							<span>${starCnt[i.index] }</span>
 						</div>
 						<div class="replyAndView">
 							<img src="${pageContext.request.contextPath }/resources/images/view.png">

@@ -328,7 +328,6 @@ public class UserRestController {
 			mailSender.send(message);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
-			System.out.println(e);
 			entity = new ResponseEntity<String>("FAIL", HttpStatus.BAD_REQUEST);
 		}
 
