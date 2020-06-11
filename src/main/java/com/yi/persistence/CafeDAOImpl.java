@@ -255,6 +255,11 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace+"openCafeNoList");
 	}
 
+	@Override
+	public List<CafeVO> viewNumberCafeListAll() throws Exception {
+		return sqlSession.selectList(namespace+"viewNumberCafeListAll");
+	}
+
 	
 
 	

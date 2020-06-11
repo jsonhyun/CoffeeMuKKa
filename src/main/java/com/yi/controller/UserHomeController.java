@@ -173,7 +173,18 @@ public class UserHomeController {
 		CafeVO zoneCafe3 = cafeService.readCafe(zoneCafeNo3);
 		ImageVO zoneImg3 = cafeService.imgSelect(zoneCafeNo3);
 		model.addAttribute("zoneCafe3", zoneCafe3);
-		model.addAttribute("zoneImg3",zoneImg3);		
+		model.addAttribute("zoneImg3",zoneImg3);
+		
+		//카페 조회순 리스트
+		List<CafeVO> viewCafeList = cafeService.viewNumberCafeListAll();
+		model.addAttribute("viewCafeList", viewCafeList);
+
+		List<ImageVO> viewCafeListImg = new ArrayList<ImageVO>();
+		for(int i=0;i<viewCafeList.size();i++) {
+			int cafeNo = viewCafeList.get(i).getCafeNo();
+			viewCafeListImg.add(cafeService.imgSelect(cafeNo));
+		}
+		model.addAttribute("viewCafeListImg", viewCafeListImg);		
 		
 		
 		

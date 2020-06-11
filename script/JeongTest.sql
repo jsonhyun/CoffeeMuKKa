@@ -1304,7 +1304,8 @@ select cafe_no from cafe c
 -- 영업으로 등록된 카페 번호의 가장 마지막 숫자
 select cafe_no from cafe c
 		left join zone z on c.zone_no = z.zone_no 
-		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 order by cafe_no desc limit 1;	
+		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 order by cafe_no desc limit 1;
+	
 		
 select cafe_no from cafe order by cafe_no desc limit 1; -- 가장 마지막 숫자 가져오기 
 
@@ -1315,3 +1316,8 @@ select c.*, z.*, t.* from cafe c
 		where c.cafe_no=129;
 	
 select cafe_no from cafe where cafe_cdt = 1;
+
+
+select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no order by c.view_number desc;

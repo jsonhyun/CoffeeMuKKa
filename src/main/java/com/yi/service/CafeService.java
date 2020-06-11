@@ -159,5 +159,9 @@ public class CafeService {
 	
 	public List<Integer> openCafeNoList() throws Exception {
 		return dao.openCafeNoList();
-	}			
+	}
+	
+	public List<CafeVO> viewNumberCafeListAll() throws Exception {
+		return dao.viewNumberCafeListAll();
+	}	
 }

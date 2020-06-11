@@ -420,4 +420,11 @@
    <select id="openCafeNoList" resultType="int">
 		select cafe_no from cafe where cafe_cdt = 1;
 	</select>
+	
+	<!-- 아름추가 : 영업으로 등록된 카페, 종합 조회수 리스트 -->
+	<select id="viewNumberCafeListAll" resultMap="CafeListSelectResult">
+		select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no order by c.view_number desc	
+	</select>
 </mapper>

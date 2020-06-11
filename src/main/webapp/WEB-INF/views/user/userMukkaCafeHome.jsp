@@ -107,10 +107,12 @@
 		padding: 4px;
 		margin-left: 3px;
 		margin-left: 10px;
+		cursor: pointer;
 	}
 	.nextBtn1{
 		padding: 4px;
 		margin-left: 3px;
+		cursor: pointer;
 	}
 	div.bestViewBox{
 		height: 575px;
@@ -135,7 +137,7 @@
 		font-size: 22px;
 		line-height: 155px;
 	}
-	div.best_table_info{
+	div.best_ul_info{
 		width: 200px;
 		padding: 20px 20px;
 		
@@ -152,11 +154,11 @@
 		word-wrap: break-word;
 		margin-top: 35px;
 	}
-	div.best_table_img{
+	div.best_ul_img{
 		width: 165px;
 		padding-top : 8px;
 	}
-	div.best_table_img img{
+	div.best_ul_img img{
 		width: 165px;
 		height: 140px;
 	}
@@ -228,121 +230,101 @@
 			<div class="box left bestViewBox">
 				<h3 class="title bottomLine">
 					<span class="bestTitle">BEST</span> <span class="bestSubtitle">|<span class="blue"> 많이 본 인기 카페</span></span>
-					 <span class="orange"><span class="pageNum1">1</span> / <span class="pageTotal1">0</span></span>
+					 <span class="orange"><span class="pageNum1">1</span> / <span class="pageTotal1">5</span></span>
 					 <span class="prevBtn1"><i class="fas fa-angle-left"></i></span>
 					 <span class="nextBtn1"><i class="fas fa-angle-right"></i></span>
 				</h3>				
 				<ul class="bestCafeBox">
 					<li class="bestCafe_li">
-						<div class="red w30 no bold"><i>1</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>2</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>3</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>												
+						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="0" end="2" varStatus="status">
+							<div class="red w30 no bold"><i class="num1"></i></div>
+							<div class="best_ul_info">
+								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+							</div>
+							<div class="best_ul_img">
+								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="0" end="2" varStatus="status">
+									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
+										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+										</a>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="best_line"></div>
+						</c:forEach>												
 					</li>
 					<li class="bestCafe_li">
-						<div class="red w30 no bold"><i>4</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>5</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>6</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>												
+						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="3" end="5" varStatus="status">
+							<div class="red w30 no bold"><i class="num2"></i></div>
+							<div class="best_ul_info">
+								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+							</div>
+							<div class="best_ul_img">
+								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="3" end="5" varStatus="status">
+									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
+										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+										</a>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="best_line"></div>
+						</c:forEach>												
 					</li>
 					<li class="bestCafe_li">
-						<div class="red w30 no bold"><i>7</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>8</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>9</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>												
+						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="6" end="8" varStatus="status">
+							<div class="red w30 no bold"><i class="num3"></i></div>
+							<div class="best_ul_info">
+								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+							</div>
+							<div class="best_ul_img">
+								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="6" end="8" varStatus="status">
+									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
+										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+										</a>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="best_line"></div>
+						</c:forEach>												
 					</li>
 					<li class="bestCafe_li">
-						<div class="red w30 no bold"><i>10</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>11</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>12</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>												
+						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="9" end="11" varStatus="status">
+							<div class="red w30 no bold"><i class="num4"></i></div>
+							<div class="best_ul_info">
+								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+							</div>
+							<div class="best_ul_img">
+								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="9" end="11" varStatus="status">
+									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
+										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+										</a>
+									</c:if>
+								</c:forEach>
+							</div>							
+							<div class="best_line"></div>
+						</c:forEach>												
 					</li>
 					<li class="bestCafe_li">
-						<div class="red w30 no bold"><i>13</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>14</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>
-						
-						<div class="red w30 no bold"><i>15</i></div>
-						<div class="best_table_info">
-							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
-						</div>
-						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
-						<div class="best_line"></div>												
-					</li>																																															
+						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="12" end="14" varStatus="status">
+							<div class="red w30 no bold"><i class="num5"></i></div>
+							<div class="best_ul_info">
+								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+							</div>
+							<div class="best_ul_img">
+								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="12" end="14" varStatus="status">
+									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
+										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+										</a>
+									</c:if>
+								</c:forEach>
+							</div>							
+							<div class="best_line"></div>
+						</c:forEach>												
+					</li>																																																				
 				</ul>
 			</div>
 			<div class="box right">
@@ -359,5 +341,47 @@
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
-
+<script>
+	//많이 본 인기 카페
+	var pageNum1 = $(".pageNum1").text(); //1
+	var pageTotal1 = $(".pageTotal1").text();
+	
+	var index1 = 0;
+	
+ 	$(".nextBtn1").click(function() {
+		if(index1 == -(pageTotal1-1)){
+			alert("오른쪽 끝입니다.");
+			return;
+		}
+		pageNum1++;
+		$(".pageNum1").text(pageNum1);
+		
+		index1--;
+		var marginLeft = index1 * 442;
+		console.log(marginLeft);
+		$("ul.bestCafeBox").animate({"margin-left":marginLeft+"px"},1500);
+ 	})
+		
+ 	$(".prevBtn1").click(function() {
+		if(index1 == 0){
+			alert("왼쪽 끝입니다.");
+			return;
+		}
+		pageNum1--;
+		$(".pageNum1").text(pageNum1);
+		
+		index1++;
+		var marginLeft = index1 * 442;
+		$("ul.bestCafeBox").animate({"margin-left":marginLeft+"px"},1500);	
+	})
+	
+	//1위-15위
+	for(var i=0;i<3;i++){
+		$(".num1").eq(i).text(i+1);
+		$(".num2").eq(i).text(i+4);
+		$(".num3").eq(i).text(i+7);
+		$(".num4").eq(i).text(i+10);
+		$(".num5").eq(i).text(i+13);		
+	}	
+</script>
 <%@ include file="../userInclude/footer.jsp" %>

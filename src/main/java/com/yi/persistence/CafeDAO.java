@@ -78,4 +78,6 @@ public interface CafeDAO {
 	
 	public List<Integer> openCafeNoList() throws Exception;
 	
+	public List<CafeVO> viewNumberCafeListAll() throws Exception;
+	
 }
