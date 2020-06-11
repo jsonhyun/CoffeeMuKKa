@@ -186,7 +186,12 @@ public class UserHomeController {
 		}
 		model.addAttribute("viewCafeListImg", viewCafeListImg);		
 		
+		// 카페 별점 순 리스트
+		List<CafeVO> starPointCafeList = cafeService.starPointCafeBest5Info();
+		model.addAttribute("starPointCafeList", starPointCafeList);
 		
+		List<Double> starPoint = cafeService.starPointCafeBest5();
+		model.addAttribute("starPoint", starPoint);	
 		
 		return "/user/userMukkaCafeHome";
 	}
@@ -194,7 +199,7 @@ public class UserHomeController {
 
 	// 커뮤니티 
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
-	public String communityHome() {
+	public String communityHome(Model model) {
 		//실시간 카페 추천 리스트 & 대표이미지
 //		List<BoardVO> rclist = boardService.recommendboardList();
 //		model.addAttribute("rclist",rclist);

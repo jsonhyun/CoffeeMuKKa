@@ -425,6 +425,29 @@
 	<select id="viewNumberCafeListAll" resultMap="CafeListSelectResult">
 		select c.*, z.*, t.* from cafe c 
 		left join theme t on c.theme_no = t.theme_no 
-		left join `zone` z on c.zone_no = z.zone_no order by c.view_number desc	
+		left join `zone` z on c.zone_no = z.zone_no order by c.view_number desc	limit 15
 	</select>
+	
+	<!-- 아름추가 : 영업으로 등록된 카페, 종합 별점순5 '정보' -->
+		<select id="starPointCafeBest5Info" resultMap="CafeListSelectResult">
+			select c.*, z.*, t.*
+			from cafe c
+			left join starpoint s on c.cafe_no = s.cafe_no
+			left join theme t on c.theme_no = t.theme_no
+			left join zone z on c.zone_no = z.zone_no
+			where c.cafe_cdt = 1 
+			group by c.cafe_name
+			order by round(sum(s.star_point)/count(s.star_point),1) desc limit 5	
+		</select>
+	<!-- 아름추가 : 영업으로 등록된 카페, 종합 별점순 5  '별점' -->
+		<select id="starPointCafeBest5" resultType="double">
+			select round(sum(s.star_point)/count(s.star_point),1)
+			from cafe c
+			left join starpoint s on c.cafe_no = s.cafe_no
+			left join theme t on c.theme_no = t.theme_no
+			left join zone z on c.zone_no = z.zone_no
+			where c.cafe_cdt = 1 
+			group by c.cafe_name
+			order by round(sum(s.star_point)/count(s.star_point),1) desc limit 5;		
+		</select>	
 </mapper>

@@ -261,8 +261,15 @@ public class CafeDAOImpl implements CafeDAO {
 	}
 
 	
-
+	@Override
+	public List<CafeVO> starPointCafeBest5Info() throws Exception {
+		return sqlSession.selectList(namespace+"starPointCafeBest5Info");
+	}
 	
+	@Override
+	public List<Double> starPointCafeBest5() throws Exception {
+		return sqlSession.selectList(namespace + "starPointCafeBest5");
+	}	
 
 	
 

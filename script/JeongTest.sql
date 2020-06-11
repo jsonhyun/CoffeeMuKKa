@@ -1320,4 +1320,20 @@ select cafe_no from cafe where cafe_cdt = 1;
 
 select c.*, z.*, t.* from cafe c 
 		left join theme t on c.theme_no = t.theme_no 
-		left join `zone` z on c.zone_no = z.zone_no order by c.view_number desc;
+		left join `zone` z on c.zone_no = z.zone_no order by c.view_number desc limit 15;
+		
+
+select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no order by c.view_number desc limit 15;
+		
+	
+	
+select round(sum(s.star_point)/count(s.star_point),1) as 'point', c.cafe_name, c.*, z.*, t.*
+from cafe c
+left join starpoint s on c.cafe_no = s.cafe_no
+left join theme t on c.theme_no = t.theme_no
+left join zone z on c.zone_no = z.zone_no
+where c.cafe_cdt = 1 
+group by c.cafe_name
+order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;	

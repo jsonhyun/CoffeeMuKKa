@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
-
+<!-- 별점 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/w3.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/fontawesome-stars.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
 <style>
 	/* 파워링크 */
 	.contentArea .powerLink {
@@ -85,8 +89,9 @@
 		left: 0;
 		opacity: 0;
 	}
-	
-
+	p.hiddenText{
+		color: white;
+	}
 	.contentArea .realTime {
 		overflow: hidden;
 	}
@@ -165,7 +170,69 @@
 	div.best_line{
 		width: 440px;
 		border-bottom: 1px solid #aaa;
-	}		
+	}
+	
+	table.starPoint_Box{
+		width: 442px;
+		height: 468px;
+	}
+	tr,td{
+		border: none
+	}
+	tr{
+		border-bottom: 1px solid #aaa;
+	}
+	table.starPoint_Box td.starPointRank{
+		text-align: center;
+		font-weight: bold;
+	}
+	.starPointWrap {
+		width: 150px;
+		height: 33px;
+		/* margin: 0 auto;
+		line-height: 50px; */
+	}
+	.spoint{
+	    width: 150px;	
+		height: 33px;
+	    line-height: 33px;
+	    background-color: #f4f4f4;
+	    border-radius: 10px;
+	    float: left;
+	}
+	.br-theme-fontawesome-stars .br-readonly a {
+		font-size: 15px;		
+	}
+	.br-theme-fontawesome-stars .br-readonly a:first-child{
+		padding-left: 15px;
+	}	
+	.br-theme-fontawesome-stars .br-widget a.br-selected:after {
+		color: red;
+	}
+	.jumsu{
+		height: 33px;
+	    line-height: 33px;
+	    float: left;
+	    margin-left: -51px;
+	    /* margin-bottom: 20px; */
+		font-size: 15px;
+	}
+	div.spointZone{
+		font-weight: bold;
+		font-size: 13px;
+	}
+	div.spointTheme{
+		font-weight: bold;
+		font-size: 13px;
+	}
+	td.spoint_keyword div{
+		float: left;
+		margin-right: 5px;
+	}
+	td.spointCafeName{
+		font-weight: bold;
+		font-size: 17px;
+	}				
 </style>
 		
 <div class="content subPageContent">
@@ -195,6 +262,7 @@
 						<p class="classOne">'${zoneCafe1.oneline}'</p>
 					</div>
 					<div class="hiddenBox">
+						<p class="hiddenText">'${zoneCafe1.oneline}'</p>
 					</div>
 				</a>
 			</div>
@@ -207,6 +275,7 @@
 						<p class="classOne">'${zoneCafe2.oneline}'</p>
 					</div>
 					<div class="hiddenBox">
+						<p class="hiddenText">'${zoneCafe2.oneline}'</p>
 					</div>
 				</a>					
 			</div>
@@ -219,6 +288,7 @@
 						<p class="classOne">'${zoneCafe3.oneline}'</p>
 					</div>
 					<div class="hiddenBox">
+						<p class="hiddenText">'${zoneCafe3.oneline}'</p>
 					</div>
 				</a>					
 			</div>
@@ -329,6 +399,53 @@
 			</div>
 			<div class="box right">
 				<h3 class="title bottomLine"><span class="bestTitle">BEST</span> <span> |<span class="red"> 종합 별점 랭킹 5</span></span></h3>
+				<table class="starPoint_Box">
+					<c:forEach var="starPointCafeList" items="${starPointCafeList}">
+						<tr>
+							<td class="starPointRank" rowspan="2"></td>
+							<td class="starPointWrap" rowspan="2">
+								<div class="starPointWrap clearfix">
+									<div class="star spoint">
+										<select class="starPoint"> 
+											<option value="1">1</option> 
+											<option value="2">2</option> 
+											<option value="3">3</option> 
+											<option value="4">4</option> 
+											<option value="5">5</option> 
+										</select>										
+									</div>
+									<div class="jumsu"><span class="spointNum"></span><span class="gray">/ 5</span></div>
+									</div>	
+							</td>
+							<td class="spoint_keyword" colspan="2">
+								<div class="zoneIcon zoneOrangeIconSmall spointZone">${starPointCafeList.zoneNo.zoneName}</div>
+								<c:choose>
+									<c:when test="${starPointCafeList.themeNo.themeNo == 1}">
+										<div class="date themeKeySmall spointTheme">#${starPointCafeList.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${starPointCafeList.themeNo.themeNo == 2}">
+										<div class="view themeKeySmall spointTheme">#${starPointCafeList.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${starPointCafeList.themeNo.themeNo == 3}">
+										<div class="ame themeKeySmall spointTheme">#${starPointCafeList.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${starPointCafeList.themeNo.themeNo == 4}">
+										<div class="dessert themeKeySmall spointTheme">#${starPointCafeList.themeNo.themeName}</div>
+									</c:when>
+									<c:when test="${starPointCafeList.themeNo.themeNo == 5}">
+										<div class="dog themeKeySmall spointTheme">#${starPointCafeList.themeNo.themeName}</div>
+									</c:when>																																								
+									<c:otherwise>
+										<div class="work themeKeySmall  keyword">#${starPointCafeList.themeNo.themeName}</div>		
+									</c:otherwise>
+								</c:choose>							
+							</td>
+							</tr>
+							<tr>
+								<td class="spointCafeName" colspan="2">${starPointCafeList.cafeName}</td>
+							</tr>
+						</c:forEach>																																											
+				</table>
 			</div>
 		</div>
 		
@@ -382,6 +499,23 @@
 		$(".num3").eq(i).text(i+7);
 		$(".num4").eq(i).text(i+10);
 		$(".num5").eq(i).text(i+13);		
-	}	
+	}
+ 	
+	/* 별점 */	
+	var starpoint = ${starPoint};
+	for(var i=0;i<starpoint.length;i++){
+	     $('.starPoint').barrating({
+				theme: 'fontawesome-stars',
+				initialRating:  Math.round(starpoint[i]),
+				readonly: true
+			})
+			
+		$(".spointNum").eq(i).text(starpoint[i]);			
+		
+	}
+	
+	for(var i=0;i<5;i++){
+	  $(".starPointRank").eq(i).text(i+1);
+	}
 </script>
 <%@ include file="../userInclude/footer.jsp" %>

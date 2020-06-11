@@ -163,5 +163,16 @@ public class CafeService {
 	
 	public List<CafeVO> viewNumberCafeListAll() throws Exception {
 		return dao.viewNumberCafeListAll();
+	}
+	
+
+	public List<CafeVO> starPointCafeBest5Info() throws Exception {
+		return dao.starPointCafeBest5Info();
+	}
+	
+
+	public List<Double> starPointCafeBest5() throws Exception {
+		return dao.starPointCafeBest5();
 	}	
+	
 }

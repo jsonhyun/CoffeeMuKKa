@@ -808,7 +808,7 @@
 		<!-- 카페 리스트 -->
 		<div class="cafeListArea">
 			<div class="newCafeList left">
-				<h2 class="newCafeTitle bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> 반짝반짝 신상카페</a></h2>
+				<h2 class="newCafeTitle bottomLine"><a href="${pageContext.request.contextPath}/user/mukkaCafe" class="mainTitle"><i class="fas fa-mug-hot"></i> 반짝반짝 신상카페</a></h2>
 				
 				<c:forEach var="newCafeList" items="${newCafeList}">
 					<div class="newCafeImgs">
@@ -826,13 +826,13 @@
 						<!-- 키워드 -->
 						<c:choose>
 							<c:when test="${newCafeList.themeNo.themeNo == 1}">
-								<div class="date themeKeySmall newCafekeyword">#${board.themeNo.themeName}</div>
+								<div class="date themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>
 							</c:when>
 							<c:when test="${newCafeList.themeNo.themeNo == 2}">
 								<div class="view themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>
 							</c:when>
 							<c:when test="${newCafeList.themeNo.themeNo == 3}">
-								<div class="ame newCafekeyword">#${newCafeList.themeNo.themeName}</div>
+								<div class="ame themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>
 							</c:when>
 							<c:when test="${newCafeList.themeNo.themeNo == 4}">
 								<div class="dessert themeKeySmall newCafekeyword">#${newCafeList.themeNo.themeName}</div>
@@ -893,7 +893,7 @@
 													</select>										
 												</div>
 											<div class="jumsu"><span class="spointNum"></span><span class="gray">/ 5</span></div>
-										</div>																				
+											</div>																				
 										</div>					
 									</a>
 								</li>
@@ -1048,7 +1048,7 @@
 			</div>
 
 		<div class="bestRankList right">
-				<h2 class="Title bottomLine"><a href="#" class="mainTitle"><i class="fas fa-mug-hot"></i> 열혈 MuKKa人 </a><span class="bestRankList_info bestRankSubTitle">종합 베스트 10</span></h2>
+				<h2 class="Title bottomLine"><a href="${pageContext.request.contextPath}/user/community" class="mainTitle"><i class="fas fa-mug-hot"></i> 열혈 MuKKa人 </a><span class="bestRankList_info bestRankSubTitle">종합 베스트 10</span></h2>
 			<!-- 베스트 리스트  -->
 			<div id="tabWrap">
 				<div id="tabs">
