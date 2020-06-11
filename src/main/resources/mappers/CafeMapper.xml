@@ -416,25 +416,8 @@
 		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 order by cafe_no desc limit 3
 	</select>
 	
-	<!-- 아름추가 : 전월기준 카페 베스트 -->
-	<!-- <select id="likeCafeBestMain" resultMap="CafeListSelectResult">>
-		select *
-		from cafe c
-		left join starpoint s on c.cafe_no = s.cafe_no
-		left join theme t on c.theme_no = t.theme_no
-		left join zone z on c.zone_no = z.zone_no
-		where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) and c.cafe_cdt = 1
-		group by c.cafe_name
-		order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10		
-	</select> -->
-	
-	<!-- 아름추가 : 전월기준 카페 베스트 별점 -->
-	<!-- <select id="likeCafeBestPointMain" resultType="double">
-		select round(sum(s.star_point)/count(s.star_point), 1)
-		from cafe c left join starpoint s
-		on c.cafe_no = s.cafe_no
-		where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) and c.cafe_cdt = 1
-		group by c.cafe_name
-		order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;		
-	</select> -->		
+	<!-- 아름추가 : 영업으로 등록된 카페번호 리스트-->
+   <select id="openCafeNoList" resultType="int">
+		select cafe_no from cafe where cafe_cdt = 1;
+	</select>
 </mapper>

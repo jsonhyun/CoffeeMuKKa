@@ -156,4 +156,8 @@ public class CafeService {
 	public List<CafeVO> newCafeList() throws Exception {
 		return dao.newCafeList();
 	}
+	
+	public List<Integer> openCafeNoList() throws Exception {
+		return dao.openCafeNoList();
+	}			
 }

@@ -76,5 +76,6 @@ public interface CafeDAO {
 	//당월 신상카페 - 등록일기준
 	public List<CafeVO> newCafeList() throws Exception;
 	
+	public List<Integer> openCafeNoList() throws Exception;
 	
 }

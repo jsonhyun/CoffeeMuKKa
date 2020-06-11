@@ -2,6 +2,7 @@ package com.yi.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -141,7 +142,41 @@ public class UserHomeController {
 	
 	// 커피무까
 	@RequestMapping(value = "/mukkaCafe", method = RequestMethod.GET)
-	public String cafeHome() {
+	public String cafeHome(Model model) throws Exception {
+		
+		// 영업중인 카페 번호 리스트로 가져오기
+		List<Integer> openCafeNo = cafeService.openCafeNoList();
+		// shuffle 이용해서 랜덤으로 숫자뿌리기
+		Collections.shuffle(openCafeNo);
+		
+		// 위치별 -- 영업카페번호 랜덤 3곳
+		int zoneCafeNo1 = openCafeNo.get(0); // 첫번째 영업중인 카페 랜덤번호
+		openCafeNo.remove(0); // -- 첫번째 랜덤번호 지우기
+		int zoneCafeNo2 = openCafeNo.get(0); // 새로운 영업중인 카페 랜덤번호 생성
+		openCafeNo.remove(0);  // -- 두번째 랜덤번호 지우기
+		int zoneCafeNo3 = openCafeNo.get(0);
+		
+		
+		// 위치별 - 랜덤카페(1)
+		CafeVO zoneCafe1 = cafeService.readCafe(zoneCafeNo1);
+		ImageVO zoneImg1 = cafeService.imgSelect(zoneCafeNo1);
+		model.addAttribute("zoneCafe1", zoneCafe1);
+		model.addAttribute("zoneImg1",zoneImg1);
+		
+		// 위치별 - 랜덤카페(2)
+		CafeVO zoneCafe2 = cafeService.readCafe(zoneCafeNo2);
+		ImageVO zoneImg2 = cafeService.imgSelect(zoneCafeNo2);
+		model.addAttribute("zoneCafe2", zoneCafe2);
+		model.addAttribute("zoneImg2",zoneImg2);
+		
+		// 위치별 - 랜덤카페(3)
+		CafeVO zoneCafe3 = cafeService.readCafe(zoneCafeNo3);
+		ImageVO zoneImg3 = cafeService.imgSelect(zoneCafeNo3);
+		model.addAttribute("zoneCafe3", zoneCafe3);
+		model.addAttribute("zoneImg3",zoneImg3);		
+		
+		
+		
 		return "/user/userMukkaCafeHome";
 	}
 	

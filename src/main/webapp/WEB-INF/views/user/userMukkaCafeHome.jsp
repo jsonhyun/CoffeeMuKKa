@@ -9,7 +9,10 @@
 		height: 94px;
 		margin-bottom: 10px;
 	}
-	
+	h3.mukka_Title{
+		margin-bottom: 15px;
+		font-size: 20px;
+	}
 	/* 위치별 / 테마별 / 베스트 */
 	.contentArea .boxs {
 		height: 300px;
@@ -41,9 +44,8 @@
 	
 	.contentArea .boxs .box .point {
 		position: absolute;
-		top: 0;
-		left: 0;
-		padding: 5px 10px;
+		top: 5px;
+		left: 5px;
 		z-index: 2;
 	}
 	
@@ -57,6 +59,7 @@
 		
 	}
 	div.cafe_info{
+		width: 100%;
 		background-color: rgba(0,0,0,0.8);
 		color: white;
 		position: absolute;
@@ -69,7 +72,6 @@
 	}
 	
 	.contentArea .boxs .box .cafe_info p {
-		max-width: 80%;
 		padding: 10px;
 	}
 	div.hiddenBox{
@@ -84,18 +86,84 @@
 		opacity: 0;
 	}
 	
-	/* 실시간 */
+
 	.contentArea .realTime {
 		overflow: hidden;
 	}
-	
+	.bestTitle{
+		background-color: #FF007F;
+		border-radius: 5px;
+		padding: 1px 8px;
+		letter-spacing: 2px;
+		color: white;
+	}
+	.blue{
+		margin-right: 135px;
+	}
 	.contentArea .realTime .box h3 span{
 		font-size: 16px;
 	}
-	
-	.contentArea .realTime .box .no {
-		text-align: center;
+	.prevBtn1{
+		padding: 4px;
+		margin-left: 3px;
+		margin-left: 10px;
 	}
+	.nextBtn1{
+		padding: 4px;
+		margin-left: 3px;
+	}
+	div.bestViewBox{
+		height: 575px;
+		width: 442px;
+		overflow: hidden;
+	}
+	ul.bestCafeBox{
+		 width: 2210px;
+	}
+	li.bestCafe_li{
+	  width: 442px;	
+	  height: 490px;
+	  float: left;			
+	  
+	}
+	ul.bestCafeBox li div{
+		float: left;
+	}
+	.contentArea .realTime .box .no {
+		width: 27px;
+		text-align: center;
+		font-size: 22px;
+		line-height: 155px;
+	}
+	div.best_table_info{
+		width: 200px;
+		padding: 20px 20px;
+		
+	}
+	p.best_onelien{
+		width: 200px;
+		height: 50px;
+		font-weight: bold;
+		overflow: hidden; 
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* 라인수 */
+		-webkit-box-orient: vertical;
+		word-wrap: break-word;
+		margin-top: 35px;
+	}
+	div.best_table_img{
+		width: 165px;
+		padding-top : 8px;
+	}
+	div.best_table_img img{
+		width: 165px;
+		height: 140px;
+	}
+	div.best_line{
+		width: 440px;
+		border-bottom: 1px solid #aaa;
+	}		
 </style>
 		
 <div class="content subPageContent">
@@ -114,38 +182,39 @@
 		</div>
 		
 		<!-- 위치, 테마, 베스트 -->
+		<h3 class="mukka_Title">오늘 카페 어디 갈까?</h3>
 		<div class="boxs">
 			<div class="box">
-				<a href="#">
-					<div class="point bgOrange">위치별</div>
-					<img src="${pageContext.request.contextPath }/resources/images/rc_sample41.jpg">
+				<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${zoneCafe1.cafeNo}">
+					<div class="point bgOrange keyword zoneOrangeIcon">${zoneCafe1.zoneNo.zoneName}</div>
+					<img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}">
 					<div class="cafe_info">
-						<h3 class="title">카페 카일라</h3>
-						<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
+						<h3 class="title">${zoneCafe1.cafeName}</h3>
+						<p class="classOne">'${zoneCafe1.oneline}'</p>
 					</div>
 					<div class="hiddenBox">
 					</div>
 				</a>
 			</div>
 			<div class="box">
-				<a href="#">	
-					<div class="point bgOrange">테마별</div>
-					<img src="${pageContext.request.contextPath }/resources/images/rc_sample41.jpg">
+				<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${zoneCafe2.cafeNo}">	
+					<div class="point bgOrange keyword zoneOrangeIcon">${zoneCafe2.zoneNo.zoneName}</div>
+					<img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg2.imageName}">
 					<div class="cafe_info">
-						<h3 class="title">카페 카일라</h3>
-						<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
+						<h3 class="title">${zoneCafe2.cafeName}</h3>
+						<p class="classOne">'${zoneCafe2.oneline}'</p>
 					</div>
 					<div class="hiddenBox">
 					</div>
 				</a>					
 			</div>
 			<div class="box">
-				<a href="#">	
-					<div class="point bgOrange">테마별</div>
-					<img src="${pageContext.request.contextPath }/resources/images/rc_sample41.jpg">
+				<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${zoneCafe3.cafeNo}">	
+					<div class="point bgOrange keyword zoneOrangeIcon">${zoneCafe3.zoneNo.zoneName}</div>
+					<img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg3.imageName}">
 					<div class="cafe_info">
-						<h3 class="title">카페 카일라</h3>
-						<p class="classOne">'공간이 지나는 특별함을 누구나 testtest'</p>
+						<h3 class="title">${zoneCafe3.cafeName}</h3>
+						<p class="classOne">'${zoneCafe3.oneline}'</p>
 					</div>
 					<div class="hiddenBox">
 					</div>
@@ -153,97 +222,131 @@
 			</div>
 		</div>
 		
+		
 		<!-- 위치별 / 테마별 실시간 -->
 		<div class="realTime mb30">
-			<div class="box left">
-				<h3 class="title bottomLine">위치별 <span>| 실시간</span></h3>
-				<table>
-					<tr>
-						<td class="red w30 no">1</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="red w30 no">2</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="red w30 no">3</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">4</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">5</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">6</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">7</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">8</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">9</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">10</td>
-						<td> test</td>
-					</tr>
-				</table>
+			<div class="box left bestViewBox">
+				<h3 class="title bottomLine">
+					<span class="bestTitle">BEST</span> <span class="bestSubtitle">|<span class="blue"> 많이 본 인기 카페</span></span>
+					 <span class="orange"><span class="pageNum1">1</span> / <span class="pageTotal1">0</span></span>
+					 <span class="prevBtn1"><i class="fas fa-angle-left"></i></span>
+					 <span class="nextBtn1"><i class="fas fa-angle-right"></i></span>
+				</h3>				
+				<ul class="bestCafeBox">
+					<li class="bestCafe_li">
+						<div class="red w30 no bold"><i>1</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>2</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>3</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>												
+					</li>
+					<li class="bestCafe_li">
+						<div class="red w30 no bold"><i>4</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>5</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>6</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>												
+					</li>
+					<li class="bestCafe_li">
+						<div class="red w30 no bold"><i>7</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>8</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>9</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>												
+					</li>
+					<li class="bestCafe_li">
+						<div class="red w30 no bold"><i>10</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>11</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>12</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>												
+					</li>
+					<li class="bestCafe_li">
+						<div class="red w30 no bold"><i>13</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>14</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>
+						
+						<div class="red w30 no bold"><i>15</i></div>
+						<div class="best_table_info">
+							<p class="best_onelien">" ${zoneCafe1.oneline} "</p>
+						</div>
+						<div class="best_table_img"><img src="${pageContext.request.contextPath }/resources/images/sumnail/${zoneImg1.imageName}"></div>
+						<div class="best_line"></div>												
+					</li>																																															
+				</ul>
 			</div>
 			<div class="box right">
-				<h3 class="title bottomLine">테마별 <span>| 실시간</span></h3>
-				<table>
-					<tr>
-						<td class="red w30 no">1</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="red w30 no">2</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="red w30 no">3</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">4</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">5</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">6</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">7</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">8</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">9</td>
-						<td> test</td>
-					</tr>
-					<tr>
-						<td class="w30 no">10</td>
-						<td> test</td>
-					</tr>
-				</table>
+				<h3 class="title bottomLine"><span class="bestTitle">BEST</span> <span> |<span class="red"> 종합 별점 랭킹 5</span></span></h3>
 			</div>
 		</div>
 		

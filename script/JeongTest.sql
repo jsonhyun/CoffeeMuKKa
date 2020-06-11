@@ -1237,6 +1237,16 @@ group by c.cafe_name
 order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;
 
 
+select round(sum(s.star_point)/count(s.star_point),1) as 'point', c.cafe_name 
+from cafe c
+left join starpoint s on c.cafe_no = s.cafe_no
+left join theme t on c.theme_no = t.theme_no
+left join zone z on c.zone_no = z.zone_no
+where c.cafe_cdt = 1 
+group by c.cafe_name
+order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;
+
+
 select round(sum(s.star_point)/count(s.star_point), 1) as 'point'
 from cafe c left join starpoint s
 on c.cafe_no = s.cafe_no
@@ -1279,3 +1289,29 @@ select count(b.user_no) from board b left join users u on b.user_no = u.user_no 
 select * from cafe c
 		left join zone z on c.zone_no = z.zone_no 
 		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 order by cafe_no desc limit 3;
+		
+select * from cafe;	-- 129
+
+select * from cafe c
+		left join zone z on c.zone_no = z.zone_no 
+		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 and cafe_no = 129;
+
+-- 영업으로 등록된 카페 번호
+select cafe_no from cafe c
+		left join zone z on c.zone_no = z.zone_no 
+		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1;
+
+-- 영업으로 등록된 카페 번호의 가장 마지막 숫자
+select cafe_no from cafe c
+		left join zone z on c.zone_no = z.zone_no 
+		left join theme t on c.theme_no = t.theme_no where c.cafe_cdt = 1 order by cafe_no desc limit 1;	
+		
+select cafe_no from cafe order by cafe_no desc limit 1; -- 가장 마지막 숫자 가져오기 
+
+-- readCafe 이걸로 뿌리기
+select c.*, z.*, t.* from cafe c 
+		left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no
+		where c.cafe_no=129;
+	
+select cafe_no from cafe where cafe_cdt = 1;
