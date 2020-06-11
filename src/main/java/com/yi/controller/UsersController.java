@@ -35,7 +35,6 @@ public class UsersController {
 		admin.setAnoPassword(vo.getPassword());
 		AdminVO adminResult = adminService.readAdmin(admin.getAnoId());
 		if(adminResult != null) {
-			System.out.println(adminResult.getAnoId());
 			if(adminResult.getAnoPassword().equals(admin.getAnoPassword()) == false) {
 				model.addAttribute("error", 2);
 				return "/user/userHome";

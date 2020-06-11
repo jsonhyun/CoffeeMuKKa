@@ -228,6 +228,10 @@
 		select IFNULL(round(sum(star_point)/count(*), 1), 0) from starpoint where cafe_no = ${cafeNo} and registration_date between '2020-${month}-01' and '2020-${month}-30'
 	</select>
 	
+	<select id="starCnt" resultType="int">
+		select count(*) from starpoint where cafe_no = #{cafeNo}
+	</select>
+	
 	<!-- 테마 순위 검색 -->
 	<select id="rankTheme" resultType="ThemeVO">
 		select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 

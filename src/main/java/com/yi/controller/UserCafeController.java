@@ -50,12 +50,14 @@ public class UserCafeController {
 		List<CafeVO> list = service.listSearchCriteria(cri);
 		List<ImageVO> imgList = new ArrayList<ImageVO>();
 		List<Integer> starpointList = new ArrayList<Integer>();
+		List<Integer> starCntList = new ArrayList<Integer>();
 		List<Integer> reviewNum = new ArrayList<Integer>();
 		
 		for(int i=0; i<list.size();i++) {
 			int cafeNo = list.get(i).getCafeNo();
 			imgList.add(service.imgSelect(cafeNo));
 			starpointList.add(service.starpointSelect(cafeNo));
+			starCntList.add(service.starCnt(cafeNo));
 			reviewNum.add(service.countReviewNum(cafeNo));
 		}
 		
@@ -68,6 +70,7 @@ public class UserCafeController {
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("starpoint", starpointList);
+		model.addAttribute("starCnt", starCntList);
 		model.addAttribute("reviewNum", reviewNum);
 		
 		return "/user/userMukkaCafeZoneList";
