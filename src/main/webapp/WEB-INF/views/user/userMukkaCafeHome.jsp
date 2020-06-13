@@ -9,9 +9,37 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.barrating.min.js"></script>
 <style>
 	/* 파워링크 */
-	.contentArea .powerLink {
+	.powerLink {
 		height: 94px;
 		margin-bottom: 10px;
+		background: url("${pageContext.request.contextPath }/resources/images/add_sample01.JPG") no-repeat;
+		position: relative;
+		z-index: 1;
+	}
+	.powerLink_dummy{
+		width: 100%;
+		height: 94px;
+		background-color: rgba(189, 189, 189, 0.4);
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 2;
+	}
+	p.dummy_text{
+		color: rgba(246, 246, 246, 0.6);
+		padding-top: 10px;
+		padding-right: 25px;
+		text-align: right;
+		letter-spacing: 1px;
+	}
+	h1.dummy_title{
+		font-size: 48px;
+		color: rgba(246, 246, 246, 0.7);
+		letter-spacing: 12px;
+		text-align: right;
+		position: absolute;
+		right: 10px;
+		top: 22px;		
 	}
 	h3.mukka_Title{
 		margin-bottom: 15px;
@@ -391,9 +419,13 @@
 		<!-- 서브콘텐츠 시작 -->
 		
 		<!-- 파워링크 배너(슬라이드처리) -->
-		<div class="powerLink temp">
-			<p>파워링크 배너 자리</p>
+		<div class="powerLink">
+			<div class="powerLink_dummy">
+				<p class="dummy_text"><i>The best way to start the day is with a nice warm cup of joe.</i></p>
+				<h1 class="dummy_title">Coffee MuKKa</h1>
+			</div>
 		</div>
+
 		
 		<!-- 위치, 테마, 베스트 -->
 		<h3 class="mukka_Title">오늘 카페 어디 갈까?</h3>
@@ -442,7 +474,7 @@
 					</div>
 					<div class="hiddenBox">
 						<h1 class="hiddenPoint"><i class="fas fa-map-marker-alt"></i></h1>
-						<h3 class="hiddenPointName"><i class="fas fa-coffee"></i> ${zoneCafe3.zoneNo.zoneName}</h3>
+						<h3 class="hiddenPointName">${zoneCafe3.zoneNo.zoneName}</h3>
 						<h3 class="hiddenTitle"><i class="fas fa-coffee"></i> ${zoneCafe3.cafeName}</h3>
 						<p class="hiddenAdd"><i class="fas fa-map-marker-alt"></i> ${zoneCafe3.address}</p>
 					    <p class="hiddenText">'${zoneCafe3.oneline}'</p>					
