@@ -112,18 +112,18 @@
 			<div>
 				<div class="pull-right table-title-top-action">
 					<div class="pmd-textfield pull-left">
-					  <input type="text" id="exampleInputAmount" class="form-control" value="${cri.keyword }" placeholder="카페이름 검색" name="keyword" >
+					  <input type="text" id="exampleInputAmount" class="form-control" value="${cri.keyword }" placeholder="추천글 번호 검색" name="keyword" >
 					</div>
 					<a href="#" id="searchBtn" class="btn btn-primary pmd-btn-raised add-btn pmd-ripple-effect pull-left">Search</a>
 				</div>
 				<!-- Title -->
 				<h1 class="section-title subPageTitle" id="services">
-					<span>신규 등록 카페 승인</span>
+					<span>MuKKa人 추천 카페 관리</span>
 				</h1><!-- End Title -->
 				<!--breadcrum start-->
 				<ol class="breadcrumb text-left">
 				  <li><a href="${pageContext.request.contextPath }/admin/">Dashboard</a></li>
-				  <li class="active">신규 등록 카페 승인</li>
+				  <li class="active">MuKKa人 추천 카페 관리</li>
 				</ol><!--breadcrum end-->
 			</div>
 			<!-- Table -->
@@ -141,7 +141,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="item" items="${list }">
+						<%-- <c:forEach var="item" items="${list }">
 							<tr>
 								<td>${item.cafeNo }</td>
 								<td><a href="#">${item.cafeName}</a></td>
@@ -153,7 +153,7 @@
 									<button class="btn btn-success">사업자등록번호 조회</button>
 								</td>
 							</tr>
-						</c:forEach>
+						</c:forEach> --%>
 				</tbody>
 			</table>
 			</div>

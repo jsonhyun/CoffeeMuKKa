@@ -118,12 +118,12 @@
 				</div>
 				<!-- Title -->
 				<h1 class="section-title subPageTitle" id="services">
-					<span>신규 등록 카페 승인</span>
+					<span>카페 관리</span>
 				</h1><!-- End Title -->
 				<!--breadcrum start-->
 				<ol class="breadcrumb text-left">
 				  <li><a href="${pageContext.request.contextPath }/admin/">Dashboard</a></li>
-				  <li class="active">신규 등록 카페 승인</li>
+				  <li class="active">카페 관리</li>
 				</ol><!--breadcrum end-->
 			</div>
 			<!-- Table -->
@@ -141,7 +141,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="item" items="${list }">
+						<%-- <c:forEach var="item" items="${list }">
 							<tr>
 								<td>${item.cafeNo }</td>
 								<td><a href="#">${item.cafeName}</a></td>
@@ -153,7 +153,7 @@
 									<button class="btn btn-success">사업자등록번호 조회</button>
 								</td>
 							</tr>
-						</c:forEach>
+						</c:forEach> --%>
 				</tbody>
 			</table>
 			</div>

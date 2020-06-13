@@ -22,7 +22,7 @@ public class AdminCafeMgrControoler {
 	private CafeService service;
 	
 	//신규 등록 카페 승인
-	@RequestMapping(value = "newCafe", method = RequestMethod.GET)
+	@RequestMapping(value = "newCafeManager", method = RequestMethod.GET)
 	public String newCafe(SearchCriteria cri, Model model) throws Exception {
 		CafeVO vo = new CafeVO();
 		vo.setCafeCdt(CafeCdt.WAITING);
@@ -36,5 +36,20 @@ public class AdminCafeMgrControoler {
 		model.addAttribute("cri", cri);
 		model.addAttribute("pageMaker", pageMater);
 		return "/admin/adminNewCafeMgr";
+	}
+	
+	
+	
+	// 카페 관리
+	@RequestMapping(value = "cafeManager", method = RequestMethod.GET)
+	public String cafeMgr() {
+		return "/admin/adminCafeMgr";
+	}
+	
+	
+	//월간 카페 등록 및 관리
+	@RequestMapping(value = "monthCafeManager", method = RequestMethod.GET)
+	public String monthCafeMgr() {
+		return "/admin/adminMonthCafeMgr";
 	}
 }
