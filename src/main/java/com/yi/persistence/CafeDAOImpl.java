@@ -283,7 +283,9 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace + "starPointCafeBest5");
 	}
 
-	
-
+	@Override
+	public List<Integer> openThemeCafeNoList(int themeNo) throws Exception {
+		return sqlSession.selectList(namespace+"openThemeCafeNoList", themeNo);
+	}	
 
 }

@@ -457,5 +457,9 @@
 			where c.cafe_cdt = 1 
 			group by c.cafe_name
 			order by round(sum(s.star_point)/count(s.star_point),1) desc limit 5;		
-		</select>	
+		</select>
+	<!-- 아름추가 : 영업으로 등록된 카페, 테마별 번호에 따라 카페번호 리스트뽑기 -->
+	<select id="openThemeCafeNoList" resultType="int">
+		select cafe_no from cafe where theme_no = #{themeNo} and cafe_cdt = 1
+	</select>			
 </mapper>

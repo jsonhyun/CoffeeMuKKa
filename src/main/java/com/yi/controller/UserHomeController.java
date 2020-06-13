@@ -193,6 +193,80 @@ public class UserHomeController {
 		List<Double> starPoint = cafeService.starPointCafeBest5();
 		model.addAttribute("starPoint", starPoint);	
 		
+		//각 대표 테마별로 영업중인카페번호 리스트 가져오기
+		int [] themeNo = {1,2,3,4,5,6}; // 1:데이트, 2:뷰, 3:착한아메, 4:디저트, 5:댕댕이, 6:작업
+		
+		// 키워드 : 데이트 - 랜덤카페
+		List<Integer> openThemeCafeNo1 = cafeService.openThemeCafeNoList(themeNo[0]);
+		//Math.random 이용해서 랜덤숫자 뿌리기
+		int ran1 = (int)(Math.random()*openThemeCafeNo1.size()-1);
+		int tCafeNo1 = openThemeCafeNo1.get(ran1);
+		openThemeCafeNo1.remove(ran1);
+		
+		CafeVO themeCafe1 = cafeService.readCafe(tCafeNo1);
+		ImageVO themeCafeImg1 = cafeService.imgSelect(tCafeNo1);
+		model.addAttribute("themeCafe1", themeCafe1);
+		model.addAttribute("themeCafeImg1",themeCafeImg1);
+		
+		// 키워드 : 뷰 - 랜덤카페
+		List<Integer> openThemeCafeNo2 = cafeService.openThemeCafeNoList(themeNo[1]);
+		//Math.random 이용해서 랜덤숫자 뿌리기
+		int ran2 = (int)(Math.random()*openThemeCafeNo2.size()-1);
+		int tCafeNo2 = openThemeCafeNo2.get(ran2);
+		openThemeCafeNo2.remove(ran2);
+		
+		CafeVO themeCafe2 = cafeService.readCafe(tCafeNo2);
+		ImageVO themeCafeImg2 = cafeService.imgSelect(tCafeNo2);
+		model.addAttribute("themeCafe2", themeCafe2);
+		model.addAttribute("themeCafeImg2",themeCafeImg2);
+		
+		// 키워드 : 착한아메 - 랜덤카페
+		List<Integer> openThemeCafeNo3 = cafeService.openThemeCafeNoList(themeNo[2]);
+		//Math.random 이용해서 랜덤숫자 뿌리기
+		int ran3 = (int)(Math.random()*openThemeCafeNo3.size()-1);
+		int tCafeNo3 = openThemeCafeNo3.get(ran3);
+		openThemeCafeNo3.remove(ran3);
+		
+		CafeVO themeCafe3 = cafeService.readCafe(tCafeNo3);
+		ImageVO themeCafeImg3 = cafeService.imgSelect(tCafeNo3);
+		model.addAttribute("themeCafe3", themeCafe3);
+		model.addAttribute("themeCafeImg3",themeCafeImg3);
+		
+		// 키워드 : 디저트 - 랜덤카페
+		List<Integer> openThemeCafeNo4 = cafeService.openThemeCafeNoList(themeNo[3]);
+		//Math.random 이용해서 랜덤숫자 뿌리기
+		int ran4 = (int)(Math.random()*openThemeCafeNo4.size()-1);
+		int tCafeNo4 = openThemeCafeNo4.get(ran4);
+		openThemeCafeNo1.remove(ran4);
+		
+		CafeVO themeCafe4 = cafeService.readCafe(tCafeNo4);
+		ImageVO themeCafeImg4 = cafeService.imgSelect(tCafeNo4);
+		model.addAttribute("themeCafe4", themeCafe4);
+		model.addAttribute("themeCafeImg4",themeCafeImg4);
+		
+		// 키워드 : 댕댕이 - 랜덤카페
+		List<Integer> openThemeCafeNo5 = cafeService.openThemeCafeNoList(themeNo[4]);
+		//Math.random 이용해서 랜덤숫자 뿌리기
+		int ran5 = (int)(Math.random()*openThemeCafeNo5.size()-1);
+		int tCafeNo5 = openThemeCafeNo5.get(ran5);
+		openThemeCafeNo5.remove(ran5);
+		CafeVO themeCafe5 = cafeService.readCafe(tCafeNo5);
+		ImageVO themeCafeImg5 = cafeService.imgSelect(tCafeNo5);
+		model.addAttribute("themeCafe5", themeCafe5);
+		model.addAttribute("themeCafeImg5",themeCafeImg5);
+		
+		// 키워드 : 작업 - 랜덤카페
+		List<Integer> openThemeCafeNo6 = cafeService.openThemeCafeNoList(themeNo[5]);
+		//Math.random 이용해서 랜덤숫자 뿌리기
+		int ran6 = (int)(Math.random()*openThemeCafeNo6.size()-1);
+		int tCafeNo6 = openThemeCafeNo6.get(ran6);
+		openThemeCafeNo6.remove(ran6);
+		
+		CafeVO themeCafe6 = cafeService.readCafe(tCafeNo6);
+		ImageVO themeCafeImg6 = cafeService.imgSelect(tCafeNo6);
+		model.addAttribute("themeCafe6", themeCafe6);
+		model.addAttribute("themeCafeImg6",themeCafeImg6);
+		
 		return "/user/userMukkaCafeHome";
 	}
 	
