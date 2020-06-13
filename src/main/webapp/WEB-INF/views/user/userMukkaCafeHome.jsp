@@ -19,27 +19,29 @@
 	.powerLink_dummy{
 		width: 100%;
 		height: 94px;
-		background-color: rgba(189, 189, 189, 0.4);
+		background-color: rgba(189, 189, 189, 0.2);
 		position: absolute;
 		left: 0;
 		top: 0;
 		z-index: 2;
 	}
 	p.dummy_text{
-		color: rgba(246, 246, 246, 0.6);
+		color: rgba(246, 246, 246, 0.8);
 		padding-top: 10px;
-		padding-right: 25px;
+		padding-right: 0;
 		text-align: right;
 		letter-spacing: 1px;
+		opacity: 0;
 	}
 	h1.dummy_title{
 		font-size: 48px;
-		color: rgba(246, 246, 246, 0.7);
+		color: rgba(246, 246, 246, 0.8);
 		letter-spacing: 12px;
 		text-align: right;
 		position: absolute;
-		right: 10px;
-		top: 22px;		
+		right: 0;
+		top: 22px;
+		opacity: 0;		
 	}
 	h3.mukka_Title{
 		margin-bottom: 15px;
@@ -755,6 +757,9 @@
 </div>
 <!-- container end -->
 <script>
+	$("p.dummy_text").animate({"padding-right":"25px","opacity":"1"},1500);
+    $("h1.dummy_title").animate({"margin-right":"10px","opacity":"1"},1500);
+    
 	//많이 본 인기 카페
 	var pageNum1 = $(".pageNum1").text(); //1
 	var pageTotal1 = $(".pageTotal1").text();
