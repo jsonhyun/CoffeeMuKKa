@@ -234,6 +234,12 @@ public class CafeDAOImpl implements CafeDAO {
 		
 		return sqlSession.selectList(namespace + "adminNewCafeList", map);
 	}
+	
+	// 카페 차트
+	@Override
+	public List<Integer> adminCafeCntChart(int subNum) throws Exception {
+		return sqlSession.selectList(namespace + "adminCafeCntChart", subNum);
+	}	
 
 
 	// 경진 추가 (admin) end ----------------------------------------------------------------------------------------
@@ -275,7 +281,9 @@ public class CafeDAOImpl implements CafeDAO {
 	@Override
 	public List<Double> starPointCafeBest5() throws Exception {
 		return sqlSession.selectList(namespace + "starPointCafeBest5");
-	}	
+	}
+
+	
 
 
 }

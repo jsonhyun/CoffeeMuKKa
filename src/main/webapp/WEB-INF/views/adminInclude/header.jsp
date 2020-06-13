@@ -41,6 +41,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<!-- 구글 차트 api -->
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <!-- 메뉴 포커스 -->
 <script>
 	$(function(){
@@ -64,10 +67,6 @@
 			$("#cafeMgr").parent().addClass("open");
 		}
 		
-		// 서브메뉴 포커스
-		if(subMenu.indexOf("newCafe") > -1){				
-			$(".cafeMgrSub").eq(0).addClass("active");
-		}
 	})
 </script>
 </head>
@@ -84,7 +83,7 @@
 					<a id="user" href="javascript:void(0)" title="Notification" class="dropdown-toggle pmd-ripple-effect"  data-toggle="dropdown" role="button" aria-expanded="true">
 						<div class="material-icons md-light pmd-sm pmd-badge pmd-badge-overlap">
 							<img src="${pageContext.request.contextPath }/resources/themes/images/user-icon.png" alt="New User" />
-							<span id="userName">user Id</span>
+							<span id="userName">${adminId}</span>
 						</div>
 					</a>
 				
@@ -131,7 +130,7 @@
 					<div class="media-left">
 						<img src="${pageContext.request.contextPath }/resources/themes/images/user-icon.png" alt="New User">
 					</div>
-					<div class="media-body media-middle">Propeller Admin</div>
+					<div class="media-body media-middle">${adminId}</div>
 					<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 				</a>
 				<ul class="dropdown-menu">

@@ -66,6 +66,8 @@ public interface CafeDAO {
 	public int cafeWaitingCntAndKeyword(CafeVO vo, SearchCriteria cri) throws Exception;
 	// 신규 카페 승인 list
 	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception;
+	// 카페 차트
+	public List<Integer> adminCafeCntChart(int subNum) throws Exception;
 	
 	// 경진 추가 (admin) end ---------------------------------------------------------------------------------------------
 	

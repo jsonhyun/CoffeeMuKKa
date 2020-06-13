@@ -401,6 +401,10 @@
 			limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
+	<select id="adminCafeCntChart" resultType="map">
+		select count(*) as cafe_cnt, month(registration_date) as month from cafe where month(registration_date) = month(now())-#{subNum} and cafe_cdt = 1;
+	</select>
+	
 	<!-- 경진추가 (admin) end ************************************************************************************* -->
 	
 	<!-- 아름추가 : 카페추천 등록폼에 이용하기 위해 만듬 // 지역이름 + 카페이름 + 카페주소 -->

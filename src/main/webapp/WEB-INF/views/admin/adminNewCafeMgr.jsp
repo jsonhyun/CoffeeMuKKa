@@ -183,6 +183,11 @@
 	<!--content area end-->
 
 <script>
+	// 서브메뉴 포커스
+		if(subMenu.indexOf("newCafe") > -1){				
+			$(".cafeMgrSub").eq(0).addClass("active");
+		}
+
 	$("#searchBtn").click(function(){
 		var keyword = $("input[name='keyword']").val();
 		

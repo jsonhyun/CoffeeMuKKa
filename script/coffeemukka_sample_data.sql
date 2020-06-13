@@ -97,6 +97,10 @@ select * from license;
 update users
 	set user_no = 1
 	where user_no = 0;
+
+update license 
+	set no = 1
+	where no = 0;
 	
 -- monthlyCafe 더미 테이터 start ---------------------------------------------------------------------
 

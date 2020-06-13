@@ -61,7 +61,7 @@ public class CafeDAOTest {
 		dao.monthlyCafeUpdate();
 	}
 	
-	@Test
+	//@Test
 	public void testCafeWaitingCnt() throws Exception {
 		CafeVO test = new CafeVO();
 		test.setCafeCdt(CafeCdt.WAITING);
@@ -76,5 +76,11 @@ public class CafeDAOTest {
 		CafeVO vo = new CafeVO();
 		vo.setCafeCdt(CafeCdt.WAITING);
 		dao.adminNewCafeList(vo, cri);
+	}
+	
+	
+	@Test
+	public void testAdminCafeCntChart() throws Exception {
+		dao.adminCafeCntChart(1);
 	}
 }
