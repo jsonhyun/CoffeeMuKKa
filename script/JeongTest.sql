@@ -1336,4 +1336,11 @@ left join theme t on c.theme_no = t.theme_no
 left join zone z on c.zone_no = z.zone_no
 where c.cafe_cdt = 1 
 group by c.cafe_name
-order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;	
+order by round(sum(s.star_point)/count(s.star_point),1) desc limit 10;
+
+select cafe_no from cafe where theme_no = 1 and cafe_cdt = 1;
+select cafe_no from cafe where theme_no = 2 and cafe_cdt = 1;
+select cafe_no from cafe where theme_no = 3 and cafe_cdt = 1;
+select cafe_no from cafe where theme_no = 4 and cafe_cdt = 1;
+select cafe_no from cafe where theme_no = 5 and cafe_cdt = 1;
+select cafe_no from cafe where theme_no = 6 and cafe_cdt = 1;

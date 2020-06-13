@@ -178,5 +178,9 @@ public class CafeService {
 
 	public List<Double> starPointCafeBest5() throws Exception {
 		return dao.starPointCafeBest5();
+	}
+	
+	public List<Integer> openThemeCafeNoList(int themeNo) throws Exception {
+		return dao.openThemeCafeNoList(themeNo);
 	}	
 }

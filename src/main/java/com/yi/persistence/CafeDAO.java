@@ -83,6 +83,8 @@ public interface CafeDAO {
 	
 	public List<CafeVO> starPointCafeBest5Info() throws Exception;
 	
-	public List<Double> starPointCafeBest5() throws Exception; 
+	public List<Double> starPointCafeBest5() throws Exception;
+	
+	public List<Integer> openThemeCafeNoList(int themeNo) throws Exception;
 	
 }
