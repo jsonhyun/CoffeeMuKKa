@@ -18,6 +18,7 @@ select * from wishlist; -- 위시리스트
 select * from image; -- 이미지
 select * from vote; -- 추천리스트
 select * from starpoint; -- 별점 리스트
+select * from license; -- 사업자등록번호
 
 select * from board order by board_no desc;
 select * from image order by image_no desc;
@@ -424,3 +425,6 @@ call userPointUpdate();
 -- 	set point = point + 50
 -- 	where user_no = 1
 
+select month(registration_date) as month, count(*) from cafe where month(registration_date) = month(now())-3 and cafe_cdt = 1;
+
+select month(registration_date) as month, count(*) as cnt from board where month(registration_date) = month(now())-0 and board_no2 = 2;

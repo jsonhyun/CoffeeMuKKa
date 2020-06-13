@@ -416,6 +416,11 @@
 		select count(*) from board where board_no2 = #{boardType} and date(registration_date) = date(now())-1 
 	</select>
 	
+	<!-- 어드민 : 탐방기, 추천글 차트 -->
+	<select id="adminBoardCntChart" parameterType="map" resultType="map">
+		select month(registration_date) as month, count(*) as cnt from board where month(registration_date) = month(now())-#{subNum} and board_no2 = #{boardType}
+	</select>
+	
 	<!-- 경진 추가 end  ************************************************************************************************** -->
 	
 	<!-- 탐방기(아름추가) : 탐방기 월간 베스트15 Main에 쓸 리스트 -->

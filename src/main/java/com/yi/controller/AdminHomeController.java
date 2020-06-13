@@ -1,5 +1,12 @@
 package com.yi.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,11 +39,34 @@ public class AdminHomeController {
 		int todayRecommendCnt = boardService.todayBoardCount(2);
 		int yesterDayRecommendCnt = boardService.yesterDayCafeReviewCnt(2);
 		
+		// 카페 차트
+		List<List<Integer>> charts = new ArrayList<List<Integer>>();
+		
+		// 탐방기, 추천글 차트
+		List<List<Integer>> reviewCht = new ArrayList<List<Integer>>();
+		List<List<Integer>> recomCht = new ArrayList<List<Integer>>();
+
+		for(int i=0; i<3; i++) {		
+			List<Integer> list = cafeService.adminCafeCntChart(i);
+			charts.add(list);
+			
+			List<Integer> review = boardService.adminBoardCntChart(i, 1);
+			reviewCht.add(review);
+			
+			List<Integer> recom = boardService.adminBoardCntChart(i, 2);
+			recomCht.add(recom);
+		}
+		
+		
 		model.addAttribute("cafeWaitingCnt", cafeWaitingCnt);
 		model.addAttribute("todayCafeReviewCnt", todayCafeReviewCnt);
 		model.addAttribute("yesterDayCafeReviewCnt", yesterDayCafeReviewCnt);
 		model.addAttribute("todayRecommendCnt", todayRecommendCnt);
 		model.addAttribute("yesterDayRecommendCnt", yesterDayRecommendCnt);
+		model.addAttribute("charts", charts);
+		model.addAttribute("reviewCht", reviewCht);
+		model.addAttribute("recomCht", recomCht);
+		
 		
 		return "/admin/adminHome";
 	}

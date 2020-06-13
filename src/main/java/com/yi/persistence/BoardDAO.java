@@ -90,6 +90,9 @@ public interface BoardDAO {
 	public int todayBoardCnt(int boardType) throws Exception;
 	public int yesterBoardCnt(int boardType) throws Exception;
 	
+	// 어드민 탐방기, 추천글 차트
+	public List<Integer> adminBoardCntChart(int subNum, int boardType) throws Exception;
+	
 	// 경진 추가 (admin) end ------------------------------------------------------------------------------------
 
 	/***재승 추가***/

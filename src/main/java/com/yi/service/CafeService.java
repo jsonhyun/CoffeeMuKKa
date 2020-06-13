@@ -146,6 +146,11 @@ public class CafeService {
 		return dao.adminNewCafeList(vo, cri);
 	}
 	
+	// 카페 차트
+	public List<Integer> adminCafeCntChart(int subNum) throws Exception {
+		return dao.adminCafeCntChart(subNum);
+	}
+	
 	// 경친 추가(admin) end  ---------------------------------------------------------------------------
 	
 	/**************** 아름추가  ********************/

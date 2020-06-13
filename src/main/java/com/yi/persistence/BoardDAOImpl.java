@@ -187,16 +187,6 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.update(namespace + "updateBoardReplyCnt", map);
 	}
 	
-	// 어드민 메인 탐방기, 카페 추천 cnt 
-	@Override
-	public int todayBoardCnt(int boardType) throws Exception {
-		return sqlSession.selectOne(namespace + "todayBoardCnt", boardType);
-	}
-	@Override
-	public int yesterBoardCnt(int boardType) throws Exception {
-		return sqlSession.selectOne(namespace + "yesterBoardCnt", boardType);
-	}
-	
 	// 로그인 회원 게시글 좋아요 클릭 여부
 	@Override
 	public int userVoteCdt(int userNo, int boardNo) throws Exception {
@@ -263,6 +253,26 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	// 경진 추가 (user) start ------------------------------------------------------------------------------------	
 	// 경진 추가 (admin) start ------------------------------------------------------------------------------------	
+	
+	// 어드민 메인 탐방기, 카페 추천 cnt 
+	@Override
+	public int todayBoardCnt(int boardType) throws Exception {
+		return sqlSession.selectOne(namespace + "todayBoardCnt", boardType);
+	}
+	@Override
+	public int yesterBoardCnt(int boardType) throws Exception {
+		return sqlSession.selectOne(namespace + "yesterBoardCnt", boardType);
+	}
+	
+	// 어드민 탐방기, 추천글 차트
+	@Override
+	public List<Integer> adminBoardCntChart(int subNum, int boardType) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("subNum", subNum);
+		map.put("boardType", boardType);
+		
+		return sqlSession.selectList(namespace + "adminBoardCntChart", map);
+	}
 	
 
 	

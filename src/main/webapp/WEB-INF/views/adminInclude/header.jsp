@@ -41,6 +41,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<!-- 구글 차트 api -->
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <!-- 메뉴 포커스 -->
 <script>
 	$(function(){
@@ -64,9 +67,40 @@
 			$("#cafeMgr").parent().addClass("open");
 		}
 		
+		if(menu == "userMgr") {
+			$("#userMgr").addClass("active");
+			$("#userMgr").parent().addClass("open");
+		}
+		
+		if(menu == "boardMgr") {
+			$("#boardMgr").addClass("active");
+			$("#boardMgr").parent().addClass("open");
+		}
+		
 		// 서브메뉴 포커스
-		if(subMenu.indexOf("newCafe") > -1){				
+		if(subMenu.indexOf("newCafeManager") != -1){				
 			$(".cafeMgrSub").eq(0).addClass("active");
+		} 
+		if(subMenu.indexOf("cafeManager") != -1) {
+			$(".cafeMgrSub").eq(1).addClass("active");
+		} 
+		if(subMenu.indexOf("monthCafeManager") != -1) {
+			$(".cafeMgrSub").eq(2).addClass("active");
+		} 
+		if(subMenu.indexOf("cafeUserManager") != -1) {
+			$(".userMgrSub").eq(0).addClass("active");
+		} 
+		if(subMenu.indexOf("userManager") != -1) {
+			$(".userMgrSub").eq(1).addClass("active");
+		}
+		if(subMenu.indexOf("adminManager") != -1) {
+			$(".userMgrSub").eq(2).addClass("active");
+		}
+		if(subMenu.indexOf("cafeReviewMgr") != -1) {
+			$(".boardMgrSub").eq(0).addClass("active");
+		}
+		if(subMenu.indexOf("cafeRecomMgr") != -1) {
+			$(".boardMgrSub").eq(1).addClass("active");
 		}
 	})
 </script>
@@ -84,7 +118,7 @@
 					<a id="user" href="javascript:void(0)" title="Notification" class="dropdown-toggle pmd-ripple-effect"  data-toggle="dropdown" role="button" aria-expanded="true">
 						<div class="material-icons md-light pmd-sm pmd-badge pmd-badge-overlap">
 							<img src="${pageContext.request.contextPath }/resources/themes/images/user-icon.png" alt="New User" />
-							<span id="userName">user Id</span>
+							<span id="userName">${adminId}</span>
 						</div>
 					</a>
 				
@@ -131,7 +165,7 @@
 					<div class="media-left">
 						<img src="${pageContext.request.contextPath }/resources/themes/images/user-icon.png" alt="New User">
 					</div>
-					<div class="media-body media-middle">Propeller Admin</div>
+					<div class="media-body media-middle">${adminId}</div>
 					<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 				</a>
 				<ul class="dropdown-menu">
@@ -153,9 +187,9 @@
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a class="cafeMgrSub menu" href="${pageContext.request.contextPath}/admin/cafeMgn/newCafe">신규 등록 카페 승인</a></li>
-					<li><a class="cafeMgrSub menu" href="#">카페 관리</a></li>
-					<li><a class="cafeMgrSub menu" href="#">월간 카페 등록 및 관리</a></li>
+					<li><a class="cafeMgrSub menu" href="${pageContext.request.contextPath}/admin/cafeMgn/newCafeManager">신규 등록 카페 승인</a></li>
+					<li><a class="cafeMgrSub menu" href="${pageContext.request.contextPath}/admin/cafeMgn/cafeManager">카페 관리</a></li>
+					<li><a class="cafeMgrSub menu" href="${pageContext.request.contextPath}/admin/cafeMgn/monthCafeManager">월간 카페 등록 및 관리</a></li>
 				</ul>
 			</li>
 			<li class="dropdown pmd-dropdown"> 
@@ -165,22 +199,22 @@
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a class="userMgrSub menu" href="#">카페 점주 관리</a></li>
-					<li><a class="userMgrSub menu" href="#">회원 관리</a></li>
-					<li><a class="userMgrSub menu" href="#">관리자 관리</a></li>
+					<li><a class="userMgrSub menu" href="${pageContext.request.contextPath}/admin/userMgr/cafeUserManager">카페 점주 관리</a></li>
+					<li><a class="userMgrSub menu" href="${pageContext.request.contextPath}/admin/userMgr/userManager">회원 관리</a></li>
+					<li><a class="userMgrSub menu" href="${pageContext.request.contextPath}/admin/userMgr/adminManager">관리자 관리</a></li>
 				</ul>
 			</li>
 			<li class="dropdown pmd-dropdown"> 
-				<a id="userMgr" aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media menu" data-sidebar="true" href="javascript:void(0);">	
+				<a id="boardMgr" aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media menu" data-sidebar="true" href="javascript:void(0);">	
 					<i class="fas fa-chalkboard fs18 media-left media-middle"></i>
 					<span class="media-body">게시글 관리</span>
 					<div class="media-right media-bottom"><i class="dic-more-vert dic"></i></div>
 				</a> 
 				<ul class="dropdown-menu">
-					<li><a class="userMgrSub menu" href="#">생생 카페 탐방기 관리</a></li>
-					<li><a class="userMgrSub menu" href="#">MuKKa人 추천 카페 관리</a></li>
-					<li><a class="userMgrSub menu" href="#">사장님 고민 나눔 관리</a></li>
-					<li><a class="userMgrSub menu" href="#">자유게시판 관리</a></li>
+					<li><a class="boardMgrSub menu" href="${pageContext.request.contextPath}/admin/boardMgr/cafeReviewMgr">생생 카페 탐방기 관리</a></li>
+					<li><a class="boardMgrSub menu" href="${pageContext.request.contextPath}/admin/boardMgr/cafeRecomMgr">MuKKa人 추천 카페 관리</a></li>
+					<li><a class="boardMgrSub menu" href="#">사장님 고민 나눔 관리</a></li>
+					<li><a class="boardMgrSub menu" href="#">자유게시판 관리</a></li>
 				</ul>
 			</li>
 			

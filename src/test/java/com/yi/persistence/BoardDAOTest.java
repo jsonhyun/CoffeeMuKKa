@@ -122,8 +122,13 @@ public class BoardDAOTest {
 		dao.yesterBoardCnt(1);
 	}
 	
-	@Test
+	//@Test
 	public void testUserVoteCdt() throws Exception {
 		dao.userVoteCdt(1, 268);
+	}
+	
+	@Test
+	public void testAdminBoardCntChart() throws Exception {
+		dao.adminBoardCntChart(1, 1);
 	}
 }

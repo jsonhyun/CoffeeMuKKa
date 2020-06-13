@@ -259,6 +259,11 @@ public class BoardService {
 		return dao.yesterBoardCnt(boardType);
 	}
 	
+	// 어드민 탐방기, 추천글 차트
+	public List<Integer> adminBoardCntChart(int subNum, int boardType) throws Exception {
+		return dao.adminBoardCntChart(subNum, boardType);
+	}
+	
 	// 경진 추가 (admin) end ------------------------------------------------------------------------------------
 
 	//	재승 추가
