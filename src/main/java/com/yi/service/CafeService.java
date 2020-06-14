@@ -207,5 +207,9 @@ public class CafeService {
 	
 	public List<Integer> openThemeCafeNoList(int themeNo) throws Exception {
 		return dao.openThemeCafeNoList(themeNo);
-	}	
+	}
+	
+	public int cafeOpenAllCnt() throws Exception {
+		return dao.cafeOpenAllCnt();
+	}
 }

@@ -38,7 +38,16 @@ public class UserHomeController {
 	
 	// 유저 메인 홈
 	@RequestMapping(value = "", method = RequestMethod.GET)
+
 	public String userHome(Model model, HttpSession session) throws Exception {
+		//영업중으로 등록된 카페개수
+		int cafeAllInfo = cafeService.cafeOpenAllCnt();
+		model.addAttribute("cafeAllInfo", cafeAllInfo);
+		
+		//탐방기 개수
+		int cafeReviewAllCnt = boardService.cafeReviewAllCnt();
+		model.addAttribute("cafeReviewAllCnt", cafeReviewAllCnt);
+		
 		List<ZoneVO> zoneList = boardService.zoneList();
 		
 		//System.out.println("zoneList -----------------" + zoneList);
@@ -331,7 +340,18 @@ public class UserHomeController {
 	// 커뮤니티 
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
 	public String communityHome(Model model) throws Exception {
-		//실시간 카페 추천 리스트 & 대표이미지
+		//탐방기리스트
+		List<BoardVO> rvBestlist = boardService.cafeReviewVoteBestAll();
+		model.addAttribute("rvBestlist", rvBestlist);
+		
+		List<ImageVO> rvBestlistImg = new ArrayList<ImageVO>();
+		for(int i=0;i<rvBestlist.size();i++) {
+			int sboardNo = rvBestlist.get(i).getBoardNo();
+			rvBestlistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+		}
+		model.addAttribute("rvBestlistImg", rvBestlistImg);
+		
+		//추천 카페 리스트 - 주천수(종합) & 대표이미지
 		List<BoardVO> rcBestlist = boardService.rcRankVoteAll();
 		model.addAttribute("rcBestlist",rcBestlist);
 		

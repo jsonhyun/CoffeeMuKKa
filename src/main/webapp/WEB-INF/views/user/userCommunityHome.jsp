@@ -57,7 +57,7 @@
 
 	.contentArea .cafeReviewBest .best1 {
 		float: left;
-		width: 38%;	
+		width: 45%;	
 		border: 1px solid #545454;
 		position: relative;
 	}
@@ -67,50 +67,93 @@
 		top: 0;
 		left: 0;
 		padding: 5px 20px;
+		background-color: #FF2424;
+		color: white;
+		letter-spacing: 2px;
+		font-weight: bold;
+		font-size: 20px;
+		z-index: 2;
 	}
 	
 	.contentArea .cafeReviewBest .best1 .img {
-		height: 250px;
+		height: 331px;
 		text-align: center;
 	}
 	
+	div.review_dummy{
+		width: 100%;
+		height: 331px;
+		background-color: rgba(0,0,0, 0.2);
+		position: absolute;
+		left: 0;
+		top:0;
+		z-index: 1;
+	}
+	.contentArea .cafeReviewBest .best1 .img img#review_best_img{
+		width: 100%;
+		height: 331px;
+	}	
+    img#review_best_icon{
+    	width: 150px;
+    	height: 150px;
+    	position: absolute;
+    	right: 0;
+    	top:170px;
+    	z-index: 2;
+    }	
 	.contentArea .cafeReviewBest .best1 .bestInfo {
 		padding: 10px;
 		width: 100%;
 		box-sizing: border-box;
 	}
 	
-	.contentArea .cafeReviewBest .best1 h3,
+	.contentArea .cafeReviewBest .best1 h2,
 	.contentArea .cafeReviewBest .bests h3 {
 		height: 56px;
+		color: #FF2424;
 	}
+	.contentArea .cafeReviewBest .best1 h2:hover{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	.contentArea .cafeReviewBest .bests h3:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}	
 	
 	.contentArea .cafeReviewBest .best1 p.text {
-		height: 48px;
+		height: 40px;
+		font-weight: bold;
+		font-size: 18px;
+		letter-spacing: 2px;
 	}
 	
 	.contentArea .cafeReviewBest .user {
 		overflow: hidden;
-		line-height: 30px;
+		line-height: 40px;
 	}
 	
 	.contentArea .cafeReviewBest .user .icon {
 		float: left;
-		border: 2px solid #ddd;
 		border-radius: 40px;
 		width: 30px;
 		height: 30px;
 		text-align: center;
 		margin-right: 10px;
 	}
-	
+	.contentArea .cafeReviewBest .user .icon img{
+		width: 30px;
+		height: 30px;
+		vertical-align: middle;
+	}	
 	.contentArea .cafeReviewBest .user .userId {
 		float: left;
+		font-weight: bold;
 	}
 	
 	.contentArea .cafeReviewBest .boxs {
 		float: right;
-		width: 60%;
+		width: 53%;
 	}
 	
 	.contentArea .cafeReviewBest .bests {
@@ -122,15 +165,38 @@
 	
 	.contentArea .cafeReviewBest .bests .img {
 		float: left;
-		width: 130px;
-		height: 128px;
+		width: 240px;
+		height: 238px;
+		position: relative;
 	}
-	
+	.contentArea .cafeReviewBest .bests .img img{
+		width: 240px;
+		height: 238px;
+	}
+	div.RV_rankNo{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 35px;
+		height: 33px;
+		text-align: center;
+		color: white;
+		font-weight: bold;
+		background-color: #FF2424;
+		font-size: 20px;	
+	}	
 	.contentArea .cafeReviewBest .bests .bestsInfo {
 		float: left;
 		padding: 15px;
 	}
+	.contentArea .cafeReviewBest .bests .bestsInfo p.text{
+		height: 48px;
+		font-weight: bold;
+		font-size: 18px;
+		letter-spacing: 2px;
+	}
 	
+
 	/* 추천카페 베스트 */
 	.recommendBest .recomWrap ul{
 		overflow: hidden;
@@ -153,6 +219,7 @@
 	.recommendBest .recomWrap li img:hover {
 		transform:scale(1.2);
 	}
+	
 	div.RC_rankNo{
 		position: absolute;
 		left: 0;
@@ -163,7 +230,8 @@
 		color: white;
 		font-weight: bold;
 		background-color: #ED7D31;
-	}	
+	}
+	
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -179,61 +247,70 @@
 			<div class="powerLink_dummy">
 				<p class="dummy_text"><i>The best way to start the day is with a nice warm cup of joe.</i></p>
 				<h1 class="dummy_title">Commuity</h1>
+				<span class="viewpoint-first"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>Let's Go</i></span>
 			</div>
 		</div>	
 			
 		<!-- 카페탐방기 베스트 -->
 		<div class="cafeReviewBest mb30">
-			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| 베스트</span></h3>
-			<div class="best1">
-				<div class="bgOrange">BEST</div>
-				<div class="img temp"></div>
-				<div class="bestInfo">
-					<h3 class="title classSec">test</h3>
-					<p class="text classSec">test입니다.</p>
-					<div class="user">
-						<div class="icon">i</div>
-						<p class="userId">test (id)</p>
+			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 탐방기</span></span></h3>
+			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="0" end="0" varStatus="status"> 
+				<div class="best1">
+					<div class="RV_bestPoint">BEST</div>
+					<div class="img temp">
+						<!-- 이미지 이름 꺼내서 삽입하기 -->
+						<c:forEach var="rvBestlistImg" items="${rvBestlistImg}">
+							<c:if test="${rvBestlistImg.boardNo.boardNo == rvBestlist.boardNo }">
+								<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvBestlistImg.imageName}" id="review_best_img" class="thumbNailImg" alt="카페대표이미지"
+									onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+							</c:if>
+						</c:forEach>
+						<div class="review_dummy"></div>
+						<img src = "${pageContext.request.contextPath }/resources/images/review_best_icon2.png" id="review_best_icon">						
+					</div>
+					<div class="bestInfo">
+						<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${rvBestlist.boardNo}">
+							<h2 class="title classSec">${rvBestlist.writingTitle}</h2>
+						</a>
+						<p class="text classSec"><span class="zoneIcon zoneOrangeIconSmall bold">${rvBestlist.zoneNo.zoneName}</span> <i class="fas fa-coffee"></i> ${rvBestlist.cafeNo.cafeName}</p>
+						<div class="user">
+							<div class="icon"><img src="${pageContext.request.contextPath}/resources/images/${rvBestlist.userNo.userGrade.userGradeImage}" alt="등급아이콘"></div>
+							<p class="userId">${rvBestlist.userNo.nick }(${rvBestlist.userNo.userId })</p>
+						</div>
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 			<div class="boxs">
+			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="1" end="2" varStatus="status"> 			
 				<div class="bests">
-					<div class="img temp">img</div>
+					<div class="img temp">
+						<!-- 이미지 이름 꺼내서 삽입하기 -->
+						<c:forEach var="rvBestlistImg" items="${rvBestlistImg}">
+							<c:if test="${rvBestlistImg.boardNo.boardNo == rvBestlist.boardNo }">
+								<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvBestlistImg.imageName}" class="thumbNailImg" alt="카페대표이미지"
+									onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+							</c:if>
+						</c:forEach>
+						<div class="RV_rankNo"></div>				
+					</div>
 					<div class="bestsInfo">
-						<h3 class="title classSec">test</h3>
+						<a href="${pageContext.request.contextPath }/user/community/cafeReview/read?boardNo=${rvBestlist.boardNo}">
+							<h3 class="title classSec">${rvBestlist.writingTitle}</h3>
+						</a>
+						<p class="text classSec"><i class="fas fa-coffee"></i> ${rvBestlist.cafeNo.cafeName}</p>
 						<div class="user">
-							<div class="icon">i</div>
-							<p class="userId">test (id)</p>
+							<div class="icon"><img src="${pageContext.request.contextPath}/resources/images/${rvBestlist.userNo.userGrade.userGradeImage}" alt="등급아이콘"></div>
+							<p class="userId">${rvBestlist.userNo.nick }(${rvBestlist.userNo.userId })</p>
 						</div>
 					</div>
 				</div>
-				<div class="bests">
-					<div class="img temp">img</div>
-					<div class="bestsInfo">
-						<h3 class="title classSec">test</h3>
-						<div class="user">
-							<div class="icon">i</div>
-							<p class="userId">test (id)</p>
-						</div>
-					</div>
-				</div>
-				<div class="bests">
-					<div class="img temp">img</div>
-					<div class="bestsInfo">
-						<h3 class="title classSec">test</h3>
-						<div class="user">
-							<div class="icon">i</div>
-							<p class="userId">test (id)</p>
-						</div>
-					</div>
-				</div>
+			</c:forEach>
 			</div>
 		</div>
 		
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest mb30">
-			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="blue">많이 본 인기 추천 카페 -종합 (1-20)</span></span></h3>
+			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>
 			<div class="recomWrap">
 				<ul>
 					<c:forEach var="rcBestlist" items="${rcBestlist}">
@@ -273,6 +350,10 @@
 		$(this).attr("src", fileName);
 		console.log(fileName);
 	})
+	
+	for(var i =0;i<2;i++){
+		$(".RV_rankNo").eq(i).text(i+2);
+	}
 	
 	for(var i =0;i<20;i++){
 		$(".RC_rankNo").eq(i).text(i+1);

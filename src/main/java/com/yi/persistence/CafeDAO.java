@@ -99,4 +99,6 @@ public interface CafeDAO {
 	
 	public List<Integer> openThemeCafeNoList(int themeNo) throws Exception;
 	
+	public int cafeOpenAllCnt() throws Exception;
+	
 }

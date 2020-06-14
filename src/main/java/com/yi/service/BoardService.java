@@ -295,6 +295,10 @@ public class BoardService {
 		return dao.cafeReviewMonthBestListHome();
 	}
 	
+	public List<BoardVO> cafeReviewVoteBestAll() throws Exception {
+		return dao.cafeReviewVoteBestAll();
+	}
+	
 	//열혈무까인 : 종합리스트
 	public List<BoardVO> bestUserAllBoard() throws Exception {
 		return dao.bestUserAllBoard();
@@ -310,6 +314,10 @@ public class BoardService {
 	//열혈무까인 : 전월기준 - 게시글수 
 	public List<Integer> bestUserBoardCnt() throws Exception {
 		return dao.bestUserBoardCnt();
+	}
+	
+	public int cafeReviewAllCnt() throws Exception {
+		return dao.cafeReviewAllCnt();
 	}	
 
 

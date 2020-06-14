@@ -1351,3 +1351,20 @@ select cafe_no from cafe where theme_no = 6 and cafe_cdt = 1;
 select c.*, z.*, t.* from cafe c 
 left join theme t on c.theme_no = t.theme_no 
 left join `zone` z on c.zone_no = z.zone_no where t.theme_no = 1 and c.cafe_cdt = 1;
+
+
+
+
+
+select b.*, c.*, z.*, t.*, u.*, g.* from board b
+left join cafe c on b.cafe_no = c.cafe_no 
+left join zone z on c.zone_no = z.zone_no
+left join theme t on c.theme_no = t.theme_no
+left join users u on b.user_no = u.user_no 
+left join grade g on u.user_grade = g.user_grade
+where board_no2 = 1 order by b.vote_number desc limit 10;
+
+select count(*) from cafe where cafe_cdt=1;
+select count(*) from board where board_no2 = 1;
+
+select * from boardkinds;

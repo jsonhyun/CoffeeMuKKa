@@ -315,4 +315,9 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace+"openThemeCafeNoList", themeNo);
 	}
 
+	@Override
+	public int cafeOpenAllCnt() throws Exception {
+		return sqlSession.selectOne(namespace+"cafeOpenAllCnt");
+	}
+
 }
