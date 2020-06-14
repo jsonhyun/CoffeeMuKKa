@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +38,8 @@ public class UserHomeController {
 	
 	// 유저 메인 홈
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String userHome(Model model) throws Exception {
+
+	public String userHome(Model model, HttpSession session) throws Exception {
 		//영업중으로 등록된 카페개수
 		int cafeAllInfo = cafeService.cafeOpenAllCnt();
 		model.addAttribute("cafeAllInfo", cafeAllInfo);
@@ -88,6 +91,7 @@ public class UserHomeController {
 		//카페베스트리스트 + 카페 별점
 		List<CafeVO> bestCafeList = cafeService.monthBestCafe();
 		model.addAttribute("bestCafeList", bestCafeList);
+		session.setAttribute("bestCafeNumFive", bestCafeList);
 		
 		List<Double> starpoint = cafeService.monthBestSPoint();
 		model.addAttribute("starpoint", starpoint);

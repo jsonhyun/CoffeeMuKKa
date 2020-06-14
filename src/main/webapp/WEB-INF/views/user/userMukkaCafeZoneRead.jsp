@@ -1392,10 +1392,19 @@
 		getPageList(no);
 	})
 	
+	$("#commentRegiBtn").click(function() {
+		var userNo = $("input[name='AuthNo']").val();
+		if(userNo == 0){
+			alert("로그인을 하고 이용해주세요.");
+			$("#btnStarpointCancel").trigger("click");
+			return false;
+		}
+	})
+	
 	/* 평점 추가 */
 	$("#btnStarpointAdd").click(function(){
 		// login 기능 구현 후 수정해야함
-		var userNo = ${AuthNo};
+		var userNo = $("input[name='AuthNo']").val();
 		var cafeNo = ${cafe.cafeNo};
 		var themeNo = $('#hiddenTheme').val();
 		var starPoint = $('#hiddenStarpoint').val();
