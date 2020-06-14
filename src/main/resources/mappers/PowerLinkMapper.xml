@@ -18,8 +18,77 @@
 			where month(post_date) = #{month} and pow_cdt = 0
 	</update>
 	
+	<resultMap type="PowerLinkVO" id="PowerLinkResult">
+		<id property="powNo" column="pow_no"/>
+		<result property="cafeNo.cafeName" column="cafe_name"/>
+		<result property="regDate" column="reg_date"/>
+		<result property="postDate" column="post_date"/>
+		<result property="powCdt" column="pow_cdt"/>
+	</resultMap>
+	
 	<!-- 어드민 파워링크 리스트 -->
-	<select id="selectAdminMonCafeList">
-		select p.*, c.* from powerlink p left join cafe c on p.cafe_no = c.cafe_no
+	<select id="selectAdminMonCafeList" parameterType="map" resultMap="PowerLinkResult">
+		select p.pow_no, c.cafe_name , p.reg_date , p.post_date , p.pow_cdt
+			from powerlink p left join cafe c on p.cafe_no = c.cafe_no
+			<if test="cri.keyword != '' and cri.keyword != null">
+				where c.cafe_name like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			order by field(p.pow_cdt, 1, 0, 2, 3), p.post_date asc, p.pow_no asc
+			limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	
+	<!-- 어드민 파워링크 전체 갯수 -->
+	<select id="selectAdminMonCafeTotalCnt" parameterType="map" resultType="int">
+		select count(*)
+			from powerlink p left join cafe c on p.cafe_no = c.cafe_no
+			<if test="cri.keyword != '' and cri.keyword != null">
+				where c.cafe_name like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+	</select>
+	
+	<!-- 파워링크 게시대기중인 마지막 데이터 year, month -->
+	<select id="selectAdminMonCafeLastWaitYearAndMon" resultType="map">
+		select year(post_date) as year , month(post_date) as month
+			from powerlink
+			where pow_cdt = 0 and post_date != '0000-00-00' 
+			order by pow_no desc limit 1
+	</select>
+	
+	<!-- 파워링크 게시대기중인 첫번재 데이터 year, month -->
+	<select id="selectAdminMonCafeFirstWaitYearAndMon" resultType="map">
+		select year(post_date) as year , month(post_date) as month
+			from powerlink
+			where pow_cdt = 0 and post_date != '0000-00-00' 
+			order by pow_no asc limit 1
+	</select>
+	
+	<!-- 파워링크 게시대기중 마지막으로 등록된 달의 갯수 -->
+	<select id="selectAdminMonCafeLastMonthCnt" parameterType="map" resultType="int">
+		select count(*)
+			from powerlink 
+			where year(post_date) = #{year} and month(post_date) = #{month} and pow_cdt = 0
+	</select>
+	
+	<!-- 파워링크 게시일 등록 -->
+	<update id="updateAdminMonCafePostDate" parameterType="map">
+		update powerlink 
+			set post_date = #{postDate}
+			where pow_no = #{powNo}
+	</update>
+	
+	<!-- 파워 링크 게시대기중 인 카페 게시 취소 -->
+	<update id="updateAdminMonCafePostCancel" parameterType="PowerLinkVO">
+		update powerlink
+			set pow_cdt = #{powCdt}
+			where pow_no = #{powNo}
+	</update>
+	
+	<!-- 취소된 파워 링크 뒤 파워링크 -->
+	<select id="selectAdminBackMonCafe" parameterType="map" resultType="int">
+		select pow_no from powerlink
+			where post_date != '0000-00-00' and pow_cdt = 0 and pow_no > #{powNo};
+	</select>
+	
+	
+	
 </mapper>
