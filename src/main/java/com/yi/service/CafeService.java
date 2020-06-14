@@ -212,4 +212,8 @@ public class CafeService {
 	public int cafeOpenAllCnt() throws Exception {
 		return dao.cafeOpenAllCnt();
 	}
+	
+	public List<CafeVO> themeCafeListAll() throws Exception {
+		return dao.themeCafeListAll();
+	}	
 }

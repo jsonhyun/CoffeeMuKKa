@@ -1368,3 +1368,12 @@ select count(*) from cafe where cafe_cdt=1;
 select count(*) from board where board_no2 = 1;
 
 select * from boardkinds;
+
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
+		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = 1 and s.theme_no != c.theme_no 
+		group by s.theme_no order by cnt desc, s.theme_no limit 2;
+		
+select c.cafe_no, c.cafe_name, z.zone_name, t.theme_name, t.theme_no, c.registration_date, c.vote_number, c.view_number, c.oneline, c.address, c.detail_address from cafe c left join theme t on c.theme_no = t.theme_no 
+		left join `zone` z on c.zone_no = z.zone_no where c.cafe_cdt =0 order by cafe_no;
+		
+select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c left join theme t on c.theme_no = t.theme_no where c.cafe_cdt=1 order by c.registration_date desc;
