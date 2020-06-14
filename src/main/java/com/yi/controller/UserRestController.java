@@ -82,7 +82,6 @@ public class UserRestController {
 		return entity;
 	}	
 	
-	
 	/*-------- board ------------------------------------------------------------------*/
 	// 게시글 추천(좋아요) 추가
 	@RequestMapping(value = "/votePlus", method = RequestMethod.GET)

@@ -135,6 +135,7 @@
 							<th>카페명</th>
 							<th>점주명</th>
 							<th>사업자등록번호</th>
+							<th>사업자등록번호 조회</th>
 							<th>카페등록일자</th>
 							<th>승인여부</th>
 							<th>승인절차현황</th>
@@ -146,11 +147,12 @@
 								<td>${item.cafeNo }</td>
 								<td><a href="#">${item.cafeName}</a></td>
 								<td>${item.userNo.name }</td>
-								<td>사업자등록번호</td>
-								<td><fmt:formatDate value="${item.registrationDate}" pattern="yyyy/MM/dd"/></td>	
+								<td>${item.ownerLicenseNo}</td>
+								<td><button class="btn btn-warning checkBtn" data-ownerNo="${item.ownerLicenseNo}">조회</button></td>
+								<td><fmt:formatDate value="${item.registrationDate}" pattern="yyyy/MM/dd"/></td>
 								<td>${item.cafeCdt == 'WAITING' ? '승인대기중' : '' }</td>
 								<td>
-									<button class="btn btn-success">사업자등록번호 조회</button>
+									<button class="btn btn-success addBtn" data-cafeNo="${item.cafeNo}">카페 등록 승인</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -165,13 +167,13 @@
 				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
 				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
-						<li><a href="newCafe?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
+						<li><a href="newCafeManager?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafe?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafeManager?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true }">
-						<li><a href="newCafe?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
+						<li><a href="newCafeManager?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 			  	</ul>
 			</div>
@@ -191,9 +193,44 @@
 			return false;
 		}
 		
-		location.href = "newCafe?keyword="+keyword;
+		location.href = "newCafeManager?keyword="+keyword;
 		
 		return false;
+	})
+	
+	$(".checkBtn").click(function(){
+		var ownerNo = $(this).attr("data-ownerNo");
+		var clickBtn = $(this);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/restAdmin/adminCafeOwnerNo",
+			type: "get",
+			data: {"ownerNo" : ownerNo},
+			datatype: "json",
+			success: function(res){
+				//console.log(res);
+				
+				if(res == 1) {
+					clickBtn.text("조회완료").removeClass("btn-warning").addClass("btn-info");
+					return false;
+				} else {
+					clickBtn.text("조회안됨").removeClass("btn-warning").addClass("btn-danger")
+					return false;
+				}
+			}
+		})
+	})
+	
+	$(".addBtn").click(function(){
+		var chkCdt = $(this).closest("tr").find(".checkBtn").text();
+		var cafeNo = $(this).attr("data-cafeNo");
+		
+		if(chkCdt == '조회'){
+			alert("사업자등록번호 조회부터 해주세요.");
+			return false;
+		} 
+		
+		location.href = "${pageContext.request.contextPath }/admin/cafeMgn/newCafeManager/modify?cafeNo="+cafeNo+"&page=${cri.page}&keyword=${cri.keyword}";
 	})
 </script>
 <%@ include file="../adminInclude/footer.jsp"%>

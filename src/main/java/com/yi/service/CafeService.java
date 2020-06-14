@@ -151,6 +151,16 @@ public class CafeService {
 		return dao.adminCafeCntChart(subNum);
 	}
 	
+	// 사업자등록번호 조회
+	public int selectAdminCafeByOwnerNo(String ownerNo) throws Exception {
+		return dao.selectAdminCafeByOwnerNo(ownerNo);
+	}
+	
+	// 신규 카페 승인
+	public void updateCafeCdt(int cafeNo) throws Exception {
+		dao.updateCafeCdt(cafeNo);
+	}
+	
 	// 경친 추가(admin) end  ---------------------------------------------------------------------------
 	
 	/**************** 아름추가  ********************/

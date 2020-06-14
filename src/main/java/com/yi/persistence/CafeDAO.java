@@ -68,6 +68,10 @@ public interface CafeDAO {
 	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception;
 	// 카페 차트
 	public List<Integer> adminCafeCntChart(int subNum) throws Exception;
+	// 사업자등록번호 조회
+	public int selectAdminCafeByOwnerNo(String ownerNo) throws Exception;
+	// 신규 카페 승인 update
+	public void updateCafeCdt(int cafeNo) throws Exception;
 	
 	// 경진 추가 (admin) end ---------------------------------------------------------------------------------------------
 	

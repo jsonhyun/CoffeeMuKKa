@@ -240,7 +240,18 @@ public class CafeDAOImpl implements CafeDAO {
 	public List<Integer> adminCafeCntChart(int subNum) throws Exception {
 		return sqlSession.selectList(namespace + "adminCafeCntChart", subNum);
 	}	
-
+	
+	//사업자등록번호 조회
+	@Override
+	public int selectAdminCafeByOwnerNo(String ownerNo) throws Exception {
+		return sqlSession.selectOne(namespace + "selectAdminCafeByOwnerNo", ownerNo);
+	}
+	
+	// 신규 카페 승인
+	@Override
+	public void updateCafeCdt(int cafeNo) throws Exception {
+		sqlSession.update(namespace + "updateCafeCdt", cafeNo);
+	}
 
 	// 경진 추가 (admin) end ----------------------------------------------------------------------------------------
 
@@ -286,6 +297,6 @@ public class CafeDAOImpl implements CafeDAO {
 	@Override
 	public List<Integer> openThemeCafeNoList(int themeNo) throws Exception {
 		return sqlSession.selectList(namespace+"openThemeCafeNoList", themeNo);
-	}	
+	}
 
 }

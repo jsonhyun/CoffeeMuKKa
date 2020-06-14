@@ -428,3 +428,13 @@ call userPointUpdate();
 select month(registration_date) as month, count(*) from cafe where month(registration_date) = month(now())-3 and cafe_cdt = 1;
 
 select month(registration_date) as month, count(*) as cnt from board where month(registration_date) = month(now())-0 and board_no2 = 2;
+
+-- 카페 등록 승인
+select * from cafe;
+select count(*) from cafe where owner_license_no = '632-63-77912';
+
+select cafe_cdt from cafe where cafe_no = 2;
+
+update cafe 
+	set cafe_cdt = 0
+	where cafe_no = 3;
