@@ -23,7 +23,7 @@ public class AdminCafeMgrControoler {
 	
 	//신규 등록 카페 승인
 	@RequestMapping(value = "newCafeManager", method = RequestMethod.GET)
-	public String newCafeGet(SearchCriteria cri, Model model) throws Exception {
+	public String newCafe(SearchCriteria cri, Model model) throws Exception {
 		CafeVO vo = new CafeVO();
 		vo.setCafeCdt(CafeCdt.WAITING);
 		
@@ -40,9 +40,9 @@ public class AdminCafeMgrControoler {
 	
 	// 등록 승인
 	@RequestMapping(value = "newCafeManager/modify", method = RequestMethod.GET)
-	public String newCafePost(int cafeNo ,SearchCriteria cri, Model model) throws Exception {
+	public String newCafeModify(int cafeNo ,SearchCriteria cri, Model model) throws Exception {
 		
-		service.updateCafeCdt(cafeNo);
+		service.updateNewCafeCdt(cafeNo);
 		
 		model.addAttribute("page", cri.getPage());
 		model.addAttribute("keyword", cri.getKeyword());
@@ -52,8 +52,39 @@ public class AdminCafeMgrControoler {
 	
 	// 카페 관리
 	@RequestMapping(value = "cafeManager", method = RequestMethod.GET)
-	public String cafeMgr() {
+	public String cafeMgr(SearchCriteria cri, Model model) throws Exception {
+		CafeVO vo = new CafeVO();
+		vo.setCafeCdt(CafeCdt.WAITING); // select 조건 -> where c.cafe_cdt != #{vo.cafeCdt} 이기 때문에 WAITING를 사용
+		
+		List<CafeVO> list = service.adminCafeList(vo, cri);
+		PageMaker pageMater = new PageMaker();
+		pageMater.setCri(cri);
+		pageMater.setTotalCount(service.cafeWaitingCntAndKeyword(vo, cri));
+		
+		model.addAttribute("list", list);
+		model.addAttribute("cri", cri);
+		model.addAttribute("pageMaker", pageMater);
+		
 		return "/admin/adminCafeMgr";
+	}
+	
+	// 카페 운영/폐업 등록
+	@RequestMapping(value = "cafeManager/modify", method = RequestMethod.GET)
+	public String cafeMgrModify(int cafeNo, int cafeCdt, SearchCriteria cri, Model model) throws Exception {
+		CafeVO vo = new CafeVO();
+		vo.setCafeNo(cafeNo);
+		
+		if(cafeCdt == 2) {
+			vo.setCafeCdt(CafeCdt.CLOSING);
+		} 
+		
+		System.out.println("vo---------------------" + vo);
+		service.updateCafeCdt(vo);
+		
+		model.addAttribute("page", cri.getPage());
+		model.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/admin/cafeMgn/cafeManager";
 	}
 	
 	

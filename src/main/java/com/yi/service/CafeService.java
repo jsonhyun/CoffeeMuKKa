@@ -157,8 +157,18 @@ public class CafeService {
 	}
 	
 	// 신규 카페 승인
-	public void updateCafeCdt(int cafeNo) throws Exception {
-		dao.updateCafeCdt(cafeNo);
+	public void updateNewCafeCdt(int cafeNo) throws Exception {
+		dao.updateNewCafeCdt(cafeNo);
+	}
+	
+	// 어드민 카페 list
+	public List<CafeVO> adminCafeList(CafeVO vo, SearchCriteria cri) throws Exception {
+		return dao.adminCafeList(vo, cri);
+	}
+	
+	// 카페 운영/폐업 update
+	public void updateCafeCdt(CafeVO vo) throws Exception {
+		dao.updateCafeCdt(vo);
 	}
 	
 	// 경친 추가(admin) end  ---------------------------------------------------------------------------

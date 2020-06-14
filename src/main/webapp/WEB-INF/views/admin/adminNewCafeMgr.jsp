@@ -145,7 +145,7 @@
 						<c:forEach var="item" items="${list }">
 							<tr>
 								<td>${item.cafeNo }</td>
-								<td><a href="#">${item.cafeName}</a></td>
+								<td>${item.cafeName}</td>
 								<td>${item.userNo.name }</td>
 								<td>${item.ownerLicenseNo}</td>
 								<td><button class="btn btn-warning checkBtn" data-ownerNo="${item.ownerLicenseNo}">조회</button></td>
@@ -162,10 +162,6 @@
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 			  	<ul class="pagination list-inline taCenter">
-				  <!-- 페이징 숫자 버튼 자리 -->
-				  <!-- ex1 : cafeReview?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
-				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
-				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
 						<li><a href="newCafeManager?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>

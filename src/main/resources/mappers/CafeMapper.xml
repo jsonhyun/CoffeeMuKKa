@@ -402,6 +402,17 @@
 			limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
+	<select id="adminCafeList" parameterType="map" resultMap="CafeListSelectResult">
+		select u.name, c.* 
+			from cafe c left join users u on c.user_no = u.user_no
+			where c.cafe_cdt != #{vo.cafeCdt}
+			<if test="cri.keyword != '' and cri.keyword != null">
+				and c.cafe_name like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			order by registration_date desc 
+			limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
 	<select id="adminCafeCntChart" resultType="map">
 		select count(*) as cafe_cnt, month(registration_date) as month from cafe where month(registration_date) = month(now())-#{subNum} and cafe_cdt = 1;
 	</select>
@@ -410,9 +421,15 @@
 		select count(*) from cafe where owner_license_no = #{ownerNo}
 	</select>
 	
-	<update id="updateCafeCdt">
+	<update id="updateNewCafeCdt">
 		update cafe 
-			set cafe_cdt = 1
+			set cafe_cdt = 1, registration_date = now()
+			where cafe_no = #{cafeNo}
+	</update>
+	
+	<update id="updateCafeCdt" parameterType="CafeVO">
+		update cafe
+			set cafe_cdt = #{cafeCdt}
 			where cafe_no = #{cafeNo}
 	</update>
 	

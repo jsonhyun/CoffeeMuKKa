@@ -64,14 +64,20 @@ public interface CafeDAO {
 	// 신규 카페 승인 대기 숫자
 	public int cafeWaitingCnt(CafeVO vo) throws Exception;
 	public int cafeWaitingCntAndKeyword(CafeVO vo, SearchCriteria cri) throws Exception;
-	// 신규 카페 승인 list
+	// 어드민 신규 카페 승인 list
 	public List<CafeVO> adminNewCafeList(CafeVO vo, SearchCriteria cri) throws Exception;
 	// 카페 차트
 	public List<Integer> adminCafeCntChart(int subNum) throws Exception;
 	// 사업자등록번호 조회
 	public int selectAdminCafeByOwnerNo(String ownerNo) throws Exception;
 	// 신규 카페 승인 update
-	public void updateCafeCdt(int cafeNo) throws Exception;
+	public void updateNewCafeCdt(int cafeNo) throws Exception;
+	
+	// 어드민 카페 list
+	public List<CafeVO> adminCafeList(CafeVO vo, SearchCriteria cri) throws Exception;
+	
+	// 카페 운영/폐업 update
+	public void updateCafeCdt(CafeVO vo) throws Exception;
 	
 	// 경진 추가 (admin) end ---------------------------------------------------------------------------------------------
 	

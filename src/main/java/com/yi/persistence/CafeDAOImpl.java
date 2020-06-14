@@ -249,8 +249,24 @@ public class CafeDAOImpl implements CafeDAO {
 	
 	// 신규 카페 승인
 	@Override
-	public void updateCafeCdt(int cafeNo) throws Exception {
-		sqlSession.update(namespace + "updateCafeCdt", cafeNo);
+	public void updateNewCafeCdt(int cafeNo) throws Exception {
+		sqlSession.update(namespace + "updateNewCafeCdt", cafeNo);
+	}
+	
+	// 어드민 카페 list
+	@Override
+	public List<CafeVO> adminCafeList(CafeVO vo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(namespace + "adminCafeList", map);
+	}
+	
+	// 카페 운영/폐업 update
+	@Override
+	public void updateCafeCdt(CafeVO vo) throws Exception {
+		sqlSession.update(namespace + "updateCafeCdt", vo);
 	}
 
 	// 경진 추가 (admin) end ----------------------------------------------------------------------------------------
