@@ -43,10 +43,103 @@
     }
    	.cafeMuKKaAdd .cafeMuKKaAddWrap2{
    		margin-top: 20px;
-	    background-color: #ddd;
+	    background: url("${pageContext.request.contextPath }/resources/images/mainImg01.jpg") no-repeat;
+	    background-size: cover;
 		width: 100%;
-		height: 500px;
+		height: 630px;
+		opacity: 0;
+	}
+	
+ 	ul.cafeMuKKaMainBoxs{
+		width: 100%;
+	}
+ 	li.mainBox{
+		height: 210px;
+		position: relative;
+		opacity: 0;
+	}
+	li.mainBox:first-child{
+		text-align: left;
+		padding-left: 100px;
+		background-color: rgba(189, 189, 189, 0.4);
+		transition:2s all ease;
+	}
+	li.mainBox:nth-child(2){
+		text-align: right;
+		padding-right: 100px;
+		background-color: rgba(189, 189, 189, 0.2);
+		transition:2s all ease;
+	}
+	li.mainBox:last-child{
+		text-align: left;
+		padding-left: 100px;	
+	    background-color: rgba(189, 189, 189, 0.4);
+	    transition:2s all ease;
+	}
+	li.mainBox:first-child:hover{
+		background-color: rgba(76, 76, 76, 0.9);
+	}
+	li.mainBox:first-child:hover span.viewpoint-first{
+		opacity: 1;
+	}
+	li.mainBox:nth-child(2):hover{
+		background-color: rgba(76, 76, 76, 0.9);
+	}
+	li.mainBox:nth-child(2):hover span.viewpoint-second{
+		opacity: 1;
 	}	
+	li.mainBox:last-child:hover{
+		background-color: rgba(76, 76, 76, 0.9);
+	}
+	li.mainBox:last-child:hover span.viewpoint-third{
+		opacity: 1;
+	}			
+	p.mainInfoText{
+		color: rgba(246, 246, 246, 0.8);
+		font-size: 18px;
+		font-weight: bold;
+		letter-spacing: 3px;
+		padding-top: 55px;
+	}
+	h1.mainTitle{
+		color: rgba(246, 246, 246, 0.8);
+		letter-spacing: 15px;
+		font-size: 50px;
+	}
+	img#viewpoint_right{ /* 이미지 좌우 봔전 */
+		transform:rotate(0deg);
+   		-moz-transform: scaleX(-1); 
+     	-o-transform: scaleX(-1); 
+		-webkit-transform: scaleX(-1); 
+        transform: scaleX(-1); 
+	}
+	span.viewpoint-first{
+		position: absolute;
+		right: 150px;
+		top: 138px;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+		transition:2s all ease;
+	}
+	span.viewpoint-second{
+		position: absolute;
+		left: 150px;
+		top: 120px;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+		transition:2s all ease;
+	}
+	span.viewpoint-third{
+		position: absolute;
+		right: 150px;
+		top: 120px;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+		transition:2s all ease;
+	}					
 	/* 파워링크 */
 	.powerLinkArea {
 		margin-top: 45px;
@@ -719,17 +812,29 @@
 				<h1 class="typing"></h1>
 			</div>
 			<div class="cafeMuKKaAddWrap2">
-				<div class="cafeMuKKaMainImg"></div>
-				<div class="cafeMuKKaMainText">
-					<h2>나의 일상이 되는 또 다른 공간</h2>
-					<h3>커피 한 잔의 여유를 만나는 나만의 카페</h3>
-					<p>이제 어디 갈지 너무 고민하지 마세요</p>
-					<p>우리 함께 찾아봐요</p>
-					<p>Coffee MuKKa</p>
-					<div class="box">
-					
-					</div>
-				</div>
+				<ul class="cafeMuKKaMainBoxs">
+					<li class="mainBox">
+						<a href="${pageContext.request.contextPath}/user/mukkaCafe">
+							<p class="mainInfoText"><i>나의 일상이 되는 또 다른 공간<br>커피 한 잔의 여유를 만나는 나만의 카페</i></p>
+							<h1 class="mainTitle"><i>Zone & Theme</i></h1>
+							<span class="viewpoint-first"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>view more</i></span>
+						</a>
+					</li>
+					<li class="mainBox">
+						<a href="${pageContext.request.contextPath}/user/community">
+							<p class="mainInfoText"><i>이제 어디 갈지 너무 고민하지 마세요</i></p>
+							<h1 class="mainTitle"><i>Community</i></h1>
+							<span class="viewpoint-second"><i>view more</i>　<img src="${pageContext.request.contextPath }/resources/images/viewpoint.png" id="viewpoint_right"></span>
+						</a>
+					</li>
+					<li class="mainBox">
+						<a href="#">
+							<p class="mainInfoText"><i>우리 함께 찾아봐요</i></p>
+							<h1 class="mainTitle"><i>Point Shop</i></h1>
+							<span class="viewpoint-third"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>view more</i></span>
+						</a>
+					</li>
+				</ul>
 			</div>			
 		</div>
 		
@@ -1033,8 +1138,7 @@
 											<!-- 이미지 이름 꺼내서 삽입하기 -->
 											<c:forEach var="img" items="${rclistImg}">
 												<c:if test="${img.boardNo.boardNo == board.boardNo }">
-													<img
-														src="${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" alt="카페대표이미지"
+													<img src="${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" alt="카페대표이미지"
 														onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
 												</c:if>
 											</c:forEach>
@@ -1231,6 +1335,14 @@
 	<!-- infoBaner main에만 -->
 	<div class="banerArea"></div>
 <script>
+	//메인이미지
+	$(".cafeMuKKaAddWrap2").animate({"opacity":"1"},1500, function(){
+		$("li.mainBox").eq(0).animate({"opacity":"1"},1000);
+		$("li.mainBox").eq(1).animate({"opacity":"1"},1000);
+		$("li.mainBox").eq(2).animate({"opacity":"1"},1000);
+	})
+
+	
 	//파워링크 이미지 효과 로테이션 powerLinkEmphasis
 	var first_dummy = $(".powerLinkWrap ul li div:eq(0)");
 	var second_dummy = $(".powerLinkWrap ul li div:eq(1)");

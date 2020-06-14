@@ -154,7 +154,7 @@
 					<!-- 탭1 : 전체 추천수 -->
 					<div id="tabs-1">
 							<ol>
-								<c:forEach var="voteAll" items="${voteAll}">
+								<c:forEach var="voteAll" items="${voteAll}" begin="0" end="9" varStatus="status"> 
 									<li class="rank_wrap">
 										<a href="${pageContext.request.contextPath }/user/community/cafeRecommend/read?boardNo=${voteAll.boardNo}">
 											<div class="rank_num1"></div>

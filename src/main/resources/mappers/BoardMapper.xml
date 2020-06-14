@@ -152,7 +152,7 @@
 		left join theme t on b.theme_no = t.theme_no
 		left join users u on b.user_no = u.user_no 
 		left join grade g on u.user_grade = g.user_grade
-		where board_no2 = 2 order by vote_number desc limit 10
+		where board_no2 = 2 order by vote_number desc limit 20
 	</select>
 	
 	<!-- 추천카페[랭킹]:해당월  추천순 -->
