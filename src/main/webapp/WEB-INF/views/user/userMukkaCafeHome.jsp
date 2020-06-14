@@ -28,7 +28,7 @@
 	p.dummy_text{
 		color: rgba(246, 246, 246, 0.8);
 		padding-top: 10px;
-		padding-right: 0;
+		padding-right: -20px;
 		text-align: right;
 		letter-spacing: 1px;
 		opacity: 0;
@@ -39,12 +39,13 @@
 		letter-spacing: 12px;
 		text-align: right;
 		position: absolute;
-		right: 0;
+		right: -20px;
 		top: 22px;
 		opacity: 0;		
 	}
 	h3.mukka_Title{
-		margin-bottom: 15px;
+		padding-top: 5px;
+		margin-bottom: 20px;
 		font-size: 20px;
 	}
 	/* 위치별 / 테마별 / 베스트 */
@@ -212,7 +213,7 @@
 		padding: 20px 20px;
 		
 	}
-	p.best_onelien{
+	p.best_oneline{
 		width: 200px;
 		height: 50px;
 		font-weight: bold;
@@ -228,9 +229,14 @@
 		width: 165px;
 		padding-top : 8px;
 	}
-	div.best_ul_img img{
+	div.best_ul_img img.best_view_img{
 		width: 165px;
 		height: 140px;
+	}
+	
+	img.best_view_img:hover{
+		border: 5px solid #ED7D31;
+		margin: -5px;
 	}
 	div.best_line{
 		width: 440px;
@@ -314,6 +320,7 @@
 		width: 100%;
 		height: 565px;
 		overflow: hidden;
+		margin-bottom: 20px;
 	}
 	ul.themeWrap{
 		width: 100%;
@@ -487,7 +494,7 @@
 		
 		
 		<!-- 위치별 / 테마별 실시간 -->
-		<div class="realTime mb30">
+		<div class="realTime">
 			<div class="box left bestViewBox">
 				<h3 class="title bottomLine">
 					<span class="bestTitle">BEST</span> <span class="bestSubtitle">|<span class="blue"> 많이 본 인기 카페</span></span>
@@ -500,13 +507,13 @@
 						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="0" end="2" varStatus="status">
 							<div class="red w30 no bold"><i class="num1"></i></div>
 							<div class="best_ul_info">
-								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+								<p class="best_oneline">" ${viewCafeList.oneline} "</p>
 							</div>
 							<div class="best_ul_img">
 								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="0" end="2" varStatus="status">
 									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
 										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
-											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}" class="best_view_img">
 										</a>
 									</c:if>
 								</c:forEach>
@@ -518,13 +525,13 @@
 						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="3" end="5" varStatus="status">
 							<div class="red w30 no bold"><i class="num2"></i></div>
 							<div class="best_ul_info">
-								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+								<p class="best_oneline">" ${viewCafeList.oneline} "</p>
 							</div>
 							<div class="best_ul_img">
 								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="3" end="5" varStatus="status">
 									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
 										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
-											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}" class="best_view_img">
 										</a>
 									</c:if>
 								</c:forEach>
@@ -536,13 +543,13 @@
 						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="6" end="8" varStatus="status">
 							<div class="red w30 no bold"><i class="num3"></i></div>
 							<div class="best_ul_info">
-								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+								<p class="best_oneline">" ${viewCafeList.oneline} "</p>
 							</div>
 							<div class="best_ul_img">
 								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="6" end="8" varStatus="status">
 									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
 										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
-											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}" class="best_view_img">
 										</a>
 									</c:if>
 								</c:forEach>
@@ -554,13 +561,13 @@
 						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="9" end="11" varStatus="status">
 							<div class="red w30 no bold"><i class="num4"></i></div>
 							<div class="best_ul_info">
-								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+								<p class="best_oneline">" ${viewCafeList.oneline} "</p>
 							</div>
 							<div class="best_ul_img">
 								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="9" end="11" varStatus="status">
 									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
 										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
-											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}" class="best_view_img">
 										</a>
 									</c:if>
 								</c:forEach>
@@ -572,13 +579,13 @@
 						<c:forEach var="viewCafeList" items="${viewCafeList}" begin="12" end="14" varStatus="status">
 							<div class="red w30 no bold"><i class="num5"></i></div>
 							<div class="best_ul_info">
-								<p class="best_onelien">" ${viewCafeList.oneline} "</p>
+								<p class="best_oneline">" ${viewCafeList.oneline} "</p>
 							</div>
 							<div class="best_ul_img">
 								<c:forEach var="viewCafeListImg" items="${viewCafeListImg}" begin="12" end="14" varStatus="status">
 									<c:if test="${viewCafeListImg.cafeNo.cafeNo == viewCafeList.cafeNo }">
 										<a href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${viewCafeList.cafeNo}">
-											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}">
+											<img src="${pageContext.request.contextPath }/resources/images/sumnail/${viewCafeListImg.imageName}" class="best_view_img">
 										</a>
 									</c:if>
 								</c:forEach>
@@ -633,7 +640,7 @@
 							</td>
 							</tr>
 							<tr>
-								<td class="spointCafeName" colspan="2"><i class="fas fa-coffee"></i> ${starPointCafeList.cafeName}</td>
+								<td class="spointCafeName" colspan="2"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${starPointCafeList.cafeNo}"><i class="fas fa-coffee"></i> ${starPointCafeList.cafeName}</a></td>
 							</tr>
 						</c:forEach>																																											
 				</table>
@@ -747,6 +754,10 @@
 				</li>
 			</ul>
 		</div>
+		<h3 class="title bottomLine"><span class="keyword">#데이트  하기 좋은 카페 </span><span> |<span class="red"> 종합 별점 랭킹 5</span></span></h3>
+		<div>
+			
+		</div>
 		<!-- 서브콘텐츠 끝 -->
 		
 	</div>
@@ -757,8 +768,8 @@
 </div>
 <!-- container end -->
 <script>
-	$("p.dummy_text").animate({"padding-right":"25px","opacity":"1"},1500);
-    $("h1.dummy_title").animate({"margin-right":"10px","opacity":"1"},1500);
+	$("p.dummy_text").animate({"padding-right":"40px","opacity":"1"},1800);
+    $("h1.dummy_title").animate({"margin-right":"50px","opacity":"1"},1800);
     
 	//많이 본 인기 카페
 	var pageNum1 = $(".pageNum1").text(); //1
