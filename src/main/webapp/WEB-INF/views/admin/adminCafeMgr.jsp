@@ -136,24 +136,37 @@
 							<th>점주명</th>
 							<th>사업자등록번호</th>
 							<th>카페등록일자</th>
-							<th>승인여부</th>
-							<th>승인절차현황</th>
+							<th>운영여부</th>
+							<th>카페정보상세</th>
+							<th>카페관리</th>
 						</tr>
 					</thead>
 					<tbody>
-						<%-- <c:forEach var="item" items="${list }">
+						<c:forEach var="item" items="${list }">
 							<tr>
 								<td>${item.cafeNo }</td>
-								<td><a href="#">${item.cafeName}</a></td>
+								<td>${item.cafeName}</td>
 								<td>${item.userNo.name }</td>
-								<td>사업자등록번호</td>
+								<td>${item.ownerLicenseNo }</td>
 								<td><fmt:formatDate value="${item.registrationDate}" pattern="yyyy/MM/dd"/></td>	
-								<td>${item.cafeCdt == 'WAITING' ? '승인대기중' : '' }</td>
 								<td>
-									<button class="btn btn-success">사업자등록번호 조회</button>
+									<c:if test="${item.cafeCdt == 'OPEN'}">
+										<strong style="color:#259b24;">영업중</strong>
+									</c:if>
+									<c:if test="${item.cafeCdt == 'CLOSING'}">
+										<strong style="color:#ff5722;">폐업</strong>
+									</c:if>
+								</td>
+								<td><a class="btn pmd-btn-outline" href="${pageContext.request.contextPath}/user/mukkaCafe/zone/read?cafeNo=${item.cafeNo}" target="_blank">상세보기</a></td>
+								<td>
+									<c:if test="${item.cafeCdt == 'OPEN'}">
+										<button class="btn pmd-btn-outline btn-danger closingBtn" data-cafeName="${item.cafeName }" data-cafeNo="${item.cafeNo}">폐업등록</button>
+									</c:if>
+									<c:if test="${item.cafeCdt == 'CLOSING'}">
+									</c:if>
 								</td>
 							</tr>
-						</c:forEach> --%>
+						</c:forEach>
 				</tbody>
 			</table>
 			</div>
@@ -165,13 +178,13 @@
 				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
 				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
-						<li><a href="newCafe?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
+						<li><a href="cafeManager?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafe?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeManager?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true }">
-						<li><a href="newCafe?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
+						<li><a href="cafeManager?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 			  	</ul>
 			</div>
@@ -191,7 +204,19 @@
 			return false;
 		}
 		
-		location.href = "newCafe?keyword="+keyword;
+		location.href = "cafeManager?keyword="+keyword;
+		
+		return false;
+	})
+	
+	$(".closingBtn").click(function(){
+		var cafeName = $(this).attr("data-cafeName");
+		var cafeNo = $(this).attr("data-cafeNo");
+		var res = confirm("["+cafeName+"]를 폐업등록 하시겠습니까?");
+		
+		if(res == true) {
+			location.href = "${pageContext.request.contextPath}/admin/cafeMgn/cafeManager/modify?cafeNo="+cafeNo+"&cafeCdt=2&page=${cri.page}&keyword=${cri.keyword}";
+		} 
 		
 		return false;
 	})

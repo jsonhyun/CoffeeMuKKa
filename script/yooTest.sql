@@ -30,7 +30,8 @@ select count(*) from cafe where cafe_cdt = 0;
 select * from cafe where cafe_cdt = 0;
 select u.name, c.* 
 	from cafe c left join users u on c.user_no = u.user_no
-	where c.cafe_cdt = 0 
+	where c.cafe_cdt != 0 
+	order by registration_date desc 
 	limit 0, 10;
 
 select u.name, c.* 
@@ -44,10 +45,23 @@ select count(*) from board where board_no2 = 2 and date(registration_date) = dat
 select count(*) from board where board_no2 = 2 and date(registration_date) = date(now());
 
 
+select month(registration_date) as month, count(*) from cafe where month(registration_date) = month(now())-3 and cafe_cdt = 1;
 
+select month(registration_date) as month, count(*) as cnt from board where month(registration_date) = month(now())-0 and board_no2 = 2;
 
+-- 카페 등록 승인
+select * from cafe;
+select count(*) from cafe where owner_license_no = '632-63-77912';
 
+select cafe_cdt from cafe where cafe_no = 2;
 
+update cafe 
+	set cafe_cdt = 0, registration_date = now()
+	where cafe_no = 3;
+
+-- 월간 카페
+select p.*, c.* from powerlink p left join cafe c on p.cafe_no = c.cafe_no;
+select cafe_no ,powerlink_cdt from cafe;
 
 
 
@@ -384,47 +398,9 @@ select * from vote;
 -- 포인트
 select * from users;
 
-
--- 포인트 초기화
-update users 
-	set point = 0;
-
-update users 
-	set point = point + (select count(*) * 50 from board where user_no = 1 and board_no2 = 2)
-	where user_no = 1;
-
-select count(*) * 30 from board where user_no = 81 and board_no2 = 2;
-select count(*) * 50 from board where user_no = 81 and board_no2 = 1;
-
--- 포인트 점수 데이터 프로시저
-drop procedure if exists userPointUpdate;
-delimiter $$
-$$
-create procedure userPointUpdate()
-begin
-	declare i int default 1;
-	while i <= 218 do
-		/* 회원이 쓴 탐방기 갯수 * 50 = point */
-		update users 
-			set point = point + (select count(*) * 50 from board where user_no = i and board_no2 = 1)
-			where user_no = i;
-		
-		/* 회원이 쓴 카페추천글 갯수 * 30 = point */
-		update users 
-			set point = point + (select count(*) * 30 from board where user_no = i and board_no2 = 2)
-			where user_no = i;
-		
-		set i = i + 1;
-	end while;
-end $$
-delimiter ;
-call userPointUpdate();
-
 -- 포인트 적립 update
 -- update users 
 -- 	set point = point + 50
 -- 	where user_no = 1
 
-select month(registration_date) as month, count(*) from cafe where month(registration_date) = month(now())-3 and cafe_cdt = 1;
 
-select month(registration_date) as month, count(*) as cnt from board where month(registration_date) = month(now())-0 and board_no2 = 2;

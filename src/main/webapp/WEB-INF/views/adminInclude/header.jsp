@@ -215,6 +215,7 @@
 					<li><a class="boardMgrSub menu" href="${pageContext.request.contextPath}/admin/boardMgr/cafeRecomMgr">MuKKa人 추천 카페 관리</a></li>
 					<li><a class="boardMgrSub menu" href="#">사장님 고민 나눔 관리</a></li>
 					<li><a class="boardMgrSub menu" href="#">자유게시판 관리</a></li>
+					<li><a class="boardMgrSub menu" href="#">댓글 관리</a></li>
 				</ul>
 			</li>
 			
