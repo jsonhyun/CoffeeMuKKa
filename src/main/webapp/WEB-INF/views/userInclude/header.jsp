@@ -441,6 +441,12 @@
 			
 		})
 		
+		/* 헤더 베스트 카페 순위 */
+		var nowYear = new Date().getFullYear();
+		var nowMonth = new Date().getMonth() + 1;
+		var preMonth = nowMonth - 1;
+		$("#preMonth").html(preMonth);
+		
 	}) 
 </script>
 <style>
@@ -490,13 +496,13 @@
 				<a href="${pageContext.request.contextPath }/user/"><img src="${pageContext.request.contextPath }/resources/images/logo.png" alt="logo" id="logo" /></a>
 			</div>
 			<div class="rankWrap">
-				<p>N월의 카페순위</p>
-				<p class="rankOne"><span class="red bold">1.</span> <a href="#">TEST</a> <span class="rankIcon"><i class="fas fa-angle-down"></i></span></p>
+				<p><span id="preMonth"></span>월의 카페순위</p>
+				<p class="rankOne"><span class="red bold">1.</span> <a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafeNumFive[0].cafeNo }">${bestCafeNumFive[0].cafeName }</a> <span class="rankIcon"><i class="fas fa-angle-down"></i></span></p>
 				<ul id="rankUl">
-					<li><span class="red bold">2.</span> <a href="#">TEST</a></li>
-					<li><span class="red bold">3.</span> <a href="#">TEST</a></li>
-					<li><span class="red bold">4.</span> <a href="#">TEST</a></li>
-					<li><span class="red bold">5.</span> <a href="#">TEST</a></li>
+					<li><span class="red bold">2.</span> <a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafeNumFive[1].cafeNo }">${bestCafeNumFive[1].cafeName }</a></li>
+					<li><span class="red bold">3.</span> <a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafeNumFive[2].cafeNo }">${bestCafeNumFive[2].cafeName }</a></li>
+					<li><span class="red bold">4.</span> <a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafeNumFive[3].cafeNo }">${bestCafeNumFive[3].cafeName }</a></li>
+					<li><span class="red bold">5.</span> <a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${bestCafeNumFive[4].cafeNo }">${bestCafeNumFive[4].cafeName }</a></li>
 				</ul>
 			</div>
 			<div class="topMenuWrap">
@@ -504,11 +510,13 @@
 					<li><a href="#">ABOUT CMukka</a></li>
 					<c:choose>
 						<c:when test="${Auth == null }">
+							<input type="hidden" value="0" name="AuthNo">
 							<li><a href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a></li>
 							<li><a href="#" data-toggle="modal" data-target="#joinModal">JOIN</a></li>
 							<input type="hidden" value="${error }" id="result">
 						</c:when>
 						<c:when test="${Auth == '관리자' }">
+							<input type="hidden" value="${AuthNo }" name="AuthNo">
 							<li>
 								<a href="${pageContext.request.contextPath }/admin/">
 									<button style="cursor: pointer;width: 70px;height: 30px;border: 1px;background: red;color: white;letter-spacing: 3px;font-weight: 500;">관리자</button>
@@ -517,6 +525,7 @@
 							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
 						</c:when>
 						<c:when test="${Auth != '관리자' }">
+							<input type="hidden" value="${AuthNo }" name="AuthNo">
 							<input type="hidden" value="${userId }">
 							<li><a href="${pageContext.request.contextPath }/user/mypage?userId=${userId}">${Auth}님</a></li>
 							<li><a href="${pageContext.request.contextPath }/user/logout">LOGOUT</a></li>
