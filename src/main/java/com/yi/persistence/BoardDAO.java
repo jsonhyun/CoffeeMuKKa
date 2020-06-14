@@ -107,6 +107,7 @@ public interface BoardDAO {
 	// 탐방기 월간 베스트15 Main에 쓸 리스트
 	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception;
 
+	public List<BoardVO> cafeReviewVoteBestAll() throws Exception;
 	//열혈무까인 : 종합리스트
 	public List<BoardVO> bestUserAllBoard() throws Exception;
 	//열혈무까인 : 종합 - 게시글수

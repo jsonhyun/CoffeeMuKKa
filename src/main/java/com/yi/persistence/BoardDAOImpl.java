@@ -306,6 +306,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardVO> cafeReviewMonthBestListHome() throws Exception {
 		return sqlSession.selectList(namespace+"cafeReviewMonthBestListHome");
 	}
+	
+	@Override
+	public List<BoardVO> cafeReviewVoteBestAll() throws Exception {
+		return sqlSession.selectList(namespace+"cafeReviewVoteBestAll");
+	}
+	
 	//열혈무까인 : 종합리스트
 	@Override
 	public List<BoardVO> bestUserAllBoard() throws Exception {
@@ -326,6 +332,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<Integer> bestUserBoardCnt() throws Exception {
 		return sqlSession.selectList(namespace+"bestUserBoardCnt");
 	}
+
 	
 
 

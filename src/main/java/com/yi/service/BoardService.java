@@ -295,6 +295,10 @@ public class BoardService {
 		return dao.cafeReviewMonthBestListHome();
 	}
 	
+	public List<BoardVO> cafeReviewVoteBestAll() throws Exception {
+		return dao.cafeReviewVoteBestAll();
+	}
+	
 	//열혈무까인 : 종합리스트
 	public List<BoardVO> bestUserAllBoard() throws Exception {
 		return dao.bestUserAllBoard();
