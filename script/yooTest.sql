@@ -60,12 +60,46 @@ update cafe
 	where cafe_no = 3;
 
 -- 월간 카페
-select p.*, c.* from powerlink p left join cafe c on p.cafe_no = c.cafe_no;
+select p.pow_no, c.cafe_name , p.reg_date , p.post_date , p.pow_cdt  
+	from powerlink p left join cafe c on p.cafe_no = c.cafe_no
+	order by field(p.pow_cdt , 1, 0, 2), p.post_date asc, p.pow_no asc;
+
 select cafe_no ,powerlink_cdt from cafe;
 
+select * from powerlink;
+
+select count(*)  
+	from powerlink p left join cafe c on p.cafe_no = c.cafe_no
+	where c.cafe_name like '%루%';
+
+select year(post_date) as year , month(post_date) as month
+	from powerlink
+	where pow_cdt = 0 and post_date != '0000-00-00' 
+	order by pow_no desc limit 1;
+
+select year(post_date) as year , month(post_date) as month
+	from powerlink
+	where pow_cdt = 0 and post_date != '0000-00-00' 
+	order by pow_no asc limit 1;
+
+select pow_no from powerlink
+	where post_date != '0000-00-00' and pow_no > 20 and pow_cdt = 0;
+
+select count(*)
+	from powerlink 
+	where year(post_date) = 2020 and month(post_date) = 7 and pow_cdt = 0;
+
+update powerlink 
+	set post_date = '2020/8/01'
+	where pow_no = 21;
+
+select * from powerlink 
+	where pow_no = 21;
+	
 
 
-
+update cafe c right join powerlink p on c.cafe_no = p.cafe_no 
+	set c.powerlink_cdt = p.pow_cdt;
 
 
 -- test(user) ------------------------------------------------------------------------------

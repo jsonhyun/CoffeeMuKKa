@@ -133,7 +133,6 @@
 						<tr>
 							<th>no</th>
 							<th>카페명</th>
-							<th>점주명</th>
 							<th>신청일</th>
 							<th>게시일/게시예정일</th>
 							<th>게시여부</th>
@@ -141,37 +140,48 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%-- <c:forEach var="item" items="${list }">
+						<c:forEach var="item" items="${list }">
 							<tr>
-								<td>${item.cafeNo }</td>
-								<td><a href="#">${item.cafeName}</a></td>
-								<td>${item.userNo.name }</td>
-								<td>사업자등록번호</td>
-								<td><fmt:formatDate value="${item.registrationDate}" pattern="yyyy/MM/dd"/></td>	
-								<td>${item.cafeCdt == 'WAITING' ? '승인대기중' : '' }</td>
+								<td>${item.powNo }</td>
+								<td>${item.cafeNo.cafeName}</td>
+								<td><fmt:formatDate value="${item.regDate }" pattern="yyyy/MM/dd"/></td>
+								<td>									
+									<fmt:formatDate value="${item.postDate }" pattern="yyyy/MM/dd" var="postDate"/>
+									<c:if test="${postDate != '0001/01/01' }">${postDate }</c:if>
+									<c:if test="${postDate == '0001/01/01' }"><strong style="font-size: 14px; color: #ff5722">게시일 미등록</strong></c:if>
+								</td>
 								<td>
-									<button class="btn btn-success">사업자등록번호 조회</button>
+									<c:if test="${item.powCdt == 'WAITING' }"><span style="color:#03a9f4;">게시 대기중</span></c:if>
+									<c:if test="${item.powCdt == 'OPEN' }"><span style="color:#ff5722;">게시중</span></c:if>
+									<c:if test="${item.powCdt == 'CLOSING' }"><span style="color:#e0a800;">게시완료</span></c:if>
+									<c:if test="${item.powCdt == 'CANCEL' }"><span style="color:#e0a800;">취소</span></c:if>
+								</td>
+								<td>
+									<c:if test="${postDate == '0001/01/01' }">
+										<button class="btn btn-success postDateAddBtn" data-powNo="${item.powNo }">게시일 등록</button>
+									</c:if>
+									<c:if test="${postDate != '0001/01/01' && item.powCdt == 'WAITING'}">
+										<fmt:formatDate value="${item.postDate }" pattern="yyyy" var="postYear"/>
+										<fmt:formatDate value="${item.postDate }" pattern="MM" var="postMonth"/>										
+										<button class="btn btn-warning postDateCancelBtn" data-powNo="${item.powNo}" data-postYear="${postYear }" data-postMonth="${postMonth }">게시 취소</button>
+									</c:if>
 								</td>
 							</tr>
-						</c:forEach> --%>
+						</c:forEach>
 				</tbody>
 			</table>
 			</div>
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 			  	<ul class="pagination list-inline taCenter">
-				  <!-- 페이징 숫자 버튼 자리 -->
-				  <!-- ex1 : cafeReview?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
-				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
-				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
-						<li><a href="newCafe?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
+						<li><a href="monthCafeManager?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafe?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="monthCafeManager?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true }">
-						<li><a href="newCafe?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
+						<li><a href="monthCafeManager?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 			  	</ul>
 			</div>
@@ -191,9 +201,22 @@
 			return false;
 		}
 		
-		location.href = "newCafe?keyword="+keyword;
+		location.href = "monthCafeManager?keyword="+keyword;
 		
 		return false;
+	})
+	
+	$('.postDateAddBtn').click(function(){
+		var powNo = $(this).attr("data-powNo");
+		location.href = "${pageContext.request.contextPath}/admin/cafeMgn/monthCafeManager/modify?powNo="+powNo+"&page=${cri.page}&keyword=${cri.keyword}";
+	})
+	
+	$(".postDateCancelBtn").click(function(){
+		var powNo = $(this).attr("data-powNo");
+		var postYear = $(this).attr("data-postYear");
+		var postMonth = $(this).attr("data-postMonth");
+		
+		location.href = "${pageContext.request.contextPath}/admin/cafeMgn/monthCafeManager/cancelModify?powNo="+powNo+"&year="+postYear+"&month="+postMonth+"&page=${cri.page}&keyword=${cri.keyword}";
 	})
 </script>
 <%@ include file="../adminInclude/footer.jsp"%>
