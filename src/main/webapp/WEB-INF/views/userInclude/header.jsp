@@ -61,6 +61,7 @@
 		var cafeAllInfo = ${cafeAllInfo};
 		//등록된 탐방기 총 개수
 		var cafeReviewAllCnt = ${cafeReviewAllCnt};
+		
 		if(url[5] == "") {
 			$(".mainSearchBox").addClass("open");
 			$(".mainSearchBtn a").html('<span class="cafeSearchBtn">카페 검색 닫기</span> <i class="fas fa-angle-up"></i>');
