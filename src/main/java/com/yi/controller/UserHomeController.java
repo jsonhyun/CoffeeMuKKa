@@ -42,11 +42,11 @@ public class UserHomeController {
 	public String userHome(Model model, HttpSession session) throws Exception {
 		//영업중으로 등록된 카페개수
 		int cafeAllInfo = cafeService.cafeOpenAllCnt();
-		model.addAttribute("cafeAllInfo", cafeAllInfo);
+		session.setAttribute("cafeAllInfo", cafeAllInfo);
 		
 		//탐방기 개수
 		int cafeReviewAllCnt = boardService.cafeReviewAllCnt();
-		model.addAttribute("cafeReviewAllCnt", cafeReviewAllCnt);
+		session.setAttribute("cafeReviewAllCnt", cafeReviewAllCnt);
 		
 		List<ZoneVO> zoneList = boardService.zoneList();
 		
