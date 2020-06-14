@@ -267,13 +267,67 @@ public class UserHomeController {
 		model.addAttribute("themeCafe6", themeCafe6);
 		model.addAttribute("themeCafeImg6",themeCafeImg6);
 		
+		//각테마번호 배열 랜덤으로 돌리기
+		int[] ranThemeNo = shuffle(themeNo); //테마번호 랜덤하게 돌리기
+		List<Integer> openThemeCafeNo7 = cafeService.openThemeCafeNoList(ranThemeNo[0]);
+		
+		// shuffle 이용해서 랜덤으로 카페번호 뿌리기
+		Collections.shuffle(openThemeCafeNo7);
+		
+		// 위치별 -- 영업카페번호 랜덤 3곳
+		int themeGroupNo1 = openThemeCafeNo7.get(0); // 첫번째 영업중인 카페 랜덤번호
+		openThemeCafeNo7.remove(0); // -- 첫번째 랜덤번호 지우기
+		int themeGroupNo2 = openThemeCafeNo7.get(0); // 새로운 영업중인 카페 랜덤번호 생성
+		openThemeCafeNo7.remove(0);  // -- 두번째 랜덤번호 지우기
+		int themeGroupNo3 = openThemeCafeNo7.get(0);
+		openThemeCafeNo7.remove(0);  // -- 세번째 랜덤번호 지우기
+		int themeGroupNo4 = openThemeCafeNo7.get(0);
+		
+		
+		// 테마별 - 랜덤카페(1)
+		CafeVO themeGroupCafe1 = cafeService.readCafe(themeGroupNo1);
+		ImageVO themeGroupImg1 = cafeService.imgSelect(themeGroupNo1);
+		model.addAttribute("themeGroupCafe1", themeGroupCafe1);
+		model.addAttribute("themeGroupImg1",themeGroupImg1);
+		
+		// 테마별- 랜덤카페(2)
+		CafeVO themeGroupCafe2 = cafeService.readCafe(themeGroupNo2);
+		ImageVO themeGroupImg2 = cafeService.imgSelect(themeGroupNo2);
+		model.addAttribute("themeGroupCafe2", themeGroupCafe2);
+		model.addAttribute("themeGroupImg2",themeGroupImg2);
+		
+		// 테마별 - 랜덤카페(3)
+		CafeVO themeGroupCafe3 = cafeService.readCafe(themeGroupNo3);
+		ImageVO themeGroupImg3 = cafeService.imgSelect(themeGroupNo3);
+		model.addAttribute("themeGroupCafe3", themeGroupCafe3);
+		model.addAttribute("themeGroupImg3",themeGroupImg3);
+		
+		// 테마별 - 랜덤카페(4)
+		CafeVO themeGroupCafe4 = cafeService.readCafe(themeGroupNo4);
+		ImageVO themeGroupImg4 = cafeService.imgSelect(themeGroupNo4);
+		model.addAttribute("themeGroupCafe4", themeGroupCafe4);
+		model.addAttribute("themeGroupImg4",themeGroupImg4);
+		
 		return "/user/userMukkaCafeHome";
 	}
 	
+	//각 테마번호 배열 랜덤하게 돌리기
+	private int[] shuffle(int[] themeNo) {
+	    for(int x=0;x<themeNo.length;x++){
+	        int i = (int)(Math.random()*themeNo.length);
+	        int j = (int)(Math.random()*themeNo.length);
+	              
+	        int tmp = themeNo[i];
+	        themeNo[i] = themeNo[j];
+	        themeNo[j] = tmp;
+	      }	
+		return themeNo;
+	}
+
 
 	// 커뮤니티 
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
-	public String communityHome(Model model) {
+	public String communityHome(Model model) throws Exception {
 		//실시간 카페 추천 리스트 & 대표이미지
 //		List<BoardVO> rclist = boardService.recommendboardList();
 //		model.addAttribute("rclist",rclist);

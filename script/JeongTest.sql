@@ -1331,6 +1331,9 @@ select c.*, z.*, t.* from cafe c
 	
 select round(sum(s.star_point)/count(s.star_point),1) as 'point', c.cafe_name, c.*, z.*, t.*
 from cafe c
+
+
+select cafe_no from cafe where cafe_cdt = 1 and theme_no = 2;
 left join starpoint s on c.cafe_no = s.cafe_no
 left join theme t on c.theme_no = t.theme_no
 left join zone z on c.zone_no = z.zone_no
@@ -1344,3 +1347,7 @@ select cafe_no from cafe where theme_no = 3 and cafe_cdt = 1;
 select cafe_no from cafe where theme_no = 4 and cafe_cdt = 1;
 select cafe_no from cafe where theme_no = 5 and cafe_cdt = 1;
 select cafe_no from cafe where theme_no = 6 and cafe_cdt = 1;
+
+select c.*, z.*, t.* from cafe c 
+left join theme t on c.theme_no = t.theme_no 
+left join `zone` z on c.zone_no = z.zone_no where t.theme_no = 1 and c.cafe_cdt = 1;

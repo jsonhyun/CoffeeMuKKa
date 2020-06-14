@@ -307,10 +307,11 @@
 	
 	.navy_box{
 		color: #2924BD;
-		letter-spacing: 2px;
+		letter-spacing: 3px;
 		border-radius: 5px;
 		border: 2px solid #2924BD;
-		padding: 0 5px;
+		padding: 0 8px;
+		font-size: 24px;
 	}
 	.navy_box:hover {
 		color: #ED7D31;
@@ -414,7 +415,40 @@
 		width: 30px;
 		height: 30px;
 		vertical-align: middle;		
-	}						
+	}
+	div.theme_tableWrap{
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	table.theme_table{
+		width: 100%;
+	}
+	table.theme_table tr{
+		height: 230px;
+		border-bottom: 2px solid #545454;
+	}
+	td.theme_imgTd{
+		width: 190px;
+		text-align: center;
+	}
+	table.theme_table img.ran_theme_img{
+		width: 150px;
+		height: 150px;
+	}
+	img.ran_theme_img:hover{
+		border: 5px solid red;
+		margin: -5px;
+	}
+	h3.ranThemeTitle{
+		color: black;
+	}
+	.keyword_box{
+		color: white;
+		letter-spacing: 3px;
+		border-radius: 6px;
+		padding: 0 8px;
+		font-size: 24px;
+	}					
 </style>
 		
 <div class="content subPageContent">
@@ -754,9 +788,55 @@
 				</li>
 			</ul>
 		</div>
-		<h3 class="title bottomLine"><span class="keyword">#데이트  하기 좋은 카페 </span><span> |<span class="red"> 종합 별점 랭킹 5</span></span></h3>
-		<div>
-			
+		<h3 class="title bottomLine ranThemeTitle">
+				<c:if test="${themeGroupCafe1.themeNo.themeNo == 1}">
+					 <span class="keyword_box date">#데이트</span> 하기 좋은 카페
+				</c:if>
+				<c:if test="${themeGroupCafe1.themeNo.themeNo == 2}">
+					<span class="keyword_box view">#뷰</span> 가 끝내주는 카페
+				</c:if>
+				<c:if test="${themeGroupCafe1.themeNo.themeNo == 3}">
+					<span class="keyword_box ame">#착한아메</span> 가 있는 카페
+				</c:if>
+				<c:if test="${themeGroupCafe1.themeNo.themeNo == 4}">
+					나는야 <span class="keyword_box dessert">#디저트</span> 파  라면 바로 여기</span>
+				</c:if>
+				<c:if test="${themeGroupCafe1.themeNo.themeNo == 5}">
+					<span class="keyword_box dog">#댕댕이</span> 와 함께 하기 좋은 카페
+				</c:if>																																								
+				<c:if test="${themeGroupCafe1.themeNo.themeNo == 6}">
+					<span class="keyword_box work">#작업</span> 하기 안성맞춤인 카페
+				</c:if>
+		</h3>
+		<div class="theme_tableWrap">
+			<table class="theme_table">
+				<tr>
+					<td class="theme_imgTd">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${themeGroupCafe1.cafeNo}">
+							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${themeGroupImg1.imageName}" class="ran_theme_img">
+						</a>
+						<h4><i class="fas fa-coffee"></i> ${themeGroupCafe1.cafeName}</h4>	
+					</td>
+					<td class="theme_imgTd">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${themeGroupCafe2.cafeNo}">
+							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${themeGroupImg2.imageName}" class="ran_theme_img">
+						</a>
+						<h4><i class="fas fa-coffee"></i> ${themeGroupCafe2.cafeName}</h4>	
+					</td>
+					<td class="theme_imgTd">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${themeGroupCafe3.cafeNo}">
+							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${themeGroupImg3.imageName}" class="ran_theme_img">
+						</a>
+						<h4><i class="fas fa-coffee"></i> ${themeGroupCafe3.cafeName}</h4>	
+					</td>
+					<td class="theme_imgTd">
+						<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${themeGroupCafe4.cafeNo}">
+							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${themeGroupImg4.imageName}" class="ran_theme_img">
+						</a>
+						<h4><i class="fas fa-coffee"></i> ${themeGroupCafe4.cafeName}</h4>	
+					</td>															
+				</tr>														
+			</table>
 		</div>
 		<!-- 서브콘텐츠 끝 -->
 		

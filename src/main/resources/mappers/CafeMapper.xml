@@ -461,5 +461,5 @@
 	<!-- 아름추가 : 영업으로 등록된 카페, 테마별 번호에 따라 카페번호 리스트뽑기 -->
 	<select id="openThemeCafeNoList" resultType="int">
 		select cafe_no from cafe where theme_no = #{themeNo} and cafe_cdt = 1
-	</select>			
+	</select>				
 </mapper>

@@ -77,19 +77,19 @@
 	    transition:2s all ease;
 	}
 	li.mainBox:first-child:hover{
-		background-color: rgba(116, 116, 116, 0.9);
+		background-color: rgba(76, 76, 76, 0.9);
 	}
 	li.mainBox:first-child:hover span.viewpoint-first{
 		opacity: 1;
 	}
 	li.mainBox:nth-child(2):hover{
-		background-color: rgba(116, 116, 116, 0.9);
+		background-color: rgba(76, 76, 76, 0.9);
 	}
 	li.mainBox:nth-child(2):hover span.viewpoint-second{
 		opacity: 1;
 	}	
 	li.mainBox:last-child:hover{
-		background-color: rgba(116, 116, 116, 0.9);
+		background-color: rgba(76, 76, 76, 0.9);
 	}
 	li.mainBox:last-child:hover span.viewpoint-third{
 		opacity: 1;
@@ -1338,9 +1338,9 @@
 <script>
 	//메인이미지
 	$(".cafeMuKKaAddWrap2").animate({"opacity":"1"},1500, function(){
-		$("li.mainBox").eq(0).animate({"opacity":"1"},600);
-		$("li.mainBox").eq(1).animate({"opacity":"1"},600);
-		$("li.mainBox").eq(2).animate({"opacity":"1"},600);
+		$("li.mainBox").eq(0).animate({"opacity":"1"},1000);
+		$("li.mainBox").eq(1).animate({"opacity":"1"},1000);
+		$("li.mainBox").eq(2).animate({"opacity":"1"},1000);
 	})
 
 	
