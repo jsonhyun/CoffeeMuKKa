@@ -842,7 +842,7 @@
 	<!-- container start -->
 	<div class="container">
 		<div class="activeMenus">
-			<p class="activeMenu">Coffee MuKKa <span class="activeTitle"></span></p>
+			<p class="activeMenu">Coffee MuKKa <span class="activeTitle">> <span class="red">환영합니다!</span></span></p>
 			<p class="activeTotalCnt"></p>
 		</div>
 	</div>
