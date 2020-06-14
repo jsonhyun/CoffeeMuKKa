@@ -247,7 +247,6 @@
 			<div class="powerLink_dummy">
 				<p class="dummy_text"><i>The best way to start the day is with a nice warm cup of joe.</i></p>
 				<h1 class="dummy_title">Commuity</h1>
-				<span class="viewpoint-first"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>Let's Go</i></span>
 			</div>
 		</div>	
 			
