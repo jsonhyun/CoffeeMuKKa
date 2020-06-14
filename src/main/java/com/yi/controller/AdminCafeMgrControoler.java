@@ -78,7 +78,6 @@ public class AdminCafeMgrControoler {
 			vo.setCafeCdt(CafeCdt.CLOSING);
 		} 
 		
-		System.out.println("vo---------------------" + vo);
 		service.updateCafeCdt(vo);
 		
 		model.addAttribute("page", cri.getPage());

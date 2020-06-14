@@ -59,8 +59,9 @@ update cafe
 	set cafe_cdt = 0, registration_date = now()
 	where cafe_no = 3;
 
-
-
+-- 월간 카페
+select p.*, c.* from powerlink p left join cafe c on p.cafe_no = c.cafe_no;
+select cafe_no ,powerlink_cdt from cafe;
 
 
 
