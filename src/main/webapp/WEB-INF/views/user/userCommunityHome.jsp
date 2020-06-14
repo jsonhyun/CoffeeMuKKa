@@ -196,6 +196,7 @@
 		letter-spacing: 2px;
 	}
 	
+
 	/* 추천카페 베스트 */
 	.recommendBest .recomWrap ul{
 		overflow: hidden;
@@ -246,12 +247,13 @@
 			<div class="powerLink_dummy">
 				<p class="dummy_text"><i>The best way to start the day is with a nice warm cup of joe.</i></p>
 				<h1 class="dummy_title">Commuity</h1>
+				<span class="viewpoint-first"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>Let's Go</i></span>
 			</div>
 		</div>	
 			
 		<!-- 카페탐방기 베스트 -->
 		<div class="cafeReviewBest mb30">
-			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| 베스트</span></h3>
+			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 탐방기</span></span></h3>
 			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="0" end="0" varStatus="status"> 
 				<div class="best1">
 					<div class="RV_bestPoint">BEST</div>
@@ -303,32 +305,12 @@
 					</div>
 				</div>
 			</c:forEach>
-<!-- 				<div class="bests">
-					<div class="img temp">img</div>
-					<div class="bestsInfo">
-						<h3 class="title classSec">test</h3>
-						<div class="user">
-							<div class="icon">i</div>
-							<p class="userId">test (id)</p>
-						</div>
-					</div>
-				</div>
-				<div class="bests">
-					<div class="img temp">img</div>
-					<div class="bestsInfo">
-						<h3 class="title classSec">test</h3>
-						<div class="user">
-							<div class="icon">i</div>
-							<p class="userId">test (id)</p>
-						</div>
-					</div>
-				</div> -->
 			</div>
 		</div>
 		
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest mb30">
-			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페 - 종합 추천수(1-20)</span></span></h3>
+			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>
 			<div class="recomWrap">
 				<ul>
 					<c:forEach var="rcBestlist" items="${rcBestlist}">
