@@ -329,16 +329,16 @@ public class UserHomeController {
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
 	public String communityHome(Model model) throws Exception {
 		//실시간 카페 추천 리스트 & 대표이미지
-//		List<BoardVO> rclist = boardService.recommendboardList();
-//		model.addAttribute("rclist",rclist);
-//		
-//		List<ImageVO> rclistImg = new ArrayList<ImageVO>();
-//		for(int i=0;i<rclist.size();i++) {
-//			int sboardNo = rclist.get(i).getBoardNo();
-//			rclistImg.addAll(boardService.recommendboardImgList(sboardNo));	
-//		}
-//		
-//		model.addAttribute("rclistImg", rclistImg);		
+		List<BoardVO> rcBestlist = boardService.rcRankVoteAll();
+		model.addAttribute("rcBestlist",rcBestlist);
+		
+		List<ImageVO> rcBestlistImg = new ArrayList<ImageVO>();
+		for(int i=0;i<rcBestlist.size();i++) {
+			int sboardNo = rcBestlist.get(i).getBoardNo();
+			rcBestlistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+		}
+		
+		model.addAttribute("rcBestlistImg", rcBestlistImg);		
 		
 		return "/user/userCommunityHome";
 	}

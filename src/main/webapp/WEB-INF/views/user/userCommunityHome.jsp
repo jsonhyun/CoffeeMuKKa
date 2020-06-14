@@ -3,6 +3,54 @@
 <%@ include file="../userInclude/header.jsp" %>
 <%@ include file="../userInclude/subMenu.jsp" %>
 <style>
+	/* 파워링크 */
+	.powerLink {
+		height: 94px;
+		margin-bottom: 10px;
+		background: url("${pageContext.request.contextPath }/resources/images/add_sample02.JPG") no-repeat;
+		background-size: cover;
+		position: relative;
+		z-index: 1;
+	}
+	.powerLink_dummy{
+		width: 100%;
+		height: 94px;
+		background-color: rgba(189, 189, 189, 0.1);
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 2;
+	}
+	p.dummy_text{
+		color: rgba(246, 246, 246, 0.8);
+		padding-top: 10px;
+		padding-right: -20px;
+		text-align: right;
+		letter-spacing: 1px;
+		opacity: 0;
+	}
+	h1.dummy_title{
+		font-size: 48px;
+		color: rgba(246, 246, 246, 0.8);
+		letter-spacing: 12px;
+		text-align: right;
+		position: absolute;
+		right: -20px;
+		top: 22px;
+		opacity: 0;		
+	}
+	h3.communityTitle{
+		color: black;
+	}
+	.bestTitle{
+		background-color: #FF007F;
+		border-radius: 5px;
+		padding: 1px 8px;
+		letter-spacing: 2px;
+		color: white;
+		margin-left: 5px;
+		margin-right: 10px;
+	}	
 	.contentArea .cafeReviewBest {
 		overflow: hidden;
 	}
@@ -93,9 +141,29 @@
 		width: 164px;
 		height: 160px;
 		margin: 10px;
+		overflow: hidden;
+		position: relative;
 	}
-	
-	
+	.recommendBest .recomWrap li img{
+		width: 164px;
+		height: 160px;
+		transition:all 1s;
+		transform-origin:left-top;		
+	}
+	.recommendBest .recomWrap li img:hover {
+		transform:scale(1.2);
+	}
+	div.RC_rankNo{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 30px;
+		height: 26px;
+		text-align: center;
+		color: white;
+		font-weight: bold;
+		background-color: #ED7D31;
+	}	
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -106,9 +174,17 @@
 			<span class="subTit grayB"> | 두둥! 당신이 바로 주인공입니다!</span>
 		</h2>
 		
+		<!-- 파워링크 배너(슬라이드처리) -->
+		<div class="powerLink">
+			<div class="powerLink_dummy">
+				<p class="dummy_text"><i>The best way to start the day is with a nice warm cup of joe.</i></p>
+				<h1 class="dummy_title">Commuity</h1>
+			</div>
+		</div>	
+			
 		<!-- 카페탐방기 베스트 -->
 		<div class="cafeReviewBest mb30">
-			<h3 class="bottomLine">생생 카페 탐방기 <span class="fs16">| 베스트</span></h3>
+			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| 베스트</span></h3>
 			<div class="best1">
 				<div class="bgOrange">BEST</div>
 				<div class="img temp"></div>
@@ -157,24 +233,23 @@
 		
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest mb30">
-			<h3 class="bottomLine">MuKKa人 추천 카페 <span class="fs16">| 베스트</span></h3>
+			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="blue">많이 본 인기 추천 카페 -종합 (1-20)</span></span></h3>
 			<div class="recomWrap">
 				<ul>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
-					<li class="temp"><a href="#"></a></li>
+					<c:forEach var="rcBestlist" items="${rcBestlist}">
+					<li class="temp">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestlist.boardNo}">
+							<!-- 이미지 이름 꺼내서 삽입하기 -->
+							<c:forEach var="rcBestlistImg" items="${rcBestlistImg}">
+								<c:if test="${rcBestlistImg.boardNo.boardNo == rcBestlist.boardNo }">
+									<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rcBestlistImg.imageName}" class="thumbNailImg" alt="카페대표이미지"
+										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+								</c:if>
+							</c:forEach>
+							<div class="RC_rankNo"></div>							
+						</a>
+					</li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
@@ -185,5 +260,22 @@
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
-
+<script>
+	$("p.dummy_text").animate({"padding-right":"40px","opacity":"1"},1800);
+	$("h1.dummy_title").animate({"margin-right":"50px","opacity":"1"},1800);
+	
+	//추천카페 - 원본파일 불러오기(선명한 파일)
+	$(".thumbNailImg").each(function(i, obj) {
+		var file = $(this).attr("src");
+		var start = file.substring(0,51);
+		var end = file.substring(53);
+		var fileName = start + end;
+		$(this).attr("src", fileName);
+		console.log(fileName);
+	})
+	
+	for(var i =0;i<20;i++){
+		$(".RC_rankNo").eq(i).text(i+1);
+	}
+</script>
 <%@ include file="../userInclude/footer.jsp" %>

@@ -465,7 +465,7 @@
 		<div class="powerLink">
 			<div class="powerLink_dummy">
 				<p class="dummy_text"><i>The best way to start the day is with a nice warm cup of joe.</i></p>
-				<h1 class="dummy_title">Coffee MuKKa</h1>
+				<h1 class="dummy_title">Zone & Theme</h1>
 			</div>
 		</div>
 

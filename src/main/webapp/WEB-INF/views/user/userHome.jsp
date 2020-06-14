@@ -1138,8 +1138,7 @@
 											<!-- 이미지 이름 꺼내서 삽입하기 -->
 											<c:forEach var="img" items="${rclistImg}">
 												<c:if test="${img.boardNo.boardNo == board.boardNo }">
-													<img
-														src="${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" alt="카페대표이미지"
+													<img src="${pageContext.request.contextPath }/user/displayFile?filename=${img.imageName}" class="thumbNailImg" alt="카페대표이미지"
 														onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
 												</c:if>
 											</c:forEach>
