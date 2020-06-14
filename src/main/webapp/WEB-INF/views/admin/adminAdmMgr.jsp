@@ -132,38 +132,29 @@
 					<thead>
 						<tr>
 							<th>no</th>
-							<th>카페명</th>
-							<th>점주명</th>
-							<th>사업자등록번호</th>
-							<th>카페등록일자</th>
-							<th>승인여부</th>
-							<th>승인절차현황</th>
+							<th>ID</th>
+							<th>권한 여부</th>
+							<th>권한 관리</th>
 						</tr>
 					</thead>
 					<tbody>
-						<%-- <c:forEach var="item" items="${list }">
+						<c:forEach var="item" items="${list }">
 							<tr>
-								<td>${item.cafeNo }</td>
-								<td><a href="#">${item.cafeName}</a></td>
-								<td>${item.userNo.name }</td>
-								<td>사업자등록번호</td>
-								<td><fmt:formatDate value="${item.registrationDate}" pattern="yyyy/MM/dd"/></td>	
-								<td>${item.cafeCdt == 'WAITING' ? '승인대기중' : '' }</td>
+								<td>${item.anoNo }</td>
+								<td>${item.anoId }</td>
+								<td>${item.anoAuthorityNo.anoAuthorityName}</td>
 								<td>
-									<button class="btn btn-success">사업자등록번호 조회</button>
+									<c:if test="${item.anoAuthorityNo.anoAuthorityNo == 1 }"><button class="btn btn-success">회원해제</button></c:if>
+									<c:if test="${item.anoAuthorityNo.anoAuthorityNo == 2 }"></c:if>
 								</td>
 							</tr>
-						</c:forEach> --%>
+						</c:forEach>
 				</tbody>
 			</table>
 			</div>
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 			  	<ul class="pagination list-inline taCenter">
-				  <!-- 페이징 숫자 버튼 자리 -->
-				  <!-- ex1 : cafeReview?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
-				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
-				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
 						<li><a href="newCafe?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>

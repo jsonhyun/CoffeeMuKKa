@@ -1,8 +1,11 @@
 package com.yi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yi.domain.SearchCriteria;
 import com.yi.domain.UsersVO;
 import com.yi.persistence.UsersDAO;
 
@@ -40,5 +43,16 @@ public class UsersService {
 
 	public void register(UsersVO vo) throws Exception {
 		dao.register(vo);
+	}
+	
+	//경진 추가 ----------------------------------------------------------------------------
+	// 회원 list
+	public List<UsersVO> selectUserList(int userType, SearchCriteria cri) throws Exception {
+		return dao.selectUserList(userType, cri);
+	}
+	
+	// 회원 list total count
+	public int selectUserListTotalCnt(int userType, SearchCriteria cri) throws Exception {
+		return dao.selectUserListTotalCnt(userType, cri);
 	}
 }

@@ -260,6 +260,17 @@
 			<include refid="search"/>
 	</select>
 	
+	<select id="adminTotalSearchCountJoin" parameterType="map" resultType="int">
+		select count(b.board_no) 
+			from board b
+				 left join users u on b.user_no = u.user_no 
+				 left join grade g on u.user_grade = g.user_grade 
+				 left join cafe c on b.cafe_no = c.cafe_no 
+				 left join zone z on c.zone_no = z.zone_no 
+				 left join theme t on c.theme_no = t.theme_no
+			<include refid="adminSearch"/>
+	</select>
+	
 	<!-- 공통 : 유저가 등록한 게시글 갯수 -->
 	<select id="totalUserBoardCount" resultType="int">
 		select count(*) from board where user_no = #{user_no};
@@ -269,6 +280,13 @@
 	<sql id="search">
 		<where> 
 			b.board_no2 = #{cBoardNo} and b.board_del_cdt = 1
+			<include refid="searchIf"/>
+		</where>
+	</sql>
+	
+	<sql id="adminSearch">
+		<where> 
+			b.board_no2 = #{cBoardNo}
 			<include refid="searchIf"/>
 		</where>
 	</sql>
@@ -331,7 +349,14 @@
 	<select id="userVoteCdt" parameterType="map" resultType="int">
 		select count(*) from vote where user_no = #{userNo} and board_no = #{boardNo};
 	</select>
-
+	
+	<!-- 공통 : 어드민 탐방기 관리 list -->
+	<select id="adminBoardList" parameterType="map" resultMap="BoardResult">
+		<include refid="cafeRevieSelect"/>
+			<include refid="adminSearch"/>
+			order by b.board_no desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
 	<!-- 경진 추가 start  ************************************************************************************************** -->
 	<!-- 탐방기 : 탐방기 select문 -->
 	<sql id="cafeRevieSelect">
