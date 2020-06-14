@@ -116,6 +116,8 @@ public interface BoardDAO {
 	public List<BoardVO> bestUserBoard() throws Exception;	
 	//열혈무까인 : 전월기준 - 게시글수 
 	public List<Integer> bestUserBoardCnt() throws Exception;
+	
+	public int cafeReviewAllCnt() throws Exception;
 
 	
 }

@@ -332,8 +332,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<Integer> bestUserBoardCnt() throws Exception {
 		return sqlSession.selectList(namespace+"bestUserBoardCnt");
 	}
-
-	
+	@Override
+	public int cafeReviewAllCnt() throws Exception {
+		return sqlSession.selectOne(namespace+"cafeReviewAllCnt");
+	}
 
 
 	

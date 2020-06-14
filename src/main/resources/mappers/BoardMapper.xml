@@ -457,6 +457,11 @@
 	<select id="bestUserBoardCnt" resultType="int">
 		select count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) group by b.user_no order by count(b.user_no) desc
 	</select>
+	
+	<!-- 전체 탐방기 숫자  -->
+	<select id="cafeReviewAllCnt" resultType="int">
+		select count(*) from board where board_no2 = 1
+	</select>
 		
 	<!-- 재승 추가 -->
 	<select id="cafeReviewSameListByCafeNo" resultMap="BoardResult">

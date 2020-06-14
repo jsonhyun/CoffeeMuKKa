@@ -57,10 +57,14 @@
 		/* main 페이지 searchBox 오픈 */
 		var url = location.href.split("/");
 		
+		//영업중으로 등록된 카페 총 개수
+		var cafeAllInfo = ${cafeAllInfo};
+		//등록된 탐방기 총 개수
+		var cafeReviewAllCnt = ${cafeReviewAllCnt};
 		if(url[5] == "") {
 			$(".mainSearchBox").addClass("open");
 			$(".mainSearchBtn a").html('<span class="cafeSearchBtn">카페 검색 닫기</span> <i class="fas fa-angle-up"></i>');
-			$(".activeTotalCnt").html('현재 <span class="actTotal">500</span>개의 <b>카페정보</b>와 <span class="actTotal">300</span>개의 <b>카페 탐방기</b>가 있습니다.');
+			$(".activeTotalCnt").html('현재 <span class="actTotal">'+cafeAllInfo+'</span>개의 <b class="blue">카페정보</b>와 <span class="actTotal">'+cafeReviewAllCnt+'</span>개의 <b class="blue">카페 탐방기</b>가 있습니다.');
 		} else {
 			$(".mainSearchBox").addClass("close");
 			$(".mainSearchBtn a").html('<span class="cafeSearchBtn">카페 검색 열기</span> <i class="fas fa-angle-down"></i>');

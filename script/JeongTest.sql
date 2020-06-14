@@ -1363,3 +1363,8 @@ left join theme t on c.theme_no = t.theme_no
 left join users u on b.user_no = u.user_no 
 left join grade g on u.user_grade = g.user_grade
 where board_no2 = 1 order by b.vote_number desc limit 10;
+
+select count(*) from cafe where cafe_cdt=1;
+select count(*) from board where board_no2 = 1;
+
+select * from boardkinds;

@@ -37,6 +37,14 @@ public class UserHomeController {
 	// 유저 메인 홈
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String userHome(Model model) throws Exception {
+		//영업중으로 등록된 카페개수
+		int cafeAllInfo = cafeService.cafeOpenAllCnt();
+		model.addAttribute("cafeAllInfo", cafeAllInfo);
+		
+		//탐방기 개수
+		int cafeReviewAllCnt = boardService.cafeReviewAllCnt();
+		model.addAttribute("cafeReviewAllCnt", cafeReviewAllCnt);
+		
 		List<ZoneVO> zoneList = boardService.zoneList();
 		
 		//System.out.println("zoneList -----------------" + zoneList);

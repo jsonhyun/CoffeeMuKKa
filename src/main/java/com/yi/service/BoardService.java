@@ -314,6 +314,10 @@ public class BoardService {
 	//열혈무까인 : 전월기준 - 게시글수 
 	public List<Integer> bestUserBoardCnt() throws Exception {
 		return dao.bestUserBoardCnt();
+	}
+	
+	public int cafeReviewAllCnt() throws Exception {
+		return dao.cafeReviewAllCnt();
 	}	
 
 
