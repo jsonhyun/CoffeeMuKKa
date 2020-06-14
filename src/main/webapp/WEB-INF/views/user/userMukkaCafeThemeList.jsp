@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../userInclude/header.jsp" %>
@@ -151,36 +150,7 @@
 	    line-height: 40px;
 	}
 	
-	.cafeVoteNum{
-		float: right;
-	    width: 25px;
-	    height: 25px;
-	    border-radius: 40px;
-	    margin: 10px;
-	    text-align: center;
-	    line-height: 25px;
-	    font-weight: 700;
-	    position: absolute;
-	    top: 0px;
-	    right: 0px;
-	    font-size: 12px;
-	}
-	
-	.star{
-		position: absolute;
-	    top: 11px;
-    	left: 5px;
-	}
-	
-	.blackOpacity{
-		background-color: rgba(0,0,0,.2);
-		position: absolute;
-		width: 160px;
-		height: 160px;
-		top: 0;
-		left: 0;
-		
-	}
+
 	.pagination {
 		display: inline-block;
 	  	padding-left: 0;
@@ -274,6 +244,63 @@
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
 }
+div.themeListCafe{
+	width: 100%;
+}
+ul.themeListCafeWrap{
+	width: 100%;
+}
+ul.themeListCafeWrap li{
+	float: left;
+	width: 23%;
+	height: 290px;
+	margin: 8px;
+	border: 1px solid #A6A6A6;
+	position: relative;
+}
+ul.themeListCafeWrap li img{
+	width: 100%;
+	height: 170px;
+}
+
+	.cafeVoteNum{
+		float: right;
+	    width: 25px;
+	    height: 25px;
+	    border-radius: 40px;
+	    margin: 10px;
+	    text-align: center;
+	    line-height: 25px;
+	    font-weight: 700;
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	    font-size: 12px;
+	}
+	
+	.star{
+		position: absolute;
+	    top: 11px;
+    	left: 5px;
+	}
+	
+	.blackOpacity{
+		background-color: rgba(0,0,0,.2);
+		position: absolute;
+		width: 100%;
+		height: 170px;
+		top: 0;
+		left: 0;
+		
+	}
+	div.firstKeyword,h3.theme_cafeName{
+		margin-left: 5px;
+		margin-top: 5px;
+	}
+	h1.before_heart{
+		text-align: right;
+		margin-right: 10px;
+	}
 </style>
 
 <!-- bar-rating -->
@@ -291,6 +318,10 @@
 					readonly: true
 				})
 		</c:forEach>
+			
+		<c:forEach var="themeList" items="${themeList}">
+			var themeArr = ${themeList.themeName};
+		</c:forEach>	
 		
 		$("#btnSearch").click(function () {
 			var searchZone = $("#searchZone").val();
@@ -299,6 +330,8 @@
 			var keyword = $("#keyword").val();
 			location.href = "zone?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
 		})
+		
+		
 	})
 </script>
 
@@ -349,7 +382,62 @@
 				</div>
 			</div>
 			<!-- 위치별 카페 리스트 -->
-			<c:forEach var="cafe" items="${list }" varStatus="i">
+			<div class="themeListCafe">
+				<ul class="themeListCafeWrap">
+					<c:forEach var="cafe" items="${list }" varStatus="i">
+					<li>
+					<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">
+					<c:forEach var="img" items="${imgList }">
+							<c:if test="${img.cafeNo.cafeNo == cafe.cafeNo }">
+								<img src="${pageContext.request.contextPath }/resources/images/sumnail/${img.imageName}">
+							</c:if>
+						</c:forEach>
+						<div class="blackOpacity"></div>
+						<div class="star">
+							<select class="starPoint"> 
+								<option value="1">1</option> 
+								<option value="2">2</option> 
+								<option value="3">3</option> 
+								<option value="4">4</option> 
+								<option value="5">5</option> 
+							</select>
+						</div>
+						<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
+						<c:set var="theme" value="${cafe.themeNo.themeNo }"/>
+						<c:choose>
+							<c:when test="${theme == 1 }">
+								<div class="themeKeySmall date bold firstKeyword">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 2 }">
+								<div class="themeKeySmall view bold firstKeyword">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 3 }">
+								<div class="themeKeySmall ame bold firstKeyword">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 4 }">
+								<div class="themeKeySmall dessert bold firstKeyword">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 5 }">
+								<div class="themeKeySmall dog bold firstKeyword">#${cafe.themeNo.themeName }</div>
+							</c:when>
+							<c:when test="${theme == 6 }">
+								<div class="themeKeySmall work bold firstKeyword">#${cafe.themeNo.themeName }</div>
+							</c:when>
+						</c:choose>
+						<span class="test1"></span>
+						<span class="test2"></span>
+						<h3 class="theme_cafeName">${cafe.cafeName }</h3>
+						<h1 class="before_heart"><i class="fa fa-heart-o" aria-hidden="true"></i></h1>
+					</a>
+															
+					</li>
+					</c:forEach>											
+				</ul>
+
+			</div>
+			
+
+<%-- 			<c:forEach var="cafe" items="${list }" varStatus="i">
 			<div class="locationCafe">
 				<div class="locationListLeft">
 					<c:forEach var="img" items="${imgList }">
@@ -393,7 +481,6 @@
 					</c:choose>
 					
 					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
-					<p class="oneline">'${cafe.oneline }'</p>
 					<div>
 						<div class="visit">
 							<div class="visitAndLocation">
@@ -450,7 +537,7 @@
 						<li><a href="zone?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 				</ul>
-			</div>
+			</div> --%>
 		</div>
 	</div>
 

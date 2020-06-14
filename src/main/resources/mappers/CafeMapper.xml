@@ -489,5 +489,17 @@
 	<!-- 아름추가 : 영업으로 등록된 카페, 테마별 번호에 따라 카페번호 리스트뽑기 -->
 	<select id="openThemeCafeNoList" resultType="int">
 		select cafe_no from cafe where theme_no = #{themeNo} and cafe_cdt = 1
-	</select>				
+	</select>
+	
+	<!-- 전체 영업으로 등록된 카페 숫자  -->
+	<select id="cafeOpenAllCnt" resultType="int">
+		select count(*) from cafe where cafe_cdt=1
+	</select>
+	
+	<!-- 테마별 카페 리스트 -->
+	<select id="themeCafeListAll" resultMap="CafeListSelectResult">
+		select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+		left join theme t on c.theme_no = t.theme_no
+		where c.cafe_cdt=1 order by c.registration_date desc
+	</select>					
 </mapper>

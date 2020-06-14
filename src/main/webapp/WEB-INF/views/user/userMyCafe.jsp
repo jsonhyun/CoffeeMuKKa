@@ -61,7 +61,7 @@
 			<li><a href="${pageContext.request.contextPath }/user/myreview?userId=${userId}">나의 카페 탐방기</a></li>
 		</ul>
 		<div style="clear: both;"></div>
-		<div class="subTitleName">내 등급 정보</div>
+		<div class="subTitleName">공사중입니다. 잠시만 기다려주세요.</div>
 		
 		
 	</div>
