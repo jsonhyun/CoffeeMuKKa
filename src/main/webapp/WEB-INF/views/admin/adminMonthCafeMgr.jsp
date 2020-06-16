@@ -147,8 +147,9 @@
 								<td><fmt:formatDate value="${item.regDate }" pattern="yyyy/MM/dd"/></td>
 								<td>									
 									<fmt:formatDate value="${item.postDate }" pattern="yyyy/MM/dd" var="postDate"/>
-									<c:if test="${postDate != '0001/01/01' }">${postDate }</c:if>
-									<c:if test="${postDate == '0001/01/01' }"><strong style="font-size: 14px; color: #ff5722">게시일 미등록</strong></c:if>
+									<c:if test="${postDate != null }">${postDate }</c:if>
+									<c:if test="${postDate == null }"><strong style="font-size: 14px; color: #ff5722">게시일 미등록</strong></c:if>
+									<%-- <c:if test="${postDate == '0001/01/01' }"><strong style="font-size: 14px; color: #ff5722">게시일 미등록</strong></c:if> //로컬에서 작업할 때 --%>
 								</td>
 								<td>
 									<c:if test="${item.powCdt == 'WAITING' }"><span style="color:#03a9f4;">게시 대기중</span></c:if>
@@ -157,10 +158,12 @@
 									<c:if test="${item.powCdt == 'CANCEL' }"><span style="color:#e0a800;">취소</span></c:if>
 								</td>
 								<td>
-									<c:if test="${postDate == '0001/01/01' }">
+									<input type="hidden" value="${postDate }" />
+									<c:if test="${postDate == null }">
+									<%-- <c:if test="${postDate == '0001/01/01'}"> // 로컬에서 작업할 때--%>
 										<button class="btn btn-success postDateAddBtn" data-powNo="${item.powNo }">게시일 등록</button>
 									</c:if>
-									<c:if test="${postDate != '0001/01/01' && item.powCdt == 'WAITING'}">
+									<c:if test="${postDate != null && item.powCdt == 'WAITING'}">
 										<fmt:formatDate value="${item.postDate }" pattern="yyyy" var="postYear"/>
 										<fmt:formatDate value="${item.postDate }" pattern="MM" var="postMonth"/>										
 										<button class="btn btn-warning postDateCancelBtn" data-powNo="${item.powNo}" data-postYear="${postYear }" data-postMonth="${postMonth }">게시 취소</button>

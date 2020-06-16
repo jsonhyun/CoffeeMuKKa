@@ -19,6 +19,7 @@ select * from image; -- 이미지
 select * from vote; -- 추천리스트
 select * from starpoint; -- 별점 리스트
 select * from license; -- 사업자등록번호
+select * from powerlink; -- 파워링크
 
 select * from board order by board_no desc;
 select * from image order by image_no desc;
