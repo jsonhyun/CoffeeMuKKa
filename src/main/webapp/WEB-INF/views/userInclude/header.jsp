@@ -815,7 +815,7 @@
 								<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
 								<span class="zoneTitle">어디에서</span>
 							</div>							
-							<div class="zoneList">
+							<div class="zoneList" style="z-index: 9;">
 								<ul>
 									<c:forEach var="zone" items="${zoneList }">
 										<li class="zoneItem" data-zoneNo="${zone.zoneNo }" data-zone="${zone.zoneName }">

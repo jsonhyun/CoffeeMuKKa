@@ -168,7 +168,7 @@
 		letter-spacing: 2px;
 		color: white;
 	}
-	.blue{
+	.viewBlue{
 		margin-right: 135px;
 	}
 	.contentArea .realTime .box h3 span{
@@ -531,7 +531,7 @@
 		<div class="realTime">
 			<div class="box left bestViewBox">
 				<h3 class="title bottomLine">
-					<span class="bestTitle">BEST</span> <span class="bestSubtitle">|<span class="blue"> 많이 본 인기 카페</span></span>
+					<span class="bestTitle">BEST</span> <span class="bestSubtitle">|<span class="blue viewBlue"> 많이 본 인기 카페</span></span>
 					 <span class="orange"><span class="pageNum1">1</span> / <span class="pageTotal1">5</span></span>
 					 <span class="prevBtn1"><i class="fas fa-angle-left"></i></span>
 					 <span class="nextBtn1"><i class="fas fa-angle-right"></i></span>

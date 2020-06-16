@@ -48,11 +48,9 @@ public class UserHomeController {
 		int cafeReviewAllCnt = boardService.cafeReviewAllCnt();
 		session.setAttribute("cafeReviewAllCnt", cafeReviewAllCnt);
 		
-		
+		// 검색 '어디에서'의 지역 리스트 데이터를 출력할 model
 		List<ZoneVO> zoneList = boardService.zoneList();
-		
-		//System.out.println("zoneList -----------------" + zoneList);
-		model.addAttribute("zoneList", zoneList);
+		session.setAttribute("zoneList", zoneList);
 		
 		//파워링크 & 대표이미지
 		int month = Integer.parseInt(powerLinkService.monthlyCafePostDate());
