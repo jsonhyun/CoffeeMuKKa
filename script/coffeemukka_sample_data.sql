@@ -103,7 +103,7 @@ update license
 	where no = 0;
 	
 -- monthlyCafe 더미 테이터 start --------------------------------------------------------------------
-truncate table powerlink;
+-- truncate table powerlink;
 
 -- 카페 파워링크 null으로 초기화
 update cafe 
@@ -137,7 +137,7 @@ update powerlink
 	set reg_date = "2020-06-14", pow_cdt = 0
 	where pow_no in(21, 22, 23, 24, 25);
 
-update cafe c left join powerlink p on c.cafe_no = p.cafe_no 
+update cafe c right join powerlink p on c.cafe_no = p.cafe_no 
 	set c.powerlink_cdt = p.pow_cdt;
 
 -- monthlyCafe 더미 테이터 end ----------------------------------------------------------------------- 
