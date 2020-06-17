@@ -187,7 +187,7 @@
 	}	
 	.contentArea .cafeReviewBest .bests .bestsInfo {
 		float: left;
-		padding: 15px;
+		padding-left:5px;
 	}
 	.contentArea .cafeReviewBest .bests .bestsInfo p.text{
 		height: 48px;
