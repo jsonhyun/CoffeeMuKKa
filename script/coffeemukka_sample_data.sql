@@ -103,7 +103,7 @@ update license
 	where no = 0;
 	
 -- monthlyCafe 더미 테이터 start --------------------------------------------------------------------
--- truncate table powerlink;
+truncate table powerlink;
 
 -- 카페 파워링크 null으로 초기화
 update cafe 

@@ -157,7 +157,7 @@
 									<c:if test="${item.powCdt == 'CANCEL' }"><span style="color:#e0a800;">취소</span></c:if>
 								</td>
 								<td>
-									<c:if test="${postDate == '0001/01/01' }">
+									<c:if test="${postDate == '0001/01/01'}">
 										<button class="btn btn-success postDateAddBtn" data-powNo="${item.powNo }">게시일 등록</button>
 									</c:if>
 									<c:if test="${postDate != '0001/01/01' && item.powCdt == 'WAITING'}">

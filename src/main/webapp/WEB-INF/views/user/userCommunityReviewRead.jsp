@@ -148,7 +148,7 @@
 	}
 	
 	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox {
-		width: 480px;
+		width: 430px;
 	}
 	
 	.d_cafeR_reply_wrap .d_cafeR_replyList li .replyCmtBox > p {

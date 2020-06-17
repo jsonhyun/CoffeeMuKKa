@@ -58,9 +58,9 @@
 		var url = location.href.split("/");
 		
 		//영업중으로 등록된 카페 총 개수
-		var cafeAllInfo = ${cafeAllInfo};
+		var cafeAllInfo = "${cafeAllInfo}";
 		//등록된 탐방기 총 개수
-		var cafeReviewAllCnt = ${cafeReviewAllCnt};
+		var cafeReviewAllCnt = "${cafeReviewAllCnt}";
 		
 		if(url[5] == "") {
 			$(".mainSearchBox").addClass("open");
@@ -815,7 +815,7 @@
 								<img src="${pageContext.request.contextPath }/resources/images/point.png" alt="icon" />
 								<span class="zoneTitle">어디에서</span>
 							</div>							
-							<div class="zoneList">
+							<div class="zoneList" style="z-index:1;">
 								<ul>
 									<c:forEach var="zone" items="${zoneList }">
 										<li class="zoneItem" data-zoneNo="${zone.zoneNo }" data-zone="${zone.zoneName }">
