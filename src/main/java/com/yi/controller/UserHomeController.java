@@ -52,7 +52,7 @@ public class UserHomeController {
 		List<ZoneVO> zoneList = boardService.zoneList();
 		
 		//System.out.println("zoneList -----------------" + zoneList);
-		model.addAttribute("zoneList", zoneList);
+		session.setAttribute("zoneList", zoneList);
 		
 		//파워링크 & 대표이미지
 		int month = Integer.parseInt(powerLinkService.monthlyCafePostDate());
