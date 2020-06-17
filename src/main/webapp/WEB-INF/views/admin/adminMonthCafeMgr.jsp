@@ -158,7 +158,6 @@
 									<c:if test="${item.powCdt == 'CANCEL' }"><span style="color:#e0a800;">취소</span></c:if>
 								</td>
 								<td>
-									<input type="hidden" value="${postDate }" />
 									<c:if test="${postDate == null }">
 									<%-- <c:if test="${postDate == '0001/01/01'}"> // 로컬에서 작업할 때--%>
 										<button class="btn btn-success postDateAddBtn" data-powNo="${item.powNo }">게시일 등록</button>

@@ -151,7 +151,7 @@
 								<td><fmt:formatDate value="${item.updateDate }" pattern="yyyy/MM/dd"/></td>
 								<td>${item.boardDelCdt}</td>
 								<td>
-									<a class="btn pmd-btn-outline" href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${item.boardNo }" target="_blank">상세보기</a>
+									<a class="btn pmd-btn-outline" href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${item.boardNo }" target="_blank">상세보기</a>
 								</td>
 								<td>
 									<c:if test="${item.boardDelCdt == 'NO'}">
