@@ -49,6 +49,7 @@
 /* mainManu */
 #mainMenuWrap {
 	background-color: #303A50;
+	min-width: 1200px;
 }
 
 .menuBox {
