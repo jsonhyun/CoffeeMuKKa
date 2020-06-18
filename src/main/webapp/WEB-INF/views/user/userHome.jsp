@@ -842,7 +842,7 @@
 		<div class="powerLinkArea">
 			<h2><a href ="${pageContext.request.contextPath}/user/mukkaCafe/monthCafe" class="mainTitle">오늘 여기서 커피한잔 어때?</a></h2>
 			<div class="powerLinkWrap">
-				<ul>
+				<ul class="powerBanner" val="0" mx="4">
 				   <c:forEach var="powerList" items="${powerList}">
 	 					<c:forEach var="powerImg" items="${powerImg}">		
 							<c:if test="${powerImg.cafeNo.cafeNo == powerList.cafeNo }">
@@ -1342,37 +1342,33 @@
 		$("li.mainBox").eq(2).animate({"opacity":"1"},1000);
 	})
 
-	
-	//파워링크 이미지 효과 로테이션 powerLinkEmphasis
-	var first_dummy = $(".powerLinkWrap ul li div:eq(0)");
-	var second_dummy = $(".powerLinkWrap ul li div:eq(1)");
-	var third_dummy = $(".powerLinkWrap ul li div:eq(2)");
-	var fourth_dummy = $(".powerLinkWrap ul li div:eq(3)");
-	var fifth_dummy = $(".powerLinkWrap ul li div:eq(4)");	
-
- 	function power_change(){
- 		first_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
-			first_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
-				second_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
-					second_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
-						third_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
-							third_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
-								fourth_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
-									fourth_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000,function () {
-										fifth_dummy.removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 1000, function () {
-											fifth_dummy.removeClass("powerLinkEmphasis").addClass("powerDummy");
-										})
-									})
-								})
-							})
-						})
-					})
-				})
+		
+ 	/* 파워링크 */
+ 	//로딩시 실행
+ 	 $(".powerLinkWrap ul li div").eq(0).removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 2000, function () {
+			$(".powerLinkWrap ul li div").eq(0).removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000, function(){
+				power_change();
 			})
-		})
+			
+ 	}) 
+ 	
+ 	function power_change(){
+ 		$val = $("ul.powerBanner").attr("val");
+ 		$mx = $("ul.powerBanner").attr("mx");
+ 		if($val == $mx){
+ 			$val = 0;
+ 		}else{
+ 			$val++;
+ 		}
+ 		console.log($val);
+ 		
+ 		$(".powerLinkWrap ul li div").eq($val).removeClass("powerDummy").addClass("powerLinkEmphasis").animate({"opacity":1}, 2000, function () {
+ 			$(".powerLinkWrap ul li div").eq($val).removeClass("powerLinkEmphasis").addClass("powerDummy").animate({"opacity":1},1000);
+ 		})
+ 		$("ul.powerBanner").attr("val",$val);
+ 		setTimeout('power_change()',3000);
+ 			
  	}
- 	setInterval("power_change()", 10000);
- 	power_change();
  	
 	//신상카페
 	function dron_change(){		
