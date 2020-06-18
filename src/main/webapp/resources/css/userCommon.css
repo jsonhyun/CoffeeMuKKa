@@ -7,6 +7,10 @@
 /* 구글웹폰트 - Noto Sans KR */
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
 
+body {
+	min-width: 1200px;
+}
+
 * {
 	margin: 0;
 	padding: 0;
