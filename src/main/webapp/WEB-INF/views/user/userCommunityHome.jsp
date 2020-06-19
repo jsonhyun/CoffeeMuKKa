@@ -165,12 +165,12 @@
 	
 	.contentArea .cafeReviewBest .bests .img {
 		float: left;
-		width: 240px;
+		width: 45%;
 		height: 238px;
 		position: relative;
 	}
 	.contentArea .cafeReviewBest .bests .img img{
-		width: 240px;
+		width: 100%;
 		height: 238px;
 	}
 	div.RV_rankNo{
@@ -186,8 +186,8 @@
 		font-size: 20px;	
 	}	
 	.contentArea .cafeReviewBest .bests .bestsInfo {
-		float: left;
-		padding: 15px;
+		float: right;
+		width: 53%;
 	}
 	.contentArea .cafeReviewBest .bests .bestsInfo p.text{
 		height: 48px;

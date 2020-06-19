@@ -132,46 +132,51 @@
 					<thead>
 						<tr>
 							<th>no</th>
-							<th>카페명</th>
-							<th>점주명</th>
-							<th>사업자등록번호</th>
-							<th>카페등록일자</th>
-							<th>승인여부</th>
-							<th>승인절차현황</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>수정일</th>
+							<th>비공개(삭제)여부</th>
+							<th>상세보기</th>
+							<th>게시관리</th>
 						</tr>
 					</thead>
 					<tbody>
-						<%-- <c:forEach var="item" items="${list }">
+						<c:forEach var="item" items="${list }">
 							<tr>
-								<td>${item.cafeNo }</td>
-								<td><a href="#">${item.cafeName}</a></td>
-								<td>${item.userNo.name }</td>
-								<td>사업자등록번호</td>
-								<td><fmt:formatDate value="${item.registrationDate}" pattern="yyyy/MM/dd"/></td>	
-								<td>${item.cafeCdt == 'WAITING' ? '승인대기중' : '' }</td>
+								<td>${item.boardNo }</td>
+								<td>${item.writingTitle }</td>
+								<td>${item.userNo.nick }[${item.userNo.userId}]</td>
+								<td><fmt:formatDate value="${item.registrationDate }" pattern="yyyy/MM/dd"/></td>
+								<td><fmt:formatDate value="${item.updateDate }" pattern="yyyy/MM/dd"/></td>
+								<td>${item.boardDelCdt}</td>
 								<td>
-									<button class="btn btn-success">사업자등록번호 조회</button>
+									<a class="btn pmd-btn-outline" href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${item.boardNo }" target="_blank">상세보기</a>
+								</td>
+								<td>
+									<c:if test="${item.boardDelCdt == 'NO'}">
+										<button class="btn pmd-btn-outline btn-danger closingBtn">비공개(삭제) 전환</button>
+									</c:if>
+									<c:if test="${item.boardDelCdt == 'YES'}">
+										<button class="btn pmd-btn-outline btn-warning closingBtn">공개 전환</button>
+									</c:if>
 								</td>
 							</tr>
-						</c:forEach> --%>
+						</c:forEach>
 				</tbody>
 			</table>
 			</div>
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 			  	<ul class="pagination list-inline taCenter">
-				  <!-- 페이징 숫자 버튼 자리 -->
-				  <!-- ex1 : cafeReview?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
-				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
-				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
-						<li><a href="newCafe?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
+						<li><a href="cafeReviewMgr?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafe?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReviewMgr?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true }">
-						<li><a href="newCafe?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
+						<li><a href="cafeReviewMgr?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 			  	</ul>
 			</div>
@@ -191,7 +196,7 @@
 			return false;
 		}
 		
-		location.href = "newCafe?keyword="+keyword;
+		location.href = "cafeReviewMgr?keyword="+keyword;
 		
 		return false;
 	})

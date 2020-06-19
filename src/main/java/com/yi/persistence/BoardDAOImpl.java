@@ -274,6 +274,23 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectList(namespace + "adminBoardCntChart", map);
 	}
 	
+	// 어드민 탐방기 추천글 list
+	@Override
+	public List<BoardVO> adminBoardList(int cBoardNo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cBoardNo", cBoardNo);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(namespace + "adminBoardList", map);
+	}
+	@Override
+	public int adminTotalSearchCountJoin(int cBoardNo, SearchCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cBoardNo", cBoardNo);
+		map.put("cri", cri);
+		
+		return sqlSession.selectOne(namespace + "adminTotalSearchCountJoin", map);
+	}
 
 	
 	// 경진 추가 (admin) end ------------------------------------------------------------------------------------	
@@ -336,6 +353,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public int cafeReviewAllCnt() throws Exception {
 		return sqlSession.selectOne(namespace+"cafeReviewAllCnt");
 	}
+	
 
 
 	

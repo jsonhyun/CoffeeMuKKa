@@ -311,6 +311,7 @@ ul.themeListCafeWrap li img{
 <script type="text/javascript"> 
 	$(function() {
 		
+		
 		<c:forEach var="starpoint" items="${starpoint }" varStatus="status">
 			$('.starPoint').eq(${status.index }).barrating({
 					theme: 'fontawesome-stars', 
@@ -318,10 +319,6 @@ ul.themeListCafeWrap li img{
 					readonly: true
 				})
 		</c:forEach>
-			
-		<c:forEach var="themeList" items="${themeList}">
-			var themeArr = ${themeList.themeName};
-		</c:forEach>	
 		
 		$("#btnSearch").click(function () {
 			var searchZone = $("#searchZone").val();
@@ -424,8 +421,9 @@ ul.themeListCafeWrap li img{
 								<div class="themeKeySmall work bold firstKeyword">#${cafe.themeNo.themeName }</div>
 							</c:when>
 						</c:choose>
-						<span class="test1"></span>
-						<span class="test2"></span>
+						<c:forEach var="themeList" items="${themeList}" >
+						<span class="test">${themeList}</span>
+						</c:forEach>
 						<h3 class="theme_cafeName">${cafe.cafeName }</h3>
 						<h1 class="before_heart"><i class="fa fa-heart-o" aria-hidden="true"></i></h1>
 					</a>

@@ -19,6 +19,7 @@ public class UsersVO {
 	private String email; // 이메일
 	private TypeVO userType; // 회원타입
 	private GradeVO userGrade; // 회원등급
+	private CafeVO cafeName;
 
 	public UsersVO() {
 	}
@@ -154,14 +155,21 @@ public class UsersVO {
 	public void setUserGrade(GradeVO userGrade) {
 		this.userGrade = userGrade;
 	}
+	
+	public CafeVO getCafeName() {
+		return cafeName;
+	}
+
+	public void setCafeName(CafeVO cafeName) {
+		this.cafeName = cafeName;
+	}
 
 	@Override
 	public String toString() {
-		return "UsersVO [userNo=" + userNo + ", userId=" + userId + ", password=" + password + ", name=" + name
-				+ ", nick=" + nick + ", gender=" + gender + ", birthday=" + birthday + ", userJoinDate=" + userJoinDate
-				+ ", userLeaveCondition=" + userLeaveCondition + ", point=" + point + ", tel=" + tel + ", address="
-				+ address + ", detailAddress=" + detailAddress + ", email=" + email + ", userType=" + userType
-				+ ", userGrade=" + userGrade + "]";
+		return String.format(
+				"UsersVO [userNo=%s, userId=%s, password=%s, name=%s, nick=%s, gender=%s, birthday=%s, userJoinDate=%s, userLeaveCondition=%s, point=%s, tel=%s, address=%s, detailAddress=%s, email=%s, userType=%s, userGrade=%s, cafeName=%s]",
+				userNo, userId, password, name, nick, gender, birthday, userJoinDate, userLeaveCondition, point, tel,
+				address, detailAddress, email, userType, userGrade, cafeName);
 	}
 
 }

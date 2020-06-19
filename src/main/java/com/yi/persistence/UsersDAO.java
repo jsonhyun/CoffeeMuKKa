@@ -1,5 +1,8 @@
 package com.yi.persistence;
 
+import java.util.List;
+
+import com.yi.domain.SearchCriteria;
 import com.yi.domain.UsersVO;
 
 public interface UsersDAO {
@@ -24,5 +27,9 @@ public interface UsersDAO {
 	// 경진 추가 ----------------------------------------------------------------------------
 	// 게시글 등록 시 포인트 적립
 	public void updatePoint(int amount, int userNo) throws Exception;
+	// 회원 list
+	public List<UsersVO> selectUserList(int userType, SearchCriteria cri) throws Exception;
+	// 회원 list total count
+	public int selectUserListTotalCnt(int userType, SearchCriteria cri) throws Exception;
 
 }

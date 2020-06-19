@@ -21,6 +21,7 @@
 		<result property="userGrade.userGrade" column="user_grade"/>
 		<result property="userGrade.userGradeName" column="user_grade_name"/>
 		<result property="userGrade.userGradeImage" column="user_grade_image"/>
+		<result property="cafeName.cafeName" column="cafe_name"/>
 	</resultMap>
 	
 	<!-- 게시글 등록시 회원 등급 판단 및 수정 -->
@@ -75,4 +76,24 @@
 			set point = point + #{amount}
 			where user_no = #{userNo}
 	</update>
+	<!-- 어드민 회원 list -->
+	<select id="selectUserList" parameterType="map" resultMap="usersResult">
+		select u.*, c.cafe_name, g.* 
+			from users u left join cafe c on u.user_no = c.user_no
+						 left join grade g on u.user_grade = g.user_grade
+			where user_type = #{userType}
+			<if test="cri.keyword != '' and cri.keyword != null">
+				and user_id like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			order by user_no desc
+			limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<select id="selectUserListTotalCnt" parameterType="map" resultType="int">
+		select count(*) from users
+			where user_type = #{userType}
+			<if test="cri.keyword != '' and cri.keyword != null">
+				and user_id like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+	</select>
 </mapper>

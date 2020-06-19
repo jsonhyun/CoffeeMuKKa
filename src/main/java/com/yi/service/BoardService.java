@@ -264,6 +264,15 @@ public class BoardService {
 		return dao.adminBoardCntChart(subNum, boardType);
 	}
 	
+	// 어드민 탐방기 추천글 list
+	public List<BoardVO> adminBoardList(int cBoardNo, SearchCriteria cri) throws Exception{
+		return dao.adminBoardList(cBoardNo, cri);
+	}
+	
+	public int adminTotalSearchCountJoin(int cBoardNo, SearchCriteria cri) throws Exception {
+		return dao.adminTotalSearchCountJoin(cBoardNo, cri);
+	}
+	
 	// 경진 추가 (admin) end ------------------------------------------------------------------------------------
 
 	//	재승 추가

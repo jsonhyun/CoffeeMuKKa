@@ -132,46 +132,48 @@
 					<thead>
 						<tr>
 							<th>no</th>
-							<th>카페명</th>
+							<th>ID</th>
 							<th>점주명</th>
-							<th>사업자등록번호</th>
-							<th>카페등록일자</th>
-							<th>승인여부</th>
-							<th>승인절차현황</th>
+							<th>카페명</th>
+							<th>e-mail</th>
+							<th>포인트</th>
+							<th>등급</th>
+							<th>탈퇴유무</th>
+							<th>탈퇴관리</th>
 						</tr>
 					</thead>
 					<tbody>
-						<%-- <c:forEach var="item" items="${list }">
+						<c:forEach var="item" items="${list }">
 							<tr>
-								<td>${item.cafeNo }</td>
-								<td><a href="#">${item.cafeName}</a></td>
-								<td>${item.userNo.name }</td>
-								<td>사업자등록번호</td>
-								<td><fmt:formatDate value="${item.registrationDate}" pattern="yyyy/MM/dd"/></td>	
-								<td>${item.cafeCdt == 'WAITING' ? '승인대기중' : '' }</td>
+								<td>${item.userNo }</td>
+								<td>${item.userId}</td>
+								<td>${item.name }</td>
+								<td>${item.cafeName.cafeName}</td>
+								<td>${item.email }</td>
+								<td>${item.point }</td>	
+								<td>${item.userGrade.userGradeName}</td>
 								<td>
-									<button class="btn btn-success">사업자등록번호 조회</button>
+									${item.userLeaveCondition}
+								</td>
+								<td>
+									<button class="btn btn-success">회원탈퇴</button>
 								</td>
 							</tr>
-						</c:forEach> --%>
+						</c:forEach>
 				</tbody>
 			</table>
 			</div>
 			<!-- 페이징 -->
 			<div style="text-align: center;">
 			  	<ul class="pagination list-inline taCenter">
-				  <!-- 페이징 숫자 버튼 자리 -->
-				  <!-- ex1 : cafeReview?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
-				  <!-- ex2 : <li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeReview?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li> -->
-				  <!-- ex3 : cafeReview?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword} -->
 				  	<c:if test="${pageMaker.prev == true }">
-						<li><a href="newCafe?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
+						<li><a href="cafeUserManager?page=${pageMaker.startPage-1}&keyword=${cri.keyword}">&laquo;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="newCafe?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
+						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeUserManager?page=${idx}&keyword=${cri.keyword}">${idx }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true }">
-						<li><a href="newCafe?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
+						<li><a href="cafeUserManager?page=${pageMaker.endPage+1}&keyword=${cri.keyword}">&raquo;</a></li>
 					</c:if>
 			  	</ul>
 			</div>
@@ -188,11 +190,11 @@
 		var keyword = $("input[name='keyword']").val();
 		
 		if(keyword == '') {
-			alert("카페이름을 작성해주세요.");
+			alert("회원ID을 작성해주세요.");
 			return false;
 		}
 		
-		location.href = "newCafe?keyword="+keyword;
+		location.href = "cafeUserManager?keyword="+keyword;
 		
 		return false;
 	})

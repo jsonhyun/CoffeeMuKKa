@@ -7,9 +7,27 @@
 		<result property="anoPassword" column="ano_password"/>
 		<result property="anoImage" column="ano_image"/>
 		<result property="anoAuthorityNo.anoAuthorityNo" column="ano_authority_no"/>
+		<result property="anoAuthorityNo.anoAuthorityName" column="ano_authority_name"/>
 	</resultMap>
 
 	<select id="readAdmin" resultMap="adminResult">
 		select * from admin where ano_id = #{anoId}
+	</select>
+	
+	<select id="selectAdminList" parameterType="map" resultMap="adminResult">
+		select a.*, ah.* 
+			from admin a join authority ah on a.ano_authority_no = ah.ano_authority_no
+			<if test="cri.keyword != '' and cri.keyword != null">
+				where ano_id like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			order by ano_no desc
+			limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<select id="selectAdminTotalCnt" parameterType="map" resultType="int">
+		select count(*) from admin
+			<if test="cri.keyword != '' and cri.keyword != null">
+				where ano_id like CONCAT('%', #{cri.keyword}, '%')
+			</if>
 	</select>
 </mapper>

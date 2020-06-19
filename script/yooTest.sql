@@ -19,6 +19,7 @@ select * from image; -- 이미지
 select * from vote; -- 추천리스트
 select * from starpoint; -- 별점 리스트
 select * from license; -- 사업자등록번호
+select * from powerlink; -- 파워링크
 
 select * from board order by board_no desc;
 select * from image order by image_no desc;
@@ -95,11 +96,22 @@ update powerlink
 
 select * from powerlink 
 	where pow_no = 21;
+
+select * from powerlink;
 	
 
 
 update cafe c right join powerlink p on c.cafe_no = p.cafe_no 
 	set c.powerlink_cdt = p.pow_cdt;
+
+-- 카페 점수
+select u.*, c.cafe_name from users u left join cafe c on u.user_no = c.user_no where user_type = 1;
+
+-- 관리자 list
+select a.*, ah.* from admin a join authority ah on a.ano_authority_no = ah.ano_authority_no;
+
+-- 탐방기 
+select * from board where board_no2 = 1;
 
 
 -- test(user) ------------------------------------------------------------------------------
@@ -151,8 +163,30 @@ select u.nick , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
 				 left join cafe c on b.cafe_no = c.cafe_no 
 				 left join zone z on c.zone_no = z.zone_no 
 				 left join theme t on c.theme_no = t.theme_no 
-	            where b.board_no2 = 1 and b.board_del_cdt = 1 and c.theme_no = 6 
-	            order by b.board_no desc limit 0, 20; 
+	            where b.board_no2 = 2 
+	            order by b.board_no desc limit 0, 10; 
+	           
+select u.user_no, u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
+	   b.view_number , b.writing_title , b.registration_date , b.update_date,
+	   b.writing_content , b.vote_number , b.reply_cnt , b.board_del_cdt, z.zone_no , z.zone_name ,
+	   t.theme_no , t.theme_name , c.cafe_no, c.cafe_name , c.address, i.image_name 
+	from board b left join image i on b.board_no = i.board_no 
+				left join users u on b.user_no = u.user_no 
+				left join grade g on u.user_grade = g.user_grade 
+				left join cafe c on b.cafe_no = c.cafe_no 
+				left join zone z on c.zone_no = z.zone_no 
+				left join theme t on c.theme_no = t.theme_no
+	where b.board_no2 = 1
+	order by board_no desc;
+
+select u.user_no, u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no 
+, b.view_number , b.writing_title , b.registration_date , b.update_date, b.writing_content 
+, b.vote_number , b.reply_cnt , b.board_del_cdt, z.zone_no , z.zone_name , t.theme_no , t.theme_name 
+, c.cafe_no, c.cafe_name , c.address, i.image_name from board b left join image i on b.board_no 
+= i.board_no left join users u on b.user_no = u.user_no left join grade g on u.user_grade = 
+g.user_grade left join cafe c on b.cafe_no = c.cafe_no left join zone z on c.zone_no = z.zone_no 
+left join theme t on c.theme_no = t.theme_no WHERE b.board_no2 = 2 order by b.board_no desc 
+limit 0, 10
 
 
 select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt

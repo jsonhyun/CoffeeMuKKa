@@ -47,6 +47,26 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+	
+	<!-- 인터셉터 빈 생성 / 연결 -->
+	<beans:bean id="authInterceptor" class="com.yi.interceptor.AuthInterceptor"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/"/>
+			<mapping path="/admin/cafeMgn"/>
+			<mapping path="/admin/cafeMgn/newCafeManager"/>
+			<mapping path="/admin/cafeMgn/cafeManager"/>
+			<mapping path="/admin/cafeMgn/monthCafeManager"/>
+			<mapping path="/admin/userMgr"/>
+			<mapping path="/admin/userMgr/cafeUserManager"/>
+			<mapping path="/admin/userMgr/userManager"/>
+			<mapping path="/admin/userMgr/adminManager"/>
+			<mapping path="/admin/boardMgr/"/>
+			<mapping path="/admin/boardMgr/cafeReviewMgr"/>
+			<mapping path="/admin/boardMgr/cafeRecomMgr"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
 
 	<context:component-scan base-package="com.yi.controller" />
 </beans:beans>
