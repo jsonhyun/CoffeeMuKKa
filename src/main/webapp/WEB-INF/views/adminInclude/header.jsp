@@ -54,8 +54,8 @@
 		var subMenu = url[6];
 		
 		// 서브메뉴 url 판단
-		console.log("url[5]"+menu);
-		console.log("url[6]"+subMenu);
+		//console.log("url[5]"+menu);
+		//console.log("url[6]"+subMenu);
 		
 		// 메뉴 포커스 
 		if(menu == "") {
@@ -78,29 +78,31 @@
 		}
 		
 		// 서브메뉴 포커스
-		if(subMenu.indexOf("newCafeManager") != -1){				
-			$(".cafeMgrSub").eq(0).addClass("active");
-		} 
-		if(subMenu.indexOf("cafeManager") != -1) {
-			$(".cafeMgrSub").eq(1).addClass("active");
-		} 
-		if(subMenu.indexOf("monthCafeManager") != -1) {
-			$(".cafeMgrSub").eq(2).addClass("active");
-		} 
-		if(subMenu.indexOf("cafeUserManager") != -1) {
-			$(".userMgrSub").eq(0).addClass("active");
-		} 
-		if(subMenu.indexOf("userManager") != -1) {
-			$(".userMgrSub").eq(1).addClass("active");
-		}
-		if(subMenu.indexOf("adminManager") != -1) {
-			$(".userMgrSub").eq(2).addClass("active");
-		}
-		if(subMenu.indexOf("cafeReviewMgr") != -1) {
-			$(".boardMgrSub").eq(0).addClass("active");
-		}
-		if(subMenu.indexOf("cafeRecomMgr") != -1) {
-			$(".boardMgrSub").eq(1).addClass("active");
+		if(subMenu != null) {
+			if(subMenu.indexOf("newCafeManager") != -1){				
+				$(".cafeMgrSub").eq(0).addClass("active");
+			} 
+			if(subMenu.indexOf("cafeManager") != -1) {
+				$(".cafeMgrSub").eq(1).addClass("active");
+			} 
+			if(subMenu.indexOf("monthCafeManager") != -1) {
+				$(".cafeMgrSub").eq(2).addClass("active");
+			} 
+			if(subMenu.indexOf("cafeUserManager") != -1) {
+				$(".userMgrSub").eq(0).addClass("active");
+			} 
+			if(subMenu.indexOf("userManager") != -1) {
+				$(".userMgrSub").eq(1).addClass("active");
+			}
+			if(subMenu.indexOf("adminManager") != -1) {
+				$(".userMgrSub").eq(2).addClass("active");
+			}
+			if(subMenu.indexOf("cafeReviewMgr") != -1) {
+				$(".boardMgrSub").eq(0).addClass("active");
+			}
+			if(subMenu.indexOf("cafeRecomMgr") != -1) {
+				$(".boardMgrSub").eq(1).addClass("active");
+			}
 		}
 	})
 </script>
