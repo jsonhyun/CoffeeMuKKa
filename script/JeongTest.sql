@@ -1402,3 +1402,6 @@ select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
 		group by s.theme_no order by cnt desc, s.theme_no limit 2;
 		
 	
+select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+		left join theme t on c.theme_no = t.theme_no
+		where c.cafe_cdt=1 order by c.registration_date desc

@@ -167,14 +167,16 @@ public class UserCafeController {
 			themeList.addAll(service.rankTheme(cafeNo));
 		}
 		
+		
 //		PageMaker pageMaker = new PageMaker();
+//		cri.setPerPageNum(16);
 //		pageMaker.setCri(cri);
 //		pageMaker.setTotalCount(service.totalSearchCount(cri));
 		
-//		model.addAttribute("cri", cri);
+		//model.addAttribute("cri", cri);
 		model.addAttribute("list", list);
 		model.addAttribute("imgList", imgList);
-//		model.addAttribute("pageMaker", pageMaker);
+		//model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("starpoint", starpointList);
 		model.addAttribute("reviewNum", reviewNum);
 		model.addAttribute("themeList", themeList);
