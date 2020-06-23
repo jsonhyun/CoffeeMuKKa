@@ -215,5 +215,5 @@ public class CafeService {
 	
 	public List<CafeVO> themeCafeListAll() throws Exception {
 		return dao.themeCafeListAll();
-	}	
+	}		
 }

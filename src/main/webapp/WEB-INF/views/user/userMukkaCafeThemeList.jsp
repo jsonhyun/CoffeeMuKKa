@@ -293,6 +293,9 @@ ul.themeListCafeWrap li img{
 		left: 0;
 		
 	}
+	div.firstKeyword,div.rankTheme_one,div.rankTheme_two{
+		font-size: 11px;
+	}
 	div.firstKeyword,h3.theme_cafeName{
 		margin-left: 5px;
 		margin-top: 5px;
@@ -301,6 +304,7 @@ ul.themeListCafeWrap li img{
 		text-align: right;
 		margin-right: 10px;
 	}
+	
 </style>
 
 <!-- bar-rating -->
@@ -421,15 +425,15 @@ ul.themeListCafeWrap li img{
 								<div class="themeKeySmall work bold firstKeyword">#${cafe.themeNo.themeName }</div>
 							</c:when>
 						</c:choose>
-						<c:forEach var="themeList" items="${themeList}" >
-						<span class="test">${themeList}</span>
-						</c:forEach>
+						<div class="themeKeySmall bold rankTheme_one"></div>
+						<div class="themeKeySmall bold rankTheme_two"></div>
 						<h3 class="theme_cafeName">${cafe.cafeName }</h3>
 						<h1 class="before_heart"><i class="fa fa-heart-o" aria-hidden="true"></i></h1>
 					</a>
 															
 					</li>
-					</c:forEach>											
+					</c:forEach>
+																
 				</ul>
 
 			</div>
@@ -541,6 +545,51 @@ ul.themeListCafeWrap li img{
 
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
-
+<script>
+	var arr = new Array();
+	<c:forEach var="themeList" items="${themeList}" varStatus="status">
+		arr.push("${themeList.themeName}");
+	</c:forEach>
+	var len = arr.length;
+	var cnt = Math.floor(len/2);
+	
+	var arr1 = new Array();
+	
+	for(var i=0;i<=cnt;i++){ 
+		arr1.push(arr.splice(0,2));
+	}
+	
+	for(var i =0;i<arr1.length-1;i++){
+		console.log(arr1[i]);
+		$(".rankTheme_one").eq(i).text("#"+arr1[i][0]);
+		$(".rankTheme_two").eq(i).text("#"+arr1[i][1]);
+	}
+	
+	// 테마분류 색상 설정
+	$(".rankTheme_one").each(function(i, obj){
+		var name = $(this).text();
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+		
+	})
+	$(".rankTheme_two").each(function(i, obj){
+		var name = $(this).text();
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+		
+	})		
+</script>
 <!-- container end -->
 <%@ include file="../userInclude/footer.jsp" %>
