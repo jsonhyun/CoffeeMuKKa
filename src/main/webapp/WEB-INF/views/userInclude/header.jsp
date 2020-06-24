@@ -165,7 +165,6 @@
 		
 		
 		/* 메인 카페 검색 */
-		//http://localhost:8080/coffeemukka/user/mukkaCafe/search?page=1&zoneNo=0&themeNos=1,3,&searchTheme=1
 		$("#sendBtn").click(function(){
 			var zoneNo = $("#zone").val() == "" ? 0 : $("#zone").val();
 			var themeNos = $("input[name='themeName']").val();

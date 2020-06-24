@@ -342,15 +342,8 @@
 						<img src="${pageContext.request.contextPath }/resources/images/community_icon.png" alt="아이콘" />
 						<span>전체 <span class="orange sameCnt"></span>개의 탐방기</span>
 					</div>
-					<script>
-						console.log('${bestCafe[0].oneline}');
-					</script>
 					<p class="cafeOneLine classSec">${bestCafe[0].oneline}</p>
 					<p class="cafeDetailText classSec_3line gray">${bestCafe[0].content}</p>
-					<script>
-						console.log('${bestCafe[0].cafeName}');
-						console.log('${bestCafe[0].themeNo.themeName}');
-					</script>
 					<div class="icons">
 						<div class="icon f_left">
 							<img class="f_left" src="${pageContext.request.contextPath }/resources/images/icon_view.png" alt="아이콘" />
@@ -484,7 +477,6 @@
 	
 	// 베스트 순위 산출 기간
 	var nowYear = new Date().getFullYear();
-	console.log(nowYear);
 	var nowMonth = new Date().getMonth() + 1;
 	var preMonth = nowMonth - 1;
 	var preMonthPad = pad(preMonth, 2);	

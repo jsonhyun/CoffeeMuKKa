@@ -321,8 +321,9 @@ public class CafeDAOImpl implements CafeDAO {
 	}
 
 	@Override
-	public List<CafeVO> themeCafeListAll() throws Exception {
-		return sqlSession.selectList(namespace+"themeCafeListAll");
+	public List<CafeVO> themeCafeSearchListAll(SearchCriteria cri) throws Exception {
+		return sqlSession.selectList(namespace+"themeCafeSearchListAll",cri);
 	}
+
 
 }

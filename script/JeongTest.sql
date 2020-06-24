@@ -1377,3 +1377,33 @@ select c.cafe_no, c.cafe_name, z.zone_name, t.theme_name, t.theme_no, c.registra
 		left join `zone` z on c.zone_no = z.zone_no where c.cafe_cdt =0 order by cafe_no;
 		
 select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c left join theme t on c.theme_no = t.theme_no where c.cafe_cdt=1 order by c.registration_date desc;
+
+
+select * from starpoint where star_point = 5;
+
+select c.cafe_no, c.cafe_name, s.registration_date, u.name ,s.star_point_comment from starpoint s left join cafe c on s.cafe_no = c.cafe_no left join users u on s.user_no = u.user_no where s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) and c.cafe_cdt = 1 group by c.cafe_name order by s.registration_date desc;
+
+
+
+select c.cafe_name, s.registration_date, u.name ,s.star_point_comment from starpoint s left join cafe c on s.cafe_no = c.cafe_no left join users u on s.user_no = u.user_no where s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7);
+
+select * from cafe where left(DATE_SUB(curdate(), INTERVAL 0 month),7) = left(registration_date,7) order by registration_date desc limit 4;
+		
+select left(DATE_SUB(curdate(), INTERVAL 0 month),7); -- 2020 06
+
+select left(DATE_SUB(curdate(), INTERVAL 1 month),7); -- 2020 05
+
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
+		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = 82 and s.theme_no != c.theme_no 
+		group by s.theme_no order by cnt desc, s.theme_no limit 2;
+	
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
+		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = #{cafeNo} and s.theme_no != c.theme_no
+		group by s.theme_no order by cnt desc, s.theme_no limit 2;
+		
+	
+select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+		left join theme t on c.theme_no = t.theme_no
+		where c.cafe_cdt=1 order by c.registration_date desc;
+		
+select count(cafe_no) from cafe c;		

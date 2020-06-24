@@ -101,6 +101,6 @@ public interface CafeDAO {
 	
 	public int cafeOpenAllCnt() throws Exception;
 	
-	public List<CafeVO> themeCafeListAll() throws Exception;
+	public List<CafeVO> themeCafeSearchListAll(SearchCriteria cri) throws Exception;
 	
 }
