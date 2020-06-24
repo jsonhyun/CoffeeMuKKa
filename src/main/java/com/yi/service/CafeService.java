@@ -213,7 +213,7 @@ public class CafeService {
 		return dao.cafeOpenAllCnt();
 	}
 	
-	public List<CafeVO> themeCafeListAll() throws Exception {
-		return dao.themeCafeListAll();
+	public List<CafeVO> themeCafeSearchListAll(SearchCriteria cri) throws Exception {
+		return dao.themeCafeSearchListAll(cri);
 	}		
 }

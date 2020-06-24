@@ -11,7 +11,9 @@
 	.cafeLocationSearch .selectLeft {
 		float: left;
 	}
-	
+	.selectLeft button{
+		padding: 0 5px 0 5px;
+	}
 	.cafeLocationSearch .selectRight {
 		float: right;
 	}
@@ -304,7 +306,10 @@ ul.themeListCafeWrap li img{
 		text-align: right;
 		margin-right: 10px;
 	}
-	
+	div.themeCafeList{
+		width: 100%;
+		height: 370px;
+	}
 </style>
 
 <!-- bar-rating -->
@@ -329,26 +334,33 @@ ul.themeListCafeWrap li img{
 			var searchTheme = $("#searchTheme").val();
 			var searchType = $("#searchType").val();
 			var keyword = $("#keyword").val();
-			location.href = "zone?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
+			location.href = "theme?searchZone="+searchZone+"&searchTheme="+searchTheme+"&searchType="+searchType+"&keyword="+keyword;
 		})
 		
 		
 	})
 </script>
 
-	<div class="content subPageContent">
-		<!-- 서브페이지 콘텐츠 -->
-		<div class="contentArea">
-			<h2 class="subPageTitle">
-				<span class="title">테마별</span>
-				<span class="subTit grayB"> | 키워드 중심의 카페정보</span>
-			</h2>
-			
-			<!-- 서브콘텐츠 시작 -->
-			
-			<!-- 위치, 테마 선택 및 검색란 -->
-			<div class="cafeLocationSearch clearfix">
-				<div class="selectLeft">
+		<div class="content subPageContent">
+			<!-- 서브페이지 콘텐츠 -->
+			<div class="contentArea">
+				<h2 class="subPageTitle">
+					<span class="title">테마별</span> <span class="subTit grayB"> |
+						키워드 중심의 카페정보</span>
+				</h2>
+		
+				<!-- 서브콘텐츠 시작 -->
+		<div class="themeCafeList">
+				<!-- 위치, 테마 선택 및 검색란 -->
+				<div class="cafeLocationSearch clearfix">
+					<div class="selectLeft">
+						<!-- <button class="keyword">#전체</button>
+						<button class="keyword">#데이트</button>
+						<button class="keyword">#뷰</button>
+						<button class="keyword">#착한아메</button>
+						<button class="keyword">#디저트</button>
+						<button class="keyword">#댕댕이</button>
+						<button class="keyword">#작업</button> -->
 					<select name="searchZone" id="searchZone">
 						<option value="all" ${cri.searchZone=='all'? 'selected':'' }>전체(위치별)</option>
 						<option value="1" ${cri.searchZone=='1'? 'selected':'' }>동성로</option>
@@ -371,178 +383,93 @@ ul.themeListCafeWrap li img{
 						<option value="4" ${cri.searchTheme=='4'? 'selected':'' }>#디저트</option>
 						<option value="5" ${cri.searchTheme=='5'? 'selected':'' }>#댕댕이</option>
 						<option value="6" ${cri.searchTheme=='6'? 'selected':'' }>#작업</option>
-					</select>
+					</select>						
+					</div>
+					<div class="selectRight">
+						<select name="searchType" id="searchType">
+							<option value="n" ${cri.searchType==null? 'selected':'' }>----</option>
+							<option value="cafeName" ${cri.searchType=='cafeName'? 'selected':'' }>카페명</option>
+						</select> 
+						<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." /> 
+						<input type="submit" id="btnSearch" value="검색" class="navyBtn" />
+					</div>
 				</div>
-				<div class="selectRight">
-					<select name="searchType" id="searchType">
-						<option value="n" ${cri.searchType==null? 'selected':'' }>----</option>
-						<option value="cafeName" ${cri.searchType=='cafeName'? 'selected':'' }>카페명</option>
-					</select>
-					<input type="text" name="keyword" id="keyword" value="${cri.keyword }" placeholder="검색어를 입력하세요." />
-					<input type="submit" id="btnSearch" value="검색" class="navyBtn"/>
-				</div>
-			</div>
-			<!-- 위치별 카페 리스트 -->
-			<div class="themeListCafe">
-				<ul class="themeListCafeWrap">
-					<c:forEach var="cafe" items="${list }" varStatus="i">
-					<li>
-					<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">
-					<c:forEach var="img" items="${imgList }">
-							<c:if test="${img.cafeNo.cafeNo == cafe.cafeNo }">
-								<img src="${pageContext.request.contextPath }/resources/images/sumnail/${img.imageName}">
-							</c:if>
+				<!-- 위치별 카페 리스트 -->
+				<div class="themeListCafe">
+					<ul class="themeListCafeWrap">
+						<c:forEach var="cafe" items="${list }" varStatus="i">
+							<li><a
+								href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">
+									<c:forEach var="img" items="${imgList }">
+										<c:if test="${img.cafeNo.cafeNo == cafe.cafeNo }">
+											<img
+												src="${pageContext.request.contextPath }/resources/images/sumnail/${img.imageName}">
+										</c:if>
+									</c:forEach>
+									<div class="blackOpacity"></div>
+									<div class="star">
+										<select class="starPoint">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+										</select>
+									</div>
+									<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div> <c:set
+										var="theme" value="${cafe.themeNo.themeNo }" /> <c:choose>
+										<c:when test="${theme == 1 }">
+											<div class="themeKeySmall date bold firstKeyword">#${cafe.themeNo.themeName
+												}</div>
+										</c:when>
+										<c:when test="${theme == 2 }">
+											<div class="themeKeySmall view bold firstKeyword">#${cafe.themeNo.themeName
+												}</div>
+										</c:when>
+										<c:when test="${theme == 3 }">
+											<div class="themeKeySmall ame bold firstKeyword">#${cafe.themeNo.themeName
+												}</div>
+										</c:when>
+										<c:when test="${theme == 4 }">
+											<div class="themeKeySmall dessert bold firstKeyword">#${cafe.themeNo.themeName
+												}</div>
+										</c:when>
+										<c:when test="${theme == 5 }">
+											<div class="themeKeySmall dog bold firstKeyword">#${cafe.themeNo.themeName
+												}</div>
+										</c:when>
+										<c:when test="${theme == 6 }">
+											<div class="themeKeySmall work bold firstKeyword">#${cafe.themeNo.themeName
+												}</div>
+										</c:when>
+									</c:choose>
+									<div class="themeKeySmall bold rankTheme_one"></div>
+									<div class="themeKeySmall bold rankTheme_two"></div>
+									<h3 class="theme_cafeName">${cafe.cafeName }</h3>
+									<h1 class="before_heart">
+										<i class="fa fa-heart-o" aria-hidden="true"></i>
+									</h1>
+							</a></li>
 						</c:forEach>
-						<div class="blackOpacity"></div>
-						<div class="star">
-							<select class="starPoint"> 
-								<option value="1">1</option> 
-								<option value="2">2</option> 
-								<option value="3">3</option> 
-								<option value="4">4</option> 
-								<option value="5">5</option> 
-							</select>
-						</div>
-						<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
-						<c:set var="theme" value="${cafe.themeNo.themeNo }"/>
-						<c:choose>
-							<c:when test="${theme == 1 }">
-								<div class="themeKeySmall date bold firstKeyword">#${cafe.themeNo.themeName }</div>
-							</c:when>
-							<c:when test="${theme == 2 }">
-								<div class="themeKeySmall view bold firstKeyword">#${cafe.themeNo.themeName }</div>
-							</c:when>
-							<c:when test="${theme == 3 }">
-								<div class="themeKeySmall ame bold firstKeyword">#${cafe.themeNo.themeName }</div>
-							</c:when>
-							<c:when test="${theme == 4 }">
-								<div class="themeKeySmall dessert bold firstKeyword">#${cafe.themeNo.themeName }</div>
-							</c:when>
-							<c:when test="${theme == 5 }">
-								<div class="themeKeySmall dog bold firstKeyword">#${cafe.themeNo.themeName }</div>
-							</c:when>
-							<c:when test="${theme == 6 }">
-								<div class="themeKeySmall work bold firstKeyword">#${cafe.themeNo.themeName }</div>
-							</c:when>
-						</c:choose>
-						<div class="themeKeySmall bold rankTheme_one"></div>
-						<div class="themeKeySmall bold rankTheme_two"></div>
-						<h3 class="theme_cafeName">${cafe.cafeName }</h3>
-						<h1 class="before_heart"><i class="fa fa-heart-o" aria-hidden="true"></i></h1>
-					</a>
-															
-					</li>
-					</c:forEach>
-																
-				</ul>
-
-			</div>
-			
-
-<%-- 			<c:forEach var="cafe" items="${list }" varStatus="i">
-			<div class="locationCafe">
-				<div class="locationListLeft">
-					<c:forEach var="img" items="${imgList }">
-						<c:if test="${img.cafeNo.cafeNo == cafe.cafeNo }">
-							<img src="${pageContext.request.contextPath }/resources/images/sumnail/${img.imageName}">
-						</c:if>
-					</c:forEach>
-					<div class="blackOpacity"></div>
-					<div class="star">
-						<select class="starPoint"> 
-							<option value="1">1</option> 
-							<option value="2">2</option> 
-							<option value="3">3</option> 
-							<option value="4">4</option> 
-							<option value="5">5</option> 
-						</select>
-					</div>
-					<div class="cafeVoteNum bgRed">${cafe.voteNumber }</div>
-				</div>
-				<div class="locationListCenter">
-					<div class="daeguIcon keyword">${cafe.zoneNo.zoneName }</div>
-					<c:set var="theme" value="${cafe.themeNo.themeNo }"/>
-					<c:choose>
-						<c:when test="${theme == 1 }">
-							<div class="themeIcon keyword" style="background-color: #b038fa;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 2 }">
-							<div class="themeIcon keyword" style="background-color: #528236;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 3 }">
-							<div class="themeIcon keyword" style="background-color: #96814c;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 4 }">
-							<div class="themeIcon keyword" style="background-color: #f2486f;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 5 }">
-							<div class="themeIcon keyword" style="background-color: #FFB232;">#${cafe.themeNo.themeName }</div>
-						</c:when>
-						<c:when test="${theme == 6 }">
-						</c:when>
-					</c:choose>
-					
-					<h2 class="cafeTitle"><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}">${cafe.cafeName }</a></h2>
-					<div>
-						<div class="visit">
-							<div class="visitAndLocation">
-								<img src="${pageContext.request.contextPath }/resources/images/menu2_1.png">
-							</div>
-							<div>
-								<span>${reviewNum[i.index]}</span>개의 탐방기
-							</div>
-						</div>
-						<div class="location">
-							<div class="visitAndLocation">
-								<img src="${pageContext.request.contextPath }/resources/images/menu5.png">
-							</div>
-							<div>
-								<p>${cafe.address } ${cafe.detailAddress }</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="locationListRight">
-					<div>
-						<p class="cafeRegiDate">
-							<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${cafe.registrationDate}"/>						
-						</p>
-						<img class="cafeZzim" src="${pageContext.request.contextPath }/resources/images/key1.png">
-					</div>
-					<div>
-						<div class="replyAndView">
-							<img src="${pageContext.request.contextPath }/resources/images/reply.png">
-							<span>20</span>
-						</div>
-						<div class="replyAndView">
-							<img src="${pageContext.request.contextPath }/resources/images/view.png">
-							<span>${cafe.viewNumber }</span>
-						</div>
-					</div>
-					<div class="more">
-						<p><a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${cafe.cafeNo}"><span style="color:#ED7D31; ">카페정보 </span>더보기 ></a></p>
-					</div>
-				</div>
-			</div>
-			</c:forEach>
-			
-			<!-- 페이징 처리 부분 -->
-			<div style="text-align: center;">
-				<ul class="pagination">
-					<c:if test="${pageMaker.prev == true }">
-						<li><a href="zone?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="zone?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next == true }">
-						<li><a href="zone?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
-					</c:if>
-				</ul>
-			</div> --%>
+					</ul>
+			  </div>
+		 </div> 
+		<!-- 페이징 처리 부분 -->
+		<div style="text-align: center;">
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev == true }">
+					<li><a href="theme?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="theme?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
+				</c:forEach>
+				<c:if test="${pageMaker.next == true }">
+					<li><a href="theme?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
+				</c:if>
+			</ul>
 		</div>
-	</div>
-
+		</div>
+	</div>	
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <script>
