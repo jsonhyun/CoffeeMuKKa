@@ -505,6 +505,7 @@ ul.themeListCafeWrap li img{
 		}
 		
 	})
+	
 	$(".rankTheme_two").each(function(i, obj){
 		var name = $(this).text();
 		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
