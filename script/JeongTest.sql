@@ -1405,5 +1405,23 @@ select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
 select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
 		left join theme t on c.theme_no = t.theme_no
 		where c.cafe_cdt=1 order by c.registration_date desc;
+	
+	
+select c.cafe_name, z.zone_name, t.theme_name, s.star_point, count(s.star_point),s.registration_date, u.name ,s.star_point_comment from starpoint s
+left join cafe c on s.cafe_no = c.cafe_no
+left join zone z on c.zone_no = z.zone_no 
+left join users u on s.user_no = u.user_no
+left join theme t on s.theme_no = t.theme_no 
+where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc;
+
+select * from starpoint;
+
+select c.cafe_name,  t.theme_name, s.star_point, s.registration_date, u.name ,s.star_point_comment from starpoint s
+left join cafe c on s.cafe_no = c.cafe_no
+left join users u on s.user_no = u.user_no
+left join theme t on s.theme_no = t.theme_no 
+where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) and c.cafe_name = '오퐁드부아';
+
+group by c.cafe_name order by count(s.star_point) desc;
 		
 select count(cafe_no) from cafe c;		

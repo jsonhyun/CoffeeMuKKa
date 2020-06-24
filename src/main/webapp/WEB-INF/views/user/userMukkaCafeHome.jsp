@@ -448,7 +448,31 @@
 		border-radius: 6px;
 		padding: 0 8px;
 		font-size: 24px;
-	}					
+	}
+	.term{
+		font-size: 18px;
+	}
+	.realRed{
+		color: red;
+	}
+	div.startPoint5_wrap{
+		width: 100%;
+	}				
+	table.commentWrap{
+		width: 100%;
+		border-top: 2px solid #545454;
+		border-bottom: 2px solid #545454;
+		padding: 20px 0 20px 0;
+	}
+	table.commentWrap tr{
+		height: 55px;
+	}
+	div.cafeInfoBtn{
+		font-size: 14px;
+		border: 1px solid #545454;
+		text-align: center;
+		padding: 5px 0 5px 0;
+	}	
 </style>
 		
 <div class="content subPageContent">
@@ -836,6 +860,162 @@
 						<h4><i class="fas fa-coffee"></i> ${themeGroupCafe4.cafeName}</h4>	
 					</td>															
 				</tr>														
+			</table>
+		</div>
+		
+		<h3 class="title bottomLin mukka_Title"><i class="fas fa-grin-stars"></i> 별점 <span class="realRed">5점</span> 받은 바로 그 카페 <i class="fas fa-grin-stars"></i> <span class="term orange">(2020.05.01 ~ 05.31)</span></h3>
+		<div class="starPoint5_Wrap">
+			<table class="commentWrap">
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> <i>'디저트가 좋아요'</i>  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-coffee"> 오퐁드부아</td>
+					<td>
+						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
+					</td>
+					<td>
+						별점 5점을 5번 받았어요!
+					</td>
+					<td>
+						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> '디저트가 좋아요'  
+					</td>
+					<td>
+						<div class="cafeInfoBtn"><span class="orange">카페정보</span> 더보기 ></div>
+					</td>
+				</tr>																																				
 			</table>
 		</div>
 		<!-- 서브콘텐츠 끝 -->
