@@ -255,16 +255,17 @@
 	ul.writeGoWrap li:first-child{
 		height: 150px;
 		background-color: rgba(189, 189, 189, 0.5);
-		color: rgba(246, 246, 246, 0.9);
 		text-align: right;
 		transition:2s all ease;
 	}
 	ul.writeGoWrap li:last-child{
 		height: 150px;
 		background-color: rgba(189, 189, 189, 0.5);
-		color: rgba(246, 246, 246, 0.9);
 		text-align: left;
 		transition:2s all ease;
+	}
+	ul.writeGoWrap li a{
+		color: rgba(246, 246, 246, 0.9);
 	}
 	ul.writeGoWrap li p{
 		font-size: 20px;
@@ -278,7 +279,40 @@
 	ul.writeGoWrap li:hover{
 		background-color: rgba(76, 76, 76, 0.9);
 		color: white;
-	}	
+	}
+    ul.writeGoWrap li:first-child:hover span.viewpoint-first{
+    	opacity: 1;
+    	left: 150px;
+    }
+     ul.writeGoWrap li:last-child:hover span.viewpoint-second{
+    	opacity: 1;
+    	right: 150px;
+    }  	
+	span.viewpoint-first{
+		position: absolute;
+		left: 200px;
+		top: 90px;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+		transition:1s all ease;
+	}
+	span.viewpoint-second{
+		position: absolute;
+		right: 200px;
+		bottom: 30px;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+		transition:1s all ease;
+	}
+	img#viewpoint_right{ /* 이미지 좌우 봔전 */
+		transform:rotate(0deg);
+   		-moz-transform: scaleX(-1); 
+     	-o-transform: scaleX(-1); 
+		-webkit-transform: scaleX(-1); 
+        transform: scaleX(-1); 
+	}			
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -356,12 +390,18 @@
 		<div class="userWriteAdd">
 			<ul class="writeGoWrap">
 				<li>
-					<p><i>들려주세요, 당신이 느낌 감성 그대로</i></p>
-					<h1><i>생생 카페 탐방기</i></h1>
+					<a href="${pageContext.request.contextPath }/user/community/cafeReview">
+						<p><i>들려주세요, 당신이 느낌 감성 그대로</i></p>
+						<h1><i>생생 카페 탐방기</i></h1>
+						<span class="viewpoint-first"><i>Let's Go!</i>　<img src="${pageContext.request.contextPath }/resources/images/viewpoint.png" id="viewpoint_right"></span>
+					</a>
 				</li>
 				<li>
-					<p><i>나 혼자만 알기 아까운 바로 그 카페</i></p>
-					<h1><i>MuKKa人 추천 카페</i></h1>
+					<a href="${pageContext.request.contextPath }/user/community/cafeRecommend">
+						<p><i>나 혼자만 알기 아까운 바로 그 카페</i></p>
+						<h1><i>MuKKa人 추천 카페</i></h1>
+						<span class="viewpoint-second"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>Let's Go!</i></span>
+					</a>
 				</li>
 			</ul>					
 		</div>
