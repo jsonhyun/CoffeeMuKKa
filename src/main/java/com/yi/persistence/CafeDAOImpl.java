@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CafeVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
@@ -323,6 +324,16 @@ public class CafeDAOImpl implements CafeDAO {
 	@Override
 	public List<CafeVO> themeCafeSearchListAll(SearchCriteria cri) throws Exception {
 		return sqlSession.selectList(namespace+"themeCafeSearchListAll",cri);
+	}
+
+	@Override
+	public List<CafeVO> starPoint5Comment() throws Exception {
+		return sqlSession.selectList(namespace+"starPoint5Comment");
+	}
+
+	@Override
+	public List<Integer> starPoint5CommentCnt() throws Exception {
+		return sqlSession.selectList(namespace+"starPoint5CommentCnt");
 	}
 
 

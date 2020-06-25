@@ -455,8 +455,9 @@
 	.realRed{
 		color: red;
 	}
-	div.startPoint5_wrap{
+	div.starPoint5_Wrap{
 		width: 100%;
+		margin-bottom: 60px;
 	}				
 	table.commentWrap{
 		width: 100%;
@@ -467,11 +468,17 @@
 	table.commentWrap tr{
 		height: 55px;
 	}
+	table.commentWrap tr:hover{
+		background: #FAF4C0;
+	}
+	table.commentWrap tr:hover td.starPoint5_cafeName h4{
+		color: red;
+	}		
 	td.starPoint5_cafeName{
-		width: 20%
+		width: 25%
 	}
 	td.starPoint5_zone{
-		width: 15%;
+		width: 20%;
 	}
 	td.starPoint5_cnt{
 		width: 25%;
@@ -490,7 +497,7 @@
 		</h2>
 		
 		<!-- 서브콘텐츠 시작 -->
-		
+		<div class="cafeMuKKaSubPage">
 		<!-- 파워링크 배너(슬라이드처리) -->
 		<div class="powerLink">
 			<div class="powerLink_dummy">
@@ -869,27 +876,32 @@
 			</table>
 		</div>
 		
-		<h3 class="title bottomLin mukka_Title"><i class="fas fa-grin-stars"></i> 별점 <span class="realRed">5점</span> 받은 바로 그 카페 <i class="fas fa-grin-stars"></i> <span class="term orange">(2020.05.01 ~ 05.31)</span></h3>
+		<h3 class="title bottomLin mukka_Title"><i class="fas fa-grin-stars"></i> 별점 <span class="realRed">5점</span> 받은 바로 그 카페 다섯 곳<i class="fas fa-grin-stars"></i> <span class="term orange"></span></h3>
 		<div class="starPoint5_Wrap">
 			<table class="commentWrap">
-				<tr>
-					<td class="starPoint5_cafeName">
-						<h4><i class="fas fa-coffee"></i> 오퐁드부아</h4>
-					</td>
-					<td class="starPoint5_zone">
-						<div class="zoneIcon zoneOrangeIconSmall spointZone">달성군</div>
-					</td>
-					<td class="starPoint5_cnt">
-						<span class="bold">별점 5점</span>을 <span class="red bold">5번</span> 받았어요!
-					</td>
-					<td  class="starPoint5_comment">
-						이승태님의 평가 <div class="date themeKeySmall spointTheme">#데이트</div> <span class="blue"><i>'디저트가 좋아요'</i></span>  
-					</td>
-				</tr>																															
-			</table>
+				<c:forEach var="starPoint5" items="${starPoint5}">
+						<tr>
+							<td class="starPoint5_cafeName">
+								<a href="${pageContext.request.contextPath }/user/mukkaCafe/zone/read?cafeNo=${starPoint5.cafeNo}">
+								 	<h4><i class="fas fa-coffee"></i> ${starPoint5.cafeName}</h4>
+								</a>
+							</td>
+							<td class="starPoint5_zone">
+								<div class="zoneIcon zoneOrangeIconSmall spointZone">${starPoint5.zoneNo.zoneName}</div>
+							</td>
+							<td class="starPoint5_cnt">
+								<span class="bold">별점 5점</span>을 <span class="red bold sPointCnt"></span> 받았어요!
+							</td>
+							<td  class="starPoint5_comment">
+								<u>${starPoint5.userNo.name}</u>님의 평가 <br><div class="spoint5Theme themeKeySmall spointTheme">#${starPoint5.themeNo.themeName}</div> <span class="blue"><i>'${starPoint5.starPoint.starPointComment}'</i></span>  
+							</td>				
+						</tr>
+					
+				</c:forEach>																															
+			</table>			
 		</div>
 		<!-- 서브콘텐츠 끝 -->
-		
+		</div>
 	</div>
 </div>
 	
@@ -959,5 +971,43 @@
 	for(var i=0;i<5;i++){
 	  $(".starPointRank").eq(i).text(i+1);
 	}
+	
+	$(".spoint5Theme").each(function(i, obj){
+		var name = $(this).text();
+		console.log(name);
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+		
+	})
+	
+	var starPoint5Cnt = ${starPoint5Cnt};
+	for(var i=0;i<5;i++){
+		$(".sPointCnt").eq(i).text(starPoint5Cnt[i]+"번");
+	}
+	
+	// 숫자 포멧
+	function pad(n, width) {
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
+	
+	// 베스트 순위 산출 기간
+	var nowYear = new Date().getFullYear();
+	console.log(nowYear); // 2020
+	var nowMonth = new Date().getMonth() + 1;
+	console.log(nowMonth); // 6
+	var preMonth = nowMonth - 1;
+	console.log(preMonth); // 5
+	var preMonthPad = pad(preMonth, 2);
+	console.log(preMonthPad);
+	var lastDay = (new Date(nowYear, preMonth, 0)).getDate();
+	var term = "("+nowYear+"."+preMonthPad+".01 ~ "+preMonthPad+"."+lastDay+")";
+	$(".term").text(term);	
 </script>
 <%@ include file="../userInclude/footer.jsp" %>

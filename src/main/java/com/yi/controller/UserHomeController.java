@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
+import com.yi.domain.PageMaker;
+import com.yi.domain.SearchCriteria;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
 import com.yi.service.CafeService;
@@ -153,7 +156,7 @@ public class UserHomeController {
 	
 	// 커피무까
 	@RequestMapping(value = "/mukkaCafe", method = RequestMethod.GET)
-	public String cafeHome(Model model) throws Exception {
+	public String cafeHome(SearchCriteria cri, Model model) throws Exception {
 		
 		// 영업중인 카페 번호 리스트로 가져오기
 		List<Integer> openCafeNo = cafeService.openCafeNoList();
@@ -318,6 +321,13 @@ public class UserHomeController {
 		ImageVO themeGroupImg4 = cafeService.imgSelect(themeGroupNo4);
 		model.addAttribute("themeGroupCafe4", themeGroupCafe4);
 		model.addAttribute("themeGroupImg4",themeGroupImg4);
+		
+		List<CafeVO> starPoint5 = cafeService.starPoint5Comment();
+		model.addAttribute("starPoint5", starPoint5);
+		
+		List<Integer> starPoint5Cnt = cafeService.starPoint5CommentCnt();
+		model.addAttribute("starPoint5Cnt", starPoint5Cnt);
+		 
 		
 		return "/user/userMukkaCafeHome";
 	}

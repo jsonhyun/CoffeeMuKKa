@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.CafeVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
 import com.yi.domain.MenuKindsVO;
 import com.yi.domain.MenuVO;
@@ -215,5 +216,12 @@ public class CafeService {
 	
 	public List<CafeVO> themeCafeSearchListAll(SearchCriteria cri) throws Exception {
 		return dao.themeCafeSearchListAll(cri);
-	}		
+	}
+	public List<CafeVO> starPoint5Comment() throws Exception {
+		return dao.starPoint5Comment();
+	}
+	public List<Integer> starPoint5CommentCnt() throws Exception {
+		return dao.starPoint5CommentCnt();
+	}
+
 }

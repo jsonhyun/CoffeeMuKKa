@@ -12,7 +12,7 @@ select * from reply; -- 댓글 테이블
 select * from boardkinds; -- 게시판 분류
 select * from menukinds; -- 메뉴 분류
 select * from menu; -- 메뉴
-select * from starpoint; -- 별점
+select * from starpoint where cafe_no =67;-- 별점
 select * from type; -- 회원 타입
 select * from grade; -- 회원 등급
 select * from authority; -- 관리자 권한
@@ -1412,7 +1412,7 @@ left join cafe c on s.cafe_no = c.cafe_no
 left join zone z on c.zone_no = z.zone_no 
 left join users u on s.user_no = u.user_no
 left join theme t on s.theme_no = t.theme_no 
-where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc;
+where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc limit 5;
 
 select * from starpoint;
 
