@@ -327,7 +327,7 @@
 	.dron{
 		position: absolute;
 		z-index: 1;
-		width: 9.5%;
+		width: 176px;
 		height: 190px;
 		border: 5px solid red;
 		margin: -5px;

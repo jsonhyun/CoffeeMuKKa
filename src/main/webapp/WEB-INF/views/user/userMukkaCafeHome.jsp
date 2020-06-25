@@ -438,7 +438,7 @@
 		height: 150px;
 	}
 	img.ran_theme_img:hover{
-		border: 5px solid red;
+		border: 5px solid #ED7D31;
 		margin: -5px;
 	}
 	h3.ranThemeTitle{
