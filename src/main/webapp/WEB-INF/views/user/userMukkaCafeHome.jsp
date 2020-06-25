@@ -878,7 +878,7 @@
 			</table>
 		</div>
 		
-		<h3 class="title bottomLin mukka_Title"><i class="fas fa-grin-stars"></i> 별점 <span class="realRed">5점</span> 받은 바로 그 카페 다섯 곳<i class="fas fa-grin-stars"></i> <span class="term orange"></span></h3>
+		<h3 class="title bottomLin mukka_Title"><i class="fas fa-grin-stars"></i> 별점 <span class="realRed">5점</span> 받은 바로 그 카페, 다섯 곳 <i class="fas fa-grin-stars"></i> <span class="term orange"></span></h3>
 		<div class="starPoint5_Wrap">
 			<table class="commentWrap">
 				<c:forEach var="starPoint5" items="${starPoint5}">

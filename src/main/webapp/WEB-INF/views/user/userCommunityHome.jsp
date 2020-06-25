@@ -232,6 +232,53 @@
 		background-color: #ED7D31;
 	}
 	
+	div.userWriteAdd{
+		width: 100%;
+		height: 300px;
+		background: url("${pageContext.request.contextPath }/resources/images/add_sample03.jpg") no-repeat;
+		background-size: cover;
+		margin: 50px 0 50px 0;
+		position: relative;
+		z-index: 0;
+	}
+	ul.writeGoWrap{
+		width: 100%;
+		height: 300px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+	ul.writeGoWrap li{
+		padding: 0 80px 0 80px;
+	}
+	ul.writeGoWrap li:first-child{
+		height: 150px;
+		background-color: rgba(189, 189, 189, 0.5);
+		color: rgba(246, 246, 246, 0.9);
+		text-align: right;
+		transition:2s all ease;
+	}
+	ul.writeGoWrap li:last-child{
+		height: 150px;
+		background-color: rgba(189, 189, 189, 0.5);
+		color: rgba(246, 246, 246, 0.9);
+		text-align: left;
+		transition:2s all ease;
+	}
+	ul.writeGoWrap li p{
+		font-size: 20px;
+		padding-top: 32px;
+		letter-spacing: 4px;
+	}
+	ul.writeGoWrap li h1{
+		font-size: 45px;		
+		letter-spacing: 5px;
+	}	
+	ul.writeGoWrap li:hover{
+		background-color: rgba(76, 76, 76, 0.9);
+		color: white;
+	}	
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -306,7 +353,18 @@
 			</c:forEach>
 			</div>
 		</div>
-		
+		<div class="userWriteAdd">
+			<ul class="writeGoWrap">
+				<li>
+					<p><i>들려주세요, 당신이 느낌 감성 그대로</i></p>
+					<h1><i>생생 카페 탐방기</i></h1>
+				</li>
+				<li>
+					<p><i>나 혼자만 알기 아까운 바로 그 카페</i></p>
+					<h1><i>MuKKa人 추천 카페</i></h1>
+				</li>
+			</ul>					
+		</div>
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest mb30">
 			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>

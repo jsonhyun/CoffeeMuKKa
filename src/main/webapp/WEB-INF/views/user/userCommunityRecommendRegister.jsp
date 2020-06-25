@@ -432,6 +432,8 @@
 <!-- 자바스크립트 & 제이쿼리 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
 <script>
+
+    
 	//목록 버튼
 	$("#RC_list").click(function() {
 		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
@@ -479,7 +481,7 @@
 	/***************************** 검색박스 *****************************************/
 	
 	//검색창, 전체리스트 다 보이게 구현 : 지역이름+카페이름+카페주소
- 	$("button.searchPoint").click(function() {
+ 	$("button.searchPoint").bind("click",function() {
 		$(".cafeSearchWrap").show();
 		$("input[name='cafeName']").val(""); // 버튼만 누르면 input 초기화 -> 모든 카페리스트 다 보임
 		
@@ -511,6 +513,10 @@
 		})	
 		
 	})
+	
+	
+	//등록카페 확인버튼 자동실행
+	$("button.searchPoint").trigger("click");
 	
 	//검색박스 -- 닫기
  	$(".cafeSearchWrap .closeBtn").click(function(){
