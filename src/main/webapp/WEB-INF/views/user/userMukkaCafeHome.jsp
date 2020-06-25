@@ -304,7 +304,9 @@
 		font-weight: bold;
 		font-size: 17px;
 	}
-	
+	td.spointCafeName:hover{
+		color: red;
+	}	
 	.navy_box{
 		color: #2924BD;
 		letter-spacing: 3px;
