@@ -359,32 +359,6 @@
 
 <!-- 자바스크립트 & 제이쿼리 -->
 <script>
-	//추천카페쓰기 버튼(게시물등록버튼)
-	$("#RC_Register").click(function(){
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/register";
-	})
-	
-/* 	// 이미지 로테이션 
-	 var now_img = $(".RC_listImgContainer img:first-of-type"); //첫번째 이미지 :first-of-type  --> 요소 무리 중 첫 번째 요소
-	 
-	 var next_img = $(".RC_listImgContainer img:nth-child(2)"); // 두번째 이미지 : nth-child(2)  --> 요소 무리 둥 2번째 요소 (사진을 1개만 넣을 경우)
- 
-	 function fade_change(){
-		     next_img.addClass("active").css("opacity",0).animate({"opacity":1},1500, function(){
-		    	 next_img.removeClass("active").animate({"opacity":0},1500);
-		    	// $(".RC_listImgContainer").append(now_img);           //콜백
-		    	// next_img.removeClass("active"); 
-		     });
-	 }
-	 
-	 var timer = setInterval("fade_change()", 2000);
-	 
-	 $("div.RC_listImgContainer").hover(function(){ // mouse enter 시 
-	     clearInterval(timer);
-	 }, function(){                                  // mouse leave 시
-		 //now_img.animate({"opacity":0},1500);
-	     timer = setInterval("fade_change()",2000);
-	 }); */
 	 
 	 //원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {
@@ -413,7 +387,19 @@
 	// 베스트 월 표시
 	var nowMonth = new Date().getMonth() + 1;
 	var preMonth = nowMonth - 1;
-	$(".preMonth").text(preMonth);	 
+	$(".preMonth").text(preMonth);	
+	
+	
+	//추천카페 글쓰기 버튼 - 미로그인시 로그인창 뜨게 구현
+	$("#RC_Register").click(function() {		
+		var auth = "${Auth}";
+		if(auth == "") {
+			loginShow();
+			return false;
+		}
+		
+		location.href = "${pageContext.request.contextPath }/user/community/cafeRecommend/register"; 
+	})	
 </script>
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
