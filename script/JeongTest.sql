@@ -1424,4 +1424,15 @@ where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 
 
 group by c.cafe_name order by count(s.star_point) desc;
 		
-select count(cafe_no) from cafe c;		
+select count(cafe_no) from cafe c;
+
+
+select b.*, c.*, z.*, t.*, u.*, g.* from board b
+		left join cafe c on b.cafe_no = c.cafe_no 
+		left join zone z on c.zone_no = z.zone_no
+		left join theme t on c.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 = 1 order by b.vote_number desc limit 4;
+	
+		

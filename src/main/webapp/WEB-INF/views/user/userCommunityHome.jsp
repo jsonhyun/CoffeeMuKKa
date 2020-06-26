@@ -149,6 +149,7 @@
 	.contentArea .cafeReviewBest .user .userId {
 		float: left;
 		font-weight: bold;
+		font-size: 14px;
 	}
 	
 	.contentArea .cafeReviewBest .boxs {
@@ -159,19 +160,22 @@
 	.contentArea .cafeReviewBest .bests {
 		border-top: 1px solid #545454;
 		border-bottom: 1px solid #545454;
-		margin-bottom: 10px;
+		margin-bottom: 23.5px;
 		overflow: hidden;
+	}
+	.contentArea .cafeReviewBest .bests:last-child{
+		margin-bottom: none;
 	}
 	
 	.contentArea .cafeReviewBest .bests .img {
 		float: left;
 		width: 45%;
-		height: 238px;
+		height: 145px;
 		position: relative;
 	}
 	.contentArea .cafeReviewBest .bests .img img{
 		width: 100%;
-		height: 238px;
+		height: 145px;
 	}
 	div.RV_rankNo{
 		position: absolute;
@@ -360,7 +364,7 @@
 				</div>
 			</c:forEach>
 			<div class="boxs">
-			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="1" end="2" varStatus="status"> 			
+			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="1" end="3" varStatus="status">	
 				<div class="bests">
 					<div class="img temp">
 						<!-- 이미지 이름 꺼내서 삽입하기 -->
@@ -443,7 +447,7 @@
 		console.log(fileName);
 	})
 	
-	for(var i =0;i<2;i++){
+	for(var i =0;i<3;i++){
 		$(".RV_rankNo").eq(i).text(i+2);
 	}
 	
