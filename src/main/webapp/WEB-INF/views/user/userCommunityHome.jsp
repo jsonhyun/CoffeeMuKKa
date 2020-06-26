@@ -251,6 +251,7 @@
 	}
 	ul.writeGoWrap li{
 		padding: 0 80px 0 80px;
+		color: rgba(246, 246, 246, 0.9);
 	}
 	ul.writeGoWrap li:first-child{
 		height: 150px;
@@ -264,9 +265,6 @@
 		text-align: left;
 		transition:2s all ease;
 	}
-	ul.writeGoWrap li a{
-		color: rgba(246, 246, 246, 0.9);
-	}
 	ul.writeGoWrap li p{
 		font-size: 20px;
 		padding-top: 32px;
@@ -279,6 +277,7 @@
 	ul.writeGoWrap li:hover{
 		background-color: rgba(76, 76, 76, 0.9);
 		color: white;
+		cursor: pointer;
 	}
     ul.writeGoWrap li:first-child:hover span.viewpoint-first{
     	opacity: 1;
@@ -389,19 +388,15 @@
 		</div>
 		<div class="userWriteAdd">
 			<ul class="writeGoWrap">
-				<li>
-					<a href="${pageContext.request.contextPath }/user/community/cafeReview">
+				<li id="goReview">
 						<p><i>들려주세요, 당신이 느낌 감성 그대로</i></p>
 						<h1><i>생생 카페 탐방기</i></h1>
 						<span class="viewpoint-first"><i>Let's Go!</i>　<img src="${pageContext.request.contextPath }/resources/images/viewpoint.png" id="viewpoint_right"></span>
-					</a>
 				</li>
-				<li>
-					<a href="${pageContext.request.contextPath }/user/community/cafeRecommend">
+				<li id="goRecommend">
 						<p><i>나 혼자만 알기 아까운 바로 그 카페</i></p>
 						<h1><i>MuKKa人 추천 카페</i></h1>
 						<span class="viewpoint-second"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>Let's Go!</i></span>
-					</a>
 				</li>
 			</ul>					
 		</div>
@@ -455,5 +450,29 @@
 	for(var i =0;i<20;i++){
 		$(".RC_rankNo").eq(i).text(i+1);
 	}
+	
+	
+	$("li#goReview").click(function() {		
+		var auth = "${Auth}";
+		if(auth == "") {
+			location.href = "${pageContext.request.contextPath }/user/community/cafeReview";
+			return false;
+		}else{
+			location.href = "${pageContext.request.contextPath }/user/community/cafeReview/register";
+		}
+		
+		
+	})
+	
+	
+	$("li#goRecommend").click(function() {		
+		var auth = "${Auth}";
+		if(auth == "") {
+			location.href = "${pageContext.request.contextPath }/user/community/cafeRecommend";
+			return false;
+		}else{
+			location.href = "${pageContext.request.contextPath }/user/community/cafeRecommend/register";
+		}	
+	})		
 </script>
 <%@ include file="../userInclude/footer.jsp" %>
