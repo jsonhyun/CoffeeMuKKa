@@ -431,11 +431,36 @@
 		padding-right: 5px;
 		border-radius: 3px;
 		letter-spacing: 2px;
+	}
+	p.ranCnt{
+	  margin: 10px;		
+	}
+	div.clickBtn{
+		width: 100%;
+		height: 50px;
+		text-align: center;
+		letter-spacing: 5px;
+		border: 1px solid #545454;
+		margin-top: 20px;
+		line-height: 50px;
+	}
+	div.clickBtn:hover{
+		background: #ED7D31;
+		border: none;
+		font-weight: bold;
+	}
+	div.clickBtn:hover .orange{
+		color: white;
+	}
+	div.clickBtn:hover .viewMoreText{
+		color: white;
 	}	
 	#map{
 		width: 368px;
 		height: 165px;
-		margin-top: 11px
+		margin-top: 11px;
+		border-radius: 11px;
+		border: 2px solid #303A50;
 	}			
 </style>
 <div class="content subPageContent">
@@ -550,7 +575,7 @@
 		</div>
 		<div class="recommendRand mb30">
 			<h3 class="bottomLine  communityTitle">
-				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="date keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  </h3>
+				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  </h3>
 			<ul class="recommendRandWrap">
 				<li>
 					<c:forEach var="file" items="${ranRecommend.files}" begin="0" end="0" varStatus="status">	
@@ -563,6 +588,16 @@
 					<h2 id="RC_cafeName">${ranRecommend.writingTitle}</h2>
 					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
 					<span class="bold">${ranRecommend.userNo.nick }(${ranRecommend.userNo.userId })</span>
+					<p class="ranCnt bold">
+					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.viewNumber}"/></span>
+					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.voteNumber}"/></span>
+					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.replyCnt}"/></span>
+					</p>
+					<div class="clickBtn">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend.boardNo}">
+						 <span class="viewMoreText">추천카페 자세히 보기</span> <span class="orange bold">></span>
+						</a>
+					</div>
 				</li>
 				<li>
 					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend.address}</span>
@@ -670,12 +705,28 @@
 		}	
 	})
 	
+	
+	$(".keyword_box").each(function(i, obj){
+		var name = $(this).text();
+		console.log(name);
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+		
+	})
+	
 	var readfileName = $(".readImgName").val();
 	var start = readfileName.substring(0,12);
 	var end = readfileName.substring(14);
 	var fileName = start + end;
 	
 	$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");
+	
 	
 	
 	// -- 지도(주소) -- //
@@ -697,7 +748,7 @@
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3 // 지도의 확대 레벨
+			level : 1 // 지도의 확대 레벨
 		};
 
 	// 지도를 생성합니다    
