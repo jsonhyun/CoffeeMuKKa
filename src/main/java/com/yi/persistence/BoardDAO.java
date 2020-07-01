@@ -122,6 +122,8 @@ public interface BoardDAO {
 	public List<Integer> bestUserBoardCnt() throws Exception;
 	
 	public int cafeReviewAllCnt() throws Exception;
+	
+	public List<BoardVO> bestUserBoardInfo(int userNo) throws Exception;
 
 	
 }

@@ -360,6 +360,26 @@ public class UserHomeController {
 		}
 		model.addAttribute("rvBestlistImg", rvBestlistImg);
 		
+		//열혈무까인 리스트(종합)
+		List<BoardVO> bestUserAll = boardService.bestUserAllBoard();
+		model.addAttribute("bestUserAll",bestUserAll);
+		
+		List<BoardVO> bestUserBoardInfo = new ArrayList<BoardVO>();
+		for(int i=0;i<3;i++) { //3명만
+			int bestUserNo = bestUserAll.get(i).getUserNo().getUserNo();
+			bestUserBoardInfo.addAll(boardService.bestUserBoardInfo(bestUserNo));
+		}
+		model.addAttribute("bestUserBoardInfo", bestUserBoardInfo);
+		
+		List<ImageVO> bestUserBoardImg = new ArrayList<ImageVO>();
+		for(int i=0;i<bestUserBoardInfo.size();i++) {
+			int sboardNo = bestUserBoardInfo.get(i).getBoardNo();
+			bestUserBoardImg.addAll(boardService.recommendboardImgList(sboardNo));	
+		}
+		
+		model.addAttribute("bestUserBoardImg", bestUserBoardImg);	
+		
+		
 		//추천 카페 리스트 - 주천수(종합) & 대표이미지
 		List<BoardVO> rcBestlist = boardService.rcRankVoteAll();
 		model.addAttribute("rcBestlist",rcBestlist);

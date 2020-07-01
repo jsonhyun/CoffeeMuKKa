@@ -197,9 +197,9 @@
 													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${voteAll.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
 												</div>
 												<div class="rank_viewAll">
-													<span class="rView">조회 <span class="red">${voteAll.viewNumber}</span></span> <span
-														class="rThumb">추천 <span class="red"><b>${voteAll.voteNumber}</b></span></span> <span
-														class="rReply">댓글 <span class="red">${voteAll.replyCnt}</span></span>
+													<span class="rView">조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${voteAll.viewNumber}"/></span></span> 
+													<span class="rThumb">추천 <b><span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${voteAll.voteNumber}"/></b></span></span> 
+													<span class="rReply">댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${voteAll.replyCnt}"/></span></span>
 												</div>
 												<div class="rank_text">
 													<p class="classOne">${voteAll.writingContent}</p>
@@ -256,9 +256,9 @@
 													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${voteList.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
 												</div>
 												<div class="rank_viewAll">
-													<span class="rView">조회 <span class="red">${voteList.viewNumber}</span></span> <span
-														class="rThumb">추천 <span class="red"><b>${voteList.voteNumber}</b></span></span> <span
-														class="rReply">댓글 <span class="red">${voteList.replyCnt}</span></span>
+													<span class="rView">조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${voteList.viewNumber}"/></span></span> 
+													<span class="rThumb">추천 <b><span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${voteList.voteNumber}"/></b></span></span> 
+													<span class="rReply">댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${voteList.replyCnt}"/></span></span>
 												</div>
 												<div class="rank_text">
 													<p class="classOne">${voteList.writingContent}</p>
@@ -315,9 +315,9 @@
 													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${viewList.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
 												</div>
 												<div class="rank_viewAll">
-													<span class="rView">조회 <span class="red"><b>${viewList.viewNumber}</b></span></span> <span
-														class="rThumb">추천 <span class="red">${viewList.voteNumber}</span></span> <span
-														class="rReply">댓글 <span class="red">${viewList.replyCnt}</span></span>
+													<span class="rView">조회 <span class="red"><b><fmt:formatNumber type="number" maxFractionDigits="3" value="${viewList.viewNumber}"/></b></span></span> <span
+														class="rThumb">추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${viewList.voteNumber}"/></span></span> <span
+														class="rReply">댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${viewList.replyCnt}"/></span></span>
 												</div>
 												<div class="rank_text">
 													<p class="classOne">${viewList.writingContent}</p>
@@ -375,9 +375,9 @@
 													<span class="rGrade"><img src="${pageContext.request.contextPath}/resources/images/${replyList.userNo.userGrade.userGradeImage}" alt="등급아이콘"></span>
 												</div>
 												<div class="rank_viewAll">
-													<span class="rView">조회 <span class="red">${replyList.viewNumber}</span></span> <span
-														class="rThumb">추천 <span class="red">${replyList.voteNumber}</span></span> <span
-														class="rReply">댓글 <span class="red"><b>${replyList.replyCnt}</b></span></span>
+													<span class="rView">조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${replyList.viewNumber}"/></span></span> <span
+														class="rThumb">추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${replyList.voteNumber}"/></span></span> <span
+														class="rReply">댓글 <span class="red"><b><fmt:formatNumber type="number" maxFractionDigits="3" value="${replyList.replyCnt}"/></b></span></span>
 												</div>
 												<div class="rank_text">
 													<p class="classOne">${replyList.writingContent}</p>

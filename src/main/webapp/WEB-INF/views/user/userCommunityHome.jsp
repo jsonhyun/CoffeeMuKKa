@@ -315,7 +315,55 @@
      	-o-transform: scaleX(-1); 
 		-webkit-transform: scaleX(-1); 
         transform: scaleX(-1); 
-	}			
+	}
+	
+	/* 열혈무까인 */
+	div.bestWriter{
+		width: 100%;
+		height: 600px;
+	}
+	.bestUserGrade{
+		width: 35px;
+		height: 35px;
+		vertical-align: middle;
+		padding-right: 5px;
+	}
+	ul.bestUserInfo{
+		width: 40%;
+		float: left;
+	}
+	ul.bestUserInfo li{
+		height: 35px;
+		padding: 45px 0 45px 20px;
+		margin: 10px 0 60px 0;
+	}
+
+	ul.bestUserBoardInfo{
+		width: 60%;
+		float: right;
+	}
+	ul.bestUserBoardInfo li{
+		width: 150px;
+		float:left;
+		padding: 15px;
+		margin-bottom: 20px;
+	}	
+	img.bestUserBoardImg{
+		width: 145px;
+		height: 100px;
+		border-radius: 10px;
+	}
+	ul.bestUserBoardInfo li:hover{
+		background: #eee;
+		border-radius: 10px;
+	}
+	div.bestWriteTitle{
+		width: 100%;
+		height: 30px;
+	}
+	.realBlue{
+		color: blue;
+	}	
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -390,23 +438,6 @@
 			</c:forEach>
 			</div>
 		</div>
-		<div class="bestWriter mb30">
-			<h3 class="bottomLine  communityTitle">우리가 바로 열혈 MuKKa人 !!! <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div>		
 		<div class="userWriteAdd">
 			<ul class="writeGoWrap">
 				<li id="goReview">
@@ -420,7 +451,53 @@
 						<span class="viewpoint-second"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>Let's Go!</i></span>
 				</li>
 			</ul>					
-		</div>
+		</div>		
+		<div class="bestWriter mb30">
+			<h3 class="bottomLine  communityTitle">열혈 MuKKa人 3인방 <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
+			<ul class="bestUserInfo">
+				<c:forEach var="bestUserAll" items="${bestUserAll}" begin="0" end="2" varStatus="status">	
+					<li>
+						<img src="${pageContext.request.contextPath}/resources/images/${bestUserAll.userNo.userGrade.userGradeImage}" class="bestUserGrade"> 
+						<span class="bold"><span class="realBlue">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})</span>
+					</li>
+				</c:forEach>
+			</ul>
+			<ul class="bestUserBoardInfo">
+				<c:forEach var="bestUserBoardInfo" items="${bestUserBoardInfo}">
+					<li>
+					<c:if test="${bestUserBoardInfo.boardNo2.boardNo == 1}">
+						<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${bestUserBoardInfo.boardNo}">
+							<c:forEach var="bestUserBoardImg" items="${bestUserBoardImg}">			
+									<c:if test="${bestUserBoardImg.boardNo.boardNo == bestUserBoardInfo.boardNo }">
+										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${bestUserBoardImg.imageName}" class="thumbNailImg bestUserBoardImg" alt="카페대표이미지"
+											onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'"><br>
+											<div class="bold classOne bestWriteTitle">
+												<c:if test="${bestUserBoardInfo.boardNo2.boardNo == 1}">
+													<span class="blue">[탐방기]</span>
+												</c:if>
+											${bestUserBoardInfo.writingTitle}</div>
+									</c:if>
+							</c:forEach>
+						</a>					
+					</c:if>
+					<c:if test="${bestUserBoardInfo.boardNo2.boardNo == 2}">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${bestUserBoardInfo.boardNo}">
+							<c:forEach var="bestUserBoardImg" items="${bestUserBoardImg}">			
+									<c:if test="${bestUserBoardImg.boardNo.boardNo == bestUserBoardInfo.boardNo }">
+										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${bestUserBoardImg.imageName}" class="thumbNailImg bestUserBoardImg" alt="카페대표이미지"
+											onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'"><br>
+											<div class="bold classOne bestWriteTitle">
+											<span class="red">[추천카페]</span>
+											${bestUserBoardInfo.writingTitle}</div>
+									</c:if>
+							</c:forEach>
+						</a>					
+					</c:if>												
+
+					</li>
+				</c:forEach>
+			</ul>
+		</div>		
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest mb30">
 			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>

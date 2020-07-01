@@ -3,8 +3,8 @@ select user(), database();
 show tables;
 
 select * from cafe; -- 카페
-select * from board; -- 게시판
-select * from users where nick = '개천에서커피났다'; -- 회원 현황
+select * from board; where board_no =26; -- 게시판
+select * from users where nick = '자바칩프라푸치노'; -- 회원 현황
 select * from admin; -- 관리자
 select * from theme; -- 테마 분류
 select * from zone; -- 위치 분류
@@ -1440,15 +1440,15 @@ select b.*, c.*, z.*, t.*, u.*, g.* from board b
 	
 	
 	
-drop procedure if exists loopVoteInsert_test2;
+drop procedure if exists loopVoteInsert_test4;
 delimiter $$
 $$
-create procedure loopVoteInsert_test2()
+create procedure loopVoteInsert_test4()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 1800 DO /*추천 총 갯수*/
+WHILE i <= 2000 DO /*추천 총 갯수*/
 	Insert into vote(board_no, user_no, vote_date) 
-	VALUES(floor(870 + (rand() * 42)), floor(1 + (rand() * 78)), '2020-04-30 10:45:10.0');
+	VALUES(floor(1 + (rand() * 34)), floor(1 + (rand() * 78)), '2020-04-30 10:45:10.0');
 		/* 시작 boardNo , (마지막boardNo-시작boardNo)+1 */
 	
 	SET i = i + 1;
@@ -1456,48 +1456,48 @@ END WHILE;
 end
 delimiter ;
 
-CALL loopVoteInsert_test2();	
+CALL loopVoteInsert_test4();	
 
 
-drop procedure if exists loopReplyInsert_test2;
+drop procedure if exists loopReplyInsert_test3;
 delimiter $$
 $$
-create procedure loopReplyInsert_test2()
+create procedure loopReplyInsert_test3()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 10 DO
+WHILE i <= 300 DO
 
-	insert into reply(board_no, user_no, comment_content) values(floor(870 + (rand() * 42)), floor(1 + (rand() * 78)), concat('댓글 테스트 ', i));
+	insert into reply(board_no, user_no, comment_content) values(floor(635 + (rand() * 50)), floor(1 + (rand() * 78)), concat('댓글 테스트 ', i));
 	
 	SET i = i + 1;
 END WHILE;
 end
 delimiter ;
 
-CALL loopReplyInsert_test2();
+CALL loopReplyInsert_test3();
 
-drop procedure if exists loopCnt_test2;
+drop procedure if exists loopCnt_test4;
 delimiter $$
 $$
-create procedure loopCnt_test2()
+create procedure loopCnt_test4()
 begin
 DECLARE i INT DEFAULT 1;
-WHILE i <= 41 DO
+WHILE i <= 34 DO
 
 	update board
-		set vote_number = (select count(*) from vote where board_no = i+870)
-		where board_no = i+870;
+		set vote_number = (select count(*) from vote where board_no = i+1)
+		where board_no = i+1;
 	
 	update board 
-		set reply_cnt = (select count(*) from reply where board_no = i+870) 
-		where board_no = i+870;
+		set reply_cnt = (select count(*) from reply where board_no = i+1) 
+		where board_no = i+1;
 	
 	SET i = i + 1;
 END WHILE;
 end
 delimiter ;
 
-CALL loopCnt_test2();
+CALL loopCnt_test4();
 
 	
 
@@ -1507,3 +1507,17 @@ select c.*, z.*, t.* , s.*, u.* from starpoint s
 		left join users u on s.user_no = u.user_no
 		left join theme t on s.theme_no = t.theme_no 
 		where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc limit 5;
+		
+select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b
+left join users u on b.user_no = u.user_no
+left join grade g on u.user_grade = g.user_grade
+group by b.user_no order by count(b.user_no) desc limit 10;
+
+select * from board where user_no = 1 order by registration_date desc limit 3;
+
+
+select * from board where user_no = 209 order by registration_date desc limit 3;
+
+select * from board where user_no = 214 order by registration_date desc limit 3;
+
+	
