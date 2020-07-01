@@ -466,12 +466,12 @@
 	</select>
 	<!-- 열혈무까인 : 종합리스트 -->
 	<select id="bestUserAllBoard" resultMap="BoardResult">
-	  select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade group by b.user_no order by count(b.user_no) desc
+	  select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade group by b.user_no order by count(b.user_no) desc limit 10
 	</select>
 	
 	<!-- 열혈무까인 : 종합리스트 - 게시글수 -->	
 	<select id="bestUserAllBoardCnt" resultType="int">
-		select count(b.user_no) from board b left join users u on b.user_no = u.user_no group by b.user_no order by count(b.user_no) desc
+		select count(b.user_no) from board b left join users u on b.user_no = u.user_no group by b.user_no order by count(b.user_no) desc limit 10
 	</select>
 	
 	<!-- 열혈무까인 : 전월기준리스트 -->
