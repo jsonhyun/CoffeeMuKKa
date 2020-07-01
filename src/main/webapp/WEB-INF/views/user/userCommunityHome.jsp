@@ -390,6 +390,23 @@
 			</c:forEach>
 			</div>
 		</div>
+		<div class="bestWriter mb30">
+			<h3 class="bottomLine  communityTitle">우리가 바로 열혈 MuKKa人 !!! <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>			
+		</div>		
 		<div class="userWriteAdd">
 			<ul class="writeGoWrap">
 				<li id="goReview">
@@ -426,6 +443,11 @@
 				</ul>
 			</div>
 		</div>
+		
+
+		<div class="bestWriter mb30">
+			<h3 class="bottomLine  communityTitle">5월의 열혈 MuKKa人 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>
+		</div>		
 	</div>
 </div>
 	

@@ -4,7 +4,8 @@ show tables;
 
 select * from cafe; -- 카페
 select * from board; -- 게시판
-select * from users;-- 회원 현황
+select * from users where nick = '개천에서커피났다';
+-- 회원 현황
 select * from admin; -- 관리자
 select * from theme; -- 테마 분류
 select * from zone; -- 위치 분류
@@ -12,7 +13,7 @@ select * from reply; -- 댓글 테이블
 select * from boardkinds; -- 게시판 분류
 select * from menukinds; -- 메뉴 분류
 select * from menu; -- 메뉴
-select * from starpoint where cafe_no =67;-- 별점
+select * from starpoint where cafe_no =60;-- 별점
 select * from type; -- 회원 타입
 select * from grade; -- 회원 등급
 select * from authority; -- 관리자 권한
@@ -20,6 +21,8 @@ select * from wishlist; -- 위시리스트
 select * from image;
 -- 이미지
 select * from vote; -- 추천리스트
+
+select * from starpoint;
 
 -- ----------------------------------
 
@@ -1434,5 +1437,74 @@ select b.*, c.*, z.*, t.*, u.*, g.* from board b
 		left join users u on b.user_no = u.user_no 
 		left join grade g on u.user_grade = g.user_grade
 		where board_no2 = 1 order by b.vote_number desc limit 4;
+
 	
-		
+	
+	
+drop procedure if exists loopVoteInsert_test2;
+delimiter $$
+$$
+create procedure loopVoteInsert_test2()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 1800 DO /*추천 총 갯수*/
+	Insert into vote(board_no, user_no, vote_date) 
+	VALUES(floor(870 + (rand() * 42)), floor(1 + (rand() * 78)), '2020-04-30 10:45:10.0');
+		/* 시작 boardNo , (마지막boardNo-시작boardNo)+1 */
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopVoteInsert_test2();	
+
+
+drop procedure if exists loopReplyInsert_test2;
+delimiter $$
+$$
+create procedure loopReplyInsert_test2()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 10 DO
+
+	insert into reply(board_no, user_no, comment_content) values(floor(870 + (rand() * 42)), floor(1 + (rand() * 78)), concat('댓글 테스트 ', i));
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopReplyInsert_test2();
+
+drop procedure if exists loopCnt_test2;
+delimiter $$
+$$
+create procedure loopCnt_test2()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 41 DO
+
+	update board
+		set vote_number = (select count(*) from vote where board_no = i+870)
+		where board_no = i+870;
+	
+	update board 
+		set reply_cnt = (select count(*) from reply where board_no = i+870) 
+		where board_no = i+870;
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopCnt_test2();
+
+	
+
+select c.*, z.*, t.* , s.*, u.* from starpoint s
+		left join cafe c on s.cafe_no = c.cafe_no
+		left join zone z on c.zone_no = z.zone_no 
+		left join users u on s.user_no = u.user_no
+		left join theme t on s.theme_no = t.theme_no 
+		where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc limit 5;
