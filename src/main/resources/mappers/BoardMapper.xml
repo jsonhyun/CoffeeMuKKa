@@ -504,5 +504,7 @@
 			where c.cafe_no = #{cafeNo.cafeNo}
 	</select>
 
-
+	<select id="recommedBoardNo" resultType="int">
+		select board_no from board where board_no2 = 2
+	</select>
 </mapper>

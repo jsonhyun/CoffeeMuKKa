@@ -363,7 +363,80 @@
 	}
 	.realBlue{
 		color: blue;
+	}
+	
+	/*랜덤*/
+	.recommendRand{
+		width: 100%;
+		height: 290px;
+		border-bottom: 2px solid #545454;
+		margin-bottom: 50px;
+	}
+	.recommendRand .recommendZoneOrangeIcon{
+		background: url("${pageContext.request.contextPath }/resources/images/point_w.png") no-repeat;
+		background-size: 25px;
+		background-position: 5px center;
+		background-color: #ED7D31;
+		padding: 4px 10px;
+		padding-left: 35px;
+		color: #fff;
+		font-weight: 700;
+		float: left;
+		border-radius: 5px;
+	}
+	.keyword_box{
+		color: white;
+		letter-spacing: 3px;
+		border-radius: 6px;
+		padding: 0 8px;
+		font-size: 24px;
+		margin: 0 15px;
+	}
+	ul.recommendRandWrap{
+		width: 100%;
+	}
+	ul.recommendRandWrap li{
+		float: left;
+		margin: 0 7px;
+	}
+	ul.recommendRandWrap li:first-child{
+		width: 25%;
+		height: 200px;
+	}
+	.readImgBox img{
+		width: 100%;
+		height: 200px;
+	}
+	ul.recommendRandWrap li:nth-child(2){
+		width: 30%;
+		height: 200px;
+	}
+	h2#RC_cafeName{
+		padding: 10px 0 15px 0;
+	}
+	ul.recommendRandWrap li:last-child{
+		width: 40%;
+		height: 200px;
+	}
+	.rcRandGrade{
+		width: 25px;
+		height: 25px;
+		vertical-align: middle;
+	}
+	span.mapTitle{
+		background-color: #303A50;
+		color: white;
+		font-weight: bold;
+		padding-left: 5px;
+		padding-right: 5px;
+		border-radius: 3px;
+		letter-spacing: 2px;
 	}	
+	#map{
+		width: 368px;
+		height: 165px;
+		margin-top: 11px
+	}			
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -384,7 +457,7 @@
 			
 		<!-- 카페탐방기 베스트 -->
 		<div class="cafeReviewBest mb30">
-			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 탐방기</span></span></h3>
+			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 탐방기 ♥</span></span></h3>
 			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="0" end="0" varStatus="status"> 
 				<div class="best1">
 					<div class="RV_bestPoint">BEST</div>
@@ -452,6 +525,51 @@
 				</li>
 			</ul>					
 		</div>		
+	
+		<!-- 추천 카페 베스트 -->
+		<div class="recommendBest mb30">
+			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페 ♥</span></span></h3>
+			<div class="recomWrap">
+				<ul>
+					<c:forEach var="rcBestlist" items="${rcBestlist}">
+					<li class="temp">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestlist.boardNo}">
+							<!-- 이미지 이름 꺼내서 삽입하기 -->
+							<c:forEach var="rcBestlistImg" items="${rcBestlistImg}">
+								<c:if test="${rcBestlistImg.boardNo.boardNo == rcBestlist.boardNo }">
+									<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rcBestlistImg.imageName}" class="thumbNailImg" alt="카페대표이미지"
+										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+								</c:if>
+							</c:forEach>
+							<div class="RC_rankNo"></div>							
+						</a>
+					</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+		<div class="recommendRand mb30">
+			<h3 class="bottomLine  communityTitle">
+				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="date keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  </h3>
+			<ul class="recommendRandWrap">
+				<li>
+					<c:forEach var="file" items="${ranRecommend.files}" begin="0" end="0" varStatus="status">	
+						<input type="hidden" class="readImgName" value="${file.imageName}">
+					</c:forEach>								
+					<div class="readImgBox">
+					</div>
+				</li>
+				<li>
+					<h2 id="RC_cafeName">${ranRecommend.writingTitle}</h2>
+					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
+					<span class="bold">${ranRecommend.userNo.nick }(${ranRecommend.userNo.userId })</span>
+				</li>
+				<li>
+					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend.address}</span>
+					<div id="map"></div>
+				</li>
+			</ul>
+		</div>			
 		<div class="bestWriter mb30">
 			<h3 class="bottomLine  communityTitle">열혈 MuKKa人 3인방 <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
 			<ul class="bestUserInfo">
@@ -497,34 +615,7 @@
 					</li>
 				</c:forEach>
 			</ul>
-		</div>		
-		<!-- 추천 카페 베스트 -->
-		<div class="recommendBest mb30">
-			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>
-			<div class="recomWrap">
-				<ul>
-					<c:forEach var="rcBestlist" items="${rcBestlist}">
-					<li class="temp">
-						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestlist.boardNo}">
-							<!-- 이미지 이름 꺼내서 삽입하기 -->
-							<c:forEach var="rcBestlistImg" items="${rcBestlistImg}">
-								<c:if test="${rcBestlistImg.boardNo.boardNo == rcBestlist.boardNo }">
-									<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rcBestlistImg.imageName}" class="thumbNailImg" alt="카페대표이미지"
-										onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
-								</c:if>
-							</c:forEach>
-							<div class="RC_rankNo"></div>							
-						</a>
-					</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</div>
-		
-
-		<div class="bestWriter mb30">
-			<h3 class="bottomLine  communityTitle">5월의 열혈 MuKKa人 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>
-		</div>		
+		</div>				
 	</div>
 </div>
 	
@@ -532,6 +623,7 @@
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
 <script>
 	$("p.dummy_text").animate({"padding-right":"40px","opacity":"1"},1800);
 	$("h1.dummy_title").animate({"margin-right":"50px","opacity":"1"},1800);
@@ -576,6 +668,59 @@
 		}else{
 			location.href = "${pageContext.request.contextPath }/user/community/cafeRecommend/register";
 		}	
-	})		
+	})
+	
+	var readfileName = $(".readImgName").val();
+	var start = readfileName.substring(0,12);
+	var end = readfileName.substring(14);
+	var fileName = start + end;
+	
+	$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");
+	
+	
+	// -- 지도(주소) -- //
+	
+	// 주소, 카페이름 빼오기
+	var address = $("#RC_address").text();
+	//console.log("주소"+address);
+	var cafeName = $("#RC_cafeName").text();
+	if(address == ""){ //정확한 주소를 알 수 없을때
+		$("#RC_address").removeClass("blue").addClass("red");
+		$("#RC_address").text("정확한 주소를 확인할 수 없습니다.");
+		$("div#addMap").hide(); // 지도 Title remove
+		$("div#map").hide(); // 지도 remove
+	}
+	//console.log("카페이름"+cafeName);
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3 // 지도의 확대 레벨
+		};
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+
+	// 주소로 좌표를 검색합니다 -- address
+	geocoder.addressSearch(address, function(result, status) {
+		// 정상적으로 검색이 완료됐으면 
+		if (status === kakao.maps.services.Status.OK) {
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			// 결과값으로 받은 위치를 마커로 표시합니다
+			var marker = new kakao.maps.Marker({
+				map : map,
+				position : coords
+			});
+			// 인포윈도우로 장소에 대한 설명을 표시합니다
+			var infowindow = new kakao.maps.InfoWindow({                              //cafeName
+				content : '<div style="width:150px;text-align:center;padding:6px 0;">'+cafeName+'</div>'
+			});
+			infowindow.open(map, marker);
+			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			map.setCenter(coords);
+		}
+	});	
 </script>
 <%@ include file="../userInclude/footer.jsp" %>

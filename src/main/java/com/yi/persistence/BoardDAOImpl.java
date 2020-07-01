@@ -357,6 +357,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardVO> bestUserBoardInfo(int userNo) throws Exception {
 		return sqlSession.selectList(namespace + "bestUserBoardInfo", userNo);
 	}
+	@Override
+	public List<Integer> recommedBoardNo() throws Exception {
+		return sqlSession.selectList(namespace + "recommedBoardNo");
+	}
 	
 
 

@@ -390,7 +390,16 @@ public class UserHomeController {
 			rcBestlistImg.addAll(boardService.recommendboardImgList(sboardNo));	
 		}
 		
-		model.addAttribute("rcBestlistImg", rcBestlistImg);		
+		model.addAttribute("rcBestlistImg", rcBestlistImg);	
+		
+		
+		// 추천카페 글번호 뽑기
+		List<Integer> recommendBoardNo = boardService.recommedBoardNo();
+		Collections.shuffle(recommendBoardNo);
+		int boardNo = recommendBoardNo.get(0);
+		
+		BoardVO vo = boardService.recommendReadByNo(boardNo);
+		model.addAttribute("ranRecommend", vo);
 		
 		return "/user/userCommunityHome";
 	}
