@@ -4,8 +4,7 @@ show tables;
 
 select * from cafe; -- 카페
 select * from board; -- 게시판
-select * from users where nick = '개천에서커피났다';
--- 회원 현황
+select * from users where nick = '개천에서커피났다'; -- 회원 현황
 select * from admin; -- 관리자
 select * from theme; -- 테마 분류
 select * from zone; -- 위치 분류
