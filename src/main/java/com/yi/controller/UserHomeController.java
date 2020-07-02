@@ -396,10 +396,16 @@ public class UserHomeController {
 		// 추천카페 글번호 뽑기
 		List<Integer> recommendBoardNo = boardService.recommedBoardNo();
 		Collections.shuffle(recommendBoardNo);
-		int boardNo = recommendBoardNo.get(0);
+		int boardNo1 = recommendBoardNo.get(0);
+		recommendBoardNo.remove(0);
+		int boardNo2 = recommendBoardNo.get(0);
+		recommendBoardNo.remove(0);
 		
-		BoardVO vo = boardService.recommendReadByNo(boardNo);
-		model.addAttribute("ranRecommend", vo);
+		BoardVO vo1 = boardService.recommendReadByNo(boardNo1);
+		model.addAttribute("ranRecommend1", vo1);
+		
+		BoardVO vo2 = boardService.recommendReadByNo(boardNo2);
+		model.addAttribute("ranRecommend2", vo2);
 		
 		return "/user/userCommunityHome";
 	}

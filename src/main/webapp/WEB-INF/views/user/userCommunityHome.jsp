@@ -575,36 +575,69 @@
 		</div>
 		<div class="recommendRand mb30">
 			<h3 class="bottomLine  communityTitle">
-				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  </h3>
+				<span class="recommendZoneOrangeIcon">${ranRecommend1.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend1.themeNo.themeName}</span> 추 천 카 페  </h3>
 			<ul class="recommendRandWrap">
 				<li>
-					<c:forEach var="file" items="${ranRecommend.files}" begin="0" end="0" varStatus="status">	
+					<c:forEach var="file" items="${ranRecommend1.files}" begin="0" end="0" varStatus="status">	
 						<input type="hidden" class="readImgName" value="${file.imageName}">
 					</c:forEach>								
 					<div class="readImgBox">
 					</div>
 				</li>
 				<li>
-					<h2 id="RC_cafeName">${ranRecommend.writingTitle}</h2>
-					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
-					<span class="bold">${ranRecommend.userNo.nick }(${ranRecommend.userNo.userId })</span>
+					<h2 id="RC_cafeName">${ranRecommend1.writingTitle}</h2>
+					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend1.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
+					<span class="bold">${ranRecommend1.userNo.nick }(${ranRecommend1.userNo.userId })</span>
 					<p class="ranCnt bold">
-					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.viewNumber}"/></span>
-					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.voteNumber}"/></span>
-					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.replyCnt}"/></span>
+					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend1.viewNumber}"/></span>
+					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend1.voteNumber}"/></span>
+					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend1.replyCnt}"/></span>
 					</p>
 					<div class="clickBtn">
-						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend.boardNo}">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend1.boardNo}">
 						 <span class="viewMoreText">추천카페 자세히 보기</span> <span class="orange bold">></span>
 						</a>
 					</div>
 				</li>
 				<li>
-					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend.address}</span>
+					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend1.address}</span>
 					<div id="map"></div>
 				</li>
 			</ul>
-		</div>			
+		</div>
+		
+		<div class="recommendRand mb30">
+			<h3 class="bottomLine  communityTitle">
+				<span class="recommendZoneOrangeIcon">${ranRecommend2.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend2.themeNo.themeName}</span> 추 천 카 페  </h3>
+			<ul class="recommendRandWrap">
+				<li>
+					<c:forEach var="file" items="${ranRecommend2.files}" begin="0" end="0" varStatus="status">	
+						<input type="hidden" class="readImgName" value="${file.imageName}">
+					</c:forEach>								
+					<div class="readImgBox">
+					</div>
+				</li>
+				<li>
+					<h2 id="RC_cafeName">${ranRecommend2.writingTitle}</h2>
+					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend2.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
+					<span class="bold">${ranRecommend2.userNo.nick }(${ranRecommend2.userNo.userId })</span>
+					<p class="ranCnt bold">
+					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend2.viewNumber}"/></span>
+					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend2.voteNumber}"/></span>
+					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend2.replyCnt}"/></span>
+					</p>
+					<div class="clickBtn">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend2.boardNo}">
+						 <span class="viewMoreText">추천카페 자세히 보기</span> <span class="orange bold">></span>
+						</a>
+					</div>
+				</li>
+				<li>
+					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend2.address}</span>
+					<div id="map"></div>
+				</li>
+			</ul>
+		</div>							
 		<div class="bestWriter mb30">
 			<h3 class="bottomLine  communityTitle">열혈 MuKKa人 3인방 <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
 			<ul class="bestUserInfo">
