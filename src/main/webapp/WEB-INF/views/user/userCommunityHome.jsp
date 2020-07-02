@@ -323,10 +323,13 @@
 		height: 600px;
 	}
 	.bestUserGrade{
-		width: 35px;
-		height: 35px;
+		width: 30px;
+		height: 28px;
 		vertical-align: middle;
 		padding-right: 5px;
+	}
+	.bestUserGrade .bold{
+		font-size: 17px;
 	}
 	ul.bestUserInfo{
 		width: 40%;
@@ -335,7 +338,7 @@
 	ul.bestUserInfo li{
 		height: 35px;
 		padding: 45px 0 45px 20px;
-		margin: 10px 0 60px 0;
+		margin: -10px 0 65px 0;
 	}
 
 	ul.bestUserBoardInfo{
@@ -461,6 +464,15 @@
 		margin-top: 11px;
 		border-radius: 11px;
 		border: 2px solid #303A50;
+	}
+	.green{
+		color: #23A41A;
+	}
+	.yellow{
+		background-color: #FFF29E;
+		padding: 0 5px;
+		border-radius: 3px;
+		margin-right: 2px;
 	}			
 </style>
 <div class="content subPageContent">
@@ -504,7 +516,7 @@
 						<p class="text classSec"><span class="zoneIcon zoneOrangeIconSmall bold">${rvBestlist.zoneNo.zoneName}</span> <i class="fas fa-coffee"></i> ${rvBestlist.cafeNo.cafeName}</p>
 						<div class="user">
 							<div class="icon"><img src="${pageContext.request.contextPath}/resources/images/${rvBestlist.userNo.userGrade.userGradeImage}" alt="등급아이콘"></div>
-							<p class="userId">${rvBestlist.userNo.nick }(${rvBestlist.userNo.userId })</p>
+							<p class="userId"><span class="realBlue">${rvBestlist.userNo.nick }</span>(${rvBestlist.userNo.userId })</p>
 						</div>
 					</div>
 				</div>
@@ -529,7 +541,7 @@
 						<p class="text classSec"><i class="fas fa-coffee"></i> ${rvBestlist.cafeNo.cafeName}</p>
 						<div class="user">
 							<div class="icon"><img src="${pageContext.request.contextPath}/resources/images/${rvBestlist.userNo.userGrade.userGradeImage}" alt="등급아이콘"></div>
-							<p class="userId">${rvBestlist.userNo.nick }(${rvBestlist.userNo.userId })</p>
+							<p class="userId"><span class="realBlue">${rvBestlist.userNo.nick }</span>(${rvBestlist.userNo.userId })</p>
 						</div>
 					</div>
 				</div>
@@ -575,76 +587,47 @@
 		</div>
 		<div class="recommendRand mb30">
 			<h3 class="bottomLine  communityTitle">
-				<span class="recommendZoneOrangeIcon">${ranRecommend1.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend1.themeNo.themeName}</span> 추 천 카 페  </h3>
+				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  </h3>
 			<ul class="recommendRandWrap">
 				<li>
-					<c:forEach var="file" items="${ranRecommend1.files}" begin="0" end="0" varStatus="status">	
+					<c:forEach var="file" items="${ranRecommend.files}" begin="0" end="0" varStatus="status">	
 						<input type="hidden" class="readImgName" value="${file.imageName}">
 					</c:forEach>								
 					<div class="readImgBox">
 					</div>
 				</li>
 				<li>
-					<h2 id="RC_cafeName">${ranRecommend1.writingTitle}</h2>
-					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend1.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
-					<span class="bold">${ranRecommend1.userNo.nick }(${ranRecommend1.userNo.userId })</span>
+					<h2 id="RC_cafeName">${ranRecommend.writingTitle}</h2>
+					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
+					<span class="bold">${ranRecommend.userNo.nick }(${ranRecommend.userNo.userId })</span>
 					<p class="ranCnt bold">
-					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend1.viewNumber}"/></span>
-					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend1.voteNumber}"/></span>
-					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend1.replyCnt}"/></span>
+					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.viewNumber}"/></span>
+					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.voteNumber}"/></span>
+					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.replyCnt}"/></span>
 					</p>
 					<div class="clickBtn">
-						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend1.boardNo}">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend.boardNo}">
 						 <span class="viewMoreText">추천카페 자세히 보기</span> <span class="orange bold">></span>
 						</a>
 					</div>
 				</li>
 				<li>
-					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend1.address}</span>
+					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend.address}</span>
 					<div id="map"></div>
 				</li>
 			</ul>
 		</div>
 		
-		<div class="recommendRand mb30">
-			<h3 class="bottomLine  communityTitle">
-				<span class="recommendZoneOrangeIcon">${ranRecommend2.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend2.themeNo.themeName}</span> 추 천 카 페  </h3>
-			<ul class="recommendRandWrap">
-				<li>
-					<c:forEach var="file" items="${ranRecommend2.files}" begin="0" end="0" varStatus="status">	
-						<input type="hidden" class="readImgName" value="${file.imageName}">
-					</c:forEach>								
-					<div class="readImgBox">
-					</div>
-				</li>
-				<li>
-					<h2 id="RC_cafeName">${ranRecommend2.writingTitle}</h2>
-					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend2.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
-					<span class="bold">${ranRecommend2.userNo.nick }(${ranRecommend2.userNo.userId })</span>
-					<p class="ranCnt bold">
-					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend2.viewNumber}"/></span>
-					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend2.voteNumber}"/></span>
-					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend2.replyCnt}"/></span>
-					</p>
-					<div class="clickBtn">
-						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend2.boardNo}">
-						 <span class="viewMoreText">추천카페 자세히 보기</span> <span class="orange bold">></span>
-						</a>
-					</div>
-				</li>
-				<li>
-					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend2.address}</span>
-					<div id="map"></div>
-				</li>
-			</ul>
-		</div>							
+					
 		<div class="bestWriter mb30">
 			<h3 class="bottomLine  communityTitle">열혈 MuKKa人 3인방 <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
 			<ul class="bestUserInfo">
 				<c:forEach var="bestUserAll" items="${bestUserAll}" begin="0" end="2" varStatus="status">	
 					<li>
+						<span class="bold rankTitle"></span>
+						<br>
 						<img src="${pageContext.request.contextPath}/resources/images/${bestUserAll.userNo.userGrade.userGradeImage}" class="bestUserGrade"> 
-						<span class="bold"><span class="realBlue">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})</span>
+						<span class="bold"><span class="realBlue yellow">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})</span>
 					</li>
 				</c:forEach>
 			</ul>
@@ -805,6 +788,11 @@
 			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 			map.setCenter(coords);
 		}
-	});	
+	});
+	
+	
+		$(".rankTitle").eq(0).html("<h3><i class='fab fa-angellist'></i> <i>내가 바로 이 구역의 <span class='red'><u>MuKKa人</u></span>이야~</i><span class='orange'> > </span></h3>");
+		$(".rankTitle").eq(1).html("<h3><i class='fab fa-angellist'></i> <i>넌 내 <span class='blue'><u>탐방기</u></span>를 읽으면 눈물이 날껄?!</i><span class='orange'> > </span></h3>");
+		$(".rankTitle").eq(2).html("<h3><i class='fab fa-angellist'></i> <i>널위해 한글자 한글자 <span class='green'><u>정성</u></span>을 담아 썼어</i><span class='orange'> > </span></h3>");
 </script>
 <%@ include file="../userInclude/footer.jsp" %>
