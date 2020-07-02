@@ -1657,6 +1657,7 @@
 		var marginLeft = index2 * 920;
 		$("ul#banner2").animate({"margin-left":marginLeft+"px"},1500);
 	})
+	
 	//prev버튼
 	$("#prevBtn2").click(function() {
 		if(index2 == 0){
