@@ -494,7 +494,7 @@
 			
 		<!-- 카페탐방기 베스트 -->
 		<div class="cafeReviewBest mb30">
-			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 탐방기 ♥</span></span></h3>
+			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>|&nbsp;&nbsp; <span class="red">많이 사랑받은 탐방기 ♥</span></span></h3>
 			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="0" end="0" varStatus="status"> 
 				<div class="best1">
 					<div class="RV_bestPoint">BEST</div>
@@ -565,7 +565,7 @@
 	
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest mb30">
-			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페 ♥</span></span></h3>
+			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>|&nbsp;&nbsp; <span class="red">많이 사랑받은 추천 카페 ♥</span></span></h3>
 			<div class="recomWrap">
 				<ul>
 					<c:forEach var="rcBestlist" items="${rcBestlist}">
@@ -587,7 +587,7 @@
 		</div>
 		<div class="recommendRand mb30">
 			<h3 class="bottomLine  communityTitle">
-				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  </h3>
+				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  <span class="fs16"> &nbsp;|&nbsp;&nbsp; <span class="orange">오늘 어디갈지 고민이라면?!</span></span></h3>
 			<ul class="recommendRandWrap">
 				<li>
 					<c:forEach var="file" items="${ranRecommend.files}" begin="0" end="0" varStatus="status">	
@@ -620,7 +620,7 @@
 		
 					
 		<div class="bestWriter mb30">
-			<h3 class="bottomLine  communityTitle">열혈 MuKKa人 3인방 <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
+			<h3 class="bottomLine  communityTitle">열혈 MuKKa人 3인방 <span class="fs16"> &nbsp;|&nbsp;&nbsp; <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
 			<ul class="bestUserInfo">
 				<c:forEach var="bestUserAll" items="${bestUserAll}" begin="0" end="2" varStatus="status">	
 					<li>
