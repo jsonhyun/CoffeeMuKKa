@@ -330,6 +330,12 @@ public class BoardService {
 	}	
 
 
-
+	public List<BoardVO> bestUserBoardInfo(int userNo) throws Exception {
+		return dao.bestUserBoardInfo(userNo);
+	}
+	
+	public List<Integer> recommedBoardNo() throws Exception {
+		return dao.recommedBoardNo();
+	}	
 
 }

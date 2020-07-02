@@ -132,6 +132,7 @@ INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(666, 2, NULL, 218, 7, 3, NULL, NULL, '쎄라비음악다방', '2020-05-28 20:24:37.0', '2020-05-28 20:24:37.0', 3800, 0, 1, '드라마 사랑비 촬영장소~
 아메리카노 테이크 아웃시 2500원이래요^^', '대구 중구 국채보상로102길 60', 0);
+
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(667, 2, NULL, 211, 4, 4, NULL, NULL, '베리베리', '2020-05-28 20:25:56.0', '2020-05-28 20:25:56.0', 0, 10, 1, '달달하니 좋아요~', '대구 달서구 달구벌대로309길 8', 0);
@@ -139,11 +140,14 @@ INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(668, 2, NULL, 212, 10, 3, NULL, NULL, '아이니드커피', '2020-05-28 20:26:51.0', '2020-05-28 20:26:51.0', 3200, 0, 1, '허겁지겁 먹는다고 사진을 못찍었네요~
 간단히 다녀와볼만한 동네카페~', '대구 달성군 다사읍 달구벌대로 878', 0);
+
+-- 빼먹음
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(669, 2, NULL, 209, 3, 4, NULL, NULL, '베리앙쥬', '2020-05-28 20:28:08.0', '2020-05-28 20:28:08.0', 0, 0, 1, '회사 근처에서 언니들하고 맛있게 먹었어요~
 여기는 정말 디저트가 진리인듯
 스벅 갈필요가 없습니다!', '대구 달서구 성당로 3', 0);
+-- 
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(670, 2, NULL, 1, 10, 1, NULL, NULL, '아이니드커피', '2020-05-28 20:29:05.0', '2020-05-28 20:29:05.0', 0, 0, 1, '남자친구랑 4시간동안 수다 떨고왔어요~ 사장님도 진짜 친절하심!', '대구 달성군 다사읍 달구벌대로 878', 0);
@@ -165,6 +169,8 @@ VALUES(675, 2, NULL, 216, 1, 1, NULL, NULL, '마주봄', '2020-05-28 20:34:52.0'
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(676, 2, NULL, 215, 9, 3, NULL, NULL, '넘버더스타즈', '2020-05-28 20:35:42.0', '2020-05-28 20:35:42.0', 0, 0, 1, '시원하고 좋아요!', '대구 남구 현충로 54', 0);
+
+
 INSERT INTO coffeemukka.board
 (board_no, board_no2, key_sort_no, user_no, zone_no, theme_no, cafe_no, writing_lock_condition, writing_title, registration_date, update_date, view_number, vote_number, board_del_cdt, writing_content, address, reply_cnt)
 VALUES(677, 2, NULL, 214, 9, 1, NULL, NULL, '넘버더스타즈', '2020-05-28 20:36:26.0', '2020-05-28 20:36:26.0', 2500, 0, 1, '디저트도 많고, 오래 앉아있다가 왔어요~', '대구 남구 현충로 54', 0);

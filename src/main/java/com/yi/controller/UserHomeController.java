@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
+import com.yi.domain.PageMaker;
+import com.yi.domain.SearchCriteria;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
 import com.yi.service.CafeService;
@@ -153,7 +156,7 @@ public class UserHomeController {
 	
 	// 커피무까
 	@RequestMapping(value = "/mukkaCafe", method = RequestMethod.GET)
-	public String cafeHome(Model model) throws Exception {
+	public String cafeHome(SearchCriteria cri, Model model) throws Exception {
 		
 		// 영업중인 카페 번호 리스트로 가져오기
 		List<Integer> openCafeNo = cafeService.openCafeNoList();
@@ -319,6 +322,13 @@ public class UserHomeController {
 		model.addAttribute("themeGroupCafe4", themeGroupCafe4);
 		model.addAttribute("themeGroupImg4",themeGroupImg4);
 		
+		List<CafeVO> starPoint5 = cafeService.starPoint5Comment();
+		model.addAttribute("starPoint5", starPoint5);
+		
+		List<Integer> starPoint5Cnt = cafeService.starPoint5CommentCnt();
+		model.addAttribute("starPoint5Cnt", starPoint5Cnt);
+		 
+		
 		return "/user/userMukkaCafeHome";
 	}
 	
@@ -350,6 +360,26 @@ public class UserHomeController {
 		}
 		model.addAttribute("rvBestlistImg", rvBestlistImg);
 		
+		//열혈무까인 리스트(종합)
+		List<BoardVO> bestUserAll = boardService.bestUserAllBoard();
+		model.addAttribute("bestUserAll",bestUserAll);
+		
+		List<BoardVO> bestUserBoardInfo = new ArrayList<BoardVO>();
+		for(int i=0;i<3;i++) { //3명만
+			int bestUserNo = bestUserAll.get(i).getUserNo().getUserNo();
+			bestUserBoardInfo.addAll(boardService.bestUserBoardInfo(bestUserNo));
+		}
+		model.addAttribute("bestUserBoardInfo", bestUserBoardInfo);
+		
+		List<ImageVO> bestUserBoardImg = new ArrayList<ImageVO>();
+		for(int i=0;i<bestUserBoardInfo.size();i++) {
+			int sboardNo = bestUserBoardInfo.get(i).getBoardNo();
+			bestUserBoardImg.addAll(boardService.recommendboardImgList(sboardNo));	
+		}
+		
+		model.addAttribute("bestUserBoardImg", bestUserBoardImg);	
+		
+		
 		//추천 카페 리스트 - 주천수(종합) & 대표이미지
 		List<BoardVO> rcBestlist = boardService.rcRankVoteAll();
 		model.addAttribute("rcBestlist",rcBestlist);
@@ -360,7 +390,16 @@ public class UserHomeController {
 			rcBestlistImg.addAll(boardService.recommendboardImgList(sboardNo));	
 		}
 		
-		model.addAttribute("rcBestlistImg", rcBestlistImg);		
+		model.addAttribute("rcBestlistImg", rcBestlistImg);	
+		
+		
+		// 추천카페 글번호 뽑기
+		List<Integer> recommendBoardNo = boardService.recommedBoardNo();
+		Collections.shuffle(recommendBoardNo);
+		int boardNo = recommendBoardNo.get(0);
+		
+		BoardVO vo = boardService.recommendReadByNo(boardNo);
+		model.addAttribute("ranRecommend", vo);
 		
 		return "/user/userCommunityHome";
 	}

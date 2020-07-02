@@ -81,18 +81,21 @@
 	}
 	li.mainBox:first-child:hover span.viewpoint-first{
 		opacity: 1;
+		right: 150px;
 	}
 	li.mainBox:nth-child(2):hover{
 		background-color: rgba(76, 76, 76, 0.9);
 	}
 	li.mainBox:nth-child(2):hover span.viewpoint-second{
 		opacity: 1;
+		left: 150px;
 	}	
 	li.mainBox:last-child:hover{
 		background-color: rgba(76, 76, 76, 0.9);
 	}
 	li.mainBox:last-child:hover span.viewpoint-third{
 		opacity: 1;
+		right: 150px;
 	}			
 	p.mainInfoText{
 		color: rgba(246, 246, 246, 0.8);
@@ -115,30 +118,30 @@
 	}
 	span.viewpoint-first{
 		position: absolute;
-		right: 150px;
+		right: 200px;
 		top: 138px;
 		color: white;
 		font-weight: bold;
 		opacity: 0;
-		transition:2s all ease;
+		transition:1s all ease;
 	}
 	span.viewpoint-second{
 		position: absolute;
-		left: 150px;
+		left: 200px;
 		top: 120px;
 		color: white;
 		font-weight: bold;
 		opacity: 0;
-		transition:2s all ease;
+		transition:1s all ease;
 	}
 	span.viewpoint-third{
 		position: absolute;
-		right: 150px;
+		right: 200px;
 		top: 120px;
 		color: white;
 		font-weight: bold;
 		opacity: 0;
-		transition:2s all ease;
+		transition:1s all ease;
 	}					
 	/* 파워링크 */
 	.powerLinkArea {
@@ -327,7 +330,7 @@
 	.dron{
 		position: absolute;
 		z-index: 1;
-		width: 9.5%;
+		width: 176px;
 		height: 190px;
 		border: 5px solid red;
 		margin: -5px;

@@ -149,6 +149,7 @@
 	.contentArea .cafeReviewBest .user .userId {
 		float: left;
 		font-weight: bold;
+		font-size: 14px;
 	}
 	
 	.contentArea .cafeReviewBest .boxs {
@@ -159,19 +160,22 @@
 	.contentArea .cafeReviewBest .bests {
 		border-top: 1px solid #545454;
 		border-bottom: 1px solid #545454;
-		margin-bottom: 10px;
+		margin-bottom: 23.5px;
 		overflow: hidden;
+	}
+	.contentArea .cafeReviewBest .bests:last-child{
+		margin-bottom: none;
 	}
 	
 	.contentArea .cafeReviewBest .bests .img {
 		float: left;
 		width: 45%;
-		height: 238px;
+		height: 145px;
 		position: relative;
 	}
 	.contentArea .cafeReviewBest .bests .img img{
 		width: 100%;
-		height: 238px;
+		height: 145px;
 	}
 	div.RV_rankNo{
 		position: absolute;
@@ -232,6 +236,232 @@
 		background-color: #ED7D31;
 	}
 	
+	div.userWriteAdd{
+		width: 100%;
+		height: 300px;
+		background: url("${pageContext.request.contextPath }/resources/images/add_sample03.jpg") no-repeat;
+		background-size: cover;
+		margin: 50px 0 50px 0;
+		position: relative;
+		z-index: 0;
+	}
+	ul.writeGoWrap{
+		width: 100%;
+		height: 300px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+	ul.writeGoWrap li{
+		padding: 0 80px 0 80px;
+		color: rgba(246, 246, 246, 0.9);
+	}
+	ul.writeGoWrap li:first-child{
+		height: 150px;
+		background-color: rgba(189, 189, 189, 0.5);
+		text-align: right;
+		transition:2s all ease;
+	}
+	ul.writeGoWrap li:last-child{
+		height: 150px;
+		background-color: rgba(189, 189, 189, 0.5);
+		text-align: left;
+		transition:2s all ease;
+	}
+	ul.writeGoWrap li p{
+		font-size: 20px;
+		padding-top: 32px;
+		letter-spacing: 4px;
+	}
+	ul.writeGoWrap li h1{
+		font-size: 45px;		
+		letter-spacing: 5px;
+	}	
+	ul.writeGoWrap li:hover{
+		background-color: rgba(76, 76, 76, 0.9);
+		color: white;
+		cursor: pointer;
+	}
+    ul.writeGoWrap li:first-child:hover span.viewpoint-first{
+    	opacity: 1;
+    	left: 150px;
+    }
+     ul.writeGoWrap li:last-child:hover span.viewpoint-second{
+    	opacity: 1;
+    	right: 150px;
+    }  	
+	span.viewpoint-first{
+		position: absolute;
+		left: 200px;
+		top: 90px;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+		transition:1s all ease;
+	}
+	span.viewpoint-second{
+		position: absolute;
+		right: 200px;
+		bottom: 30px;
+		color: white;
+		font-weight: bold;
+		opacity: 0;
+		transition:1s all ease;
+	}
+	img#viewpoint_right{ /* 이미지 좌우 봔전 */
+		transform:rotate(0deg);
+   		-moz-transform: scaleX(-1); 
+     	-o-transform: scaleX(-1); 
+		-webkit-transform: scaleX(-1); 
+        transform: scaleX(-1); 
+	}
+	
+	/* 열혈무까인 */
+	div.bestWriter{
+		width: 100%;
+		height: 600px;
+	}
+	.bestUserGrade{
+		width: 35px;
+		height: 35px;
+		vertical-align: middle;
+		padding-right: 5px;
+	}
+	ul.bestUserInfo{
+		width: 40%;
+		float: left;
+	}
+	ul.bestUserInfo li{
+		height: 35px;
+		padding: 45px 0 45px 20px;
+		margin: 10px 0 60px 0;
+	}
+
+	ul.bestUserBoardInfo{
+		width: 60%;
+		float: right;
+	}
+	ul.bestUserBoardInfo li{
+		width: 150px;
+		float:left;
+		padding: 15px;
+		margin-bottom: 20px;
+	}	
+	img.bestUserBoardImg{
+		width: 145px;
+		height: 100px;
+		border-radius: 10px;
+	}
+	ul.bestUserBoardInfo li:hover{
+		background: #eee;
+		border-radius: 10px;
+	}
+	div.bestWriteTitle{
+		width: 100%;
+		height: 30px;
+	}
+	.realBlue{
+		color: blue;
+	}
+	
+	/*랜덤*/
+	.recommendRand{
+		width: 100%;
+		height: 290px;
+		border-bottom: 2px solid #545454;
+		margin-bottom: 50px;
+	}
+	.recommendRand .recommendZoneOrangeIcon{
+		background: url("${pageContext.request.contextPath }/resources/images/point_w.png") no-repeat;
+		background-size: 25px;
+		background-position: 5px center;
+		background-color: #ED7D31;
+		padding: 4px 10px;
+		padding-left: 35px;
+		color: #fff;
+		font-weight: 700;
+		float: left;
+		border-radius: 5px;
+	}
+	.keyword_box{
+		color: white;
+		letter-spacing: 3px;
+		border-radius: 6px;
+		padding: 0 8px;
+		font-size: 24px;
+		margin: 0 15px;
+	}
+	ul.recommendRandWrap{
+		width: 100%;
+	}
+	ul.recommendRandWrap li{
+		float: left;
+		margin: 0 7px;
+	}
+	ul.recommendRandWrap li:first-child{
+		width: 25%;
+		height: 200px;
+	}
+	.readImgBox img{
+		width: 100%;
+		height: 200px;
+	}
+	ul.recommendRandWrap li:nth-child(2){
+		width: 30%;
+		height: 200px;
+	}
+	h2#RC_cafeName{
+		padding: 10px 0 15px 0;
+	}
+	ul.recommendRandWrap li:last-child{
+		width: 40%;
+		height: 200px;
+	}
+	.rcRandGrade{
+		width: 25px;
+		height: 25px;
+		vertical-align: middle;
+	}
+	span.mapTitle{
+		background-color: #303A50;
+		color: white;
+		font-weight: bold;
+		padding-left: 5px;
+		padding-right: 5px;
+		border-radius: 3px;
+		letter-spacing: 2px;
+	}
+	p.ranCnt{
+	  margin: 10px;		
+	}
+	div.clickBtn{
+		width: 100%;
+		height: 50px;
+		text-align: center;
+		letter-spacing: 5px;
+		border: 1px solid #545454;
+		margin-top: 20px;
+		line-height: 50px;
+	}
+	div.clickBtn:hover{
+		background: #ED7D31;
+		border: none;
+		font-weight: bold;
+	}
+	div.clickBtn:hover .orange{
+		color: white;
+	}
+	div.clickBtn:hover .viewMoreText{
+		color: white;
+	}	
+	#map{
+		width: 368px;
+		height: 165px;
+		margin-top: 11px;
+		border-radius: 11px;
+		border: 2px solid #303A50;
+	}			
 </style>
 <div class="content subPageContent">
 	<!-- 서브페이지 콘텐츠 -->
@@ -252,7 +482,7 @@
 			
 		<!-- 카페탐방기 베스트 -->
 		<div class="cafeReviewBest mb30">
-			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 탐방기</span></span></h3>
+			<h3 class="bottomLine communityTitle">생생 카페 탐방기 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 탐방기 ♥</span></span></h3>
 			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="0" end="0" varStatus="status"> 
 				<div class="best1">
 					<div class="RV_bestPoint">BEST</div>
@@ -280,7 +510,7 @@
 				</div>
 			</c:forEach>
 			<div class="boxs">
-			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="1" end="2" varStatus="status"> 			
+			<c:forEach var="rvBestlist" items="${rvBestlist}" begin="1" end="3" varStatus="status">	
 				<div class="bests">
 					<div class="img temp">
 						<!-- 이미지 이름 꺼내서 삽입하기 -->
@@ -306,10 +536,24 @@
 			</c:forEach>
 			</div>
 		</div>
-		
+		<div class="userWriteAdd">
+			<ul class="writeGoWrap">
+				<li id="goReview">
+						<p><i>들려주세요, 당신이 느낌 감성 그대로</i></p>
+						<h1><i>생생 카페 탐방기</i></h1>
+						<span class="viewpoint-first"><i>Let's Go!</i>　<img src="${pageContext.request.contextPath }/resources/images/viewpoint.png" id="viewpoint_right"></span>
+				</li>
+				<li id="goRecommend">
+						<p><i>나 혼자만 알기 아까운 바로 그 카페</i></p>
+						<h1><i>MuKKa人 추천 카페</i></h1>
+						<span class="viewpoint-second"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>Let's Go!</i></span>
+				</li>
+			</ul>					
+		</div>		
+	
 		<!-- 추천 카페 베스트 -->
 		<div class="recommendBest mb30">
-			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페</span></span></h3>
+			<h3 class="bottomLine  communityTitle">MuKKa人 추천 카페 <span class="fs16"> <span class="bestTitle">BEST</span>| <span class="red">많이 사랑받은 추천 카페 ♥</span></span></h3>
 			<div class="recomWrap">
 				<ul>
 					<c:forEach var="rcBestlist" items="${rcBestlist}">
@@ -329,6 +573,84 @@
 				</ul>
 			</div>
 		</div>
+		<div class="recommendRand mb30">
+			<h3 class="bottomLine  communityTitle">
+				<span class="recommendZoneOrangeIcon">${ranRecommend.zoneNo.zoneName}</span> <span class="keyword_box">#${ranRecommend.themeNo.themeName}</span> 추 천 카 페  </h3>
+			<ul class="recommendRandWrap">
+				<li>
+					<c:forEach var="file" items="${ranRecommend.files}" begin="0" end="0" varStatus="status">	
+						<input type="hidden" class="readImgName" value="${file.imageName}">
+					</c:forEach>								
+					<div class="readImgBox">
+					</div>
+				</li>
+				<li>
+					<h2 id="RC_cafeName">${ranRecommend.writingTitle}</h2>
+					<img src="${pageContext.request.contextPath }/resources/images/${ranRecommend.userNo.userGrade.userGradeImage}" alt="등급아이콘" class="rcRandGrade">
+					<span class="bold">${ranRecommend.userNo.nick }(${ranRecommend.userNo.userId })</span>
+					<p class="ranCnt bold">
+					조회 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.viewNumber}"/></span>
+					추천 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.voteNumber}"/></span>
+					댓글 <span class="red"><fmt:formatNumber type="number" maxFractionDigits="3" value="${ranRecommend.replyCnt}"/></span>
+					</p>
+					<div class="clickBtn">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${ranRecommend.boardNo}">
+						 <span class="viewMoreText">추천카페 자세히 보기</span> <span class="orange bold">></span>
+						</a>
+					</div>
+				</li>
+				<li>
+					<span class="mapTitle">지도</span> | <span id="RC_address">${ranRecommend.address}</span>
+					<div id="map"></div>
+				</li>
+			</ul>
+		</div>			
+		<div class="bestWriter mb30">
+			<h3 class="bottomLine  communityTitle">열혈 MuKKa人 3인방 <span class="fs16"> | <span class="blue">열혈작가들의 최신글 만나보기</span></span></h3>
+			<ul class="bestUserInfo">
+				<c:forEach var="bestUserAll" items="${bestUserAll}" begin="0" end="2" varStatus="status">	
+					<li>
+						<img src="${pageContext.request.contextPath}/resources/images/${bestUserAll.userNo.userGrade.userGradeImage}" class="bestUserGrade"> 
+						<span class="bold"><span class="realBlue">${bestUserAll.userNo.nick}</span>(${bestUserAll.userNo.userId})</span>
+					</li>
+				</c:forEach>
+			</ul>
+			<ul class="bestUserBoardInfo">
+				<c:forEach var="bestUserBoardInfo" items="${bestUserBoardInfo}">
+					<li>
+					<c:if test="${bestUserBoardInfo.boardNo2.boardNo == 1}">
+						<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${bestUserBoardInfo.boardNo}">
+							<c:forEach var="bestUserBoardImg" items="${bestUserBoardImg}">			
+									<c:if test="${bestUserBoardImg.boardNo.boardNo == bestUserBoardInfo.boardNo }">
+										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${bestUserBoardImg.imageName}" class="thumbNailImg bestUserBoardImg" alt="카페대표이미지"
+											onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'"><br>
+											<div class="bold classOne bestWriteTitle">
+												<c:if test="${bestUserBoardInfo.boardNo2.boardNo == 1}">
+													<span class="blue">[탐방기]</span>
+												</c:if>
+											${bestUserBoardInfo.writingTitle}</div>
+									</c:if>
+							</c:forEach>
+						</a>					
+					</c:if>
+					<c:if test="${bestUserBoardInfo.boardNo2.boardNo == 2}">
+						<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${bestUserBoardInfo.boardNo}">
+							<c:forEach var="bestUserBoardImg" items="${bestUserBoardImg}">			
+									<c:if test="${bestUserBoardImg.boardNo.boardNo == bestUserBoardInfo.boardNo }">
+										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${bestUserBoardImg.imageName}" class="thumbNailImg bestUserBoardImg" alt="카페대표이미지"
+											onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'"><br>
+											<div class="bold classOne bestWriteTitle">
+											<span class="red">[추천카페]</span>
+											${bestUserBoardInfo.writingTitle}</div>
+									</c:if>
+							</c:forEach>
+						</a>					
+					</c:if>												
+
+					</li>
+				</c:forEach>
+			</ul>
+		</div>				
 	</div>
 </div>
 	
@@ -336,6 +658,7 @@
 <%-- 지우면 안됨 subMenu.jsp에 container 시작 태그 있음 --%>
 </div>
 <!-- container end -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82c67a5c009ecc3de6e3c10d398c0061&libraries=services"></script>
 <script>
 	$("p.dummy_text").animate({"padding-right":"40px","opacity":"1"},1800);
 	$("h1.dummy_title").animate({"margin-right":"50px","opacity":"1"},1800);
@@ -350,12 +673,105 @@
 		console.log(fileName);
 	})
 	
-	for(var i =0;i<2;i++){
+	for(var i =0;i<3;i++){
 		$(".RV_rankNo").eq(i).text(i+2);
 	}
 	
 	for(var i =0;i<20;i++){
 		$(".RC_rankNo").eq(i).text(i+1);
 	}
+	
+	
+	$("li#goReview").click(function() {		
+		var auth = "${Auth}";
+		if(auth == "") {
+			location.href = "${pageContext.request.contextPath }/user/community/cafeReview";
+			return false;
+		}else{
+			location.href = "${pageContext.request.contextPath }/user/community/cafeReview/register";
+		}
+		
+		
+	})
+	
+	
+	$("li#goRecommend").click(function() {		
+		var auth = "${Auth}";
+		if(auth == "") {
+			location.href = "${pageContext.request.contextPath }/user/community/cafeRecommend";
+			return false;
+		}else{
+			location.href = "${pageContext.request.contextPath }/user/community/cafeRecommend/register";
+		}	
+	})
+	
+	
+	$(".keyword_box").each(function(i, obj){
+		var name = $(this).text();
+		console.log(name);
+		var keywordK = ["#데이트", "#뷰", "#착한아메", "#디저트", "#댕댕이", "#작업"];
+		var keyword = ["date", "view", "ame", "dessert", "dog", "work"];
+		
+		for(var i=0; i<keyword.length; i++){
+			if(name.indexOf(keywordK[i]) > -1) {
+				$(this).addClass(keyword[i]);
+			}
+		}
+		
+	})
+	
+	var readfileName = $(".readImgName").val();
+	var start = readfileName.substring(0,12);
+	var end = readfileName.substring(14);
+	var fileName = start + end;
+	
+	$("div.readImgBox").append("<img src = '${pageContext.request.contextPath }/user/displayFile?filename="+fileName+"'>");
+	
+	
+	
+	// -- 지도(주소) -- //
+	
+	// 주소, 카페이름 빼오기
+	var address = $("#RC_address").text();
+	//console.log("주소"+address);
+	var cafeName = $("#RC_cafeName").text();
+	if(address == ""){ //정확한 주소를 알 수 없을때
+		$("#RC_address").removeClass("blue").addClass("red");
+		$("#RC_address").text("정확한 주소를 확인할 수 없습니다.");
+		$("div#addMap").hide(); // 지도 Title remove
+		$("div#map").hide(); // 지도 remove
+	}
+	//console.log("카페이름"+cafeName);
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 1 // 지도의 확대 레벨
+		};
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+
+	// 주소로 좌표를 검색합니다 -- address
+	geocoder.addressSearch(address, function(result, status) {
+		// 정상적으로 검색이 완료됐으면 
+		if (status === kakao.maps.services.Status.OK) {
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			// 결과값으로 받은 위치를 마커로 표시합니다
+			var marker = new kakao.maps.Marker({
+				map : map,
+				position : coords
+			});
+			// 인포윈도우로 장소에 대한 설명을 표시합니다
+			var infowindow = new kakao.maps.InfoWindow({                              //cafeName
+				content : '<div style="width:150px;text-align:center;padding:6px 0;">'+cafeName+'</div>'
+			});
+			infowindow.open(map, marker);
+			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			map.setCenter(coords);
+		}
+	});	
 </script>
 <%@ include file="../userInclude/footer.jsp" %>

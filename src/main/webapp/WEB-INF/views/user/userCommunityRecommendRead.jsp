@@ -506,8 +506,10 @@
 				
 				<!-- (3) 수정/삭제/목록 -->
 				<div class="RC_btnAll f_right">
-					<button type="button" class="greenLineBtn f_left" id="RC_modifyBtn">수정</button>
-					<button type="button" class="redLineBtn f_left" id="RC_deleteBtn">삭제</button>
+					<c:if test="${board.userNo.userNo == AuthNo}">				
+						<button type="button" class="greenLineBtn f_left" id="RC_modifyBtn">수정</button>
+						<button type="button" class="redLineBtn f_left" id="RC_deleteBtn">삭제</button>
+					</c:if>	
 					<button class="navyBtn2 f_left" id="RC_listBtn">목록</button>
 				</div>
 				
@@ -1039,13 +1041,29 @@
 		getPageList(no);
 	})
 	
+	/* 댓글 작성 전 로그인 여부 확인 */
+	$("#newReply").click(function() {
+		var authNo = "${AuthNo}";
+		if(authNo == "") {
+			loginShow();
+		}
+	})	
+	
 	/* 댓글 추가 */
 	$("#RC_replyAddBtn").click(function(){
 		// login 기능 구현 후 수정해야함
-		var userNo = 3;
+		var userNo = "${AuthNo}";
 		
 		var boardNo = ${board.boardNo};
 		var newReply = $("#newReply").val();
+		
+		if(newReply == "") {
+			alert("댓글 내용을 작성해주세요.");
+			return false;
+		} else if(userNo == ""){
+			loginShow();
+			return false;
+		}
 		
 		var json = JSON.stringify({"boardNo":{"boardNo" : boardNo}, "userNo": {"userNo" : userNo}, "commentContent":newReply});
 		$.ajax({
@@ -1184,7 +1202,9 @@
 				}
 			})
 		}		
-	}) 	
+	})
+	
+	
 </script>
 
 <%@ include file="../userInclude/footer.jsp" %>

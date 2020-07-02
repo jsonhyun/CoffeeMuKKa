@@ -3,8 +3,8 @@ select user(), database();
 show tables;
 
 select * from cafe; -- 카페
-select * from board; -- 게시판
-select * from users;-- 회원 현황
+select * from board; where board_no =26; -- 게시판
+select * from users where nick = '자바칩프라푸치노'; -- 회원 현황
 select * from admin; -- 관리자
 select * from theme; -- 테마 분류
 select * from zone; -- 위치 분류
@@ -12,7 +12,7 @@ select * from reply; -- 댓글 테이블
 select * from boardkinds; -- 게시판 분류
 select * from menukinds; -- 메뉴 분류
 select * from menu; -- 메뉴
-select * from starpoint; -- 별점
+select * from starpoint where cafe_no =60;-- 별점
 select * from type; -- 회원 타입
 select * from grade; -- 회원 등급
 select * from authority; -- 관리자 권한
@@ -20,6 +20,8 @@ select * from wishlist; -- 위시리스트
 select * from image;
 -- 이미지
 select * from vote; -- 추천리스트
+
+select * from starpoint;
 
 -- ----------------------------------
 
@@ -1412,7 +1414,7 @@ left join cafe c on s.cafe_no = c.cafe_no
 left join zone z on c.zone_no = z.zone_no 
 left join users u on s.user_no = u.user_no
 left join theme t on s.theme_no = t.theme_no 
-where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc;
+where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc limit 5;
 
 select * from starpoint;
 
@@ -1424,4 +1426,108 @@ where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 
 
 group by c.cafe_name order by count(s.star_point) desc;
 		
-select count(cafe_no) from cafe c;		
+select count(cafe_no) from cafe c;
+
+
+select b.*, c.*, z.*, t.*, u.*, g.* from board b
+		left join cafe c on b.cafe_no = c.cafe_no 
+		left join zone z on c.zone_no = z.zone_no
+		left join theme t on c.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		where board_no2 = 1 order by b.vote_number desc limit 4;
+
+	
+	
+	
+drop procedure if exists loopVoteInsert_test4;
+delimiter $$
+$$
+create procedure loopVoteInsert_test4()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 2000 DO /*추천 총 갯수*/
+	Insert into vote(board_no, user_no, vote_date) 
+	VALUES(floor(1 + (rand() * 34)), floor(1 + (rand() * 78)), '2020-04-30 10:45:10.0');
+		/* 시작 boardNo , (마지막boardNo-시작boardNo)+1 */
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopVoteInsert_test4();	
+
+
+drop procedure if exists loopReplyInsert_test3;
+delimiter $$
+$$
+create procedure loopReplyInsert_test3()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 300 DO
+
+	insert into reply(board_no, user_no, comment_content) values(floor(635 + (rand() * 50)), floor(1 + (rand() * 78)), concat('댓글 테스트 ', i));
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopReplyInsert_test3();
+
+drop procedure if exists loopCnt_test4;
+delimiter $$
+$$
+create procedure loopCnt_test4()
+begin
+DECLARE i INT DEFAULT 1;
+WHILE i <= 34 DO
+
+	update board
+		set vote_number = (select count(*) from vote where board_no = i+1)
+		where board_no = i+1;
+	
+	update board 
+		set reply_cnt = (select count(*) from reply where board_no = i+1) 
+		where board_no = i+1;
+	
+	SET i = i + 1;
+END WHILE;
+end
+delimiter ;
+
+CALL loopCnt_test4();
+
+	
+
+select c.*, z.*, t.* , s.*, u.* from starpoint s
+		left join cafe c on s.cafe_no = c.cafe_no
+		left join zone z on c.zone_no = z.zone_no 
+		left join users u on s.user_no = u.user_no
+		left join theme t on s.theme_no = t.theme_no 
+		where c.cafe_cdt = 1 and s.star_point = 5 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(s.registration_date,7) group by c.cafe_name order by count(s.star_point) desc limit 5;
+		
+select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b
+left join users u on b.user_no = u.user_no
+left join grade g on u.user_grade = g.user_grade
+group by b.user_no order by count(b.user_no) desc limit 10;
+
+select * from board where user_no = 1 order by registration_date desc limit 3;
+
+
+select * from board where user_no = 209 order by registration_date desc limit 3;
+
+select * from board where user_no = 214 order by registration_date desc limit 3;
+
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		left join image i on b.board_no = i.board_no
+		where b.board_no2 = 2 and b.board_no = #{boardNo}
+		
+select board_no from board where board_no2 = 2;
+
+

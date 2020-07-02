@@ -453,6 +453,7 @@ public class UserBoardController {
 		System.out.println("번호는요"+boardNo);
 		System.out.println("TEST============================================="+vo);
 		model.addAttribute("board", vo);
+		System.out.println(vo);
 		model.addAttribute("cri", cri);
 		
 		return "/user/userCommunityRecommendModify";
