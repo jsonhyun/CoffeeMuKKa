@@ -4,6 +4,7 @@ show tables;
 
 select * from cafe; -- 카페
 select * from board where board_no = 912;
+
 where board_no =26; -- 게시판
 select * from users where nick = '자바칩프라푸치노';
 -- 회원 현황

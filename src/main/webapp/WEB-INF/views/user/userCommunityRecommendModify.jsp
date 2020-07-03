@@ -368,16 +368,18 @@
 			<!-------------------------------- 실질적인 등록폼 -------------------------------->
 			<form action="modify" method="post" enctype="multipart/form-data">
 			<!-- hidden처리 -->
-			<input type="text" name="board.boardNo" value="${board.boardNo}">
+			<input type="text" name="boardNo" value="${board.boardNo}">
 			<input type="text" name="boardNo2.boardNo" value="2">
 			<input type="text" name="userNo.userNo" value="${board.userNo.userNo}">
 			<input type="text" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
 			<input type="text" name="themeNo.themeNo" id="hiddenTheme" value="${board.themeNo.themeNo}">
 			<input type="text" name="writingTitle" id="hiddenTitle" value="${board.writingTitle}">
 			<input type="text" name="address" id="hiddenAddress" value="${board.address}">
-			<input type="text" value="${cri.page}" name="page">
-			<input type="text" value="${cri.searchType}" name="searchType">
-			<input type="text" value="${cri.keyword}" name="keyword">
+			<input type="hidden" name="page" value="${cri.page }" />
+			<input type="hidden" name="searchZone" value="${cri.searchZone }" />
+			<input type="hidden" name="searchTheme" value="${cri.searchTheme }" />
+			<input type="hidden" name="searchType" value="${cri.searchType }" />
+			<input type="hidden" name="keyword" value="${cri.keyword }" />
 			<!-- 카페후기 글 -->		
 			<div class="RC_Rg_groub">	
 				<textarea rows="15" cols="100" name="writingContent" id="text" placeholder=" &#13;&#10; &#13;&#10; &#13;&#10; &#13;&#10;    ☞    여러분의 소중한 추천 카페 이야기를 들려주세요.&#13;&#10;">${board.writingContent}</textarea>
@@ -500,8 +502,37 @@
 		}
 	})
 	
-	//등록 폼 버튼
+	//등록 폼 버튼 -- input 검사 후 등록
 	$("form").submit(function(){
+		var zone = $("#hiddenZone").val();
+		var theme = $("#hiddenTheme").val();
+		var cafeName = $("#hiddenTitle").val();
+		var address = $("#hiddenAddress").val();
+		var writingContent = $("#text").val();
+		var imgfiles = $("input[name='imgfiles']").val();
+		
+		console.log(imgfiles);
+
+		
+		if(zone == ""){
+			alert("지역을 선택해 주세요.");
+			return false;
+		}
+		
+		if(theme == ""){
+			alert("테마를 선택해주세요.");
+			return false;
+		}
+		
+		if(cafeName == "" && address == ""){
+			alert("추천카페를 찾아볼까요?");
+			return false;
+		}
+		
+		if(writingContent == ""){
+			alert("내용을 입력해주세요.");
+			return false;
+		}
 		
 	})
 	

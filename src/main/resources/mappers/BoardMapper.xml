@@ -125,7 +125,7 @@
 	</delete>
 	
 	<!-- 추천카페 수정 -->
-	<update id="recommendUpdate" parameterType="BoardVO">
+	<update id="recommendUpdate" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo">
 		update board
 			set zone_no = #{zoneNo.zoneNo}, theme_no = #{themeNo.themeNo}, writing_title = #{writingTitle}, writing_content = #{writingContent}, address = #{address}, update_date = now()
 		where board_no = #{boardNo}

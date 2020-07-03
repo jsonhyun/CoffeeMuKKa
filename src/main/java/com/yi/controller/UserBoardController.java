@@ -387,15 +387,12 @@ public class UserBoardController {
 			
 			if(file.getSize() != 0) {			
 				//upload처리
-				String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-				//System.out.println("저장이름"+savedName);				
+				String savedName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());	
 				fullName.add(savedName);
-				//System.out.println("찍어라"+fullName.toString());
 			}
 		}
 		
 		vo.setStringFiles(fullName);
-		//System.out.println("찍어라2"+vo);
 		
 		service.recommendInsert(vo);
 		return "redirect:/user/community/cafeRecommend";
