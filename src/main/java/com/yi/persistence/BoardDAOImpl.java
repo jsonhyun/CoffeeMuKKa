@@ -36,8 +36,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
-	public List<ImageVO> recommendboardImgList(int sboardNo) throws Exception {
-		return sqlSession.selectList(namespace+"recommendboardImgList", sboardNo);
+	public List<ImageVO> boardImgList(int sboardNo) throws Exception {
+		return sqlSession.selectList(namespace+"boardImgList", sboardNo);
 	}
 
 	//추천카페 -- 등록		

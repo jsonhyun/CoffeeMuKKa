@@ -1105,24 +1105,25 @@
 			<div class="bestLists">
 				<!-- 4위~15위 -->
 				<ul>
-						<c:forEach var="rvlist" items="${rvlist}" begin="3" end="14" varStatus="status">
-							<c:forEach var="rvlistImg" items="${rvlistImg}" begin="3" end="14" varStatus="status">
-							<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
-								<li>
-									<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
-										<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}" class="thumbNailImg" alt="탐방기대표이미지" onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
-										<div class="bestDummy">
-											<div class ="reviewInfoWrap">
-												<h3>${rvlist.writingTitle}</h3>
-												<p class="reviewInfo">${rvlist.zoneNo.zoneName} · #${rvlist.themeNo.themeName} · 추천수 <b>${rvlist.voteNumber}</b></p>
-											</div>
+					<c:forEach var="rvlist" items="${rvlist}" begin="3" end="14" varStatus="status">
+						<c:forEach var="rvlistImg" items="${rvlistImg}" begin="3" end="14" varStatus="status">
+						<c:if test="${rvlistImg.boardNo.boardNo == rvlist.boardNo }">
+							<li>
+								<a href="${pageContext.request.contextPath}/user/community/cafeReview/read?boardNo=${rvlist.boardNo}">
+									<img src="${pageContext.request.contextPath }/user/displayFile?filename=${rvlistImg.imageName}" class="thumbNailImg" alt="탐방기대표이미지" 
+									          onerror="this.src='${pageContext.request.contextPath}/resources/images/rc_noImg.png'">
+									<div class="bestDummy">
+										<div class ="reviewInfoWrap">
+											<h3>${rvlist.writingTitle}</h3>
+											<p class="reviewInfo">${rvlist.zoneNo.zoneName} · #${rvlist.themeNo.themeName} · 추천수 <b>${rvlist.voteNumber}</b></p>
 										</div>
-										<div class="rvRank"></div>					
-									</a>
-								</li>
-							</c:if>
-							</c:forEach>
+									</div>
+									<div class="rvRank"></div>					
+								</a>
+							</li>
+						</c:if>
 						</c:forEach>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
@@ -1422,7 +1423,7 @@
 	$(".newCafeTitleWrap").eq(2).hide();
 	dron_change();
 	
-	//추천카페 - 원본파일 불러오기(선명한 파일)
+	//원본파일 불러오기(선명한 파일)
 	$(".thumbNailImg").each(function(i, obj) {
 		var file = $(this).attr("src");
 		var start = file.substring(0,51);

@@ -65,8 +65,10 @@
 		order by b.board_no desc limit #{cri.pageStart}, #{cri.perPageNum} <!-- 카페추천 : 한페이지당 16개씩 보여줌 -->
 	</select>		 	
 	<!-- 이미지 -->
-	<select id="recommendboardImgList" resultMap="selectImgResult">
-		select b.board_no, i.board_no ,i.image_name from image i left join board b on i.board_no = b.board_no where i.board_no = #{sboardNo} limit 1;
+	<select id="boardImgList" resultMap="selectImgResult">
+		select b.board_no, i.board_no ,i.image_name from image i
+		left join board b on i.board_no = b.board_no
+		where i.board_no = #{sboardNo} limit 1;
 	</select>	
 	<!-- 추천카페 : 글등록 -->
 	<insert id="recommendInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo"> <!-- LAST_INSERT_ID()가 인식되지 않음 -->

@@ -13,7 +13,7 @@ public interface BoardDAO {
 	public List<BoardVO> recommendboardList() throws Exception;
 	//추천카페 -- 페이징된 리스트	
 	public List<BoardVO> recommendboardListSearchCriteria(int cBoardNo, SearchCriteria cri) throws Exception;
-	public List<ImageVO> recommendboardImgList(int sboardNo) throws Exception;
+	public List<ImageVO> boardImgList(int sboardNo) throws Exception;
 
 	//추천카페 -- 등록
 	public void recommendInsert(BoardVO vo) throws Exception;

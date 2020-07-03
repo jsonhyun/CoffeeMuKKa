@@ -93,7 +93,7 @@ public class UserHomeController {
 		//카페베스트리스트 + 카페 별점
 		List<CafeVO> bestCafeList = cafeService.monthBestCafe();
 		model.addAttribute("bestCafeList", bestCafeList);
-		session.setAttribute("bestCafeNumFive", bestCafeList);
+		model.addAttribute("bestCafeNumFive", bestCafeList);
 		
 		List<Double> starpoint = cafeService.monthBestSPoint();
 		model.addAttribute("starpoint", starpoint);
@@ -111,7 +111,7 @@ public class UserHomeController {
 		List<ImageVO> rvlistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<rvlist.size();i++) {
 			int sboardNo = rvlist.get(i).getBoardNo();
-			rvlistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+			rvlistImg.addAll(boardService.boardImgList(sboardNo));	
 		}
 		model.addAttribute("rvlistImg", rvlistImg);
 		
@@ -123,7 +123,7 @@ public class UserHomeController {
 		List<ImageVO> rclistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<rclist.size();i++) {
 			int sboardNo = rclist.get(i).getBoardNo();
-			rclistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+			rclistImg.addAll(boardService.boardImgList(sboardNo));	
 		}
 		
 		model.addAttribute("rclistImg", rclistImg);
@@ -356,7 +356,7 @@ public class UserHomeController {
 		List<ImageVO> rvBestlistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<rvBestlist.size();i++) {
 			int sboardNo = rvBestlist.get(i).getBoardNo();
-			rvBestlistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+			rvBestlistImg.addAll(boardService.boardImgList(sboardNo));	
 		}
 		model.addAttribute("rvBestlistImg", rvBestlistImg);
 		
@@ -374,7 +374,7 @@ public class UserHomeController {
 		List<ImageVO> bestUserBoardImg = new ArrayList<ImageVO>();
 		for(int i=0;i<bestUserBoardInfo.size();i++) {
 			int sboardNo = bestUserBoardInfo.get(i).getBoardNo();
-			bestUserBoardImg.addAll(boardService.recommendboardImgList(sboardNo));	
+			bestUserBoardImg.addAll(boardService.boardImgList(sboardNo));	
 		}
 		
 		model.addAttribute("bestUserBoardImg", bestUserBoardImg);	
@@ -387,7 +387,7 @@ public class UserHomeController {
 		List<ImageVO> rcBestlistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<rcBestlist.size();i++) {
 			int sboardNo = rcBestlist.get(i).getBoardNo();
-			rcBestlistImg.addAll(boardService.recommendboardImgList(sboardNo));	
+			rcBestlistImg.addAll(boardService.boardImgList(sboardNo));	
 		}
 		
 		model.addAttribute("rcBestlistImg", rcBestlistImg);	

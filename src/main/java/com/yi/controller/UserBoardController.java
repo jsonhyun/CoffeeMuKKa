@@ -349,7 +349,7 @@ public class UserBoardController {
 		List<ImageVO> listImg = new ArrayList<ImageVO>();
 		for(int i=0;i<list.size();i++) {
 			int sboardNo = list.get(i).getBoardNo();
-			listImg.addAll(service.recommendboardImgList(sboardNo));
+			listImg.addAll(service.boardImgList(sboardNo));
 			
 		}
 		model.addAttribute("listImg", listImg);
@@ -421,7 +421,7 @@ public class UserBoardController {
 		List<ImageVO> slistImg = new ArrayList<ImageVO>();		
 		 for(int i=0;i<sameCafe.size();i++) { 
 			 int sboardNo = sameCafe.get(i).getBoardNo();
-			 slistImg.addAll(service.recommendboardImgList(sboardNo));
+			 slistImg.addAll(service.boardImgList(sboardNo));
 		 }	
 		model.addAttribute("slistImg", slistImg);
 		
@@ -437,7 +437,7 @@ public class UserBoardController {
 		List<ImageVO> klistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<sameKeyword.size();i++) {
 			int sboardNo = sameKeyword.get(i).getBoardNo();
-		    klistImg.addAll(service.recommendboardImgList(sboardNo));
+		    klistImg.addAll(service.boardImgList(sboardNo));
 		    }
 		model.addAttribute("klistImg", klistImg);
 		
@@ -520,7 +520,7 @@ public class UserBoardController {
 		List<ImageVO> voteAllImg = new  ArrayList<ImageVO>();
 		for(int i=0;i<voteAll.size();i++) {
 			int sboardNo = voteAll.get(i).getBoardNo();
-			voteAllImg.addAll(service.recommendboardImgList(sboardNo));
+			voteAllImg.addAll(service.boardImgList(sboardNo));
 		}
 		model.addAttribute("voteAllImg", voteAllImg);
 		
@@ -531,7 +531,7 @@ public class UserBoardController {
 		List<ImageVO> voteListImg = new  ArrayList<ImageVO>();
 		for(int i=0;i<voteList.size();i++) {
 			int sboardNo = voteList.get(i).getBoardNo();
-			voteListImg.addAll(service.recommendboardImgList(sboardNo));
+			voteListImg.addAll(service.boardImgList(sboardNo));
 		}
 		model.addAttribute("voteListImg", voteListImg);
 		
@@ -542,7 +542,7 @@ public class UserBoardController {
 		List<ImageVO> viewListImg = new  ArrayList<ImageVO>();
 		for(int i=0;i<viewList.size();i++) {
 			int sboardNo = viewList.get(i).getBoardNo();
-			viewListImg.addAll(service.recommendboardImgList(sboardNo));
+			viewListImg.addAll(service.boardImgList(sboardNo));
 		}
 		model.addAttribute("viewListImg", viewListImg);
 		
@@ -553,7 +553,7 @@ public class UserBoardController {
 		List<ImageVO> replyListImg = new  ArrayList<ImageVO>();
 		for(int i=0;i<replyList.size();i++) {
 			int sboardNo = replyList.get(i).getBoardNo();
-			replyListImg.addAll(service.recommendboardImgList(sboardNo));
+			replyListImg.addAll(service.boardImgList(sboardNo));
 		}
 		model.addAttribute("replyListImg", replyListImg);
 		

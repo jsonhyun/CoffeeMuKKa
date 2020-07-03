@@ -345,7 +345,7 @@
 			<form action="register" method="post" enctype="multipart/form-data">
 			<!-- hidden처리 -->
 			<input type="hidden" name="boardNo2.boardNo" value="2">
-			<input type="hidden" name="userNo.userNo" value="1"><!-- 임시 -->	
+			<input type="hidden" name="userNo.userNo"value="${AuthNo }">
 			<input type="hidden" name="zoneNo.zoneNo" id="hiddenZone">
 			<input type="hidden" name="themeNo.themeNo" id="hiddenTheme">
 			<input type="hidden" name="writingTitle" id="hiddenTitle">
@@ -517,6 +517,7 @@
 	
 	//등록카페 확인버튼 자동실행
 	$("button.searchPoint").trigger("click");
+	$(".closeBtn").hide();
 	
 	//검색박스 -- 닫기
  	$(".cafeSearchWrap .closeBtn").click(function(){

@@ -46,8 +46,8 @@ public class BoardService {
 		return dao.recommendboardListSearchCriteria(cBoardNo, cri);
 	}
 
-	public List<ImageVO> recommendboardImgList(int sboardNo) throws Exception {
-		return dao.recommendboardImgList(sboardNo);
+	public List<ImageVO> boardImgList(int sboardNo) throws Exception {
+		return dao.boardImgList(sboardNo);
 	}
 
 	// 추천카페 -- 등록

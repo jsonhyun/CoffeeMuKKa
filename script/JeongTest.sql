@@ -3,8 +3,10 @@ select user(), database();
 show tables;
 
 select * from cafe; -- 카페
-select * from board; where board_no =26; -- 게시판
-select * from users where nick = '자바칩프라푸치노'; -- 회원 현황
+select * from board where board_no = 912;
+where board_no =26; -- 게시판
+select * from users where nick = '자바칩프라푸치노';
+-- 회원 현황
 select * from admin; -- 관리자
 select * from theme; -- 테마 분류
 select * from zone; -- 위치 분류
@@ -1530,4 +1532,87 @@ select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_n
 		
 select board_no from board where board_no2 = 2;
 
+select count(*) from board where board_no2 = 2;
+
+select * from board;
+
+select left(DATE_SUB(curdate(), INTERVAL 0 month),10);-- 2020 07
+
+select left(DATE_SUB(curdate(), INTERVAL 1 month),7); -- 2020 06
+
+select 
+
+select left(now(),10);
+
+select substring(DATE_add(now(),interval -1 month) from 1 for 10);
+
+select now(); -- 2020-07-03 16:39:57.0
+
+select curdate(); -- 2020-07-03
+
+select CAST(DATE_FORMAT(now(),'%Y-%m-%d')AS CHAR(11));
+
+select DATE_FORMAT( NOW(),'%Y%m%d');
+select 
+
+
+select count(*) from board where substring(now(),1,10) = substring(registration_date from 1 for 10);
+ b
+
+select substring(b.registration_date,1,10) as a from board b where left(date_sub(curdate(), interval 1 month),7) = substring(b.registration_date,1,7);
+
+
+select * from board;
+select * from board b where substring(date_add(now(), interval -1 month) from 1 for 7) = substring(b.registration_date,1,7);
+
+select substring(date_add(now(), interval -1 month) from 1 for 10);
+
+;
+select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = 2;
+
+select count(*) from board where CAST(DATE_FORMAT(now(),'%Y-%m-%d')AS CHAR(11));
+
+
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
+		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = #{cafeNo} and s.theme_no != c.theme_no 
+		group by s.theme_no order by cnt desc, s.theme_no limit 2;
+	
+	
+	
+select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+left join theme t on c.theme_no = t.theme_no
+order by c.registration_date desc;
+
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
+left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no =122 and s.theme_no != c.theme_no 
+group by s.theme_no order by cnt desc, s.theme_no limit 2;
+
+	limit #{pageStart}, 16	
+
+select count(*) from board where DATE_FORMAT(registration_date, '%Y%m%d') =  DATE_FORMAT( NOW(),'%Y%m%d' ) and board_no2 = 2;
+
+select count(*) from board where left(now(),10) = left(registration_date, 10) and board_no2 = 2;
+
+where board_no2 =1 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) order by vote_number desc limit 15
+
+select now();
+
+select theme_no, cafe_no from cafe;
+select count()8
+
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
+		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = 1 and s.theme_no != c.theme_no 
+		group by s.theme_no order by cnt desc , s.theme_no limit 2
+union
+
+select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+		left join theme t on c.theme_no = t.theme_no
+		left join starpoint s on c.cafe_no = s.cafe_no;
+	
+		group by c.cafe_no order by c.registration_date desc;
+	
+		
+select * from starpoint;
+union
+select * from starpoint;
 

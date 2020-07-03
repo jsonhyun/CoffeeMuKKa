@@ -763,11 +763,7 @@
 			<p class="f_left replyNick">{{userNo.nick}}</p>
 			<div class="f_left replyCmtBox"><p>{{commentContent}}</p></div>
 			<p class="regitDate orange f_right">{{dateHelper updateDate}}</p>
-			<!-- login 기능 구현 후 c:if 해야함 -->
-			<div class="replyBtn f_right">
-				<a class="replyModify blueBtn off" href="#" data-cmtNo="{{commentNo}}" data-cmtCnt="{{commentContent}}">수정</a>
-				<a class="replyRemove redBtn" href="#" data-cmtNo="{{commentNo}}">삭제</a>
-			</div>
+			{{#replyBtnHelper userNo.userNo commentNo commentContent}}{{/replyBtnHelper}}
 		</li>
 	{{/each}}
 </script>
@@ -877,11 +873,14 @@
 	
 	// -- 수정버튼 -- //	
 	$("#RC_modifyBtn").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/modify?boardNo=${board.boardNo}";
+		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/modify?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
 	})
 	// -- 삭제버튼 -- //	
 	$("#RC_deleteBtn").click(function() {
-		location.href="${pageContext.request.contextPath}/user/community/cafeRecommend";
+		var flag = confirm("추천 카페 게시글을 삭제하시겠습니까?");
+		if(flag) {		
+		 location.href="${pageContext.request.contextPath}/user/community/cafeRecommendremove?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
+		}
 	})	
 	
 	// -- 목록버튼 -- //	
@@ -997,6 +996,20 @@
 		var day = d.getDate();
 		return year + "/" + month + "/" + day;
 	})
+	
+	Handlebars.registerHelper("replyBtnHelper", function(userNo, commentNo, commentContent){
+		var authNo = "${AuthNo}";
+		var replyUserNo = userNo;
+		var replyBtnHtml = '<div class="replyBtn f_right">'
+							+'<a class="replyModify blueBtn off" href="#" data-cmtNo="'+commentNo+'" data-cmtCnt="'+commentContent+'">수정</a>'
+							+'<a class="replyRemove redBtn" href="#" data-cmtNo="'+commentNo+'">삭제</a></div>';
+	
+		if(authNo == replyUserNo) {
+			return replyBtnHtml;
+		} else {
+			return "";
+		}
+	}); 
 	
 	/* 댓글 리스트 */
 	function getPageList( page ){

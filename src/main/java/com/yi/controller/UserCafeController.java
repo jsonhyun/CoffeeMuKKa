@@ -141,7 +141,7 @@ public class UserCafeController {
 		List<ImageVO> klistImg = new ArrayList<ImageVO>();
 		for(int i=0;i<sameKeyword.size();i++) {
 			int sboardNo = sameKeyword.get(i).getBoardNo();
-		    klistImg.addAll(boardService.recommendboardImgList(sboardNo));
+		    klistImg.addAll(boardService.boardImgList(sboardNo));
 		    }
 		model.addAttribute("klistImg", klistImg);
 		
