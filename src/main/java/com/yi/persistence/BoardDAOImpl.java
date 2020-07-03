@@ -91,6 +91,12 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.update(namespace + "recommendUpdate", vo);
 	}
 	
+	@Override
+	public void cafeRecommendRemove(BoardVO vo) throws Exception {
+		sqlSession.update(namespace + "cafeRecommendRemove", vo);
+		
+	}	
+	
 	//추천카페 -- 전체 조회순 랭킹
 	@Override
 	public List<BoardVO> rcRankVoteAll() throws Exception {
@@ -361,6 +367,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<Integer> recommedBoardNo() throws Exception {
 		return sqlSession.selectList(namespace + "recommedBoardNo");
 	}
+
 	
 
 

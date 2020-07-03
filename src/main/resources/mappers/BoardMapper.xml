@@ -123,6 +123,7 @@
 	<delete id="removeRecommendImg">
 		delete from image where image_name = #{imageName}
 	</delete>
+	
 	<!-- 추천카페 수정 -->
 	<update id="recommendUpdate" parameterType="BoardVO">
 		update board
@@ -130,6 +131,12 @@
 		where board_no = #{boardNo}
 	</update>
 	
+	<!-- 추천카페 : 삭제 (삭제 여부 수정) -->
+	<update id="cafeRecommendRemove" parameterType="BoardVO">
+		update board 
+			set board_del_cdt = #{boardDelCdt}
+			where board_no = #{boardNo}
+	</update>	
 		
 	<!-- 재승 추가 -->
 	

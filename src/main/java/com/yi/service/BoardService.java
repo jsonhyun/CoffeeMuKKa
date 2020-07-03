@@ -105,6 +105,11 @@ public class BoardService {
 		 }		 
 	}
 	
+	// 추천카페 삭제 (삭제 여부 수정)
+	public void cafeRecommendRemove(BoardVO vo) throws Exception {
+		dao.cafeRecommendRemove(vo);
+	}	
+	
 	// 추천카페 -- 전체 조회순 랭킹
 	public List<BoardVO> rcRankVoteAll() throws Exception{
 		return dao.rcRankVoteAll();

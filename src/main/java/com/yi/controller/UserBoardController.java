@@ -510,6 +510,19 @@ public class UserBoardController {
 		return "redirect:/user/community/cafeRecommend";
 	}
 	
+	// 추천카페 삭제 (삭제 여부 변경 : db에 데이터는 남겨둠)
+	@RequestMapping(value = "/community/cafeRecommend/remove", method = RequestMethod.GET)
+	public String communityRecommendRemove(BoardVO vo, SearchCriteria cri, Model model) throws Exception {
+		vo.setBoardDelCdt(Condition.YES);
+		service.cafeRecommendRemove(vo);
+		model.addAttribute("page", cri.getPage());
+		model.addAttribute("searchZone", cri.getSearchZone());
+		model.addAttribute("searchTheme", cri.getSearchTheme());
+		model.addAttribute("searchType", cri.getSearchType());
+		model.addAttribute("keyword", cri.getKeyword());
+		return "redirect:/user/community/cafeRecommend";
+	}	
+	
 	//추천카페 베스트 리스트
 	@RequestMapping(value = "/community/cafeRecommend/bestAll", method = RequestMethod.GET)
 	public String communityRecommendBestList(Model model) throws Exception {

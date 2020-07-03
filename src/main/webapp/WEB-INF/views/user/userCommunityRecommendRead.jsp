@@ -879,7 +879,7 @@
 	$("#RC_deleteBtn").click(function() {
 		var flag = confirm("추천 카페 게시글을 삭제하시겠습니까?");
 		if(flag) {		
-		 location.href="${pageContext.request.contextPath}/user/community/cafeRecommendremove?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
+		 location.href="${pageContext.request.contextPath}/user/community/cafeRecommend/remove?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}";
 		}
 	})	
 	
