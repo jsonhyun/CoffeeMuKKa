@@ -449,9 +449,42 @@
 		}
 	})
 	
-	//등록 폼 버튼
+	//등록 폼 버튼 -- input 검사 후 등록
 	$("form").submit(function(){
+		var zone = $("#hiddenZone").val();
+		var theme = $("#hiddenTheme").val();
+		var cafeName = $("#hiddenTitle").val();
+		var address = $("#hiddenAddress").val();
+		var writingContent = $("#text").val();
+		var imgfiles = $("input[name='imgfiles']").val();
 		
+		console.log(imgfiles);
+
+		
+		if(zone == ""){
+			alert("지역을 선택해 주세요.");
+			return false;
+		}
+		
+		if(theme == ""){
+			alert("테마를 선택해주세요.");
+			return false;
+		}
+		
+		if(cafeName == "" && address == ""){
+			alert("추천카페를 찾아볼까요?");
+			return false;
+		}
+		
+		if(writingContent == ""){
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+		
+		if(imgfiles == ""){
+			alert("사진을 첨부해주세요.");
+			return false;
+		}
 	})
 	
 	//카테고리 - 지역값 form에 넣기

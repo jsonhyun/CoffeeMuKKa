@@ -481,11 +481,13 @@ ul.themeListCafeWrap li img{
 	var cnt = Math.floor(len/2);
 	
 	var arr1 = new Array();
+	console.log(cnt); //한페이지당 총개수/2 -- 16
 	
 	for(var i=0;i<=cnt;i++){ 
 		arr1.push(arr.splice(0,2));
+		console.log("찍어줘"+arr.splice(0,2));
 	}
-	
+	console.log(arr1);
 	for(var i =0;i<arr1.length-1;i++){
 		console.log(arr1[i]);
 		$(".rankTheme_one").eq(i).text("#"+arr1[i][0]);
