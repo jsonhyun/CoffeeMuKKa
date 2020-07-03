@@ -1059,6 +1059,7 @@
 		var authNo = "${AuthNo}";
 		if(authNo == "") {
 			loginShow();
+			$("#newReply").prop("readonly", true);
 		}
 	})	
 	
@@ -1177,7 +1178,12 @@
 		var boardNo = ${board.boardNo};
 		
 		// login 기능 구현 후 수정해야함
-		var userNo = 3;
+		var userNo = "${AuthNo}";
+		
+		if(userNo == ""){
+			loginShow();
+			return false;
+		}		
 		
 		if($(this).hasClass("off")){
 			$(this).empty();

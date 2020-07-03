@@ -217,14 +217,6 @@
 		width: 100%;
 		table-layout: fixed; 
 	}
-	
-	.cafeSearchWrap .resCafe {
-		cursor: pointer;
-	}
-	
-	.cafeSearchWrap .resCafe:hover .resCafeName{
-		text-decoration: underline;
-	}
 	.searchCafe{
 		color: #FF5E00;
 		font-weight: bold;
@@ -591,7 +583,7 @@
 					$(".cafeResult").append($tr);
 					$(".goCageInfo_reiview").hide();
 					
-					$(".closeBtn").show();
+					$(".closeBtn").hide();
 					
 			   }else { // 등록된카페O -> 핸들바즈 삽입(검색결과)
 					$(".goCageInfo_reiview").show();
@@ -624,14 +616,7 @@
 		location.href="${pageContext.request.contextPath}/user/mukkaCafe"; // 임시로 작성
 	})
 	
-	$(document).on("click", ".resCafe", function(){
-		var name = $(this).attr("data-cafeName");
-		var no = $(this).attr("data-cafeNo");
-		
-		$(".cafeName").val(name);
-		$(".cafeNo").val(no);
-		$(".cafeSearchWrap").hide();
-	})
+
 	
 	//첨부 이미지 미리보기
 	$("#file").change(function() {

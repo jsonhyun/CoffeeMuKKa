@@ -368,13 +368,13 @@
 			<!-------------------------------- 실질적인 등록폼 -------------------------------->
 			<form action="modify" method="post" enctype="multipart/form-data">
 			<!-- hidden처리 -->
-			<input type="text" name="boardNo" value="${board.boardNo}">
-			<input type="text" name="boardNo2.boardNo" value="2">
-			<input type="text" name="userNo.userNo" value="${board.userNo.userNo}">
-			<input type="text" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
-			<input type="text" name="themeNo.themeNo" id="hiddenTheme" value="${board.themeNo.themeNo}">
-			<input type="text" name="writingTitle" id="hiddenTitle" value="${board.writingTitle}">
-			<input type="text" name="address" id="hiddenAddress" value="${board.address}">
+			<input type="hidden" name="boardNo" value="${board.boardNo}">
+			<input type="hidden" name="boardNo2.boardNo" value="2">
+			<input type="hidden" name="userNo.userNo" value="${board.userNo.userNo}">
+			<input type="hidden" name="zoneNo.zoneNo" id="hiddenZone" value="${board.zoneNo.zoneNo}">
+			<input type="hidden" name="themeNo.themeNo" id="hiddenTheme" value="${board.themeNo.themeNo}">
+			<input type="hidden" name="writingTitle" id="hiddenTitle" value="${board.writingTitle}">
+			<input type="hidden" name="address" id="hiddenAddress" value="${board.address}">
 			<input type="hidden" name="page" value="${cri.page }" />
 			<input type="hidden" name="searchZone" value="${cri.searchZone }" />
 			<input type="hidden" name="searchTheme" value="${cri.searchTheme }" />
@@ -682,7 +682,7 @@
 		//var file = $(this)[0].files[0]; // $(this)[0] : javascript 객체
 		
 		var files = $(this)[0].files;
-		//var file = e.target.files;        https://greatps1215.tistory.com/5
+		//var file = e.target.files;        
 		//console.log(files);
 		$("#imagesBox").empty();
 			for(var i = 0; i<files.length;i++){
