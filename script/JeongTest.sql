@@ -3,8 +3,17 @@ select user(), database();
 show tables;
 
 select * from cafe; -- 카페
-select * from board where board_no = 915;
+select * from board where board_no = 832;
 
+select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+		left join theme t on c.theme_no = t.theme_no;
+	
+select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+		left join theme t on c.theme_no = t.theme_no limit 0, 16;
+	
+select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
+		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = 97 and s.theme_no != c.theme_no 
+		group by s.theme_no order by cnt desc, s.theme_no limit 2;	
 where board_no =26; -- 게시판
 select * from users;
 where nick = '자바칩프라푸치노';
@@ -1618,4 +1627,37 @@ select * from starpoint;
 union
 select * from starpoint;
 select * from board;
+
+select b.board_no, b.writing_title, b.registration_date, b.update_date, b.view_number, b.vote_number, b.writing_content, b.address, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_no, u.user_id, u.password, u.nick, g.user_grade, g.user_grade_image, g.user_grade_name, i.image_name from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no 
+		left join grade g on u.user_grade = g.user_grade
+		left join image i on b.board_no = i.board_no
+		where b.board_no2 = 2 and b.board_no = 
 select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = 2 and board_del_cdt = 1;
+select board_no from board where board_no2 = 2 and board_del_cdt = 1;
+
+		select u.user_no, u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
+			   b.view_number , b.writing_title , b.registration_date , b.update_date,
+			   b.writing_content , b.vote_number , b.reply_cnt , b.board_del_cdt, z.zone_no , z.zone_name ,
+			   t.theme_no , t.theme_name , c.cafe_no, c.cafe_name , c.address, i.image_name 
+			from board b left join image i on b.board_no = i.board_no 
+						left join users u on b.user_no = u.user_no 
+						left join grade g on u.user_grade = g.user_grade 
+						left join cafe c on b.cafe_no = c.cafe_no 
+						left join zone z on c.zone_no = z.zone_no 
+						left join theme t on c.theme_no = t.theme_no
+select b.board_no, b.board_no2, b.writing_title, b.writing_content, b.view_number, z.zone_no, z.zone_name, t.theme_no, t.theme_name, u.user_id, u.name, u.nick from board b
+		left join zone z on b.zone_no = z.zone_no
+		left join theme t on b.theme_no = t.theme_no
+		left join users u on b.user_no = u.user_no
+		where b.writing_title = '프리지아' and b.address = #{address} and b.board_no != #{boardNo} and b.board_del_cdt = 1
+		order by b.board_no desc;						
+select * from board where user_no = 211 and board_del_cdt = 1 order by registration_date desc limit 3;						
+						
+	select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) and b.board_del_cdt = 1 group by b.user_no order by count(b.user_no) desc;					
+select count(b.user_no) from board b left join users u on b.user_no = u.user_no where b.board_del_cdt = 1 group by b.user_no order by count(b.user_no) desc limit 10;
+select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where b.board_del_cdt = 1 group by b.user_no order by count(b.user_no) desc limit 10;
+
+select count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) and b.board_del_cdt = 1 group by b.user_no order by count(b.user_no) desc;

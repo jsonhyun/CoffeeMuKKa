@@ -108,4 +108,6 @@ public interface CafeDAO {
 	
 	public List<Integer> starPoint5CommentCnt() throws Exception;
 	
+	public List<CafeVO> themeCafeListThemeName(SearchCriteria cri) throws Exception;
+	
 }

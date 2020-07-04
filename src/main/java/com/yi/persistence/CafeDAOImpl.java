@@ -336,5 +336,10 @@ public class CafeDAOImpl implements CafeDAO {
 		return sqlSession.selectList(namespace+"starPoint5CommentCnt");
 	}
 
+	@Override
+	public List<CafeVO> themeCafeListThemeName(SearchCriteria cri) throws Exception {
+		return sqlSession.selectList(namespace+"themeCafeListThemeName",cri);
+	}
+
 
 }

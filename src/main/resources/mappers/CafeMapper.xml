@@ -237,7 +237,7 @@
 	<select id="rankTheme" resultType="ThemeVO">
 		select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt from starpoint s left join theme t on s.theme_no = t.theme_no 
 		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = #{cafeNo} and s.theme_no != c.theme_no 
-		group by s.theme_no order by cnt desc, s.theme_no limit 2;
+		group by s.theme_no order by cnt desc, s.theme_no limit 2
 	</select>
 	
 	<!-- 카페별 메뉴 검색 -->
@@ -501,8 +501,14 @@
 		select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
 		left join theme t on c.theme_no = t.theme_no
 		<include refid="search"></include>
-		order by c.registration_date desc limit #{pageStart}, 16
+		limit #{pageStart}, 16
 	</select>
+	
+	<select id="themeCafeListThemeName" resultMap="CafeListSelectResult">
+		select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t.theme_name from cafe c
+		left join theme t on c.theme_no = t.theme_no
+		<include refid="search"></include>
+	</select>	
 	
 	<select id="starPoint5Comment" resultMap="CafeListSelectResult">
 		select c.*, z.*, t.* , s.*, u.* from starpoint s

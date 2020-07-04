@@ -164,9 +164,19 @@ public class UserCafeController {
 			imgList.add(service.imgSelect(cafeNo));
 			starpointList.add(service.starpointSelect(cafeNo));
 			reviewNum.add(service.countReviewNum(cafeNo));
+			//themeList.addAll(service.rankTheme(cafeNo));
+		}
+		
+
+		List<CafeVO> cafeNoAll = service.themeCafeListThemeName(cri);
+		for(int i=0; i<cafeNoAll.size();i++) {
+			int cafeNo = cafeNoAll.get(i).getCafeNo();
+			//System.out.println("test----------"+cafeNo);
 			themeList.addAll(service.rankTheme(cafeNo));
 		}
 		
+		System.out.println("test--------------------------------------------------------"+cafeNoAll.size());
+		System.out.println("test--------------------------------------------------------"+themeList.toString());
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);

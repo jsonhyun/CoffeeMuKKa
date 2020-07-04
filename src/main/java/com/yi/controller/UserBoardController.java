@@ -39,7 +39,6 @@ import com.yi.domain.ImageVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
 import com.yi.domain.ThemeVO;
-import com.yi.domain.UsersVO;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;
 import com.yi.service.ThemeService;

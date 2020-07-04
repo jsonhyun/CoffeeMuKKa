@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.BoardVO;
 import com.yi.domain.CafeVO;
-import com.yi.domain.Criteria;
 import com.yi.domain.ImageVO;
-import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
 import com.yi.domain.ZoneVO;
 import com.yi.service.BoardService;

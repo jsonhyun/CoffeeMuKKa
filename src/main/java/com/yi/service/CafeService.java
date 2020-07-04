@@ -223,5 +223,9 @@ public class CafeService {
 	public List<Integer> starPoint5CommentCnt() throws Exception {
 		return dao.starPoint5CommentCnt();
 	}
+	
+	public List<CafeVO> themeCafeListThemeName(SearchCriteria cri) throws Exception {
+		return dao.themeCafeListThemeName(cri);
+	}	
 
 }

@@ -255,7 +255,7 @@ ul.themeListCafeWrap{
 ul.themeListCafeWrap li{
 	float: left;
 	width: 23%;
-	height: 290px;
+	height: 315px;
 	margin: 8px;
 	border: 1px solid #A6A6A6;
 	position: relative;
@@ -477,18 +477,20 @@ ul.themeListCafeWrap li img{
 	<c:forEach var="themeList" items="${themeList}" varStatus="status">
 		arr.push("${themeList.themeName}");
 	</c:forEach>
+	
 	var len = arr.length;
 	var cnt = Math.floor(len/2);
 	
-	var arr1 = new Array();
-	console.log(cnt); //한페이지당 총개수/2 -- 16
 	
+	console.log(arr); //한페이지당 총개수/2 -- 16
+	
+	var arr1 = new Array();
 	for(var i=0;i<=cnt;i++){ 
 		arr1.push(arr.splice(0,2));
 		console.log("찍어줘"+arr.splice(0,2));
 	}
-	console.log(arr1);
-	for(var i =0;i<arr1.length-1;i++){
+	
+	for(var i =0;i<arr1.length;i++){
 		console.log(arr1[i]);
 		$(".rankTheme_one").eq(i).text("#"+arr1[i][0]);
 		$(".rankTheme_two").eq(i).text("#"+arr1[i][1]);
