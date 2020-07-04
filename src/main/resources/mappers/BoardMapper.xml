@@ -250,7 +250,7 @@
 		
 	<!-- 공통 : 오늘 등록된 글 갯수 -->
 	<select id="todayBoardCount" resultType="int">
-		select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = #{cBoardNo} <!-- 커뮤니티 게시판 번호 -->
+		select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = #{cBoardNo} and board_del_cdt = 1<!-- 커뮤니티 게시판 번호 -->
 	</select>
 	<!-- 공통 : 각 서브게시물별 등록된 게시글 총 갯수(페이징시 이용) -->
 	<select id="totalSearchCount" resultType="int">

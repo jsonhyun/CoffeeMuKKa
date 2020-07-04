@@ -3,7 +3,7 @@ select user(), database();
 show tables;
 
 select * from cafe; -- 카페
-select * from board where board_no = 912;
+select * from board where board_no = 915;
 
 where board_no =26; -- 게시판
 select * from users;
@@ -1617,4 +1617,5 @@ select c.cafe_no, c.cafe_name, c.vote_number, c.registration_date, t.theme_no, t
 select * from starpoint;
 union
 select * from starpoint;
-
+select * from board;
+select count(*) from board where CAST(DATE_FORMAT(registration_date, '%Y%m%d') AS CHAR(8)) = CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8)) and board_no2 = 2 and board_del_cdt = 1;
