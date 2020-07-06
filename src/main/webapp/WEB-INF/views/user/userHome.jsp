@@ -831,7 +831,7 @@
 						</a>
 					</li>
 					<li class="mainBox">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/user/pointShop">
 							<p class="mainInfoText"><i>우리 함께 찾아봐요</i></p>
 							<h1 class="mainTitle"><i>Point Shop</i></h1>
 							<span class="viewpoint-third"><img src="${pageContext.request.contextPath }/resources/images/viewpoint.png">　<i>view more</i></span>
