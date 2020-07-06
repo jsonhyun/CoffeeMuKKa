@@ -575,7 +575,7 @@ public class UserBoardController {
 	//리스트
 	@RequestMapping(value = "/community/cafeCeoTalk", method = RequestMethod.GET)
 	public String cafeCeoTalkList() throws Exception{
-		return "/user/userCafeCeoTalkList";
+		return "/user/userCommunityCafeCeoTalkList";
 	}
 	//글쓰기
 	//상세보기
@@ -590,7 +590,7 @@ public class UserBoardController {
 	//리스트
 	@RequestMapping(value = "/community/bulletinBoard", method = RequestMethod.GET)
 	public String bulletinBoardList() throws Exception{
-		return "/user/userBulletinBoardList";
+		return "/user/userCommunityBulletinBoardList";
 	}
 	//글쓰기
 	//상세보기
