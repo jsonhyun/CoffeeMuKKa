@@ -15,8 +15,7 @@ select s.cafe_no , s.theme_no, t.theme_name, c.theme_no,count(s.theme_no) as cnt
 		left join cafe c on s.cafe_no = c.cafe_no where s.cafe_no = 97 and s.theme_no != c.theme_no 
 		group by s.theme_no order by cnt desc, s.theme_no limit 2;	
 where board_no =26; -- 게시판
-select * from users;
-where nick = '자바칩프라푸치노';
+select * from users where nick = '자바칩프라푸치노';
 -- 회원 현황
 select * from admin; -- 관리자
 select * from theme; -- 테마 분류

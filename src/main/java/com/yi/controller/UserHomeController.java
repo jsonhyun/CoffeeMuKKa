@@ -403,4 +403,16 @@ public class UserHomeController {
 	}
 	
 	
+	/*베스트상품*/
+	@RequestMapping(value = "/pointShop", method = RequestMethod.GET)
+	public String pointShopHome() throws Exception{
+		return "/user/userPointShopHome";
+	}
+	
+	/*공지사항*/
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public String noticeHome() throws Exception{
+		return "/user/userNoticeHome";
+	}
+	
 }

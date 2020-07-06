@@ -707,36 +707,36 @@
 								<img src="${pageContext.request.contextPath }/resources/images/menu1.png" alt="menu" id="mukkCafe" class="menuIcon"/>
 								<span>커피무까</span>
 							</a>
-							<ul class="subMenuUl">
+							<%-- <ul class="subMenuUl">
 								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe">커피무까</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/zone">위치별</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/theme">테마별</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/mukkaBest">MuKKa 베스트</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/mukkaCafe/monthCafe">月別카페</a></li>
-							</ul>
+							</ul> --%>
 						</li>
 						<li>
 							<a href="${pageContext.request.contextPath }/user/community" class="menuName">
 								<img src="${pageContext.request.contextPath }/resources/images/menu2.png" alt="menu" id="community" class="menuIcon"/>
 								<span>커뮤니티</span>
 							</a>
-							<ul class="subMenuUl">
+							<%-- <ul class="subMenuUl">
 								<li><a href="${pageContext.request.contextPath}/user/community">MuKKa의 전당</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/community/cafeReview">생생 카페 탐방기</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/community/cafeRecommend">MuKKa人 추천 카페</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/community/#">사장님 고민 나눔</a></li>
 								<li><a href="${pageContext.request.contextPath}/user/community/#">자유게시판</a></li>
-							</ul>
+							</ul> --%>
 						</li>
 						<li>
-							<a href="#" class="menuName">
+							<a href="${pageContext.request.contextPath}/user/pointShop" class="menuName">
 								<img src="${pageContext.request.contextPath }/resources/images/menu3.png" alt="menu" id="pointShop" class="menuIcon"/>
 								<span>포인트샵</span>
 							</a>
 						</li>
 						<li>
-							<a href="#" class="menuName">
-								<img src="${pageContext.request.contextPath }/resources/images/menu4.png" alt="menu" id="board" class="menuIcon"/>
+							<a href="${pageContext.request.contextPath}/user/notice" class="menuName">
+								<img src="${pageContext.request.contextPath }/resources/images/menu4.png" alt="menu" id="notice" class="menuIcon"/>
 								<span>공지사항</span>
 							</a>
 						</li>

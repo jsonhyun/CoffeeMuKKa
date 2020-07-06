@@ -36,9 +36,47 @@
 				{"url" : ""},
 				{"url" : "/cafeReview"},
 				{"url" : "/cafeRecommend"},
-				{"url" : "/#"}, 
-				{"url" : "/#/#"}
+				{"url" : "/cafeCeoTalk"}, 
+				{"url" : "/bulletinBoard"}
 			]
-		}
+		},
+		{
+			"url" : "pointShop",
+			"title" : "포인트샵",
+			"text" : "풍 성 한  상 품!<br>소 소 한  행 복!",
+			"menuImg" : "sub_img3_b.png",
+			"subMenu" : [
+				{"name" : "베스트 상품"},
+				{"name" : "MuKKa 상품권"},
+				{"name" : "커피 & 차"},
+				{"name" : "커피 용품"},
+				{"name" : "기타"}
+			],
+			"subUrl" : [
+				{"url" : ""},
+				{"url" : "/giftCard"},
+				{"url" : "/coffeeNtea"},
+				{"url" : "/coffeeGoods"}, 
+				{"url" : "/shopEtc"}
+			]
+		},
+		{
+			"url" : "notice",
+			"title" : "공지사항",
+			"text" : "Mukka人들에게<br>알.려.드.립.니.다.",
+			"menuImg" : "sub_img4_b.png",
+			"subMenu" : [
+				{"name" : "공지사항"},
+				{"name" : "이벤트"},
+				{"name" : "FAQ"},
+				{"name" : "QNA"}
+			],
+			"subUrl" : [
+				{"url" : ""},
+				{"url" : "/event"},
+				{"url" : "/faq"},
+				{"url" : "/qna"}
+			]
+		}				
 	]
 }

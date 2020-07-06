@@ -9,6 +9,7 @@
 				<p class="subText"></p>
 			</div>
 		</div>
+		<!-- 서브메뉴 li 들어가는곳 -->
 		<ul class="subMenus"></ul>
 		
 		<div class="subBoardArea">
@@ -134,7 +135,7 @@
 			$("#mukkCafe").attr("src", imgPath+"menu1.png");
 			$("#community").attr("src", imgPath+"menu2.png");
 			$("#pointShop").attr("src", imgPath+"menu3.png");
-			$("#board").attr("src", imgPath+"menu4.png");
+			$("#notic").attr("src", imgPath+"menu4.png");
 			$(".menuName span").css("color", "#fff");
 			
 			if(pageUrl.indexOf("mukkaCafe") > -1){
@@ -145,5 +146,13 @@
 				$("#community").attr("src", imgPath+"menu2_2.png");
 				$(".menuName span").eq(1).css("color", "#ED7D31");
 			}
+			if(pageUrl.indexOf("pointShop") > -1){
+				$("#pointShop").attr("src", imgPath+"menu3_3.png");
+				$(".menuName span").eq(2).css("color", "#ED7D31");
+			}
+			if(pageUrl.indexOf("notice") > -1){
+				$("#notice").attr("src", imgPath+"menu4_4.png");
+				$(".menuName span").eq(3).css("color", "#ED7D31");
+			}			
 		}) 
 	</script>

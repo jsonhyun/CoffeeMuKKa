@@ -568,4 +568,33 @@ public class UserBoardController {
 		
 		return "/user/userCommunityRecommendBestAll";
 	}
+	
+	
+	/*사장님 고민 나눔*/
+	
+	//리스트
+	@RequestMapping(value = "/community/cafeCeoTalk", method = RequestMethod.GET)
+	public String cafeCeoTalkList() throws Exception{
+		return "/user/userCafeCeoTalkList";
+	}
+	//글쓰기
+	//상세보기
+	//베스트
+	//수정
+	
+	
+	
+	
+	/*자유게시판*/
+	
+	//리스트
+	@RequestMapping(value = "/community/bulletinBoard", method = RequestMethod.GET)
+	public String bulletinBoardList() throws Exception{
+		return "/user/userBulletinBoardList";
+	}
+	//글쓰기
+	//상세보기
+	//베스트
+	//수정	
+	
 }
