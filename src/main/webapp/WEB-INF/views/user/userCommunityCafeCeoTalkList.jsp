@@ -197,6 +197,42 @@
 		color: #ed7d31;
 		font-size: 14px;
 		letter-spacing: -2px;		
+	}
+	table.cafeCeoTalkBox{
+		width: 100%;
+	}
+	/* table.cafeCeoTalkBox td{
+		overflow: hidden;
+	} */	
+	.cafeCeoTalkBox_head th{
+		border-right: none;
+		border-left: none;
+		height: 45px;
+	}
+	.cafeCeoTalkBox_title{
+		width: 60%;
+		overflow: hidden;
+	}
+	.cafeCeoTalkBox_writer{
+		width: 20%;
+		text-align: center;
+		overflow: hidden;
+	}
+	.cafeCeoTalkBox_view{
+		text-align: center;
+	}
+	.cafeCeoTalkBox_date{
+		text-align: center;
+	}
+	.test{
+		color:red;
+		display: inline-block;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		max-width: 480px;
+		padding-left: 10px;
+		vertical-align: sub;
 	}	
 </style>
 <div class="content subPageContent">
@@ -300,8 +336,59 @@
 			<div class="recommendBest mb30">
 				
 				<div class="recomWrap">
-				
-				<ul>
+				<table class="cafeCeoTalkBox">
+					<thead class="cafeCeoTalkBox_head">
+						<tr>
+							<th class="cafeCeoTalkBox_title">제목</th>
+							<th class="cafeCeoTalkBox_writer">작성자</th>
+							<th class="cafeCeoTalkBox_view">조회수</th>
+							<th class="cafeCeoTalkBox_date">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="cafeCeoTalkBox_title">
+								<a href="#" class="test">공지사항테스트eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</a>
+								<span class="review red">(1000)</span>								
+							</td>
+							<td class="cafeCeoTalkBox_writer">공지사항테스트</td>
+							<td class="cafeCeoTalkBox_view">100</td>
+							<td class="cafeCeoTalkBox_date">2020.08.02</td>
+						</tr>
+						<tr>
+							<td class="cafeCeoTalkBox_title">
+								<a href="#" class="test">공지사항테스트</a>
+								<span class="review red">(100)</span>								
+							</td>
+							<td class="cafeCeoTalkBox_writer">공지사항테스트</td>
+							<td class="cafeCeoTalkBox_view">100</td>
+							<td class="cafeCeoTalkBox_date">2020.08.02</td>
+						</tr>
+						<tr>
+							<td class="cafeCeoTalkBox_title">
+								<a href="#" class="test">공지사항테스트</a>
+								<span class="review red">(100)</span>								
+							</td>
+							<td class="cafeCeoTalkBox_writer">공지사항테스트</td>
+							<td class="cafeCeoTalkBox_view">100</td>
+							<td class="cafeCeoTalkBox_date">2020.08.02</td>
+						</tr>												
+						<c:forEach var="board" items="${list}">
+							<tr>
+								<td>
+									<div class="zoneBtn zoneOrangeIconSmall keyword">${board.zoneNo.zoneName}</div>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>																								
+							</tr>
+						</c:forEach>	
+					</tbody>
+				</table>
+<%-- 				<ul>
 					<c:forEach var="board" items="${list}">
 					<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${board.boardNo}&page=${cri.page}&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}" class="a_cafeReview">
 						<li>
@@ -347,7 +434,7 @@
 						</li>
 										</a>
 					</c:forEach>
-				</ul>
+				</ul> --%>
 				</div>
 
 			</div>
@@ -356,13 +443,13 @@
 		<div style="text-align: center;">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev == true }">
-					<li><a href="cafeRecommend?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
+					<li><a href="cafeCeoTalk?page=${pageMaker.startPage-1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&laquo;</a></li>
 				</c:if>
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeRecommend?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
+					<li class="${pageMaker.cri.page == idx?'active':'' }"><a href="cafeCeoTalk?page=${idx }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">${idx }</a></li>
 				</c:forEach>
 				<c:if test="${pageMaker.next == true }">
-					<li><a href="cafeRecommend?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
+					<li><a href="cafeCeoTalk?page=${pageMaker.endPage+1 }&searchZone=${cri.searchZone }&searchTheme=${cri.searchTheme }&searchType=${cri.searchType }&keyword=${cri.keyword}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>					
