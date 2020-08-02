@@ -1,7 +1,9 @@
 select user(), database();
-
+select month(post_date) as month from powerlink where pow_cdt = 1 group by post_date;
 show tables;
-
+select * from users;
+select * from users where name = '정영화';
+select * from users where user_id = 'anlRi3sc4';
 select * from cafe; -- 카페
 select * from board where board_no = 832;
 
@@ -30,6 +32,7 @@ select * from grade; -- 회원 등급
 select * from authority; -- 관리자 권한
 select * from wishlist; -- 위시리스트
 select * from image;
+select * from powerlink;
 -- 이미지
 select * from vote; -- 추천리스트
 
@@ -1660,3 +1663,25 @@ select count(b.user_no) from board b left join users u on b.user_no = u.user_no 
 select b.board_no, b.user_no, g.user_grade_image, u.nick, u.user_id, count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where b.board_del_cdt = 1 group by b.user_no order by count(b.user_no) desc limit 10;
 
 select count(b.user_no) from board b left join users u on b.user_no = u.user_no left join grade g on u.user_grade = g.user_grade where left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) and b.board_del_cdt = 1 group by b.user_no order by count(b.user_no) desc;
+
+
+
+
+select v.board_no , b.writing_title , b.reply_cnt from vote v 
+left join board b on v.board_no = b.board_no, 
+(select board_no, count(board_no) as cnt  from vote where month(vote_date) = month(now())-1 group by board_no) num
+			where v.board_no = num.board_no and b.board_no2 = 1
+			group by board_no
+			order by num.cnt desc, v.board_no limit 10;
+			
+select u.user_no, u.nick , u.name , u.user_id , u.user_grade , g.user_grade_image , b.board_no ,
+   b.view_number , b.writing_title , b.registration_date , b.update_date,
+   b.writing_content , b.vote_number , b.reply_cnt , b.board_del_cdt, z.zone_no , z.zone_name ,
+   t.theme_no , t.theme_name , c.cafe_no, c.cafe_name , c.address, i.image_name 
+from board b left join image i on b.board_no = i.board_no 
+			left join users u on b.user_no = u.user_no 
+			left join grade g on u.user_grade = g.user_grade 
+			left join cafe c on b.cafe_no = c.cafe_no 
+			left join zone z on c.zone_no = z.zone_no 
+			left join theme t on c.theme_no = t.theme_no
+where b.board_no2 =1 and b.board_del_cdt = 1 and left(DATE_SUB(curdate(), INTERVAL 1 month),7) = left(b.registration_date,7) order by b.vote_number desc limit 15;		

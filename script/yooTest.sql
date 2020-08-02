@@ -1,6 +1,6 @@
 select user(), database();
 
-select * from cafe; -- 카페
+select * from cafe WHERE cafe_no = 52; -- 카페
 select * from board; -- 게시판
 select * from users; -- 회원 현황
 select * from admin; -- 관리자
