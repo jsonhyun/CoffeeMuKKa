@@ -574,7 +574,44 @@ public class UserBoardController {
 	
 	//리스트
 	@RequestMapping(value = "/community/cafeCeoTalk", method = RequestMethod.GET)
-	public String cafeCeoTalkList() throws Exception{
+	public String cafeCeoTalkList(SearchCriteria cri, Model model) throws Exception{
+		//카페추천 게시판번호 - 2번
+		int cBoardNo = 2;
+		cri.setPerPageNum(16); //한페이지당 16개씩
+		
+		List<BoardVO> list = service.recommendboardListSearchCriteria(cBoardNo,cri);	
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalSearchCountJoin(cBoardNo, cri));
+		
+		
+		model.addAttribute("list",list);
+		model.addAttribute("cri",cri);
+		model.addAttribute("pageMaker",pageMaker);
+		
+		//오늘의 글 등록 갯수
+		int todayCnt = service.todayBoardCount(cBoardNo);
+		model.addAttribute("todayCnt", todayCnt);
+	
+		//대표이미지 가져오기
+		List<ImageVO> listImg = new ArrayList<ImageVO>();
+		for(int i=0;i<list.size();i++) {
+			int sboardNo = list.get(i).getBoardNo();
+			listImg.addAll(service.boardImgList(sboardNo));
+			
+		}
+		model.addAttribute("listImg", listImg);
+
+		//지역 리스트
+		List<ZoneVO> zoneList = service.zoneList();
+		model.addAttribute("zoneList", zoneList);
+		//테마 리스트
+		List<ThemeVO> themeList = service.themeList();
+		model.addAttribute("themeList", themeList);
+		
+		//전월 베스트글 리스트
+		List<BoardVO> rcBestList = service.rcRankVoteLastMonth();
+		model.addAttribute("rcBestList",rcBestList);
 		return "/user/userCommunityCafeCeoTalkList";
 	}
 	//글쓰기
@@ -589,7 +626,45 @@ public class UserBoardController {
 	
 	//리스트
 	@RequestMapping(value = "/community/bulletinBoard", method = RequestMethod.GET)
-	public String bulletinBoardList() throws Exception{
+	public String bulletinBoardList(SearchCriteria cri, Model model) throws Exception{
+		//카페추천 게시판번호 - 2번
+		int cBoardNo = 2;
+		cri.setPerPageNum(16); //한페이지당 16개씩
+		
+		List<BoardVO> list = service.recommendboardListSearchCriteria(cBoardNo,cri);	
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalSearchCountJoin(cBoardNo, cri));
+		
+		
+		model.addAttribute("list",list);
+		model.addAttribute("cri",cri);
+		model.addAttribute("pageMaker",pageMaker);
+		
+		//오늘의 글 등록 갯수
+		int todayCnt = service.todayBoardCount(cBoardNo);
+		model.addAttribute("todayCnt", todayCnt);
+	
+		//대표이미지 가져오기
+		List<ImageVO> listImg = new ArrayList<ImageVO>();
+		for(int i=0;i<list.size();i++) {
+			int sboardNo = list.get(i).getBoardNo();
+			listImg.addAll(service.boardImgList(sboardNo));
+			
+		}
+		model.addAttribute("listImg", listImg);
+
+		//지역 리스트
+		List<ZoneVO> zoneList = service.zoneList();
+		model.addAttribute("zoneList", zoneList);
+		//테마 리스트
+		List<ThemeVO> themeList = service.themeList();
+		model.addAttribute("themeList", themeList);
+		
+		//전월 베스트글 리스트
+		List<BoardVO> rcBestList = service.rcRankVoteLastMonth();
+		model.addAttribute("rcBestList",rcBestList);		
+		
 		return "/user/userCommunityBulletinBoardList";
 	}
 	//글쓰기
