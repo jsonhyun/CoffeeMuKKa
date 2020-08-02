@@ -54,7 +54,7 @@
 		border: none;
 	}
 	td.no{
-		width: 62px;
+		width: 35px;
 	}
 	/* 추천카페 : 리스트 */
 	.recommendBest .recomWrap ul{
@@ -193,10 +193,10 @@
 		}
 		
 	/*추가*/
-	.bestZoneName{
-		color: #747474;
+	.bestCafeName{
+		color: #ed7d31;
 		font-size: 14px;
-		letter-spacing: -1px;
+		letter-spacing: -2px;		
 	}	
 </style>
 <div class="content subPageContent">
@@ -217,7 +217,10 @@
 						<tr>
 							<td class="no"><p class="bgRed"><!-- 랭킹숫자 --></p></td>
 							<td>
-								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title"><span class ="bestZoneName">[${rcBestList.zoneNo.zoneName}]</span>　${rcBestList.writingTitle}</a>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">
+									<span class ="bestCafeName">[${rcBestList.writingTitle}]</span>　
+									${rcBestList.writingTitle}
+								</a>
 								<span class="review red">(${rcBestList.replyCnt})</span>
 							</td>
 						</tr>
@@ -226,7 +229,10 @@
 						<tr>
 							<td class="no"><p class="bgPink"><!-- 랭킹숫자 --></p></td>
 							<td>					
-								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title"><span class ="bestZoneName">[${rcBestList.zoneNo.zoneName}]</span>　${rcBestList.writingTitle}</a>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">
+									<span class ="bestCafeName">[${rcBestList.writingTitle}]</span>　
+									${rcBestList.writingTitle}
+								</a>
 								<span class="review red">(${rcBestList.replyCnt})</span>
 							</td>
 						</tr>
@@ -237,7 +243,10 @@
 						<tr>
 							<td class="no"><p class="bgPink"><!-- 랭킹숫자 --></p></td>
 							<td>
-								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title"><span class ="bestZoneName">[${rcBestList.zoneNo.zoneName}]</span>　${rcBestList.writingTitle}</a>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">
+									<span class ="bestCafeName">[${rcBestList.writingTitle}]</span>　
+									${rcBestList.writingTitle}
+								</a>
 								<span class="review red">(${rcBestList.replyCnt})</span>
 							</td>
 						</tr>

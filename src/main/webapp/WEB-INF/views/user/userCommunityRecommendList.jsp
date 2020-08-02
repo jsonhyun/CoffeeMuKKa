@@ -190,6 +190,13 @@
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
 		border-bottom-right-radius: 3px;
+	}
+	/*추가*/
+	.bestZoneName{
+		color: #747474;
+		font-size: 14px;
+		letter-spacing: -2px;
+	}	
 </style>
 	
 <div class="content subPageContent">
@@ -212,7 +219,10 @@
 						<tr>
 							<td class="no"><p class="bgRed"><!-- 랭킹숫자 --></p></td>
 							<td>
-								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">${rcBestList.writingTitle}</a>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">
+									<span class ="bestZoneName">[${rcBestList.zoneNo.zoneName}]</span>　
+									${rcBestList.writingTitle}
+								</a>
 								<span class="review red">(${rcBestList.replyCnt})</span>
 							</td>
 						</tr>
@@ -221,7 +231,10 @@
 						<tr>
 							<td class="no"><p class="bgPink"><!-- 랭킹숫자 --></p></td>
 							<td>
-								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">${rcBestList.writingTitle}</a>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">
+									<span class ="bestZoneName">[${rcBestList.zoneNo.zoneName}]</span>　
+									${rcBestList.writingTitle}
+								</a>
 								<span class="review red">(${rcBestList.replyCnt})</span>
 							</td>
 						</tr>
@@ -232,7 +245,10 @@
 						<tr>
 							<td class="no"><p class="bgPink"><!-- 랭킹숫자 --></p></td>
 							<td>
-								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">${rcBestList.writingTitle}</a>
+								<a href="${pageContext.request.contextPath}/user/community/cafeRecommend/read?boardNo=${rcBestList.boardNo}" class="title">
+									<span class ="bestZoneName">[${rcBestList.zoneNo.zoneName}]</span>　
+									${rcBestList.writingTitle}
+								</a>
 								<span class="review red">(${rcBestList.replyCnt})</span>
 							</td>
 						</tr>

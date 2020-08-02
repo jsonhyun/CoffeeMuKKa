@@ -188,7 +188,8 @@
 	.pagination-sm > li:last-child > a,
 	.pagination-sm > li:last-child > span {
 		border-top-right-radius: 3px;
-		border-bottom-right-radius: 3px;	
+		border-bottom-right-radius: 3px;
+	}	
 </style>
 <div class="content subPageContent">
 	<div class="contentArea">
