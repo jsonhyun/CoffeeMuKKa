@@ -112,7 +112,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version> <!-- 4.12로 수정함 -->
+			<version>4.13.1</version> <!-- 4.12로 수정함 -->
 			<scope>test</scope>
 		</dependency>      
 		
